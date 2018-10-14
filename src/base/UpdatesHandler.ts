@@ -163,7 +163,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           this.handleUpdateMessages(update.new_messages)
         ])
           .then(() => this.updatesState.set({ date, seq, pts }))
-          .then(() => setImmediate(this.getDifference()))
+          .then(() => setImmediate(() => this.getDifference()))
           .then(stop)
       }
 
