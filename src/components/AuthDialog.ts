@@ -1,6 +1,6 @@
 import { ag } from '../interfaces'
 
-export type Value = ((state: Partial<Answers>) => Promise<string>) | string | undefined
+export type Value = ((state: Partial<Answers>) => any) | string | number | undefined | null
 
 export interface Answers {
   code: Value,
