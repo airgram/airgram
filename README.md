@@ -148,7 +148,7 @@ auth.on('code', async ({ state }, next) => {
 In the example above you have to implement `getSecretCodeFromSomewhere()` function by yourself. That function returns `Promise<string>`, where `string` is a secret code received from Telegram.
 
 
-You can use helper `prompt` to communicate to user by command line:
+You can use helper `prompt` to communicate with user by the command line:
 
 ```typescript
 import { prompt } from 'airgram/helpers'
