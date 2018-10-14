@@ -43,24 +43,7 @@ A simple example of how to use Airgram:
 
 ```typescript
 import { Airgram, AuthDialog } from 'airgram'
-import * as readline from 'readline'
-
-// JavaScript import:
-// const { Airgram, AuthDialog } = require('airgram')
-// const readline = require('readline')
-
-function prompt (request: string): Promise<string> {
-  return new Promise((resolve) => {
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout
-    })
-    rl.question(`${request}:\n`, (response) => {
-      rl.close()
-      resolve(response)
-    })
-  })
-}
+import { prompt } from 'airgram/helpers'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = {
@@ -178,7 +161,7 @@ airgram.use(auth)
 auth.use(new AuthDialog({
   firstName: 'John',
   lastName: 'Smith',
-  phoneNumber: process.env.PHONE_NUMBER || prompt('Please input your phone number:'),
+  phoneNumber: () => process.env.PHONE_NUMBER || prompt('Please input your phone number:'),
   code: async () => prompt('Please input the secret code:'),
   samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/N`),
   continue: ({ phoneNumber }) => prompt(`Last authorization with the "${phoneNumber}" phone number has broken. If you have the secret code and wish to continue, input "Yes". Y/N`)
