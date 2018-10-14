@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "module": "commonjs",
+    "sourceMap": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "declaration": true,
+    "lib": ["esnext", "dom"]
+  },
+  "exclude": [
+    "src/vendor/**",
+    "dist/**",
+    "examples/**",
+    "*.dev.ts"
+  ]
+}
