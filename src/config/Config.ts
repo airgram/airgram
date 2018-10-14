@@ -8,8 +8,14 @@ export default class Config implements ag.Config {
     test: false
   }
 
-  constructor (id: number, hash: string, version?: string) {
-    this.app = { hash, id, version: version || '0.0.0' }
+  constructor (id: number | string, hash: string, version?: string) {
+    if (!id) {
+      throw new Error('[Config] please provide application id')
+    }
+    if (!hash) {
+      throw new Error('[Config] please provide application hash')
+    }
+    this.app = { hash, id: Number(id), version: version || '0.0.0' }
   }
 
   get dcOptions (): any[] {

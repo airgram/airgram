@@ -27,7 +27,7 @@ export interface TelegramModesConfig {
 
 export interface TelegramAppConfig {
   hash: string,
-  id: string | number,
+  id: number,
   version: string
 }
 
