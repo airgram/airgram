@@ -37,9 +37,7 @@ yarn add airgram
 
 ## Getting started
 
-**Note:** all examples created with TypeScript but you may use JavaScript. Please check out [airgram-js-example](https://github.com/airgram/airgram-js-example).
-
-A simple example of how to use Airgram:
+A simple example of how to use Airgram ([source code](https://github.com/airgram/airgram-ts-example)):
 
 ```typescript
 import { Airgram, AuthDialog } from 'airgram'
@@ -47,8 +45,8 @@ import { prompt } from 'airgram/helpers'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = {
-  id: process.env.APP_ID,
-  hash: process.env.APP_HASH
+  id: 'MY_APP_ID',
+  hash: 'MY_APP_HASH'
 }
 
 const airgram = new Airgram(app)
