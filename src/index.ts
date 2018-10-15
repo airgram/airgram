@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import Airgram from './Airgram'
 import TYPES from './ioc/types'
 

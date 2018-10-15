@@ -29,10 +29,12 @@
     "inversify": "^4.13.0",
     "inversify-binding-decorators": "^4.0.0",
     "lodash": "^4.17.11",
-    "reflect-metadata": "^0.1.12",
     "require-directory": "^2.1.1",
     "rusha": "^0.8.13",
     "zlib": "^1.0.5"
+  },
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@types/node": "^10.11.7",
@@ -45,6 +47,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "nodemon": "^1.18.4",
     "np": "^3.0.4",
+    "reflect-metadata": "^0.1.12",
     "pre-commit": "^1.2.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",

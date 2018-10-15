@@ -42,6 +42,7 @@ A simple example of how to use Airgram ([source code](https://github.com/airgram
 ```typescript
 import { Airgram, AuthDialog } from 'airgram'
 import { prompt } from 'airgram/helpers'
+import 'reflect-metadata' // Do not forget to import
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = {
@@ -109,8 +110,8 @@ const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH
 
 const { auth } = airgram
 
-// We extend middleware`s state to pass information to Airgram
 auth.use((ctx: { _: string, state: { [key: string]: string } }, next: () => Promise<any>) => {
+  // Set default values
   Object.assign(ctx.state, {
     firstName: 'John',
     lastName: 'Smith',
@@ -119,11 +120,13 @@ auth.use((ctx: { _: string, state: { [key: string]: string } }, next: () => Prom
   return next()
 })
 
-// Also you can use method `on` to call a callback only for given type of the requests
+// You can use method `on` to call a callback only for given type of the requests
 auth.on('code', async ({ state }, next) => {
   state.code = await getSecretCodeFromSomewhere()
   return next()
 })
+
+auth.login()
 ```
 
 In the example above you have to implement `getSecretCodeFromSomewhere()` function by yourself. That function returns `Promise<string>`, where `string` is a secret code received from Telegram.
@@ -152,7 +155,7 @@ const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH
 
 const { auth } = airgram
 
-// Register authorization component
+// Register authorization middleware instead of calling `airgram.auth.login()` manually
 airgram.use(auth)
 
 // Register middleware to receive data from user
