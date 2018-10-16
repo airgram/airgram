@@ -7,8 +7,6 @@ import TYPES from '../ioc/types'
 
 @provide(TYPES.MtpState)
 export default class MtpState implements ag.MtpState {
-  public static storeKey = 'mtpState'
-
   public static factory (
     createInstance: () => ag.MtpState,
     client: ag.Client,
@@ -22,6 +20,7 @@ export default class MtpState implements ag.MtpState {
   }
 
   public defaultDcId: number = 2
+  public storeKey = 'mtpState'
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
 
@@ -47,7 +46,7 @@ export default class MtpState implements ag.MtpState {
   }
 
   public async get (key?: string) {
-    return this.store.get(MtpState.storeKey)
+    return this.store.get(this.storeKey)
       .then((data) => key ? (data || {})[key] : data)
       .catch((error) => {
         this.logger.error(`get() ${new Serializable(error)}`)
@@ -63,7 +62,7 @@ export default class MtpState implements ag.MtpState {
   }
 
   public async set (nextState: Partial<MtpStateDoc>) {
-    return this.store.update(MtpState.storeKey, nextState)
+    return this.store.update(this.storeKey, nextState)
   }
 
   public async userId (nextValue?: number) {

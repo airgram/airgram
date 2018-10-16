@@ -346,6 +346,7 @@ export interface MtpStateDoc {
 export interface MtpState {
   serverTimeOffset: number
   store: Store<MtpStateDoc>
+  storeKey: string
 
   currentDcId (): Promise<number>
 
@@ -562,6 +563,7 @@ export interface PendingState<StateT> {
 
 export interface UpdatesState extends PendingState<UpdatesStateDoc> {
   store: Store<UpdatesStateDoc>
+  storeKey: string
 
   // pts (): Promise<number>
   //
