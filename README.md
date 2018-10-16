@@ -37,12 +37,15 @@ yarn add airgram
 
 ## Getting started
 
-A simple example of how to use Airgram ([source code](https://github.com/airgram/airgram-ts-example)):
+**Note:** all the following examples created with TypeScript. Please check out [JavaScript example](https://github.com/airgram/airgram-js-example).
+
+
+Basic usage ([source code](https://github.com/airgram/airgram-ts-example)):
 
 ```typescript
+import 'reflect-metadata' // Do not forget to import
 import { Airgram, AuthDialog } from 'airgram'
 import { prompt } from 'airgram/helpers'
-import 'reflect-metadata' // Do not forget to import
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = {
