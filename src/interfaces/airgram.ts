@@ -69,6 +69,8 @@ export interface Store<DocT extends { [key: string]: any }> {
   get (key: string): Promise<DocT | null>
 
   update (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
+
+  delete (key: string): Promise<void>
 }
 
 // ----------------

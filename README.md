@@ -331,6 +331,8 @@ export interface Store<DocT extends { [key: string]: any }> {
   get (key: string): Promise<DocT | null>
 
   update (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
+  
+  delete (key: string): Promise<void>
 }
 ```
 
@@ -366,6 +368,14 @@ export default class PouchDBStore {
       nextDoc = Object.assign({}, currentDoc, doc)
       return nextDoc
     }).then(() => nextDoc)
+  }
+  
+  public async delete (id): Promise<void> {
+    try {
+      await db.remove(id)
+    } catch (e) {
+      throw e
+    }
   }
 }
 ```

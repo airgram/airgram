@@ -20,8 +20,8 @@ export default class MtpState implements ag.MtpState {
   }
 
   public defaultDcId: number = 2
-  public storeKey = 'mtpState'
   public serverTimeOffset = 0
+  public storeKey = 'mtpState'
   public store: ag.Store<ag.MtpStateDoc>
 
   constructor (
