@@ -66,11 +66,11 @@ export interface Logger {
 export interface Store<DocT extends { [key: string]: any }> {
   create (key: string, value: DocT): Promise<DocT>
 
+  delete (key: string): Promise<void>
+
   get (key: string): Promise<DocT | null>
 
   update (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
-
-  delete (key: string): Promise<void>
 }
 
 // ----------------
@@ -164,9 +164,9 @@ export interface ContextRequest<ParamsT = any, ResponseT = any> {
 export interface MtpClient {
   client: Client
   dcId: number
+  prevSessionId: number[]
   serverSalt: Uint8Array | number[]
   sessionId: number[]
-  prevSessionId: number[]
 
   callApi<ParamsT, ResponseT> (
     method: string,
@@ -276,9 +276,9 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
 
 export interface MtpOptions {
   afterMessageId?: string
+  immediately?: boolean
   maxLength?: number
   noResponse?: boolean
-  immediately?: boolean
   notContentRelated?: boolean
 }
 
@@ -359,6 +359,8 @@ export interface MtpState {
   dc (id: number): Promise<MtpStateDc>
 
   dc (id: number, state: MtpStateDc): Promise<any>
+
+  get (key?: string): Promise<MtpStateDoc | any>
 
   prevDcId (): Promise<number>
 
