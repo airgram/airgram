@@ -10,6 +10,14 @@ export default class PouchDBStore<DocT> implements ag.Store<DocT> {
     return db.upsert(id, () => doc).then(() => doc)
   }
 
+  public async delete (id: string): Promise<void> {
+    try {
+      await db.remove(id)
+    } catch (e) {
+      throw e
+    }
+  }
+
   public async get (key: string): Promise<DocT | null> {
     try {
       return await db.get<DocT>(key)
