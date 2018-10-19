@@ -19,10 +19,12 @@ export default class MtpState implements ag.MtpState {
     return instance
   }
 
+  public decodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
   public defaultDcId: number = 2
+  public encodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
-  public storeKey = 'mtpState'
+  public storeKey = 'mtp'
 
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
 
@@ -43,7 +45,7 @@ export default class MtpState implements ag.MtpState {
   }
 
   public async dc (id: number, state?: ag.MtpStateDc) {
-    const key = `dc${id}`
+    const key = this.getDcKey(id)
     return (state === undefined) ? this.get(key) : this.set({ [key]: state })
   }
 
@@ -54,23 +56,21 @@ export default class MtpState implements ag.MtpState {
     return this.set({ prevDcId: nextValue })
   }
 
-  public async userId (nextValue?: number) {
-    if (nextValue === undefined) {
-      return this.get('userId')
-    }
-    return this.set({ userId: nextValue })
-  }
-
-  protected async get (key?: string) {
+  protected async get (key?: string): Promise<any> {
     return this.store.get(this.storeKey)
-      .then((data) => key ? (data || {})[key] : data)
+      .then((data: ag.MtpStateDoc | null) => this.decodeState(data || {}))
+      .then((data) => key ? data[key] : data)
       .catch((error) => {
         this.logger.error(`get() ${new Serializable(error)}`)
         throw error
       })
   }
 
+  protected getDcKey (id: number): string {
+    return `dc${id}`
+  }
+
   protected async set (nextState: Partial<MtpStateDoc>) {
-    return this.store.update(this.storeKey, nextState)
+    return this.encodeState(nextState).then((encryptedState) => this.store.update(this.storeKey, encryptedState))
   }
 }

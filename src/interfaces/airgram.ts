@@ -4,6 +4,7 @@
 
 import { interfaces } from 'inversify'
 import * as api from '../api'
+import { ag } from './index'
 
 export interface Composer<ContextT> {
   middleware<MiddlewareContextT = any> (): MiddlewareFn<MiddlewareContextT>
@@ -345,6 +346,8 @@ export interface MtpStateDoc {
 }
 
 export interface MtpState {
+  decodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
+  encodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
   serverTimeOffset: number
   store: Store<MtpStateDoc>
   storeKey: string
