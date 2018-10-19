@@ -10,9 +10,6 @@ export default class MtpTimeManager implements ag.MtpTimeManager {
   public static factory (createInstance: () => ag.MtpTimeManager, client: ag.Client) {
     const instance = createInstance()
     instance.client = client
-    if (client.mtpState.serverTimeOffset) {
-      instance.client = client
-    }
     return instance
   }
 

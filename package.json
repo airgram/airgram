@@ -10,12 +10,12 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "npm run clean && tsc && cp LICENSE dist && cp README.md dist",
+    "compile": "npm run clean && tsc && cp LICENSE dist && cp README.md dist && cp -r src/vendor dist",
     "deploy": "np --yolo --no-publish",
     "dev": "DEBUG=airgram* nodemon --config nodemon.json",
     "lint": "tslint --project \".\"",
     "postversion": "git push && git push --tags",
-    "postdeploy": "cp package.json dist && cp -r src/vendor dist && npm publish dist",
+    "postdeploy": "cp package.json dist && npm publish dist",
     "prepublishOnly": "npm run compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

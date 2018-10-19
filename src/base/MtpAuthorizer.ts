@@ -33,9 +33,6 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
   public static factory (createInstance: () => ag.MtpAuthorizer, client: ag.Client, context?: interfaces.Context) {
     const instance = createInstance()
     instance.client = client
-    if (client.mtpState.serverTimeOffset) {
-      instance.client = client
-    }
     return instance
   }
 
