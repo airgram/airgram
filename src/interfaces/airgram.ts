@@ -346,8 +346,8 @@ export interface MtpStateDoc {
 }
 
 export interface MtpState {
-  decodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
-  encodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
+  decryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
+  encryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T>
   serverTimeOffset: number
   store: Store<MtpStateDoc>
   storeKey: string

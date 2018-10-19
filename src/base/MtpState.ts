@@ -19,9 +19,9 @@ export default class MtpState implements ag.MtpState {
     return instance
   }
 
-  public decodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
+  public decryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
   public defaultDcId: number = 2
-  public encodeState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
+  public encryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtp'
@@ -58,7 +58,7 @@ export default class MtpState implements ag.MtpState {
 
   protected async get (key?: string): Promise<any> {
     return this.store.get(this.storeKey)
-      .then((data: ag.MtpStateDoc | null) => this.decodeState(data || {}))
+      .then((data: ag.MtpStateDoc | null) => this.decryptState(data || {}))
       .then((data) => key ? data[key] : data)
       .catch((error) => {
         this.logger.error(`get() ${new Serializable(error)}`)
@@ -71,6 +71,6 @@ export default class MtpState implements ag.MtpState {
   }
 
   protected async set (nextState: Partial<MtpStateDoc>) {
-    return this.encodeState(nextState).then((encryptedState) => this.store.update(this.storeKey, encryptedState))
+    return this.encryptState(nextState).then((encryptedState) => this.store.update(this.storeKey, encryptedState))
   }
 }
