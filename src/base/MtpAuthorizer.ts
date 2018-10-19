@@ -30,7 +30,7 @@ import goog from '../vendor/goog-math-long'
 
 @provide(TYPES.MtpAuthorizer)
 export default class MtpAuthorizer implements ag.MtpAuthorizer {
-  public static factory (createInstance: () => ag.MtpAuthorizer, client: ag.Client, context?: interfaces.Context) {
+  public static factory (createInstance: () => ag.MtpAuthorizer, client: ag.Client) {
     const instance = createInstance()
     instance.client = client
     return instance
