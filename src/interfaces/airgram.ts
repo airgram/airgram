@@ -360,13 +360,13 @@ export interface MtpState {
 
   dc (id: number, state: MtpStateDc): Promise<any>
 
-  get (key?: string): Promise<MtpStateDoc | any>
+  // get (key?: string): Promise<MtpStateDoc | any>
 
   prevDcId (): Promise<number>
 
   prevDcId (nextValue: number): Promise<MtpStateDoc>
 
-  set (nextState: Partial<MtpStateDoc>): Promise<any>
+  // set (nextState: Partial<MtpStateDoc>): Promise<any>
 
   userId (): Promise<number>
 

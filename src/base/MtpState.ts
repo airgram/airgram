@@ -21,8 +21,8 @@ export default class MtpState implements ag.MtpState {
 
   public defaultDcId: number = 2
   public serverTimeOffset = 0
-  public storeKey = 'mtpState'
   public store: ag.Store<ag.MtpStateDoc>
+  public storeKey = 'mtpState'
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger
@@ -45,7 +45,21 @@ export default class MtpState implements ag.MtpState {
     return this.set({ dc: { ...await this.dc(), [id]: state } })
   }
 
-  public async get (key?: string) {
+  public async prevDcId (nextValue?: number) {
+    if (nextValue === undefined) {
+      return this.get('prevDcId')
+    }
+    return this.set({ prevDcId: nextValue })
+  }
+
+  public async userId (nextValue?: number) {
+    if (nextValue === undefined) {
+      return this.get('userId')
+    }
+    return this.set({ userId: nextValue })
+  }
+
+  protected async get (key?: string) {
     return this.store.get(this.storeKey)
       .then((data) => key ? (data || {})[key] : data)
       .catch((error) => {
@@ -54,21 +68,7 @@ export default class MtpState implements ag.MtpState {
       })
   }
 
-  public async prevDcId (nextValue?: number) {
-    if (nextValue === undefined) {
-      return this.get('prevDcId')
-    }
-    return this.set({ prevDcId: nextValue })
-  }
-
-  public async set (nextState: Partial<MtpStateDoc>) {
+  protected async set (nextState: Partial<MtpStateDoc>) {
     return this.store.update(this.storeKey, nextState)
-  }
-
-  public async userId (nextValue?: number) {
-    if (nextValue === undefined) {
-      return this.get('userId')
-    }
-    return this.set({ userId: nextValue })
   }
 }

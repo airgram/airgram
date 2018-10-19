@@ -117,7 +117,8 @@ export default class MtpRequest<ParamsT, ResponseT> implements ag.MtpRequest<Par
       )
       if (newDcId !== dcId) {
         this.logger.verbose(() => `handleError() resend to new dc "${newDcId}"`)
-        await this.client.mtpState.set({ prevDcId: dcId, currentDcId: newDcId })
+        await this.client.mtpState.prevDcId(dcId)
+        await this.client.mtpState.currentDcId(newDcId)
         return this.resend(newDcId)
       }
       return this.reject(error)
