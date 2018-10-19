@@ -24,9 +24,16 @@ export default class MtpState implements ag.MtpState {
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtpState'
 
-  constructor (
-    @inject(TYPES.Logger) public logger: ag.Logger
-  ) {}
+  constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
+
+  public async applyServerSalt (dcId: number, serverSalt: string): Promise<void> {
+    return this.dc(dcId).then((dcState: ag.MtpStateDc) => {
+      if (!dcState) {
+        throw new Error(`Dc #${dcId} not found in mtp state`)
+      }
+      return this.dc(dcId, { ...dcState, serverSalt }).then(() => undefined)
+    })
+  }
 
   public async currentDcId (nextValue?: number) {
     if (nextValue === undefined) {
@@ -35,14 +42,9 @@ export default class MtpState implements ag.MtpState {
     return this.set({ currentDcId: nextValue })
   }
 
-  public async dc (id?: number, state?: ag.MtpStateDc) {
-    if (id === undefined) {
-      return this.get('dc')
-    }
-    if (state === undefined) {
-      return this.get('dc').then((states) => (states || {})[id])
-    }
-    return this.set({ dc: { ...await this.dc(), [id]: state } })
+  public async dc (id: number, state?: ag.MtpStateDc) {
+    const key = `dc${id}`
+    return (state === undefined) ? this.get(key) : this.set({ [key]: state })
   }
 
   public async prevDcId (nextValue?: number) {

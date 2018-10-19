@@ -334,7 +334,6 @@ export interface RpcError {
 
 export interface MtpStateDc {
   authKey: string
-  dcId: number
   serverSalt: string
 }
 
@@ -350,27 +349,19 @@ export interface MtpState {
   store: Store<MtpStateDoc>
   storeKey: string
 
+  applyServerSalt (dcId: number, serverSalt: string): Promise<void>
+
   currentDcId (): Promise<number>
 
   currentDcId (nextValue: number): Promise<MtpStateDoc>
-
-  dc (): Promise<{ readonly [key: number]: MtpStateDc }>
 
   dc (id: number): Promise<MtpStateDc>
 
   dc (id: number, state: MtpStateDc): Promise<any>
 
-  // get (key?: string): Promise<MtpStateDoc | any>
-
   prevDcId (): Promise<number>
 
   prevDcId (nextValue: number): Promise<MtpStateDoc>
-
-  // set (nextState: Partial<MtpStateDoc>): Promise<any>
-
-  userId (): Promise<number>
-
-  userId (nextValue: number): Promise<MtpStateDoc>
 }
 
 export type MtpStateFactory = (client: Client, context?: interfaces.Context) => MtpState

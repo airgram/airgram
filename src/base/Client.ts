@@ -250,7 +250,6 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     return this.mtpAuth.auth(dcId)
       .then(({ authKey, serverSalt }) => this.mtpState.dc(dcId, {
         authKey: bytesToHex(authKey),
-        dcId,
         serverSalt: bytesToHex(serverSalt)
       }).then(() => this.createClient({
         authKey,
