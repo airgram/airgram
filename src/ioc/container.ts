@@ -52,8 +52,7 @@ export function bindComponents (container: Container) {
       (client: ag.Client) =>
         MtpAuthorizer.factory(
           () => context.container.get <ag.MtpAuthorizer>(TYPES.MtpAuthorizer),
-          client,
-          context
+          client
         )
     )
 
