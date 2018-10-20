@@ -207,7 +207,7 @@ export default class MtpClient implements ag.MtpClient {
 
   private applyServerSalt (newServerSalt: string): number[] {
     const serverSalt = this.serverSalt = longToBytes(newServerSalt)
-    this.mtpState.applyServerSalt(this.dcId, bytesToHex(serverSalt)).catch((error) => {
+    this.mtpState.serverSalt(this.dcId, bytesToHex(serverSalt)).catch((error) => {
       throw error
     })
     return serverSalt

@@ -33,6 +33,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger,
+    @inject(TYPES.Crypto) public crypto: ag.Crypto,
     @inject(TYPES.ApiFactory) protected apiFactory: ag.ApiFactory,
     @inject(TYPES.MtpStateFactory) mtpStateFactory: (client: ag.Client)
       => ag.MtpState,
@@ -214,7 +215,8 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
     if (!cache[dcId]) {
       cache[dcId] = this.extractAuthorization(dcId, isFileTransfer, createClient)
-        .then(async (client) => client || this.authorize(dcId, isFileTransfer))
+        .then((client) => client || this.authorize(dcId, isFileTransfer))
+        .catch((error) => this.handleError(error, { _: 'getMtpClient' }))
     }
 
     return cache[dcId]
@@ -248,10 +250,10 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
   protected authorize (dcId: number, isFileTransfer: boolean): Promise<ag.MtpClient> {
     return this.mtpAuth.auth(dcId)
-      .then(({ authKey, serverSalt }) => this.mtpState.dc(dcId, {
-        authKey: bytesToHex(authKey),
-        serverSalt: bytesToHex(serverSalt)
-      }).then(() => this.createClient({
+      .then(({ authKey, serverSalt }) => Promise.all([
+        this.mtpState.authKey(dcId, bytesToHex(authKey)),
+        this.mtpState.serverSalt(dcId, bytesToHex(serverSalt))
+      ]).then(() => this.createClient({
         authKey,
         dcId,
         isFileTransfer,
@@ -264,26 +266,28 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     isFileTransfer: boolean,
     createClient: boolean
   ): Promise<ag.MtpClient> {
-    return new Promise<ag.MtpClient>(async (resolve, reject) => {
-      const dcState: ag.MtpStateDc = await this.mtpState.dc(dcId) // ||  { dcId, authKey: '', serverSalt: '' }
-      if (dcState) {
-        if (dcState.authKey && dcState.authKey.length === 512) {
-          if (!dcState.serverSalt || dcState.serverSalt.length !== 16) {
-            dcState.serverSalt = 'AAAAAAAAAAAAAAAA'
+    return new Promise<ag.MtpClient>((resolve, reject) => {
+      this.mtpState.authKey(dcId).then((authKey) => {
+        if (authKey) {
+          if (authKey.length === 512) {
+            return this.mtpState.serverSalt(dcId).then((serverSalt) => {
+              if (!serverSalt || serverSalt.length !== 16) {
+                serverSalt = 'AAAAAAAAAAAAAAAA'
+              }
+              const clientOptions: ag.MtpClientOptions = {
+                authKey: hexToBytes(authKey),
+                dcId,
+                isFileTransfer,
+                serverSalt: hexToBytes(serverSalt)
+              }
+              resolve(this.createClient(clientOptions))
+            }).catch(reject)
+          } else if (!createClient) {
+            reject(new RpcError({ type: 'AUTH_KEY_EMPTY', code: 401 }))
           }
-          const clientOptions: ag.MtpClientOptions = {
-            authKey: hexToBytes(dcState.authKey),
-            dcId,
-            isFileTransfer,
-            serverSalt: hexToBytes(dcState.serverSalt)
-          }
-
-          resolve(this.createClient(clientOptions))
-        } else if (!createClient) {
-          reject(new RpcError({ type: 'AUTH_KEY_EMPTY', code: 401 }))
         }
-      }
-      resolve(undefined)
+        resolve(undefined)
+      }).catch(reject)
     })
   }
 

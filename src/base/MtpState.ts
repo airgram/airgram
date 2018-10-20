@@ -13,28 +13,31 @@ export default class MtpState implements ag.MtpState {
     context: interfaces.Context
   ) {
     const instance = createInstance()
-    Object.assign(instance, {
-      store: context.container.get <ag.Store<ag.MtpState>>(TYPES.MtpStateStore)
-    })
+    instance.configure(client, context.container.get <ag.Store<ag.MtpStateDoc>>(TYPES.MtpStateStore))
     return instance
   }
 
-  public decryptState = async (state) => state
+  public crypto: ag.Crypto
   public defaultDcId: number = 2
-  public encryptState = async (state) => state
+  public encryptedFields: boolean | string[] | ((field: string) => boolean) = false
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtp'
 
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
 
-  public async applyServerSalt (dcId: number, serverSalt: string): Promise<void> {
-    return this.dc(dcId).then((dcState: ag.MtpStateDc) => {
-      if (!dcState) {
-        throw new Error(`Dc #${dcId} not found in mtp state`)
-      }
-      return this.dc(dcId, { ...dcState, serverSalt }).then(() => undefined)
-    })
+  public async authKey (dcId: number, nextValue?: string): Promise<any> {
+    const field = 'authKey'
+    const key = `${this.getDcKey(dcId)}.${field}`
+    if (nextValue === undefined) {
+      return this.get(key).then((authKey) => this.decrypt(field, authKey))
+    }
+    return this.encrypt(field, nextValue).then((authKey) => this.set({ [key]: authKey }))
+  }
+
+  public configure (client: ag.Client, store: ag.Store<ag.MtpStateDoc>) {
+    this.crypto = client.crypto
+    this.store = store
   }
 
   public async currentDcId (nextValue?: number) {
@@ -44,12 +47,18 @@ export default class MtpState implements ag.MtpState {
     return this.set({ currentDcId: nextValue })
   }
 
-  public async dc (id: number, state?: ag.MtpStateDc) {
-    const key = this.getDcKey(id)
-    if (state === undefined) {
-      return this.get(key).then((data) => this.decryptState(data))
+  public async decrypt (field: string, value: string): Promise<string> {
+    if (value && await this.resolveEncryptedFieldsFilter(field)) {
+      return this.crypto.decrypt(value)
     }
-    return this.encryptState(state).then((encryptedState) => this.set({ [key]: encryptedState }))
+    return value
+  }
+
+  public async encrypt (field: string, value: string): Promise<string> {
+    if (await this.resolveEncryptedFieldsFilter(field)) {
+      return this.crypto.encrypt(value)
+    }
+    return value
   }
 
   public async prevDcId (nextValue?: number) {
@@ -59,10 +68,26 @@ export default class MtpState implements ag.MtpState {
     return this.set({ prevDcId: nextValue })
   }
 
-  protected async get (key?: string): Promise<any> {
+  public serverSalt (dcId: number, nextValue?: string): Promise<any> {
+    const field = 'serverSalt'
+    const key = `${this.getDcKey(dcId)}.${field}`
+    if (nextValue === undefined) {
+      return this.get(key).then((serverSalt) => this.decrypt(field, serverSalt))
+    }
+    return this.encrypt(field, nextValue).then((serverSalt) => this.set({ [key]: serverSalt }))
+  }
+
+  protected get (field?: string): Promise<any> {
+    if (field !== undefined) {
+      return this.store.get(this.storeKey, field)
+        .then((value: string | number | null) => value)
+        .catch((error) => {
+          this.logger.error(`get() "${field}" ${new Serializable(error)}`)
+          throw error
+        })
+    }
     return this.store.get(this.storeKey)
-      .then((data: ag.MtpStateDoc | null) => this.decryptState(data || {}))
-      .then((data) => key ? data[key] : data)
+      .then((data: ag.MtpStateDoc | null) => data || {})
       .catch((error) => {
         this.logger.error(`get() ${new Serializable(error)}`)
         throw error
@@ -74,6 +99,19 @@ export default class MtpState implements ag.MtpState {
   }
 
   protected async set (nextState: Partial<MtpStateDoc>) {
-    return this.store.update(this.storeKey, nextState)
+    return this.store.set(this.storeKey, nextState)
+  }
+
+  private async resolveEncryptedFieldsFilter (field: string): Promise<boolean> {
+    if (this.encryptedFields === true || this.encryptedFields === false) {
+      return this.encryptedFields
+    }
+    if (Array.isArray(this.encryptedFields)) {
+      return this.encryptedFields.includes(field)
+    }
+    if (typeof this.encryptedFields === 'function') {
+      return this.encryptedFields(field)
+    }
+    throw new Error('resolveEncryptedFieldsFilter() invalid "encryptedFields" value')
   }
 }

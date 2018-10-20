@@ -7,9 +7,8 @@ import TYPES from './ioc/types'
 export default class Airgram {
   public config: ag.Config
   public container: Container
-
-  private instances: { client?: ag.Client, auth?: ag.Auth, updates?: ag.Updates } = {}
   private destroyed: boolean = false
+  private instances: { client?: ag.Client, auth?: ag.Auth, updates?: ag.Updates } = {}
 
   constructor (config: Config | { id: number, hash: string }, container?: Container) {
     this.config = config instanceof Config ? config : new Config(config.id, config.hash)
@@ -49,6 +48,9 @@ export default class Airgram {
   }
 
   public bind<T> (serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T> {
+    if (('client' in this.instances)) {
+      throw new Error('bind() binding is allowed only before the client initialization.')
+    }
     return this.container.rebind<T>(serviceIdentifier)
   }
 

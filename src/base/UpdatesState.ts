@@ -27,7 +27,7 @@ export default class UpdatesState extends PendingState<ag.UpdatesStateDoc> imple
   }
 
   public async set (nextState: Partial<ag.UpdatesStateDoc>) {
-    this.store.update(this.storeKey, nextState).catch((error) => {
+    this.store.set(this.storeKey, nextState).catch((error) => {
       this.logger.error(`set() ${new Serializable(error)}`)
     })
   }

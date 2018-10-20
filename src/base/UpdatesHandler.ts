@@ -235,7 +235,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
         await this.complete(update)
 
-        return this.chats.update(channelId, { pts: update.pts }).then((chat) => {
+        return this.chats.set(channelId, { pts: update.pts }).then((chat) => {
           return Promise.all([
             this.handleMultipleUpdate(update.other_updates, channelId),
             this.handleUpdateMessages(update.new_messages, channelId)
@@ -265,7 +265,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
             return this.getChat(channelId).then(async (chat) => {
               if (chat) {
                 await this.complete(update)
-                return this.chats.update(chat.id, { pts: update.pts })
+                return this.chats.set(chat.id, { pts: update.pts })
                   .then(() => this.handleUpdateMessages(update.messages))
                   .then(stop)
               } else {
@@ -544,11 +544,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         }
         if (chatDoc.accessHash || chatDoc.date) {
           try {
-            if (currentDoc) {
-              await this.chats.update(chatDoc.id, chatDoc)
-            } else {
-              await this.chats.create(chatDoc.id, chatDoc)
-            }
+            await this.chats.set(chatDoc.id, chatDoc)
           } catch (error) {
             throw error
           }

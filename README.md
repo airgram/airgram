@@ -8,6 +8,7 @@ Modern Telegram client framework for TypeScript/JavaScript.
 - Built on middleware;
 - Authorization helper;
 - Getting updates;
+- Encrypts secret keys
 
 ## Documentation
 - [Installation](#installation)
@@ -325,19 +326,18 @@ In the next example we will show how to use PouchDB as a persistent store. Of co
 Airgram store has the following simple interface:
 
 ```typescript
-export interface Store<DocT extends { [key: string]: any }> {
-  create (key: string, value: DocT): Promise<DocT>
+interface Store<DocT extends { [key: string]: any }> {
+  delete (key: string): Promise<void>
 
   get (key: string): Promise<DocT | null>
 
-  update (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
-  
-  delete (key: string): Promise<void>
+  get (key: string, field: string): Promise<any>
+
+  set (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
 }
 ```
 
 Ok, lets implement it for PouchDB:
-
 
 ```typescript
 import PouchDB from 'pouchdb'
@@ -350,37 +350,34 @@ const db = new PouchDB(`http://127.0.0.1:5984/airgram`)
 
 
 export default class PouchDBStore {
-  public create (id, doc) {
-    return db.upsert(id, () => doc).then(() => doc)
-  }
-
-  public async get (key) {
-    try {
-      return await db.get(key)
-    } catch (e) {
-      return null
-    }
-  }
-
-  public async update (id, doc) {
-    let nextDoc
-    return db.upsert(id, (currentDoc) => {
-      nextDoc = Object.assign({}, currentDoc, doc)
-      return nextDoc
-    }).then(() => nextDoc)
-  }
-  
-  public async delete (id): Promise<void> {
+  public async delete (id: string): Promise<void> {
     try {
       await db.remove(id)
     } catch (e) {
       throw e
     }
   }
+    
+  public async get (key: string, field?: string): Promise<any> {
+    try {
+      const value = await db.get<DocT>(key)
+      return field ? value[field] : value
+    } catch (e) {
+      return null
+    }
+  }
+    
+  public async set (id: string, doc: Partial<DocT>): Promise<Partial<DocT>> {
+    let nextDoc
+    return db.upsert(id, (currentDoc: DocT) => {
+      nextDoc = Object.assign({}, currentDoc, doc)
+      return nextDoc
+    }).then(() => nextDoc)
+  }
 }
 ```
 
-When the store component is created we can mount it to Airgram: 
+When the store component is created we can bind it to Airgram: 
 
 ```typescript
 import { Airgram, TYPES } from 'airgram'
@@ -392,6 +389,38 @@ airgram.bind(TYPES.MtpStateStore).to(PouchDBStore)
 ```
 
 Please follow to the [`example page`](/examples/pouchdb-store/index.ts) to see the source code.
+
+## Encryption
+By default, encryption of the secret keys is switched of. Follow this instruction to encrypt dangerous data:
+
+```typescript
+// Set secret keys
+airgram.client.crypto.setSecretKeys({
+  key: process.env.SECRET_KEY,
+  iv: process.env.SECRET_IV
+})
+
+// Set what have to be encrypted
+airgram.client.mtpState.encryptedFields = ['authKey', 'serverSalt'] // or true | (field: string) => boolean
+```
+
+Use helper `generateSecretKeys()` to generate random `key` and `iv`:
+
+```typescript
+import { generateSecretKeys } from 'airgram/helpers'
+
+const secret = generateSecretKeys()
+
+console.log(secret)
+
+// Output like: 
+// { 
+//   iv: '0639aca8feb0d2b20da5c561a25c0c25',
+//   key: '49ad5e7b838924c316eedc83b2b7906f4b4058b577a26746895249ebae9d6764' 
+// }
+
+```
+
 
 ## Middleware
 

@@ -4,7 +4,6 @@
 
 import { interfaces } from 'inversify'
 import * as api from '../api'
-import { ag } from './index'
 
 export interface Composer<ContextT> {
   middleware<MiddlewareContextT = any> (): MiddlewareFn<MiddlewareContextT>
@@ -65,13 +64,24 @@ export interface Logger {
 // Store
 // ----------------
 export interface Store<DocT extends { [key: string]: any }> {
-  create (key: string, value: DocT): Promise<DocT>
-
   delete (key: string): Promise<void>
 
   get (key: string): Promise<DocT | null>
 
-  update (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
+  get (key: string, field: string): Promise<any>
+
+  set (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
+}
+
+// ----------------
+// Crypto
+// ----------------
+export interface Crypto {
+  decrypt (text: string, encoding?: string): string
+
+  encrypt (text: string, encoding?: string): string
+
+  setSecretKeys (keys: { [key: string]: string | Buffer }): void
 }
 
 // ----------------
@@ -90,6 +100,7 @@ export interface Client<ContextT = Context> extends Composer<ContextT> {
   config: Config
   contacts: api.contacts.ContactsApi
   createRequest: MtpRequestCreator
+  crypto: Crypto
   handleError: (error: Error, ctx: { _: string, [key: string]: any }) => any
   handleUpdates: (updates: UpdatesResponse) => any
   help: api.help.HelpApi
@@ -346,25 +357,33 @@ export interface MtpStateDoc {
 }
 
 export interface MtpState {
-  decryptState: (state: ag.MtpStateDc) => Promise<ag.MtpStateDc>
-  encryptState: (state: ag.MtpStateDc) => Promise<ag.MtpStateDc>
+  encryptedFields: boolean | string[] | ((field: string) => boolean)
   serverTimeOffset: number
   store: Store<MtpStateDoc>
   storeKey: string
 
-  applyServerSalt (dcId: number, serverSalt: string): Promise<void>
+  authKey (dcId: number): Promise<string>
+
+  authKey (dcId: number, nextValue: string): Promise<Partial<MtpStateDoc>>
+
+  configure (client: Client, store: Store<MtpStateDoc>)
 
   currentDcId (): Promise<number>
 
-  currentDcId (nextValue: number): Promise<MtpStateDoc>
+  currentDcId (nextValue: number): Promise<Partial<MtpStateDoc>>
 
-  dc (id: number): Promise<MtpStateDc>
+  decrypt (field: string, value: string): Promise<string>
 
-  dc (id: number, state: MtpStateDc): Promise<any>
+  encrypt (field: string, value: string): Promise<string>
 
   prevDcId (): Promise<number>
 
-  prevDcId (nextValue: number): Promise<MtpStateDoc>
+  prevDcId (nextValue: number): Promise<Partial<MtpStateDoc>>
+
+  serverSalt (dcId: number): Promise<string>
+
+  serverSalt (dcId: number, nextValue: string): Promise<Partial<MtpStateDoc>>
+
 }
 
 export type MtpStateFactory = (client: Client, context?: interfaces.Context) => MtpState
@@ -624,13 +643,9 @@ export type ModelId = number | string
 // export type ModelFactory = <ModelT, DocT>(doc: DocT) => (ModelT)
 
 export interface Collection<DocT> {
-  create (id: ModelId, attributes: DocT): Promise<DocT>
-
   get (id: ModelId): Promise<DocT | null>
 
-  update (id: ModelId, attributes: Partial<DocT>): Promise<Partial<DocT>>
-
-  upsert (id: ModelId, attributes: Partial<DocT>): Promise<Partial<DocT>>
+  set (id: ModelId, attributes: Partial<DocT>): Promise<Partial<DocT>>
 }
 
 // export type ChatInput = number | ChatDoc

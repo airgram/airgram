@@ -1,5 +1,6 @@
 import * as CryptoJS from 'crypto-js'
 import * as Rusha from 'rusha'
+import Crypto from '../base/Crypto'
 import { BigInteger } from './big-numbers'
 import { addPadding } from './bytes'
 import { arrayBufferToBytes, bigIntToBytes, bytesToWords, wordsToBytes } from './convert'
@@ -25,6 +26,15 @@ export function sha1BytesSync (bytes: Uint8Array | ArrayBuffer | number[]): numb
 
 export function sha256HashSync (bytes: Uint8Array | ArrayBuffer): number[] {
   return wordsToBytes(CryptoJS.SHA256(bytesToWords(bytes)))
+}
+
+export function generateSecretKeys () {
+  const secretKey = Crypto.generateKey()
+  const secret = Crypto.generateKeys(secretKey)
+  return {
+    iv: secret.iv.toString('hex'),
+    key: secret.key.toString('hex')
+  }
 }
 
 // function sha256HashSync (bytes) {

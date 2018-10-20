@@ -9,6 +9,7 @@ const entities = {
   Collection: Symbol.for('Collection'),
   Composer: Symbol.for('Composer'),
   Context: Symbol.for('Context'),
+  Crypto: Symbol.for('Crypto'),
   InMemoryStore: Symbol.for('InMemoryStore'),
   Logger: Symbol.for('Logger'),
   MtpAuthorizer: Symbol.for('MtpAuthorizer'),

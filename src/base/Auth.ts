@@ -243,7 +243,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
   }
 
   protected set (nextState: Partial<ag.AuthDoc>, replace?: boolean): Promise<ag.AuthDoc> {
-    return this.store[replace ? 'create' : 'update'](this.storeKey, nextState).then((state) => {
+    return this.store.set(this.storeKey, nextState).then((state) => {
       this.state = state
       return state
     })

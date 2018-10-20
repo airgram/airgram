@@ -38,7 +38,7 @@ export default class Chat extends PendingState<ag.ChatDoc> implements ag.Chat {
   }
 
   public async set (nextState: Partial<ag.ChatDoc>) {
-    this.chats.update(this.id, nextState).catch((error) => {
+    this.chats.set(this.id, nextState).catch((error) => {
       this.logger.error(`set() ${new Serializable(error)}`)
     })
   }
