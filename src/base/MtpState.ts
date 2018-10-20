@@ -19,9 +19,9 @@ export default class MtpState implements ag.MtpState {
     return instance
   }
 
-  public decryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
+  public decryptState = async (state) => state
   public defaultDcId: number = 2
-  public encryptState: <T = Partial<ag.MtpStateDc | ag.MtpStateDc>>(state: T) => Promise<T> = async (state) => state
+  public encryptState = async (state) => state
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtp'
@@ -46,7 +46,10 @@ export default class MtpState implements ag.MtpState {
 
   public async dc (id: number, state?: ag.MtpStateDc) {
     const key = this.getDcKey(id)
-    return (state === undefined) ? this.get(key) : this.set({ [key]: state })
+    if (state === undefined) {
+      return this.get(key).then((data) => this.decryptState(data))
+    }
+    return this.encryptState(state).then((encryptedState) => this.set({ [key]: encryptedState }))
   }
 
   public async prevDcId (nextValue?: number) {
@@ -71,6 +74,6 @@ export default class MtpState implements ag.MtpState {
   }
 
   protected async set (nextState: Partial<MtpStateDoc>) {
-    return this.encryptState(nextState).then((encryptedState) => this.store.update(this.storeKey, encryptedState))
+    return this.store.update(this.storeKey, nextState)
   }
 }
