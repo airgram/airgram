@@ -2,6 +2,7 @@ import { inject } from 'inversify'
 import { provide } from 'inversify-binding-decorators'
 import * as api from '../api'
 import RpcError from '../errors/RpcError'
+import Serializable from '../errors/Serializable'
 import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
 import Composer from './Composer'
@@ -28,9 +29,10 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
     ].includes(ctx.request.method)
   }
 
-  public client: ag.Client
   public maxAttempts: number = 3
   public storeKey: string = 'auth'
+
+  private client: ag.Client
   private attempt: number = 0
   private invalidPhoneNumbers: Set<string> = new Set()
   private locked: boolean = false
@@ -41,6 +43,14 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
     @inject(TYPES.AuthStore) protected store: ag.Store<ag.AuthDoc>
   ) {
     super()
+  }
+
+  public async clear (): Promise<void> {
+    return this.store.delete(this.resolveKey())
+      .catch((error) => {
+        this.logger.error(`clear() ${new Serializable(error)}`)
+        throw error
+      })
   }
 
   public checkCode (code: string): Promise<api.AuthAuthorizationUnion> {
@@ -58,7 +68,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
             await this.set({
               phoneNumber,
               userId: authorization.user.id
-            }, true)
+            })
             return authorization
           })
       }).catch(async (error) => {
@@ -71,21 +81,24 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
         }
         const state = await this.getState()
         delete state.phoneCodeHash
-        await this.set(state, true)
+        await this.set(state)
         throw error
       })
   }
 
-  public async clearState (): Promise<ag.Auth> {
-    await this.set({ phoneNumber: await this.get('phoneNumber') }, true)
-    return this
+  public async clearState (): Promise<void> {
+    return this.store.delete(this.resolveKey())
+  }
+
+  public configure (client: ag.Client) {
+    this.client = client
   }
 
   public async getState (): Promise<ag.AuthDoc> {
     if (this.state) {
       return Promise.resolve(this.state)
     }
-    return this.store.get(this.storeKey).then((state: ag.AuthDoc) => {
+    return this.store.get(this.resolveKey()).then((state: ag.AuthDoc) => {
       this.state = state || {}
       return this.state
     })
@@ -242,8 +255,8 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
     })
   }
 
-  protected set (nextState: Partial<ag.AuthDoc>, replace?: boolean): Promise<ag.AuthDoc> {
-    return this.store.set(this.storeKey, nextState).then((state) => {
+  protected set (nextState: Partial<ag.AuthDoc>): Promise<ag.AuthDoc> {
+    return this.store.set(this.resolveKey(), nextState).then((state) => {
       this.state = state
       return state
     })
@@ -272,5 +285,9 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
         phone_number: state.phoneNumber!
       })
     })
+  }
+
+  private resolveKey (): string {
+    return `${this.client.name}:${this.storeKey}`
   }
 }

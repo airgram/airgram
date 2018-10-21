@@ -23,7 +23,7 @@ export default class Airgram {
   get auth (): ag.Auth {
     if (!('auth' in this.instances)) {
       this.instances.auth = this.container.get<ag.Auth>(TYPES.Auth)
-      this.instances.auth.client = this.client
+      this.instances.auth.configure(this.client)
     }
     return this.instances.auth!
   }
@@ -42,7 +42,7 @@ export default class Airgram {
   get updates (): ag.Updates {
     if (!('updates' in this.instances)) {
       this.instances.updates = this.container.get<ag.Updates>(TYPES.Updates)
-      this.instances.updates.client = this.client
+      this.instances.updates.configure(this.client)
     }
     return this.instances.updates!
   }

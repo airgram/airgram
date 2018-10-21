@@ -91,8 +91,6 @@ export interface Crypto {
 // export type Update = api.UpdateUnion | { _: 'new_session_created' }
 
 export interface Client<ContextT = Context> extends Composer<ContextT> {
-  name: string
-
   // Api
   account: api.account.AccountApi
   auth: api.auth.AuthApi
@@ -110,6 +108,7 @@ export interface Client<ContextT = Context> extends Composer<ContextT> {
   me: Me
   messages: api.messages.MessagesApi
   mtpState: MtpState
+  name: string
   payments: api.payments.PaymentsApi
   phone: api.phone.PhoneApi
   photos: api.photos.PhotosApi
@@ -290,10 +289,10 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
 
 export interface MtpOptions {
   afterMessageId?: string
-  secondary?: boolean
   maxLength?: number
   noResponse?: boolean
   notContentRelated?: boolean
+  secondary?: boolean
 }
 
 export interface MtpMessage {
@@ -362,6 +361,8 @@ export interface MtpState {
   authKey (dcId: number): Promise<string>
 
   authKey (dcId: number, nextValue: string): Promise<Partial<MtpStateDoc>>
+
+  clearState (): Promise<void>
 
   configure (client: Client, store: Store<MtpStateDoc>)
 
@@ -469,14 +470,13 @@ export interface MtpRsaKeysManager {
 }
 
 export interface Auth<ContextT = AuthContext> extends Composer<ContextT> {
-  client: Client
   maxAttempts: number
-
-  // catch (errorHandle: (error: Error) => any): Auth
 
   checkCode (code): Promise<api.AuthAuthorizationUnion>
 
-  clearState (): Promise<Auth>
+  clearState (): Promise<void>
+
+  configure (client: Client)
 
   getState (): Promise<AuthDoc>
 
@@ -503,8 +503,9 @@ export interface AuthContext {
 
 export interface Updates extends Composer<UpdateContext> {
   chats: Chats
-  client: Client
   updatesState: UpdatesState
+
+  configure (client: Client)
 
   getChannelDifference (state: Chat): Promise<api.UpdatesChannelDifferenceUnion>
 
@@ -579,25 +580,7 @@ export interface UpdatesState extends PendingState<UpdatesStateDoc> {
   store: Store<UpdatesStateDoc>
   storeKey: string
 
-  // pts (): Promise<number>
-  //
-  // pts (nextValue: number): Promise<void>
-  //
-  // ptsTs (): Promise<number>
-  //
-  // ptsTs (nextValue: number): Promise<void>
-  //
-  // qts (): Promise<number>
-  //
-  // qts (nextValue: number): Promise<void>
-  //
-  // date (): Promise<number>
-  //
-  // date (nextValue: number): Promise<void>
-  //
-  // seq (): Promise<number>
-  //
-  // seq (nextValue: number): Promise<void>
+  configure (client: Client)
 }
 
 export interface UpdatesStateDoc {
@@ -623,29 +606,11 @@ export type UpdatesResponse = api.UpdateUnion
 
 export type ModelId = number | string
 
-// export interface Model<DocT> {
-//   _id: ModelId
-//
-//   set (attributes: Partial<DocT>): Promise<this>
-//
-//   get (): Promise<DocT>
-//
-//   save (): Promise<this>
-//
-//   toJSON (): DocT
-//
-//   toString (): string
-// }
-//
-// export type ModelFactory = <ModelT, DocT>(doc: DocT) => (ModelT)
-
 export interface Collection<DocT> {
   get (id: ModelId): Promise<DocT | null>
 
   set (id: ModelId, attributes: Partial<DocT>): Promise<Partial<DocT>>
 }
-
-// export type ChatInput = number | ChatDoc
 
 export interface Chat extends PendingState<ChatDoc> {
   chats: Chats
@@ -666,6 +631,8 @@ export type ChatFactory = (id: number, chats: Chats) => Chat
 
 export interface Chats extends Collection<ChatDoc> {
   store: any
+
+  configure (client: Client)
 
   getChat (id: number): Chat
 }

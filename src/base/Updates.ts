@@ -18,7 +18,7 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
       (ctx.request && ['updates.getDifference', 'updates.getChannelDifference'].includes(ctx.request.method))
   }
 
-  public client: ag.Client
+  private client: ag.Client
   public delay: number = 1000
   private readonly inProgress: { [key: string]: number } = {}
   private pendingUpdates: Array<() => Promise<any>> = []
@@ -35,6 +35,12 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
     ) => ag.UpdatesHandler
   ) {
     super()
+  }
+
+  public configure (client: ag.Client) {
+    this.client = client
+    this.chats.configure(this.client)
+    this.updatesState.configure(this.client)
   }
 
   public getChannelDifference (chat: ag.Chat): Promise<api.UpdatesChannelDifferenceUnion> {
@@ -175,16 +181,7 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
         .finally(() => {
           delete this.promises.state
         })
-      // .catch((error) => this.client.handleError(error, { _: 'updates.getState' }))
     }
     return this.promises.state
   }
-
-  // protected handleError (error: Error, ctx: { _: string, [key: string]: any }): any {
-  //   try {
-  //     this.client.handleError(error, ctx)
-  //   } catch (e) {
-  //     this.logger.error(`handleError() ${new Serializable(e)}`)
-  //   }
-  // }
 }

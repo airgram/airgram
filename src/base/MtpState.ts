@@ -17,17 +17,20 @@ export default class MtpState implements ag.MtpState {
     return instance
   }
 
-  public crypto: ag.Crypto
   public defaultDcId: number = 2
   public encryptedFields: boolean | string[] | ((field: string) => boolean) = false
   public serverTimeOffset = 0
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtp'
-
   private _currentDcId: number
   private _prevDcId: number
+  private client: ag.Client
 
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
+
+  public async clearState (): Promise<void> {
+    return this.store.delete(this.resolveKey())
+  }
 
   public async authKey (dcId: number, nextValue?: string): Promise<any> {
     const field = 'authKey'
@@ -39,7 +42,7 @@ export default class MtpState implements ag.MtpState {
   }
 
   public configure (client: ag.Client, store: ag.Store<ag.MtpStateDoc>) {
-    this.crypto = client.crypto
+    this.client = client
     this.store = store
   }
 
@@ -56,14 +59,14 @@ export default class MtpState implements ag.MtpState {
 
   public async decrypt (field: string, value: string): Promise<string> {
     if (value && await this.resolveEncryptedFieldsFilter(field)) {
-      return this.crypto.decrypt(value)
+      return this.client.crypto.decrypt(value)
     }
     return value
   }
 
   public async encrypt (field: string, value: string): Promise<string> {
     if (await this.resolveEncryptedFieldsFilter(field)) {
-      return this.crypto.encrypt(value)
+      return this.client.crypto.encrypt(value)
     }
     return value
   }
@@ -90,14 +93,14 @@ export default class MtpState implements ag.MtpState {
 
   protected get (field?: string): Promise<any> {
     if (field !== undefined) {
-      return this.store.get(this.storeKey, field)
+      return this.store.get(this.resolveKey(), field)
         .then((value: string | number | null) => value)
         .catch((error) => {
           this.logger.error(`get() "${field}" ${new Serializable(error)}`)
           throw error
         })
     }
-    return this.store.get(this.storeKey)
+    return this.store.get(this.resolveKey())
       .then((data: ag.MtpStateDoc | null) => data || {})
       .catch((error) => {
         this.logger.error(`get() ${new Serializable(error)}`)
@@ -105,12 +108,12 @@ export default class MtpState implements ag.MtpState {
       })
   }
 
-  protected getDcKey (id: number): string {
-    return `dc${id}`
+  protected async set (nextState: Partial<MtpStateDoc>) {
+    return this.store.set(this.resolveKey(), nextState)
   }
 
-  protected async set (nextState: Partial<MtpStateDoc>) {
-    return this.store.set(this.storeKey, nextState)
+  private getDcKey (id: number): string {
+    return `dc${id}`
   }
 
   private async resolveEncryptedFieldsFilter (field: string): Promise<boolean> {
@@ -124,5 +127,9 @@ export default class MtpState implements ag.MtpState {
       return this.encryptedFields(field)
     }
     throw new Error('resolveEncryptedFieldsFilter() invalid "encryptedFields" value')
+  }
+
+  private resolveKey (): string {
+    return `${this.client.name}:${this.storeKey}`
   }
 }

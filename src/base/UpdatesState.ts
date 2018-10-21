@@ -8,6 +8,7 @@ import PendingState from './PendingState'
 @provide(TYPES.UpdatesState)
 export default class UpdatesState extends PendingState<ag.UpdatesStateDoc> implements ag.UpdatesState {
   public storeKey = 'updates'
+  private storeNamespace: string
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger,
@@ -16,8 +17,12 @@ export default class UpdatesState extends PendingState<ag.UpdatesStateDoc> imple
     super(logger)
   }
 
+  public configure (client: ag.Client) {
+    this.storeNamespace = client.name
+  }
+
   public async get (key?: string) {
-    return this.store.get(this.storeKey)
+    return this.store.get(this.resolveKey())
       .then((data) => data || {})
       .then((data) => key ? data[key] : data)
       .catch((error) => {
@@ -27,8 +32,12 @@ export default class UpdatesState extends PendingState<ag.UpdatesStateDoc> imple
   }
 
   public async set (nextState: Partial<ag.UpdatesStateDoc>) {
-    this.store.set(this.storeKey, nextState).catch((error) => {
+    this.store.set(this.resolveKey(), nextState).catch((error) => {
       this.logger.error(`set() ${new Serializable(error)}`)
     })
+  }
+
+  private resolveKey (): string {
+    return `${this.storeNamespace}:${this.storeKey}`
   }
 }

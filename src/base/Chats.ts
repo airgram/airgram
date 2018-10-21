@@ -7,12 +7,18 @@ import Collection from './Collection'
 @provide(TYPES.Chats)
 export default class Chats extends Collection<ag.ChatDoc> implements ag.Chats {
   private chatStates: { [key: string]: ag.Chat } = {}
+  public storeName: string = 'chats'
+  private storeNamespace: string
 
   constructor (
     @inject(TYPES.ChatStore) public store: ag.Store<ag.ChatDoc>,
     @inject(TYPES.ChatFactory) private createChat: (id: number, chats: ag.Chats) => ag.Chat
   ) {
     super()
+  }
+
+  public configure (client: ag.Client) {
+    this.storeNamespace = client.name
   }
 
   public getChat (id: number): ag.Chat {
@@ -22,7 +28,7 @@ export default class Chats extends Collection<ag.ChatDoc> implements ag.Chats {
     return this.chatStates[id]
   }
 
-  public resolveId (id: number): string {
-    return `chats:${id}`
+  public resolveKey (id: number): string {
+    return `${this.storeNamespace}:${this.storeName}:${id}`
   }
 }
