@@ -30,7 +30,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
 
   public client: ag.Client
   public maxAttempts: number = 3
-  public storeKey: string = 'userAuth'
+  public storeKey: string = 'auth'
   private attempt: number = 0
   private invalidPhoneNumbers: Set<string> = new Set()
   private locked: boolean = false

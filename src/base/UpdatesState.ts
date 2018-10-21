@@ -7,7 +7,7 @@ import PendingState from './PendingState'
 
 @provide(TYPES.UpdatesState)
 export default class UpdatesState extends PendingState<ag.UpdatesStateDoc> implements ag.UpdatesState {
-  public storeKey = 'updatesState'
+  public storeKey = 'updates'
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger,
