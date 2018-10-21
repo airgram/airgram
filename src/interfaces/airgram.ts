@@ -91,6 +91,8 @@ export interface Crypto {
 // export type Update = api.UpdateUnion | { _: 'new_session_created' }
 
 export interface Client<ContextT = Context> extends Composer<ContextT> {
+  name: string
+
   // Api
   account: api.account.AccountApi
   auth: api.auth.AuthApi

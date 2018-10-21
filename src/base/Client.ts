@@ -24,6 +24,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     id: undefined
   }
   public readonly mtpState: ag.MtpState
+  public name: string = 'airgram'
   public readonly timeManager: ag.MtpTimeManager
   protected createClient: (options: ag.MtpClientOptions) => ag.MtpClient
   protected readonly mtpAuth: ag.MtpAuthorizer
