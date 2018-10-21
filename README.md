@@ -17,6 +17,7 @@ Modern Telegram client framework for TypeScript/JavaScript.
 - [Requests](#requests)
 - [Getting updates](#getting-updates)
 - [Data store](#data-store)
+- [Encryption](#encryption)
 - [Middleware](#middleware)
 - [Logging](#logging)
 - [Components](#components)
