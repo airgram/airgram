@@ -288,7 +288,7 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
 
 export interface MtpOptions {
   afterMessageId?: string
-  immediately?: boolean
+  secondary?: boolean
   maxLength?: number
   noResponse?: boolean
   notContentRelated?: boolean
@@ -344,16 +344,11 @@ export interface RpcError {
   type: string
 }
 
-export interface MtpStateDc {
-  authKey: string
-  serverSalt: string
-}
-
 export interface MtpStateDoc {
-  readonly currentDcId: number
-  readonly dc: { readonly [key: number]: MtpStateDc }
-  readonly prevDcId: number
-  readonly userId: number
+  currentDcId: number
+  prevDcId: number
+
+  [key: string]: string | number
 }
 
 export interface MtpState {

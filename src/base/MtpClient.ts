@@ -78,7 +78,7 @@ export default class MtpClient implements ag.MtpClient {
   public callApi<ParamsT, ResponseT> (
     method: string,
     params: ParamsT,
-    options: ag.MtpOptions
+    options: ag.MtpOptions = {}
   ): Promise<ResponseT> {
     return new Promise((resolve, reject) => {
       const { body, resultType } = this.serializeRequest(method, params, options)
@@ -302,8 +302,7 @@ export default class MtpClient implements ag.MtpClient {
 
   private delayedRequest (delay?: number): void {
     if (this.offline) {
-      this.logger.verbose(
-        () => `scheduleRequest() force checking connection because of offline status`)
+      this.logger.verbose(() => `scheduleRequest() force checking connection because of offline status`)
       this.checkConnection()
     }
     const nextRequestAt = now() + (delay || 50)
@@ -313,7 +312,9 @@ export default class MtpClient implements ag.MtpClient {
     }
 
     clearTimeout(this.nextRequestTimeout)
-    this.nextRequestTimeout = setTimeout(() => this.sendScheduledRequest(), delay)
+    this.nextRequestTimeout = delay ?
+      setTimeout(() => this.sendScheduledRequest(), delay) :
+      setImmediate(() => this.sendScheduledRequest())
     this.nextRequestAt = nextRequestAt
   }
 
@@ -599,7 +600,9 @@ export default class MtpClient implements ag.MtpClient {
       }, options)
       this.pendingMessages[message.messageId] = 0
 
-      if (!options || !options.immediately) {
+      this.logger.verbose(`pushMessage() ${JSON.stringify(options)}`)
+
+      if (!options || !options.secondary) {
         this.delayedRequest()
       }
     })
@@ -694,7 +697,7 @@ export default class MtpClient implements ag.MtpClient {
       // }
       this.prepareMtpMessage(
         { _: 'msgs_ack', msg_ids: [...this.pendingAcks] },
-        { notContentRelated: true, immediately: true }
+        { notContentRelated: true, secondary: true }
       )
     }
 
@@ -703,7 +706,7 @@ export default class MtpClient implements ag.MtpClient {
       const resendMsgIds: string[] = [...this.pendingResends]
       const { message: resentMessage } = this.prepareMtpMessage(
         { _: 'msg_resend_req', msg_ids: resendMsgIds },
-        { immediately: true, notContentRelated: true }
+        { secondary: true, notContentRelated: true }
       )
       // this.lastResend = { messageId: resentMessage.messageId, resendMsgIds, expiresAt: now() + 3000 }
       this.lastResend = { messageId: resentMessage.messageId, resendMsgIds }
@@ -750,7 +753,7 @@ export default class MtpClient implements ag.MtpClient {
       }
     })
 
-    if (hasApiCall && !hasHttpWait && this.longPoll) {
+    if (hasApiCall && !hasHttpWait) {
       const serializer = this.createSerializer({ isMtp: true })
       serializer.storeMethod('http_wait', {
         max_delay: 500,
@@ -809,9 +812,7 @@ export default class MtpClient implements ag.MtpClient {
 
     this.pendingAcks = []
 
-    this.logger.debug(() =>
-      `sendScheduledRequest() sendEncryptedRequest(${JSON.stringify(message)})`
-    )
+    this.logger.debug(() => `sendScheduledRequest() sendEncryptedRequest() ${JSON.stringify(message)}`)
 
     this.sendEncryptedRequest(message!).then((result) => {
       this.toggleOffline(false)
@@ -864,7 +865,7 @@ export default class MtpClient implements ag.MtpClient {
         } else {
           this.logger.error(() => `sendScheduledRequest() ${JSON.stringify(error.message)}`)
           this.toggleOffline(true)
-          throw error
+          // throw error
         }
       })
 
