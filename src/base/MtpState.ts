@@ -24,6 +24,9 @@ export default class MtpState implements ag.MtpState {
   public store: ag.Store<ag.MtpStateDoc>
   public storeKey = 'mtp'
 
+  private _currentDcId: number
+  private _prevDcId: number
+
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
 
   public async authKey (dcId: number, nextValue?: string): Promise<any> {
@@ -42,8 +45,12 @@ export default class MtpState implements ag.MtpState {
 
   public async currentDcId (nextValue?: number) {
     if (nextValue === undefined) {
-      return (await this.get('currentDcId')) || this.defaultDcId
+      if (this._currentDcId) {
+        return this._currentDcId
+      }
+      return (this._currentDcId = (await this.get('currentDcId')) || this.defaultDcId)
     }
+    this._currentDcId = nextValue
     return this.set({ currentDcId: nextValue })
   }
 
@@ -63,8 +70,12 @@ export default class MtpState implements ag.MtpState {
 
   public async prevDcId (nextValue?: number) {
     if (nextValue === undefined) {
-      return this.get('prevDcId')
+      if (this._prevDcId) {
+        return this._prevDcId
+      }
+      return (this._prevDcId = await this.get('prevDcId'))
     }
+    this._prevDcId = nextValue
     return this.set({ prevDcId: nextValue })
   }
 
