@@ -123,10 +123,7 @@ export default class MtpState implements ag.MtpState {
     if (Array.isArray(this.encryptedFields)) {
       return this.encryptedFields.includes(field)
     }
-    if (typeof this.encryptedFields === 'function') {
-      return this.encryptedFields(field)
-    }
-    throw new Error('resolveEncryptedFieldsFilter() invalid "encryptedFields" value')
+    return this.encryptedFields(field)
   }
 
   private resolveKey (): string {

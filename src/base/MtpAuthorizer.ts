@@ -1,4 +1,4 @@
-import { inject, interfaces } from 'inversify'
+import { inject } from 'inversify'
 import { provide } from 'inversify-binding-decorators'
 import { RpcError, Serializable } from '../errors'
 import {
