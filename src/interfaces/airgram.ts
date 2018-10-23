@@ -81,6 +81,8 @@ export interface Crypto {
 
   encrypt (text: string, encoding?: string): string
 
+  getSecretKeys (): { [key: string]: string }
+
   setSecretKeys (keys: { [key: string]: string | Buffer }): void
 }
 
@@ -374,6 +376,8 @@ export interface MtpState {
 
   encrypt (field: string, value: string): Promise<string>
 
+  get (field?: string): Promise<any>
+
   prevDcId (): Promise<number>
 
   prevDcId (nextValue: number): Promise<Partial<MtpStateDoc>>
@@ -382,6 +386,7 @@ export interface MtpState {
 
   serverSalt (dcId: number, nextValue: string): Promise<Partial<MtpStateDoc>>
 
+  set (nextState: Partial<MtpStateDoc>): Promise<Partial<MtpStateDoc>>
 }
 
 export type MtpStateFactory = (client: Client, context?: interfaces.Context) => MtpState

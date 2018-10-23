@@ -37,9 +37,9 @@ export default class MtpClient implements ag.MtpClient {
   private checkConnectionPeriod: number = 0
   private checkConnectionTimeout: any = null
   private checkLongPollInterval: any = null
-  private connectionInited: boolean = false
   // private destroyed: boolean = false
   private isFileTransfer: boolean
+  private isNewConnection: boolean = true
   private lastResend: { messageId: string, resendMsgIds: string[] } | null
   private lastServerMessages: string[] = []
   private longPoll: boolean = false
@@ -157,7 +157,7 @@ export default class MtpClient implements ag.MtpClient {
       ['isMtp', 'maxLength'].includes(name) && value !== undefined)
     const serializer = this.createSerializer(serializerOptions)
 
-    if (!this.connectionInited) {
+    if (this.isNewConnection) {
       serializer.storeInt(0xda9b0d0d, 'invokeWithLayer')
       serializer.storeInt(this.config.layer, 'layer')
       serializer.storeInt(0x69796de9, 'initConnection')
@@ -208,7 +208,7 @@ export default class MtpClient implements ag.MtpClient {
   private applyServerSalt (newServerSalt: string): number[] {
     const serverSalt = this.serverSalt = longToBytes(newServerSalt)
     this.mtpState.serverSalt(this.dcId, bytesToHex(serverSalt)).catch((error) => {
-      throw error
+      this.logger.error(`applyServerSalt() ${new Serializable(error)}`)
     })
     return serverSalt
   }
@@ -498,7 +498,7 @@ export default class MtpClient implements ag.MtpClient {
               deferred.resolve(response.result)
             }
             if (sentMessage.isApi) {
-              this.connectionInited = true
+              this.isNewConnection = false
             }
           }
           delete this.sentMessages[sentMessageId]

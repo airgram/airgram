@@ -86,7 +86,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
       })
   }
 
-  public async clearState (): Promise<void> {
+  public clearState (): Promise<void> {
     return this.store.delete(this.resolveKey())
   }
 

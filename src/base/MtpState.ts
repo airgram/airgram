@@ -28,7 +28,7 @@ export default class MtpState implements ag.MtpState {
 
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {}
 
-  public async clearState (): Promise<void> {
+  public clearState (): Promise<void> {
     return this.store.delete(this.resolveKey())
   }
 
@@ -91,7 +91,7 @@ export default class MtpState implements ag.MtpState {
     return this.encrypt(field, nextValue).then((serverSalt) => this.set({ [key]: serverSalt }))
   }
 
-  protected get (field?: string): Promise<any> {
+  public get (field?: string): Promise<any> {
     if (field !== undefined) {
       return this.store.get(this.resolveKey(), field)
         .then((value: string | number | null) => value)
@@ -108,7 +108,7 @@ export default class MtpState implements ag.MtpState {
       })
   }
 
-  protected async set (nextState: Partial<MtpStateDoc>) {
+  public async set (nextState: Partial<MtpStateDoc>): Promise<Partial<MtpStateDoc>> {
     return this.store.set(this.resolveKey(), nextState)
   }
 

@@ -58,6 +58,13 @@ export default class Crypto implements ag.Crypto {
     return result
   }
 
+  public getSecretKeys (): { key: string, iv: string } {
+    return {
+      iv: this.iv.toString('hex'),
+      key: this.key.toString('hex')
+    }
+  }
+
   public setSecretKeys (keys: { [key: string]: string | Buffer }) {
     if (('key' in keys)) {
       this.key = asBuffer(keys.key)
