@@ -10,8 +10,8 @@ export default class Airgram {
   private destroyed: boolean = false
   private instances: { client?: ag.Client, auth?: ag.Auth, updates?: ag.Updates } = {}
 
-  constructor (config: Config | { id: number, hash: string }, container?: Container) {
-    this.config = config instanceof Config ? config : new Config(config.id, config.hash)
+  constructor (config: Config | { id: number, hash: string, version?: string }, container?: Container) {
+    this.config = config instanceof Config ? config : new Config(config.id, config.hash, config.version)
     if (container instanceof Container) {
       this.container = container
     } else {
@@ -30,7 +30,7 @@ export default class Airgram {
 
   get client (): ag.Client {
     if (this.destroyed) {
-      throw new Error('Client has destroyed.¬')
+      throw new Error('Client has destroyed.')
     }
     if (!('client' in this.instances)) {
       const createClient = this.container.get<interfaces.Factory<ag.Client<ag.Context>>>(TYPES.ClientFactory)
