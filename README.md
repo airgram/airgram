@@ -169,8 +169,10 @@ auth.use(new AuthDialog({
   lastName: 'Smith',
   phoneNumber: () => process.env.PHONE_NUMBER || prompt('Please input your phone number:'),
   code: async () => prompt('Please input the secret code:'),
-  samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/N`),
-  continue: ({ phoneNumber }) => prompt(`Last authorization with the "${phoneNumber}" phone number has broken. If you have the secret code and wish to continue, input "Yes". Y/N`)
+  samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/n`)
+    .then((answer) => !['N', 'n'].includes(answer.charAt(0))),
+  continue: ({ phoneNumber }) => prompt(`Last authorization with the "${phoneNumber}" phone number has broken. If you have the secret code and wish to continue, input "Yes". Y/n`)
+    .then((answer) => !['N', 'n'].includes(answer.charAt(0)))
 }))
 ```
 
