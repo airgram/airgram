@@ -214,10 +214,10 @@ export default class MtpClient implements ag.MtpClient {
   }
 
   private checkConnection (): void {
-    if (!this.longPoll) {
-      this.logger.debug(() => `checkConnection() cancel request due disabled longPoll setting`)
-      return
-    }
+    // if (!this.longPoll) {
+    //   this.logger.debug(() => `checkConnection() cancel request due disabled longPoll setting`)
+    //   return
+    // }
 
     this.logger.info(() => `checkConnection()`)
 
