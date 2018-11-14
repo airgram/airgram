@@ -50,9 +50,9 @@ import { Airgram, AuthDialog } from 'airgram'
 import { prompt } from 'airgram/helpers'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
-const app = {
-  id: 'MY_APP_ID',
-  hash: 'MY_APP_HASH'
+const app = { 
+  id: Number(process.env.APP_ID!), 
+  hash: process.env.APP_HASH! 
 }
 
 const airgram = new Airgram(app)
