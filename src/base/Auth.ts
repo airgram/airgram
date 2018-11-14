@@ -7,6 +7,9 @@ import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
 import Composer from './Composer'
 
+// TODO: handle PHONE_CODE_EXPIRED
+// TODO: handle AUTH_KEY_UNREGISTERED
+
 const { optional, compose } = Composer
 
 export const DIALOGS = {
@@ -22,6 +25,7 @@ export const DIALOGS = {
 export default class Auth<ContextT = ag.AuthContext> extends Composer implements ag.Auth<ContextT> {
   protected static middlewareFilter (ctx: ag.Context) {
     return ctx.request && ![
+      'auth.importBotAuthorization',
       'auth.signIn',
       'auth.signUp',
       'auth.sendCode',
@@ -30,12 +34,17 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
   }
 
   public maxAttempts: number = 3
+
   public storeKey: string = 'auth'
 
-  private client: ag.Client
   private attempt: number = 0
+
+  private client: ag.Client
+
   private invalidPhoneNumbers: Set<string> = new Set()
+
   private locked: boolean = false
+
   private state: ag.AuthDoc
 
   constructor (
@@ -43,14 +52,6 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
     @inject(TYPES.AuthStore) protected store: ag.Store<ag.AuthDoc>
   ) {
     super()
-  }
-
-  public async clear (): Promise<void> {
-    return this.store.delete(this.resolveKey())
-      .catch((error) => {
-        this.logger.error(`clear() ${new Serializable(error)}`)
-        throw error
-      })
   }
 
   public checkCode (code: string): Promise<api.AuthAuthorizationUnion> {
@@ -86,6 +87,14 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
       })
   }
 
+  public async clear (): Promise<void> {
+    return this.store.delete(this.resolveKey())
+      .catch((error) => {
+        this.logger.error(`clear() ${new Serializable(error)}`)
+        throw error
+      })
+  }
+
   public clearState (): Promise<void> {
     return this.store.delete(this.resolveKey())
   }
@@ -109,16 +118,9 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
       throw new Error('login() request has been canceled due authorization in progress')
     }
     this.locked = true
-    return this.askPhoneNumber()
-      .then((phoneNumber: string) => this.sendCode(phoneNumber))
-      .then(() => this.askName())
-      .then(() => this.askCode())
-      .then((authorization: api.AuthAuthorizationUnion) => {
-        return authorization
-      })
-      .finally(() => {
-        this.locked = false
-      })
+    return (this.client.config.app.token ? this.loginAsBot() : this.loginAsUser()).finally(() => {
+      this.locked = false
+    })
   }
 
   public logout (): Promise<boolean> {
@@ -211,6 +213,27 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
 
   protected get (name: string): Promise<string> {
     return this.getState().then((state: ag.AuthDoc) => state[name])
+  }
+
+  protected async loginAsBot (): Promise<api.AuthAuthorizationUnion> {
+    return this.client.auth.importBotAuthorization({
+      api_hash: this.client.config.app.hash,
+      api_id: this.client.config.app.id,
+      bot_auth_token: this.client.config.app.token!,
+      flags: 0
+    }).then(async (authorization: api.AuthAuthorizationUnion) => {
+      await this.set({
+        userId: authorization.user.id
+      })
+      return authorization
+    })
+  }
+
+  protected loginAsUser (): Promise<api.AuthAuthorizationUnion> {
+    return this.askPhoneNumber()
+      .then((phoneNumber: string) => this.sendCode(phoneNumber))
+      .then(() => this.askName())
+      .then(() => this.askCode())
   }
 
   protected async sendCode (phoneNumber: string): Promise<ag.AuthDoc> {

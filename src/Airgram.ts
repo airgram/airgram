@@ -10,8 +10,8 @@ export default class Airgram {
   private destroyed: boolean = false
   private instances: { client?: ag.Client, auth?: ag.Auth, updates?: ag.Updates } = {}
 
-  constructor (config: Config | { id: number, hash: string, version?: string }, container?: Container) {
-    this.config = config instanceof Config ? config : new Config(config.id, config.hash, config.version)
+  constructor (config: Config | { id: number, hash: string, token?: string, version?: string }, container?: Container) {
+    this.config = config instanceof Config ? config : new Config(config.id, config.hash, config.version, config.token)
     if (container instanceof Container) {
       this.container = container
     } else {
