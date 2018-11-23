@@ -35,7 +35,9 @@ export interface TelegramAppConfig {
 export interface Config {
   app: TelegramAppConfig
   dcOptions: any[]
-  // handlerTimeout?: number
+  deviceModel: string
+  systemVersion: string
+  langCode: string
   layer: number
   modes: TelegramModesConfig
 }

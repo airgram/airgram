@@ -162,10 +162,10 @@ export default class MtpClient implements ag.MtpClient {
       serializer.storeInt(this.config.layer, 'layer')
       serializer.storeInt(0x69796de9, 'initConnection')
       serializer.storeInt(this.config.app.id, 'api_id')
-      serializer.storeString('Unknown UserAgent', 'device_model')
-      serializer.storeString('Unknown Platform', 'system_version')
+      serializer.storeString(this.config.deviceModel, 'device_model')
+      serializer.storeString(this.config.systemVersion, 'system_version')
       serializer.storeString(this.config.app.version, 'app_version')
-      serializer.storeString('en', 'lang_code')
+      serializer.storeString(this.config.langCode, 'lang_code')
     }
 
     if (options.afterMessageId) {
