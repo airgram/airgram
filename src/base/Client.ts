@@ -183,7 +183,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     })
   }
 
-  public catch (handler: (error: Error) => void): ag.Client {
+  public catch (handler: (error: Error, ctx?: { _: string, [key: string]: any }) => void): ag.Client {
     this.handleError = handler
     return this
   }

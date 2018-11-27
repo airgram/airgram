@@ -123,7 +123,7 @@ export interface Client<ContextT = Context> extends Composer<ContextT> {
   upload: api.upload.UploadApi
   users: api.users.UsersApi
 
-  catch (handler: (error: Error) => void): Client
+  catch (handler: (error: Error, ctx?: { _: string, [key: string]: any }) => void): Client
 
   destroy (): Promise<void>
 
