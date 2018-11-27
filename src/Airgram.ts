@@ -64,6 +64,7 @@ export default class Airgram {
     Object.keys(this.instances).forEach((key) => {
       delete this.instances[key]
     })
+    this.container.unbindAll()
     this.destroyed = true
   }
 
