@@ -1,6 +1,6 @@
 {
   "name": "airgram",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "homepage": "https://airgram.io",
   "main": "index.js",
   "types": "index.d.ts",
