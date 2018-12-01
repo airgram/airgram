@@ -10,8 +10,6 @@ import { now } from '../helpers'
 import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
 
-const stop = () => false
-
 let handlerId = 0
 
 @provide(TYPES.UpdatesHandler)
@@ -69,7 +67,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     this.handle = this.handle.bind(this)
   }
 
-  public async handle (update: ag.UpdatesResponse, options?: ag.UpdatesStateOptions): Promise<boolean> {
+  public async handle (update: ag.UpdatesResponse, options?: ag.UpdatesStateOptions): Promise<any> {
     if ('chats' in update) {
       await this.indexChats(update.chats)
     }
@@ -124,7 +122,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           } as api.Message,
           pts,
           pts_count: ptsCount
-        } as api.UpdateNewMessage).then(stop)
+        } as api.UpdateNewMessage)
       }
 
       case 'updateNewMessage':
@@ -153,7 +151,6 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           this.handleUpdateMessages(update.new_messages)
         ])
           .then(() => this.updatesState.set({ date, seq, pts }))
-          .then(stop)
       }
 
       case 'updates.differenceEmpty': {
@@ -173,7 +170,6 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         ])
           .then(() => this.updatesState.set({ date, seq, pts }))
           .then(() => setImmediate(() => this.getDifference()))
-          .then(stop)
       }
 
       // CHANNELS
@@ -250,10 +246,9 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
             this.handleUpdateMessages(update.new_messages, channelId)
           ]).then(() => {
             if (!update.final && 'access_hash' in chat) {
-              return this.getChannelDifference(chat).then(stop)
-            } else {
-              return this.chats.getChat(channelId).completeLoading().then(stop)
+              return this.getChannelDifference(chat)
             }
+            return this.chats.getChat(channelId).completeLoading().then(() => null)
           })
         })
       }
