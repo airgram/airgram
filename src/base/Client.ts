@@ -146,6 +146,15 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     )
   }
 
+  protected afterware () {
+    return optional(
+      (ctx) => ctx.handled && ctx.response && ctx.response.pts,
+      async (ctx, next) => {
+        return this.handleUpdates(ctx.response).then(next)
+      }
+    )
+  }
+
   public callApi<ParamsT, ResponseT> (
     method: string,
     params?: ParamsT,
@@ -168,7 +177,8 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
       })
       const handler = compose<ag.Context<ParamsT, ResponseT>>([
         this.middleware(),
-        this.apiMiddleware()
+        this.apiMiddleware(),
+        this.afterware()
       ])
       const handlerPromise = handler(ctx, async () => resolve(ctx.response))
       const timeout = (options && 'timeout' in options) ? options.timeout : 300000

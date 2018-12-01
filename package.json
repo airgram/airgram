@@ -48,6 +48,8 @@
     "event-stream": "^3.3.4",
     "nodemon": "^1.18.4",
     "np": "^3.0.4",
+    "pouchdb": "^7.0.0",
+    "pouchdb-upsert": "^2.2.0",
     "pre-commit": "^1.2.2",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.1",

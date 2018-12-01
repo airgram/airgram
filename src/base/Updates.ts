@@ -14,8 +14,7 @@ let updateId = 0
 @provide(TYPES.Updates)
 export default class Updates extends Composer<ag.UpdateContext> implements ag.Updates {
   public static middlewareFilter (ctx: ag.Context) {
-    return ctx.updates ||
-      (ctx.request && ['updates.getDifference', 'updates.getChannelDifference'].includes(ctx.request.method))
+    return ctx.updates
   }
 
   private client: ag.Client
@@ -128,12 +127,13 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
               this.logger.warn(`[${handlerId}] handle too long ${new Serializable(ctx)}`)
               // throw new Error('Too long handled...')
             }, 30000)
-            const result = await this.createUpdatesHandler(this, ctx, complete).handle(rootUpdate)
-            clearTimeout(timer)
-            this.logger.verbose(`[${handlerId}] handled "${ctx._}" for ${((now() - time) / 1000)}sec`)
-            return result
+            this.logger.verbose(`[${handlerId}] start to handle "${ctx._}"`)
+            return this.createUpdatesHandler(this, ctx, complete).handle(rootUpdate)
+              .then(() => {
+                clearTimeout(timer)
+                this.logger.verbose(`[${handlerId}] handled "${ctx._}" for ${((now() - time) / 1000)}sec`)
+              })
           })
-          .then((handled) => handled || complete(rootUpdate))
           .catch((error) => {
             try {
               this.client.handleError(error, ctx)

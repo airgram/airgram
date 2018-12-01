@@ -43,16 +43,25 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
   }
 
   public chatIndex: Map<number, ag.ChatDoc> = new Map()
+
   public chats: ag.Chats
+
   public complete: (update: ag.UpdatesResponse) => Promise<any>
+
   public getChannelDifference: (state: ag.Chat) => Promise<api.UpdatesChannelDifferenceUnion>
+
   public getDifference: () => Promise<api.UpdatesDifferenceUnion>
+
   public handlerId: number
+
   public myId: number
+
   public options = {
     loadLongChannelDifference: false
   }
+
   public request: ag.ContextRequest
+
   public updatesState: ag.UpdatesState
 
   constructor (@inject(TYPES.Logger) public logger: ag.Logger) {
@@ -72,12 +81,12 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       case 'updatesCombined':
       case 'updates': {
         await this.complete(update)
-        return this.handleMultipleUpdate(update.updates, UpdatesHandler.createStateOptions(update)).then(stop)
+        return this.handleMultipleUpdate(update.updates, UpdatesHandler.createStateOptions(update))
       }
 
       case 'updateShort': {
         await this.complete(update)
-        return this.handle(update.update, UpdatesHandler.createStateOptions(update)).then(stop)
+        return this.handle(update.update, UpdatesHandler.createStateOptions(update))
       }
 
       case 'updateShortMessage':
@@ -132,7 +141,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
       case 'updatesTooLong': {
         await this.complete(update)
-        return this.getDifference().then(stop)
+        return this.getDifference().then(() => true)
       }
 
       case 'updates.difference': {
@@ -267,7 +276,6 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
                 await this.complete(update)
                 return this.chats.set(chat.id, { pts: update.pts })
                   .then(() => this.handleUpdateMessages(update.messages))
-                  .then(stop)
               } else {
                 return this.throwHandleError(update, `chat "${channelId}" not found`)
               }

@@ -605,10 +605,15 @@ export interface UpdatesStateOptions {
   seqStart?: number
 }
 
-export type UpdatesResponse = api.UpdateUnion
+export type UpdatesResponse = api.Dialog
+  | api.MessagesAffectedHistory
+  | api.MessagesAffectedMessages
+  | api.MessagesMessages
+  | api.UpdateUnion
   | api.UpdatesUnion
   | api.UpdatesDifferenceUnion
   | api.UpdatesChannelDifferenceUnion
+  | api.UpdatesStateUnion
   | { _: 'new_session_created' }
   | { _: 'updateChannelReload', channel_id: number }
 
