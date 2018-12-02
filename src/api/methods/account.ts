@@ -8,7 +8,6 @@ import {
   AccountAuthorizationsUnion,
   AccountDaysTtlUnion,
   AccountPasswordUnion,
-  AccountPasswordInputSettingsUnion,
   AccountPasswordSettingsUnion,
   AccountPrivacyRulesUnion,
   AccountTmpPasswordUnion,
@@ -75,14 +74,14 @@ export interface ResetAuthorizationParams {
 }
 
 export interface SendChangePhoneCodeParams {
-  flags: number,
+  flags?: number,
   phone_number: string,
   allow_flashcall?: true,
   current_number?: boolean
 }
 
 export interface SendConfirmPhoneCodeParams {
-  flags: number,
+  flags?: number,
   hash: string,
   allow_flashcall?: true,
   current_number?: boolean
@@ -113,11 +112,11 @@ export interface UpdateNotifySettingsParams {
 
 export interface UpdatePasswordSettingsParams {
   current_password_hash: number[],
-  new_settings: AccountPasswordInputSettingsUnion
+  new_settings: AccountPasswordSettingsUnion
 }
 
 export interface UpdateProfileParams {
-  flags: number,
+  flags?: number,
   about?: string,
   first_name?: string,
   last_name?: string

@@ -15,7 +15,7 @@ import {
 } from '../'
 
 export interface ClearSavedInfoParams {
-  flags: number,
+  flags?: number,
   credentials?: true,
   info?: true
 }
@@ -30,14 +30,14 @@ export interface GetPaymentReceiptParams {
 
 export interface SendPaymentFormParams {
   credentials: InputPaymentCredentialsUnion,
-  flags: number,
+  flags?: number,
   msg_id: number,
   requested_info_id?: string,
   shipping_option_id?: string
 }
 
 export interface ValidateRequestedInfoParams {
-  flags: number,
+  flags?: number,
   info: PaymentRequestedInfoUnion,
   msg_id: number,
   save?: true

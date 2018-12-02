@@ -15,7 +15,7 @@ import {
 export interface GetChannelDifferenceParams {
   channel: InputChannelUnion,
   filter: ChannelMessagesFilterUnion,
-  flags: number,
+  flags?: number,
   limit: number,
   pts: number,
   force?: true
@@ -23,7 +23,7 @@ export interface GetChannelDifferenceParams {
 
 export interface GetDifferenceParams {
   date: number,
-  flags: number,
+  flags?: number,
   pts: number,
   qts: number,
   pts_total_limit?: number

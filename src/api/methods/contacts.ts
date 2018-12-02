@@ -42,7 +42,7 @@ export interface GetContactsParams {
 }
 
 export interface GetTopPeersParams {
-  flags: number,
+  flags?: number,
   hash: number,
   limit: number,
   offset: number,

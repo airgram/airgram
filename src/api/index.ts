@@ -37,7 +37,7 @@ export {
 export * from './types/AccountAuthorizations'
 export * from './types/AccountDaysTtl'
 export * from './types/AccountPassword'
-export * from './types/AccountPasswordInputSettings'
+export * from './types/AccountPasswordSettings'
 export * from './types/AccountPasswordSettings'
 export * from './types/AccountPrivacyRules'
 export * from './types/AccountTmpPassword'

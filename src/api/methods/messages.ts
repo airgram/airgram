@@ -74,7 +74,7 @@ export interface CheckChatInviteParams {
 }
 
 export interface ClearRecentStickersParams {
-  flags: number,
+  flags?: number,
   attached?: true
 }
 
@@ -89,14 +89,14 @@ export interface DeleteChatUserParams {
 }
 
 export interface DeleteHistoryParams {
-  flags: number,
+  flags?: number,
   max_id: number,
   peer: InputPeerUnion,
   just_clear?: true
 }
 
 export interface DeleteMessagesParams {
-  flags: number,
+  flags?: number,
   id: number[],
   revoke?: true
 }
@@ -122,7 +122,7 @@ export interface EditChatTitleParams {
 }
 
 export interface EditInlineBotMessageParams {
-  flags: number,
+  flags?: number,
   id: InputBotInlineMessageIdUnion,
   entities?: MessageEntityUnion[],
   message?: string,
@@ -131,7 +131,7 @@ export interface EditInlineBotMessageParams {
 }
 
 export interface EditMessageParams {
-  flags: number,
+  flags?: number,
   id: number,
   peer: InputPeerUnion,
   entities?: MessageEntityUnion[],
@@ -156,7 +156,7 @@ export interface ForwardMessageParams {
 }
 
 export interface ForwardMessagesParams {
-  flags: number,
+  flags?: number,
   from_peer: InputPeerUnion,
   id: number[],
   random_id: number[],
@@ -175,7 +175,7 @@ export interface GetAllStickersParams {
 }
 
 export interface GetArchivedStickersParams {
-  flags: number,
+  flags?: number,
   limit: number,
   offset_id: number,
   masks?: true
@@ -186,7 +186,7 @@ export interface GetAttachedStickersParams {
 }
 
 export interface GetBotCallbackAnswerParams {
-  flags: number,
+  flags?: number,
   msg_id: number,
   peer: InputPeerUnion,
   data?: number[],
@@ -209,7 +209,7 @@ export interface GetDhConfigParams {
 }
 
 export interface GetDialogsParams {
-  flags: number,
+  flags?: number,
   limit: number,
   offset_date: number,
   offset_id: number,
@@ -253,7 +253,7 @@ export interface GetHistoryParams {
 
 export interface GetInlineBotResultsParams {
   bot: InputUserUnion,
-  flags: number,
+  flags?: number,
   offset: string,
   peer: InputPeerUnion,
   query: string,
@@ -293,7 +293,7 @@ export interface GetPeerSettingsParams {
 }
 
 export interface GetRecentStickersParams {
-  flags: number,
+  flags?: number,
   hash: number,
   attached?: true
 }
@@ -368,13 +368,13 @@ export interface ReceivedQueueParams {
 }
 
 export interface ReorderPinnedDialogsParams {
-  flags: number,
+  flags?: number,
   order: InputPeerUnion[],
   force?: true
 }
 
 export interface ReorderStickerSetsParams {
-  flags: number,
+  flags?: number,
   order: number[],
   masks?: true
 }
@@ -394,7 +394,7 @@ export interface RequestEncryptionParams {
 }
 
 export interface SaveDraftParams {
-  flags: number,
+  flags?: number,
   message: string,
   peer: InputPeerUnion,
   entities?: MessageEntityUnion[],
@@ -408,7 +408,7 @@ export interface SaveGifParams {
 }
 
 export interface SaveRecentStickerParams {
-  flags: number,
+  flags?: number,
   id: InputDocumentUnion,
   unsave: boolean,
   attached?: true
@@ -417,7 +417,7 @@ export interface SaveRecentStickerParams {
 export interface SearchParams {
   add_offset: number,
   filter: MessagesFilterUnion,
-  flags: number,
+  flags?: number,
   limit: number,
   max_date: number,
   max_id: number,
@@ -462,7 +462,7 @@ export interface SendEncryptedServiceParams {
 }
 
 export interface SendInlineBotResultParams {
-  flags: number,
+  flags?: number,
   id: string,
   peer: InputPeerUnion,
   query_id: number,
@@ -474,7 +474,7 @@ export interface SendInlineBotResultParams {
 }
 
 export interface SendMediaParams {
-  flags: number,
+  flags?: number,
   media: InputMediaUnion,
   peer: InputPeerUnion,
   random_id: number,
@@ -486,7 +486,7 @@ export interface SendMediaParams {
 }
 
 export interface SendMessageParams {
-  flags: number,
+  flags?: number,
   message: string,
   peer: InputPeerUnion,
   random_id: number,
@@ -507,7 +507,7 @@ export interface SendScreenshotNotificationParams {
 
 export interface SetBotCallbackAnswerParams {
   cache_time: number,
-  flags: number,
+  flags?: number,
   query_id: number,
   alert?: true,
   message?: string,
@@ -515,14 +515,14 @@ export interface SetBotCallbackAnswerParams {
 }
 
 export interface SetBotPrecheckoutResultsParams {
-  flags: number,
+  flags?: number,
   query_id: number,
   error?: string,
   success?: true
 }
 
 export interface SetBotShippingResultsParams {
-  flags: number,
+  flags?: number,
   query_id: number,
   error?: string,
   shipping_options?: ShippingOptionUnion[]
@@ -534,7 +534,7 @@ export interface SetEncryptedTypingParams {
 }
 
 export interface SetGameScoreParams {
-  flags: number,
+  flags?: number,
   id: number,
   peer: InputPeerUnion,
   score: number,
@@ -545,7 +545,7 @@ export interface SetGameScoreParams {
 
 export interface SetInlineBotResultsParams {
   cache_time: number,
-  flags: number,
+  flags?: number,
   query_id: number,
   results: InputBotInlineResultUnion[],
   gallery?: true,
@@ -555,7 +555,7 @@ export interface SetInlineBotResultsParams {
 }
 
 export interface SetInlineGameScoreParams {
-  flags: number,
+  flags?: number,
   id: InputBotInlineMessageIdUnion,
   score: number,
   user_id: InputUserUnion,
@@ -581,7 +581,7 @@ export interface ToggleChatAdminsParams {
 }
 
 export interface ToggleDialogPinParams {
-  flags: number,
+  flags?: number,
   peer: InputPeerUnion,
   pinned?: true
 }

@@ -23,7 +23,7 @@ export interface ChangeStickerPositionParams {
 }
 
 export interface CreateStickerSetParams {
-  flags: number,
+  flags?: number,
   short_name: string,
   stickers: InputStickerSetItemUnion[],
   title: string,

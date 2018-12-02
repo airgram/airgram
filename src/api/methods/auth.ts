@@ -49,7 +49,7 @@ export interface ImportBotAuthorizationParams {
   api_hash: string,
   api_id: number,
   bot_auth_token: string,
-  flags: number
+  flags?: number
 }
 
 export interface RecoverPasswordParams {
@@ -64,7 +64,7 @@ export interface ResendCodeParams {
 export interface SendCodeParams {
   api_hash: string,
   api_id: number,
-  flags: number,
+  flags?: number,
   phone_number: string,
   allow_flashcall?: true,
   current_number?: boolean

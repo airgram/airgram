@@ -33,7 +33,7 @@ export interface CheckUsernameParams {
 
 export interface CreateChannelParams {
   about: string,
-  flags: number,
+  flags?: number,
   title: string,
   broadcast?: true,
   megagroup?: true
@@ -91,7 +91,7 @@ export interface ExportMessageLinkParams {
 
 export interface GetAdminLogParams {
   channel: InputChannelUnion,
-  flags: number,
+  flags?: number,
   limit: number,
   max_id: number,
   min_id: number,
@@ -171,7 +171,7 @@ export interface ToggleSignaturesParams {
 
 export interface UpdatePinnedMessageParams {
   channel: InputChannelUnion,
-  flags: number,
+  flags?: number,
   id: number,
   silent?: true
 }
