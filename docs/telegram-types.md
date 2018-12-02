@@ -3,7 +3,7 @@
 - [`AccountAuthorizationsUnion`](#accountauthorizationsunion)
 - [`AccountDaysTtlUnion`](#accountdaysttlunion)
 - [`AccountPasswordUnion`](#accountpasswordunion)
-- [`AccountPasswordInputSettingsUnion`](#accountpasswordinputsettingsunion)
+- [`AccountPasswordSettingsUnion`](#accountpasswordsettingsunion)
 - [`AccountPasswordSettingsUnion`](#accountpasswordsettingsunion)
 - [`AccountPrivacyRulesUnion`](#accountprivacyrulesunion)
 - [`AccountTmpPasswordUnion`](#accounttmppasswordunion)
@@ -214,10 +214,10 @@ It's an alias for the `AccountAuthorizations` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.authorizations" |
-| `authorizations` | [AuthorizationUnion[]](#authorizationunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.authorizations" |
+| `authorizations` | [AuthorizationUnion[]](#authorizationunion) |  |  |
 
 TypeScript interface:
 
@@ -239,10 +239,10 @@ It's an alias for the `AccountDaysTtl` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "accountDaysTTL" |
-| `days` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "accountDaysTTL" |
+| `days` | number |  |  |
 
 TypeScript interface:
 
@@ -266,11 +266,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.noPassword" |
-| `new_salt` | number[] |  |
-| `email_unconfirmed_pattern` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.noPassword" |
+| `new_salt` | number[] |  |  |
+| `email_unconfirmed_pattern` | string |  |  |
 
 TypeScript interface:
 
@@ -288,14 +288,14 @@ interface AccountNoPassword {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.password" |
-| `current_salt` | number[] |  |
-| `new_salt` | number[] |  |
-| `hint` | string |  |
-| `has_recovery` | boolean |  |
-| `email_unconfirmed_pattern` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.password" |
+| `current_salt` | number[] |  |  |
+| `new_salt` | number[] |  |  |
+| `hint` | string |  |  |
+| `has_recovery` | boolean |  |  |
+| `email_unconfirmed_pattern` | string |  |  |
 
 TypeScript interface:
 
@@ -311,7 +311,32 @@ interface AccountPassword {
 ```
 
 
-## AccountPasswordInputSettingsUnion
+## AccountPasswordSettingsUnion
+
+It's an alias for the `AccountPasswordSettings` type.
+
+### AccountPasswordSettings
+
+**Predicate:** "account.passwordSettings"
+
+**Properties:**
+
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.passwordSettings" |
+| `email` | string |  |  |
+
+TypeScript interface:
+
+```typescript
+interface AccountPasswordSettings {
+  _: 'account.passwordSettings'
+  email: string
+}
+```
+
+
+## AccountPasswordSettingsUnion
 
 It's an alias for the `AccountPasswordInputSettings` type.
 
@@ -321,14 +346,14 @@ It's an alias for the `AccountPasswordInputSettings` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.passwordInputSettings" |
-| `flags` | number |  |
-| `new_salt` | number[] | Optional |
-| `new_password_hash` | number[] | Optional |
-| `hint` | string | Optional |
-| `email` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.passwordInputSettings" |
+| `flags` | number |  |  |
+| `new_salt` | number[] |  | Optional |
+| `new_password_hash` | number[] |  | Optional |
+| `hint` | string |  | Optional |
+| `email` | string | 2 | Optional |
 
 TypeScript interface:
 
@@ -344,31 +369,6 @@ interface AccountPasswordInputSettings {
 ```
 
 
-## AccountPasswordSettingsUnion
-
-It's an alias for the `AccountPasswordSettings` type.
-
-### AccountPasswordSettings
-
-**Predicate:** "account.passwordSettings"
-
-**Properties:**
-
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.passwordSettings" |
-| `email` | string |  |
-
-TypeScript interface:
-
-```typescript
-interface AccountPasswordSettings {
-  _: 'account.passwordSettings'
-  email: string
-}
-```
-
-
 ## AccountPrivacyRulesUnion
 
 It's an alias for the `AccountPrivacyRules` type.
@@ -379,11 +379,11 @@ It's an alias for the `AccountPrivacyRules` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.privacyRules" |
-| `rules` | [PrivacyRuleUnion[]](#privacyruleunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.privacyRules" |
+| `rules` | [PrivacyRuleUnion[]](#privacyruleunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -406,11 +406,11 @@ It's an alias for the `AccountTmpPassword` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "account.tmpPassword" |
-| `tmp_password` | number[] |  |
-| `valid_until` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "account.tmpPassword" |
+| `tmp_password` | number[] |  |  |
+| `valid_until` | number |  |  |
 
 TypeScript interface:
 
@@ -433,12 +433,12 @@ It's an alias for the `AuthAuthorization` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.authorization" |
-| `flags` | number |  |
-| `tmp_sessions` | number | Optional |
-| `user` | [UserUnion](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.authorization" |
+| `flags` | number |  |  |
+| `tmp_sessions` | number |  | Optional |
+| `user` | [UserUnion](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -462,10 +462,10 @@ It's an alias for the `AuthCheckedPhone` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.checkedPhone" |
-| `phone_registered` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.checkedPhone" |
+| `phone_registered` | boolean |  |  |
 
 TypeScript interface:
 
@@ -490,9 +490,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.codeTypeCall" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.codeTypeCall" |
 
 TypeScript interface:
 
@@ -508,9 +508,9 @@ interface AuthCodeTypeCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.codeTypeFlashCall" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.codeTypeFlashCall" |
 
 TypeScript interface:
 
@@ -526,9 +526,9 @@ interface AuthCodeTypeFlashCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.codeTypeSms" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.codeTypeSms" |
 
 TypeScript interface:
 
@@ -549,11 +549,11 @@ It's an alias for the `AuthExportedAuthorization` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.exportedAuthorization" |
-| `id` | number |  |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.exportedAuthorization" |
+| `id` | number |  |  |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -576,10 +576,10 @@ It's an alias for the `AuthPasswordRecovery` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.passwordRecovery" |
-| `email_pattern` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.passwordRecovery" |
+| `email_pattern` | string |  |  |
 
 TypeScript interface:
 
@@ -601,15 +601,15 @@ It's an alias for the `AuthSentCode` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.sentCode" |
-| `flags` | number |  |
-| `phone_registered` | true | Optional |
-| `type` | [AuthSentCodeTypeUnion](#authsentcodetypeunion) |  |
-| `phone_code_hash` | string |  |
-| `next_type` | [AuthCodeTypeUnion](#authcodetypeunion) | Optional |
-| `timeout` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.sentCode" |
+| `flags` | number |  |  |
+| `phone_registered` | true |  | Optional |
+| `type` | [AuthSentCodeTypeUnion](#authsentcodetypeunion) |  |  |
+| `phone_code_hash` | string |  |  |
+| `next_type` | [AuthCodeTypeUnion](#authcodetypeunion) | 2 | Optional |
+| `timeout` | number | 4 | Optional |
 
 TypeScript interface:
 
@@ -640,10 +640,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.sentCodeTypeApp" |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.sentCodeTypeApp" |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -660,10 +660,10 @@ interface AuthSentCodeTypeApp {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.sentCodeTypeCall" |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.sentCodeTypeCall" |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -680,10 +680,10 @@ interface AuthSentCodeTypeCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.sentCodeTypeFlashCall" |
-| `pattern` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.sentCodeTypeFlashCall" |
+| `pattern` | string |  |  |
 
 TypeScript interface:
 
@@ -700,10 +700,10 @@ interface AuthSentCodeTypeFlashCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "auth.sentCodeTypeSms" |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "auth.sentCodeTypeSms" |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -725,22 +725,22 @@ It's an alias for the `Authorization` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "authorization" |
-| `hash` | number |  |
-| `flags` | number |  |
-| `device_model` | string |  |
-| `platform` | string |  |
-| `system_version` | string |  |
-| `api_id` | number |  |
-| `app_name` | string |  |
-| `app_version` | string |  |
-| `date_created` | number |  |
-| `date_active` | number |  |
-| `ip` | string |  |
-| `country` | string |  |
-| `region` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "authorization" |
+| `hash` | number |  |  |
+| `flags` | number |  |  |
+| `device_model` | string |  |  |
+| `platform` | string |  |  |
+| `system_version` | string |  |  |
+| `api_id` | number |  |  |
+| `app_name` | string |  |  |
+| `app_version` | string |  |  |
+| `date_created` | number |  |  |
+| `date_active` | number |  |  |
+| `ip` | string |  |  |
+| `country` | string |  |  |
+| `region` | string |  |  |
 
 TypeScript interface:
 
@@ -774,11 +774,11 @@ It's an alias for the `BotCommand` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botCommand" |
-| `command` | string |  |
-| `description` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botCommand" |
+| `command` | string |  |  |
+| `description` | string |  |  |
 
 TypeScript interface:
 
@@ -801,12 +801,12 @@ It's an alias for the `BotInfo` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInfo" |
-| `user_id` | number |  |
-| `description` | string |  |
-| `commands` | [BotCommandUnion[]](#botcommandunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInfo" |
+| `user_id` | number |  |  |
+| `description` | string |  |  |
+| `commands` | [BotCommandUnion[]](#botcommandunion) |  |  |
 
 TypeScript interface:
 
@@ -835,12 +835,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMessageMediaAuto" |
-| `flags` | number |  |
-| `caption` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMessageMediaAuto" |
+| `flags` | number |  |  |
+| `caption` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -859,14 +859,14 @@ interface BotInlineMessageMediaAuto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMessageMediaContact" |
-| `flags` | number |  |
-| `phone_number` | string |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMessageMediaContact" |
+| `flags` | number |  |  |
+| `phone_number` | string |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -887,12 +887,12 @@ interface BotInlineMessageMediaContact {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMessageMediaGeo" |
-| `flags` | number |  |
-| `geo` | [GeoPointUnion](#geopointunion) |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMessageMediaGeo" |
+| `flags` | number |  |  |
+| `geo` | [GeoPointUnion](#geopointunion) |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -911,16 +911,16 @@ interface BotInlineMessageMediaGeo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMessageMediaVenue" |
-| `flags` | number |  |
-| `geo` | [GeoPointUnion](#geopointunion) |  |
-| `title` | string |  |
-| `address` | string |  |
-| `provider` | string |  |
-| `venue_id` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMessageMediaVenue" |
+| `flags` | number |  |  |
+| `geo` | [GeoPointUnion](#geopointunion) |  |  |
+| `title` | string |  |  |
+| `address` | string |  |  |
+| `provider` | string |  |  |
+| `venue_id` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -943,14 +943,14 @@ interface BotInlineMessageMediaVenue {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMessageText" |
-| `flags` | number |  |
-| `no_webpage` | true | Optional |
-| `message` | string |  |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMessageText" |
+| `flags` | number |  |  |
+| `no_webpage` | true |  | Optional |
+| `message` | string |  |  |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 2 | Optional |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -978,17 +978,17 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineMediaResult" |
-| `flags` | number |  |
-| `id` | string |  |
-| `type` | string |  |
-| `photo` | [PhotoUnion](#photounion) | Optional |
-| `document` | [DocumentUnion](#documentunion) | Optional |
-| `title` | string | Optional |
-| `description` | string | Optional |
-| `send_message` | [BotInlineMessageUnion](#botinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineMediaResult" |
+| `flags` | number |  |  |
+| `id` | string |  |  |
+| `type` | string |  |  |
+| `photo` | [PhotoUnion](#photounion) |  | Optional |
+| `document` | [DocumentUnion](#documentunion) | 2 | Optional |
+| `title` | string | 4 | Optional |
+| `description` | string | 8 | Optional |
+| `send_message` | [BotInlineMessageUnion](#botinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -1012,22 +1012,22 @@ interface BotInlineMediaResult {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "botInlineResult" |
-| `flags` | number |  |
-| `id` | string |  |
-| `type` | string |  |
-| `title` | string | Optional |
-| `description` | string | Optional |
-| `url` | string | Optional |
-| `thumb_url` | string | Optional |
-| `content_url` | string | Optional |
-| `content_type` | string | Optional |
-| `w` | number | Optional |
-| `h` | number | Optional |
-| `duration` | number | Optional |
-| `send_message` | [BotInlineMessageUnion](#botinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "botInlineResult" |
+| `flags` | number |  |  |
+| `id` | string |  |  |
+| `type` | string |  |  |
+| `title` | string | 2 | Optional |
+| `description` | string | 4 | Optional |
+| `url` | string | 8 | Optional |
+| `thumb_url` | string | 16 | Optional |
+| `content_url` | string | 32 | Optional |
+| `content_type` | string | 32 | Optional |
+| `w` | number | 64 | Optional |
+| `h` | number | 64 | Optional |
+| `duration` | number | 128 | Optional |
+| `send_message` | [BotInlineMessageUnion](#botinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -1061,10 +1061,10 @@ It's an alias for the `CdnConfig` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "cdnConfig" |
-| `public_keys` | [CdnPublicKeyUnion[]](#cdnpublickeyunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "cdnConfig" |
+| `public_keys` | [CdnPublicKeyUnion[]](#cdnpublickeyunion) |  |  |
 
 TypeScript interface:
 
@@ -1086,12 +1086,12 @@ It's an alias for the `CdnFileHash` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "cdnFileHash" |
-| `offset` | number |  |
-| `limit` | number |  |
-| `hash` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "cdnFileHash" |
+| `offset` | number |  |  |
+| `limit` | number |  |  |
+| `hash` | number[] |  |  |
 
 TypeScript interface:
 
@@ -1115,11 +1115,11 @@ It's an alias for the `CdnPublicKey` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "cdnPublicKey" |
-| `dc_id` | number |  |
-| `public_key` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "cdnPublicKey" |
+| `dc_id` | number |  |  |
+| `public_key` | string |  |  |
 
 TypeScript interface:
 
@@ -1142,13 +1142,13 @@ It's an alias for the `ChannelAdminLogEvent` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEvent" |
-| `id` | number |  |
-| `date` | number |  |
-| `user_id` | number |  |
-| `action` | [ChannelAdminLogEventActionUnion](#channeladminlogeventactionunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEvent" |
+| `id` | number |  |  |
+| `date` | number |  |  |
+| `user_id` | number |  |  |
+| `action` | [ChannelAdminLogEventActionUnion](#channeladminlogeventactionunion) |  |  |
 
 TypeScript interface:
 
@@ -1188,11 +1188,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionChangeAbout" |
-| `prev_value` | string |  |
-| `new_value` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionChangeAbout" |
+| `prev_value` | string |  |  |
+| `new_value` | string |  |  |
 
 TypeScript interface:
 
@@ -1210,11 +1210,11 @@ interface ChannelAdminLogEventActionChangeAbout {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionChangePhoto" |
-| `prev_photo` | [ChatPhotoUnion](#chatphotounion) |  |
-| `new_photo` | [ChatPhotoUnion](#chatphotounion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionChangePhoto" |
+| `prev_photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
+| `new_photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
 
 TypeScript interface:
 
@@ -1232,11 +1232,11 @@ interface ChannelAdminLogEventActionChangePhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionChangeStickerSet" |
-| `prev_stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |
-| `new_stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionChangeStickerSet" |
+| `prev_stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |  |
+| `new_stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |  |
 
 TypeScript interface:
 
@@ -1254,11 +1254,11 @@ interface ChannelAdminLogEventActionChangeStickerSet {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionChangeTitle" |
-| `prev_value` | string |  |
-| `new_value` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionChangeTitle" |
+| `prev_value` | string |  |  |
+| `new_value` | string |  |  |
 
 TypeScript interface:
 
@@ -1276,11 +1276,11 @@ interface ChannelAdminLogEventActionChangeTitle {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionChangeUsername" |
-| `prev_value` | string |  |
-| `new_value` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionChangeUsername" |
+| `prev_value` | string |  |  |
+| `new_value` | string |  |  |
 
 TypeScript interface:
 
@@ -1298,10 +1298,10 @@ interface ChannelAdminLogEventActionChangeUsername {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionDeleteMessage" |
-| `message` | [MessageUnion](#messageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionDeleteMessage" |
+| `message` | [MessageUnion](#messageunion) |  |  |
 
 TypeScript interface:
 
@@ -1318,11 +1318,11 @@ interface ChannelAdminLogEventActionDeleteMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionEditMessage" |
-| `prev_message` | [MessageUnion](#messageunion) |  |
-| `new_message` | [MessageUnion](#messageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionEditMessage" |
+| `prev_message` | [MessageUnion](#messageunion) |  |  |
+| `new_message` | [MessageUnion](#messageunion) |  |  |
 
 TypeScript interface:
 
@@ -1340,10 +1340,10 @@ interface ChannelAdminLogEventActionEditMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionParticipantInvite" |
-| `participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionParticipantInvite" |
+| `participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
 
 TypeScript interface:
 
@@ -1360,9 +1360,9 @@ interface ChannelAdminLogEventActionParticipantInvite {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionParticipantJoin" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionParticipantJoin" |
 
 TypeScript interface:
 
@@ -1378,9 +1378,9 @@ interface ChannelAdminLogEventActionParticipantJoin {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionParticipantLeave" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionParticipantLeave" |
 
 TypeScript interface:
 
@@ -1396,11 +1396,11 @@ interface ChannelAdminLogEventActionParticipantLeave {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionParticipantToggleAdmin" |
-| `prev_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
-| `new_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionParticipantToggleAdmin" |
+| `prev_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
+| `new_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
 
 TypeScript interface:
 
@@ -1418,11 +1418,11 @@ interface ChannelAdminLogEventActionParticipantToggleAdmin {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionParticipantToggleBan" |
-| `prev_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
-| `new_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionParticipantToggleBan" |
+| `prev_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
+| `new_participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
 
 TypeScript interface:
 
@@ -1440,10 +1440,10 @@ interface ChannelAdminLogEventActionParticipantToggleBan {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionToggleInvites" |
-| `new_value` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionToggleInvites" |
+| `new_value` | boolean |  |  |
 
 TypeScript interface:
 
@@ -1460,10 +1460,10 @@ interface ChannelAdminLogEventActionToggleInvites {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionToggleSignatures" |
-| `new_value` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionToggleSignatures" |
+| `new_value` | boolean |  |  |
 
 TypeScript interface:
 
@@ -1480,10 +1480,10 @@ interface ChannelAdminLogEventActionToggleSignatures {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventActionUpdatePinned" |
-| `message` | [MessageUnion](#messageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventActionUpdatePinned" |
+| `message` | [MessageUnion](#messageunion) |  |  |
 
 TypeScript interface:
 
@@ -1505,24 +1505,24 @@ It's an alias for the `ChannelAdminLogEventsFilter` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminLogEventsFilter" |
-| `flags` | number |  |
-| `join` | true | Optional |
-| `leave` | true | Optional |
-| `invite` | true | Optional |
-| `ban` | true | Optional |
-| `unban` | true | Optional |
-| `kick` | true | Optional |
-| `unkick` | true | Optional |
-| `promote` | true | Optional |
-| `demote` | true | Optional |
-| `info` | true | Optional |
-| `settings` | true | Optional |
-| `pinned` | true | Optional |
-| `edit` | true | Optional |
-| `delete` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminLogEventsFilter" |
+| `flags` | number |  |  |
+| `join` | true |  | Optional |
+| `leave` | true | 2 | Optional |
+| `invite` | true | 4 | Optional |
+| `ban` | true | 8 | Optional |
+| `unban` | true | 16 | Optional |
+| `kick` | true | 32 | Optional |
+| `unkick` | true | 64 | Optional |
+| `promote` | true | 128 | Optional |
+| `demote` | true | 256 | Optional |
+| `info` | true | 512 | Optional |
+| `settings` | true | 1024 | Optional |
+| `pinned` | true | 2048 | Optional |
+| `edit` | true | 4096 | Optional |
+| `delete` | true | 8192 | Optional |
 
 TypeScript interface:
 
@@ -1558,19 +1558,19 @@ It's an alias for the `ChannelAdminRights` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelAdminRights" |
-| `flags` | number |  |
-| `change_info` | true | Optional |
-| `post_messages` | true | Optional |
-| `edit_messages` | true | Optional |
-| `delete_messages` | true | Optional |
-| `ban_users` | true | Optional |
-| `invite_users` | true | Optional |
-| `invite_link` | true | Optional |
-| `pin_messages` | true | Optional |
-| `add_admins` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelAdminRights" |
+| `flags` | number |  |  |
+| `change_info` | true |  | Optional |
+| `post_messages` | true | 2 | Optional |
+| `edit_messages` | true | 4 | Optional |
+| `delete_messages` | true | 8 | Optional |
+| `ban_users` | true | 16 | Optional |
+| `invite_users` | true | 32 | Optional |
+| `invite_link` | true | 64 | Optional |
+| `pin_messages` | true | 128 | Optional |
+| `add_admins` | true | 512 | Optional |
 
 TypeScript interface:
 
@@ -1601,19 +1601,19 @@ It's an alias for the `ChannelBannedRights` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelBannedRights" |
-| `flags` | number |  |
-| `view_messages` | true | Optional |
-| `send_messages` | true | Optional |
-| `send_media` | true | Optional |
-| `send_stickers` | true | Optional |
-| `send_gifs` | true | Optional |
-| `send_games` | true | Optional |
-| `send_inline` | true | Optional |
-| `embed_links` | true | Optional |
-| `until_date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelBannedRights" |
+| `flags` | number |  |  |
+| `view_messages` | true |  | Optional |
+| `send_messages` | true | 2 | Optional |
+| `send_media` | true | 4 | Optional |
+| `send_stickers` | true | 8 | Optional |
+| `send_gifs` | true | 16 | Optional |
+| `send_games` | true | 32 | Optional |
+| `send_inline` | true | 64 | Optional |
+| `embed_links` | true | 128 | Optional |
+| `until_date` | number |  |  |
 
 TypeScript interface:
 
@@ -1646,12 +1646,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelMessagesFilter" |
-| `flags` | number |  |
-| `exclude_new_messages` | true | Optional |
-| `ranges` | [MessageRangeUnion[]](#messagerangeunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelMessagesFilter" |
+| `flags` | number |  |  |
+| `exclude_new_messages` | true | 2 | Optional |
+| `ranges` | [MessageRangeUnion[]](#messagerangeunion) |  |  |
 
 TypeScript interface:
 
@@ -1670,9 +1670,9 @@ interface ChannelMessagesFilter {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelMessagesFilterEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelMessagesFilterEmpty" |
 
 TypeScript interface:
 
@@ -1698,11 +1698,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipant" |
-| `user_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipant" |
+| `user_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -1720,16 +1720,16 @@ interface ChannelParticipant {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantAdmin" |
-| `flags` | number |  |
-| `can_edit` | true | Optional |
-| `user_id` | number |  |
-| `inviter_id` | number |  |
-| `promoted_by` | number |  |
-| `date` | number |  |
-| `admin_rights` | [ChannelAdminRightsUnion](#channeladminrightsunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantAdmin" |
+| `flags` | number |  |  |
+| `can_edit` | true |  | Optional |
+| `user_id` | number |  |  |
+| `inviter_id` | number |  |  |
+| `promoted_by` | number |  |  |
+| `date` | number |  |  |
+| `admin_rights` | [ChannelAdminRightsUnion](#channeladminrightsunion) |  |  |
 
 TypeScript interface:
 
@@ -1752,15 +1752,15 @@ interface ChannelParticipantAdmin {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantBanned" |
-| `flags` | number |  |
-| `left` | true | Optional |
-| `user_id` | number |  |
-| `kicked_by` | number |  |
-| `date` | number |  |
-| `banned_rights` | [ChannelBannedRightsUnion](#channelbannedrightsunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantBanned" |
+| `flags` | number |  |  |
+| `left` | true |  | Optional |
+| `user_id` | number |  |  |
+| `kicked_by` | number |  |  |
+| `date` | number |  |  |
+| `banned_rights` | [ChannelBannedRightsUnion](#channelbannedrightsunion) |  |  |
 
 TypeScript interface:
 
@@ -1782,10 +1782,10 @@ interface ChannelParticipantBanned {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantCreator" |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantCreator" |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -1802,12 +1802,12 @@ interface ChannelParticipantCreator {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantSelf" |
-| `user_id` | number |  |
-| `inviter_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantSelf" |
+| `user_id` | number |  |  |
+| `inviter_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -1837,9 +1837,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsAdmins" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsAdmins" |
 
 TypeScript interface:
 
@@ -1855,10 +1855,10 @@ interface ChannelParticipantsAdmins {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsBanned" |
-| `q` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsBanned" |
+| `q` | string |  |  |
 
 TypeScript interface:
 
@@ -1875,9 +1875,9 @@ interface ChannelParticipantsBanned {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsBots" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsBots" |
 
 TypeScript interface:
 
@@ -1893,10 +1893,10 @@ interface ChannelParticipantsBots {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsKicked" |
-| `q` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsKicked" |
+| `q` | string |  |  |
 
 TypeScript interface:
 
@@ -1913,9 +1913,9 @@ interface ChannelParticipantsKicked {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsRecent" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsRecent" |
 
 TypeScript interface:
 
@@ -1931,10 +1931,10 @@ interface ChannelParticipantsRecent {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelParticipantsSearch" |
-| `q` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelParticipantsSearch" |
+| `q` | string |  |  |
 
 TypeScript interface:
 
@@ -1956,12 +1956,12 @@ It's an alias for the `ChannelsAdminLogResults` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channels.adminLogResults" |
-| `events` | [ChannelAdminLogEventUnion[]](#channeladminlogeventunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channels.adminLogResults" |
+| `events` | [ChannelAdminLogEventUnion[]](#channeladminlogeventunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -1985,11 +1985,11 @@ It's an alias for the `ChannelsChannelParticipant` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channels.channelParticipant" |
-| `participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channels.channelParticipant" |
+| `participant` | [ChannelParticipantUnion](#channelparticipantunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2012,12 +2012,12 @@ It's an alias for the `ChannelsChannelParticipants` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channels.channelParticipants" |
-| `count` | number |  |
-| `participants` | [ChannelParticipantUnion[]](#channelparticipantunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channels.channelParticipants" |
+| `count` | number |  |  |
+| `participants` | [ChannelParticipantUnion[]](#channelparticipantunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2046,30 +2046,30 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channel" |
-| `flags` | number |  |
-| `creator` | true | Optional |
-| `left` | true | Optional |
-| `editor` | true | Optional |
-| `broadcast` | true | Optional |
-| `verified` | true | Optional |
-| `megagroup` | true | Optional |
-| `restricted` | true | Optional |
-| `democracy` | true | Optional |
-| `signatures` | true | Optional |
-| `min` | true | Optional |
-| `id` | number |  |
-| `access_hash` | number | Optional |
-| `title` | string |  |
-| `username` | string | Optional |
-| `photo` | [ChatPhotoUnion](#chatphotounion) |  |
-| `date` | number |  |
-| `version` | number |  |
-| `restriction_reason` | string | Optional |
-| `admin_rights` | [ChannelAdminRightsUnion](#channeladminrightsunion) | Optional |
-| `banned_rights` | [ChannelBannedRightsUnion](#channelbannedrightsunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channel" |
+| `flags` | number |  |  |
+| `creator` | true |  | Optional |
+| `left` | true | 4 | Optional |
+| `editor` | true | 8 | Optional |
+| `broadcast` | true | 32 | Optional |
+| `verified` | true | 128 | Optional |
+| `megagroup` | true | 256 | Optional |
+| `restricted` | true | 512 | Optional |
+| `democracy` | true | 1024 | Optional |
+| `signatures` | true | 2048 | Optional |
+| `min` | true | 4096 | Optional |
+| `id` | number |  |  |
+| `access_hash` | number | 8192 | Optional |
+| `title` | string |  |  |
+| `username` | string | 64 | Optional |
+| `photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
+| `date` | number |  |  |
+| `version` | number |  |  |
+| `restriction_reason` | string | 512 | Optional |
+| `admin_rights` | [ChannelAdminRightsUnion](#channeladminrightsunion) | 16384 | Optional |
+| `banned_rights` | [ChannelBannedRightsUnion](#channelbannedrightsunion) | 32768 | Optional |
 
 TypeScript interface:
 
@@ -2106,16 +2106,16 @@ interface Channel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelForbidden" |
-| `flags` | number |  |
-| `broadcast` | true | Optional |
-| `megagroup` | true | Optional |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `title` | string |  |
-| `until_date` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelForbidden" |
+| `flags` | number |  |  |
+| `broadcast` | true | 32 | Optional |
+| `megagroup` | true | 256 | Optional |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `title` | string |  |  |
+| `until_date` | number | 65536 | Optional |
 
 TypeScript interface:
 
@@ -2138,23 +2138,23 @@ interface ChannelForbidden {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chat" |
-| `flags` | number |  |
-| `creator` | true | Optional |
-| `kicked` | true | Optional |
-| `left` | true | Optional |
-| `admins_enabled` | true | Optional |
-| `admin` | true | Optional |
-| `deactivated` | true | Optional |
-| `id` | number |  |
-| `title` | string |  |
-| `photo` | [ChatPhotoUnion](#chatphotounion) |  |
-| `participants_count` | number |  |
-| `date` | number |  |
-| `version` | number |  |
-| `migrated_to` | [InputChannelUnion](#inputchannelunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chat" |
+| `flags` | number |  |  |
+| `creator` | true |  | Optional |
+| `kicked` | true | 2 | Optional |
+| `left` | true | 4 | Optional |
+| `admins_enabled` | true | 8 | Optional |
+| `admin` | true | 16 | Optional |
+| `deactivated` | true | 32 | Optional |
+| `id` | number |  |  |
+| `title` | string |  |  |
+| `photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
+| `participants_count` | number |  |  |
+| `date` | number |  |  |
+| `version` | number |  |  |
+| `migrated_to` | [InputChannelUnion](#inputchannelunion) | 64 | Optional |
 
 TypeScript interface:
 
@@ -2184,10 +2184,10 @@ interface Chat {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -2204,11 +2204,11 @@ interface ChatEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatForbidden" |
-| `id` | number |  |
-| `title` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatForbidden" |
+| `id` | number |  |  |
+| `title` | string |  |  |
 
 TypeScript interface:
 
@@ -2233,30 +2233,30 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "channelFull" |
-| `flags` | number |  |
-| `can_view_participants` | true | Optional |
-| `can_set_username` | true | Optional |
-| `can_set_stickers` | true | Optional |
-| `id` | number |  |
-| `about` | string |  |
-| `participants_count` | number | Optional |
-| `admins_count` | number | Optional |
-| `kicked_count` | number | Optional |
-| `banned_count` | number | Optional |
-| `read_inbox_max_id` | number |  |
-| `read_outbox_max_id` | number |  |
-| `unread_count` | number |  |
-| `chat_photo` | [PhotoUnion](#photounion) |  |
-| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |
-| `exported_invite` | [ExportedChatInviteUnion](#exportedchatinviteunion) |  |
-| `bot_info` | [BotInfoUnion[]](#botinfounion) |  |
-| `migrated_from_chat_id` | number | Optional |
-| `migrated_from_max_id` | number | Optional |
-| `pinned_msg_id` | number | Optional |
-| `stickerset` | [StickerSetUnion](#stickersetunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "channelFull" |
+| `flags` | number |  |  |
+| `can_view_participants` | true | 8 | Optional |
+| `can_set_username` | true | 64 | Optional |
+| `can_set_stickers` | true | 128 | Optional |
+| `id` | number |  |  |
+| `about` | string |  |  |
+| `participants_count` | number |  | Optional |
+| `admins_count` | number | 2 | Optional |
+| `kicked_count` | number | 4 | Optional |
+| `banned_count` | number | 4 | Optional |
+| `read_inbox_max_id` | number |  |  |
+| `read_outbox_max_id` | number |  |  |
+| `unread_count` | number |  |  |
+| `chat_photo` | [PhotoUnion](#photounion) |  |  |
+| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |  |
+| `exported_invite` | [ExportedChatInviteUnion](#exportedchatinviteunion) |  |  |
+| `bot_info` | [BotInfoUnion[]](#botinfounion) |  |  |
+| `migrated_from_chat_id` | number | 16 | Optional |
+| `migrated_from_max_id` | number | 16 | Optional |
+| `pinned_msg_id` | number | 32 | Optional |
+| `stickerset` | [StickerSetUnion](#stickersetunion) | 256 | Optional |
 
 TypeScript interface:
 
@@ -2293,15 +2293,15 @@ interface ChannelFull {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatFull" |
-| `id` | number |  |
-| `participants` | [ChatParticipantsUnion](#chatparticipantsunion) |  |
-| `chat_photo` | [PhotoUnion](#photounion) |  |
-| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |
-| `exported_invite` | [ExportedChatInviteUnion](#exportedchatinviteunion) |  |
-| `bot_info` | [BotInfoUnion[]](#botinfounion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatFull" |
+| `id` | number |  |  |
+| `participants` | [ChatParticipantsUnion](#chatparticipantsunion) |  |  |
+| `chat_photo` | [PhotoUnion](#photounion) |  |  |
+| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |  |
+| `exported_invite` | [ExportedChatInviteUnion](#exportedchatinviteunion) |  |  |
+| `bot_info` | [BotInfoUnion[]](#botinfounion) |  |  |
 
 TypeScript interface:
 
@@ -2330,18 +2330,18 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatInvite" |
-| `flags` | number |  |
-| `channel` | true | Optional |
-| `broadcast` | true | Optional |
-| `public` | true | Optional |
-| `megagroup` | true | Optional |
-| `title` | string |  |
-| `photo` | [ChatPhotoUnion](#chatphotounion) |  |
-| `participants_count` | number |  |
-| `participants` | [UserUnion[]](#userunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatInvite" |
+| `flags` | number |  |  |
+| `channel` | true |  | Optional |
+| `broadcast` | true | 2 | Optional |
+| `public` | true | 4 | Optional |
+| `megagroup` | true | 8 | Optional |
+| `title` | string |  |  |
+| `photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
+| `participants_count` | number |  |  |
+| `participants` | [UserUnion[]](#userunion) | 16 | Optional |
 
 TypeScript interface:
 
@@ -2366,10 +2366,10 @@ interface ChatInvite {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatInviteAlready" |
-| `chat` | [ChatUnion](#chatunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatInviteAlready" |
+| `chat` | [ChatUnion](#chatunion) |  |  |
 
 TypeScript interface:
 
@@ -2394,12 +2394,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatParticipant" |
-| `user_id` | number |  |
-| `inviter_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatParticipant" |
+| `user_id` | number |  |  |
+| `inviter_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -2418,12 +2418,12 @@ interface ChatParticipant {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatParticipantAdmin" |
-| `user_id` | number |  |
-| `inviter_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatParticipantAdmin" |
+| `user_id` | number |  |  |
+| `inviter_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -2442,10 +2442,10 @@ interface ChatParticipantAdmin {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatParticipantCreator" |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatParticipantCreator" |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -2469,12 +2469,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatParticipants" |
-| `chat_id` | number |  |
-| `participants` | [ChatParticipantUnion[]](#chatparticipantunion) |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatParticipants" |
+| `chat_id` | number |  |  |
+| `participants` | [ChatParticipantUnion[]](#chatparticipantunion) |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -2493,12 +2493,12 @@ interface ChatParticipants {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatParticipantsForbidden" |
-| `flags` | number |  |
-| `chat_id` | number |  |
-| `self_participant` | [ChatParticipantUnion](#chatparticipantunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatParticipantsForbidden" |
+| `flags` | number |  |  |
+| `chat_id` | number |  |  |
+| `self_participant` | [ChatParticipantUnion](#chatparticipantunion) |  | Optional |
 
 TypeScript interface:
 
@@ -2524,11 +2524,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatPhoto" |
-| `photo_small` | [FileLocationUnion](#filelocationunion) |  |
-| `photo_big` | [FileLocationUnion](#filelocationunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatPhoto" |
+| `photo_small` | [FileLocationUnion](#filelocationunion) |  |  |
+| `photo_big` | [FileLocationUnion](#filelocationunion) |  |  |
 
 TypeScript interface:
 
@@ -2546,9 +2546,9 @@ interface ChatPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatPhotoEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatPhotoEmpty" |
 
 TypeScript interface:
 
@@ -2569,43 +2569,43 @@ It's an alias for the `Config` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "config" |
-| `flags` | number |  |
-| `phonecalls_enabled` | true | Optional |
-| `date` | number |  |
-| `expires` | number |  |
-| `test_mode` | boolean |  |
-| `this_dc` | number |  |
-| `dc_options` | [DcOptionUnion[]](#dcoptionunion) |  |
-| `chat_size_max` | number |  |
-| `megagroup_size_max` | number |  |
-| `forwarded_count_max` | number |  |
-| `online_update_period_ms` | number |  |
-| `offline_blur_timeout_ms` | number |  |
-| `offline_idle_timeout_ms` | number |  |
-| `online_cloud_timeout_ms` | number |  |
-| `notify_cloud_delay_ms` | number |  |
-| `notify_default_delay_ms` | number |  |
-| `chat_big_size` | number |  |
-| `push_chat_period_ms` | number |  |
-| `push_chat_limit` | number |  |
-| `saved_gifs_limit` | number |  |
-| `edit_time_limit` | number |  |
-| `rating_e_decay` | number |  |
-| `stickers_recent_limit` | number |  |
-| `stickers_faved_limit` | number |  |
-| `tmp_sessions` | number | Optional |
-| `pinned_dialogs_count_max` | number |  |
-| `call_receive_timeout_ms` | number |  |
-| `call_ring_timeout_ms` | number |  |
-| `call_connect_timeout_ms` | number |  |
-| `call_packet_timeout_ms` | number |  |
-| `me_url_prefix` | string |  |
-| `suggested_lang_code` | string | Optional |
-| `lang_pack_version` | number | Optional |
-| `disabled_features` | [DisabledFeatureUnion[]](#disabledfeatureunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "config" |
+| `flags` | number |  |  |
+| `phonecalls_enabled` | true | 2 | Optional |
+| `date` | number |  |  |
+| `expires` | number |  |  |
+| `test_mode` | boolean |  |  |
+| `this_dc` | number |  |  |
+| `dc_options` | [DcOptionUnion[]](#dcoptionunion) |  |  |
+| `chat_size_max` | number |  |  |
+| `megagroup_size_max` | number |  |  |
+| `forwarded_count_max` | number |  |  |
+| `online_update_period_ms` | number |  |  |
+| `offline_blur_timeout_ms` | number |  |  |
+| `offline_idle_timeout_ms` | number |  |  |
+| `online_cloud_timeout_ms` | number |  |  |
+| `notify_cloud_delay_ms` | number |  |  |
+| `notify_default_delay_ms` | number |  |  |
+| `chat_big_size` | number |  |  |
+| `push_chat_period_ms` | number |  |  |
+| `push_chat_limit` | number |  |  |
+| `saved_gifs_limit` | number |  |  |
+| `edit_time_limit` | number |  |  |
+| `rating_e_decay` | number |  |  |
+| `stickers_recent_limit` | number |  |  |
+| `stickers_faved_limit` | number |  |  |
+| `tmp_sessions` | number |  | Optional |
+| `pinned_dialogs_count_max` | number |  |  |
+| `call_receive_timeout_ms` | number |  |  |
+| `call_ring_timeout_ms` | number |  |  |
+| `call_connect_timeout_ms` | number |  |  |
+| `call_packet_timeout_ms` | number |  |  |
+| `me_url_prefix` | string |  |  |
+| `suggested_lang_code` | string | 4 | Optional |
+| `lang_pack_version` | number | 4 | Optional |
+| `disabled_features` | [DisabledFeatureUnion[]](#disabledfeatureunion) |  |  |
 
 TypeScript interface:
 
@@ -2660,11 +2660,11 @@ It's an alias for the `Contact` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contact" |
-| `user_id` | number |  |
-| `mutual` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contact" |
+| `user_id` | number |  |  |
+| `mutual` | boolean |  |  |
 
 TypeScript interface:
 
@@ -2687,11 +2687,11 @@ It's an alias for the `ContactBlocked` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactBlocked" |
-| `user_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactBlocked" |
+| `user_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -2718,9 +2718,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactLinkContact" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactLinkContact" |
 
 TypeScript interface:
 
@@ -2736,9 +2736,9 @@ interface ContactLinkContact {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactLinkHasPhone" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactLinkHasPhone" |
 
 TypeScript interface:
 
@@ -2754,9 +2754,9 @@ interface ContactLinkHasPhone {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactLinkNone" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactLinkNone" |
 
 TypeScript interface:
 
@@ -2772,9 +2772,9 @@ interface ContactLinkNone {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactLinkUnknown" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactLinkUnknown" |
 
 TypeScript interface:
 
@@ -2795,11 +2795,11 @@ It's an alias for the `ContactStatus` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contactStatus" |
-| `user_id` | number |  |
-| `status` | [UserStatusUnion](#userstatusunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contactStatus" |
+| `user_id` | number |  |  |
+| `status` | [UserStatusUnion](#userstatusunion) |  |  |
 
 TypeScript interface:
 
@@ -2824,11 +2824,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.blocked" |
-| `blocked` | [ContactBlockedUnion[]](#contactblockedunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.blocked" |
+| `blocked` | [ContactBlockedUnion[]](#contactblockedunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2846,12 +2846,12 @@ interface ContactsBlocked {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.blockedSlice" |
-| `count` | number |  |
-| `blocked` | [ContactBlockedUnion[]](#contactblockedunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.blockedSlice" |
+| `count` | number |  |  |
+| `blocked` | [ContactBlockedUnion[]](#contactblockedunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2877,12 +2877,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.contacts" |
-| `contacts` | [ContactUnion[]](#contactunion) |  |
-| `saved_count` | number |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.contacts" |
+| `contacts` | [ContactUnion[]](#contactunion) |  |  |
+| `saved_count` | number |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2901,9 +2901,9 @@ interface ContactsContacts {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.contactsNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.contactsNotModified" |
 
 TypeScript interface:
 
@@ -2924,12 +2924,12 @@ It's an alias for the `ContactsFound` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.found" |
-| `results` | [PeerUnion[]](#peerunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.found" |
+| `results` | [PeerUnion[]](#peerunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2953,13 +2953,13 @@ It's an alias for the `ContactsImportedContacts` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.importedContacts" |
-| `imported` | [ImportedContactUnion[]](#importedcontactunion) |  |
-| `popular_invites` | [PopularContactUnion[]](#popularcontactunion) |  |
-| `retry_contacts` | number[] |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.importedContacts" |
+| `imported` | [ImportedContactUnion[]](#importedcontactunion) |  |  |
+| `popular_invites` | [PopularContactUnion[]](#popularcontactunion) |  |  |
+| `retry_contacts` | number[] |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -2984,12 +2984,12 @@ It's an alias for the `ContactsLink` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.link" |
-| `my_link` | [ContactLinkUnion](#contactlinkunion) |  |
-| `foreign_link` | [ContactLinkUnion](#contactlinkunion) |  |
-| `user` | [UserUnion](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.link" |
+| `my_link` | [ContactLinkUnion](#contactlinkunion) |  |  |
+| `foreign_link` | [ContactLinkUnion](#contactlinkunion) |  |  |
+| `user` | [UserUnion](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -3013,12 +3013,12 @@ It's an alias for the `ContactsResolvedPeer` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.resolvedPeer" |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.resolvedPeer" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -3044,12 +3044,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.topPeers" |
-| `categories` | [TopPeerCategoryPeersUnion[]](#toppeercategorypeersunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.topPeers" |
+| `categories` | [TopPeerCategoryPeersUnion[]](#toppeercategorypeersunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -3068,9 +3068,9 @@ interface ContactsTopPeers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "contacts.topPeersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "contacts.topPeersNotModified" |
 
 TypeScript interface:
 
@@ -3091,10 +3091,10 @@ It's an alias for the `DataJson` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "dataJSON" |
-| `data` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "dataJSON" |
+| `data` | string |  |  |
 
 TypeScript interface:
 
@@ -3116,18 +3116,18 @@ It's an alias for the `DcOption` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "dcOption" |
-| `flags` | number |  |
-| `ipv6` | true | Optional |
-| `media_only` | true | Optional |
-| `tcpo_only` | true | Optional |
-| `cdn` | true | Optional |
-| `static` | true | Optional |
-| `id` | number |  |
-| `ip_address` | string |  |
-| `port` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "dcOption" |
+| `flags` | number |  |  |
+| `ipv6` | true |  | Optional |
+| `media_only` | true | 2 | Optional |
+| `tcpo_only` | true | 4 | Optional |
+| `cdn` | true | 8 | Optional |
+| `static` | true | 16 | Optional |
+| `id` | number |  |  |
+| `ip_address` | string |  |  |
+| `port` | number |  |  |
 
 TypeScript interface:
 
@@ -3157,20 +3157,20 @@ It's an alias for the `Dialog` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "dialog" |
-| `flags` | number |  |
-| `pinned` | true | Optional |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `top_message` | number |  |
-| `read_inbox_max_id` | number |  |
-| `read_outbox_max_id` | number |  |
-| `unread_count` | number |  |
-| `unread_mentions_count` | number |  |
-| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |
-| `pts` | number | Optional |
-| `draft` | [DraftMessageUnion](#draftmessageunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "dialog" |
+| `flags` | number |  |  |
+| `pinned` | true | 4 | Optional |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `top_message` | number |  |  |
+| `read_inbox_max_id` | number |  |  |
+| `read_outbox_max_id` | number |  |  |
+| `unread_count` | number |  |  |
+| `unread_mentions_count` | number |  |  |
+| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |  |
+| `pts` | number |  | Optional |
+| `draft` | [DraftMessageUnion](#draftmessageunion) | 2 | Optional |
 
 TypeScript interface:
 
@@ -3202,11 +3202,11 @@ It's an alias for the `DisabledFeature` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "disabledFeature" |
-| `feature` | string |  |
-| `description` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "disabledFeature" |
+| `feature` | string |  |  |
+| `description` | string |  |  |
 
 TypeScript interface:
 
@@ -3231,18 +3231,18 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "document" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `mime_type` | string |  |
-| `size` | number |  |
-| `thumb` | [PhotoSizeUnion](#photosizeunion) |  |
-| `dc_id` | number |  |
-| `version` | number |  |
-| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "document" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `mime_type` | string |  |  |
+| `size` | number |  |  |
+| `thumb` | [PhotoSizeUnion](#photosizeunion) |  |  |
+| `dc_id` | number |  |  |
+| `version` | number |  |  |
+| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |  |
 
 TypeScript interface:
 
@@ -3267,10 +3267,10 @@ interface Document {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -3299,9 +3299,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeAnimated" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeAnimated" |
 
 TypeScript interface:
 
@@ -3317,15 +3317,15 @@ interface DocumentAttributeAnimated {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeAudio" |
-| `flags` | number |  |
-| `voice` | true | Optional |
-| `duration` | number |  |
-| `title` | string | Optional |
-| `performer` | string | Optional |
-| `waveform` | number[] | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeAudio" |
+| `flags` | number |  |  |
+| `voice` | true | 1024 | Optional |
+| `duration` | number |  |  |
+| `title` | string |  | Optional |
+| `performer` | string | 2 | Optional |
+| `waveform` | number[] | 4 | Optional |
 
 TypeScript interface:
 
@@ -3347,10 +3347,10 @@ interface DocumentAttributeAudio {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeFilename" |
-| `file_name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeFilename" |
+| `file_name` | string |  |  |
 
 TypeScript interface:
 
@@ -3367,9 +3367,9 @@ interface DocumentAttributeFilename {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeHasStickers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeHasStickers" |
 
 TypeScript interface:
 
@@ -3385,11 +3385,11 @@ interface DocumentAttributeHasStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeImageSize" |
-| `w` | number |  |
-| `h` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeImageSize" |
+| `w` | number |  |  |
+| `h` | number |  |  |
 
 TypeScript interface:
 
@@ -3407,14 +3407,14 @@ interface DocumentAttributeImageSize {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeSticker" |
-| `flags` | number |  |
-| `mask` | true | Optional |
-| `alt` | string |  |
-| `stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |
-| `mask_coords` | [MaskCoordsUnion](#maskcoordsunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeSticker" |
+| `flags` | number |  |  |
+| `mask` | true | 2 | Optional |
+| `alt` | string |  |  |
+| `stickerset` | [InputStickerSetUnion](#inputstickersetunion) |  |  |
+| `mask_coords` | [MaskCoordsUnion](#maskcoordsunion) |  | Optional |
 
 TypeScript interface:
 
@@ -3435,14 +3435,14 @@ interface DocumentAttributeSticker {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "documentAttributeVideo" |
-| `flags` | number |  |
-| `round_message` | true | Optional |
-| `duration` | number |  |
-| `w` | number |  |
-| `h` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "documentAttributeVideo" |
+| `flags` | number |  |  |
+| `round_message` | true |  | Optional |
+| `duration` | number |  |  |
+| `w` | number |  |  |
+| `h` | number |  |  |
 
 TypeScript interface:
 
@@ -3470,15 +3470,15 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "draftMessage" |
-| `flags` | number |  |
-| `no_webpage` | true | Optional |
-| `reply_to_msg_id` | number | Optional |
-| `message` | string |  |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "draftMessage" |
+| `flags` | number |  |  |
+| `no_webpage` | true | 2 | Optional |
+| `reply_to_msg_id` | number |  | Optional |
+| `message` | string |  |  |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 8 | Optional |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -3500,9 +3500,9 @@ interface DraftMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "draftMessageEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "draftMessageEmpty" |
 
 TypeScript interface:
 
@@ -3528,16 +3528,16 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedChat" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `g_a_or_b` | number[] |  |
-| `key_fingerprint` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedChat" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `g_a_or_b` | number[] |  |  |
+| `key_fingerprint` | number |  |  |
 
 TypeScript interface:
 
@@ -3560,10 +3560,10 @@ interface EncryptedChat {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedChatDiscarded" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedChatDiscarded" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -3580,10 +3580,10 @@ interface EncryptedChatDiscarded {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedChatEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedChatEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -3600,15 +3600,15 @@ interface EncryptedChatEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedChatRequested" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `g_a` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedChatRequested" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `g_a` | number[] |  |  |
 
 TypeScript interface:
 
@@ -3630,14 +3630,14 @@ interface EncryptedChatRequested {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedChatWaiting" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedChatWaiting" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
 
 TypeScript interface:
 
@@ -3665,14 +3665,14 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedFile" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `size` | number |  |
-| `dc_id` | number |  |
-| `key_fingerprint` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedFile" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `size` | number |  |  |
+| `dc_id` | number |  |  |
+| `key_fingerprint` | number |  |  |
 
 TypeScript interface:
 
@@ -3693,9 +3693,9 @@ interface EncryptedFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedFileEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedFileEmpty" |
 
 TypeScript interface:
 
@@ -3718,14 +3718,14 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedMessage" |
-| `random_id` | number |  |
-| `chat_id` | number |  |
-| `date` | number |  |
-| `bytes` | number[] |  |
-| `file` | [EncryptedFileUnion](#encryptedfileunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedMessage" |
+| `random_id` | number |  |  |
+| `chat_id` | number |  |  |
+| `date` | number |  |  |
+| `bytes` | number[] |  |  |
+| `file` | [EncryptedFileUnion](#encryptedfileunion) |  |  |
 
 TypeScript interface:
 
@@ -3746,13 +3746,13 @@ interface EncryptedMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "encryptedMessageService" |
-| `random_id` | number |  |
-| `chat_id` | number |  |
-| `date` | number |  |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "encryptedMessageService" |
+| `random_id` | number |  |  |
+| `chat_id` | number |  |  |
+| `date` | number |  |  |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -3777,11 +3777,11 @@ It's an alias for the `Error` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "error" |
-| `code` | number |  |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "error" |
+| `code` | number |  |  |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -3806,9 +3806,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatInviteEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatInviteEmpty" |
 
 TypeScript interface:
 
@@ -3824,10 +3824,10 @@ interface ChatInviteEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "chatInviteExported" |
-| `link` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "chatInviteExported" |
+| `link` | string |  |  |
 
 TypeScript interface:
 
@@ -3849,10 +3849,10 @@ It's an alias for the `ExportedMessageLink` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "exportedMessageLink" |
-| `link` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "exportedMessageLink" |
+| `link` | string |  |  |
 
 TypeScript interface:
 
@@ -3876,13 +3876,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "fileLocation" |
-| `dc_id` | number |  |
-| `volume_id` | number |  |
-| `local_id` | number |  |
-| `secret` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "fileLocation" |
+| `dc_id` | number |  |  |
+| `volume_id` | number |  |  |
+| `local_id` | number |  |  |
+| `secret` | number |  |  |
 
 TypeScript interface:
 
@@ -3902,12 +3902,12 @@ interface FileLocation {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "fileLocationUnavailable" |
-| `volume_id` | number |  |
-| `local_id` | number |  |
-| `secret` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "fileLocationUnavailable" |
+| `volume_id` | number |  |  |
+| `local_id` | number |  |  |
+| `secret` | number |  |  |
 
 TypeScript interface:
 
@@ -3933,15 +3933,15 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "foundGif" |
-| `url` | string |  |
-| `thumb_url` | string |  |
-| `content_url` | string |  |
-| `content_type` | string |  |
-| `w` | number |  |
-| `h` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "foundGif" |
+| `url` | string |  |  |
+| `thumb_url` | string |  |  |
+| `content_url` | string |  |  |
+| `content_type` | string |  |  |
+| `w` | number |  |  |
+| `h` | number |  |  |
 
 TypeScript interface:
 
@@ -3963,12 +3963,12 @@ interface FoundGif {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "foundGifCached" |
-| `url` | string |  |
-| `photo` | [PhotoUnion](#photounion) |  |
-| `document` | [DocumentUnion](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "foundGifCached" |
+| `url` | string |  |  |
+| `photo` | [PhotoUnion](#photounion) |  |  |
+| `document` | [DocumentUnion](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -3992,17 +3992,17 @@ It's an alias for the `Game` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "game" |
-| `flags` | number |  |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `short_name` | string |  |
-| `title` | string |  |
-| `description` | string |  |
-| `photo` | [PhotoUnion](#photounion) |  |
-| `document` | [DocumentUnion](#documentunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "game" |
+| `flags` | number |  |  |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `short_name` | string |  |  |
+| `title` | string |  |  |
+| `description` | string |  |  |
+| `photo` | [PhotoUnion](#photounion) |  |  |
+| `document` | [DocumentUnion](#documentunion) |  | Optional |
 
 TypeScript interface:
 
@@ -4033,11 +4033,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "geoPoint" |
-| `long` | number |  |
-| `lat` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "geoPoint" |
+| `long` | number |  |  |
+| `lat` | number |  |  |
 
 TypeScript interface:
 
@@ -4055,9 +4055,9 @@ interface GeoPoint {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "geoPointEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "geoPointEmpty" |
 
 TypeScript interface:
 
@@ -4080,13 +4080,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "help.appUpdate" |
-| `id` | number |  |
-| `critical` | boolean |  |
-| `url` | string |  |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "help.appUpdate" |
+| `id` | number |  |  |
+| `critical` | boolean |  |  |
+| `url` | string |  |  |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -4106,9 +4106,9 @@ interface HelpAppUpdate {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "help.noAppUpdate" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "help.noAppUpdate" |
 
 TypeScript interface:
 
@@ -4129,10 +4129,10 @@ It's an alias for the `HelpInviteText` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "help.inviteText" |
-| `message` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "help.inviteText" |
+| `message` | string |  |  |
 
 TypeScript interface:
 
@@ -4154,11 +4154,11 @@ It's an alias for the `HelpSupport` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "help.support" |
-| `phone_number` | string |  |
-| `user` | [UserUnion](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "help.support" |
+| `phone_number` | string |  |  |
+| `user` | [UserUnion](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -4181,10 +4181,10 @@ It's an alias for the `HelpTermsOfService` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "help.termsOfService" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "help.termsOfService" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -4206,12 +4206,12 @@ It's an alias for the `HighScore` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "highScore" |
-| `pos` | number |  |
-| `user_id` | number |  |
-| `score` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "highScore" |
+| `pos` | number |  |  |
+| `user_id` | number |  |  |
+| `score` | number |  |  |
 
 TypeScript interface:
 
@@ -4235,11 +4235,11 @@ It's an alias for the `ImportedContact` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "importedContact" |
-| `user_id` | number |  |
-| `client_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "importedContact" |
+| `user_id` | number |  |  |
+| `client_id` | number |  |  |
 
 TypeScript interface:
 
@@ -4262,11 +4262,11 @@ It's an alias for the `InlineBotSwitchPm` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inlineBotSwitchPM" |
-| `text` | string |  |
-| `start_param` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inlineBotSwitchPM" |
+| `text` | string |  |  |
+| `start_param` | string |  |  |
 
 TypeScript interface:
 
@@ -4289,13 +4289,13 @@ It's an alias for the `InputAppEvent` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputAppEvent" |
-| `time` | number |  |
-| `type` | string |  |
-| `peer` | number |  |
-| `data` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputAppEvent" |
+| `time` | number |  |  |
+| `type` | string |  |  |
+| `peer` | number |  |  |
+| `data` | string |  |  |
 
 TypeScript interface:
 
@@ -4326,11 +4326,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageGame" |
-| `flags` | number |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageGame" |
+| `flags` | number |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4348,12 +4348,12 @@ interface InputBotInlineMessageGame {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageMediaAuto" |
-| `flags` | number |  |
-| `caption` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageMediaAuto" |
+| `flags` | number |  |  |
+| `caption` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4372,14 +4372,14 @@ interface InputBotInlineMessageMediaAuto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageMediaContact" |
-| `flags` | number |  |
-| `phone_number` | string |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageMediaContact" |
+| `flags` | number |  |  |
+| `phone_number` | string |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4400,12 +4400,12 @@ interface InputBotInlineMessageMediaContact {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageMediaGeo" |
-| `flags` | number |  |
-| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageMediaGeo" |
+| `flags` | number |  |  |
+| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4424,16 +4424,16 @@ interface InputBotInlineMessageMediaGeo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageMediaVenue" |
-| `flags` | number |  |
-| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |
-| `title` | string |  |
-| `address` | string |  |
-| `provider` | string |  |
-| `venue_id` | string |  |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageMediaVenue" |
+| `flags` | number |  |  |
+| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |  |
+| `title` | string |  |  |
+| `address` | string |  |  |
+| `provider` | string |  |  |
+| `venue_id` | string |  |  |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4456,14 +4456,14 @@ interface InputBotInlineMessageMediaVenue {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageText" |
-| `flags` | number |  |
-| `no_webpage` | true | Optional |
-| `message` | string |  |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageText" |
+| `flags` | number |  |  |
+| `no_webpage` | true |  | Optional |
+| `message` | string |  |  |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 2 | Optional |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 4 | Optional |
 
 TypeScript interface:
 
@@ -4489,12 +4489,12 @@ It's an alias for the `InputBotInlineMessageId` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineMessageID" |
-| `dc_id` | number |  |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineMessageID" |
+| `dc_id` | number |  |  |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -4522,22 +4522,22 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineResult" |
-| `flags` | number |  |
-| `id` | string |  |
-| `type` | string |  |
-| `title` | string | Optional |
-| `description` | string | Optional |
-| `url` | string | Optional |
-| `thumb_url` | string | Optional |
-| `content_url` | string | Optional |
-| `content_type` | string | Optional |
-| `w` | number | Optional |
-| `h` | number | Optional |
-| `duration` | number | Optional |
-| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineResult" |
+| `flags` | number |  |  |
+| `id` | string |  |  |
+| `type` | string |  |  |
+| `title` | string | 2 | Optional |
+| `description` | string | 4 | Optional |
+| `url` | string | 8 | Optional |
+| `thumb_url` | string | 16 | Optional |
+| `content_url` | string | 32 | Optional |
+| `content_type` | string | 32 | Optional |
+| `w` | number | 64 | Optional |
+| `h` | number | 64 | Optional |
+| `duration` | number | 128 | Optional |
+| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -4566,16 +4566,16 @@ interface InputBotInlineResult {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineResultDocument" |
-| `flags` | number |  |
-| `id` | string |  |
-| `type` | string |  |
-| `title` | string | Optional |
-| `description` | string | Optional |
-| `document` | [InputDocumentUnion](#inputdocumentunion) |  |
-| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineResultDocument" |
+| `flags` | number |  |  |
+| `id` | string |  |  |
+| `type` | string |  |  |
+| `title` | string | 2 | Optional |
+| `description` | string | 4 | Optional |
+| `document` | [InputDocumentUnion](#inputdocumentunion) |  |  |
+| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -4598,12 +4598,12 @@ interface InputBotInlineResultDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineResultGame" |
-| `id` | string |  |
-| `short_name` | string |  |
-| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineResultGame" |
+| `id` | string |  |  |
+| `short_name` | string |  |  |
+| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -4622,13 +4622,13 @@ interface InputBotInlineResultGame {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputBotInlineResultPhoto" |
-| `id` | string |  |
-| `type` | string |  |
-| `photo` | [InputPhotoUnion](#inputphotounion) |  |
-| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputBotInlineResultPhoto" |
+| `id` | string |  |  |
+| `type` | string |  |  |
+| `photo` | [InputPhotoUnion](#inputphotounion) |  |  |
+| `send_message` | [InputBotInlineMessageUnion](#inputbotinlinemessageunion) |  |  |
 
 TypeScript interface:
 
@@ -4655,11 +4655,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputChannel" |
-| `channel_id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputChannel" |
+| `channel_id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -4677,9 +4677,9 @@ interface InputChannel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputChannelEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputChannelEmpty" |
 
 TypeScript interface:
 
@@ -4703,10 +4703,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputChatPhoto" |
-| `id` | [InputPhotoUnion](#inputphotounion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputChatPhoto" |
+| `id` | [InputPhotoUnion](#inputphotounion) |  |  |
 
 TypeScript interface:
 
@@ -4723,9 +4723,9 @@ interface InputChatPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputChatPhotoEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputChatPhotoEmpty" |
 
 TypeScript interface:
 
@@ -4741,10 +4741,10 @@ interface InputChatPhotoEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputChatUploadedPhoto" |
-| `file` | [InputFileUnion](#inputfileunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputChatUploadedPhoto" |
+| `file` | [InputFileUnion](#inputfileunion) |  |  |
 
 TypeScript interface:
 
@@ -4766,13 +4766,13 @@ It's an alias for the `InputPhoneContact` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPhoneContact" |
-| `client_id` | number |  |
-| `phone` | string |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPhoneContact" |
+| `client_id` | number |  |  |
+| `phone` | string |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
 
 TypeScript interface:
 
@@ -4799,11 +4799,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputDocument" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputDocument" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -4821,9 +4821,9 @@ interface InputDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputDocumentEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputDocumentEmpty" |
 
 TypeScript interface:
 
@@ -4844,11 +4844,11 @@ It's an alias for the `InputEncryptedChat` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedChat" |
-| `chat_id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedChat" |
+| `chat_id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -4875,11 +4875,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedFile" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedFile" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -4897,12 +4897,12 @@ interface InputEncryptedFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedFileBigUploaded" |
-| `id` | number |  |
-| `parts` | number |  |
-| `key_fingerprint` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedFileBigUploaded" |
+| `id` | number |  |  |
+| `parts` | number |  |  |
+| `key_fingerprint` | number |  |  |
 
 TypeScript interface:
 
@@ -4921,9 +4921,9 @@ interface InputEncryptedFileBigUploaded {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedFileEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedFileEmpty" |
 
 TypeScript interface:
 
@@ -4939,13 +4939,13 @@ interface InputEncryptedFileEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedFileUploaded" |
-| `id` | number |  |
-| `parts` | number |  |
-| `md5_checksum` | string |  |
-| `key_fingerprint` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedFileUploaded" |
+| `id` | number |  |  |
+| `parts` | number |  |  |
+| `md5_checksum` | string |  |  |
+| `key_fingerprint` | number |  |  |
 
 TypeScript interface:
 
@@ -4972,13 +4972,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputFile" |
-| `id` | number |  |
-| `parts` | number |  |
-| `name` | string |  |
-| `md5_checksum` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputFile" |
+| `id` | number |  |  |
+| `parts` | number |  |  |
+| `name` | string |  |  |
+| `md5_checksum` | string |  |  |
 
 TypeScript interface:
 
@@ -4998,12 +4998,12 @@ interface InputFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputFileBig" |
-| `id` | number |  |
-| `parts` | number |  |
-| `name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputFileBig" |
+| `id` | number |  |  |
+| `parts` | number |  |  |
+| `name` | string |  |  |
 
 TypeScript interface:
 
@@ -5030,12 +5030,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputDocumentFileLocation" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputDocumentFileLocation" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -5054,11 +5054,11 @@ interface InputDocumentFileLocation {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputEncryptedFileLocation" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputEncryptedFileLocation" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5076,12 +5076,12 @@ interface InputEncryptedFileLocation {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputFileLocation" |
-| `volume_id` | number |  |
-| `local_id` | number |  |
-| `secret` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputFileLocation" |
+| `volume_id` | number |  |  |
+| `local_id` | number |  |  |
+| `secret` | number |  |  |
 
 TypeScript interface:
 
@@ -5107,11 +5107,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputGameID" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputGameID" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5129,11 +5129,11 @@ interface InputGameId {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputGameShortName" |
-| `bot_id` | [InputUserUnion](#inputuserunion) |  |
-| `short_name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputGameShortName" |
+| `bot_id` | [InputUserUnion](#inputuserunion) |  |  |
+| `short_name` | string |  |  |
 
 TypeScript interface:
 
@@ -5158,11 +5158,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputGeoPoint" |
-| `lat` | number |  |
-| `long` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputGeoPoint" |
+| `lat` | number |  |  |
+| `long` | number |  |  |
 
 TypeScript interface:
 
@@ -5180,9 +5180,9 @@ interface InputGeoPoint {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputGeoPointEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputGeoPointEmpty" |
 
 TypeScript interface:
 
@@ -5216,12 +5216,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaContact" |
-| `phone_number` | string |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaContact" |
+| `phone_number` | string |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
 
 TypeScript interface:
 
@@ -5240,13 +5240,13 @@ interface InputMediaContact {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaDocument" |
-| `flags` | number |  |
-| `id` | [InputDocumentUnion](#inputdocumentunion) |  |
-| `caption` | string |  |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaDocument" |
+| `flags` | number |  |  |
+| `id` | [InputDocumentUnion](#inputdocumentunion) |  |  |
+| `caption` | string |  |  |
+| `ttl_seconds` | number |  | Optional |
 
 TypeScript interface:
 
@@ -5266,13 +5266,13 @@ interface InputMediaDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaDocumentExternal" |
-| `flags` | number |  |
-| `url` | string |  |
-| `caption` | string |  |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaDocumentExternal" |
+| `flags` | number |  |  |
+| `url` | string |  |  |
+| `caption` | string |  |  |
+| `ttl_seconds` | number |  | Optional |
 
 TypeScript interface:
 
@@ -5292,9 +5292,9 @@ interface InputMediaDocumentExternal {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaEmpty" |
 
 TypeScript interface:
 
@@ -5310,10 +5310,10 @@ interface InputMediaEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaGame" |
-| `id` | [InputGameUnion](#inputgameunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaGame" |
+| `id` | [InputGameUnion](#inputgameunion) |  |  |
 
 TypeScript interface:
 
@@ -5330,10 +5330,10 @@ interface InputMediaGame {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaGeoPoint" |
-| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaGeoPoint" |
+| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |  |
 
 TypeScript interface:
 
@@ -5350,11 +5350,11 @@ interface InputMediaGeoPoint {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaGifExternal" |
-| `url` | string |  |
-| `q` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaGifExternal" |
+| `url` | string |  |  |
+| `q` | string |  |  |
 
 TypeScript interface:
 
@@ -5372,17 +5372,17 @@ interface InputMediaGifExternal {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaInvoice" |
-| `flags` | number |  |
-| `title` | string |  |
-| `description` | string |  |
-| `photo` | [InputWebDocumentUnion](#inputwebdocumentunion) | Optional |
-| `invoice` | [InvoiceUnion](#invoiceunion) |  |
-| `payload` | number[] |  |
-| `provider` | string |  |
-| `start_param` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaInvoice" |
+| `flags` | number |  |  |
+| `title` | string |  |  |
+| `description` | string |  |  |
+| `photo` | [InputWebDocumentUnion](#inputwebdocumentunion) |  | Optional |
+| `invoice` | [InvoiceUnion](#invoiceunion) |  |  |
+| `payload` | number[] |  |  |
+| `provider` | string |  |  |
+| `start_param` | string |  |  |
 
 TypeScript interface:
 
@@ -5406,13 +5406,13 @@ interface InputMediaInvoice {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaPhoto" |
-| `flags` | number |  |
-| `id` | [InputPhotoUnion](#inputphotounion) |  |
-| `caption` | string |  |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaPhoto" |
+| `flags` | number |  |  |
+| `id` | [InputPhotoUnion](#inputphotounion) |  |  |
+| `caption` | string |  |  |
+| `ttl_seconds` | number |  | Optional |
 
 TypeScript interface:
 
@@ -5432,13 +5432,13 @@ interface InputMediaPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaPhotoExternal" |
-| `flags` | number |  |
-| `url` | string |  |
-| `caption` | string |  |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaPhotoExternal" |
+| `flags` | number |  |  |
+| `url` | string |  |  |
+| `caption` | string |  |  |
+| `ttl_seconds` | number |  | Optional |
 
 TypeScript interface:
 
@@ -5458,17 +5458,17 @@ interface InputMediaPhotoExternal {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaUploadedDocument" |
-| `flags` | number |  |
-| `file` | [InputFileUnion](#inputfileunion) |  |
-| `thumb` | [InputFileUnion](#inputfileunion) | Optional |
-| `mime_type` | string |  |
-| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |
-| `caption` | string |  |
-| `stickers` | [InputDocumentUnion[]](#inputdocumentunion) | Optional |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaUploadedDocument" |
+| `flags` | number |  |  |
+| `file` | [InputFileUnion](#inputfileunion) |  |  |
+| `thumb` | [InputFileUnion](#inputfileunion) | 4 | Optional |
+| `mime_type` | string |  |  |
+| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |  |
+| `caption` | string |  |  |
+| `stickers` | [InputDocumentUnion[]](#inputdocumentunion) |  | Optional |
+| `ttl_seconds` | number | 2 | Optional |
 
 TypeScript interface:
 
@@ -5492,14 +5492,14 @@ interface InputMediaUploadedDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaUploadedPhoto" |
-| `flags` | number |  |
-| `file` | [InputFileUnion](#inputfileunion) |  |
-| `caption` | string |  |
-| `stickers` | [InputDocumentUnion[]](#inputdocumentunion) | Optional |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaUploadedPhoto" |
+| `flags` | number |  |  |
+| `file` | [InputFileUnion](#inputfileunion) |  |  |
+| `caption` | string |  |  |
+| `stickers` | [InputDocumentUnion[]](#inputdocumentunion) |  | Optional |
+| `ttl_seconds` | number | 2 | Optional |
 
 TypeScript interface:
 
@@ -5520,14 +5520,14 @@ interface InputMediaUploadedPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMediaVenue" |
-| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |
-| `title` | string |  |
-| `address` | string |  |
-| `provider` | string |  |
-| `venue_id` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMediaVenue" |
+| `geo_point` | [InputGeoPointUnion](#inputgeopointunion) |  |  |
+| `title` | string |  |  |
+| `address` | string |  |  |
+| `provider` | string |  |  |
+| `venue_id` | string |  |  |
 
 TypeScript interface:
 
@@ -5557,9 +5557,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputNotifyAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputNotifyAll" |
 
 TypeScript interface:
 
@@ -5575,9 +5575,9 @@ interface InputNotifyAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputNotifyChats" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputNotifyChats" |
 
 TypeScript interface:
 
@@ -5593,10 +5593,10 @@ interface InputNotifyChats {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputNotifyPeer" |
-| `peer` | [InputPeerUnion](#inputpeerunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputNotifyPeer" |
+| `peer` | [InputPeerUnion](#inputpeerunion) |  |  |
 
 TypeScript interface:
 
@@ -5613,9 +5613,9 @@ interface InputNotifyPeer {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputNotifyUsers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputNotifyUsers" |
 
 TypeScript interface:
 
@@ -5638,12 +5638,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPaymentCredentials" |
-| `flags` | number |  |
-| `save` | true | Optional |
-| `data` | [DataJsonUnion](#datajsonunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPaymentCredentials" |
+| `flags` | number |  |  |
+| `save` | true |  | Optional |
+| `data` | [DataJsonUnion](#datajsonunion) |  |  |
 
 TypeScript interface:
 
@@ -5662,11 +5662,11 @@ interface InputPaymentCredentials {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPaymentCredentialsSaved" |
-| `id` | string |  |
-| `tmp_password` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPaymentCredentialsSaved" |
+| `id` | string |  |  |
+| `tmp_password` | number[] |  |  |
 
 TypeScript interface:
 
@@ -5694,11 +5694,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerChannel" |
-| `channel_id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerChannel" |
+| `channel_id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5716,10 +5716,10 @@ interface InputPeerChannel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerChat" |
-| `chat_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerChat" |
+| `chat_id` | number |  |  |
 
 TypeScript interface:
 
@@ -5736,9 +5736,9 @@ interface InputPeerChat {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerEmpty" |
 
 TypeScript interface:
 
@@ -5754,9 +5754,9 @@ interface InputPeerEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerSelf" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerSelf" |
 
 TypeScript interface:
 
@@ -5772,11 +5772,11 @@ interface InputPeerSelf {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerUser" |
-| `user_id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerUser" |
+| `user_id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5801,9 +5801,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerNotifyEventsAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerNotifyEventsAll" |
 
 TypeScript interface:
 
@@ -5819,9 +5819,9 @@ interface InputPeerNotifyEventsAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerNotifyEventsEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerNotifyEventsEmpty" |
 
 TypeScript interface:
 
@@ -5842,14 +5842,14 @@ It's an alias for the `InputPeerNotifySettings` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPeerNotifySettings" |
-| `flags` | number |  |
-| `show_previews` | true | Optional |
-| `silent` | true | Optional |
-| `mute_until` | number |  |
-| `sound` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPeerNotifySettings" |
+| `flags` | number |  |  |
+| `show_previews` | true |  | Optional |
+| `silent` | true | 2 | Optional |
+| `mute_until` | number |  |  |
+| `sound` | string |  |  |
 
 TypeScript interface:
 
@@ -5875,11 +5875,11 @@ It's an alias for the `InputPhoneCall` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPhoneCall" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPhoneCall" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5904,11 +5904,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPhoto" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPhoto" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -5926,9 +5926,9 @@ interface InputPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPhotoEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPhotoEmpty" |
 
 TypeScript interface:
 
@@ -5952,9 +5952,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyKeyChatInvite" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyKeyChatInvite" |
 
 TypeScript interface:
 
@@ -5970,9 +5970,9 @@ interface InputPrivacyKeyChatInvite {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyKeyPhoneCall" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyKeyPhoneCall" |
 
 TypeScript interface:
 
@@ -5988,9 +5988,9 @@ interface InputPrivacyKeyPhoneCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyKeyStatusTimestamp" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyKeyStatusTimestamp" |
 
 TypeScript interface:
 
@@ -6017,9 +6017,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueAllowAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueAllowAll" |
 
 TypeScript interface:
 
@@ -6035,9 +6035,9 @@ interface InputPrivacyValueAllowAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueAllowContacts" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueAllowContacts" |
 
 TypeScript interface:
 
@@ -6053,10 +6053,10 @@ interface InputPrivacyValueAllowContacts {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueAllowUsers" |
-| `users` | [InputUserUnion[]](#inputuserunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueAllowUsers" |
+| `users` | [InputUserUnion[]](#inputuserunion) |  |  |
 
 TypeScript interface:
 
@@ -6073,9 +6073,9 @@ interface InputPrivacyValueAllowUsers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueDisallowAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueDisallowAll" |
 
 TypeScript interface:
 
@@ -6091,9 +6091,9 @@ interface InputPrivacyValueDisallowAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueDisallowContacts" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueDisallowContacts" |
 
 TypeScript interface:
 
@@ -6109,10 +6109,10 @@ interface InputPrivacyValueDisallowContacts {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputPrivacyValueDisallowUsers" |
-| `users` | [InputUserUnion[]](#inputuserunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputPrivacyValueDisallowUsers" |
+| `users` | [InputUserUnion[]](#inputuserunion) |  |  |
 
 TypeScript interface:
 
@@ -6137,9 +6137,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickerSetEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickerSetEmpty" |
 
 TypeScript interface:
 
@@ -6155,11 +6155,11 @@ interface InputStickerSetEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickerSetID" |
-| `id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickerSetID" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -6177,10 +6177,10 @@ interface InputStickerSetId {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickerSetShortName" |
-| `short_name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickerSetShortName" |
+| `short_name` | string |  |  |
 
 TypeScript interface:
 
@@ -6202,13 +6202,13 @@ It's an alias for the `InputStickerSetItem` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickerSetItem" |
-| `flags` | number |  |
-| `document` | [InputDocumentUnion](#inputdocumentunion) |  |
-| `emoji` | string |  |
-| `mask_coords` | [MaskCoordsUnion](#maskcoordsunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickerSetItem" |
+| `flags` | number |  |  |
+| `document` | [InputDocumentUnion](#inputdocumentunion) |  |  |
+| `emoji` | string |  |  |
+| `mask_coords` | [MaskCoordsUnion](#maskcoordsunion) |  | Optional |
 
 TypeScript interface:
 
@@ -6235,10 +6235,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickeredMediaDocument" |
-| `id` | [InputDocumentUnion](#inputdocumentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickeredMediaDocument" |
+| `id` | [InputDocumentUnion](#inputdocumentunion) |  |  |
 
 TypeScript interface:
 
@@ -6255,10 +6255,10 @@ interface InputStickeredMediaDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputStickeredMediaPhoto" |
-| `id` | [InputPhotoUnion](#inputphotounion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputStickeredMediaPhoto" |
+| `id` | [InputPhotoUnion](#inputphotounion) |  |  |
 
 TypeScript interface:
 
@@ -6283,11 +6283,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputUser" |
-| `user_id` | number |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputUser" |
+| `user_id` | number |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -6305,9 +6305,9 @@ interface InputUser {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputUserEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputUserEmpty" |
 
 TypeScript interface:
 
@@ -6323,9 +6323,9 @@ interface InputUserEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputUserSelf" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputUserSelf" |
 
 TypeScript interface:
 
@@ -6346,13 +6346,13 @@ It's an alias for the `InputWebDocument` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputWebDocument" |
-| `url` | string |  |
-| `size` | number |  |
-| `mime_type` | string |  |
-| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputWebDocument" |
+| `url` | string |  |  |
+| `size` | number |  |  |
+| `mime_type` | string |  |  |
+| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |  |
 
 TypeScript interface:
 
@@ -6377,11 +6377,11 @@ It's an alias for the `InputWebFileLocation` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputWebFileLocation" |
-| `url` | string |  |
-| `access_hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputWebFileLocation" |
+| `url` | string |  |  |
+| `access_hash` | number |  |  |
 
 TypeScript interface:
 
@@ -6404,18 +6404,18 @@ It's an alias for the `Invoice` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "invoice" |
-| `flags` | number |  |
-| `test` | true | Optional |
-| `name_requested` | true | Optional |
-| `phone_requested` | true | Optional |
-| `email_requested` | true | Optional |
-| `shipping_address_requested` | true | Optional |
-| `flexible` | true | Optional |
-| `currency` | string |  |
-| `prices` | [LabeledPriceUnion[]](#labeledpriceunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "invoice" |
+| `flags` | number |  |  |
+| `test` | true |  | Optional |
+| `name_requested` | true | 2 | Optional |
+| `phone_requested` | true | 4 | Optional |
+| `email_requested` | true | 8 | Optional |
+| `shipping_address_requested` | true | 16 | Optional |
+| `flexible` | true | 32 | Optional |
+| `currency` | string |  |  |
+| `prices` | [LabeledPriceUnion[]](#labeledpriceunion) |  |  |
 
 TypeScript interface:
 
@@ -6453,10 +6453,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButton" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButton" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -6473,10 +6473,10 @@ interface KeyboardButton {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonBuy" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonBuy" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -6493,11 +6493,11 @@ interface KeyboardButtonBuy {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonCallback" |
-| `text` | string |  |
-| `data` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonCallback" |
+| `text` | string |  |  |
+| `data` | number[] |  |  |
 
 TypeScript interface:
 
@@ -6515,10 +6515,10 @@ interface KeyboardButtonCallback {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonGame" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonGame" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -6535,10 +6535,10 @@ interface KeyboardButtonGame {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonRequestGeoLocation" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonRequestGeoLocation" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -6555,10 +6555,10 @@ interface KeyboardButtonRequestGeoLocation {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonRequestPhone" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonRequestPhone" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -6575,13 +6575,13 @@ interface KeyboardButtonRequestPhone {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonSwitchInline" |
-| `flags` | number |  |
-| `same_peer` | true | Optional |
-| `text` | string |  |
-| `query` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonSwitchInline" |
+| `flags` | number |  |  |
+| `same_peer` | true |  | Optional |
+| `text` | string |  |  |
+| `query` | string |  |  |
 
 TypeScript interface:
 
@@ -6601,11 +6601,11 @@ interface KeyboardButtonSwitchInline {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonUrl" |
-| `text` | string |  |
-| `url` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonUrl" |
+| `text` | string |  |  |
+| `url` | string |  |  |
 
 TypeScript interface:
 
@@ -6628,10 +6628,10 @@ It's an alias for the `KeyboardButtonRow` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "keyboardButtonRow" |
-| `buttons` | [KeyboardButtonUnion[]](#keyboardbuttonunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "keyboardButtonRow" |
+| `buttons` | [KeyboardButtonUnion[]](#keyboardbuttonunion) |  |  |
 
 TypeScript interface:
 
@@ -6653,11 +6653,11 @@ It's an alias for the `LabeledPrice` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "labeledPrice" |
-| `label` | string |  |
-| `amount` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "labeledPrice" |
+| `label` | string |  |  |
+| `amount` | number |  |  |
 
 TypeScript interface:
 
@@ -6680,13 +6680,13 @@ It's an alias for the `LangPackDifference` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "langPackDifference" |
-| `lang_code` | string |  |
-| `from_version` | number |  |
-| `version` | number |  |
-| `strings` | [LangPackStringUnion[]](#langpackstringunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "langPackDifference" |
+| `lang_code` | string |  |  |
+| `from_version` | number |  |  |
+| `version` | number |  |  |
+| `strings` | [LangPackStringUnion[]](#langpackstringunion) |  |  |
 
 TypeScript interface:
 
@@ -6711,12 +6711,12 @@ It's an alias for the `LangPackLanguage` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "langPackLanguage" |
-| `name` | string |  |
-| `native_name` | string |  |
-| `lang_code` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "langPackLanguage" |
+| `name` | string |  |  |
+| `native_name` | string |  |  |
+| `lang_code` | string |  |  |
 
 TypeScript interface:
 
@@ -6743,11 +6743,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "langPackString" |
-| `key` | string |  |
-| `value` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "langPackString" |
+| `key` | string |  |  |
+| `value` | string |  |  |
 
 TypeScript interface:
 
@@ -6765,10 +6765,10 @@ interface LangPackString {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "langPackStringDeleted" |
-| `key` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "langPackStringDeleted" |
+| `key` | string |  |  |
 
 TypeScript interface:
 
@@ -6785,17 +6785,17 @@ interface LangPackStringDeleted {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "langPackStringPluralized" |
-| `flags` | number |  |
-| `key` | string |  |
-| `zero_value` | string | Optional |
-| `one_value` | string | Optional |
-| `two_value` | string | Optional |
-| `few_value` | string | Optional |
-| `many_value` | string | Optional |
-| `other_value` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "langPackStringPluralized" |
+| `flags` | number |  |  |
+| `key` | string |  |  |
+| `zero_value` | string |  | Optional |
+| `one_value` | string | 2 | Optional |
+| `two_value` | string | 4 | Optional |
+| `few_value` | string | 8 | Optional |
+| `many_value` | string | 16 | Optional |
+| `other_value` | string |  |  |
 
 TypeScript interface:
 
@@ -6824,13 +6824,13 @@ It's an alias for the `MaskCoords` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "maskCoords" |
-| `n` | number |  |
-| `x` | number |  |
-| `y` | number |  |
-| `zoom` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "maskCoords" |
+| `n` | number |  |  |
+| `x` | number |  |  |
+| `y` | number |  |  |
+| `zoom` | number |  |  |
 
 TypeScript interface:
 
@@ -6858,29 +6858,29 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "message" |
-| `flags` | number |  |
-| `out` | true | Optional |
-| `mentioned` | true | Optional |
-| `media_unread` | true | Optional |
-| `silent` | true | Optional |
-| `post` | true | Optional |
-| `id` | number |  |
-| `from_id` | number | Optional |
-| `to_id` | [PeerUnion](#peerunion) |  |
-| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | Optional |
-| `via_bot_id` | number | Optional |
-| `reply_to_msg_id` | number | Optional |
-| `date` | number |  |
-| `message` | string |  |
-| `media` | [MessageMediaUnion](#messagemediaunion) | Optional |
-| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | Optional |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
-| `views` | number | Optional |
-| `edit_date` | number | Optional |
-| `post_author` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "message" |
+| `flags` | number |  |  |
+| `out` | true | 2 | Optional |
+| `mentioned` | true | 16 | Optional |
+| `media_unread` | true | 32 | Optional |
+| `silent` | true | 8192 | Optional |
+| `post` | true | 16384 | Optional |
+| `id` | number |  |  |
+| `from_id` | number | 256 | Optional |
+| `to_id` | [PeerUnion](#peerunion) |  |  |
+| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | 4 | Optional |
+| `via_bot_id` | number | 2048 | Optional |
+| `reply_to_msg_id` | number | 8 | Optional |
+| `date` | number |  |  |
+| `message` | string |  |  |
+| `media` | [MessageMediaUnion](#messagemediaunion) | 512 | Optional |
+| `reply_markup` | [ReplyMarkupUnion](#replymarkupunion) | 64 | Optional |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 128 | Optional |
+| `views` | number | 1024 | Optional |
+| `edit_date` | number | 32768 | Optional |
+| `post_author` | string | 65536 | Optional |
 
 TypeScript interface:
 
@@ -6916,10 +6916,10 @@ interface Message {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -6936,21 +6936,21 @@ interface MessageEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageService" |
-| `flags` | number |  |
-| `out` | true | Optional |
-| `mentioned` | true | Optional |
-| `media_unread` | true | Optional |
-| `silent` | true | Optional |
-| `post` | true | Optional |
-| `id` | number |  |
-| `from_id` | number | Optional |
-| `to_id` | [PeerUnion](#peerunion) |  |
-| `reply_to_msg_id` | number | Optional |
-| `date` | number |  |
-| `action` | [MessageActionUnion](#messageactionunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageService" |
+| `flags` | number |  |  |
+| `out` | true | 2 | Optional |
+| `mentioned` | true | 16 | Optional |
+| `media_unread` | true | 32 | Optional |
+| `silent` | true | 8192 | Optional |
+| `post` | true | 16384 | Optional |
+| `id` | number |  |  |
+| `from_id` | number | 256 | Optional |
+| `to_id` | [PeerUnion](#peerunion) |  |  |
+| `reply_to_msg_id` | number | 8 | Optional |
+| `date` | number |  |  |
+| `action` | [MessageActionUnion](#messageactionunion) |  |  |
 
 TypeScript interface:
 
@@ -7001,10 +7001,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChannelCreate" |
-| `title` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChannelCreate" |
+| `title` | string |  |  |
 
 TypeScript interface:
 
@@ -7021,11 +7021,11 @@ interface MessageActionChannelCreate {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChannelMigrateFrom" |
-| `title` | string |  |
-| `chat_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChannelMigrateFrom" |
+| `title` | string |  |  |
+| `chat_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7043,10 +7043,10 @@ interface MessageActionChannelMigrateFrom {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatAddUser" |
-| `users` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatAddUser" |
+| `users` | number[] |  |  |
 
 TypeScript interface:
 
@@ -7063,11 +7063,11 @@ interface MessageActionChatAddUser {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatCreate" |
-| `title` | string |  |
-| `users` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatCreate" |
+| `title` | string |  |  |
+| `users` | number[] |  |  |
 
 TypeScript interface:
 
@@ -7085,9 +7085,9 @@ interface MessageActionChatCreate {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatDeletePhoto" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatDeletePhoto" |
 
 TypeScript interface:
 
@@ -7103,10 +7103,10 @@ interface MessageActionChatDeletePhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatDeleteUser" |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatDeleteUser" |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7123,10 +7123,10 @@ interface MessageActionChatDeleteUser {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatEditPhoto" |
-| `photo` | [PhotoUnion](#photounion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatEditPhoto" |
+| `photo` | [PhotoUnion](#photounion) |  |  |
 
 TypeScript interface:
 
@@ -7143,10 +7143,10 @@ interface MessageActionChatEditPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatEditTitle" |
-| `title` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatEditTitle" |
+| `title` | string |  |  |
 
 TypeScript interface:
 
@@ -7163,10 +7163,10 @@ interface MessageActionChatEditTitle {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatJoinedByLink" |
-| `inviter_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatJoinedByLink" |
+| `inviter_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7183,10 +7183,10 @@ interface MessageActionChatJoinedByLink {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionChatMigrateTo" |
-| `channel_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionChatMigrateTo" |
+| `channel_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7203,9 +7203,9 @@ interface MessageActionChatMigrateTo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionEmpty" |
 
 TypeScript interface:
 
@@ -7221,11 +7221,11 @@ interface MessageActionEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionGameScore" |
-| `game_id` | number |  |
-| `score` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionGameScore" |
+| `game_id` | number |  |  |
+| `score` | number |  |  |
 
 TypeScript interface:
 
@@ -7243,9 +7243,9 @@ interface MessageActionGameScore {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionHistoryClear" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionHistoryClear" |
 
 TypeScript interface:
 
@@ -7261,11 +7261,11 @@ interface MessageActionHistoryClear {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionPaymentSent" |
-| `currency` | string |  |
-| `total_amount` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionPaymentSent" |
+| `currency` | string |  |  |
+| `total_amount` | number |  |  |
 
 TypeScript interface:
 
@@ -7283,16 +7283,16 @@ interface MessageActionPaymentSent {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionPaymentSentMe" |
-| `flags` | number |  |
-| `currency` | string |  |
-| `total_amount` | number |  |
-| `payload` | number[] |  |
-| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) | Optional |
-| `shipping_option_id` | string | Optional |
-| `charge` | [PaymentChargeUnion](#paymentchargeunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionPaymentSentMe" |
+| `flags` | number |  |  |
+| `currency` | string |  |  |
+| `total_amount` | number |  |  |
+| `payload` | number[] |  |  |
+| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
+| `shipping_option_id` | string | 2 | Optional |
+| `charge` | [PaymentChargeUnion](#paymentchargeunion) |  |  |
 
 TypeScript interface:
 
@@ -7315,13 +7315,13 @@ interface MessageActionPaymentSentMe {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionPhoneCall" |
-| `flags` | number |  |
-| `call_id` | number |  |
-| `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) | Optional |
-| `duration` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionPhoneCall" |
+| `flags` | number |  |  |
+| `call_id` | number |  |  |
+| `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) |  | Optional |
+| `duration` | number | 2 | Optional |
 
 TypeScript interface:
 
@@ -7341,9 +7341,9 @@ interface MessageActionPhoneCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionPinMessage" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionPinMessage" |
 
 TypeScript interface:
 
@@ -7359,9 +7359,9 @@ interface MessageActionPinMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageActionScreenshotTaken" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageActionScreenshotTaken" |
 
 TypeScript interface:
 
@@ -7395,12 +7395,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessageEntityMentionName" |
-| `offset` | number |  |
-| `length` | number |  |
-| `user_id` | [InputUserUnion](#inputuserunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessageEntityMentionName" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
+| `user_id` | [InputUserUnion](#inputuserunion) |  |  |
 
 TypeScript interface:
 
@@ -7419,11 +7419,11 @@ interface InputMessageEntityMentionName {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityBold" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityBold" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7441,11 +7441,11 @@ interface MessageEntityBold {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityBotCommand" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityBotCommand" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7463,11 +7463,11 @@ interface MessageEntityBotCommand {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityCode" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityCode" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7485,11 +7485,11 @@ interface MessageEntityCode {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityEmail" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityEmail" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7507,11 +7507,11 @@ interface MessageEntityEmail {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityHashtag" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityHashtag" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7529,11 +7529,11 @@ interface MessageEntityHashtag {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityItalic" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityItalic" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7551,11 +7551,11 @@ interface MessageEntityItalic {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityMention" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityMention" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7573,12 +7573,12 @@ interface MessageEntityMention {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityMentionName" |
-| `offset` | number |  |
-| `length` | number |  |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityMentionName" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7597,12 +7597,12 @@ interface MessageEntityMentionName {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityPre" |
-| `offset` | number |  |
-| `length` | number |  |
-| `language` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityPre" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
+| `language` | string |  |  |
 
 TypeScript interface:
 
@@ -7621,12 +7621,12 @@ interface MessageEntityPre {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityTextUrl" |
-| `offset` | number |  |
-| `length` | number |  |
-| `url` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityTextUrl" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
+| `url` | string |  |  |
 
 TypeScript interface:
 
@@ -7645,11 +7645,11 @@ interface MessageEntityTextUrl {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityUnknown" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityUnknown" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7667,11 +7667,11 @@ interface MessageEntityUnknown {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageEntityUrl" |
-| `offset` | number |  |
-| `length` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageEntityUrl" |
+| `offset` | number |  |  |
+| `length` | number |  |  |
 
 TypeScript interface:
 
@@ -7694,15 +7694,15 @@ It's an alias for the `MessageFwdHeader` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageFwdHeader" |
-| `flags` | number |  |
-| `from_id` | number | Optional |
-| `date` | number |  |
-| `channel_id` | number | Optional |
-| `channel_post` | number | Optional |
-| `post_author` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageFwdHeader" |
+| `flags` | number |  |  |
+| `from_id` | number |  | Optional |
+| `date` | number |  |  |
+| `channel_id` | number | 2 | Optional |
+| `channel_post` | number | 4 | Optional |
+| `post_author` | string | 8 | Optional |
 
 TypeScript interface:
 
@@ -7739,13 +7739,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaContact" |
-| `phone_number` | string |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaContact" |
+| `phone_number` | string |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -7765,13 +7765,13 @@ interface MessageMediaContact {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaDocument" |
-| `flags` | number |  |
-| `document` | [DocumentUnion](#documentunion) | Optional |
-| `caption` | string | Optional |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaDocument" |
+| `flags` | number |  |  |
+| `document` | [DocumentUnion](#documentunion) |  | Optional |
+| `caption` | string | 2 | Optional |
+| `ttl_seconds` | number | 4 | Optional |
 
 TypeScript interface:
 
@@ -7791,9 +7791,9 @@ interface MessageMediaDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaEmpty" |
 
 TypeScript interface:
 
@@ -7809,10 +7809,10 @@ interface MessageMediaEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaGame" |
-| `game` | [GameUnion](#gameunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaGame" |
+| `game` | [GameUnion](#gameunion) |  |  |
 
 TypeScript interface:
 
@@ -7829,10 +7829,10 @@ interface MessageMediaGame {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaGeo" |
-| `geo` | [GeoPointUnion](#geopointunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaGeo" |
+| `geo` | [GeoPointUnion](#geopointunion) |  |  |
 
 TypeScript interface:
 
@@ -7849,19 +7849,19 @@ interface MessageMediaGeo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaInvoice" |
-| `flags` | number |  |
-| `shipping_address_requested` | true | Optional |
-| `test` | true | Optional |
-| `title` | string |  |
-| `description` | string |  |
-| `photo` | [WebDocumentUnion](#webdocumentunion) | Optional |
-| `receipt_msg_id` | number | Optional |
-| `currency` | string |  |
-| `total_amount` | number |  |
-| `start_param` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaInvoice" |
+| `flags` | number |  |  |
+| `shipping_address_requested` | true | 2 | Optional |
+| `test` | true | 8 | Optional |
+| `title` | string |  |  |
+| `description` | string |  |  |
+| `photo` | [WebDocumentUnion](#webdocumentunion) |  | Optional |
+| `receipt_msg_id` | number | 4 | Optional |
+| `currency` | string |  |  |
+| `total_amount` | number |  |  |
+| `start_param` | string |  |  |
 
 TypeScript interface:
 
@@ -7887,13 +7887,13 @@ interface MessageMediaInvoice {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaPhoto" |
-| `flags` | number |  |
-| `photo` | [PhotoUnion](#photounion) | Optional |
-| `caption` | string | Optional |
-| `ttl_seconds` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaPhoto" |
+| `flags` | number |  |  |
+| `photo` | [PhotoUnion](#photounion) |  | Optional |
+| `caption` | string | 2 | Optional |
+| `ttl_seconds` | number | 4 | Optional |
 
 TypeScript interface:
 
@@ -7913,9 +7913,9 @@ interface MessageMediaPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaUnsupported" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaUnsupported" |
 
 TypeScript interface:
 
@@ -7931,14 +7931,14 @@ interface MessageMediaUnsupported {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaVenue" |
-| `geo` | [GeoPointUnion](#geopointunion) |  |
-| `title` | string |  |
-| `address` | string |  |
-| `provider` | string |  |
-| `venue_id` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaVenue" |
+| `geo` | [GeoPointUnion](#geopointunion) |  |  |
+| `title` | string |  |  |
+| `address` | string |  |  |
+| `provider` | string |  |  |
+| `venue_id` | string |  |  |
 
 TypeScript interface:
 
@@ -7959,10 +7959,10 @@ interface MessageMediaVenue {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageMediaWebPage" |
-| `webpage` | [WebPageUnion](#webpageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageMediaWebPage" |
+| `webpage` | [WebPageUnion](#webpageunion) |  |  |
 
 TypeScript interface:
 
@@ -7984,11 +7984,11 @@ It's an alias for the `MessageRange` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messageRange" |
-| `min_id` | number |  |
-| `max_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messageRange" |
+| `min_id` | number |  |  |
+| `max_id` | number |  |  |
 
 TypeScript interface:
 
@@ -8011,12 +8011,12 @@ It's an alias for the `MessagesAffectedHistory` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.affectedHistory" |
-| `pts` | number |  |
-| `pts_count` | number |  |
-| `offset` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.affectedHistory" |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
+| `offset` | number |  |  |
 
 TypeScript interface:
 
@@ -8040,11 +8040,11 @@ It's an alias for the `MessagesAffectedMessages` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.affectedMessages" |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.affectedMessages" |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -8069,11 +8069,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.allStickers" |
-| `hash` | number |  |
-| `sets` | [StickerSetUnion[]](#stickersetunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.allStickers" |
+| `hash` | number |  |  |
+| `sets` | [StickerSetUnion[]](#stickersetunion) |  |  |
 
 TypeScript interface:
 
@@ -8091,9 +8091,9 @@ interface MessagesAllStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.allStickersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.allStickersNotModified" |
 
 TypeScript interface:
 
@@ -8114,11 +8114,11 @@ It's an alias for the `MessagesArchivedStickers` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.archivedStickers" |
-| `count` | number |  |
-| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.archivedStickers" |
+| `count` | number |  |  |
+| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |  |
 
 TypeScript interface:
 
@@ -8141,15 +8141,15 @@ It's an alias for the `MessagesBotCallbackAnswer` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.botCallbackAnswer" |
-| `flags` | number |  |
-| `alert` | true | Optional |
-| `has_url` | true | Optional |
-| `message` | string | Optional |
-| `url` | string | Optional |
-| `cache_time` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.botCallbackAnswer" |
+| `flags` | number |  |  |
+| `alert` | true | 2 | Optional |
+| `has_url` | true | 8 | Optional |
+| `message` | string |  | Optional |
+| `url` | string | 4 | Optional |
+| `cache_time` | number |  |  |
 
 TypeScript interface:
 
@@ -8176,16 +8176,16 @@ It's an alias for the `MessagesBotResults` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.botResults" |
-| `flags` | number |  |
-| `gallery` | true | Optional |
-| `query_id` | number |  |
-| `next_offset` | string | Optional |
-| `switch_pm` | [InlineBotSwitchPmUnion](#inlinebotswitchpmunion) | Optional |
-| `results` | [BotInlineResultUnion[]](#botinlineresultunion) |  |
-| `cache_time` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.botResults" |
+| `flags` | number |  |  |
+| `gallery` | true |  | Optional |
+| `query_id` | number |  |  |
+| `next_offset` | string | 2 | Optional |
+| `switch_pm` | [InlineBotSwitchPmUnion](#inlinebotswitchpmunion) | 4 | Optional |
+| `results` | [BotInlineResultUnion[]](#botinlineresultunion) |  |  |
+| `cache_time` | number |  |  |
 
 TypeScript interface:
 
@@ -8213,12 +8213,12 @@ It's an alias for the `MessagesChatFull` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.chatFull" |
-| `full_chat` | [ChatFullUnion](#chatfullunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.chatFull" |
+| `full_chat` | [ChatFullUnion](#chatfullunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8244,10 +8244,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.chats" |
-| `chats` | [ChatUnion[]](#chatunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.chats" |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
 
 TypeScript interface:
 
@@ -8264,11 +8264,11 @@ interface MessagesChats {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.chatsSlice" |
-| `count` | number |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.chatsSlice" |
+| `count` | number |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
 
 TypeScript interface:
 
@@ -8293,13 +8293,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.dhConfig" |
-| `g` | number |  |
-| `p` | number[] |  |
-| `version` | number |  |
-| `random` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.dhConfig" |
+| `g` | number |  |  |
+| `p` | number[] |  |  |
+| `version` | number |  |  |
+| `random` | number[] |  |  |
 
 TypeScript interface:
 
@@ -8319,10 +8319,10 @@ interface MessagesDhConfig {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.dhConfigNotModified" |
-| `random` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.dhConfigNotModified" |
+| `random` | number[] |  |  |
 
 TypeScript interface:
 
@@ -8346,13 +8346,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.dialogs" |
-| `dialogs` | [DialogUnion[]](#dialogunion) |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.dialogs" |
+| `dialogs` | [DialogUnion[]](#dialogunion) |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8372,14 +8372,14 @@ interface MessagesDialogs {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.dialogsSlice" |
-| `count` | number |  |
-| `dialogs` | [DialogUnion[]](#dialogunion) |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.dialogsSlice" |
+| `count` | number |  |  |
+| `dialogs` | [DialogUnion[]](#dialogunion) |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8407,12 +8407,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.favedStickers" |
-| `hash` | number |  |
-| `packs` | [StickerPackUnion[]](#stickerpackunion) |  |
-| `stickers` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.favedStickers" |
+| `hash` | number |  |  |
+| `packs` | [StickerPackUnion[]](#stickerpackunion) |  |  |
+| `stickers` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -8431,9 +8431,9 @@ interface MessagesFavedStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.favedStickersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.favedStickersNotModified" |
 
 TypeScript interface:
 
@@ -8456,12 +8456,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.featuredStickers" |
-| `hash` | number |  |
-| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |
-| `unread` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.featuredStickers" |
+| `hash` | number |  |  |
+| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |  |
+| `unread` | number[] |  |  |
 
 TypeScript interface:
 
@@ -8480,9 +8480,9 @@ interface MessagesFeaturedStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.featuredStickersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.featuredStickersNotModified" |
 
 TypeScript interface:
 
@@ -8519,9 +8519,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterChatPhotos" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterChatPhotos" |
 
 TypeScript interface:
 
@@ -8537,9 +8537,9 @@ interface InputMessagesFilterChatPhotos {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterDocument" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterDocument" |
 
 TypeScript interface:
 
@@ -8555,9 +8555,9 @@ interface InputMessagesFilterDocument {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterEmpty" |
 
 TypeScript interface:
 
@@ -8573,9 +8573,9 @@ interface InputMessagesFilterEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterGif" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterGif" |
 
 TypeScript interface:
 
@@ -8591,9 +8591,9 @@ interface InputMessagesFilterGif {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterMusic" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterMusic" |
 
 TypeScript interface:
 
@@ -8609,9 +8609,9 @@ interface InputMessagesFilterMusic {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterMyMentions" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterMyMentions" |
 
 TypeScript interface:
 
@@ -8627,9 +8627,9 @@ interface InputMessagesFilterMyMentions {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterMyMentionsUnread" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterMyMentionsUnread" |
 
 TypeScript interface:
 
@@ -8645,11 +8645,11 @@ interface InputMessagesFilterMyMentionsUnread {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterPhoneCalls" |
-| `flags` | number |  |
-| `missed` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterPhoneCalls" |
+| `flags` | number |  |  |
+| `missed` | true |  | Optional |
 
 TypeScript interface:
 
@@ -8667,9 +8667,9 @@ interface InputMessagesFilterPhoneCalls {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterPhotoVideo" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterPhotoVideo" |
 
 TypeScript interface:
 
@@ -8685,9 +8685,9 @@ interface InputMessagesFilterPhotoVideo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterPhotoVideoDocuments" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterPhotoVideoDocuments" |
 
 TypeScript interface:
 
@@ -8703,9 +8703,9 @@ interface InputMessagesFilterPhotoVideoDocuments {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterPhotos" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterPhotos" |
 
 TypeScript interface:
 
@@ -8721,9 +8721,9 @@ interface InputMessagesFilterPhotos {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterRoundVideo" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterRoundVideo" |
 
 TypeScript interface:
 
@@ -8739,9 +8739,9 @@ interface InputMessagesFilterRoundVideo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterRoundVoice" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterRoundVoice" |
 
 TypeScript interface:
 
@@ -8757,9 +8757,9 @@ interface InputMessagesFilterRoundVoice {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterUrl" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterUrl" |
 
 TypeScript interface:
 
@@ -8775,9 +8775,9 @@ interface InputMessagesFilterUrl {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterVideo" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterVideo" |
 
 TypeScript interface:
 
@@ -8793,9 +8793,9 @@ interface InputMessagesFilterVideo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputMessagesFilterVoice" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputMessagesFilterVoice" |
 
 TypeScript interface:
 
@@ -8816,11 +8816,11 @@ It's an alias for the `MessagesFoundGifs` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.foundGifs" |
-| `next_offset` | number |  |
-| `results` | [FoundGifUnion[]](#foundgifunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.foundGifs" |
+| `next_offset` | number |  |  |
+| `results` | [FoundGifUnion[]](#foundgifunion) |  |  |
 
 TypeScript interface:
 
@@ -8843,11 +8843,11 @@ It's an alias for the `MessagesHighScores` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.highScores" |
-| `scores` | [HighScoreUnion[]](#highscoreunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.highScores" |
+| `scores` | [HighScoreUnion[]](#highscoreunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8870,11 +8870,11 @@ It's an alias for the `MessagesMessageEditData` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.messageEditData" |
-| `flags` | number |  |
-| `caption` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.messageEditData" |
+| `flags` | number |  |  |
+| `caption` | true |  | Optional |
 
 TypeScript interface:
 
@@ -8900,15 +8900,15 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.channelMessages" |
-| `flags` | number |  |
-| `pts` | number |  |
-| `count` | number |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.channelMessages" |
+| `flags` | number |  |  |
+| `pts` | number |  |  |
+| `count` | number |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8930,12 +8930,12 @@ interface MessagesChannelMessages {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.messages" |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.messages" |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8954,13 +8954,13 @@ interface MessagesMessages {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.messagesSlice" |
-| `count` | number |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.messagesSlice" |
+| `count` | number |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -8985,14 +8985,14 @@ It's an alias for the `MessagesPeerDialogs` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.peerDialogs" |
-| `dialogs` | [DialogUnion[]](#dialogunion) |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
-| `state` | [UpdatesStateUnion](#updatesstateunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.peerDialogs" |
+| `dialogs` | [DialogUnion[]](#dialogunion) |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
+| `state` | [UpdatesStateUnion](#updatesstateunion) |  |  |
 
 TypeScript interface:
 
@@ -9020,11 +9020,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.recentStickers" |
-| `hash` | number |  |
-| `stickers` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.recentStickers" |
+| `hash` | number |  |  |
+| `stickers` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9042,9 +9042,9 @@ interface MessagesRecentStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.recentStickersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.recentStickersNotModified" |
 
 TypeScript interface:
 
@@ -9067,11 +9067,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.savedGifs" |
-| `hash` | number |  |
-| `gifs` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.savedGifs" |
+| `hash` | number |  |  |
+| `gifs` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9089,9 +9089,9 @@ interface MessagesSavedGifs {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.savedGifsNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.savedGifsNotModified" |
 
 TypeScript interface:
 
@@ -9114,11 +9114,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.sentEncryptedFile" |
-| `date` | number |  |
-| `file` | [EncryptedFileUnion](#encryptedfileunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.sentEncryptedFile" |
+| `date` | number |  |  |
+| `file` | [EncryptedFileUnion](#encryptedfileunion) |  |  |
 
 TypeScript interface:
 
@@ -9136,10 +9136,10 @@ interface MessagesSentEncryptedFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.sentEncryptedMessage" |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.sentEncryptedMessage" |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -9161,12 +9161,12 @@ It's an alias for the `MessagesStickerSet` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.stickerSet" |
-| `set` | [StickerSetUnion](#stickersetunion) |  |
-| `packs` | [StickerPackUnion[]](#stickerpackunion) |  |
-| `documents` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.stickerSet" |
+| `set` | [StickerSetUnion](#stickersetunion) |  |  |
+| `packs` | [StickerPackUnion[]](#stickerpackunion) |  |  |
+| `documents` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9192,10 +9192,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.stickerSetInstallResultArchive" |
-| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.stickerSetInstallResultArchive" |
+| `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |  |
 
 TypeScript interface:
 
@@ -9212,9 +9212,9 @@ interface MessagesStickerSetInstallResultArchive {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.stickerSetInstallResultSuccess" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.stickerSetInstallResultSuccess" |
 
 TypeScript interface:
 
@@ -9237,11 +9237,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.stickers" |
-| `hash` | string |  |
-| `stickers` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.stickers" |
+| `hash` | string |  |  |
+| `stickers` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9259,9 +9259,9 @@ interface MessagesStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "messages.stickersNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "messages.stickersNotModified" |
 
 TypeScript interface:
 
@@ -9282,12 +9282,12 @@ It's an alias for the `NearestDc` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "nearestDc" |
-| `country` | string |  |
-| `this_dc` | number |  |
-| `nearest_dc` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "nearestDc" |
+| `country` | string |  |  |
+| `this_dc` | number |  |  |
+| `nearest_dc` | number |  |  |
 
 TypeScript interface:
 
@@ -9315,9 +9315,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "notifyAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "notifyAll" |
 
 TypeScript interface:
 
@@ -9333,9 +9333,9 @@ interface NotifyAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "notifyChats" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "notifyChats" |
 
 TypeScript interface:
 
@@ -9351,10 +9351,10 @@ interface NotifyChats {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "notifyPeer" |
-| `peer` | [PeerUnion](#peerunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "notifyPeer" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
 
 TypeScript interface:
 
@@ -9371,9 +9371,9 @@ interface NotifyPeer {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "notifyUsers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "notifyUsers" |
 
 TypeScript interface:
 
@@ -9396,12 +9396,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageFull" |
-| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |
-| `photos` | [PhotoUnion[]](#photounion) |  |
-| `documents` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageFull" |
+| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |  |
+| `photos` | [PhotoUnion[]](#photounion) |  |  |
+| `documents` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9420,12 +9420,12 @@ interface PageFull {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pagePart" |
-| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |
-| `photos` | [PhotoUnion[]](#photounion) |  |
-| `documents` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pagePart" |
+| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |  |
+| `photos` | [PhotoUnion[]](#photounion) |  |  |
+| `documents` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -9472,10 +9472,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockAnchor" |
-| `name` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockAnchor" |
+| `name` | string |  |  |
 
 TypeScript interface:
 
@@ -9492,11 +9492,11 @@ interface PageBlockAnchor {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockAudio" |
-| `audio_id` | number |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockAudio" |
+| `audio_id` | number |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9514,11 +9514,11 @@ interface PageBlockAudio {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockAuthorDate" |
-| `author` | [RichTextUnion](#richtextunion) |  |
-| `published_date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockAuthorDate" |
+| `author` | [RichTextUnion](#richtextunion) |  |  |
+| `published_date` | number |  |  |
 
 TypeScript interface:
 
@@ -9536,11 +9536,11 @@ interface PageBlockAuthorDate {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockBlockquote" |
-| `text` | [RichTextUnion](#richtextunion) |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockBlockquote" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9558,10 +9558,10 @@ interface PageBlockBlockquote {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockChannel" |
-| `channel` | [ChatUnion](#chatunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockChannel" |
+| `channel` | [ChatUnion](#chatunion) |  |  |
 
 TypeScript interface:
 
@@ -9578,11 +9578,11 @@ interface PageBlockChannel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockCollage" |
-| `items` | [PageBlockUnion[]](#pageblockunion) |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockCollage" |
+| `items` | [PageBlockUnion[]](#pageblockunion) |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9600,10 +9600,10 @@ interface PageBlockCollage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockCover" |
-| `cover` | [PageBlockUnion](#pageblockunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockCover" |
+| `cover` | [PageBlockUnion](#pageblockunion) |  |  |
 
 TypeScript interface:
 
@@ -9620,9 +9620,9 @@ interface PageBlockCover {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockDivider" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockDivider" |
 
 TypeScript interface:
 
@@ -9638,18 +9638,18 @@ interface PageBlockDivider {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockEmbed" |
-| `flags` | number |  |
-| `full_width` | true | Optional |
-| `allow_scrolling` | true | Optional |
-| `url` | string | Optional |
-| `html` | string | Optional |
-| `poster_photo_id` | number | Optional |
-| `w` | number |  |
-| `h` | number |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockEmbed" |
+| `flags` | number |  |  |
+| `full_width` | true |  | Optional |
+| `allow_scrolling` | true | 8 | Optional |
+| `url` | string | 2 | Optional |
+| `html` | string | 4 | Optional |
+| `poster_photo_id` | number | 16 | Optional |
+| `w` | number |  |  |
+| `h` | number |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9674,16 +9674,16 @@ interface PageBlockEmbed {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockEmbedPost" |
-| `url` | string |  |
-| `webpage_id` | number |  |
-| `author_photo_id` | number |  |
-| `author` | string |  |
-| `date` | number |  |
-| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockEmbedPost" |
+| `url` | string |  |  |
+| `webpage_id` | number |  |  |
+| `author_photo_id` | number |  |  |
+| `author` | string |  |  |
+| `date` | number |  |  |
+| `blocks` | [PageBlockUnion[]](#pageblockunion) |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9706,10 +9706,10 @@ interface PageBlockEmbedPost {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockFooter" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockFooter" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9726,10 +9726,10 @@ interface PageBlockFooter {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockHeader" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockHeader" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9746,11 +9746,11 @@ interface PageBlockHeader {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockList" |
-| `ordered` | boolean |  |
-| `items` | [RichTextUnion[]](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockList" |
+| `ordered` | boolean |  |  |
+| `items` | [RichTextUnion[]](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9768,10 +9768,10 @@ interface PageBlockList {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockParagraph" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockParagraph" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9788,11 +9788,11 @@ interface PageBlockParagraph {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockPhoto" |
-| `photo_id` | number |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockPhoto" |
+| `photo_id` | number |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9810,11 +9810,11 @@ interface PageBlockPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockPreformatted" |
-| `text` | [RichTextUnion](#richtextunion) |  |
-| `language` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockPreformatted" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
+| `language` | string |  |  |
 
 TypeScript interface:
 
@@ -9832,11 +9832,11 @@ interface PageBlockPreformatted {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockPullquote" |
-| `text` | [RichTextUnion](#richtextunion) |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockPullquote" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9854,11 +9854,11 @@ interface PageBlockPullquote {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockSlideshow" |
-| `items` | [PageBlockUnion[]](#pageblockunion) |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockSlideshow" |
+| `items` | [PageBlockUnion[]](#pageblockunion) |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9876,10 +9876,10 @@ interface PageBlockSlideshow {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockSubheader" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockSubheader" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9896,10 +9896,10 @@ interface PageBlockSubheader {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockSubtitle" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockSubtitle" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9916,10 +9916,10 @@ interface PageBlockSubtitle {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockTitle" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockTitle" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9936,9 +9936,9 @@ interface PageBlockTitle {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockUnsupported" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockUnsupported" |
 
 TypeScript interface:
 
@@ -9954,14 +9954,14 @@ interface PageBlockUnsupported {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "pageBlockVideo" |
-| `flags` | number |  |
-| `autoplay` | true | Optional |
-| `loop` | true | Optional |
-| `video_id` | number |  |
-| `caption` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "pageBlockVideo" |
+| `flags` | number |  |  |
+| `autoplay` | true |  | Optional |
+| `loop` | true | 2 | Optional |
+| `video_id` | number |  |  |
+| `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -9987,11 +9987,11 @@ It's an alias for the `PaymentCharge` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "paymentCharge" |
-| `id` | string |  |
-| `provider_charge_id` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "paymentCharge" |
+| `id` | string |  |  |
+| `provider_charge_id` | string |  |  |
 
 TypeScript interface:
 
@@ -10014,14 +10014,14 @@ It's an alias for the `PaymentRequestedInfo` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "paymentRequestedInfo" |
-| `flags` | number |  |
-| `name` | string | Optional |
-| `phone` | string | Optional |
-| `email` | string | Optional |
-| `shipping_address` | [PostAddressUnion](#postaddressunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "paymentRequestedInfo" |
+| `flags` | number |  |  |
+| `name` | string |  | Optional |
+| `phone` | string | 2 | Optional |
+| `email` | string | 4 | Optional |
+| `shipping_address` | [PostAddressUnion](#postaddressunion) | 8 | Optional |
 
 TypeScript interface:
 
@@ -10047,11 +10047,11 @@ It's an alias for the `PaymentSavedCredentialsCard` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "paymentSavedCredentialsCard" |
-| `id` | string |  |
-| `title` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "paymentSavedCredentialsCard" |
+| `id` | string |  |  |
+| `title` | string |  |  |
 
 TypeScript interface:
 
@@ -10074,21 +10074,21 @@ It's an alias for the `PaymentsPaymentForm` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.paymentForm" |
-| `flags` | number |  |
-| `can_save_credentials` | true | Optional |
-| `password_missing` | true | Optional |
-| `bot_id` | number |  |
-| `invoice` | [InvoiceUnion](#invoiceunion) |  |
-| `provider_id` | number |  |
-| `url` | string |  |
-| `native_provider` | string | Optional |
-| `native_params` | [DataJsonUnion](#datajsonunion) | Optional |
-| `saved_info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) | Optional |
-| `saved_credentials` | [PaymentSavedCredentialsUnion](#paymentsavedcredentialsunion) | Optional |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.paymentForm" |
+| `flags` | number |  |  |
+| `can_save_credentials` | true | 4 | Optional |
+| `password_missing` | true | 8 | Optional |
+| `bot_id` | number |  |  |
+| `invoice` | [InvoiceUnion](#invoiceunion) |  |  |
+| `provider_id` | number |  |  |
+| `url` | string |  |  |
+| `native_provider` | string | 16 | Optional |
+| `native_params` | [DataJsonUnion](#datajsonunion) | 16 | Optional |
+| `saved_info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
+| `saved_credentials` | [PaymentSavedCredentialsUnion](#paymentsavedcredentialsunion) | 2 | Optional |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -10121,20 +10121,20 @@ It's an alias for the `PaymentsPaymentReceipt` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.paymentReceipt" |
-| `flags` | number |  |
-| `date` | number |  |
-| `bot_id` | number |  |
-| `invoice` | [InvoiceUnion](#invoiceunion) |  |
-| `provider_id` | number |  |
-| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) | Optional |
-| `shipping` | [ShippingOptionUnion](#shippingoptionunion) | Optional |
-| `currency` | string |  |
-| `total_amount` | number |  |
-| `credentials_title` | string |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.paymentReceipt" |
+| `flags` | number |  |  |
+| `date` | number |  |  |
+| `bot_id` | number |  |  |
+| `invoice` | [InvoiceUnion](#invoiceunion) |  |  |
+| `provider_id` | number |  |  |
+| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
+| `shipping` | [ShippingOptionUnion](#shippingoptionunion) | 2 | Optional |
+| `currency` | string |  |  |
+| `total_amount` | number |  |  |
+| `credentials_title` | string |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -10168,10 +10168,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.paymentResult" |
-| `updates` | [UpdatesUnion](#updatesunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.paymentResult" |
+| `updates` | [UpdatesUnion](#updatesunion) |  |  |
 
 TypeScript interface:
 
@@ -10188,10 +10188,10 @@ interface PaymentsPaymentResult {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.paymentVerficationNeeded" |
-| `url` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.paymentVerficationNeeded" |
+| `url` | string |  |  |
 
 TypeScript interface:
 
@@ -10213,12 +10213,12 @@ It's an alias for the `PaymentsSavedInfo` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.savedInfo" |
-| `flags` | number |  |
-| `has_saved_credentials` | true | Optional |
-| `saved_info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.savedInfo" |
+| `flags` | number |  |  |
+| `has_saved_credentials` | true | 2 | Optional |
+| `saved_info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
 
 TypeScript interface:
 
@@ -10242,12 +10242,12 @@ It's an alias for the `PaymentsValidatedRequestedInfo` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "payments.validatedRequestedInfo" |
-| `flags` | number |  |
-| `id` | string | Optional |
-| `shipping_options` | [ShippingOptionUnion[]](#shippingoptionunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "payments.validatedRequestedInfo" |
+| `flags` | number |  |  |
+| `id` | string |  | Optional |
+| `shipping_options` | [ShippingOptionUnion[]](#shippingoptionunion) | 2 | Optional |
 
 TypeScript interface:
 
@@ -10274,10 +10274,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerChannel" |
-| `channel_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerChannel" |
+| `channel_id` | number |  |  |
 
 TypeScript interface:
 
@@ -10294,10 +10294,10 @@ interface PeerChannel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerChat" |
-| `chat_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerChat" |
+| `chat_id` | number |  |  |
 
 TypeScript interface:
 
@@ -10314,10 +10314,10 @@ interface PeerChat {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerUser" |
-| `user_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerUser" |
+| `user_id` | number |  |  |
 
 TypeScript interface:
 
@@ -10341,9 +10341,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerNotifyEventsAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerNotifyEventsAll" |
 
 TypeScript interface:
 
@@ -10359,9 +10359,9 @@ interface PeerNotifyEventsAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerNotifyEventsEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerNotifyEventsEmpty" |
 
 TypeScript interface:
 
@@ -10384,14 +10384,14 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerNotifySettings" |
-| `flags` | number |  |
-| `show_previews` | true | Optional |
-| `silent` | true | Optional |
-| `mute_until` | number |  |
-| `sound` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerNotifySettings" |
+| `flags` | number |  |  |
+| `show_previews` | true |  | Optional |
+| `silent` | true | 2 | Optional |
+| `mute_until` | number |  |  |
+| `sound` | string |  |  |
 
 TypeScript interface:
 
@@ -10412,9 +10412,9 @@ interface PeerNotifySettings {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerNotifySettingsEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerNotifySettingsEmpty" |
 
 TypeScript interface:
 
@@ -10435,11 +10435,11 @@ It's an alias for the `PeerSettings` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "peerSettings" |
-| `flags` | number |  |
-| `report_spam` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "peerSettings" |
+| `flags` | number |  |  |
+| `report_spam` | true |  | Optional |
 
 TypeScript interface:
 
@@ -10468,20 +10468,20 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCall" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `g_a_or_b` | number[] |  |
-| `key_fingerprint` | number |  |
-| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |
-| `connection` | [PhoneConnectionUnion](#phoneconnectionunion) |  |
-| `alternative_connections` | [PhoneConnectionUnion[]](#phoneconnectionunion) |  |
-| `start_date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCall" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `g_a_or_b` | number[] |  |  |
+| `key_fingerprint` | number |  |  |
+| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |  |
+| `connection` | [PhoneConnectionUnion](#phoneconnectionunion) |  |  |
+| `alternative_connections` | [PhoneConnectionUnion[]](#phoneconnectionunion) |  |  |
+| `start_date` | number |  |  |
 
 TypeScript interface:
 
@@ -10508,16 +10508,16 @@ interface PhoneCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallAccepted" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `g_b` | number[] |  |
-| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallAccepted" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `g_b` | number[] |  |  |
+| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |  |
 
 TypeScript interface:
 
@@ -10540,15 +10540,15 @@ interface PhoneCallAccepted {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallDiscarded" |
-| `flags` | number |  |
-| `need_rating` | true | Optional |
-| `need_debug` | true | Optional |
-| `id` | number |  |
-| `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) | Optional |
-| `duration` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallDiscarded" |
+| `flags` | number |  |  |
+| `need_rating` | true | 4 | Optional |
+| `need_debug` | true | 8 | Optional |
+| `id` | number |  |  |
+| `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) |  | Optional |
+| `duration` | number | 2 | Optional |
 
 TypeScript interface:
 
@@ -10570,10 +10570,10 @@ interface PhoneCallDiscarded {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -10590,16 +10590,16 @@ interface PhoneCallEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallRequested" |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `g_a_hash` | number[] |  |
-| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallRequested" |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `g_a_hash` | number[] |  |  |
+| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |  |
 
 TypeScript interface:
 
@@ -10622,17 +10622,17 @@ interface PhoneCallRequested {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallWaiting" |
-| `flags` | number |  |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `admin_id` | number |  |
-| `participant_id` | number |  |
-| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |
-| `receive_date` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallWaiting" |
+| `flags` | number |  |  |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `admin_id` | number |  |  |
+| `participant_id` | number |  |  |
+| `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |  |
+| `receive_date` | number |  | Optional |
 
 TypeScript interface:
 
@@ -10665,9 +10665,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallDiscardReasonBusy" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallDiscardReasonBusy" |
 
 TypeScript interface:
 
@@ -10683,9 +10683,9 @@ interface PhoneCallDiscardReasonBusy {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallDiscardReasonDisconnect" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallDiscardReasonDisconnect" |
 
 TypeScript interface:
 
@@ -10701,9 +10701,9 @@ interface PhoneCallDiscardReasonDisconnect {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallDiscardReasonHangup" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallDiscardReasonHangup" |
 
 TypeScript interface:
 
@@ -10719,9 +10719,9 @@ interface PhoneCallDiscardReasonHangup {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallDiscardReasonMissed" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallDiscardReasonMissed" |
 
 TypeScript interface:
 
@@ -10742,14 +10742,14 @@ It's an alias for the `PhoneCallProtocol` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneCallProtocol" |
-| `flags` | number |  |
-| `udp_p2p` | true | Optional |
-| `udp_reflector` | true | Optional |
-| `min_layer` | number |  |
-| `max_layer` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneCallProtocol" |
+| `flags` | number |  |  |
+| `udp_p2p` | true |  | Optional |
+| `udp_reflector` | true | 2 | Optional |
+| `min_layer` | number |  |  |
+| `max_layer` | number |  |  |
 
 TypeScript interface:
 
@@ -10775,14 +10775,14 @@ It's an alias for the `PhoneConnection` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phoneConnection" |
-| `id` | number |  |
-| `ip` | string |  |
-| `ipv6` | string |  |
-| `port` | number |  |
-| `peer_tag` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phoneConnection" |
+| `id` | number |  |  |
+| `ip` | string |  |  |
+| `ipv6` | string |  |  |
+| `port` | number |  |  |
+| `peer_tag` | number[] |  |  |
 
 TypeScript interface:
 
@@ -10808,11 +10808,11 @@ It's an alias for the `PhonePhoneCall` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "phone.phoneCall" |
-| `phone_call` | [PhoneCallUnion](#phonecallunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "phone.phoneCall" |
+| `phone_call` | [PhoneCallUnion](#phonecallunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -10837,15 +10837,15 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photo" |
-| `flags` | number |  |
-| `has_stickers` | true | Optional |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `date` | number |  |
-| `sizes` | [PhotoSizeUnion[]](#photosizeunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photo" |
+| `flags` | number |  |  |
+| `has_stickers` | true |  | Optional |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `date` | number |  |  |
+| `sizes` | [PhotoSizeUnion[]](#photosizeunion) |  |  |
 
 TypeScript interface:
 
@@ -10867,10 +10867,10 @@ interface Photo {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photoEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photoEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -10895,14 +10895,14 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photoCachedSize" |
-| `type` | string |  |
-| `location` | [FileLocationUnion](#filelocationunion) |  |
-| `w` | number |  |
-| `h` | number |  |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photoCachedSize" |
+| `type` | string |  |  |
+| `location` | [FileLocationUnion](#filelocationunion) |  |  |
+| `w` | number |  |  |
+| `h` | number |  |  |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -10923,14 +10923,14 @@ interface PhotoCachedSize {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photoSize" |
-| `type` | string |  |
-| `location` | [FileLocationUnion](#filelocationunion) |  |
-| `w` | number |  |
-| `h` | number |  |
-| `size` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photoSize" |
+| `type` | string |  |  |
+| `location` | [FileLocationUnion](#filelocationunion) |  |  |
+| `w` | number |  |  |
+| `h` | number |  |  |
+| `size` | number |  |  |
 
 TypeScript interface:
 
@@ -10951,10 +10951,10 @@ interface PhotoSize {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photoSizeEmpty" |
-| `type` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photoSizeEmpty" |
+| `type` | string |  |  |
 
 TypeScript interface:
 
@@ -10976,11 +10976,11 @@ It's an alias for the `PhotosPhoto` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photos.photo" |
-| `photo` | [PhotoUnion](#photounion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photos.photo" |
+| `photo` | [PhotoUnion](#photounion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -11005,11 +11005,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photos.photos" |
-| `photos` | [PhotoUnion[]](#photounion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photos.photos" |
+| `photos` | [PhotoUnion[]](#photounion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -11027,12 +11027,12 @@ interface PhotosPhotos {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "photos.photosSlice" |
-| `count` | number |  |
-| `photos` | [PhotoUnion[]](#photounion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "photos.photosSlice" |
+| `count` | number |  |  |
+| `photos` | [PhotoUnion[]](#photounion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -11056,11 +11056,11 @@ It's an alias for the `PopularContact` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "popularContact" |
-| `client_id` | number |  |
-| `importers` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "popularContact" |
+| `client_id` | number |  |  |
+| `importers` | number |  |  |
 
 TypeScript interface:
 
@@ -11083,15 +11083,15 @@ It's an alias for the `PostAddress` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "postAddress" |
-| `street_line1` | string |  |
-| `street_line2` | string |  |
-| `city` | string |  |
-| `state` | string |  |
-| `country_iso2` | string |  |
-| `post_code` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "postAddress" |
+| `street_line1` | string |  |  |
+| `street_line2` | string |  |  |
+| `city` | string |  |  |
+| `state` | string |  |  |
+| `country_iso2` | string |  |  |
+| `post_code` | string |  |  |
 
 TypeScript interface:
 
@@ -11121,9 +11121,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyKeyChatInvite" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyKeyChatInvite" |
 
 TypeScript interface:
 
@@ -11139,9 +11139,9 @@ interface PrivacyKeyChatInvite {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyKeyPhoneCall" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyKeyPhoneCall" |
 
 TypeScript interface:
 
@@ -11157,9 +11157,9 @@ interface PrivacyKeyPhoneCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyKeyStatusTimestamp" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyKeyStatusTimestamp" |
 
 TypeScript interface:
 
@@ -11186,9 +11186,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueAllowAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueAllowAll" |
 
 TypeScript interface:
 
@@ -11204,9 +11204,9 @@ interface PrivacyValueAllowAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueAllowContacts" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueAllowContacts" |
 
 TypeScript interface:
 
@@ -11222,10 +11222,10 @@ interface PrivacyValueAllowContacts {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueAllowUsers" |
-| `users` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueAllowUsers" |
+| `users` | number[] |  |  |
 
 TypeScript interface:
 
@@ -11242,9 +11242,9 @@ interface PrivacyValueAllowUsers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueDisallowAll" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueDisallowAll" |
 
 TypeScript interface:
 
@@ -11260,9 +11260,9 @@ interface PrivacyValueDisallowAll {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueDisallowContacts" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueDisallowContacts" |
 
 TypeScript interface:
 
@@ -11278,10 +11278,10 @@ interface PrivacyValueDisallowContacts {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "privacyValueDisallowUsers" |
-| `users` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "privacyValueDisallowUsers" |
+| `users` | number[] |  |  |
 
 TypeScript interface:
 
@@ -11303,11 +11303,11 @@ It's an alias for the `ReceivedNotifyMessage` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "receivedNotifyMessage" |
-| `id` | number |  |
-| `flags` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "receivedNotifyMessage" |
+| `id` | number |  |  |
+| `flags` | number |  |  |
 
 TypeScript interface:
 
@@ -11334,10 +11334,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "replyInlineMarkup" |
-| `rows` | [KeyboardButtonRowUnion[]](#keyboardbuttonrowunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "replyInlineMarkup" |
+| `rows` | [KeyboardButtonRowUnion[]](#keyboardbuttonrowunion) |  |  |
 
 TypeScript interface:
 
@@ -11354,12 +11354,12 @@ interface ReplyInlineMarkup {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "replyKeyboardForceReply" |
-| `flags` | number |  |
-| `single_use` | true | Optional |
-| `selective` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "replyKeyboardForceReply" |
+| `flags` | number |  |  |
+| `single_use` | true | 2 | Optional |
+| `selective` | true | 4 | Optional |
 
 TypeScript interface:
 
@@ -11378,11 +11378,11 @@ interface ReplyKeyboardForceReply {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "replyKeyboardHide" |
-| `flags` | number |  |
-| `selective` | true | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "replyKeyboardHide" |
+| `flags` | number |  |  |
+| `selective` | true | 4 | Optional |
 
 TypeScript interface:
 
@@ -11400,14 +11400,14 @@ interface ReplyKeyboardHide {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "replyKeyboardMarkup" |
-| `flags` | number |  |
-| `resize` | true | Optional |
-| `single_use` | true | Optional |
-| `selective` | true | Optional |
-| `rows` | [KeyboardButtonRowUnion[]](#keyboardbuttonrowunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "replyKeyboardMarkup" |
+| `flags` | number |  |  |
+| `resize` | true |  | Optional |
+| `single_use` | true | 2 | Optional |
+| `selective` | true | 4 | Optional |
+| `rows` | [KeyboardButtonRowUnion[]](#keyboardbuttonrowunion) |  |  |
 
 TypeScript interface:
 
@@ -11437,10 +11437,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputReportReasonOther" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputReportReasonOther" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -11457,9 +11457,9 @@ interface InputReportReasonOther {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputReportReasonPornography" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputReportReasonPornography" |
 
 TypeScript interface:
 
@@ -11475,9 +11475,9 @@ interface InputReportReasonPornography {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputReportReasonSpam" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputReportReasonSpam" |
 
 TypeScript interface:
 
@@ -11493,9 +11493,9 @@ interface InputReportReasonSpam {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "inputReportReasonViolence" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "inputReportReasonViolence" |
 
 TypeScript interface:
 
@@ -11526,10 +11526,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textBold" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textBold" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11546,10 +11546,10 @@ interface TextBold {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textConcat" |
-| `texts` | [RichTextUnion[]](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textConcat" |
+| `texts` | [RichTextUnion[]](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11566,11 +11566,11 @@ interface TextConcat {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textEmail" |
-| `text` | [RichTextUnion](#richtextunion) |  |
-| `email` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textEmail" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
+| `email` | string |  |  |
 
 TypeScript interface:
 
@@ -11588,9 +11588,9 @@ interface TextEmail {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textEmpty" |
 
 TypeScript interface:
 
@@ -11606,10 +11606,10 @@ interface TextEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textFixed" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textFixed" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11626,10 +11626,10 @@ interface TextFixed {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textItalic" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textItalic" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11646,10 +11646,10 @@ interface TextItalic {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textPlain" |
-| `text` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textPlain" |
+| `text` | string |  |  |
 
 TypeScript interface:
 
@@ -11666,10 +11666,10 @@ interface TextPlain {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textStrike" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textStrike" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11686,10 +11686,10 @@ interface TextStrike {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textUnderline" |
-| `text` | [RichTextUnion](#richtextunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textUnderline" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
 
@@ -11706,12 +11706,12 @@ interface TextUnderline {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "textUrl" |
-| `text` | [RichTextUnion](#richtextunion) |  |
-| `url` | string |  |
-| `webpage_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "textUrl" |
+| `text` | [RichTextUnion](#richtextunion) |  |  |
+| `url` | string |  |  |
+| `webpage_id` | number |  |  |
 
 TypeScript interface:
 
@@ -11748,9 +11748,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageCancelAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageCancelAction" |
 
 TypeScript interface:
 
@@ -11766,9 +11766,9 @@ interface SendMessageCancelAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageChooseContactAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageChooseContactAction" |
 
 TypeScript interface:
 
@@ -11784,9 +11784,9 @@ interface SendMessageChooseContactAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageGamePlayAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageGamePlayAction" |
 
 TypeScript interface:
 
@@ -11802,9 +11802,9 @@ interface SendMessageGamePlayAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageGeoLocationAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageGeoLocationAction" |
 
 TypeScript interface:
 
@@ -11820,9 +11820,9 @@ interface SendMessageGeoLocationAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageRecordAudioAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageRecordAudioAction" |
 
 TypeScript interface:
 
@@ -11838,9 +11838,9 @@ interface SendMessageRecordAudioAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageRecordRoundAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageRecordRoundAction" |
 
 TypeScript interface:
 
@@ -11856,9 +11856,9 @@ interface SendMessageRecordRoundAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageRecordVideoAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageRecordVideoAction" |
 
 TypeScript interface:
 
@@ -11874,9 +11874,9 @@ interface SendMessageRecordVideoAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageTypingAction" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageTypingAction" |
 
 TypeScript interface:
 
@@ -11892,10 +11892,10 @@ interface SendMessageTypingAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageUploadAudioAction" |
-| `progress` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageUploadAudioAction" |
+| `progress` | number |  |  |
 
 TypeScript interface:
 
@@ -11912,10 +11912,10 @@ interface SendMessageUploadAudioAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageUploadDocumentAction" |
-| `progress` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageUploadDocumentAction" |
+| `progress` | number |  |  |
 
 TypeScript interface:
 
@@ -11932,10 +11932,10 @@ interface SendMessageUploadDocumentAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageUploadPhotoAction" |
-| `progress` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageUploadPhotoAction" |
+| `progress` | number |  |  |
 
 TypeScript interface:
 
@@ -11952,10 +11952,10 @@ interface SendMessageUploadPhotoAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageUploadRoundAction" |
-| `progress` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageUploadRoundAction" |
+| `progress` | number |  |  |
 
 TypeScript interface:
 
@@ -11972,10 +11972,10 @@ interface SendMessageUploadRoundAction {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "sendMessageUploadVideoAction" |
-| `progress` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "sendMessageUploadVideoAction" |
+| `progress` | number |  |  |
 
 TypeScript interface:
 
@@ -11997,12 +11997,12 @@ It's an alias for the `ShippingOption` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "shippingOption" |
-| `id` | string |  |
-| `title` | string |  |
-| `prices` | [LabeledPriceUnion[]](#labeledpriceunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "shippingOption" |
+| `id` | string |  |  |
+| `title` | string |  |  |
+| `prices` | [LabeledPriceUnion[]](#labeledpriceunion) |  |  |
 
 TypeScript interface:
 
@@ -12026,11 +12026,11 @@ It's an alias for the `StickerPack` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "stickerPack" |
-| `emoticon` | string |  |
-| `documents` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "stickerPack" |
+| `emoticon` | string |  |  |
+| `documents` | number[] |  |  |
 
 TypeScript interface:
 
@@ -12053,20 +12053,20 @@ It's an alias for the `StickerSet` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "stickerSet" |
-| `flags` | number |  |
-| `installed` | true | Optional |
-| `archived` | true | Optional |
-| `official` | true | Optional |
-| `masks` | true | Optional |
-| `id` | number |  |
-| `access_hash` | number |  |
-| `title` | string |  |
-| `short_name` | string |  |
-| `count` | number |  |
-| `hash` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "stickerSet" |
+| `flags` | number |  |  |
+| `installed` | true |  | Optional |
+| `archived` | true | 2 | Optional |
+| `official` | true | 4 | Optional |
+| `masks` | true | 8 | Optional |
+| `id` | number |  |  |
+| `access_hash` | number |  |  |
+| `title` | string |  |  |
+| `short_name` | string |  |  |
+| `count` | number |  |  |
+| `hash` | number |  |  |
 
 TypeScript interface:
 
@@ -12100,11 +12100,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "stickerSetCovered" |
-| `set` | [StickerSetUnion](#stickersetunion) |  |
-| `cover` | [DocumentUnion](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "stickerSetCovered" |
+| `set` | [StickerSetUnion](#stickersetunion) |  |  |
+| `cover` | [DocumentUnion](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -12122,11 +12122,11 @@ interface StickerSetCovered {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "stickerSetMultiCovered" |
-| `set` | [StickerSetUnion](#stickersetunion) |  |
-| `covers` | [DocumentUnion[]](#documentunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "stickerSetMultiCovered" |
+| `set` | [StickerSetUnion](#stickersetunion) |  |  |
+| `covers` | [DocumentUnion[]](#documentunion) |  |  |
 
 TypeScript interface:
 
@@ -12159,9 +12159,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileGif" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileGif" |
 
 TypeScript interface:
 
@@ -12177,9 +12177,9 @@ interface StorageFileGif {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileJpeg" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileJpeg" |
 
 TypeScript interface:
 
@@ -12195,9 +12195,9 @@ interface StorageFileJpeg {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileMov" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileMov" |
 
 TypeScript interface:
 
@@ -12213,9 +12213,9 @@ interface StorageFileMov {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileMp3" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileMp3" |
 
 TypeScript interface:
 
@@ -12231,9 +12231,9 @@ interface StorageFileMp3 {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileMp4" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileMp4" |
 
 TypeScript interface:
 
@@ -12249,9 +12249,9 @@ interface StorageFileMp4 {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.filePartial" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.filePartial" |
 
 TypeScript interface:
 
@@ -12267,9 +12267,9 @@ interface StorageFilePartial {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.filePdf" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.filePdf" |
 
 TypeScript interface:
 
@@ -12285,9 +12285,9 @@ interface StorageFilePdf {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.filePng" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.filePng" |
 
 TypeScript interface:
 
@@ -12303,9 +12303,9 @@ interface StorageFilePng {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileUnknown" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileUnknown" |
 
 TypeScript interface:
 
@@ -12321,9 +12321,9 @@ interface StorageFileUnknown {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "storage.fileWebp" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "storage.fileWebp" |
 
 TypeScript interface:
 
@@ -12344,11 +12344,11 @@ It's an alias for the `TopPeer` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeer" |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `rating` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeer" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `rating` | number |  |  |
 
 TypeScript interface:
 
@@ -12377,9 +12377,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryBotsInline" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryBotsInline" |
 
 TypeScript interface:
 
@@ -12395,9 +12395,9 @@ interface TopPeerCategoryBotsInline {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryBotsPM" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryBotsPM" |
 
 TypeScript interface:
 
@@ -12413,9 +12413,9 @@ interface TopPeerCategoryBotsPm {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryChannels" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryChannels" |
 
 TypeScript interface:
 
@@ -12431,9 +12431,9 @@ interface TopPeerCategoryChannels {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryCorrespondents" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryCorrespondents" |
 
 TypeScript interface:
 
@@ -12449,9 +12449,9 @@ interface TopPeerCategoryCorrespondents {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryGroups" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryGroups" |
 
 TypeScript interface:
 
@@ -12467,9 +12467,9 @@ interface TopPeerCategoryGroups {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryPhoneCalls" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryPhoneCalls" |
 
 TypeScript interface:
 
@@ -12490,12 +12490,12 @@ It's an alias for the `TopPeerCategoryPeers` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "topPeerCategoryPeers" |
-| `category` | [TopPeerCategoryUnion](#toppeercategoryunion) |  |
-| `count` | number |  |
-| `peers` | [TopPeerUnion[]](#toppeerunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "topPeerCategoryPeers" |
+| `category` | [TopPeerCategoryUnion](#toppeercategoryunion) |  |  |
+| `count` | number |  |  |
+| `peers` | [TopPeerUnion[]](#toppeerunion) |  |  |
 
 TypeScript interface:
 
@@ -12519,9 +12519,9 @@ It's an alias for the `True` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "true" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "true" |
 
 TypeScript interface:
 
@@ -12607,17 +12607,17 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotCallbackQuery" |
-| `flags` | number |  |
-| `query_id` | number |  |
-| `user_id` | number |  |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `msg_id` | number |  |
-| `chat_instance` | number |  |
-| `data` | number[] | Optional |
-| `game_short_name` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotCallbackQuery" |
+| `flags` | number |  |  |
+| `query_id` | number |  |  |
+| `user_id` | number |  |  |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `msg_id` | number |  |  |
+| `chat_instance` | number |  |  |
+| `data` | number[] |  | Optional |
+| `game_short_name` | string | 2 | Optional |
 
 TypeScript interface:
 
@@ -12641,15 +12641,15 @@ interface UpdateBotCallbackQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotInlineQuery" |
-| `flags` | number |  |
-| `query_id` | number |  |
-| `user_id` | number |  |
-| `query` | string |  |
-| `geo` | [GeoPointUnion](#geopointunion) | Optional |
-| `offset` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotInlineQuery" |
+| `flags` | number |  |  |
+| `query_id` | number |  |  |
+| `user_id` | number |  |  |
+| `query` | string |  |  |
+| `geo` | [GeoPointUnion](#geopointunion) |  | Optional |
+| `offset` | string |  |  |
 
 TypeScript interface:
 
@@ -12671,15 +12671,15 @@ interface UpdateBotInlineQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotInlineSend" |
-| `flags` | number |  |
-| `user_id` | number |  |
-| `query` | string |  |
-| `geo` | [GeoPointUnion](#geopointunion) | Optional |
-| `id` | string |  |
-| `msg_id` | [InputBotInlineMessageIdUnion](#inputbotinlinemessageidunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotInlineSend" |
+| `flags` | number |  |  |
+| `user_id` | number |  |  |
+| `query` | string |  |  |
+| `geo` | [GeoPointUnion](#geopointunion) |  | Optional |
+| `id` | string |  |  |
+| `msg_id` | [InputBotInlineMessageIdUnion](#inputbotinlinemessageidunion) | 2 | Optional |
 
 TypeScript interface:
 
@@ -12701,17 +12701,17 @@ interface UpdateBotInlineSend {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotPrecheckoutQuery" |
-| `flags` | number |  |
-| `query_id` | number |  |
-| `user_id` | number |  |
-| `payload` | number[] |  |
-| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) | Optional |
-| `shipping_option_id` | string | Optional |
-| `currency` | string |  |
-| `total_amount` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotPrecheckoutQuery" |
+| `flags` | number |  |  |
+| `query_id` | number |  |  |
+| `user_id` | number |  |  |
+| `payload` | number[] |  |  |
+| `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
+| `shipping_option_id` | string | 2 | Optional |
+| `currency` | string |  |  |
+| `total_amount` | number |  |  |
 
 TypeScript interface:
 
@@ -12735,13 +12735,13 @@ interface UpdateBotPrecheckoutQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotShippingQuery" |
-| `query_id` | number |  |
-| `user_id` | number |  |
-| `payload` | number[] |  |
-| `shipping_address` | [PostAddressUnion](#postaddressunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotShippingQuery" |
+| `query_id` | number |  |  |
+| `user_id` | number |  |  |
+| `payload` | number[] |  |  |
+| `shipping_address` | [PostAddressUnion](#postaddressunion) |  |  |
 
 TypeScript interface:
 
@@ -12761,10 +12761,10 @@ interface UpdateBotShippingQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotWebhookJSON" |
-| `data` | [DataJsonUnion](#datajsonunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotWebhookJSON" |
+| `data` | [DataJsonUnion](#datajsonunion) |  |  |
 
 TypeScript interface:
 
@@ -12781,12 +12781,12 @@ interface UpdateBotWebhookJson {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateBotWebhookJSONQuery" |
-| `query_id` | number |  |
-| `data` | [DataJsonUnion](#datajsonunion) |  |
-| `timeout` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateBotWebhookJSONQuery" |
+| `query_id` | number |  |  |
+| `data` | [DataJsonUnion](#datajsonunion) |  |  |
+| `timeout` | number |  |  |
 
 TypeScript interface:
 
@@ -12805,10 +12805,10 @@ interface UpdateBotWebhookJsonQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannel" |
-| `channel_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannel" |
+| `channel_id` | number |  |  |
 
 TypeScript interface:
 
@@ -12825,12 +12825,12 @@ interface UpdateChannel {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannelMessageViews" |
-| `channel_id` | number |  |
-| `id` | number |  |
-| `views` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannelMessageViews" |
+| `channel_id` | number |  |  |
+| `id` | number |  |  |
+| `views` | number |  |  |
 
 TypeScript interface:
 
@@ -12849,11 +12849,11 @@ interface UpdateChannelMessageViews {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannelPinnedMessage" |
-| `channel_id` | number |  |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannelPinnedMessage" |
+| `channel_id` | number |  |  |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -12871,11 +12871,11 @@ interface UpdateChannelPinnedMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannelReadMessagesContents" |
-| `channel_id` | number |  |
-| `messages` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannelReadMessagesContents" |
+| `channel_id` | number |  |  |
+| `messages` | number[] |  |  |
 
 TypeScript interface:
 
@@ -12893,12 +12893,12 @@ interface UpdateChannelReadMessagesContents {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannelTooLong" |
-| `flags` | number |  |
-| `channel_id` | number |  |
-| `pts` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannelTooLong" |
+| `flags` | number |  |  |
+| `channel_id` | number |  |  |
+| `pts` | number |  | Optional |
 
 TypeScript interface:
 
@@ -12917,13 +12917,13 @@ interface UpdateChannelTooLong {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChannelWebPage" |
-| `channel_id` | number |  |
-| `webpage` | [WebPageUnion](#webpageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChannelWebPage" |
+| `channel_id` | number |  |  |
+| `webpage` | [WebPageUnion](#webpageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -12943,12 +12943,12 @@ interface UpdateChannelWebPage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatAdmins" |
-| `chat_id` | number |  |
-| `enabled` | boolean |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatAdmins" |
+| `chat_id` | number |  |  |
+| `enabled` | boolean |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -12967,14 +12967,14 @@ interface UpdateChatAdmins {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatParticipantAdd" |
-| `chat_id` | number |  |
-| `user_id` | number |  |
-| `inviter_id` | number |  |
-| `date` | number |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatParticipantAdd" |
+| `chat_id` | number |  |  |
+| `user_id` | number |  |  |
+| `inviter_id` | number |  |  |
+| `date` | number |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -12995,13 +12995,13 @@ interface UpdateChatParticipantAdd {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatParticipantAdmin" |
-| `chat_id` | number |  |
-| `user_id` | number |  |
-| `is_admin` | boolean |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatParticipantAdmin" |
+| `chat_id` | number |  |  |
+| `user_id` | number |  |  |
+| `is_admin` | boolean |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -13021,12 +13021,12 @@ interface UpdateChatParticipantAdmin {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatParticipantDelete" |
-| `chat_id` | number |  |
-| `user_id` | number |  |
-| `version` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatParticipantDelete" |
+| `chat_id` | number |  |  |
+| `user_id` | number |  |  |
+| `version` | number |  |  |
 
 TypeScript interface:
 
@@ -13045,10 +13045,10 @@ interface UpdateChatParticipantDelete {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatParticipants" |
-| `participants` | [ChatParticipantsUnion](#chatparticipantsunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatParticipants" |
+| `participants` | [ChatParticipantsUnion](#chatparticipantsunion) |  |  |
 
 TypeScript interface:
 
@@ -13065,12 +13065,12 @@ interface UpdateChatParticipants {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateChatUserTyping" |
-| `chat_id` | number |  |
-| `user_id` | number |  |
-| `action` | [SendMessageActionUnion](#sendmessageactionunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateChatUserTyping" |
+| `chat_id` | number |  |  |
+| `user_id` | number |  |  |
+| `action` | [SendMessageActionUnion](#sendmessageactionunion) |  |  |
 
 TypeScript interface:
 
@@ -13089,9 +13089,9 @@ interface UpdateChatUserTyping {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateConfig" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateConfig" |
 
 TypeScript interface:
 
@@ -13107,12 +13107,12 @@ interface UpdateConfig {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateContactLink" |
-| `user_id` | number |  |
-| `my_link` | [ContactLinkUnion](#contactlinkunion) |  |
-| `foreign_link` | [ContactLinkUnion](#contactlinkunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateContactLink" |
+| `user_id` | number |  |  |
+| `my_link` | [ContactLinkUnion](#contactlinkunion) |  |  |
+| `foreign_link` | [ContactLinkUnion](#contactlinkunion) |  |  |
 
 TypeScript interface:
 
@@ -13131,11 +13131,11 @@ interface UpdateContactLink {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateContactRegistered" |
-| `user_id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateContactRegistered" |
+| `user_id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -13153,9 +13153,9 @@ interface UpdateContactRegistered {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateContactsReset" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateContactsReset" |
 
 TypeScript interface:
 
@@ -13171,10 +13171,10 @@ interface UpdateContactsReset {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateDcOptions" |
-| `dc_options` | [DcOptionUnion[]](#dcoptionunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateDcOptions" |
+| `dc_options` | [DcOptionUnion[]](#dcoptionunion) |  |  |
 
 TypeScript interface:
 
@@ -13191,13 +13191,13 @@ interface UpdateDcOptions {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateDeleteChannelMessages" |
-| `channel_id` | number |  |
-| `messages` | number[] |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateDeleteChannelMessages" |
+| `channel_id` | number |  |  |
+| `messages` | number[] |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13217,12 +13217,12 @@ interface UpdateDeleteChannelMessages {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateDeleteMessages" |
-| `messages` | number[] |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateDeleteMessages" |
+| `messages` | number[] |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13241,12 +13241,12 @@ interface UpdateDeleteMessages {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateDialogPinned" |
-| `flags` | number |  |
-| `pinned` | true | Optional |
-| `peer` | [PeerUnion](#peerunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateDialogPinned" |
+| `flags` | number |  |  |
+| `pinned` | true |  | Optional |
+| `peer` | [PeerUnion](#peerunion) |  |  |
 
 TypeScript interface:
 
@@ -13265,11 +13265,11 @@ interface UpdateDialogPinned {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateDraftMessage" |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `draft` | [DraftMessageUnion](#draftmessageunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateDraftMessage" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `draft` | [DraftMessageUnion](#draftmessageunion) |  |  |
 
 TypeScript interface:
 
@@ -13287,12 +13287,12 @@ interface UpdateDraftMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateEditChannelMessage" |
-| `message` | [MessageUnion](#messageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateEditChannelMessage" |
+| `message` | [MessageUnion](#messageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13311,12 +13311,12 @@ interface UpdateEditChannelMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateEditMessage" |
-| `message` | [MessageUnion](#messageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateEditMessage" |
+| `message` | [MessageUnion](#messageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13335,10 +13335,10 @@ interface UpdateEditMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateEncryptedChatTyping" |
-| `chat_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateEncryptedChatTyping" |
+| `chat_id` | number |  |  |
 
 TypeScript interface:
 
@@ -13355,12 +13355,12 @@ interface UpdateEncryptedChatTyping {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateEncryptedMessagesRead" |
-| `chat_id` | number |  |
-| `max_date` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateEncryptedMessagesRead" |
+| `chat_id` | number |  |  |
+| `max_date` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -13379,11 +13379,11 @@ interface UpdateEncryptedMessagesRead {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateEncryption" |
-| `chat` | [EncryptedChatUnion](#encryptedchatunion) |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateEncryption" |
+| `chat` | [EncryptedChatUnion](#encryptedchatunion) |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -13401,9 +13401,9 @@ interface UpdateEncryption {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateFavedStickers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateFavedStickers" |
 
 TypeScript interface:
 
@@ -13419,16 +13419,16 @@ interface UpdateFavedStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateInlineBotCallbackQuery" |
-| `flags` | number |  |
-| `query_id` | number |  |
-| `user_id` | number |  |
-| `msg_id` | [InputBotInlineMessageIdUnion](#inputbotinlinemessageidunion) |  |
-| `chat_instance` | number |  |
-| `data` | number[] | Optional |
-| `game_short_name` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateInlineBotCallbackQuery" |
+| `flags` | number |  |  |
+| `query_id` | number |  |  |
+| `user_id` | number |  |  |
+| `msg_id` | [InputBotInlineMessageIdUnion](#inputbotinlinemessageidunion) |  |  |
+| `chat_instance` | number |  |  |
+| `data` | number[] |  | Optional |
+| `game_short_name` | string | 2 | Optional |
 
 TypeScript interface:
 
@@ -13451,10 +13451,10 @@ interface UpdateInlineBotCallbackQuery {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateLangPack" |
-| `difference` | [LangPackDifferenceUnion](#langpackdifferenceunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateLangPack" |
+| `difference` | [LangPackDifferenceUnion](#langpackdifferenceunion) |  |  |
 
 TypeScript interface:
 
@@ -13471,9 +13471,9 @@ interface UpdateLangPack {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateLangPackTooLong" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateLangPackTooLong" |
 
 TypeScript interface:
 
@@ -13489,11 +13489,11 @@ interface UpdateLangPackTooLong {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateMessageID" |
-| `id` | number |  |
-| `random_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateMessageID" |
+| `id` | number |  |  |
+| `random_id` | number |  |  |
 
 TypeScript interface:
 
@@ -13511,12 +13511,12 @@ interface UpdateMessageId {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateNewChannelMessage" |
-| `message` | [MessageUnion](#messageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateNewChannelMessage" |
+| `message` | [MessageUnion](#messageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13535,11 +13535,11 @@ interface UpdateNewChannelMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateNewEncryptedMessage" |
-| `message` | [EncryptedMessageUnion](#encryptedmessageunion) |  |
-| `qts` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateNewEncryptedMessage" |
+| `message` | [EncryptedMessageUnion](#encryptedmessageunion) |  |  |
+| `qts` | number |  |  |
 
 TypeScript interface:
 
@@ -13557,12 +13557,12 @@ interface UpdateNewEncryptedMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateNewMessage" |
-| `message` | [MessageUnion](#messageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateNewMessage" |
+| `message` | [MessageUnion](#messageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13581,10 +13581,10 @@ interface UpdateNewMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateNewStickerSet" |
-| `stickerset` | [MessagesStickerSetUnion](#messagesstickersetunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateNewStickerSet" |
+| `stickerset` | [MessagesStickerSetUnion](#messagesstickersetunion) |  |  |
 
 TypeScript interface:
 
@@ -13601,11 +13601,11 @@ interface UpdateNewStickerSet {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateNotifySettings" |
-| `peer` | [NotifyPeerUnion](#notifypeerunion) |  |
-| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateNotifySettings" |
+| `peer` | [NotifyPeerUnion](#notifypeerunion) |  |  |
+| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |  |
 
 TypeScript interface:
 
@@ -13623,10 +13623,10 @@ interface UpdateNotifySettings {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatePhoneCall" |
-| `phone_call` | [PhoneCallUnion](#phonecallunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatePhoneCall" |
+| `phone_call` | [PhoneCallUnion](#phonecallunion) |  |  |
 
 TypeScript interface:
 
@@ -13643,11 +13643,11 @@ interface UpdatePhoneCall {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatePinnedDialogs" |
-| `flags` | number |  |
-| `order` | [PeerUnion[]](#peerunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatePinnedDialogs" |
+| `flags` | number |  |  |
+| `order` | [PeerUnion[]](#peerunion) |  | Optional |
 
 TypeScript interface:
 
@@ -13665,11 +13665,11 @@ interface UpdatePinnedDialogs {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatePrivacy" |
-| `key` | [PrivacyKeyUnion](#privacykeyunion) |  |
-| `rules` | [PrivacyRuleUnion[]](#privacyruleunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatePrivacy" |
+| `key` | [PrivacyKeyUnion](#privacykeyunion) |  |  |
+| `rules` | [PrivacyRuleUnion[]](#privacyruleunion) |  |  |
 
 TypeScript interface:
 
@@ -13687,9 +13687,9 @@ interface UpdatePrivacy {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatePtsChanged" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatePtsChanged" |
 
 TypeScript interface:
 
@@ -13705,11 +13705,11 @@ interface UpdatePtsChanged {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadChannelInbox" |
-| `channel_id` | number |  |
-| `max_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadChannelInbox" |
+| `channel_id` | number |  |  |
+| `max_id` | number |  |  |
 
 TypeScript interface:
 
@@ -13727,11 +13727,11 @@ interface UpdateReadChannelInbox {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadChannelOutbox" |
-| `channel_id` | number |  |
-| `max_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadChannelOutbox" |
+| `channel_id` | number |  |  |
+| `max_id` | number |  |  |
 
 TypeScript interface:
 
@@ -13749,9 +13749,9 @@ interface UpdateReadChannelOutbox {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadFeaturedStickers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadFeaturedStickers" |
 
 TypeScript interface:
 
@@ -13767,13 +13767,13 @@ interface UpdateReadFeaturedStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadHistoryInbox" |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `max_id` | number |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadHistoryInbox" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `max_id` | number |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13793,13 +13793,13 @@ interface UpdateReadHistoryInbox {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadHistoryOutbox" |
-| `peer` | [PeerUnion](#peerunion) |  |
-| `max_id` | number |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadHistoryOutbox" |
+| `peer` | [PeerUnion](#peerunion) |  |  |
+| `max_id` | number |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13819,12 +13819,12 @@ interface UpdateReadHistoryOutbox {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateReadMessagesContents" |
-| `messages` | number[] |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateReadMessagesContents" |
+| `messages` | number[] |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -13843,9 +13843,9 @@ interface UpdateReadMessagesContents {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateRecentStickers" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateRecentStickers" |
 
 TypeScript interface:
 
@@ -13861,9 +13861,9 @@ interface UpdateRecentStickers {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateSavedGifs" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateSavedGifs" |
 
 TypeScript interface:
 
@@ -13879,16 +13879,16 @@ interface UpdateSavedGifs {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateServiceNotification" |
-| `flags` | number |  |
-| `popup` | true | Optional |
-| `inbox_date` | number | Optional |
-| `type` | string |  |
-| `message` | string |  |
-| `media` | [MessageMediaUnion](#messagemediaunion) |  |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateServiceNotification" |
+| `flags` | number |  |  |
+| `popup` | true |  | Optional |
+| `inbox_date` | number | 2 | Optional |
+| `type` | string |  |  |
+| `message` | string |  |  |
+| `media` | [MessageMediaUnion](#messagemediaunion) |  |  |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) |  |  |
 
 TypeScript interface:
 
@@ -13911,9 +13911,9 @@ interface UpdateServiceNotification {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateStickerSets" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateStickerSets" |
 
 TypeScript interface:
 
@@ -13929,12 +13929,12 @@ interface UpdateStickerSets {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateStickerSetsOrder" |
-| `flags` | number |  |
-| `masks` | true | Optional |
-| `order` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateStickerSetsOrder" |
+| `flags` | number |  |  |
+| `masks` | true |  | Optional |
+| `order` | number[] |  |  |
 
 TypeScript interface:
 
@@ -13953,11 +13953,11 @@ interface UpdateStickerSetsOrder {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserBlocked" |
-| `user_id` | number |  |
-| `blocked` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserBlocked" |
+| `user_id` | number |  |  |
+| `blocked` | boolean |  |  |
 
 TypeScript interface:
 
@@ -13975,13 +13975,13 @@ interface UpdateUserBlocked {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserName" |
-| `user_id` | number |  |
-| `first_name` | string |  |
-| `last_name` | string |  |
-| `username` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserName" |
+| `user_id` | number |  |  |
+| `first_name` | string |  |  |
+| `last_name` | string |  |  |
+| `username` | string |  |  |
 
 TypeScript interface:
 
@@ -14001,11 +14001,11 @@ interface UpdateUserName {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserPhone" |
-| `user_id` | number |  |
-| `phone` | string |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserPhone" |
+| `user_id` | number |  |  |
+| `phone` | string |  |  |
 
 TypeScript interface:
 
@@ -14023,13 +14023,13 @@ interface UpdateUserPhone {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserPhoto" |
-| `user_id` | number |  |
-| `date` | number |  |
-| `photo` | [UserProfilePhotoUnion](#userprofilephotounion) |  |
-| `previous` | boolean |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserPhoto" |
+| `user_id` | number |  |  |
+| `date` | number |  |  |
+| `photo` | [UserProfilePhotoUnion](#userprofilephotounion) |  |  |
+| `previous` | boolean |  |  |
 
 TypeScript interface:
 
@@ -14049,11 +14049,11 @@ interface UpdateUserPhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserStatus" |
-| `user_id` | number |  |
-| `status` | [UserStatusUnion](#userstatusunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserStatus" |
+| `user_id` | number |  |  |
+| `status` | [UserStatusUnion](#userstatusunion) |  |  |
 
 TypeScript interface:
 
@@ -14071,11 +14071,11 @@ interface UpdateUserStatus {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateUserTyping" |
-| `user_id` | number |  |
-| `action` | [SendMessageActionUnion](#sendmessageactionunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateUserTyping" |
+| `user_id` | number |  |  |
+| `action` | [SendMessageActionUnion](#sendmessageactionunion) |  |  |
 
 TypeScript interface:
 
@@ -14093,12 +14093,12 @@ interface UpdateUserTyping {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateWebPage" |
-| `webpage` | [WebPageUnion](#webpageunion) |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateWebPage" |
+| `webpage` | [WebPageUnion](#webpageunion) |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
 
 TypeScript interface:
 
@@ -14129,11 +14129,11 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateShort" |
-| `update` | [UpdateUnion](#updateunion) |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateShort" |
+| `update` | [UpdateUnion](#updateunion) |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
@@ -14151,25 +14151,25 @@ interface UpdateShort {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateShortChatMessage" |
-| `flags` | number |  |
-| `out` | true | Optional |
-| `mentioned` | true | Optional |
-| `media_unread` | true | Optional |
-| `silent` | true | Optional |
-| `id` | number |  |
-| `from_id` | number |  |
-| `chat_id` | number |  |
-| `message` | string |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
-| `date` | number |  |
-| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | Optional |
-| `via_bot_id` | number | Optional |
-| `reply_to_msg_id` | number | Optional |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateShortChatMessage" |
+| `flags` | number |  |  |
+| `out` | true | 2 | Optional |
+| `mentioned` | true | 16 | Optional |
+| `media_unread` | true | 32 | Optional |
+| `silent` | true | 8192 | Optional |
+| `id` | number |  |  |
+| `from_id` | number |  |  |
+| `chat_id` | number |  |  |
+| `message` | string |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
+| `date` | number |  |  |
+| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | 4 | Optional |
+| `via_bot_id` | number | 2048 | Optional |
+| `reply_to_msg_id` | number | 8 | Optional |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 128 | Optional |
 
 TypeScript interface:
 
@@ -14201,24 +14201,24 @@ interface UpdateShortChatMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateShortMessage" |
-| `flags` | number |  |
-| `out` | true | Optional |
-| `mentioned` | true | Optional |
-| `media_unread` | true | Optional |
-| `silent` | true | Optional |
-| `id` | number |  |
-| `user_id` | number |  |
-| `message` | string |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
-| `date` | number |  |
-| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | Optional |
-| `via_bot_id` | number | Optional |
-| `reply_to_msg_id` | number | Optional |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateShortMessage" |
+| `flags` | number |  |  |
+| `out` | true | 2 | Optional |
+| `mentioned` | true | 16 | Optional |
+| `media_unread` | true | 32 | Optional |
+| `silent` | true | 8192 | Optional |
+| `id` | number |  |  |
+| `user_id` | number |  |  |
+| `message` | string |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
+| `date` | number |  |  |
+| `fwd_from` | [MessageFwdHeaderUnion](#messagefwdheaderunion) | 4 | Optional |
+| `via_bot_id` | number | 2048 | Optional |
+| `reply_to_msg_id` | number | 8 | Optional |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 128 | Optional |
 
 TypeScript interface:
 
@@ -14249,17 +14249,17 @@ interface UpdateShortMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updateShortSentMessage" |
-| `flags` | number |  |
-| `out` | true | Optional |
-| `id` | number |  |
-| `pts` | number |  |
-| `pts_count` | number |  |
-| `date` | number |  |
-| `media` | [MessageMediaUnion](#messagemediaunion) | Optional |
-| `entities` | [MessageEntityUnion[]](#messageentityunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updateShortSentMessage" |
+| `flags` | number |  |  |
+| `out` | true | 2 | Optional |
+| `id` | number |  |  |
+| `pts` | number |  |  |
+| `pts_count` | number |  |  |
+| `date` | number |  |  |
+| `media` | [MessageMediaUnion](#messagemediaunion) | 512 | Optional |
+| `entities` | [MessageEntityUnion[]](#messageentityunion) | 128 | Optional |
 
 TypeScript interface:
 
@@ -14283,14 +14283,14 @@ interface UpdateShortSentMessage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates" |
-| `updates` | [UpdateUnion[]](#updateunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `date` | number |  |
-| `seq` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates" |
+| `updates` | [UpdateUnion[]](#updateunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `date` | number |  |  |
+| `seq` | number |  |  |
 
 TypeScript interface:
 
@@ -14311,15 +14311,15 @@ interface Updates {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatesCombined" |
-| `updates` | [UpdateUnion[]](#updateunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `date` | number |  |
-| `seq_start` | number |  |
-| `seq` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatesCombined" |
+| `updates` | [UpdateUnion[]](#updateunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `date` | number |  |  |
+| `seq_start` | number |  |  |
+| `seq` | number |  |  |
 
 TypeScript interface:
 
@@ -14341,9 +14341,9 @@ interface UpdatesCombined {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updatesTooLong" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updatesTooLong" |
 
 TypeScript interface:
 
@@ -14367,17 +14367,17 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.channelDifference" |
-| `flags` | number |  |
-| `final` | true | Optional |
-| `pts` | number |  |
-| `timeout` | number | Optional |
-| `new_messages` | [MessageUnion[]](#messageunion) |  |
-| `other_updates` | [UpdateUnion[]](#updateunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.channelDifference" |
+| `flags` | number |  |  |
+| `final` | true |  | Optional |
+| `pts` | number |  |  |
+| `timeout` | number | 2 | Optional |
+| `new_messages` | [MessageUnion[]](#messageunion) |  |  |
+| `other_updates` | [UpdateUnion[]](#updateunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -14401,13 +14401,13 @@ interface UpdatesChannelDifference {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.channelDifferenceEmpty" |
-| `flags` | number |  |
-| `final` | true | Optional |
-| `pts` | number |  |
-| `timeout` | number | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.channelDifferenceEmpty" |
+| `flags` | number |  |  |
+| `final` | true |  | Optional |
+| `pts` | number |  |  |
+| `timeout` | number | 2 | Optional |
 
 TypeScript interface:
 
@@ -14427,21 +14427,21 @@ interface UpdatesChannelDifferenceEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.channelDifferenceTooLong" |
-| `flags` | number |  |
-| `final` | true | Optional |
-| `pts` | number |  |
-| `timeout` | number | Optional |
-| `top_message` | number |  |
-| `read_inbox_max_id` | number |  |
-| `read_outbox_max_id` | number |  |
-| `unread_count` | number |  |
-| `unread_mentions_count` | number |  |
-| `messages` | [MessageUnion[]](#messageunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.channelDifferenceTooLong" |
+| `flags` | number |  |  |
+| `final` | true |  | Optional |
+| `pts` | number |  |  |
+| `timeout` | number | 2 | Optional |
+| `top_message` | number |  |  |
+| `read_inbox_max_id` | number |  |  |
+| `read_outbox_max_id` | number |  |  |
+| `unread_count` | number |  |  |
+| `unread_mentions_count` | number |  |  |
+| `messages` | [MessageUnion[]](#messageunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
 
@@ -14478,15 +14478,15 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.difference" |
-| `new_messages` | [MessageUnion[]](#messageunion) |  |
-| `new_encrypted_messages` | [EncryptedMessageUnion[]](#encryptedmessageunion) |  |
-| `other_updates` | [UpdateUnion[]](#updateunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
-| `state` | [UpdatesStateUnion](#updatesstateunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.difference" |
+| `new_messages` | [MessageUnion[]](#messageunion) |  |  |
+| `new_encrypted_messages` | [EncryptedMessageUnion[]](#encryptedmessageunion) |  |  |
+| `other_updates` | [UpdateUnion[]](#updateunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
+| `state` | [UpdatesStateUnion](#updatesstateunion) |  |  |
 
 TypeScript interface:
 
@@ -14508,11 +14508,11 @@ interface UpdatesDifference {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.differenceEmpty" |
-| `date` | number |  |
-| `seq` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.differenceEmpty" |
+| `date` | number |  |  |
+| `seq` | number |  |  |
 
 TypeScript interface:
 
@@ -14530,15 +14530,15 @@ interface UpdatesDifferenceEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.differenceSlice" |
-| `new_messages` | [MessageUnion[]](#messageunion) |  |
-| `new_encrypted_messages` | [EncryptedMessageUnion[]](#encryptedmessageunion) |  |
-| `other_updates` | [UpdateUnion[]](#updateunion) |  |
-| `chats` | [ChatUnion[]](#chatunion) |  |
-| `users` | [UserUnion[]](#userunion) |  |
-| `intermediate_state` | [UpdatesStateUnion](#updatesstateunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.differenceSlice" |
+| `new_messages` | [MessageUnion[]](#messageunion) |  |  |
+| `new_encrypted_messages` | [EncryptedMessageUnion[]](#encryptedmessageunion) |  |  |
+| `other_updates` | [UpdateUnion[]](#updateunion) |  |  |
+| `chats` | [ChatUnion[]](#chatunion) |  |  |
+| `users` | [UserUnion[]](#userunion) |  |  |
+| `intermediate_state` | [UpdatesStateUnion](#updatesstateunion) |  |  |
 
 TypeScript interface:
 
@@ -14560,10 +14560,10 @@ interface UpdatesDifferenceSlice {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.differenceTooLong" |
-| `pts` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.differenceTooLong" |
+| `pts` | number |  |  |
 
 TypeScript interface:
 
@@ -14585,14 +14585,14 @@ It's an alias for the `UpdatesState` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "updates.state" |
-| `pts` | number |  |
-| `qts` | number |  |
-| `date` | number |  |
-| `seq` | number |  |
-| `unread_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "updates.state" |
+| `pts` | number |  |  |
+| `qts` | number |  |  |
+| `date` | number |  |  |
+| `seq` | number |  |  |
+| `unread_count` | number |  |  |
 
 TypeScript interface:
 
@@ -14620,10 +14620,10 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "upload.cdnFile" |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "upload.cdnFile" |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -14640,10 +14640,10 @@ interface UploadCdnFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "upload.cdnFileReuploadNeeded" |
-| `request_token` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "upload.cdnFileReuploadNeeded" |
+| `request_token` | number[] |  |  |
 
 TypeScript interface:
 
@@ -14667,12 +14667,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "upload.file" |
-| `type` | [StorageFileTypeUnion](#storagefiletypeunion) |  |
-| `mtime` | number |  |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "upload.file" |
+| `type` | [StorageFileTypeUnion](#storagefiletypeunion) |  |  |
+| `mtime` | number |  |  |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -14691,14 +14691,14 @@ interface UploadFile {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "upload.fileCdnRedirect" |
-| `dc_id` | number |  |
-| `file_token` | number[] |  |
-| `encryption_key` | number[] |  |
-| `encryption_iv` | number[] |  |
-| `cdn_file_hashes` | [CdnFileHashUnion[]](#cdnfilehashunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "upload.fileCdnRedirect" |
+| `dc_id` | number |  |  |
+| `file_token` | number[] |  |  |
+| `encryption_key` | number[] |  |  |
+| `encryption_iv` | number[] |  |  |
+| `cdn_file_hashes` | [CdnFileHashUnion[]](#cdnfilehashunion) |  |  |
 
 TypeScript interface:
 
@@ -14724,14 +14724,14 @@ It's an alias for the `UploadWebFile` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "upload.webFile" |
-| `size` | number |  |
-| `mime_type` | string |  |
-| `file_type` | [StorageFileTypeUnion](#storagefiletypeunion) |  |
-| `mtime` | number |  |
-| `bytes` | number[] |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "upload.webFile" |
+| `size` | number |  |  |
+| `mime_type` | string |  |  |
+| `file_type` | [StorageFileTypeUnion](#storagefiletypeunion) |  |  |
+| `mtime` | number |  |  |
+| `bytes` | number[] |  |  |
 
 TypeScript interface:
 
@@ -14759,33 +14759,33 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "user" |
-| `flags` | number |  |
-| `self` | true | Optional |
-| `contact` | true | Optional |
-| `mutual_contact` | true | Optional |
-| `deleted` | true | Optional |
-| `bot` | true | Optional |
-| `bot_chat_history` | true | Optional |
-| `bot_nochats` | true | Optional |
-| `verified` | true | Optional |
-| `restricted` | true | Optional |
-| `min` | true | Optional |
-| `bot_inline_geo` | true | Optional |
-| `id` | number |  |
-| `access_hash` | number | Optional |
-| `first_name` | string | Optional |
-| `last_name` | string | Optional |
-| `username` | string | Optional |
-| `phone` | string | Optional |
-| `photo` | [UserProfilePhotoUnion](#userprofilephotounion) | Optional |
-| `status` | [UserStatusUnion](#userstatusunion) | Optional |
-| `bot_info_version` | number | Optional |
-| `restriction_reason` | string | Optional |
-| `bot_inline_placeholder` | string | Optional |
-| `lang_code` | string | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "user" |
+| `flags` | number |  |  |
+| `self` | true | 1024 | Optional |
+| `contact` | true | 2048 | Optional |
+| `mutual_contact` | true | 4096 | Optional |
+| `deleted` | true | 8192 | Optional |
+| `bot` | true | 16384 | Optional |
+| `bot_chat_history` | true | 32768 | Optional |
+| `bot_nochats` | true | 65536 | Optional |
+| `verified` | true | 131072 | Optional |
+| `restricted` | true | 262144 | Optional |
+| `min` | true | 1048576 | Optional |
+| `bot_inline_geo` | true | 2097152 | Optional |
+| `id` | number |  |  |
+| `access_hash` | number |  | Optional |
+| `first_name` | string | 2 | Optional |
+| `last_name` | string | 4 | Optional |
+| `username` | string | 8 | Optional |
+| `phone` | string | 16 | Optional |
+| `photo` | [UserProfilePhotoUnion](#userprofilephotounion) | 32 | Optional |
+| `status` | [UserStatusUnion](#userstatusunion) | 64 | Optional |
+| `bot_info_version` | number | 16384 | Optional |
+| `restriction_reason` | string | 262144 | Optional |
+| `bot_inline_placeholder` | string | 524288 | Optional |
+| `lang_code` | string | 4194304 | Optional |
 
 TypeScript interface:
 
@@ -14825,10 +14825,10 @@ interface User {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -14850,20 +14850,20 @@ It's an alias for the `UserFull` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userFull" |
-| `flags` | number |  |
-| `blocked` | true | Optional |
-| `phone_calls_available` | true | Optional |
-| `phone_calls_private` | true | Optional |
-| `user` | [UserUnion](#userunion) |  |
-| `about` | string | Optional |
-| `link` | [ContactsLinkUnion](#contactslinkunion) |  |
-| `profile_photo` | [PhotoUnion](#photounion) | Optional |
-| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |
-| `bot_info` | [BotInfoUnion](#botinfounion) | Optional |
-| `common_chats_count` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userFull" |
+| `flags` | number |  |  |
+| `blocked` | true |  | Optional |
+| `phone_calls_available` | true | 16 | Optional |
+| `phone_calls_private` | true | 32 | Optional |
+| `user` | [UserUnion](#userunion) |  |  |
+| `about` | string | 2 | Optional |
+| `link` | [ContactsLinkUnion](#contactslinkunion) |  |  |
+| `profile_photo` | [PhotoUnion](#photounion) | 4 | Optional |
+| `notify_settings` | [PeerNotifySettingsUnion](#peernotifysettingsunion) |  |  |
+| `bot_info` | [BotInfoUnion](#botinfounion) | 8 | Optional |
+| `common_chats_count` | number |  |  |
 
 TypeScript interface:
 
@@ -14897,12 +14897,12 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userProfilePhoto" |
-| `photo_id` | number |  |
-| `photo_small` | [FileLocationUnion](#filelocationunion) |  |
-| `photo_big` | [FileLocationUnion](#filelocationunion) |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userProfilePhoto" |
+| `photo_id` | number |  |  |
+| `photo_small` | [FileLocationUnion](#filelocationunion) |  |  |
+| `photo_big` | [FileLocationUnion](#filelocationunion) |  |  |
 
 TypeScript interface:
 
@@ -14921,9 +14921,9 @@ interface UserProfilePhoto {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userProfilePhotoEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userProfilePhotoEmpty" |
 
 TypeScript interface:
 
@@ -14950,9 +14950,9 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusEmpty" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusEmpty" |
 
 TypeScript interface:
 
@@ -14968,9 +14968,9 @@ interface UserStatusEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusLastMonth" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusLastMonth" |
 
 TypeScript interface:
 
@@ -14986,9 +14986,9 @@ interface UserStatusLastMonth {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusLastWeek" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusLastWeek" |
 
 TypeScript interface:
 
@@ -15004,10 +15004,10 @@ interface UserStatusLastWeek {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusOffline" |
-| `was_online` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusOffline" |
+| `was_online` | number |  |  |
 
 TypeScript interface:
 
@@ -15024,10 +15024,10 @@ interface UserStatusOffline {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusOnline" |
-| `expires` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusOnline" |
+| `expires` | number |  |  |
 
 TypeScript interface:
 
@@ -15044,9 +15044,9 @@ interface UserStatusOnline {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "userStatusRecently" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "userStatusRecently" |
 
 TypeScript interface:
 
@@ -15069,13 +15069,13 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "wallPaper" |
-| `id` | number |  |
-| `title` | string |  |
-| `sizes` | [PhotoSizeUnion[]](#photosizeunion) |  |
-| `color` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "wallPaper" |
+| `id` | number |  |  |
+| `title` | string |  |  |
+| `sizes` | [PhotoSizeUnion[]](#photosizeunion) |  |  |
+| `color` | number |  |  |
 
 TypeScript interface:
 
@@ -15095,13 +15095,13 @@ interface WallPaper {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "wallPaperSolid" |
-| `id` | number |  |
-| `title` | string |  |
-| `bg_color` | number |  |
-| `color` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "wallPaperSolid" |
+| `id` | number |  |  |
+| `title` | string |  |  |
+| `bg_color` | number |  |  |
+| `color` | number |  |  |
 
 TypeScript interface:
 
@@ -15126,15 +15126,15 @@ It's an alias for the `WebDocument` type.
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "webDocument" |
-| `url` | string |  |
-| `access_hash` | number |  |
-| `size` | number |  |
-| `mime_type` | string |  |
-| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |
-| `dc_id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "webDocument" |
+| `url` | string |  |  |
+| `access_hash` | number |  |  |
+| `size` | number |  |  |
+| `mime_type` | string |  |  |
+| `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |  |
+| `dc_id` | number |  |  |
 
 TypeScript interface:
 
@@ -15165,27 +15165,27 @@ Represents one of the following types:
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "webPage" |
-| `flags` | number |  |
-| `id` | number |  |
-| `url` | string |  |
-| `display_url` | string |  |
-| `hash` | number |  |
-| `type` | string | Optional |
-| `site_name` | string | Optional |
-| `title` | string | Optional |
-| `description` | string | Optional |
-| `photo` | [PhotoUnion](#photounion) | Optional |
-| `embed_url` | string | Optional |
-| `embed_type` | string | Optional |
-| `embed_width` | number | Optional |
-| `embed_height` | number | Optional |
-| `duration` | number | Optional |
-| `author` | string | Optional |
-| `document` | [DocumentUnion](#documentunion) | Optional |
-| `cached_page` | [PageUnion](#pageunion) | Optional |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "webPage" |
+| `flags` | number |  |  |
+| `id` | number |  |  |
+| `url` | string |  |  |
+| `display_url` | string |  |  |
+| `hash` | number |  |  |
+| `type` | string |  | Optional |
+| `site_name` | string | 2 | Optional |
+| `title` | string | 4 | Optional |
+| `description` | string | 8 | Optional |
+| `photo` | [PhotoUnion](#photounion) | 16 | Optional |
+| `embed_url` | string | 32 | Optional |
+| `embed_type` | string | 32 | Optional |
+| `embed_width` | number | 64 | Optional |
+| `embed_height` | number | 64 | Optional |
+| `duration` | number | 128 | Optional |
+| `author` | string | 256 | Optional |
+| `document` | [DocumentUnion](#documentunion) | 512 | Optional |
+| `cached_page` | [PageUnion](#pageunion) | 1024 | Optional |
 
 TypeScript interface:
 
@@ -15219,10 +15219,10 @@ interface WebPage {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "webPageEmpty" |
-| `id` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "webPageEmpty" |
+| `id` | number |  |  |
 
 TypeScript interface:
 
@@ -15239,9 +15239,9 @@ interface WebPageEmpty {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "webPageNotModified" |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "webPageNotModified" |
 
 TypeScript interface:
 
@@ -15257,11 +15257,11 @@ interface WebPageNotModified {
 
 **Properties:**
 
-| Name | Type | Note |
-| --- | --- | --- |
-| `_` | string | Value: "webPagePending" |
-| `id` | number |  |
-| `date` | number |  |
+| Name | Type | Flag | Note |
+| --- | --- | --- | --- |
+| `_` | string |  | Value: "webPagePending" |
+| `id` | number |  |  |
+| `date` | number |  |  |
 
 TypeScript interface:
 
