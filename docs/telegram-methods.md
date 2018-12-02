@@ -454,7 +454,7 @@ airgram.client.account.getAuthorizations().then((result: AccountAuthorizationsUn
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputNotifyPeerUnion |  |
+| `peer` | [InputNotifyPeerUnion](/docs/telegram-types.md#inputnotifypeerunion) |  |
 
 TypeScript interface:
 
@@ -523,7 +523,7 @@ airgram.client.account.getPasswordSettings(params).then((result: AccountPassword
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `key` | InputPrivacyKeyUnion |  |
+| `key` | [InputPrivacyKeyUnion](/docs/telegram-types.md#inputprivacykeyunion) |  |
 
 TypeScript interface:
 
@@ -624,8 +624,8 @@ airgram.client.account.registerDevice(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPeerUnion |  |
-| `reason` | ReportReasonUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
+| `reason` | [ReportReasonUnion](/docs/telegram-types.md#reportreasonunion) |  |
 
 TypeScript interface:
 
@@ -763,7 +763,7 @@ airgram.client.account.sendConfirmPhoneCode(params).then((result: AuthSentCodeUn
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `ttl` | AccountDaysTtlUnion |  |
+| `ttl` | [AccountDaysTtlUnion](/docs/telegram-types.md#accountdaysttlunion) |  |
 
 TypeScript interface:
 
@@ -791,8 +791,8 @@ airgram.client.account.setAccountTTL(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `key` | InputPrivacyKeyUnion |  |
-| `rules` | InputPrivacyRuleUnion[] |  |
+| `key` | [InputPrivacyKeyUnion](/docs/telegram-types.md#inputprivacykeyunion) |  |
+| `rules` | [InputPrivacyRuleUnion](/docs/telegram-types.md#inputprivacyruleunion)[] |  |
 
 TypeScript interface:
 
@@ -879,8 +879,8 @@ airgram.client.account.updateDeviceLocked(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputNotifyPeerUnion |  |
-| `settings` | InputPeerNotifySettingsUnion |  |
+| `peer` | [InputNotifyPeerUnion](/docs/telegram-types.md#inputnotifypeerunion) |  |
+| `settings` | [InputPeerNotifySettingsUnion](/docs/telegram-types.md#inputpeernotifysettingsunion) |  |
 
 TypeScript interface:
 
@@ -910,14 +910,14 @@ airgram.client.account.updateNotifySettings(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `current_password_hash` | number[] |  |
-| `new_settings` | AccountPasswordInputSettingsUnion |  |
+| `new_settings` | [AccountPasswordSettingsUnion](/docs/telegram-types.md#accountpasswordsettingsunion) |  |
 
 TypeScript interface:
 
 ```typescript
 interface UpdatePasswordSettingsParams {
   current_password_hash: number[],
-  new_settings: AccountPasswordInputSettingsUnion
+  new_settings: AccountPasswordSettingsUnion
 }
 ```
 
@@ -1516,7 +1516,7 @@ airgram.client.auth.signUp(params).then((result: AuthAuthorizationUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `data` | DataJsonUnion |  |
+| `data` | [DataJsonUnion](/docs/telegram-types.md#datajsonunion) |  |
 | `query_id` | number |  |
 
 TypeScript interface:
@@ -1547,7 +1547,7 @@ airgram.client.bots.answerWebhookJSONQuery(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `custom_method` | string |  |
-| `params` | DataJsonUnion |  |
+| `params` | [DataJsonUnion](/docs/telegram-types.md#datajsonunion) |  |
 
 TypeScript interface:
 
@@ -1583,7 +1583,7 @@ airgram.client.bots.sendCustomRequest(params).then((result: DataJsonUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `username` | string |  |
 
 TypeScript interface:
@@ -1649,7 +1649,7 @@ airgram.client.channels.createChannel(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -1677,7 +1677,7 @@ airgram.client.channels.deleteChannel(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `id` | number[] |  |
 
 TypeScript interface:
@@ -1707,8 +1707,8 @@ airgram.client.channels.deleteMessages(params).then((result: MessagesAffectedMes
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `user_id` | InputUserUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -1738,7 +1738,7 @@ airgram.client.channels.deleteUserHistory(params).then((result: MessagesAffected
 | Name | Type | Note |
 | --- | --- | --- |
 | `about` | string |  |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -1767,9 +1767,9 @@ airgram.client.channels.editAbout(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `admin_rights` | ChannelAdminRightsUnion |  |
-| `channel` | InputChannelUnion |  |
-| `user_id` | InputUserUnion |  |
+| `admin_rights` | [ChannelAdminRightsUnion](/docs/telegram-types.md#channeladminrightsunion) |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -1799,9 +1799,9 @@ airgram.client.channels.editAdmin(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `banned_rights` | ChannelBannedRightsUnion |  |
-| `channel` | InputChannelUnion |  |
-| `user_id` | InputUserUnion |  |
+| `banned_rights` | [ChannelBannedRightsUnion](/docs/telegram-types.md#channelbannedrightsunion) |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -1831,8 +1831,8 @@ airgram.client.channels.editBanned(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `photo` | InputChatPhotoUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `photo` | [InputChatPhotoUnion](/docs/telegram-types.md#inputchatphotounion) |  |
 
 TypeScript interface:
 
@@ -1861,7 +1861,7 @@ airgram.client.channels.editPhoto(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `title` | string |  |
 
 TypeScript interface:
@@ -1891,7 +1891,7 @@ airgram.client.channels.editTitle(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -1919,7 +1919,7 @@ airgram.client.channels.exportInvite(params).then((result: ExportedChatInviteUni
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `id` | number |  |
 
 TypeScript interface:
@@ -1949,14 +1949,14 @@ airgram.client.channels.exportMessageLink(params).then((result: ExportedMessageL
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `flags` | number |  |
 | `limit` | number |  |
 | `max_id` | number |  |
 | `min_id` | number |  |
 | `q` | string |  |
-| `admins` | InputUserUnion[] | Optional |
-| `events_filter` | ChannelAdminLogEventsFilterUnion | Optional |
+| `admins` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] | Optional |
+| `events_filter` | [ChannelAdminLogEventsFilterUnion](/docs/telegram-types.md#channeladminlogeventsfilterunion) | Optional |
 
 TypeScript interface:
 
@@ -2004,7 +2004,7 @@ airgram.client.channels.getAdminedPublicChannels().then((result: MessagesChatsUn
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputChannelUnion[] |  |
+| `id` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion)[] |  |
 
 TypeScript interface:
 
@@ -2032,7 +2032,7 @@ airgram.client.channels.getChannels(params).then((result: MessagesChatsUnion) =>
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -2060,7 +2060,7 @@ airgram.client.channels.getFullChannel(params).then((result: MessagesChatFullUni
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `id` | number[] |  |
 
 TypeScript interface:
@@ -2090,8 +2090,8 @@ airgram.client.channels.getMessages(params).then((result: MessagesMessagesUnion)
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `user_id` | InputUserUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -2120,8 +2120,8 @@ airgram.client.channels.getParticipant(params).then((result: ChannelsChannelPart
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `filter` | ChannelParticipantsFilterUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `filter` | [ChannelParticipantsFilterUnion](/docs/telegram-types.md#channelparticipantsfilterunion) |  |
 | `limit` | number |  |
 | `offset` | number |  |
 
@@ -2154,8 +2154,8 @@ airgram.client.channels.getParticipants(params).then((result: ChannelsChannelPar
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `users` | InputUserUnion[] |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `users` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] |  |
 
 TypeScript interface:
 
@@ -2184,7 +2184,7 @@ airgram.client.channels.inviteToChannel(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -2212,7 +2212,7 @@ airgram.client.channels.joinChannel(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 
 TypeScript interface:
 
@@ -2240,7 +2240,7 @@ airgram.client.channels.leaveChannel(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `max_id` | number |  |
 
 TypeScript interface:
@@ -2270,7 +2270,7 @@ airgram.client.channels.readHistory(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `id` | number[] |  |
 
 TypeScript interface:
@@ -2300,9 +2300,9 @@ airgram.client.channels.readMessageContents(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `id` | number[] |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -2332,8 +2332,8 @@ airgram.client.channels.reportSpam(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `stickerset` | InputStickerSetUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `stickerset` | [InputStickerSetUnion](/docs/telegram-types.md#inputstickersetunion) |  |
 
 TypeScript interface:
 
@@ -2362,7 +2362,7 @@ airgram.client.channels.setStickers(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `enabled` | boolean |  |
 
 TypeScript interface:
@@ -2392,7 +2392,7 @@ airgram.client.channels.toggleInvites(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `enabled` | boolean |  |
 
 TypeScript interface:
@@ -2422,7 +2422,7 @@ airgram.client.channels.toggleSignatures(params).then((result: UpdatesUnion) => 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `flags` | number |  |
 | `id` | number |  |
 | `silent` | true | Optional |
@@ -2456,7 +2456,7 @@ airgram.client.channels.updatePinnedMessage(params).then((result: UpdatesUnion) 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
 | `username` | string |  |
 
 TypeScript interface:
@@ -2493,7 +2493,7 @@ airgram.client.channels.updateUsername(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -2521,7 +2521,7 @@ airgram.client.contacts.block(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -2549,7 +2549,7 @@ airgram.client.contacts.deleteContact(params).then((result: ContactsLinkUnion) =
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion[] |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] |  |
 
 TypeScript interface:
 
@@ -2735,7 +2735,7 @@ airgram.client.contacts.importCard(params).then((result: UserUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `contacts` | InputContactUnion[] |  |
+| `contacts` | [InputContactUnion](/docs/telegram-types.md#inputcontactunion)[] |  |
 
 TypeScript interface:
 
@@ -2776,8 +2776,8 @@ airgram.client.contacts.resetSaved().then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `category` | TopPeerCategoryUnion |  |
-| `peer` | InputPeerUnion |  |
+| `category` | [TopPeerCategoryUnion](/docs/telegram-types.md#toppeercategoryunion) |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -2864,7 +2864,7 @@ airgram.client.contacts.search(params).then((result: ContactsFoundUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -3018,7 +3018,7 @@ airgram.client.help.getTermsOfService().then((result: HelpTermsOfServiceUnion) =
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `events` | InputAppEventUnion[] |  |
+| `events` | [InputAppEventUnion](/docs/telegram-types.md#inputappeventunion)[] |  |
 
 TypeScript interface:
 
@@ -3191,7 +3191,7 @@ airgram.client.langpack.getStrings(params).then((result: LangPackStringUnion[]) 
 | --- | --- | --- |
 | `g_b` | number[] |  |
 | `key_fingerprint` | number |  |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 
 TypeScript interface:
 
@@ -3223,7 +3223,7 @@ airgram.client.messages.acceptEncryption(params).then((result: EncryptedChatUnio
 | --- | --- | --- |
 | `chat_id` | number |  |
 | `fwd_limit` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -3312,7 +3312,7 @@ airgram.client.messages.clearRecentStickers(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `title` | string |  |
-| `users` | InputUserUnion[] |  |
+| `users` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] |  |
 
 TypeScript interface:
 
@@ -3342,7 +3342,7 @@ airgram.client.messages.createChat(params).then((result: UpdatesUnion) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `chat_id` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -3373,7 +3373,7 @@ airgram.client.messages.deleteChatUser(params).then((result: UpdatesUnion) => {
 | --- | --- | --- |
 | `flags` | number |  |
 | `max_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `just_clear` | true | Optional |
 
 TypeScript interface:
@@ -3467,7 +3467,7 @@ airgram.client.messages.discardEncryption(params).then((result: boolean) => {
 | --- | --- | --- |
 | `chat_id` | number |  |
 | `is_admin` | boolean |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -3498,7 +3498,7 @@ airgram.client.messages.editChatAdmin(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `chat_id` | number |  |
-| `photo` | InputChatPhotoUnion |  |
+| `photo` | [InputChatPhotoUnion](/docs/telegram-types.md#inputchatphotounion) |  |
 
 TypeScript interface:
 
@@ -3558,11 +3558,11 @@ airgram.client.messages.editChatTitle(params).then((result: UpdatesUnion) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `id` | InputBotInlineMessageIdUnion |  |
-| `entities` | MessageEntityUnion[] | Optional |
+| `id` | [InputBotInlineMessageIdUnion](/docs/telegram-types.md#inputbotinlinemessageidunion) |  |
+| `entities` | [MessageEntityUnion](/docs/telegram-types.md#messageentityunion)[] | Optional |
 | `message` | string | Optional |
 | `no_webpage` | true | Optional |
-| `reply_markup` | ReplyMarkupUnion | Optional |
+| `reply_markup` | [ReplyMarkupUnion](/docs/telegram-types.md#replymarkupunion) | Optional |
 
 TypeScript interface:
 
@@ -3597,11 +3597,11 @@ airgram.client.messages.editInlineBotMessage(params).then((result: boolean) => {
 | --- | --- | --- |
 | `flags` | number |  |
 | `id` | number |  |
-| `peer` | InputPeerUnion |  |
-| `entities` | MessageEntityUnion[] | Optional |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
+| `entities` | [MessageEntityUnion](/docs/telegram-types.md#messageentityunion)[] | Optional |
 | `message` | string | Optional |
 | `no_webpage` | true | Optional |
-| `reply_markup` | ReplyMarkupUnion | Optional |
+| `reply_markup` | [ReplyMarkupUnion](/docs/telegram-types.md#replymarkupunion) | Optional |
 
 TypeScript interface:
 
@@ -3663,7 +3663,7 @@ airgram.client.messages.exportChatInvite(params).then((result: ExportedChatInvit
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputDocumentUnion |  |
+| `id` | [InputDocumentUnion](/docs/telegram-types.md#inputdocumentunion) |  |
 | `unfave` | boolean |  |
 
 TypeScript interface:
@@ -3694,7 +3694,7 @@ airgram.client.messages.faveSticker(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `random_id` | number |  |
 
 TypeScript interface:
@@ -3726,10 +3726,10 @@ airgram.client.messages.forwardMessage(params).then((result: UpdatesUnion) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `from_peer` | InputPeerUnion |  |
+| `from_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `id` | number[] |  |
 | `random_id` | number[] |  |
-| `to_peer` | InputPeerUnion |  |
+| `to_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `background` | true | Optional |
 | `silent` | true | Optional |
 | `with_my_score` | true | Optional |
@@ -3870,7 +3870,7 @@ airgram.client.messages.getArchivedStickers(params).then((result: MessagesArchiv
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `media` | InputStickeredMediaUnion |  |
+| `media` | [InputStickeredMediaUnion](/docs/telegram-types.md#inputstickeredmediaunion) |  |
 
 TypeScript interface:
 
@@ -3900,7 +3900,7 @@ airgram.client.messages.getAttachedStickers(params).then((result: StickerSetCove
 | --- | --- | --- |
 | `flags` | number |  |
 | `msg_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `data` | number[] | Optional |
 | `game` | true | Optional |
 
@@ -3964,7 +3964,7 @@ airgram.client.messages.getChats(params).then((result: MessagesChatsUnion) => {
 | --- | --- | --- |
 | `limit` | number |  |
 | `max_id` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -4028,7 +4028,7 @@ airgram.client.messages.getDhConfig(params).then((result: MessagesDhConfigUnion)
 | `limit` | number |  |
 | `offset_date` | number |  |
 | `offset_id` | number |  |
-| `offset_peer` | InputPeerUnion |  |
+| `offset_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `exclude_pinned` | true | Optional |
 
 TypeScript interface:
@@ -4179,8 +4179,8 @@ airgram.client.messages.getFullChat(params).then((result: MessagesChatFullUnion)
 | Name | Type | Note |
 | --- | --- | --- |
 | `id` | number |  |
-| `peer` | InputPeerUnion |  |
-| `user_id` | InputUserUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -4216,7 +4216,7 @@ airgram.client.messages.getGameHighScores(params).then((result: MessagesHighScor
 | `min_id` | number |  |
 | `offset_date` | number |  |
 | `offset_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4250,12 +4250,12 @@ airgram.client.messages.getHistory(params).then((result: MessagesMessagesUnion) 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `bot` | InputUserUnion |  |
+| `bot` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 | `flags` | number |  |
 | `offset` | string |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `query` | string |  |
-| `geo_point` | InputGeoPointUnion | Optional |
+| `geo_point` | [InputGeoPointUnion](/docs/telegram-types.md#inputgeopointunion) | Optional |
 
 TypeScript interface:
 
@@ -4288,8 +4288,8 @@ airgram.client.messages.getInlineBotResults(params).then((result: MessagesBotRes
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputBotInlineMessageIdUnion |  |
-| `user_id` | InputUserUnion |  |
+| `id` | [InputBotInlineMessageIdUnion](/docs/telegram-types.md#inputbotinlinemessageidunion) |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -4347,7 +4347,7 @@ airgram.client.messages.getMaskStickers(params).then((result: MessagesAllSticker
 | Name | Type | Note |
 | --- | --- | --- |
 | `id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4406,7 +4406,7 @@ airgram.client.messages.getMessages(params).then((result: MessagesMessagesUnion)
 | --- | --- | --- |
 | `id` | number[] |  |
 | `increment` | boolean |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4436,7 +4436,7 @@ airgram.client.messages.getMessagesViews(params).then((result: number[]) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peers` | InputPeerUnion[] |  |
+| `peers` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion)[] |  |
 
 TypeScript interface:
 
@@ -4464,7 +4464,7 @@ airgram.client.messages.getPeerDialogs(params).then((result: MessagesPeerDialogs
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4565,7 +4565,7 @@ airgram.client.messages.getSavedGifs(params).then((result: MessagesSavedGifsUnio
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `stickerset` | InputStickerSetUnion |  |
+| `stickerset` | [InputStickerSetUnion](/docs/telegram-types.md#inputstickersetunion) |  |
 
 TypeScript interface:
 
@@ -4598,7 +4598,7 @@ airgram.client.messages.getStickerSet(params).then((result: MessagesStickerSetUn
 | `max_id` | number |  |
 | `min_id` | number |  |
 | `offset_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4689,7 +4689,7 @@ airgram.client.messages.getWebPagePreview(params).then((result: MessageMediaUnio
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4746,7 +4746,7 @@ airgram.client.messages.importChatInvite(params).then((result: UpdatesUnion) => 
 | Name | Type | Note |
 | --- | --- | --- |
 | `archived` | boolean |  |
-| `stickerset` | InputStickerSetUnion |  |
+| `stickerset` | [InputStickerSetUnion](/docs/telegram-types.md#inputstickersetunion) |  |
 
 TypeScript interface:
 
@@ -4804,7 +4804,7 @@ airgram.client.messages.migrateChat(params).then((result: UpdatesUnion) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `max_date` | number |  |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 
 TypeScript interface:
 
@@ -4862,7 +4862,7 @@ airgram.client.messages.readFeaturedStickers(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `max_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -4976,7 +4976,7 @@ airgram.client.messages.receivedQueue(params).then((result: number[]) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `order` | InputPeerUnion[] |  |
+| `order` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion)[] |  |
 | `force` | true | Optional |
 
 TypeScript interface:
@@ -5039,7 +5039,7 @@ airgram.client.messages.reorderStickerSets(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 
 TypeScript interface:
 
@@ -5067,7 +5067,7 @@ airgram.client.messages.reportEncryptedSpam(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -5097,7 +5097,7 @@ airgram.client.messages.reportSpam(params).then((result: boolean) => {
 | --- | --- | --- |
 | `g_a` | number[] |  |
 | `random_id` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -5129,8 +5129,8 @@ airgram.client.messages.requestEncryption(params).then((result: EncryptedChatUni
 | --- | --- | --- |
 | `flags` | number |  |
 | `message` | string |  |
-| `peer` | InputPeerUnion |  |
-| `entities` | MessageEntityUnion[] | Optional |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
+| `entities` | [MessageEntityUnion](/docs/telegram-types.md#messageentityunion)[] | Optional |
 | `no_webpage` | true | Optional |
 | `reply_to_msg_id` | number | Optional |
 
@@ -5165,7 +5165,7 @@ airgram.client.messages.saveDraft(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputDocumentUnion |  |
+| `id` | [InputDocumentUnion](/docs/telegram-types.md#inputdocumentunion) |  |
 | `unsave` | boolean |  |
 
 TypeScript interface:
@@ -5196,7 +5196,7 @@ airgram.client.messages.saveGif(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `id` | InputDocumentUnion |  |
+| `id` | [InputDocumentUnion](/docs/telegram-types.md#inputdocumentunion) |  |
 | `unsave` | boolean |  |
 | `attached` | true | Optional |
 
@@ -5230,7 +5230,7 @@ airgram.client.messages.saveRecentSticker(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `add_offset` | number |  |
-| `filter` | MessagesFilterUnion |  |
+| `filter` | [MessagesFilterUnion](/docs/telegram-types.md#messagesfilterunion) |  |
 | `flags` | number |  |
 | `limit` | number |  |
 | `max_date` | number |  |
@@ -5238,9 +5238,9 @@ airgram.client.messages.saveRecentSticker(params).then((result: boolean) => {
 | `min_date` | number |  |
 | `min_id` | number |  |
 | `offset_id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `q` | string |  |
-| `from_id` | InputUserUnion | Optional |
+| `from_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) | Optional |
 
 TypeScript interface:
 
@@ -5312,7 +5312,7 @@ airgram.client.messages.searchGifs(params).then((result: MessagesFoundGifsUnion)
 | `limit` | number |  |
 | `offset_date` | number |  |
 | `offset_id` | number |  |
-| `offset_peer` | InputPeerUnion |  |
+| `offset_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `q` | string |  |
 
 TypeScript interface:
@@ -5346,7 +5346,7 @@ airgram.client.messages.searchGlobal(params).then((result: MessagesMessagesUnion
 | Name | Type | Note |
 | --- | --- | --- |
 | `data` | number[] |  |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 | `random_id` | number |  |
 
 TypeScript interface:
@@ -5378,8 +5378,8 @@ airgram.client.messages.sendEncrypted(params).then((result: MessagesSentEncrypte
 | Name | Type | Note |
 | --- | --- | --- |
 | `data` | number[] |  |
-| `file` | InputEncryptedFileUnion |  |
-| `peer` | InputEncryptedChatUnion |  |
+| `file` | [InputEncryptedFileUnion](/docs/telegram-types.md#inputencryptedfileunion) |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 | `random_id` | number |  |
 
 TypeScript interface:
@@ -5412,7 +5412,7 @@ airgram.client.messages.sendEncryptedFile(params).then((result: MessagesSentEncr
 | Name | Type | Note |
 | --- | --- | --- |
 | `data` | number[] |  |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 | `random_id` | number |  |
 
 TypeScript interface:
@@ -5445,7 +5445,7 @@ airgram.client.messages.sendEncryptedService(params).then((result: MessagesSentE
 | --- | --- | --- |
 | `flags` | number |  |
 | `id` | string |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `query_id` | number |  |
 | `random_id` | number |  |
 | `background` | true | Optional |
@@ -5488,12 +5488,12 @@ airgram.client.messages.sendInlineBotResult(params).then((result: UpdatesUnion) 
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `media` | InputMediaUnion |  |
-| `peer` | InputPeerUnion |  |
+| `media` | [InputMediaUnion](/docs/telegram-types.md#inputmediaunion) |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `random_id` | number |  |
 | `background` | true | Optional |
 | `clear_draft` | true | Optional |
-| `reply_markup` | ReplyMarkupUnion | Optional |
+| `reply_markup` | [ReplyMarkupUnion](/docs/telegram-types.md#replymarkupunion) | Optional |
 | `reply_to_msg_id` | number | Optional |
 | `silent` | true | Optional |
 
@@ -5533,13 +5533,13 @@ airgram.client.messages.sendMedia(params).then((result: UpdatesUnion) => {
 | --- | --- | --- |
 | `flags` | number |  |
 | `message` | string |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `random_id` | number |  |
 | `background` | true | Optional |
 | `clear_draft` | true | Optional |
-| `entities` | MessageEntityUnion[] | Optional |
+| `entities` | [MessageEntityUnion](/docs/telegram-types.md#messageentityunion)[] | Optional |
 | `no_webpage` | true | Optional |
-| `reply_markup` | ReplyMarkupUnion | Optional |
+| `reply_markup` | [ReplyMarkupUnion](/docs/telegram-types.md#replymarkupunion) | Optional |
 | `reply_to_msg_id` | number | Optional |
 | `silent` | true | Optional |
 
@@ -5579,7 +5579,7 @@ airgram.client.messages.sendMessage(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `random_id` | number |  |
 | `reply_to_msg_id` | number |  |
 
@@ -5686,7 +5686,7 @@ airgram.client.messages.setBotPrecheckoutResults(params).then((result: boolean) 
 | `flags` | number |  |
 | `query_id` | number |  |
 | `error` | string | Optional |
-| `shipping_options` | ShippingOptionUnion[] | Optional |
+| `shipping_options` | [ShippingOptionUnion](/docs/telegram-types.md#shippingoptionunion)[] | Optional |
 
 TypeScript interface:
 
@@ -5717,7 +5717,7 @@ airgram.client.messages.setBotShippingResults(params).then((result: boolean) => 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputEncryptedChatUnion |  |
+| `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |
 | `typing` | boolean |  |
 
 TypeScript interface:
@@ -5749,9 +5749,9 @@ airgram.client.messages.setEncryptedTyping(params).then((result: boolean) => {
 | --- | --- | --- |
 | `flags` | number |  |
 | `id` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `score` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 | `edit_message` | true | Optional |
 | `force` | true | Optional |
 
@@ -5790,11 +5790,11 @@ airgram.client.messages.setGameScore(params).then((result: UpdatesUnion) => {
 | `cache_time` | number |  |
 | `flags` | number |  |
 | `query_id` | number |  |
-| `results` | InputBotInlineResultUnion[] |  |
+| `results` | [InputBotInlineResultUnion](/docs/telegram-types.md#inputbotinlineresultunion)[] |  |
 | `gallery` | true | Optional |
 | `next_offset` | string | Optional |
 | `private` | true | Optional |
-| `switch_pm` | InlineBotSwitchPmUnion | Optional |
+| `switch_pm` | [InlineBotSwitchPmUnion](/docs/telegram-types.md#inlinebotswitchpmunion) | Optional |
 
 TypeScript interface:
 
@@ -5830,9 +5830,9 @@ airgram.client.messages.setInlineBotResults(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `id` | InputBotInlineMessageIdUnion |  |
+| `id` | [InputBotInlineMessageIdUnion](/docs/telegram-types.md#inputbotinlinemessageidunion) |  |
 | `score` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 | `edit_message` | true | Optional |
 | `force` | true | Optional |
 
@@ -5867,8 +5867,8 @@ airgram.client.messages.setInlineGameScore(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `action` | SendMessageActionUnion |  |
-| `peer` | InputPeerUnion |  |
+| `action` | [SendMessageActionUnion](/docs/telegram-types.md#sendmessageactionunion) |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -5897,8 +5897,8 @@ airgram.client.messages.setTyping(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `bot` | InputUserUnion |  |
-| `peer` | InputPeerUnion |  |
+| `bot` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `random_id` | number |  |
 | `start_param` | string |  |
 
@@ -5962,7 +5962,7 @@ airgram.client.messages.toggleChatAdmins(params).then((result: UpdatesUnion) => 
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `peer` | InputPeerUnion |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 | `pinned` | true | Optional |
 
 TypeScript interface:
@@ -5993,7 +5993,7 @@ airgram.client.messages.toggleDialogPin(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `stickerset` | InputStickerSetUnion |  |
+| `stickerset` | [InputStickerSetUnion](/docs/telegram-types.md#inputstickersetunion) |  |
 
 TypeScript interface:
 
@@ -6021,8 +6021,8 @@ airgram.client.messages.uninstallStickerSet(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `media` | InputMediaUnion |  |
-| `peer` | InputPeerUnion |  |
+| `media` | [InputMediaUnion](/docs/telegram-types.md#inputmediaunion) |  |
+| `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |
 
 TypeScript interface:
 
@@ -6159,7 +6159,7 @@ airgram.client.payments.getSavedInfo().then((result: PaymentsSavedInfoUnion) => 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `credentials` | InputPaymentCredentialsUnion |  |
+| `credentials` | [InputPaymentCredentialsUnion](/docs/telegram-types.md#inputpaymentcredentialsunion) |  |
 | `flags` | number |  |
 | `msg_id` | number |  |
 | `requested_info_id` | string | Optional |
@@ -6196,7 +6196,7 @@ airgram.client.payments.sendPaymentForm(params).then((result: PaymentsPaymentRes
 | Name | Type | Note |
 | --- | --- | --- |
 | `flags` | number |  |
-| `info` | PaymentRequestedInfoUnion |  |
+| `info` | [PaymentRequestedInfoUnion](/docs/telegram-types.md#paymentrequestedinfounion) |  |
 | `msg_id` | number |  |
 | `save` | true | Optional |
 
@@ -6237,8 +6237,8 @@ airgram.client.payments.validateRequestedInfo(params).then((result: PaymentsVali
 | Name | Type | Note |
 | --- | --- | --- |
 | `g_b` | number[] |  |
-| `peer` | InputPhoneCallUnion |  |
-| `protocol` | PhoneCallProtocolUnion |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
+| `protocol` | [PhoneCallProtocolUnion](/docs/telegram-types.md#phonecallprotocolunion) |  |
 
 TypeScript interface:
 
@@ -6270,8 +6270,8 @@ airgram.client.phone.acceptCall(params).then((result: PhonePhoneCallUnion) => {
 | --- | --- | --- |
 | `g_a` | number[] |  |
 | `key_fingerprint` | number |  |
-| `peer` | InputPhoneCallUnion |  |
-| `protocol` | PhoneCallProtocolUnion |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
+| `protocol` | [PhoneCallProtocolUnion](/docs/telegram-types.md#phonecallprotocolunion) |  |
 
 TypeScript interface:
 
@@ -6304,8 +6304,8 @@ airgram.client.phone.confirmCall(params).then((result: PhonePhoneCallUnion) => {
 | --- | --- | --- |
 | `connection_id` | number |  |
 | `duration` | number |  |
-| `peer` | InputPhoneCallUnion |  |
-| `reason` | PhoneCallDiscardReasonUnion |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
+| `reason` | [PhoneCallDiscardReasonUnion](/docs/telegram-types.md#phonecalldiscardreasonunion) |  |
 
 TypeScript interface:
 
@@ -6349,7 +6349,7 @@ airgram.client.phone.getCallConfig().then((result: DataJsonUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `peer` | InputPhoneCallUnion |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
 
 TypeScript interface:
 
@@ -6378,9 +6378,9 @@ airgram.client.phone.receivedCall(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `g_a_hash` | number[] |  |
-| `protocol` | PhoneCallProtocolUnion |  |
+| `protocol` | [PhoneCallProtocolUnion](/docs/telegram-types.md#phonecallprotocolunion) |  |
 | `random_id` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -6411,8 +6411,8 @@ airgram.client.phone.requestCall(params).then((result: PhonePhoneCallUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `debug` | DataJsonUnion |  |
-| `peer` | InputPhoneCallUnion |  |
+| `debug` | [DataJsonUnion](/docs/telegram-types.md#datajsonunion) |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
 
 TypeScript interface:
 
@@ -6442,7 +6442,7 @@ airgram.client.phone.saveCallDebug(params).then((result: boolean) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `comment` | string |  |
-| `peer` | InputPhoneCallUnion |  |
+| `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |
 | `rating` | number |  |
 
 TypeScript interface:
@@ -6480,7 +6480,7 @@ airgram.client.phone.setCallRating(params).then((result: UpdatesUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputPhotoUnion[] |  |
+| `id` | [InputPhotoUnion](/docs/telegram-types.md#inputphotounion)[] |  |
 
 TypeScript interface:
 
@@ -6511,7 +6511,7 @@ airgram.client.photos.deletePhotos(params).then((result: number[]) => {
 | `limit` | number |  |
 | `max_id` | number |  |
 | `offset` | number |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -6542,7 +6542,7 @@ airgram.client.photos.getUserPhotos(params).then((result: PhotosPhotosUnion) => 
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputPhotoUnion |  |
+| `id` | [InputPhotoUnion](/docs/telegram-types.md#inputphotounion) |  |
 
 TypeScript interface:
 
@@ -6570,7 +6570,7 @@ airgram.client.photos.updateProfilePhoto(params).then((result: UserProfilePhotoU
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `file` | InputFileUnion |  |
+| `file` | [InputFileUnion](/docs/telegram-types.md#inputfileunion) |  |
 
 TypeScript interface:
 
@@ -6605,8 +6605,8 @@ airgram.client.photos.uploadProfilePhoto(params).then((result: PhotosPhotoUnion)
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `sticker` | InputStickerSetItemUnion |  |
-| `stickerset` | InputStickerSetUnion |  |
+| `sticker` | [InputStickerSetItemUnion](/docs/telegram-types.md#inputstickersetitemunion) |  |
+| `stickerset` | [InputStickerSetUnion](/docs/telegram-types.md#inputstickersetunion) |  |
 
 TypeScript interface:
 
@@ -6636,7 +6636,7 @@ airgram.client.stickers.addStickerToSet(params).then((result: MessagesStickerSet
 | Name | Type | Note |
 | --- | --- | --- |
 | `position` | number |  |
-| `sticker` | InputDocumentUnion |  |
+| `sticker` | [InputDocumentUnion](/docs/telegram-types.md#inputdocumentunion) |  |
 
 TypeScript interface:
 
@@ -6667,9 +6667,9 @@ airgram.client.stickers.changeStickerPosition(params).then((result: MessagesStic
 | --- | --- | --- |
 | `flags` | number |  |
 | `short_name` | string |  |
-| `stickers` | InputStickerSetItemUnion[] |  |
+| `stickers` | [InputStickerSetItemUnion](/docs/telegram-types.md#inputstickersetitemunion)[] |  |
 | `title` | string |  |
-| `user_id` | InputUserUnion |  |
+| `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 | `masks` | true | Optional |
 
 TypeScript interface:
@@ -6703,7 +6703,7 @@ airgram.client.stickers.createStickerSet(params).then((result: MessagesStickerSe
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `sticker` | InputDocumentUnion |  |
+| `sticker` | [InputDocumentUnion](/docs/telegram-types.md#inputdocumentunion) |  |
 
 TypeScript interface:
 
@@ -6738,8 +6738,8 @@ airgram.client.stickers.removeStickerFromSet(params).then((result: MessagesStick
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `channel` | InputChannelUnion |  |
-| `filter` | ChannelMessagesFilterUnion |  |
+| `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |
+| `filter` | [ChannelMessagesFilterUnion](/docs/telegram-types.md#channelmessagesfilterunion) |  |
 | `flags` | number |  |
 | `limit` | number |  |
 | `pts` | number |  |
@@ -6895,7 +6895,7 @@ airgram.client.upload.getCdnFileHashes(params).then((result: CdnFileHashUnion[])
 | Name | Type | Note |
 | --- | --- | --- |
 | `limit` | number |  |
-| `location` | InputFileLocationUnion |  |
+| `location` | [InputFileLocationUnion](/docs/telegram-types.md#inputfilelocationunion) |  |
 | `offset` | number |  |
 
 TypeScript interface:
@@ -6927,7 +6927,7 @@ airgram.client.upload.getFile(params).then((result: UploadFileUnion) => {
 | Name | Type | Note |
 | --- | --- | --- |
 | `limit` | number |  |
-| `location` | InputWebFileLocationUnion |  |
+| `location` | [InputWebFileLocationUnion](/docs/telegram-types.md#inputwebfilelocationunion) |  |
 | `offset` | number |  |
 
 TypeScript interface:
@@ -7061,7 +7061,7 @@ airgram.client.upload.saveFilePart(params).then((result: boolean) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |
 
 TypeScript interface:
 
@@ -7089,7 +7089,7 @@ airgram.client.users.getFullUser(params).then((result: UserFullUnion) => {
 
 | Name | Type | Note |
 | --- | --- | --- |
-| `id` | InputUserUnion[] |  |
+| `id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] |  |
 
 TypeScript interface:
 
