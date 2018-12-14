@@ -6,7 +6,7 @@ import { provide } from 'inversify-binding-decorators'
 import * as pickBy from 'lodash/pickBy'
 import RpcError from '../errors/RpcError'
 import Serializable from '../errors/Serializable'
-import { bigStringInt, bytesToHex, longToBytes, now, sendRequest, uintToInt } from '../helpers'
+import { bigStringInt, bytesToHex, longToBytes, now, uintToInt } from '../helpers'
 import { MtpOptions } from '../interfaces/airgram'
 import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
@@ -640,7 +640,7 @@ export default class MtpClient implements ag.MtpClient {
       const url = this.getApiUrl(this.dcId)
       const data = this.crypto.encryptRequest(message)
 
-      sendRequest(url, data, options).then((result) => {
+      this.client.network.sendRequest(url, data, options).then((result) => {
         if (!result.data || !result.data.byteLength) {
           reject(new RpcError({ code: 406, type: 'NETWORK_BAD_RESPONSE', url }))
         } else {

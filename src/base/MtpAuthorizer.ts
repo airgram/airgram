@@ -18,7 +18,6 @@ import {
   pqPrimeLong,
   rsaEncrypt,
   SecureRandom,
-  sendRequest,
   sha1BytesSync,
   str2bigInt,
   xorBytes
@@ -160,7 +159,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
   ): Promise<any> {
     this.logger.verbose(`sendNetworkRequest() "${url}"`)
 
-    return sendRequest(url, resultArray).then(deferred.resolve)
+    return this.client.network.sendRequest(url, resultArray).then(deferred.resolve)
       .catch((error) => {
         if (error.code === 'ENETUNREACH') {
           const nextDeferred = {

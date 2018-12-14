@@ -19,17 +19,29 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
   }
 
   public readonly createRequest: ag.MtpRequestCreator
+
   public handleError: (error: Error, ctx?: { _: string, [key: string]: any }) => any
+
   public me: ag.Me = {
     id: undefined
   }
+
   public readonly mtpState: ag.MtpState
+
   public name: string = 'airgram'
+
   public readonly timeManager: ag.MtpTimeManager
+
+  public readonly network: ag.MtpNetwork
+
   protected createClient: (options: ag.MtpClientOptions) => ag.MtpClient
+
   protected readonly mtpAuth: ag.MtpAuthorizer
+
   private _config: ag.Config
+
   private clients: ag.MtpClients = {}
+
   private uploadClients: ag.MtpClients = {}
 
   constructor (
@@ -45,6 +57,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     @inject(TYPES.MtpRequestFactory) mtpRequestFactory: <ParamsT, ResponseT>(client: ag.Client)
       => (method: string, params?: ParamsT)
       => ag.MtpRequest<ParamsT, ResponseT>,
+    @inject(TYPES.MtpNetworkFactory) networkFactory: (client: ag.Client) => ag.MtpNetwork,
     @inject(TYPES.AuthStore) protected authStore: ag.Store<ag.AuthDoc>
   ) {
     super()
@@ -52,6 +65,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     this.mtpState = mtpStateFactory(this)
     this.timeManager = mtpTimeManagerFactory(this)
     this.mtpAuth = mtpAuthFactory(this)
+    this.network = networkFactory(this)
     this.createClient = mtpClientFactory(this)
     this.createRequest = mtpRequestFactory(this)
 
@@ -142,15 +156,6 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
           .send(await this.mtpState.currentDcId())
           .then((response) => ctx.response = response)
           .then(next)
-      }
-    )
-  }
-
-  protected afterware () {
-    return optional(
-      (ctx) => ctx.handled && ctx.response && ctx.response.pts,
-      async (ctx, next) => {
-        return this.handleUpdates(ctx.response).then(next)
       }
     )
   }
@@ -257,6 +262,15 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
         client.stop()
       })
       .catch((error) => this.handleError(error, { _: 'stop' }))
+  }
+
+  protected afterware () {
+    return optional(
+      (ctx) => ctx.handled && ctx.response && ctx.response.pts,
+      async (ctx, next) => {
+        return this.handleUpdates(ctx.response).then(next)
+      }
+    )
   }
 
   protected authorize (dcId: number, isFileTransfer: boolean): Promise<ag.MtpClient> {

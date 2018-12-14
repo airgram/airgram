@@ -2,6 +2,7 @@
 // Composer
 // ----------------
 
+import { AxiosPromise, AxiosRequestConfig } from 'axios'
 import { interfaces } from 'inversify'
 import * as api from '../api'
 
@@ -105,6 +106,7 @@ export interface Client<ContextT = Context> extends Composer<ContextT> {
   config: Config
   contacts: api.contacts.ContactsApi
   createRequest: MtpRequestCreator
+  network: MtpNetwork
   crypto: Crypto
   handleError: (error: Error, ctx: { _: string, [key: string]: any }) => any
   handleUpdates: (updates: UpdatesResponse) => any
@@ -291,6 +293,14 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
   timeout?: number
   waitUntil?: number
 }
+
+export interface MtpNetwork {
+  configure (client: Client)
+
+  sendRequest (url: string, requestData: { [name: string]: any }, options?: AxiosRequestConfig): AxiosPromise
+}
+
+export type MtpNetworkFactory = (client: Client) => MtpNetwork
 
 export interface MtpOptions {
   afterMessageId?: string

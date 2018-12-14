@@ -9,6 +9,7 @@ import MtpClient from '../base/MtpClient'
 import MtpCrypto from '../base/MtpCrypto'
 import MtpDeserializer from '../base/MtpDeserializer'
 import MtpMessage from '../base/MtpMessage'
+import MtpNetwork from '../base/MtpNetwork'
 import MtpRequest from '../base/MtpRequest'
 import MtpSerializer from '../base/MtpSerializer'
 import MtpState from '../base/MtpState'
@@ -114,6 +115,14 @@ export function bindComponents (container: Container) {
     .toFactory<ag.MtpRequest<any, any>>((context: interfaces.Context): ag.MtpRequestFactory =>
       (client: ag.Client) => MtpRequest.factory(
         <ParamsT, ResponseT> () => context.container.get <ag.MtpRequest<ParamsT, ResponseT>>(TYPES.MtpRequest),
+        client
+      ))
+
+  // MtpNetwork factory
+  container.bind<interfaces.Factory<ag.MtpNetwork>>(TYPES.MtpNetworkFactory)
+    .toFactory<ag.MtpNetwork>((context: interfaces.Context): ag.MtpNetworkFactory =>
+      (client: ag.Client) => MtpNetwork.factory(
+        () => context.container.get <ag.MtpNetwork>(TYPES.MtpNetwork),
         client
       ))
 
