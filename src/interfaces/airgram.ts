@@ -544,9 +544,10 @@ export type UpdatesHandlerFactory = (
   complete: (update: UpdatesResponse) => any
 ) => UpdatesHandler
 
-export interface UpdateContext<ContextT = UpdatesResponse> {
+export interface UpdateContext<ContextT = UpdatesResponse, ParentT = UpdatesResponse> {
   _: string
   client: Client
+  parent?: ParentT
   state: { [key: string]: any }
   update: ContextT,
 }
@@ -603,6 +604,10 @@ export interface UpdatesStateOptions {
   date?: number
   seq?: number
   seqStart?: number
+}
+
+export interface UpdatesHandlerOptions extends UpdatesStateOptions {
+  parent?: UpdatesResponse
 }
 
 export type UpdatesResponse = api.Dialog

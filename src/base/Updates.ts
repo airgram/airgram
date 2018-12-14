@@ -99,25 +99,26 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
     const handlerId = ++updateId
 
     const handler = async (ctx: ag.Context, next) => {
-      const complete = (update: ag.UpdatesResponse): Promise<any> => {
+      const complete = (update: ag.UpdatesResponse, parent?: ag.UpdatesResponse): Promise<any> => {
         // this.logger.debug(`[${handlerId}] Complete "${update._}"`)
         return super.middleware()({
           _: update._,
           client: ctx.client,
+          parent,
           state: {},
           update: update as any
         })
       }
 
-      if (ctx.request) {
-        await next()
-        if (!ctx.response) {
-          throw new Error(`middleware() updates couldn't be handled ` +
-            `because some of the middleware callbacks does not return a promise.`)
-        }
-      }
+      // if (ctx.request) {
+      //   await next()
+      //   if (!ctx.response) {
+      //     throw new Error(`middleware() updates couldn't be handled ` +
+      //       `because some of the middleware callbacks does not return a promise.`)
+      //   }
+      // }
 
-      const rootUpdate = ctx.updates || ctx.response
+      const rootUpdate = ctx.updates // || ctx.response
 
       if (rootUpdate) {
         const handleFn: () => Promise<any> = () => this.getState()

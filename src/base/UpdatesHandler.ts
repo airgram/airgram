@@ -32,11 +32,12 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     return instance
   }
 
-  public static createStateOptions (update: { [key: string]: any }): ag.UpdatesStateOptions {
+  public static createStateOptions (update: ag.UpdatesResponse): ag.UpdatesHandlerOptions {
     return {
-      date: update.date,
-      seq: update.seq,
-      seqStart: update.seq_start
+      date: 'date' in update ? update.date : undefined,
+      parent: update,
+      seq: 'seq' in update ? update.seq : undefined,
+      seqStart: 'seq_start' in update ? update.seq_start : undefined
     }
   }
 
@@ -44,7 +45,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
   public chats: ag.Chats
 
-  public complete: (update: ag.UpdatesResponse) => Promise<any>
+  public complete: (update: ag.UpdatesResponse, parent?: ag.UpdatesResponse) => Promise<any>
 
   public getChannelDifference: (state: ag.Chat) => Promise<api.UpdatesChannelDifferenceUnion>
 
@@ -67,10 +68,12 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     this.handle = this.handle.bind(this)
   }
 
-  public async handle (update: ag.UpdatesResponse, options?: ag.UpdatesStateOptions): Promise<any> {
+  public async handle (update: ag.UpdatesResponse, options?: ag.UpdatesHandlerOptions): Promise<any> {
     if ('chats' in update) {
       await this.indexChats(update.chats)
     }
+
+    const parent = options ? options.parent : undefined
 
     this.logger.verbose(`[${this.handlerId}] handle() "${update._}" ${JSON.stringify(options)}`)
 
@@ -78,12 +81,12 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       // CHATS
       case 'updatesCombined':
       case 'updates': {
-        await this.complete(update)
+        await this.complete(update, parent)
         return this.handleMultipleUpdate(update.updates, UpdatesHandler.createStateOptions(update))
       }
 
       case 'updateShort': {
-        await this.complete(update)
+        await this.complete(update, parent)
         return this.handle(update.update, UpdatesHandler.createStateOptions(update))
       }
 
@@ -104,7 +107,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         const userId = 'user_id' in update && update.user_id
         const fromId = ('from_id' in update && update.from_id) || (isOut ? this.myId : userId)
 
-        await this.complete(update)
+        await this.complete(update, parent)
 
         return this.handle({
           _: 'updateNewMessage',
@@ -138,13 +141,13 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       }
 
       case 'updatesTooLong': {
-        await this.complete(update)
+        await this.complete(update, parent)
         return this.getDifference().then(() => true)
       }
 
       case 'updates.difference': {
         const { date, seq, pts } = update.state
-        await this.complete(update)
+        await this.complete(update, parent)
         return Promise.all([
           this.handleMultipleUpdate(update.other_updates),
           this.handleUpdateEncryptedMessages(update.new_encrypted_messages),
@@ -157,13 +160,13 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         const { date, seq } = update
         await this.updatesState.set({ date, seq })
         await this.updatesState.completeLoading()
-        await this.complete(update)
+        await this.complete(update, parent)
         return true
       }
 
       case 'updates.differenceSlice': {
         const { date, seq, pts } = update.intermediate_state
-        await this.complete(update)
+        await this.complete(update, parent)
         return Promise.all([
           this.handleMultipleUpdate(update.other_updates),
           this.handleUpdateMessages(update.new_messages)
@@ -180,7 +183,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           this.throwHandleError(update, 'undefined channel_id')
         }
 
-        await this.complete(update)
+        await this.complete(update, parent)
 
         return this.getChat(channelId).then(async (chat: ag.ChatDoc) => {
           if (!chat || !chat.ptsTs || chat.ptsTs < now() - 10000) {
@@ -196,9 +199,8 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       case 'updateNewChannelMessage':
       case 'updateEditChannelMessage': {
         const { message } = update
-
         if (message._ === 'messageEmpty') {
-          await this.complete(update)
+          await this.complete(update, parent)
           return true
         }
 
@@ -215,7 +217,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
         return this.handleUpdateChannelState(channelId, update, options).then(async (status) => {
           if (status) {
-            await this.complete(update)
+            await this.complete(update, parent)
           }
           return status
         })
@@ -224,7 +226,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       case 'updateDeleteChannelMessages': {
         return this.handleUpdateChannelState(update.channel_id, update, options).then(async (status) => {
           if (status) {
-            await this.complete(update)
+            await this.complete(update, parent)
           }
           return status
         })
@@ -238,7 +240,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           return false
         }
 
-        await this.complete(update)
+        await this.complete(update, parent)
 
         return this.chats.set(channelId, { pts: update.pts }).then((chat) => {
           return Promise.all([
@@ -262,13 +264,13 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
         return this.chats.getChat(channelId).completeLoading().then(async () => {
           if (update._ === 'updates.channelDifferenceEmpty') {
-            return this.complete(update).then(() => true)
+            return this.complete(update, parent).then(() => true)
           }
 
           if (this.options.loadLongChannelDifference) {
             return this.getChat(channelId).then(async (chat) => {
               if (chat) {
-                await this.complete(update)
+                await this.complete(update, parent)
                 return this.chats.set(chat.id, { pts: update.pts })
                   .then(() => this.handleUpdateMessages(update.messages))
               } else {
@@ -276,7 +278,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
               }
             })
           } else {
-            await this.complete(update)
+            await this.complete(update, parent)
             return this.handle({ _: 'updateChannelReload', channel_id: channelId }).then(stop)
           }
         })
@@ -286,7 +288,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     const handled = await this.handleUpdateState(update, options)
 
     if (handled) {
-      await this.complete(update)
+      await this.complete(update, parent)
     }
     return handled
   }
@@ -304,7 +306,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
   protected async handleMultipleUpdate (
     updates: api.UpdateUnion[],
-    options?: ag.UpdatesStateOptions,
+    options?: ag.UpdatesHandlerOptions,
     channelId?: number
   ): Promise<any> {
     if (updates && Array.isArray(updates)) {
@@ -315,7 +317,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
   protected async handleUpdateChannelState (
     channelId: number,
     update: api.UpdateNewChannelMessage | api.UpdateEditChannelMessage | api.UpdateDeleteChannelMessages,
-    options: ag.UpdatesStateOptions = {}
+    options: ag.UpdatesHandlerOptions = {}
   ): Promise<boolean> {
     return this.getChat(channelId).then(async (chat: ag.ChatDoc) => {
       if (!chat) {
@@ -418,7 +420,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
   protected async handleUpdateState (
     update: ag.UpdatesResponse,
-    options: ag.UpdatesStateOptions = {}
+    options: ag.UpdatesHandlerOptions = {}
   ): Promise<boolean> {
     const { updatesState } = this
 
