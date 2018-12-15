@@ -494,7 +494,7 @@ export interface Auth<ContextT = AuthContext> extends Composer<ContextT> {
 
   clearState (): Promise<void>
 
-  configure (client: Client)
+  configure (client: Client<any>)
 
   getState (): Promise<AuthDoc>
 
@@ -519,11 +519,11 @@ export interface AuthContext {
   state: AuthDoc
 }
 
-export interface Updates extends Composer<UpdateContext> {
+export interface Updates<ContextT = UpdateContext> extends Composer<ContextT> {
   chats: Chats
   updatesState: UpdatesState
 
-  configure (client: Client)
+  configure (client: Client<any>)
 
   getChannelDifference (state: Chat): Promise<api.UpdatesChannelDifferenceUnion>
 
@@ -560,6 +560,16 @@ export interface UpdateContext<ContextT = UpdatesResponse, ParentT = UpdatesResp
   parent?: ParentT
   state: { [key: string]: any }
   update: ContextT,
+}
+
+export interface UpdateContextOptions<ContextT = Context, UpdateT = UpdatesResponse, ParentT = UpdatesResponse> {
+  ctx: Context
+  parent?: ParentT
+  update: UpdateT
+}
+
+export interface UpdatesContextManager<ContextT = UpdateContext> {
+  createContext: ({ ctx, parent, update }: UpdateContextOptions) => ContextT
 }
 
 export interface PendingSeqUpdate {

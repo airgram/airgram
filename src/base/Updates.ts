@@ -17,16 +17,21 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
     return ctx.updates
   }
 
-  private client: ag.Client
   public delay: number = 1000
+
+  private client: ag.Client
+
   private readonly inProgress: { [key: string]: number } = {}
+
   private pendingUpdates: Array<() => Promise<any>> = []
+
   private readonly promises: { [key: string]: Promise<any> } = {}
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger,
     @inject(TYPES.Chats) public chats: ag.Chats,
     @inject(TYPES.UpdatesState) public updatesState: ag.UpdatesState,
+    @inject(TYPES.UpdatesContextManager) private contextManager: ag.UpdatesContextManager,
     @inject(TYPES.UpdatesHandlerFactory) private createUpdatesHandler: (
       updates: ag.Updates,
       ctx: ag.Context,
@@ -101,13 +106,7 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
     const handler = async (ctx: ag.Context, next) => {
       const complete = (update: ag.UpdatesResponse, parent?: ag.UpdatesResponse): Promise<any> => {
         // this.logger.debug(`[${handlerId}] Complete "${update._}"`)
-        return super.middleware()({
-          _: update._,
-          client: ctx.client,
-          parent,
-          state: {},
-          update: update as any
-        })
+        return super.middleware()(this.contextManager.createContext({ ctx, parent, update }))
       }
 
       // if (ctx.request) {

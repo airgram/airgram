@@ -292,7 +292,47 @@ Argument `ctx` is an object with the following structure:
 | `_`                | string   | Updates type                                           |
 | `client`           | `Client` | The same as in `airgram.client`                              |
 | `state`            | {[key: string]: any} | Just a plain object. You should use it to pass some data between different middleware |
-| `update`           | {[key: string]: any} |An object with update data                                   |
+| `update`           | {[key: string]: any} | An object with update data                                   |
+| `parent`           | {[key: string]: any} | Parent updates object                                   |
+
+You may to extend context object:
+
+```typescript
+import { ag, Airgram, TYPES } from 'airgram'
+import BaseUpdatesContextManager from 'airgram/base/UpdatesContextManager'
+import { injectable } from 'inversify'
+
+interface CustomUpdatesContext extends ag.UpdateContext {
+  reply (text: string): any
+}
+
+@injectable()
+class UpdatesContextManager extends BaseUpdatesContextManager implements ag.UpdatesContextManager<CustomUpdatesContext> {
+  public createContext (options: ag.UpdateContextOptions) {
+    return {
+      ...super.createContext(options),
+      reply: (text) => this.reply(text, options)
+    }
+  }
+
+  public reply (text: string, { ctx, parent, update }: ag.UpdateContextOptions) {
+    // your code
+  }
+}
+
+const airgram = new Airgram<ag.Context, CustomUpdatesContext>({/* app config */})
+
+airgram.bind<ag.UpdatesContextManager>(TYPES.UpdatesContextManager).to(UpdatesContextManager)
+
+const { updates } = airgram
+airgram.use(updates)
+
+updates.use(async (ctx, next) => {
+  await ctx.reply('Some text')
+  return next()
+})
+```
+
 
 #### Containers
 

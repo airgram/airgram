@@ -27,6 +27,7 @@ const entities = {
   PendingState: Symbol.for('PendingState'),
   PersistentStore: Symbol.for('PersistentStore'),
   Updates: Symbol.for('Updates'),
+  UpdatesContextManager: Symbol.for('UpdatesContextManager'),
   UpdatesHandler: Symbol.for('UpdatesHandler'),
   UpdatesState: Symbol.for('UpdatesState'),
   UpdatesStateStore: Symbol.for('UpdatesStateStore')

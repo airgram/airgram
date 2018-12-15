@@ -4,11 +4,11 @@ import { ag } from './interfaces'
 import { bindComponents, createContainer } from './ioc'
 import TYPES from './ioc/types'
 
-export default class Airgram {
+export default class Airgram<ContextT = ag.Context, UpdateContextT = ag.UpdateContext> {
   public config: ag.Config
   public container: Container
   private destroyed: boolean = false
-  private instances: { client?: ag.Client, auth?: ag.Auth, updates?: ag.Updates } = {}
+  private instances: { client?: ag.Client<ContextT>, auth?: ag.Auth, updates?: ag.Updates<UpdateContextT> } = {}
 
   constructor (config: Config | { id: number, hash: string, token?: string, version?: string }, container?: Container) {
     this.config = config instanceof Config ? config : new Config(config.id, config.hash, config.version, config.token)
@@ -28,20 +28,20 @@ export default class Airgram {
     return this.instances.auth!
   }
 
-  get client (): ag.Client {
+  get client (): ag.Client<ContextT> {
     if (this.destroyed) {
       throw new Error('Client has destroyed.')
     }
     if (!('client' in this.instances)) {
-      const createClient = this.container.get<interfaces.Factory<ag.Client<ag.Context>>>(TYPES.ClientFactory)
-      this.instances.client = createClient(this.config) as ag.Client<ag.Context>
+      const createClient = this.container.get<interfaces.Factory<ag.Client<ContextT>>>(TYPES.ClientFactory)
+      this.instances.client = createClient(this.config) as ag.Client<ContextT>
     }
     return this.instances.client!
   }
 
-  get updates (): ag.Updates {
+  get updates (): ag.Updates<UpdateContextT> {
     if (!('updates' in this.instances)) {
-      this.instances.updates = this.container.get<ag.Updates>(TYPES.Updates)
+      this.instances.updates = this.container.get<ag.Updates<UpdateContextT>>(TYPES.Updates)
       this.instances.updates.configure(this.client)
     }
     return this.instances.updates!
@@ -68,12 +68,12 @@ export default class Airgram {
     this.destroyed = true
   }
 
-  public on (predicateTypes: string | string[], ...fns: Array<ag.Middleware<ag.Context>>): this {
+  public on (predicateTypes: string | string[], ...fns: Array<ag.Middleware<ContextT>>): this {
     this.client.on(predicateTypes, ...fns)
     return this
   }
 
-  public use (...fns: Array<ag.Middleware<ag.Context>>): this {
+  public use (...fns: Array<ag.Middleware<ContextT>>): this {
     this.client.use(...fns)
     return this
   }
