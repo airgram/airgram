@@ -184,6 +184,7 @@ export interface ContextRequest<ParamsT = any, ResponseT = any> {
 export interface MtpClient {
   client: Client
   dcId: number
+  isNewConnection: boolean
   prevSessionId: number[]
   serverSalt: Uint8Array | number[]
   sessionId: number[]

@@ -31,6 +31,7 @@ export default class MtpClient implements ag.MtpClient {
   public client: ag.Client
   public dcId: number
   public prevSessionId: number[]
+  public isNewConnection: boolean = true
   public serverSalt: Uint8Array | number[]
   public sessionId: number[]
   protected crypto: ag.MtpCrypto
@@ -39,7 +40,6 @@ export default class MtpClient implements ag.MtpClient {
   private checkLongPollInterval: any = null
   // private destroyed: boolean = false
   private isFileTransfer: boolean
-  private isNewConnection: boolean = true
   private lastResend: { messageId: string, resendMsgIds: string[] } | null
   private lastServerMessages: string[] = []
   private longPoll: boolean = false
