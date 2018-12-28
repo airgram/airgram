@@ -12,6 +12,7 @@ import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
 
 let clientId = 0
+let requestId = 0
 
 @provide(TYPES.MtpClient)
 export default class MtpClient implements ag.MtpClient {
@@ -29,28 +30,53 @@ export default class MtpClient implements ag.MtpClient {
   }
 
   public client: ag.Client
+
   public dcId: number
+
   public prevSessionId: number[]
+
   public isNewConnection: boolean = true
+
   public serverSalt: Uint8Array | number[]
+
   public sessionId: number[]
+
   protected crypto: ag.MtpCrypto
+
+  private activeRequests: Map<number, () => any> = new Map()
+
   private checkConnectionPeriod: number = 0
+
   private checkConnectionTimeout: any = null
+
   private checkLongPollInterval: any = null
-  // private destroyed: boolean = false
+
+  private destroyed: boolean = false
+
   private isFileTransfer: boolean
+
   private lastResend: { messageId: string, resendMsgIds: string[] } | null
+
   private lastServerMessages: string[] = []
+
   private longPoll: boolean = false
+
   private nextLongPollAt: number | null
+
   private nextRequestAt: number | null = null
+
   private nextRequestTimeout: any = null
+
   private offline: boolean = false
+
   private pendingAcks: string[] = []
+
   private pendingMessages: { [key: string]: number } = {}
+
   private pendingResends: string[] = []
+
   private sentMessages: { [key: string]: ag.MtpMessage } = {}
+
   private seqNo: number
 
   constructor (
@@ -108,9 +134,6 @@ export default class MtpClient implements ag.MtpClient {
   }
 
   public async destroy (): Promise<void> {
-    this.mtpCall('destroy_session', { session_id: this.sessionId }, {
-      noResponse: true
-    })
     clearTimeout(this.checkConnectionTimeout)
     clearTimeout(this.nextRequestTimeout)
     clearInterval(this.checkLongPollInterval)
@@ -121,7 +144,11 @@ export default class MtpClient implements ag.MtpClient {
     this.pendingResends = []
     this.pendingAcks = []
     this.lastResend = null
-    // this.destroyed = true
+    this.destroyed = true
+    this.activeRequests.forEach((cancel, id) => {
+      cancel()
+      this.activeRequests.delete(id)
+    })
   }
 
   public getApiUrl (dcId: number): string {
@@ -180,7 +207,7 @@ export default class MtpClient implements ag.MtpClient {
   }
 
   protected toggleOffline (nextStatus: boolean): void {
-    if (this.offline === nextStatus) {
+    if (this.destroyed || this.offline === nextStatus) {
       return
     }
 
@@ -636,19 +663,32 @@ export default class MtpClient implements ag.MtpClient {
     message: ag.MtpMessage,
     options: AxiosRequestConfig = {}
   ): Promise<AxiosResponse> {
+    if (this.destroyed) {
+      return Promise.reject(new Error('Unable to perform request on destroyed client'))
+    }
     return new Promise((resolve, reject) => {
       const url = this.getApiUrl(this.dcId)
       const data = this.crypto.encryptRequest(message)
+      const { token, cancel } = this.client.network.createCancelToken()
 
-      this.client.network.sendRequest(url, data, options).then((result) => {
-        if (!result.data || !result.data.byteLength) {
-          reject(new RpcError({ code: 406, type: 'NETWORK_BAD_RESPONSE', url }))
-        } else {
-          resolve(result)
-        }
-      }).catch((error) => {
-        reject(error)
-      })
+      requestId++
+      options.cancelToken = token
+      this.activeRequests.set(requestId, cancel)
+
+      void this.client.network.sendRequest(url, data, options)
+        .then((result) => {
+          if (!result.data || !result.data.byteLength) {
+            reject(new RpcError({ code: 406, type: 'NETWORK_BAD_RESPONSE', url }))
+          } else {
+            resolve(result)
+          }
+        })
+        .catch((error) => {
+          reject(error)
+        })
+        .finally(() => {
+          this.activeRequests.delete(requestId)
+        })
     })
   }
 
@@ -862,7 +902,7 @@ export default class MtpClient implements ag.MtpClient {
 
         if (error instanceof RpcError) {
           this.logger.error(() => `sendScheduledRequest() rpcError ${new Serializable(error)}`)
-        } else {
+        } else if (!this.destroyed) {
           this.logger.error(() => `sendScheduledRequest() ${JSON.stringify(error.message)}`)
           this.toggleOffline(true)
           // throw error

@@ -2,7 +2,7 @@
 // Composer
 // ----------------
 
-import { AxiosPromise, AxiosRequestConfig } from 'axios'
+import { AxiosPromise, AxiosRequestConfig, CancelTokenSource } from 'axios'
 import { interfaces } from 'inversify'
 import * as api from '../api'
 
@@ -297,6 +297,8 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
 
 export interface MtpNetwork {
   configure (client: Client)
+
+  createCancelToken (): CancelTokenSource
 
   sendRequest (url: string, requestData: { [name: string]: any }, options?: AxiosRequestConfig): AxiosPromise
 }

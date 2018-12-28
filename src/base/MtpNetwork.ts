@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios'
+import axios, { AxiosRequestConfig, CancelTokenSource } from 'axios'
 import { provide } from 'inversify-binding-decorators'
 import { bufferToArrayBuffer } from '../helpers'
 import { ag } from '../interfaces/index'
@@ -17,6 +17,10 @@ export default class MtpNetwork implements ag.MtpNetwork {
 
   public configure (client: ag.Client) {
     //
+  }
+
+  public createCancelToken (): CancelTokenSource {
+    return axios.CancelToken.source()
   }
 
   public sendRequest (url: string, requestData: { [name: string]: any }, options?: AxiosRequestConfig) {
