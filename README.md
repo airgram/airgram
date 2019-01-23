@@ -46,8 +46,7 @@ Basic usage ([source code](https://github.com/airgram/airgram-ts-example)):
 
 ```typescript
 import 'reflect-metadata' // Do not forget to import
-import { Airgram, AuthDialog } from 'airgram'
-import { prompt } from 'airgram/helpers'
+import { Airgram, AuthDialog, ag } from 'airgram'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = { 
@@ -57,24 +56,41 @@ const app = {
 
 const airgram = new Airgram(app)
 
-// Authorization
-const { auth } = airgram
+const { auth, updates } = airgram
 
 airgram.use(auth)
-
-auth.use(new AuthDialog({
-  phoneNumber: process.env.PHONE_NUMBER, // your phone number
-  code: () => prompt(`Please enter the secret code:\n`)
-}))
-
-// Updates
-const { updates } = airgram
-
 airgram.use(updates)
 
-// Get all updates
-updates.use((ctx, next) => {
-  console.log(ctx.update)
+auth.use(new AuthDialog({
+  code: () => prompt(`Please enter the secret code:\n`),
+  continue: () => false,
+  phoneNumber: () => process.env.PHONE_NUMBER || prompt(`Please enter your phone number:\n`),
+  samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/n\n`)
+    .then((answer) => !['N', 'n'].includes(answer.charAt(0)))
+}))
+
+auth.login().then(async () => {
+  // Start long polling
+  await updates.startPolling()
+
+  // Get dialogs list
+  const dialogs = await airgram.client.messages.getDialogs({
+    flags: 0,
+    limit: 30,
+    offset_date: 0,
+    offset_id: 0,
+    offset_peer: { _: 'inputPeerEmpty' }
+  })
+
+  console.log(dialogs)
+
+}).catch((error) => {
+  console.error(error)
+})
+
+// Getting all updates
+updates.use(({ update }: ag.UpdateContext, next) => {
+  console.log(`"${update._}" ${JSON.stringify(update)}`)
   return next()
 })
 
@@ -82,25 +98,6 @@ updates.use((ctx, next) => {
 updates.on('updateNewMessage', (ctx, next) => {
   console.log('New message:', ctx.update)
   return next()
-})
-
-updates.startPolling().then(() => {
-  console.log('Long polling started')
-}).catch((error) => {
-  console.error(error)
-})
-
-// Get dialogs list
-airgram.client.messages.getDialogs({
-  flags: 0,
-  limit: 30,
-  offset_date: 0,
-  offset_id: 0,
-  offset_peer: {_: 'inputPeerEmpty'},
-}).then((dialogs) => {
-  console.info(dialogs)
-}).catch((error) => {
-  console.error(error)
 })
 
 ```
@@ -131,7 +128,9 @@ auth.on('code', async ({ state }, next) => {
   return next()
 })
 
-auth.login()
+auth.login().then(({ userId }: ag.AuthDoc) => {
+  // Success authorization
+})
 ```
 
 In the example above you have to implement `getSecretCodeFromSomewhere()` function by yourself. That function returns `Promise<string>`, where `string` is a secret code received from Telegram.
@@ -154,7 +153,6 @@ Component `AuthDialog` implements authorization middleware and provides more int
 
 ```typescript
 import { Airgram,  AuthDialog } from 'airgram'
-import { prompt } from 'airgram/helpers'
 
 const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH })
 

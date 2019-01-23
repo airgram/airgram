@@ -327,7 +327,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
       const headerArray = new Int32Array(headerBuffer)
       const headerLength = headerBuffer.byteLength
 
-      const resultBuffer = new ArrayBuffer(headerLength + requestLength)
+      const resultBuffer = new ArrayBuffer(headerLength + requestLength + 4)
       const resultArray = new Int32Array(resultBuffer)
 
       resultArray.set(headerArray)

@@ -43,7 +43,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
 
   private invalidPhoneNumbers: Set<string> = new Set()
 
-  private locked: boolean = false
+  private loginPromise: Promise<api.AuthAuthorizationUnion> | null = null
 
   private state: ag.AuthDoc
 
@@ -113,13 +113,12 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
     })
   }
 
-  public login (): Promise<api.AuthAuthorizationUnion> {
-    if (this.locked) {
-      throw new Error('login() request has been canceled due authorization in progress')
-    }
-    this.locked = true
-    return (this.client.config.app.token ? this.loginAsBot() : this.loginAsUser()).finally(() => {
-      this.locked = false
+  public login (): Promise<ag.AuthDoc> {
+    return this.getState().then((state: ag.AuthDoc) => {
+      if (state.userId) {
+        return state
+      }
+      return this.forceLogin().then(() => this.getState())
     })
   }
 
@@ -198,6 +197,7 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
         await this.clearState()
       }
     }
+
     return this.ask(DIALOGS.phoneNumber).then(async (value) => {
       if (!value) {
         throw new Error('Phone number is not defined')
@@ -308,6 +308,15 @@ export default class Auth<ContextT = ag.AuthContext> extends Composer implements
         phone_number: state.phoneNumber!
       })
     })
+  }
+
+  private forceLogin (): Promise<api.AuthAuthorizationUnion> {
+    if (this.loginPromise === null) {
+      this.loginPromise = (this.client.config.app.token ? this.loginAsBot() : this.loginAsUser()).finally(() => {
+        this.loginPromise = null
+      })
+    }
+    return this.loginPromise
   }
 
   private resolveKey (): string {

@@ -501,7 +501,7 @@ export interface Auth<ContextT = AuthContext> extends Composer<ContextT> {
 
   getState (): Promise<AuthDoc>
 
-  login (next?: () => any): Promise<api.AuthAuthorizationUnion>
+  login (next?: () => any): Promise<AuthDoc>
 
   logout (next?: () => any): Promise<boolean>
 }
