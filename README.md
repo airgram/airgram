@@ -47,6 +47,7 @@ Basic usage ([source code](https://github.com/airgram/airgram-ts-example)):
 ```typescript
 import 'reflect-metadata' // Do not forget to import
 import { Airgram, AuthDialog, ag } from 'airgram'
+import { prompt } from 'airgram/helpers'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
 const app = { 
@@ -153,6 +154,7 @@ Component `AuthDialog` implements authorization middleware and provides more int
 
 ```typescript
 import { Airgram,  AuthDialog } from 'airgram'
+import { prompt } from 'airgram/helpers'
 
 const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH })
 
