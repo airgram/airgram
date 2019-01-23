@@ -101,4 +101,6 @@ $RECYCLE.BIN/
 *.lnk
 
 dist
+dev
+dev/*
 *.dev.ts

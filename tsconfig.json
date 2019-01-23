@@ -13,6 +13,7 @@
     "lib": ["esnext", "dom"]
   },
   "exclude": [
+    "dev/**",
     "src/vendor/**",
     "dist/**",
     "examples/**",
