@@ -124,14 +124,15 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
           .then(async () => {
             const time = now()
             const timer = setTimeout(() => {
-              this.logger.warn(`[${handlerId}] handle too long ${new Serializable(ctx)}`)
+              this.logger.warn(`[${handlerId}] processing is too long ${new Serializable(ctx.updates)}`)
               // throw new Error('Too long handled...')
             }, 30000)
             this.logger.verbose(`[${handlerId}] start to handle "${ctx._}"`)
             return this.createUpdatesHandler(this, ctx, complete).handle(rootUpdate)
               .then(() => {
-                clearTimeout(timer)
                 this.logger.verbose(`[${handlerId}] handled "${ctx._}" for ${((now() - time) / 1000)}sec`)
+              }).finally(() => {
+                clearTimeout(timer)
               })
           })
           .catch((error) => {

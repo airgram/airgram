@@ -4,6 +4,7 @@ import * as api from '../api'
 import RpcError from '../errors/RpcError'
 import Serializable from '../errors/Serializable'
 import { bytesToHex, hexToBytes } from '../helpers'
+import { MtpClient } from '../interfaces/airgram'
 import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
 import Composer from './Composer'
@@ -40,9 +41,9 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
   private _config: ag.Config
 
-  private clients: ag.MtpClients = {}
+  private clients: Map<number, Promise<MtpClient>> = new Map()
 
-  private uploadClients: ag.MtpClients = {}
+  private uploadClients: Map<number, Promise<MtpClient>> = new Map()
 
   constructor (
     @inject(TYPES.Logger) public logger: ag.Logger,
@@ -170,10 +171,6 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
     return new Promise((resolve, reject) => {
       const ctx: ag.Context<ParamsT, ResponseT> = this.createContext(method, {
-        // deferred: {
-        //   reject,
-        //   resolve
-        // },
         request: {
           method,
           options,
@@ -204,10 +201,8 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
   }
 
   public async destroy (): Promise<void> {
-    await Promise.all(Object.values(this.clients).map(async (client) => (await client).destroy()))
-    await Promise.all(Object.values(this.uploadClients).map(async (client) => (await client).destroy()))
-    this.clients = {}
-    this.uploadClients = {}
+    await Promise.all(Array.from(this.clients).map(async ([dcId, client]) => (await client).destroy()))
+    await Promise.all(Array.from(this.uploadClients).map(async ([dcId, client]) => (await client).destroy()))
   }
 
   public getApiUrl (dcId): string {
@@ -229,13 +224,13 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     const { isFileTransfer = false, createClient = false } = (options || {})
     const cache = isFileTransfer ? this.uploadClients : this.clients
 
-    if (!cache[dcId]) {
-      cache[dcId] = this.extractAuthorization(dcId, isFileTransfer, createClient)
+    if (!cache.has(dcId)) {
+      cache.set(dcId, this.extractAuthorization(dcId, isFileTransfer, createClient)
         .then((client) => client || this.authorize(dcId, isFileTransfer))
-        .catch((error) => this.handleError(error, { _: 'getMtpClient' }))
+        .catch((error) => this.handleError(error, { _: 'getMtpClient' })))
     }
 
-    return cache[dcId]
+    return cache.get(dcId)!
   }
 
   public handleUpdates (updates: ag.UpdatesResponse) {
@@ -266,7 +261,11 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
 
   protected afterware () {
     return optional(
-      (ctx) => ctx.handled && ctx.response && ctx.response.pts,
+      (ctx) => {
+        return ctx.handled && ctx.response && (ctx.response.pts ||
+          ctx.request.method === 'updates.getDifference' || ctx.request.method === 'updates.getChannelDifference'
+        )
+      },
       async (ctx, next) => {
         return this.handleUpdates(ctx.response).then(next)
       }

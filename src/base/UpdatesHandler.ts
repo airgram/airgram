@@ -5,7 +5,6 @@ import { provide } from 'inversify-binding-decorators'
 import * as get from 'lodash/get'
 import * as isEmpty from 'lodash/isEmpty'
 import * as api from '../api'
-import Serializable from '../errors/Serializable'
 import { now } from '../helpers'
 import { ag } from '../interfaces/index'
 import TYPES from '../ioc/types'
@@ -75,7 +74,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
     const parent = options ? options.parent : undefined
 
-    this.logger.verbose(`[${this.handlerId}] handle() "${update._}" ${JSON.stringify(options)}`)
+    this.logger.verbose(() => `[${this.handlerId}] handle() "${update._}" ${JSON.stringify(update)}`)
 
     switch (update._) {
       // CHATS
@@ -109,23 +108,30 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
         await this.complete(update, parent)
 
-        return this.handle({
-          _: 'updateNewMessage',
-          message: {
-            _: 'message',
-            date,
-            entities,
-            flags,
-            from_id: fromId,
-            fwd_from: fwdFrom,
-            id,
-            message,
-            reply_to_msg_id: replyToMsgId,
-            to_id: await this.getPeer(update, isOut)
-          } as api.Message,
-          pts,
-          pts_count: ptsCount
-        } as api.UpdateNewMessage)
+        const toId = await this.getPeer(update, isOut)
+
+        if (toId !== null) {
+          return this.handle({
+            _: 'updateNewMessage',
+            message: {
+              _: 'message',
+              date,
+              entities,
+              flags,
+              from_id: fromId,
+              fwd_from: fwdFrom,
+              id,
+              message,
+              reply_to_msg_id: replyToMsgId,
+              to_id: await this.getPeer(update, isOut)
+            } as api.Message,
+            pts,
+            pts_count: ptsCount
+          } as api.UpdateNewMessage)
+        }
+
+        setImmediate(() => this.getDifference())
+        return false
       }
 
       case 'updateNewMessage':
@@ -148,6 +154,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       case 'updates.difference': {
         const { date, seq, pts } = update.state
         await this.complete(update, parent)
+        await this.updatesState.completeLoading()
         return Promise.all([
           this.handleMultipleUpdate(update.other_updates),
           this.handleUpdateEncryptedMessages(update.new_encrypted_messages),
@@ -167,6 +174,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       case 'updates.differenceSlice': {
         const { date, seq, pts } = update.intermediate_state
         await this.complete(update, parent)
+        await this.updatesState.completeLoading()
         return Promise.all([
           this.handleMultipleUpdate(update.other_updates),
           this.handleUpdateMessages(update.new_messages)
@@ -242,17 +250,18 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
         await this.complete(update, parent)
 
-        return this.chats.set(channelId, { pts: update.pts }).then((chat) => {
-          return Promise.all([
-            this.handleMultipleUpdate(update.other_updates, channelId),
-            this.handleUpdateMessages(update.new_messages, channelId)
-          ]).then(() => {
-            if (!update.final && 'access_hash' in chat) {
-              return this.getChannelDifference(chat)
-            }
-            return this.chats.getChat(channelId).completeLoading().then(() => null)
-          })
-        })
+        return this.chats.getChat(channelId).completeLoading().then(() =>
+          this.chats.set(channelId, { pts: update.pts }).then((chat) => {
+            return Promise.all([
+              this.handleMultipleUpdate(update.other_updates, channelId),
+              this.handleUpdateMessages(update.new_messages, channelId)
+            ]).then((): any => {
+              if (!update.final && 'access_hash' in chat) {
+                return this.getChannelDifference(chat)
+              }
+              return null
+            })
+          }))
       }
 
       case 'updates.channelDifferenceEmpty':
@@ -310,7 +319,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     channelId?: number
   ): Promise<any> {
     if (updates && Array.isArray(updates)) {
-      return this.reduce(updates.map((update) => this.handle(update, !channelId ? options : undefined)))
+      return this.reduce(updates.map((update) => () => this.handle(update, !channelId ? options : undefined)))
     }
   }
 
@@ -338,7 +347,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       }
 
       if (updatesState.loading) {
-        this.logger.verbose(`[${this.handlerId}] handleUpdateChannelState() ` +
+        this.logger.warn(`[${this.handlerId}] handleUpdateChannelState() ` +
           `channel "${channelId}" loading in progress, skip update`)
         return false
       }
@@ -348,7 +357,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
       if (pts) {
         if (newPts < pts) {
-          this.logger.verbose(`[${this.handlerId}] handleUpdateChannelState() ` +
+          this.logger.warn(`[${this.handlerId}] handleUpdateChannelState() ` +
             `channel "${channelId}" has a pts hole (${pts} > ${chat.pts} + ${ptsCount}), wait for true pts`)
 
           updatesState.postponePtsUpdate(
@@ -365,7 +374,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           nextState.pts = pts
           nextState.ptsTs = now()
         } else if (ptsCount) {
-          this.logger.verbose(`[${this.handlerId}] handleUpdateChannelState() ` +
+          this.logger.warn(`[${this.handlerId}] handleUpdateChannelState() ` +
             `channel "${channelId}" has a duplicate update (${update.pts} <= ${pts} + ${update.pts_count}), skip it`)
           return false
         }
@@ -388,12 +397,12 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
 
   protected handleUpdateEncryptedMessages (messages: api.EncryptedMessageUnion[]): Promise<void> {
     return this.reduce(messages.map((message) =>
-      this.handleEncryptedUpdate({ _: 'updateNewEncryptedMessage', message, qts: 0 })
+      () => this.handleEncryptedUpdate({ _: 'updateNewEncryptedMessage', message, qts: 0 })
     ))
   }
 
   protected handleUpdateMessages (messages: api.MessageUnion[], channelId?: number): Promise<void> {
-    return this.reduce(messages.map((message) => new Promise(async (resolve, reject) => {
+    return this.reduce(messages.map((message) => () => new Promise(async (resolve, reject) => {
       if (channelId) {
         this.getChat(channelId).then((chat: ag.ChatDoc) => {
           if (chat) {
@@ -425,7 +434,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     const { updatesState } = this
 
     if (updatesState.loading) {
-      this.logger.verbose(`[${this.handlerId}] handleUpdateState() ` +
+      this.logger.warn(`[${this.handlerId}] handleUpdateState() ` +
         `updates difference loading in progress, skip this update`)
       return false
     }
@@ -439,8 +448,10 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     if ('pts' in update && 'pts_count' in update) {
       const newPts = pts + (update.pts_count || 0)
       if (newPts < update.pts) {
-        this.logger.verbose(`[${this.handlerId}] handleUpdateState() ` +
-          `detected a pts hole (${pts} > ${update.pts} + ${update.pts_count}), wait for true pts`)
+        this.logger.warn(`[${this.handlerId}] handleUpdateState() ` +
+          `detected a pts hole (${pts} < ${update.pts} - ${update.pts_count}), wait for true pts`)
+
+        updatesState.postponePtsUpdate(update as api.UpdateUnion, async () => this.getDifference())
         return false
       }
 
@@ -449,7 +460,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         nextState.pts = update.pts
         nextState.ptsTs = now()
       } else if (update.pts_count) {
-        this.logger.verbose(`[${this.handlerId}] handleUpdateState() ` +
+        this.logger.warn(`[${this.handlerId}] handleUpdateState() ` +
           `detected a duplicate update (${update.pts} <= ${pts} + ${update.pts_count}), skip this update`)
         return false
       }
@@ -460,7 +471,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       const seqStart = options.seqStart || options.seq || 0
       if (seqStart !== seq + 1) {
         if (seqStart > seq) {
-          this.logger.verbose(`[${this.handlerId}] handleUpdateState() ` +
+          this.logger.warn(`[${this.handlerId}] handleUpdateState() ` +
             `detected a seq hole (${seqStart} > ${seq}), wait for true seq`)
 
           updatesState.postponeSeqUpdate(
@@ -494,13 +505,13 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     return true
   }
 
-  protected reduce (handles: Array<Promise<any>>): Promise<any> {
+  protected reduce (handles: Array<() => Promise<any>>): Promise<any> {
     return handles.reduce((promise, handle) => {
       return promise
-        .then(() => handle)
+        .then(() => handle())
         .catch((error) => {
-          this.logger.error(() => `[${this.handlerId}] reduce() ${new Serializable(error)}`)
-          return handle
+          // this.logger.error(() => `[${this.handlerId}] reduce() ${new Serializable(error)}`)
+          throw error
         })
     }, Promise.resolve())
   }
@@ -513,17 +524,20 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     return this.chats.get(id)
   }
 
-  private async getPeer (update: api.UpdateShortMessage | api.UpdateShortChatMessage, isOut) {
+  private async getPeer (
+    update: api.UpdateShortMessage | api.UpdateShortChatMessage, isOut
+  ): Promise<api.PeerUnion | null> {
     if (('chat_id' in update && update.chat_id)) {
       const chat = await this.getChat(update.chat_id)
 
       if (!chat) {
-        throw new Error(`getPeer() chat "${update.chat_id}" not found`)
+        this.logger.verbose(`[${this.handlerId}] getPeer() chat "${update.chat_id}" not found`)
+        return null
       }
       if (chat.type === 'channel' || chat.type === 'channelForbidden') {
         return { _: 'peerChannel', channel_id: update.chat_id }
       }
-      return { _: 'peerChat', channel_id: update.chat_id }
+      return { _: 'peerChat', chat_id: update.chat_id }
 
     } else {
       return { _: 'peerUser', user_id: (isOut && 'user_id' in update && update.user_id) || this.myId }

@@ -208,10 +208,6 @@ export type MtpClientFactory = (client: Client, context?: interfaces.Context) =>
 
 export type MtpClientCreator = (options: MtpClientOptions) => MtpClient
 
-export interface MtpClients {
-  [dcId: number]: Promise<MtpClient>
-}
-
 export interface MtpClientGetterOptions {
   createClient?: boolean
   isFileTransfer?: boolean

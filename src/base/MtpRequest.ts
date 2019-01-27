@@ -50,7 +50,7 @@ export default class MtpRequest<ParamsT, ResponseT> implements ag.MtpRequest<Par
   public send (dcId: number, options?: ag.MtpClientOptions): Promise<ResponseT> {
     if (!this.promise) {
       this.promise = new Promise<ResponseT>(async (resolve, reject) => {
-        this.logger.info(() => `request() dc "${dcId}" "${this.method}" ` +
+        this.logger.verbose(() => `request() dc "${dcId}" "${this.method}" ` +
           `${JSON.stringify(this.params, null, 1)} ${JSON.stringify(this.options)}`)
 
         this.resolve = resolve
