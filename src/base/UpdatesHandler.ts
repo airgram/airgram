@@ -127,7 +127,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
             } as api.Message,
             pts,
             pts_count: ptsCount
-          } as api.UpdateNewMessage)
+          } as api.UpdateNewMessage, UpdatesHandler.createStateOptions(update))
         }
 
         setImmediate(() => this.getDifference())
@@ -156,9 +156,9 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         await this.complete(update, parent)
         await this.updatesState.completeLoading()
         return Promise.all([
-          this.handleMultipleUpdate(update.other_updates),
-          this.handleUpdateEncryptedMessages(update.new_encrypted_messages),
-          this.handleUpdateMessages(update.new_messages)
+          this.handleMultipleUpdate(update.other_updates, UpdatesHandler.createStateOptions(update)),
+          this.handleUpdateEncryptedMessages(update.new_encrypted_messages, UpdatesHandler.createStateOptions(update)),
+          this.handleUpdateMessages(update.new_messages, UpdatesHandler.createStateOptions(update))
         ])
           .then(() => this.updatesState.set({ date, seq, pts }))
       }
@@ -176,8 +176,8 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         await this.complete(update, parent)
         await this.updatesState.completeLoading()
         return Promise.all([
-          this.handleMultipleUpdate(update.other_updates),
-          this.handleUpdateMessages(update.new_messages)
+          this.handleMultipleUpdate(update.other_updates, UpdatesHandler.createStateOptions(update)),
+          this.handleUpdateMessages(update.new_messages, UpdatesHandler.createStateOptions(update))
         ])
           .then(() => this.updatesState.set({ date, seq, pts }))
           .then(() => setImmediate(() => this.getDifference()))
@@ -241,7 +241,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
       }
 
       case 'updates.channelDifference': {
-        const channelId = get(this.request, 'params.channel.channel_id')
+        const channelId: number = get(this.request, 'params.channel.channel_id')
 
         if (!channelId) {
           this.logger.error(`[${this.handlerId}] handle() "updates.channelDifference" channel_id is undefined`)
@@ -253,8 +253,8 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         return this.chats.getChat(channelId).completeLoading().then(() =>
           this.chats.set(channelId, { pts: update.pts }).then((chat) => {
             return Promise.all([
-              this.handleMultipleUpdate(update.other_updates, channelId),
-              this.handleUpdateMessages(update.new_messages, channelId)
+              this.handleMultipleUpdate(update.other_updates, UpdatesHandler.createStateOptions(update), channelId),
+              this.handleUpdateMessages(update.new_messages, UpdatesHandler.createStateOptions(update), channelId)
             ]).then((): any => {
               if (!update.final && 'access_hash' in chat) {
                 return this.getChannelDifference(chat)
@@ -281,7 +281,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
               if (chat) {
                 await this.complete(update, parent)
                 return this.chats.set(chat.id, { pts: update.pts })
-                  .then(() => this.handleUpdateMessages(update.messages))
+                  .then(() => this.handleUpdateMessages(update.messages, UpdatesHandler.createStateOptions(update)))
               } else {
                 return this.throwHandleError(update, `chat "${channelId}" not found`)
               }
@@ -309,17 +309,18 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     return true
   }
 
-  protected async handleEncryptedUpdate (update: api.UpdateNewEncryptedMessage) {
+  protected async handleEncryptedUpdate (update: api.UpdateNewEncryptedMessage, options: ag.UpdatesHandlerOptions) {
     this.logger.error(`[${this.handlerId}] handleEncryptedUpdate() method has not implemented yet.`, update)
   }
 
   protected async handleMultipleUpdate (
     updates: api.UpdateUnion[],
-    options?: ag.UpdatesHandlerOptions,
+    options: ag.UpdatesHandlerOptions,
     channelId?: number
   ): Promise<any> {
     if (updates && Array.isArray(updates)) {
-      return this.reduce(updates.map((update) => () => this.handle(update, !channelId ? options : undefined)))
+      return this.reduce(updates.map((update) => () =>
+        this.handle(update, channelId ? { parent: options.parent } : options)))
     }
   }
 
@@ -395,13 +396,20 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
     })
   }
 
-  protected handleUpdateEncryptedMessages (messages: api.EncryptedMessageUnion[]): Promise<void> {
+  protected handleUpdateEncryptedMessages (
+    messages: api.EncryptedMessageUnion[],
+    options: ag.UpdatesHandlerOptions
+  ): Promise<void> {
     return this.reduce(messages.map((message) =>
-      () => this.handleEncryptedUpdate({ _: 'updateNewEncryptedMessage', message, qts: 0 })
+      () => this.handleEncryptedUpdate({ _: 'updateNewEncryptedMessage', message, qts: 0 }, options)
     ))
   }
 
-  protected handleUpdateMessages (messages: api.MessageUnion[], channelId?: number): Promise<void> {
+  protected handleUpdateMessages (
+    messages: api.MessageUnion[],
+    options: ag.UpdatesHandlerOptions,
+    channelId?: number
+  ): Promise<void> {
     return this.reduce(messages.map((message) => () => new Promise(async (resolve, reject) => {
       if (channelId) {
         this.getChat(channelId).then((chat: ag.ChatDoc) => {
@@ -411,7 +419,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
               message,
               pts: chat.pts,
               pts_count: 0
-            } as api.UpdateNewChannelMessage).then(resolve, reject)
+            } as api.UpdateNewChannelMessage, options).then(resolve, reject)
           } else {
             reject(new Error(`handleUpdateMessages() chat "${channelId}" not found`))
           }
@@ -422,7 +430,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
           message,
           pts: (await this.updatesState.get()).pts,
           pts_count: 0
-        } as api.UpdateNewMessage).then(resolve, reject)
+        } as api.UpdateNewMessage, options).then(resolve, reject)
       }
     })))
   }
