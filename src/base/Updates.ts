@@ -61,7 +61,7 @@ export default class Updates extends Composer<ag.UpdateContext> implements ag.Up
 
     this.promises[key] = chat.get().then((chatDoc) => this.client.updates.getChannelDifference(
       {
-        channel: { _: 'inputChannel', access_hash: chatDoc.accessHash || 0, channel_id: chat.id },
+        channel: { _: 'inputChannel', access_hash: chatDoc.accessHash || '0', channel_id: chat.id },
         filter: { _: 'channelMessagesFilterEmpty' },
         flags: 0,
         limit: 30,

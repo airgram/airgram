@@ -662,7 +662,7 @@ export interface Chat extends PendingState<ChatDoc> {
 }
 
 export interface ChatDoc {
-  accessHash?: number
+  accessHash?: string
   date?: number
   id: number
   min?: boolean
