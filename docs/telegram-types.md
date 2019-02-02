@@ -728,7 +728,7 @@ It's an alias for the `Authorization` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "authorization" |
-| `hash` | number |  |  |
+| `hash` | string |  |  |
 | `flags` | number |  |  |
 | `device_model` | string |  |  |
 | `platform` | string |  |  |
@@ -747,7 +747,7 @@ TypeScript interface:
 ```typescript
 interface Authorization {
   _: 'authorization'
-  hash: number
+  hash: string
   flags: number
   device_model: string
   platform: string
@@ -1145,7 +1145,7 @@ It's an alias for the `ChannelAdminLogEvent` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "channelAdminLogEvent" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `date` | number |  |  |
 | `user_id` | number |  |  |
 | `action` | [ChannelAdminLogEventActionUnion](#channeladminlogeventactionunion) |  |  |
@@ -1155,7 +1155,7 @@ TypeScript interface:
 ```typescript
 interface ChannelAdminLogEvent {
   _: 'channelAdminLogEvent'
-  id: number
+  id: string
   date: number
   user_id: number
   action: ChannelAdminLogEventActionUnion
@@ -2061,7 +2061,7 @@ Represents one of the following types:
 | `signatures` | true | 2048 | Optional |
 | `min` | true | 4096 | Optional |
 | `id` | number |  |  |
-| `access_hash` | number | 8192 | Optional |
+| `access_hash` | string | 8192 | Optional |
 | `title` | string |  |  |
 | `username` | string | 64 | Optional |
 | `photo` | [ChatPhotoUnion](#chatphotounion) |  |  |
@@ -2088,7 +2088,7 @@ interface Channel {
   signatures?: true
   min?: true
   id: number
-  access_hash?: number
+  access_hash?: string
   title: string
   username?: string
   photo: ChatPhotoUnion
@@ -2113,7 +2113,7 @@ interface Channel {
 | `broadcast` | true | 32 | Optional |
 | `megagroup` | true | 256 | Optional |
 | `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 | `title` | string |  |  |
 | `until_date` | number | 65536 | Optional |
 
@@ -2126,7 +2126,7 @@ interface ChannelForbidden {
   broadcast?: true
   megagroup?: true
   id: number
-  access_hash: number
+  access_hash: string
   title: string
   until_date?: number
 }
@@ -2958,7 +2958,7 @@ It's an alias for the `ContactsImportedContacts` type.
 | `_` | string |  | Value: "contacts.importedContacts" |
 | `imported` | [ImportedContactUnion[]](#importedcontactunion) |  |  |
 | `popular_invites` | [PopularContactUnion[]](#popularcontactunion) |  |  |
-| `retry_contacts` | number[] |  |  |
+| `retry_contacts` | string[] |  |  |
 | `users` | [UserUnion[]](#userunion) |  |  |
 
 TypeScript interface:
@@ -2968,7 +2968,7 @@ interface ContactsImportedContacts {
   _: 'contacts.importedContacts'
   imported: ImportedContactUnion[]
   popular_invites: PopularContactUnion[]
-  retry_contacts: number[]
+  retry_contacts: string[]
   users: UserUnion[]
 }
 ```
@@ -3234,8 +3234,8 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "document" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `mime_type` | string |  |  |
 | `size` | number |  |  |
@@ -3249,8 +3249,8 @@ TypeScript interface:
 ```typescript
 interface Document {
   _: 'document'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   mime_type: string
   size: number
@@ -3270,14 +3270,14 @@ interface Document {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "documentEmpty" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface DocumentEmpty {
   _: 'documentEmpty'
-  id: number
+  id: string
 }
 ```
 
@@ -3532,12 +3532,12 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedChat" |
 | `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
 | `g_a_or_b` | number[] |  |  |
-| `key_fingerprint` | number |  |  |
+| `key_fingerprint` | string |  |  |
 
 TypeScript interface:
 
@@ -3545,12 +3545,12 @@ TypeScript interface:
 interface EncryptedChat {
   _: 'encryptedChat'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
   g_a_or_b: number[]
-  key_fingerprint: number
+  key_fingerprint: string
 }
 ```
 
@@ -3604,7 +3604,7 @@ interface EncryptedChatEmpty {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedChatRequested" |
 | `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
@@ -3616,7 +3616,7 @@ TypeScript interface:
 interface EncryptedChatRequested {
   _: 'encryptedChatRequested'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -3634,7 +3634,7 @@ interface EncryptedChatRequested {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedChatWaiting" |
 | `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
@@ -3645,7 +3645,7 @@ TypeScript interface:
 interface EncryptedChatWaiting {
   _: 'encryptedChatWaiting'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -3668,8 +3668,8 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedFile" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `size` | number |  |  |
 | `dc_id` | number |  |  |
 | `key_fingerprint` | number |  |  |
@@ -3679,8 +3679,8 @@ TypeScript interface:
 ```typescript
 interface EncryptedFile {
   _: 'encryptedFile'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   size: number
   dc_id: number
   key_fingerprint: number
@@ -3721,7 +3721,7 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedMessage" |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `chat_id` | number |  |  |
 | `date` | number |  |  |
 | `bytes` | number[] |  |  |
@@ -3732,7 +3732,7 @@ TypeScript interface:
 ```typescript
 interface EncryptedMessage {
   _: 'encryptedMessage'
-  random_id: number
+  random_id: string
   chat_id: number
   date: number
   bytes: number[]
@@ -3749,7 +3749,7 @@ interface EncryptedMessage {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "encryptedMessageService" |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `chat_id` | number |  |  |
 | `date` | number |  |  |
 | `bytes` | number[] |  |  |
@@ -3759,7 +3759,7 @@ TypeScript interface:
 ```typescript
 interface EncryptedMessageService {
   _: 'encryptedMessageService'
-  random_id: number
+  random_id: string
   chat_id: number
   date: number
   bytes: number[]
@@ -3880,9 +3880,9 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "fileLocation" |
 | `dc_id` | number |  |  |
-| `volume_id` | number |  |  |
+| `volume_id` | string |  |  |
 | `local_id` | number |  |  |
-| `secret` | number |  |  |
+| `secret` | string |  |  |
 
 TypeScript interface:
 
@@ -3890,9 +3890,9 @@ TypeScript interface:
 interface FileLocation {
   _: 'fileLocation'
   dc_id: number
-  volume_id: number
+  volume_id: string
   local_id: number
-  secret: number
+  secret: string
 }
 ```
 
@@ -3905,18 +3905,18 @@ interface FileLocation {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "fileLocationUnavailable" |
-| `volume_id` | number |  |  |
+| `volume_id` | string |  |  |
 | `local_id` | number |  |  |
-| `secret` | number |  |  |
+| `secret` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface FileLocationUnavailable {
   _: 'fileLocationUnavailable'
-  volume_id: number
+  volume_id: string
   local_id: number
-  secret: number
+  secret: string
 }
 ```
 
@@ -3996,8 +3996,8 @@ It's an alias for the `Game` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "game" |
 | `flags` | number |  |  |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `short_name` | string |  |  |
 | `title` | string |  |  |
 | `description` | string |  |  |
@@ -4010,8 +4010,8 @@ TypeScript interface:
 interface Game {
   _: 'game'
   flags: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   short_name: string
   title: string
   description: string
@@ -4239,7 +4239,7 @@ It's an alias for the `ImportedContact` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "importedContact" |
 | `user_id` | number |  |  |
-| `client_id` | number |  |  |
+| `client_id` | string |  |  |
 
 TypeScript interface:
 
@@ -4247,7 +4247,7 @@ TypeScript interface:
 interface ImportedContact {
   _: 'importedContact'
   user_id: number
-  client_id: number
+  client_id: string
 }
 ```
 
@@ -4294,7 +4294,7 @@ It's an alias for the `InputAppEvent` type.
 | `_` | string |  | Value: "inputAppEvent" |
 | `time` | number |  |  |
 | `type` | string |  |  |
-| `peer` | number |  |  |
+| `peer` | string |  |  |
 | `data` | string |  |  |
 
 TypeScript interface:
@@ -4304,7 +4304,7 @@ interface InputAppEvent {
   _: 'inputAppEvent'
   time: number
   type: string
-  peer: number
+  peer: string
   data: string
 }
 ```
@@ -4493,8 +4493,8 @@ It's an alias for the `InputBotInlineMessageId` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputBotInlineMessageID" |
 | `dc_id` | number |  |  |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -4502,8 +4502,8 @@ TypeScript interface:
 interface InputBotInlineMessageId {
   _: 'inputBotInlineMessageID'
   dc_id: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -4659,7 +4659,7 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputChannel" |
 | `channel_id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -4667,7 +4667,7 @@ TypeScript interface:
 interface InputChannel {
   _: 'inputChannel'
   channel_id: number
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -4769,7 +4769,7 @@ It's an alias for the `InputPhoneContact` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputPhoneContact" |
-| `client_id` | number |  |  |
+| `client_id` | string |  |  |
 | `phone` | string |  |  |
 | `first_name` | string |  |  |
 | `last_name` | string |  |  |
@@ -4779,7 +4779,7 @@ TypeScript interface:
 ```typescript
 interface InputPhoneContact {
   _: 'inputPhoneContact'
-  client_id: number
+  client_id: string
   phone: string
   first_name: string
   last_name: string
@@ -4802,16 +4802,16 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputDocument" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputDocument {
   _: 'inputDocument'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -4848,7 +4848,7 @@ It's an alias for the `InputEncryptedChat` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputEncryptedChat" |
 | `chat_id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -4856,7 +4856,7 @@ TypeScript interface:
 interface InputEncryptedChat {
   _: 'inputEncryptedChat'
   chat_id: number
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -4878,16 +4878,16 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputEncryptedFile" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputEncryptedFile {
   _: 'inputEncryptedFile'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -4900,7 +4900,7 @@ interface InputEncryptedFile {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputEncryptedFileBigUploaded" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `parts` | number |  |  |
 | `key_fingerprint` | number |  |  |
 
@@ -4909,7 +4909,7 @@ TypeScript interface:
 ```typescript
 interface InputEncryptedFileBigUploaded {
   _: 'inputEncryptedFileBigUploaded'
-  id: number
+  id: string
   parts: number
   key_fingerprint: number
 }
@@ -4942,7 +4942,7 @@ interface InputEncryptedFileEmpty {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputEncryptedFileUploaded" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `parts` | number |  |  |
 | `md5_checksum` | string |  |  |
 | `key_fingerprint` | number |  |  |
@@ -4952,7 +4952,7 @@ TypeScript interface:
 ```typescript
 interface InputEncryptedFileUploaded {
   _: 'inputEncryptedFileUploaded'
-  id: number
+  id: string
   parts: number
   md5_checksum: string
   key_fingerprint: number
@@ -4975,7 +4975,7 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputFile" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `parts` | number |  |  |
 | `name` | string |  |  |
 | `md5_checksum` | string |  |  |
@@ -4985,7 +4985,7 @@ TypeScript interface:
 ```typescript
 interface InputFile {
   _: 'inputFile'
-  id: number
+  id: string
   parts: number
   name: string
   md5_checksum: string
@@ -5001,7 +5001,7 @@ interface InputFile {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputFileBig" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `parts` | number |  |  |
 | `name` | string |  |  |
 
@@ -5010,7 +5010,7 @@ TypeScript interface:
 ```typescript
 interface InputFileBig {
   _: 'inputFileBig'
-  id: number
+  id: string
   parts: number
   name: string
 }
@@ -5033,8 +5033,8 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputDocumentFileLocation" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `version` | number |  |  |
 
 TypeScript interface:
@@ -5042,8 +5042,8 @@ TypeScript interface:
 ```typescript
 interface InputDocumentFileLocation {
   _: 'inputDocumentFileLocation'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   version: number
 }
 ```
@@ -5057,16 +5057,16 @@ interface InputDocumentFileLocation {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputEncryptedFileLocation" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputEncryptedFileLocation {
   _: 'inputEncryptedFileLocation'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -5079,18 +5079,18 @@ interface InputEncryptedFileLocation {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputFileLocation" |
-| `volume_id` | number |  |  |
+| `volume_id` | string |  |  |
 | `local_id` | number |  |  |
-| `secret` | number |  |  |
+| `secret` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputFileLocation {
   _: 'inputFileLocation'
-  volume_id: number
+  volume_id: string
   local_id: number
-  secret: number
+  secret: string
 }
 ```
 
@@ -5110,16 +5110,16 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputGameID" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputGameId {
   _: 'inputGameID'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -5698,7 +5698,7 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputPeerChannel" |
 | `channel_id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -5706,7 +5706,7 @@ TypeScript interface:
 interface InputPeerChannel {
   _: 'inputPeerChannel'
   channel_id: number
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -5776,7 +5776,7 @@ interface InputPeerSelf {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputPeerUser" |
 | `user_id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -5784,7 +5784,7 @@ TypeScript interface:
 interface InputPeerUser {
   _: 'inputPeerUser'
   user_id: number
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -5878,16 +5878,16 @@ It's an alias for the `InputPhoneCall` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputPhoneCall" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputPhoneCall {
   _: 'inputPhoneCall'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -5907,16 +5907,16 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputPhoto" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputPhoto {
   _: 'inputPhoto'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -6158,16 +6158,16 @@ interface InputStickerSetEmpty {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputStickerSetID" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface InputStickerSetId {
   _: 'inputStickerSetID'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 ```
 
@@ -6287,7 +6287,7 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputUser" |
 | `user_id` | number |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -6295,7 +6295,7 @@ TypeScript interface:
 interface InputUser {
   _: 'inputUser'
   user_id: number
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -6381,7 +6381,7 @@ It's an alias for the `InputWebFileLocation` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "inputWebFileLocation" |
 | `url` | string |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 
 TypeScript interface:
 
@@ -6389,7 +6389,7 @@ TypeScript interface:
 interface InputWebFileLocation {
   _: 'inputWebFileLocation'
   url: string
-  access_hash: number
+  access_hash: string
 }
 ```
 
@@ -6657,7 +6657,7 @@ It's an alias for the `LabeledPrice` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "labeledPrice" |
 | `label` | string |  |  |
-| `amount` | number |  |  |
+| `amount` | string |  |  |
 
 TypeScript interface:
 
@@ -6665,7 +6665,7 @@ TypeScript interface:
 interface LabeledPrice {
   _: 'labeledPrice'
   label: string
-  amount: number
+  amount: string
 }
 ```
 
@@ -7224,7 +7224,7 @@ interface MessageActionEmpty {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "messageActionGameScore" |
-| `game_id` | number |  |  |
+| `game_id` | string |  |  |
 | `score` | number |  |  |
 
 TypeScript interface:
@@ -7232,7 +7232,7 @@ TypeScript interface:
 ```typescript
 interface MessageActionGameScore {
   _: 'messageActionGameScore'
-  game_id: number
+  game_id: string
   score: number
 }
 ```
@@ -7265,7 +7265,7 @@ interface MessageActionHistoryClear {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "messageActionPaymentSent" |
 | `currency` | string |  |  |
-| `total_amount` | number |  |  |
+| `total_amount` | string |  |  |
 
 TypeScript interface:
 
@@ -7273,7 +7273,7 @@ TypeScript interface:
 interface MessageActionPaymentSent {
   _: 'messageActionPaymentSent'
   currency: string
-  total_amount: number
+  total_amount: string
 }
 ```
 
@@ -7288,7 +7288,7 @@ interface MessageActionPaymentSent {
 | `_` | string |  | Value: "messageActionPaymentSentMe" |
 | `flags` | number |  |  |
 | `currency` | string |  |  |
-| `total_amount` | number |  |  |
+| `total_amount` | string |  |  |
 | `payload` | number[] |  |  |
 | `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
 | `shipping_option_id` | string | 2 | Optional |
@@ -7301,7 +7301,7 @@ interface MessageActionPaymentSentMe {
   _: 'messageActionPaymentSentMe'
   flags: number
   currency: string
-  total_amount: number
+  total_amount: string
   payload: number[]
   info?: PaymentRequestedInfoUnion
   shipping_option_id?: string
@@ -7319,7 +7319,7 @@ interface MessageActionPaymentSentMe {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "messageActionPhoneCall" |
 | `flags` | number |  |  |
-| `call_id` | number |  |  |
+| `call_id` | string |  |  |
 | `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) |  | Optional |
 | `duration` | number | 2 | Optional |
 
@@ -7329,7 +7329,7 @@ TypeScript interface:
 interface MessageActionPhoneCall {
   _: 'messageActionPhoneCall'
   flags: number
-  call_id: number
+  call_id: string
   reason?: PhoneCallDiscardReasonUnion
   duration?: number
 }
@@ -7860,7 +7860,7 @@ interface MessageMediaGeo {
 | `photo` | [WebDocumentUnion](#webdocumentunion) |  | Optional |
 | `receipt_msg_id` | number | 4 | Optional |
 | `currency` | string |  |  |
-| `total_amount` | number |  |  |
+| `total_amount` | string |  |  |
 | `start_param` | string |  |  |
 
 TypeScript interface:
@@ -7876,7 +7876,7 @@ interface MessageMediaInvoice {
   photo?: WebDocumentUnion
   receipt_msg_id?: number
   currency: string
-  total_amount: number
+  total_amount: string
   start_param: string
 }
 ```
@@ -8181,7 +8181,7 @@ It's an alias for the `MessagesBotResults` type.
 | `_` | string |  | Value: "messages.botResults" |
 | `flags` | number |  |  |
 | `gallery` | true |  | Optional |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `next_offset` | string | 2 | Optional |
 | `switch_pm` | [InlineBotSwitchPmUnion](#inlinebotswitchpmunion) | 4 | Optional |
 | `results` | [BotInlineResultUnion[]](#botinlineresultunion) |  |  |
@@ -8194,7 +8194,7 @@ interface MessagesBotResults {
   _: 'messages.botResults'
   flags: number
   gallery?: true
-  query_id: number
+  query_id: string
   next_offset?: string
   switch_pm?: InlineBotSwitchPmUnion
   results: BotInlineResultUnion[]
@@ -8461,7 +8461,7 @@ Represents one of the following types:
 | `_` | string |  | Value: "messages.featuredStickers" |
 | `hash` | number |  |  |
 | `sets` | [StickerSetCoveredUnion[]](#stickersetcoveredunion) |  |  |
-| `unread` | number[] |  |  |
+| `unread` | string[] |  |  |
 
 TypeScript interface:
 
@@ -8470,7 +8470,7 @@ interface MessagesFeaturedStickers {
   _: 'messages.featuredStickers'
   hash: number
   sets: StickerSetCoveredUnion[]
-  unread: number[]
+  unread: string[]
 }
 ```
 
@@ -9495,7 +9495,7 @@ interface PageBlockAnchor {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "pageBlockAudio" |
-| `audio_id` | number |  |  |
+| `audio_id` | string |  |  |
 | `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
@@ -9503,7 +9503,7 @@ TypeScript interface:
 ```typescript
 interface PageBlockAudio {
   _: 'pageBlockAudio'
-  audio_id: number
+  audio_id: string
   caption: RichTextUnion
 }
 ```
@@ -9646,7 +9646,7 @@ interface PageBlockDivider {
 | `allow_scrolling` | true | 8 | Optional |
 | `url` | string | 2 | Optional |
 | `html` | string | 4 | Optional |
-| `poster_photo_id` | number | 16 | Optional |
+| `poster_photo_id` | string | 16 | Optional |
 | `w` | number |  |  |
 | `h` | number |  |  |
 | `caption` | [RichTextUnion](#richtextunion) |  |  |
@@ -9661,7 +9661,7 @@ interface PageBlockEmbed {
   allow_scrolling?: true
   url?: string
   html?: string
-  poster_photo_id?: number
+  poster_photo_id?: string
   w: number
   h: number
   caption: RichTextUnion
@@ -9678,8 +9678,8 @@ interface PageBlockEmbed {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "pageBlockEmbedPost" |
 | `url` | string |  |  |
-| `webpage_id` | number |  |  |
-| `author_photo_id` | number |  |  |
+| `webpage_id` | string |  |  |
+| `author_photo_id` | string |  |  |
 | `author` | string |  |  |
 | `date` | number |  |  |
 | `blocks` | [PageBlockUnion[]](#pageblockunion) |  |  |
@@ -9691,8 +9691,8 @@ TypeScript interface:
 interface PageBlockEmbedPost {
   _: 'pageBlockEmbedPost'
   url: string
-  webpage_id: number
-  author_photo_id: number
+  webpage_id: string
+  author_photo_id: string
   author: string
   date: number
   blocks: PageBlockUnion[]
@@ -9791,7 +9791,7 @@ interface PageBlockParagraph {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "pageBlockPhoto" |
-| `photo_id` | number |  |  |
+| `photo_id` | string |  |  |
 | `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
@@ -9799,7 +9799,7 @@ TypeScript interface:
 ```typescript
 interface PageBlockPhoto {
   _: 'pageBlockPhoto'
-  photo_id: number
+  photo_id: string
   caption: RichTextUnion
 }
 ```
@@ -9960,7 +9960,7 @@ interface PageBlockUnsupported {
 | `flags` | number |  |  |
 | `autoplay` | true |  | Optional |
 | `loop` | true | 2 | Optional |
-| `video_id` | number |  |  |
+| `video_id` | string |  |  |
 | `caption` | [RichTextUnion](#richtextunion) |  |  |
 
 TypeScript interface:
@@ -9971,7 +9971,7 @@ interface PageBlockVideo {
   flags: number
   autoplay?: true
   loop?: true
-  video_id: number
+  video_id: string
   caption: RichTextUnion
 }
 ```
@@ -10132,7 +10132,7 @@ It's an alias for the `PaymentsPaymentReceipt` type.
 | `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
 | `shipping` | [ShippingOptionUnion](#shippingoptionunion) | 2 | Optional |
 | `currency` | string |  |  |
-| `total_amount` | number |  |  |
+| `total_amount` | string |  |  |
 | `credentials_title` | string |  |  |
 | `users` | [UserUnion[]](#userunion) |  |  |
 
@@ -10149,7 +10149,7 @@ interface PaymentsPaymentReceipt {
   info?: PaymentRequestedInfoUnion
   shipping?: ShippingOptionUnion
   currency: string
-  total_amount: number
+  total_amount: string
   credentials_title: string
   users: UserUnion[]
 }
@@ -10471,13 +10471,13 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneCall" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
 | `g_a_or_b` | number[] |  |  |
-| `key_fingerprint` | number |  |  |
+| `key_fingerprint` | string |  |  |
 | `protocol` | [PhoneCallProtocolUnion](#phonecallprotocolunion) |  |  |
 | `connection` | [PhoneConnectionUnion](#phoneconnectionunion) |  |  |
 | `alternative_connections` | [PhoneConnectionUnion[]](#phoneconnectionunion) |  |  |
@@ -10488,13 +10488,13 @@ TypeScript interface:
 ```typescript
 interface PhoneCall {
   _: 'phoneCall'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
   g_a_or_b: number[]
-  key_fingerprint: number
+  key_fingerprint: string
   protocol: PhoneCallProtocolUnion
   connection: PhoneConnectionUnion
   alternative_connections: PhoneConnectionUnion[]
@@ -10511,8 +10511,8 @@ interface PhoneCall {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneCallAccepted" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
@@ -10524,8 +10524,8 @@ TypeScript interface:
 ```typescript
 interface PhoneCallAccepted {
   _: 'phoneCallAccepted'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -10546,7 +10546,7 @@ interface PhoneCallAccepted {
 | `flags` | number |  |  |
 | `need_rating` | true | 4 | Optional |
 | `need_debug` | true | 8 | Optional |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `reason` | [PhoneCallDiscardReasonUnion](#phonecalldiscardreasonunion) |  | Optional |
 | `duration` | number | 2 | Optional |
 
@@ -10558,7 +10558,7 @@ interface PhoneCallDiscarded {
   flags: number
   need_rating?: true
   need_debug?: true
-  id: number
+  id: string
   reason?: PhoneCallDiscardReasonUnion
   duration?: number
 }
@@ -10573,14 +10573,14 @@ interface PhoneCallDiscarded {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneCallEmpty" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface PhoneCallEmpty {
   _: 'phoneCallEmpty'
-  id: number
+  id: string
 }
 ```
 
@@ -10593,8 +10593,8 @@ interface PhoneCallEmpty {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneCallRequested" |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
@@ -10606,8 +10606,8 @@ TypeScript interface:
 ```typescript
 interface PhoneCallRequested {
   _: 'phoneCallRequested'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -10626,8 +10626,8 @@ interface PhoneCallRequested {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneCallWaiting" |
 | `flags` | number |  |  |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `admin_id` | number |  |  |
 | `participant_id` | number |  |  |
@@ -10640,8 +10640,8 @@ TypeScript interface:
 interface PhoneCallWaiting {
   _: 'phoneCallWaiting'
   flags: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -10778,7 +10778,7 @@ It's an alias for the `PhoneConnection` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "phoneConnection" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `ip` | string |  |  |
 | `ipv6` | string |  |  |
 | `port` | number |  |  |
@@ -10789,7 +10789,7 @@ TypeScript interface:
 ```typescript
 interface PhoneConnection {
   _: 'phoneConnection'
-  id: number
+  id: string
   ip: string
   ipv6: string
   port: number
@@ -10842,8 +10842,8 @@ Represents one of the following types:
 | `_` | string |  | Value: "photo" |
 | `flags` | number |  |  |
 | `has_stickers` | true |  | Optional |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `date` | number |  |  |
 | `sizes` | [PhotoSizeUnion[]](#photosizeunion) |  |  |
 
@@ -10854,8 +10854,8 @@ interface Photo {
   _: 'photo'
   flags: number
   has_stickers?: true
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   sizes: PhotoSizeUnion[]
 }
@@ -10870,14 +10870,14 @@ interface Photo {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "photoEmpty" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface PhotoEmpty {
   _: 'photoEmpty'
-  id: number
+  id: string
 }
 ```
 
@@ -11059,7 +11059,7 @@ It's an alias for the `PopularContact` type.
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "popularContact" |
-| `client_id` | number |  |  |
+| `client_id` | string |  |  |
 | `importers` | number |  |  |
 
 TypeScript interface:
@@ -11067,7 +11067,7 @@ TypeScript interface:
 ```typescript
 interface PopularContact {
   _: 'popularContact'
-  client_id: number
+  client_id: string
   importers: number
 }
 ```
@@ -11711,7 +11711,7 @@ interface TextUnderline {
 | `_` | string |  | Value: "textUrl" |
 | `text` | [RichTextUnion](#richtextunion) |  |  |
 | `url` | string |  |  |
-| `webpage_id` | number |  |  |
+| `webpage_id` | string |  |  |
 
 TypeScript interface:
 
@@ -11720,7 +11720,7 @@ interface TextUrl {
   _: 'textUrl'
   text: RichTextUnion
   url: string
-  webpage_id: number
+  webpage_id: string
 }
 ```
 
@@ -12030,7 +12030,7 @@ It's an alias for the `StickerPack` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "stickerPack" |
 | `emoticon` | string |  |  |
-| `documents` | number[] |  |  |
+| `documents` | string[] |  |  |
 
 TypeScript interface:
 
@@ -12038,7 +12038,7 @@ TypeScript interface:
 interface StickerPack {
   _: 'stickerPack'
   emoticon: string
-  documents: number[]
+  documents: string[]
 }
 ```
 
@@ -12061,8 +12061,8 @@ It's an alias for the `StickerSet` type.
 | `archived` | true | 2 | Optional |
 | `official` | true | 4 | Optional |
 | `masks` | true | 8 | Optional |
-| `id` | number |  |  |
-| `access_hash` | number |  |  |
+| `id` | string |  |  |
+| `access_hash` | string |  |  |
 | `title` | string |  |  |
 | `short_name` | string |  |  |
 | `count` | number |  |  |
@@ -12078,8 +12078,8 @@ interface StickerSet {
   archived?: true
   official?: true
   masks?: true
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   title: string
   short_name: string
   count: number
@@ -12611,11 +12611,11 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateBotCallbackQuery" |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `user_id` | number |  |  |
 | `peer` | [PeerUnion](#peerunion) |  |  |
 | `msg_id` | number |  |  |
-| `chat_instance` | number |  |  |
+| `chat_instance` | string |  |  |
 | `data` | number[] |  | Optional |
 | `game_short_name` | string | 2 | Optional |
 
@@ -12625,11 +12625,11 @@ TypeScript interface:
 interface UpdateBotCallbackQuery {
   _: 'updateBotCallbackQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   peer: PeerUnion
   msg_id: number
-  chat_instance: number
+  chat_instance: string
   data?: number[]
   game_short_name?: string
 }
@@ -12645,7 +12645,7 @@ interface UpdateBotCallbackQuery {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateBotInlineQuery" |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `user_id` | number |  |  |
 | `query` | string |  |  |
 | `geo` | [GeoPointUnion](#geopointunion) |  | Optional |
@@ -12657,7 +12657,7 @@ TypeScript interface:
 interface UpdateBotInlineQuery {
   _: 'updateBotInlineQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   query: string
   geo?: GeoPointUnion
@@ -12705,13 +12705,13 @@ interface UpdateBotInlineSend {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateBotPrecheckoutQuery" |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `user_id` | number |  |  |
 | `payload` | number[] |  |  |
 | `info` | [PaymentRequestedInfoUnion](#paymentrequestedinfounion) |  | Optional |
 | `shipping_option_id` | string | 2 | Optional |
 | `currency` | string |  |  |
-| `total_amount` | number |  |  |
+| `total_amount` | string |  |  |
 
 TypeScript interface:
 
@@ -12719,13 +12719,13 @@ TypeScript interface:
 interface UpdateBotPrecheckoutQuery {
   _: 'updateBotPrecheckoutQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   payload: number[]
   info?: PaymentRequestedInfoUnion
   shipping_option_id?: string
   currency: string
-  total_amount: number
+  total_amount: string
 }
 ```
 
@@ -12738,7 +12738,7 @@ interface UpdateBotPrecheckoutQuery {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateBotShippingQuery" |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `user_id` | number |  |  |
 | `payload` | number[] |  |  |
 | `shipping_address` | [PostAddressUnion](#postaddressunion) |  |  |
@@ -12748,7 +12748,7 @@ TypeScript interface:
 ```typescript
 interface UpdateBotShippingQuery {
   _: 'updateBotShippingQuery'
-  query_id: number
+  query_id: string
   user_id: number
   payload: number[]
   shipping_address: PostAddressUnion
@@ -12784,7 +12784,7 @@ interface UpdateBotWebhookJson {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateBotWebhookJSONQuery" |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `data` | [DataJsonUnion](#datajsonunion) |  |  |
 | `timeout` | number |  |  |
 
@@ -12793,7 +12793,7 @@ TypeScript interface:
 ```typescript
 interface UpdateBotWebhookJsonQuery {
   _: 'updateBotWebhookJSONQuery'
-  query_id: number
+  query_id: string
   data: DataJsonUnion
   timeout: number
 }
@@ -13423,10 +13423,10 @@ interface UpdateFavedStickers {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateInlineBotCallbackQuery" |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `user_id` | number |  |  |
 | `msg_id` | [InputBotInlineMessageIdUnion](#inputbotinlinemessageidunion) |  |  |
-| `chat_instance` | number |  |  |
+| `chat_instance` | string |  |  |
 | `data` | number[] |  | Optional |
 | `game_short_name` | string | 2 | Optional |
 
@@ -13436,10 +13436,10 @@ TypeScript interface:
 interface UpdateInlineBotCallbackQuery {
   _: 'updateInlineBotCallbackQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   msg_id: InputBotInlineMessageIdUnion
-  chat_instance: number
+  chat_instance: string
   data?: number[]
   game_short_name?: string
 }
@@ -13493,7 +13493,7 @@ interface UpdateLangPackTooLong {
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "updateMessageID" |
 | `id` | number |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 
 TypeScript interface:
 
@@ -13501,7 +13501,7 @@ TypeScript interface:
 interface UpdateMessageId {
   _: 'updateMessageID'
   id: number
-  random_id: number
+  random_id: string
 }
 ```
 
@@ -13934,7 +13934,7 @@ interface UpdateStickerSets {
 | `_` | string |  | Value: "updateStickerSetsOrder" |
 | `flags` | number |  |  |
 | `masks` | true |  | Optional |
-| `order` | number[] |  |  |
+| `order` | string[] |  |  |
 
 TypeScript interface:
 
@@ -13943,7 +13943,7 @@ interface UpdateStickerSetsOrder {
   _: 'updateStickerSetsOrder'
   flags: number
   masks?: true
-  order: number[]
+  order: string[]
 }
 ```
 
@@ -14775,7 +14775,7 @@ Represents one of the following types:
 | `min` | true | 1048576 | Optional |
 | `bot_inline_geo` | true | 2097152 | Optional |
 | `id` | number |  |  |
-| `access_hash` | number |  | Optional |
+| `access_hash` | string |  | Optional |
 | `first_name` | string | 2 | Optional |
 | `last_name` | string | 4 | Optional |
 | `username` | string | 8 | Optional |
@@ -14805,7 +14805,7 @@ interface User {
   min?: true
   bot_inline_geo?: true
   id: number
-  access_hash?: number
+  access_hash?: string
   first_name?: string
   last_name?: string
   username?: string
@@ -14900,7 +14900,7 @@ Represents one of the following types:
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "userProfilePhoto" |
-| `photo_id` | number |  |  |
+| `photo_id` | string |  |  |
 | `photo_small` | [FileLocationUnion](#filelocationunion) |  |  |
 | `photo_big` | [FileLocationUnion](#filelocationunion) |  |  |
 
@@ -14909,7 +14909,7 @@ TypeScript interface:
 ```typescript
 interface UserProfilePhoto {
   _: 'userProfilePhoto'
-  photo_id: number
+  photo_id: string
   photo_small: FileLocationUnion
   photo_big: FileLocationUnion
 }
@@ -15130,7 +15130,7 @@ It's an alias for the `WebDocument` type.
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "webDocument" |
 | `url` | string |  |  |
-| `access_hash` | number |  |  |
+| `access_hash` | string |  |  |
 | `size` | number |  |  |
 | `mime_type` | string |  |  |
 | `attributes` | [DocumentAttributeUnion[]](#documentattributeunion) |  |  |
@@ -15142,7 +15142,7 @@ TypeScript interface:
 interface WebDocument {
   _: 'webDocument'
   url: string
-  access_hash: number
+  access_hash: string
   size: number
   mime_type: string
   attributes: DocumentAttributeUnion[]
@@ -15169,7 +15169,7 @@ Represents one of the following types:
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "webPage" |
 | `flags` | number |  |  |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `url` | string |  |  |
 | `display_url` | string |  |  |
 | `hash` | number |  |  |
@@ -15193,7 +15193,7 @@ TypeScript interface:
 interface WebPage {
   _: 'webPage'
   flags: number
-  id: number
+  id: string
   url: string
   display_url: string
   hash: number
@@ -15222,14 +15222,14 @@ interface WebPage {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "webPageEmpty" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface WebPageEmpty {
   _: 'webPageEmpty'
-  id: number
+  id: string
 }
 ```
 
@@ -15260,7 +15260,7 @@ interface WebPageNotModified {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `_` | string |  | Value: "webPagePending" |
-| `id` | number |  |  |
+| `id` | string |  |  |
 | `date` | number |  |  |
 
 TypeScript interface:
@@ -15268,7 +15268,7 @@ TypeScript interface:
 ```typescript
 interface WebPagePending {
   _: 'webPagePending'
-  id: number
+  id: string
   date: number
 }
 ```

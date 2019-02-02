@@ -654,13 +654,13 @@ airgram.client.account.reportPeer(params).then((result: boolean) => {
 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
-| `hash` | number |  |  |
+| `hash` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface ResetAuthorizationParams {
-  hash: number
+  hash: string
 }
 ```
 
@@ -1038,8 +1038,8 @@ airgram.client.account.updateUsername(params).then((result: UserUnion) => {
 | --- | --- | --- | --- |
 | `encrypted_message` | number[] |  |  |
 | `expires_at` | number |  |  |
-| `nonce` | number |  |  |
-| `perm_auth_key_id` | number |  |  |
+| `nonce` | string |  |  |
+| `perm_auth_key_id` | string |  |  |
 
 TypeScript interface:
 
@@ -1047,8 +1047,8 @@ TypeScript interface:
 interface BindTempAuthKeyParams {
   encrypted_message: number[],
   expires_at: number,
-  nonce: number,
-  perm_auth_key_id: number
+  nonce: string,
+  perm_auth_key_id: string
 }
 ```
 
@@ -1156,13 +1156,13 @@ airgram.client.auth.checkPhone(params).then((result: AuthCheckedPhoneUnion) => {
 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
-| `except_auth_keys` | number[] |  |  |
+| `except_auth_keys` | string[] |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface DropTempAuthKeysParams {
-  except_auth_keys: number[]
+  except_auth_keys: string[]
 }
 ```
 
@@ -1517,14 +1517,14 @@ airgram.client.auth.signUp(params).then((result: AuthAuthorizationUnion) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `data` | [DataJsonUnion](/docs/telegram-types.md#datajsonunion) |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface AnswerWebhookJsonQueryParams {
   data: DataJsonUnion,
-  query_id: number
+  query_id: string
 }
 ```
 
@@ -1952,8 +1952,8 @@ airgram.client.channels.exportMessageLink(params).then((result: ExportedMessageL
 | `channel` | [InputChannelUnion](/docs/telegram-types.md#inputchannelunion) |  |  |
 | `flags` | number |  |  |
 | `limit` | number |  |  |
-| `max_id` | number |  |  |
-| `min_id` | number |  |  |
+| `max_id` | string |  |  |
+| `min_id` | string |  |  |
 | `q` | string |  |  |
 | `admins` | [InputUserUnion](/docs/telegram-types.md#inputuserunion)[] | 2 | Optional |
 | `events_filter` | [ChannelAdminLogEventsFilterUnion](/docs/telegram-types.md#channeladminlogeventsfilterunion) |  | Optional |
@@ -1965,8 +1965,8 @@ interface GetAdminLogParams {
   channel: InputChannelUnion,
   flags: number,
   limit: number,
-  max_id: number,
-  min_id: number,
+  max_id: string,
+  min_id: string,
   q: string,
   admins?: InputUserUnion[],
   events_filter?: ChannelAdminLogEventsFilterUnion
@@ -3190,7 +3190,7 @@ airgram.client.langpack.getStrings(params).then((result: LangPackStringUnion[]) 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `g_b` | number[] |  |  |
-| `key_fingerprint` | number |  |  |
+| `key_fingerprint` | string |  |  |
 | `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |  |
 
 TypeScript interface:
@@ -3198,7 +3198,7 @@ TypeScript interface:
 ```typescript
 interface AcceptEncryptionParams {
   g_b: number[],
-  key_fingerprint: number,
+  key_fingerprint: string,
   peer: InputEncryptedChatUnion
 }
 ```
@@ -3695,7 +3695,7 @@ airgram.client.messages.faveSticker(params).then((result: boolean) => {
 | --- | --- | --- | --- |
 | `id` | number |  |  |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 
 TypeScript interface:
 
@@ -3703,7 +3703,7 @@ TypeScript interface:
 interface ForwardMessageParams {
   id: number,
   peer: InputPeerUnion,
-  random_id: number
+  random_id: string
 }
 ```
 
@@ -3728,7 +3728,7 @@ airgram.client.messages.forwardMessage(params).then((result: UpdatesUnion) => {
 | `flags` | number |  |  |
 | `from_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
 | `id` | number[] |  |  |
-| `random_id` | number[] |  |  |
+| `random_id` | string[] |  |  |
 | `to_peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
 | `background` | true | 64 | Optional |
 | `silent` | true | 32 | Optional |
@@ -3741,7 +3741,7 @@ interface ForwardMessagesParams {
   flags: number,
   from_peer: InputPeerUnion,
   id: number[],
-  random_id: number[],
+  random_id: string[],
   to_peer: InputPeerUnion,
   background?: true,
   silent?: true,
@@ -3838,7 +3838,7 @@ airgram.client.messages.getAllStickers(params).then((result: MessagesAllStickers
 | --- | --- | --- | --- |
 | `flags` | number |  |  |
 | `limit` | number |  |  |
-| `offset_id` | number |  |  |
+| `offset_id` | string |  |  |
 | `masks` | true |  | Optional |
 
 TypeScript interface:
@@ -3847,7 +3847,7 @@ TypeScript interface:
 interface GetArchivedStickersParams {
   flags: number,
   limit: number,
-  offset_id: number,
+  offset_id: string,
   masks?: true
 }
 ```
@@ -4833,13 +4833,13 @@ airgram.client.messages.readEncryptedHistory(params).then((result: boolean) => {
 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
-| `id` | number[] |  |  |
+| `id` | string[] |  |  |
 
 TypeScript interface:
 
 ```typescript
 interface ReadFeaturedStickersParams {
-  id: number[]
+  id: string[]
 }
 ```
 
@@ -4941,7 +4941,7 @@ airgram.client.messages.receivedMessages(params).then((result: ReceivedNotifyMes
 
 ### messages.receivedQueue
 
-**Signature:** messages.receivedQueue(params: `ReceivedQueueParams`, options?: [`RequestOptions`](/docs/airgram-types.md#request-options)): `number`[]
+**Signature:** messages.receivedQueue(params: `ReceivedQueueParams`, options?: [`RequestOptions`](/docs/airgram-types.md#request-options)): `string`[]
 
 **`ReceivedQueueParams`:**
 
@@ -4962,7 +4962,7 @@ interface ReceivedQueueParams {
 
 ```typescript
 // @var ReceivedQueueParams params
-airgram.client.messages.receivedQueue(params).then((result: number[]) => {
+airgram.client.messages.receivedQueue(params).then((result: string[]) => {
   console.log(result)
 })
 ```
@@ -5008,7 +5008,7 @@ airgram.client.messages.reorderPinnedDialogs(params).then((result: boolean) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `flags` | number |  |  |
-| `order` | number[] |  |  |
+| `order` | string[] |  |  |
 | `masks` | true |  | Optional |
 
 TypeScript interface:
@@ -5016,7 +5016,7 @@ TypeScript interface:
 ```typescript
 interface ReorderStickerSetsParams {
   flags: number,
-  order: number[],
+  order: string[],
   masks?: true
 }
 ```
@@ -5347,7 +5347,7 @@ airgram.client.messages.searchGlobal(params).then((result: MessagesMessagesUnion
 | --- | --- | --- | --- |
 | `data` | number[] |  |  |
 | `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 
 TypeScript interface:
 
@@ -5355,7 +5355,7 @@ TypeScript interface:
 interface SendEncryptedParams {
   data: number[],
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 ```
 
@@ -5380,7 +5380,7 @@ airgram.client.messages.sendEncrypted(params).then((result: MessagesSentEncrypte
 | `data` | number[] |  |  |
 | `file` | [InputEncryptedFileUnion](/docs/telegram-types.md#inputencryptedfileunion) |  |  |
 | `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 
 TypeScript interface:
 
@@ -5389,7 +5389,7 @@ interface SendEncryptedFileParams {
   data: number[],
   file: InputEncryptedFileUnion,
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 ```
 
@@ -5413,7 +5413,7 @@ airgram.client.messages.sendEncryptedFile(params).then((result: MessagesSentEncr
 | --- | --- | --- | --- |
 | `data` | number[] |  |  |
 | `peer` | [InputEncryptedChatUnion](/docs/telegram-types.md#inputencryptedchatunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 
 TypeScript interface:
 
@@ -5421,7 +5421,7 @@ TypeScript interface:
 interface SendEncryptedServiceParams {
   data: number[],
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 ```
 
@@ -5446,8 +5446,8 @@ airgram.client.messages.sendEncryptedService(params).then((result: MessagesSentE
 | `flags` | number |  |  |
 | `id` | string |  |  |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `query_id` | number |  |  |
-| `random_id` | number |  |  |
+| `query_id` | string |  |  |
+| `random_id` | string |  |  |
 | `background` | true | 64 | Optional |
 | `clear_draft` | true | 128 | Optional |
 | `reply_to_msg_id` | number |  | Optional |
@@ -5460,8 +5460,8 @@ interface SendInlineBotResultParams {
   flags: number,
   id: string,
   peer: InputPeerUnion,
-  query_id: number,
-  random_id: number,
+  query_id: string,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   reply_to_msg_id?: number,
@@ -5490,7 +5490,7 @@ airgram.client.messages.sendInlineBotResult(params).then((result: UpdatesUnion) 
 | `flags` | number |  |  |
 | `media` | [InputMediaUnion](/docs/telegram-types.md#inputmediaunion) |  |  |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `background` | true | 64 | Optional |
 | `clear_draft` | true | 128 | Optional |
 | `reply_markup` | [ReplyMarkupUnion](/docs/telegram-types.md#replymarkupunion) | 4 | Optional |
@@ -5504,7 +5504,7 @@ interface SendMediaParams {
   flags: number,
   media: InputMediaUnion,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   reply_markup?: ReplyMarkupUnion,
@@ -5534,7 +5534,7 @@ airgram.client.messages.sendMedia(params).then((result: UpdatesUnion) => {
 | `flags` | number |  |  |
 | `message` | string |  |  |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `background` | true | 64 | Optional |
 | `clear_draft` | true | 128 | Optional |
 | `entities` | [MessageEntityUnion](/docs/telegram-types.md#messageentityunion)[] | 8 | Optional |
@@ -5550,7 +5550,7 @@ interface SendMessageParams {
   flags: number,
   message: string,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   entities?: MessageEntityUnion[],
@@ -5580,7 +5580,7 @@ airgram.client.messages.sendMessage(params).then((result: UpdatesUnion) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `reply_to_msg_id` | number |  |  |
 
 TypeScript interface:
@@ -5588,7 +5588,7 @@ TypeScript interface:
 ```typescript
 interface SendScreenshotNotificationParams {
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   reply_to_msg_id: number
 }
 ```
@@ -5613,7 +5613,7 @@ airgram.client.messages.sendScreenshotNotification(params).then((result: Updates
 | --- | --- | --- | --- |
 | `cache_time` | number |  |  |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `alert` | true | 2 | Optional |
 | `message` | string |  | Optional |
 | `url` | string | 4 | Optional |
@@ -5624,7 +5624,7 @@ TypeScript interface:
 interface SetBotCallbackAnswerParams {
   cache_time: number,
   flags: number,
-  query_id: number,
+  query_id: string,
   alert?: true,
   message?: string,
   url?: string
@@ -5650,7 +5650,7 @@ airgram.client.messages.setBotCallbackAnswer(params).then((result: boolean) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `error` | string |  | Optional |
 | `success` | true | 2 | Optional |
 
@@ -5659,7 +5659,7 @@ TypeScript interface:
 ```typescript
 interface SetBotPrecheckoutResultsParams {
   flags: number,
-  query_id: number,
+  query_id: string,
   error?: string,
   success?: true
 }
@@ -5684,7 +5684,7 @@ airgram.client.messages.setBotPrecheckoutResults(params).then((result: boolean) 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `error` | string |  | Optional |
 | `shipping_options` | [ShippingOptionUnion](/docs/telegram-types.md#shippingoptionunion)[] | 2 | Optional |
 
@@ -5693,7 +5693,7 @@ TypeScript interface:
 ```typescript
 interface SetBotShippingResultsParams {
   flags: number,
-  query_id: number,
+  query_id: string,
   error?: string,
   shipping_options?: ShippingOptionUnion[]
 }
@@ -5789,7 +5789,7 @@ airgram.client.messages.setGameScore(params).then((result: UpdatesUnion) => {
 | --- | --- | --- | --- |
 | `cache_time` | number |  |  |
 | `flags` | number |  |  |
-| `query_id` | number |  |  |
+| `query_id` | string |  |  |
 | `results` | [InputBotInlineResultUnion](/docs/telegram-types.md#inputbotinlineresultunion)[] |  |  |
 | `gallery` | true |  | Optional |
 | `next_offset` | string | 4 | Optional |
@@ -5802,7 +5802,7 @@ TypeScript interface:
 interface SetInlineBotResultsParams {
   cache_time: number,
   flags: number,
-  query_id: number,
+  query_id: string,
   results: InputBotInlineResultUnion[],
   gallery?: true,
   next_offset?: string,
@@ -5899,7 +5899,7 @@ airgram.client.messages.setTyping(params).then((result: boolean) => {
 | --- | --- | --- | --- |
 | `bot` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |  |
 | `peer` | [InputPeerUnion](/docs/telegram-types.md#inputpeerunion) |  |  |
-| `random_id` | number |  |  |
+| `random_id` | string |  |  |
 | `start_param` | string |  |  |
 
 TypeScript interface:
@@ -5908,7 +5908,7 @@ TypeScript interface:
 interface StartBotParams {
   bot: InputUserUnion,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   start_param: string
 }
 ```
@@ -6269,7 +6269,7 @@ airgram.client.phone.acceptCall(params).then((result: PhonePhoneCallUnion) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `g_a` | number[] |  |  |
-| `key_fingerprint` | number |  |  |
+| `key_fingerprint` | string |  |  |
 | `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |  |
 | `protocol` | [PhoneCallProtocolUnion](/docs/telegram-types.md#phonecallprotocolunion) |  |  |
 
@@ -6278,7 +6278,7 @@ TypeScript interface:
 ```typescript
 interface ConfirmCallParams {
   g_a: number[],
-  key_fingerprint: number,
+  key_fingerprint: string,
   peer: InputPhoneCallUnion,
   protocol: PhoneCallProtocolUnion
 }
@@ -6302,7 +6302,7 @@ airgram.client.phone.confirmCall(params).then((result: PhonePhoneCallUnion) => {
 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
-| `connection_id` | number |  |  |
+| `connection_id` | string |  |  |
 | `duration` | number |  |  |
 | `peer` | [InputPhoneCallUnion](/docs/telegram-types.md#inputphonecallunion) |  |  |
 | `reason` | [PhoneCallDiscardReasonUnion](/docs/telegram-types.md#phonecalldiscardreasonunion) |  |  |
@@ -6311,7 +6311,7 @@ TypeScript interface:
 
 ```typescript
 interface DiscardCallParams {
-  connection_id: number,
+  connection_id: string,
   duration: number,
   peer: InputPhoneCallUnion,
   reason: PhoneCallDiscardReasonUnion
@@ -6474,7 +6474,7 @@ airgram.client.phone.setCallRating(params).then((result: UpdatesUnion) => {
 
 ### photos.deletePhotos
 
-**Signature:** photos.deletePhotos(params: `DeletePhotosParams`, options?: [`RequestOptions`](/docs/airgram-types.md#request-options)): `number`[]
+**Signature:** photos.deletePhotos(params: `DeletePhotosParams`, options?: [`RequestOptions`](/docs/airgram-types.md#request-options)): `string`[]
 
 **`DeletePhotosParams`:**
 
@@ -6495,7 +6495,7 @@ interface DeletePhotosParams {
 
 ```typescript
 // @var DeletePhotosParams params
-airgram.client.photos.deletePhotos(params).then((result: number[]) => {
+airgram.client.photos.deletePhotos(params).then((result: string[]) => {
   console.log(result)
 })
 ```
@@ -6509,7 +6509,7 @@ airgram.client.photos.deletePhotos(params).then((result: number[]) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `limit` | number |  |  |
-| `max_id` | number |  |  |
+| `max_id` | string |  |  |
 | `offset` | number |  |  |
 | `user_id` | [InputUserUnion](/docs/telegram-types.md#inputuserunion) |  |  |
 
@@ -6518,7 +6518,7 @@ TypeScript interface:
 ```typescript
 interface GetUserPhotosParams {
   limit: number,
-  max_id: number,
+  max_id: string,
   offset: number,
   user_id: InputUserUnion
 }
@@ -6989,7 +6989,7 @@ airgram.client.upload.reuploadCdnFile(params).then((result: CdnFileHashUnion[]) 
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `bytes` | number[] |  |  |
-| `file_id` | number |  |  |
+| `file_id` | string |  |  |
 | `file_part` | number |  |  |
 | `file_total_parts` | number |  |  |
 
@@ -6998,7 +6998,7 @@ TypeScript interface:
 ```typescript
 interface SaveBigFilePartParams {
   bytes: number[],
-  file_id: number,
+  file_id: string,
   file_part: number,
   file_total_parts: number
 }
@@ -7023,7 +7023,7 @@ airgram.client.upload.saveBigFilePart(params).then((result: boolean) => {
 | Name | Type | Flag | Note |
 | --- | --- | --- | --- |
 | `bytes` | number[] |  |  |
-| `file_id` | number |  |  |
+| `file_id` | string |  |  |
 | `file_part` | number |  |  |
 
 TypeScript interface:
@@ -7031,7 +7031,7 @@ TypeScript interface:
 ```typescript
 interface SaveFilePartParams {
   bytes: number[],
-  file_id: number,
+  file_id: string,
   file_part: number
 }
 ```
