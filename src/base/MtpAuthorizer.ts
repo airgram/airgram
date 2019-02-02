@@ -42,7 +42,8 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     @inject(TYPES.Logger) public logger: ag.Logger,
     @inject(TYPES.MtpRsaKeysManager) protected rsaKeyManager: ag.MtpRsaKeysManager,
     @inject(TYPES.MtpSerializerFactory) protected createSerializer: ag.MtpSerializerFactory,
-    @inject(TYPES.MtpDeserializerFactory) protected createDeserializer: ag.MtpDeserializerFactory
+    @inject(TYPES.MtpDeserializerFactory) protected createDeserializer: ag.MtpDeserializerFactory,
+    @inject(TYPES.MtpNetworkFactory) protected networkFactory: (client: ag.Client) => ag.MtpNetwork
   ) {}
 
   public auth (dcId: number): Promise<ag.MtpAuthorizerInfo> {
@@ -159,7 +160,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
   ): Promise<any> {
     this.logger.verbose(`sendNetworkRequest() "${url}"`)
 
-    return this.client.network.sendRequest(url, resultArray).then(deferred.resolve)
+    return this.networkFactory(this.client).sendRequest(url, resultArray).then(deferred.resolve)
       .catch((error) => {
         if (error.code === 'ENETUNREACH') {
           const nextDeferred = {

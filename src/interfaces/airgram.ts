@@ -2,7 +2,6 @@
 // Composer
 // ----------------
 
-import { AxiosPromise, AxiosRequestConfig, CancelTokenSource } from 'axios'
 import { interfaces } from 'inversify'
 import * as api from '../api'
 
@@ -228,7 +227,7 @@ export interface DeferredResponse<ResponseT = any> {
 export interface MtpCrypto {
   configure (client: MtpClient, authKey: Uint8Array | number[]): void
 
-  decryptResponse (response: Buffer, getSentMessage: (msgId: string) => MtpMessage): {
+  decryptResponse (response: ArrayBuffer, getSentMessage: (msgId: string) => MtpMessage): {
     messageId: string,
     response: MtpResponseMessage,
     seqNo: number,
@@ -291,12 +290,20 @@ export interface MtpRequestOptions extends MtpClientGetterOptions {
   waitUntil?: number
 }
 
+export interface MtpNetworkRequestOptions {
+  timeout?: number
+}
+
 export interface MtpNetwork {
+  cancelRequest (): Promise<void>
+
   configure (client: Client)
 
-  createCancelToken (): CancelTokenSource
-
-  sendRequest (url: string, requestData: { [name: string]: any }, options?: AxiosRequestConfig): AxiosPromise
+  sendRequest (
+    url: string,
+    requestData: Int32Array,
+    options?: MtpNetworkRequestOptions
+  ): Promise<ArrayBuffer>
 }
 
 export type MtpNetworkFactory = (client: Client) => MtpNetwork

@@ -44,7 +44,7 @@ export default class MtpCrypto implements ag.MtpCrypto {
     this.authKeyId = sha1BytesSync(authKey).slice(-8)
   }
 
-  public decryptResponse (responseBuffer: Buffer, getSentMessage: (msgId: string) => ag.MtpMessage): {
+  public decryptResponse (responseBuffer: ArrayBuffer, getSentMessage: (msgId: string) => ag.MtpMessage): {
     messageId: string,
     response: ag.MtpResponseMessage,
     seqNo: number,
@@ -92,7 +92,7 @@ export default class MtpCrypto implements ag.MtpCrypto {
     return sessionId
   }
 
-  private deserializeResponse (buffer: Buffer): ArrayBuffer {
+  private deserializeResponse (buffer: ArrayBuffer): ArrayBuffer {
     const deserializer = this.createDeserializer(buffer)
     const authKeyId = deserializer.fetchIntBytes(64, false, 'auth_key_id')
 

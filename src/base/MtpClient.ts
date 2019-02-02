@@ -1,6 +1,6 @@
 /*tslint:disable:prefer-for-of*/
 
-import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 import { inject } from 'inversify'
 import { provide } from 'inversify-binding-decorators'
 import * as pickBy from 'lodash/pickBy'
@@ -84,7 +84,8 @@ export default class MtpClient implements ag.MtpClient {
     @inject(TYPES.MtpCryptoFactory) protected createCrypto: ag.MtpCryptoFactory,
     @inject(TYPES.MtpMessageFactory) protected createMessage: ag.MtpMessageFactory,
     @inject(TYPES.MtpSerializerFactory) protected createSerializer: ag.MtpSerializerFactory,
-    @inject(TYPES.MtpDeserializerFactory) protected createDeserializer: ag.MtpDeserializerFactory
+    @inject(TYPES.MtpDeserializerFactory) protected createDeserializer: ag.MtpDeserializerFactory,
+    @inject(TYPES.MtpNetworkFactory) protected networkFactory: (client: ag.Client) => ag.MtpNetwork
   ) {
     this.logger.namespace.push(String(++clientId))
   }
@@ -661,23 +662,22 @@ export default class MtpClient implements ag.MtpClient {
 
   private sendEncryptedRequest (
     message: ag.MtpMessage,
-    options: AxiosRequestConfig = {}
-  ): Promise<AxiosResponse> {
+    options: ag.MtpNetworkRequestOptions = {}
+  ): Promise<ArrayBuffer> {
     if (this.destroyed) {
       return Promise.reject(new Error('Unable to perform request on destroyed client'))
     }
     return new Promise((resolve, reject) => {
       const url = this.getApiUrl(this.dcId)
       const data = this.crypto.encryptRequest(message)
-      const { token, cancel } = this.client.network.createCancelToken()
+      const network = this.networkFactory(this.client)
 
       requestId++
-      options.cancelToken = token
-      this.activeRequests.set(requestId, cancel)
+      this.activeRequests.set(requestId, () => network.cancelRequest())
 
-      void this.client.network.sendRequest(url, data, options)
+      void network.sendRequest(url, data, options)
         .then((result) => {
-          if (!result.data || !result.data.byteLength) {
+          if (!result || !result.byteLength) {
             reject(new RpcError({ code: 406, type: 'NETWORK_BAD_RESPONSE', url }))
           } else {
             resolve(result)
@@ -854,10 +854,10 @@ export default class MtpClient implements ag.MtpClient {
 
     this.logger.debug(() => `sendScheduledRequest() sendEncryptedRequest() ${JSON.stringify(message)}`)
 
-    this.sendEncryptedRequest(message!).then((result) => {
+    this.sendEncryptedRequest(message!).then((data) => {
       this.toggleOffline(false)
 
-      const response = this.crypto.decryptResponse(result.data, (msgId) => this.sentMessages[msgId])
+      const response = this.crypto.decryptResponse(data, (msgId) => this.sentMessages[msgId])
 
       // this.logger.info(()
       // => `sendScheduledRequest() sendEncryptedRequest(${JSON.stringify(message)})`)

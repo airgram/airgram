@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, CancelTokenSource } from 'axios'
+import axios from 'axios'
 import { provide } from 'inversify-binding-decorators'
 import { bufferToArrayBuffer } from '../helpers'
 import { ag } from '../interfaces/index'
@@ -15,22 +15,33 @@ export default class MtpNetwork implements ag.MtpNetwork {
     return instance
   }
 
+  private cancelAxiosRequest: any
+
+  public async cancelRequest () {
+    this.cancelAxiosRequest()
+  }
+
   public configure (client: ag.Client) {
     //
   }
 
-  public createCancelToken (): CancelTokenSource {
-    return axios.CancelToken.source()
-  }
+  public sendRequest (
+    url: string,
+    requestData: { [name: string]: any },
+    options?: ag.MtpNetworkRequestOptions
+  ): Promise<ArrayBuffer> {
+    const { token, cancel } = axios.CancelToken.source()
+    const optionsWithCancelToken = Object.assign(options || {}, { cancelToken: token })
 
-  public sendRequest (url: string, requestData: { [name: string]: any }, options?: AxiosRequestConfig) {
+    this.cancelAxiosRequest = cancel
+
     return axios({
-      ...options,
+      ...optionsWithCancelToken,
       data: requestData,
       method: 'POST',
       responseType: 'arraybuffer',
       transformResponse: (data) => bufferToArrayBuffer(data),
       url
-    })
+    }).then((result) => result.data)
   }
 }

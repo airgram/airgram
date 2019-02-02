@@ -58,7 +58,6 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     @inject(TYPES.MtpRequestFactory) mtpRequestFactory: <ParamsT, ResponseT>(client: ag.Client)
       => (method: string, params?: ParamsT)
       => ag.MtpRequest<ParamsT, ResponseT>,
-    @inject(TYPES.MtpNetworkFactory) networkFactory: (client: ag.Client) => ag.MtpNetwork,
     @inject(TYPES.AuthStore) protected authStore: ag.Store<ag.AuthDoc>
   ) {
     super()
@@ -66,7 +65,6 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     this.mtpState = mtpStateFactory(this)
     this.timeManager = mtpTimeManagerFactory(this)
     this.mtpAuth = mtpAuthFactory(this)
-    this.network = networkFactory(this)
     this.createClient = mtpClientFactory(this)
     this.createRequest = mtpRequestFactory(this)
 
