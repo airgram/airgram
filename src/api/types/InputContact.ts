@@ -1,7 +1,7 @@
 
 export interface InputPhoneContact {
   _: 'inputPhoneContact'
-  client_id: number
+  client_id: string
   phone: string
   first_name: string
   last_name: string

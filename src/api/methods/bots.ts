@@ -10,7 +10,7 @@ import {
 
 export interface AnswerWebhookJsonQueryParams {
   data: DataJsonUnion,
-  query_id: number
+  query_id: string
 }
 
 export interface SendCustomRequestParams {

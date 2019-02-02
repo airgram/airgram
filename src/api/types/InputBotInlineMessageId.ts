@@ -2,8 +2,8 @@
 export interface InputBotInlineMessageId {
   _: 'inputBotInlineMessageID'
   dc_id: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export type InputBotInlineMessageIdUnion = InputBotInlineMessageId

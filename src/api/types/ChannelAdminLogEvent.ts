@@ -2,7 +2,7 @@ import { ChannelAdminLogEventActionUnion } from './ChannelAdminLogEventAction'
 
 export interface ChannelAdminLogEvent {
   _: 'channelAdminLogEvent'
-  id: number
+  id: string
   date: number
   user_id: number
   action: ChannelAdminLogEventActionUnion

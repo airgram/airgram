@@ -3,7 +3,7 @@ import { DocumentAttributeUnion } from './DocumentAttribute'
 export interface WebDocument {
   _: 'webDocument'
   url: string
-  access_hash: number
+  access_hash: string
   size: number
   mime_type: string
   attributes: DocumentAttributeUnion[]

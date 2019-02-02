@@ -1,8 +1,8 @@
 
 export interface InputDocument {
   _: 'inputDocument'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export interface InputDocumentEmpty {

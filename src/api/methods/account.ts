@@ -70,7 +70,7 @@ export interface ReportPeerParams {
 }
 
 export interface ResetAuthorizationParams {
-  hash: number
+  hash: string
 }
 
 export interface SendChangePhoneCodeParams {

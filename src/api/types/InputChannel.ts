@@ -2,7 +2,7 @@
 export interface InputChannel {
   _: 'inputChannel'
   channel_id: number
-  access_hash: number
+  access_hash: string
 }
 
 export interface InputChannelEmpty {

@@ -2,7 +2,7 @@
 export interface LabeledPrice {
   _: 'labeledPrice'
   label: string
-  amount: number
+  amount: string
 }
 
 export type LabeledPriceUnion = LabeledPrice

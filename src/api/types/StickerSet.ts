@@ -6,8 +6,8 @@ export interface StickerSet {
   archived?: true
   official?: true
   masks?: true
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   title: string
   short_name: string
   count: number

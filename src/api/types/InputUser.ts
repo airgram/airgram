@@ -2,7 +2,7 @@
 export interface InputUser {
   _: 'inputUser'
   user_id: number
-  access_hash: number
+  access_hash: string
 }
 
 export interface InputUserEmpty {

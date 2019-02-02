@@ -49,7 +49,7 @@ export interface TextUrl {
   _: 'textUrl'
   text: RichTextUnion
   url: string
-  webpage_id: number
+  webpage_id: string
 }
 
 export type RichTextUnion = TextBold

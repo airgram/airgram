@@ -2,7 +2,7 @@ import { EncryptedFileUnion } from './EncryptedFile'
 
 export interface EncryptedMessage {
   _: 'encryptedMessage'
-  random_id: number
+  random_id: string
   chat_id: number
   date: number
   bytes: number[]
@@ -11,7 +11,7 @@ export interface EncryptedMessage {
 
 export interface EncryptedMessageService {
   _: 'encryptedMessageService'
-  random_id: number
+  random_id: string
   chat_id: number
   date: number
   bytes: number[]

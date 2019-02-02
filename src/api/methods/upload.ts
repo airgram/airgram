@@ -43,14 +43,14 @@ export interface ReuploadCdnFileParams {
 
 export interface SaveBigFilePartParams {
   bytes: number[],
-  file_id: number,
+  file_id: string,
   file_part: number,
   file_total_parts: number
 }
 
 export interface SaveFilePartParams {
   bytes: number[],
-  file_id: number,
+  file_id: string,
   file_part: number
 }
 

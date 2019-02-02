@@ -1,13 +1,13 @@
 
 export interface InputEncryptedFile {
   _: 'inputEncryptedFile'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export interface InputEncryptedFileBigUploaded {
   _: 'inputEncryptedFileBigUploaded'
-  id: number
+  id: string
   parts: number
   key_fingerprint: number
 }
@@ -18,7 +18,7 @@ export interface InputEncryptedFileEmpty {
 
 export interface InputEncryptedFileUploaded {
   _: 'inputEncryptedFileUploaded'
-  id: number
+  id: string
   parts: number
   md5_checksum: string
   key_fingerprint: number

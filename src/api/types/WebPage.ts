@@ -5,7 +5,7 @@ import { PhotoUnion } from './Photo'
 export interface WebPage {
   _: 'webPage'
   flags: number
-  id: number
+  id: string
   url: string
   display_url: string
   hash: number
@@ -26,7 +26,7 @@ export interface WebPage {
 
 export interface WebPageEmpty {
   _: 'webPageEmpty'
-  id: number
+  id: string
 }
 
 export interface WebPageNotModified {
@@ -35,7 +35,7 @@ export interface WebPageNotModified {
 
 export interface WebPagePending {
   _: 'webPagePending'
-  id: number
+  id: string
   date: number
 }
 

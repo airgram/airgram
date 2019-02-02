@@ -13,7 +13,7 @@ export interface PaymentsPaymentReceipt {
   info?: PaymentRequestedInfoUnion
   shipping?: ShippingOptionUnion
   currency: string
-  total_amount: number
+  total_amount: string
   credentials_title: string
   users: UserUnion[]
 }

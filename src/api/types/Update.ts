@@ -28,11 +28,11 @@ import { WebPageUnion } from './WebPage'
 export interface UpdateBotCallbackQuery {
   _: 'updateBotCallbackQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   peer: PeerUnion
   msg_id: number
-  chat_instance: number
+  chat_instance: string
   data?: number[]
   game_short_name?: string
 }
@@ -40,7 +40,7 @@ export interface UpdateBotCallbackQuery {
 export interface UpdateBotInlineQuery {
   _: 'updateBotInlineQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   query: string
   geo?: GeoPointUnion
@@ -60,18 +60,18 @@ export interface UpdateBotInlineSend {
 export interface UpdateBotPrecheckoutQuery {
   _: 'updateBotPrecheckoutQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   payload: number[]
   info?: PaymentRequestedInfoUnion
   shipping_option_id?: string
   currency: string
-  total_amount: number
+  total_amount: string
 }
 
 export interface UpdateBotShippingQuery {
   _: 'updateBotShippingQuery'
-  query_id: number
+  query_id: string
   user_id: number
   payload: number[]
   shipping_address: PostAddressUnion
@@ -84,7 +84,7 @@ export interface UpdateBotWebhookJson {
 
 export interface UpdateBotWebhookJsonQuery {
   _: 'updateBotWebhookJSONQuery'
-  query_id: number
+  query_id: string
   data: DataJsonUnion
   timeout: number
 }
@@ -264,10 +264,10 @@ export interface UpdateFavedStickers {
 export interface UpdateInlineBotCallbackQuery {
   _: 'updateInlineBotCallbackQuery'
   flags: number
-  query_id: number
+  query_id: string
   user_id: number
   msg_id: InputBotInlineMessageIdUnion
-  chat_instance: number
+  chat_instance: string
   data?: number[]
   game_short_name?: string
 }
@@ -284,7 +284,7 @@ export interface UpdateLangPackTooLong {
 export interface UpdateMessageId {
   _: 'updateMessageID'
   id: number
-  random_id: number
+  random_id: string
 }
 
 export interface UpdateNewChannelMessage {
@@ -405,7 +405,7 @@ export interface UpdateStickerSetsOrder {
   _: 'updateStickerSetsOrder'
   flags: number
   masks?: true
-  order: number[]
+  order: string[]
 }
 
 export interface UpdateUserBlocked {

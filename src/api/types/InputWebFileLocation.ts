@@ -2,7 +2,7 @@
 export interface InputWebFileLocation {
   _: 'inputWebFileLocation'
   url: string
-  access_hash: number
+  access_hash: string
 }
 
 export type InputWebFileLocationUnion = InputWebFileLocation

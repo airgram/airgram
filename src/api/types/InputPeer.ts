@@ -2,7 +2,7 @@
 export interface InputPeerChannel {
   _: 'inputPeerChannel'
   channel_id: number
-  access_hash: number
+  access_hash: string
 }
 
 export interface InputPeerChat {
@@ -21,7 +21,7 @@ export interface InputPeerSelf {
 export interface InputPeerUser {
   _: 'inputPeerUser'
   user_id: number
-  access_hash: number
+  access_hash: string
 }
 
 export type InputPeerUnion = InputPeerChannel

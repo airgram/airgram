@@ -15,8 +15,8 @@ import {
 export interface BindTempAuthKeyParams {
   encrypted_message: number[],
   expires_at: number,
-  nonce: number,
-  perm_auth_key_id: number
+  nonce: string,
+  perm_auth_key_id: string
 }
 
 export interface CancelCodeParams {
@@ -33,7 +33,7 @@ export interface CheckPhoneParams {
 }
 
 export interface DropTempAuthKeysParams {
-  except_auth_keys: number[]
+  except_auth_keys: string[]
 }
 
 export interface ExportAuthorizationParams {

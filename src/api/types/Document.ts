@@ -3,8 +3,8 @@ import { PhotoSizeUnion } from './PhotoSize'
 
 export interface Document {
   _: 'document'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   mime_type: string
   size: number
@@ -16,7 +16,7 @@ export interface Document {
 
 export interface DocumentEmpty {
   _: 'documentEmpty'
-  id: number
+  id: string
 }
 
 export type DocumentUnion = Document

@@ -6,7 +6,7 @@ export interface ContactsImportedContacts {
   _: 'contacts.importedContacts'
   imported: ImportedContactUnion[]
   popular_invites: PopularContactUnion[]
-  retry_contacts: number[]
+  retry_contacts: string[]
   users: UserUnion[]
 }
 

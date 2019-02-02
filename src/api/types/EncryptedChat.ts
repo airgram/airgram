@@ -2,12 +2,12 @@
 export interface EncryptedChat {
   _: 'encryptedChat'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
   g_a_or_b: number[]
-  key_fingerprint: number
+  key_fingerprint: string
 }
 
 export interface EncryptedChatDiscarded {
@@ -23,7 +23,7 @@ export interface EncryptedChatEmpty {
 export interface EncryptedChatRequested {
   _: 'encryptedChatRequested'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -33,7 +33,7 @@ export interface EncryptedChatRequested {
 export interface EncryptedChatWaiting {
   _: 'encryptedChatWaiting'
   id: number
-  access_hash: number
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number

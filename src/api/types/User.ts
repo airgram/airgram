@@ -16,7 +16,7 @@ export interface User {
   min?: true
   bot_inline_geo?: true
   id: number
-  access_hash?: number
+  access_hash?: string
   first_name?: string
   last_name?: string
   username?: string

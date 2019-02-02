@@ -1,7 +1,7 @@
 
 export interface Authorization {
   _: 'authorization'
-  hash: number
+  hash: string
   flags: number
   device_model: string
   platform: string

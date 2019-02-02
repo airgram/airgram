@@ -1,8 +1,8 @@
 
 export interface InputPhoto {
   _: 'inputPhoto'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export interface InputPhotoEmpty {

@@ -45,7 +45,7 @@ export interface MessageMediaInvoice {
   photo?: WebDocumentUnion
   receipt_msg_id?: number
   currency: string
-  total_amount: number
+  total_amount: string
   start_param: string
 }
 

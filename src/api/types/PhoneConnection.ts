@@ -1,7 +1,7 @@
 
 export interface PhoneConnection {
   _: 'phoneConnection'
-  id: number
+  id: string
   ip: string
   ipv6: string
   port: number

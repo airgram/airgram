@@ -19,7 +19,7 @@ export interface DeletePhotosParams {
 
 export interface GetUserPhotosParams {
   limit: number,
-  max_id: number,
+  max_id: string,
   offset: number,
   user_id: InputUserUnion
 }
@@ -33,15 +33,15 @@ export interface UploadProfilePhotoParams {
 }
 
 export interface PhotosApi {
-  deletePhotos: (params: DeletePhotosParams, options?: ag.MtpRequestOptions) => Promise<number[]>
+  deletePhotos: (params: DeletePhotosParams, options?: ag.MtpRequestOptions) => Promise<string[]>
   getUserPhotos: (params: GetUserPhotosParams, options?: ag.MtpRequestOptions) => Promise<PhotosPhotosUnion>
   updateProfilePhoto: (params: UpdateProfilePhotoParams, options?: ag.MtpRequestOptions) => Promise<UserProfilePhotoUnion>
   uploadProfilePhoto: (params: UploadProfilePhotoParams, options?: ag.MtpRequestOptions) => Promise<PhotosPhotoUnion>
 }
 
 export const factory = (callApi: ag.CallApiFn): PhotosApi => ({
-  deletePhotos: (params: DeletePhotosParams, options?: ag.MtpRequestOptions): Promise<number[]> =>
-    callApi<DeletePhotosParams, number[]>('photos.deletePhotos', params, options),
+  deletePhotos: (params: DeletePhotosParams, options?: ag.MtpRequestOptions): Promise<string[]> =>
+    callApi<DeletePhotosParams, string[]>('photos.deletePhotos', params, options),
 
   getUserPhotos: (params: GetUserPhotosParams, options?: ag.MtpRequestOptions): Promise<PhotosPhotosUnion> =>
     callApi<GetUserPhotosParams, PhotosPhotosUnion>('photos.getUserPhotos', params, options),

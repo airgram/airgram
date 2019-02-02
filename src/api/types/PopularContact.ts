@@ -1,7 +1,7 @@
 
 export interface PopularContact {
   _: 'popularContact'
-  client_id: number
+  client_id: string
   importers: number
 }
 

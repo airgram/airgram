@@ -4,7 +4,7 @@ export interface MessagesFeaturedStickers {
   _: 'messages.featuredStickers'
   hash: number
   sets: StickerSetCoveredUnion[]
-  unread: number[]
+  unread: string[]
 }
 
 export interface MessagesFeaturedStickersNotModified {

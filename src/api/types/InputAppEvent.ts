@@ -3,7 +3,7 @@ export interface InputAppEvent {
   _: 'inputAppEvent'
   time: number
   type: string
-  peer: number
+  peer: string
   data: string
 }
 

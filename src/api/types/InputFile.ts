@@ -1,7 +1,7 @@
 
 export interface InputFile {
   _: 'inputFile'
-  id: number
+  id: string
   parts: number
   name: string
   md5_checksum: string
@@ -9,7 +9,7 @@ export interface InputFile {
 
 export interface InputFileBig {
   _: 'inputFileBig'
-  id: number
+  id: string
   parts: number
   name: string
 }

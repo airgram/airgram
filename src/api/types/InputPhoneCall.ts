@@ -1,8 +1,8 @@
 
 export interface InputPhoneCall {
   _: 'inputPhoneCall'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export type InputPhoneCallUnion = InputPhoneCall

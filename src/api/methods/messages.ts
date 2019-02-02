@@ -59,7 +59,7 @@ import {
 
 export interface AcceptEncryptionParams {
   g_b: number[],
-  key_fingerprint: number,
+  key_fingerprint: string,
   peer: InputEncryptedChatUnion
 }
 
@@ -152,14 +152,14 @@ export interface FaveStickerParams {
 export interface ForwardMessageParams {
   id: number,
   peer: InputPeerUnion,
-  random_id: number
+  random_id: string
 }
 
 export interface ForwardMessagesParams {
   flags?: number,
   from_peer: InputPeerUnion,
   id: number[],
-  random_id: number[],
+  random_id: string[],
   to_peer: InputPeerUnion,
   background?: true,
   silent?: true,
@@ -177,7 +177,7 @@ export interface GetAllStickersParams {
 export interface GetArchivedStickersParams {
   flags?: number,
   limit: number,
-  offset_id: number,
+  offset_id: string,
   masks?: true
 }
 
@@ -347,7 +347,7 @@ export interface ReadEncryptedHistoryParams {
 }
 
 export interface ReadFeaturedStickersParams {
-  id: number[]
+  id: string[]
 }
 
 export interface ReadHistoryParams {
@@ -375,7 +375,7 @@ export interface ReorderPinnedDialogsParams {
 
 export interface ReorderStickerSetsParams {
   flags?: number,
-  order: number[],
+  order: string[],
   masks?: true
 }
 
@@ -445,28 +445,28 @@ export interface SearchGlobalParams {
 export interface SendEncryptedParams {
   data: number[],
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 
 export interface SendEncryptedFileParams {
   data: number[],
   file: InputEncryptedFileUnion,
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 
 export interface SendEncryptedServiceParams {
   data: number[],
   peer: InputEncryptedChatUnion,
-  random_id: number
+  random_id: string
 }
 
 export interface SendInlineBotResultParams {
   flags?: number,
   id: string,
   peer: InputPeerUnion,
-  query_id: number,
-  random_id: number,
+  query_id: string,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   reply_to_msg_id?: number,
@@ -477,7 +477,7 @@ export interface SendMediaParams {
   flags?: number,
   media: InputMediaUnion,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   reply_markup?: ReplyMarkupUnion,
@@ -489,7 +489,7 @@ export interface SendMessageParams {
   flags?: number,
   message: string,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   background?: true,
   clear_draft?: true,
   entities?: MessageEntityUnion[],
@@ -501,14 +501,14 @@ export interface SendMessageParams {
 
 export interface SendScreenshotNotificationParams {
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   reply_to_msg_id: number
 }
 
 export interface SetBotCallbackAnswerParams {
   cache_time: number,
   flags?: number,
-  query_id: number,
+  query_id: string,
   alert?: true,
   message?: string,
   url?: string
@@ -516,14 +516,14 @@ export interface SetBotCallbackAnswerParams {
 
 export interface SetBotPrecheckoutResultsParams {
   flags?: number,
-  query_id: number,
+  query_id: string,
   error?: string,
   success?: true
 }
 
 export interface SetBotShippingResultsParams {
   flags?: number,
-  query_id: number,
+  query_id: string,
   error?: string,
   shipping_options?: ShippingOptionUnion[]
 }
@@ -546,7 +546,7 @@ export interface SetGameScoreParams {
 export interface SetInlineBotResultsParams {
   cache_time: number,
   flags?: number,
-  query_id: number,
+  query_id: string,
   results: InputBotInlineResultUnion[],
   gallery?: true,
   next_offset?: string,
@@ -571,7 +571,7 @@ export interface SetTypingParams {
 export interface StartBotParams {
   bot: InputUserUnion,
   peer: InputPeerUnion,
-  random_id: number,
+  random_id: string,
   start_param: string
 }
 
@@ -654,7 +654,7 @@ export interface MessagesApi {
   readHistory: (params: ReadHistoryParams, options?: ag.MtpRequestOptions) => Promise<MessagesAffectedMessagesUnion>
   readMessageContents: (params: ReadMessageContentsParams, options?: ag.MtpRequestOptions) => Promise<MessagesAffectedMessagesUnion>
   receivedMessages: (params: ReceivedMessagesParams, options?: ag.MtpRequestOptions) => Promise<ReceivedNotifyMessageUnion[]>
-  receivedQueue: (params: ReceivedQueueParams, options?: ag.MtpRequestOptions) => Promise<number[]>
+  receivedQueue: (params: ReceivedQueueParams, options?: ag.MtpRequestOptions) => Promise<string[]>
   reorderPinnedDialogs: (params: ReorderPinnedDialogsParams, options?: ag.MtpRequestOptions) => Promise<boolean>
   reorderStickerSets: (params: ReorderStickerSetsParams, options?: ag.MtpRequestOptions) => Promise<boolean>
   reportEncryptedSpam: (params: ReportEncryptedSpamParams, options?: ag.MtpRequestOptions) => Promise<boolean>
@@ -863,8 +863,8 @@ export const factory = (callApi: ag.CallApiFn): MessagesApi => ({
   receivedMessages: (params: ReceivedMessagesParams, options?: ag.MtpRequestOptions): Promise<ReceivedNotifyMessageUnion[]> =>
     callApi<ReceivedMessagesParams, ReceivedNotifyMessageUnion[]>('messages.receivedMessages', params, options),
 
-  receivedQueue: (params: ReceivedQueueParams, options?: ag.MtpRequestOptions): Promise<number[]> =>
-    callApi<ReceivedQueueParams, number[]>('messages.receivedQueue', params, options),
+  receivedQueue: (params: ReceivedQueueParams, options?: ag.MtpRequestOptions): Promise<string[]> =>
+    callApi<ReceivedQueueParams, string[]>('messages.receivedQueue', params, options),
 
   reorderPinnedDialogs: (params: ReorderPinnedDialogsParams, options?: ag.MtpRequestOptions): Promise<boolean> =>
     callApi<ReorderPinnedDialogsParams, boolean>('messages.reorderPinnedDialogs', params, options),

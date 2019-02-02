@@ -5,7 +5,7 @@ export interface MessagesBotResults {
   _: 'messages.botResults'
   flags: number
   gallery?: true
-  query_id: number
+  query_id: string
   next_offset?: string
   switch_pm?: InlineBotSwitchPmUnion
   results: BotInlineResultUnion[]

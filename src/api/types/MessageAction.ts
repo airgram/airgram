@@ -60,7 +60,7 @@ export interface MessageActionEmpty {
 
 export interface MessageActionGameScore {
   _: 'messageActionGameScore'
-  game_id: number
+  game_id: string
   score: number
 }
 
@@ -71,14 +71,14 @@ export interface MessageActionHistoryClear {
 export interface MessageActionPaymentSent {
   _: 'messageActionPaymentSent'
   currency: string
-  total_amount: number
+  total_amount: string
 }
 
 export interface MessageActionPaymentSentMe {
   _: 'messageActionPaymentSentMe'
   flags: number
   currency: string
-  total_amount: number
+  total_amount: string
   payload: number[]
   info?: PaymentRequestedInfoUnion
   shipping_option_id?: string
@@ -88,7 +88,7 @@ export interface MessageActionPaymentSentMe {
 export interface MessageActionPhoneCall {
   _: 'messageActionPhoneCall'
   flags: number
-  call_id: number
+  call_id: string
   reason?: PhoneCallDiscardReasonUnion
   duration?: number
 }

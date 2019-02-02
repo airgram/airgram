@@ -1,22 +1,22 @@
 
 export interface InputDocumentFileLocation {
   _: 'inputDocumentFileLocation'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   version: number
 }
 
 export interface InputEncryptedFileLocation {
   _: 'inputEncryptedFileLocation'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export interface InputFileLocation {
   _: 'inputFileLocation'
-  volume_id: number
+  volume_id: string
   local_id: number
-  secret: number
+  secret: string
 }
 
 export type InputFileLocationUnion = InputDocumentFileLocation

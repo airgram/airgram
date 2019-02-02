@@ -4,13 +4,13 @@ import { PhoneConnectionUnion } from './PhoneConnection'
 
 export interface PhoneCall {
   _: 'phoneCall'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
   g_a_or_b: number[]
-  key_fingerprint: number
+  key_fingerprint: string
   protocol: PhoneCallProtocolUnion
   connection: PhoneConnectionUnion
   alternative_connections: PhoneConnectionUnion[]
@@ -19,8 +19,8 @@ export interface PhoneCall {
 
 export interface PhoneCallAccepted {
   _: 'phoneCallAccepted'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -33,20 +33,20 @@ export interface PhoneCallDiscarded {
   flags: number
   need_rating?: true
   need_debug?: true
-  id: number
+  id: string
   reason?: PhoneCallDiscardReasonUnion
   duration?: number
 }
 
 export interface PhoneCallEmpty {
   _: 'phoneCallEmpty'
-  id: number
+  id: string
 }
 
 export interface PhoneCallRequested {
   _: 'phoneCallRequested'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number
@@ -57,8 +57,8 @@ export interface PhoneCallRequested {
 export interface PhoneCallWaiting {
   _: 'phoneCallWaiting'
   flags: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   date: number
   admin_id: number
   participant_id: number

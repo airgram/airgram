@@ -17,7 +17,7 @@ export interface Channel {
   signatures?: true
   min?: true
   id: number
-  access_hash?: number
+  access_hash?: string
   title: string
   username?: string
   photo: ChatPhotoUnion
@@ -34,7 +34,7 @@ export interface ChannelForbidden {
   broadcast?: true
   megagroup?: true
   id: number
-  access_hash: number
+  access_hash: string
   title: string
   until_date?: number
 }

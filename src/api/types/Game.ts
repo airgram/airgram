@@ -4,8 +4,8 @@ import { PhotoUnion } from './Photo'
 export interface Game {
   _: 'game'
   flags: number
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   short_name: string
   title: string
   description: string

@@ -9,7 +9,7 @@ export interface PageBlockAnchor {
 
 export interface PageBlockAudio {
   _: 'pageBlockAudio'
-  audio_id: number
+  audio_id: string
   caption: RichTextUnion
 }
 
@@ -52,7 +52,7 @@ export interface PageBlockEmbed {
   allow_scrolling?: true
   url?: string
   html?: string
-  poster_photo_id?: number
+  poster_photo_id?: string
   w: number
   h: number
   caption: RichTextUnion
@@ -61,8 +61,8 @@ export interface PageBlockEmbed {
 export interface PageBlockEmbedPost {
   _: 'pageBlockEmbedPost'
   url: string
-  webpage_id: number
-  author_photo_id: number
+  webpage_id: string
+  author_photo_id: string
   author: string
   date: number
   blocks: PageBlockUnion[]
@@ -92,7 +92,7 @@ export interface PageBlockParagraph {
 
 export interface PageBlockPhoto {
   _: 'pageBlockPhoto'
-  photo_id: number
+  photo_id: string
   caption: RichTextUnion
 }
 
@@ -138,7 +138,7 @@ export interface PageBlockVideo {
   flags: number
   autoplay?: true
   loop?: true
-  video_id: number
+  video_id: string
   caption: RichTextUnion
 }
 

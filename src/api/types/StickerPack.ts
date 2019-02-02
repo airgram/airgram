@@ -2,7 +2,7 @@
 export interface StickerPack {
   _: 'stickerPack'
   emoticon: string
-  documents: number[]
+  documents: string[]
 }
 
 export type StickerPackUnion = StickerPack

@@ -2,8 +2,8 @@ import { InputUserUnion } from './InputUser'
 
 export interface InputGameId {
   _: 'inputGameID'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
 }
 
 export interface InputGameShortName {

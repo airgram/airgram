@@ -93,8 +93,8 @@ export interface GetAdminLogParams {
   channel: InputChannelUnion,
   flags?: number,
   limit: number,
-  max_id: number,
-  min_id: number,
+  max_id: string,
+  min_id: string,
   q: string,
   admins?: InputUserUnion[],
   events_filter?: ChannelAdminLogEventsFilterUnion

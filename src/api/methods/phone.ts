@@ -22,13 +22,13 @@ export interface AcceptCallParams {
 
 export interface ConfirmCallParams {
   g_a: number[],
-  key_fingerprint: number,
+  key_fingerprint: string,
   peer: InputPhoneCallUnion,
   protocol: PhoneCallProtocolUnion
 }
 
 export interface DiscardCallParams {
-  connection_id: number,
+  connection_id: string,
   duration: number,
   peer: InputPhoneCallUnion,
   reason: PhoneCallDiscardReasonUnion

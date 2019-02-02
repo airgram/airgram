@@ -1,8 +1,8 @@
 
 export interface EncryptedFile {
   _: 'encryptedFile'
-  id: number
-  access_hash: number
+  id: string
+  access_hash: string
   size: number
   dc_id: number
   key_fingerprint: number
