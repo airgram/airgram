@@ -10,7 +10,7 @@ export default class UpdatesContextManager implements ag.UpdatesContextManager {
       client: ctx.client,
       parent,
       state: {},
-      update: update as any
+      update
     }
   }
 }

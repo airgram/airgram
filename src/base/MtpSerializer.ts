@@ -60,7 +60,7 @@ export default class MtpSerializer implements ag.MtpSerializer {
     }
   }
 
-  public storeBytes (bytes: any, field: string): void {
+  public storeBytes (bytes: any, field?: string): void {
     if (bytes instanceof ArrayBuffer) {
       bytes = new Uint8Array(bytes)
     } else if (bytes === undefined) {
@@ -89,7 +89,7 @@ export default class MtpSerializer implements ag.MtpSerializer {
     }
   }
 
-  public storeInt (i: number, field: string): void {
+  public storeInt (i: number, field?: string): void {
     this.writeInt(i, (field || '') + ':int')
   }
 
@@ -111,7 +111,7 @@ export default class MtpSerializer implements ag.MtpSerializer {
     this.offset += len
   }
 
-  public storeLong (sLong: any, field: string): void {
+  public storeLong (sLong: any, field?: string): void {
     if (Array.isArray(sLong)) {
       if (sLong.length === 2) {
         return this.storeLongP(sLong[0], sLong[1], field)
@@ -129,7 +129,7 @@ export default class MtpSerializer implements ag.MtpSerializer {
     this.writeInt(intToUint(divRem[0].intValue()), (field || '') + ':long[high]')
   }
 
-  public storeLongP (iHigh: number, iLow: number, field: string): void {
+  public storeLongP (iHigh: number, iLow: number, field?: string): void {
     this.writeInt(iLow, (field || '') + ':long[low]')
     this.writeInt(iHigh, (field || '') + ':long[high]')
   }

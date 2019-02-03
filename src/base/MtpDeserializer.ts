@@ -21,10 +21,15 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
   }
 
   public buffer: ArrayBuffer | ArrayLike<number> | Buffer
+
   public byteView: Uint8Array
+
   public intView: Uint32Array
+
   private isMtp: boolean = false
+
   private offset: number = 0
+
   private override: { [key: string]: any } = {}
 
   constructor (
@@ -44,7 +49,7 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
     return this.readInt((field || '') + ':int')
   }
 
-  public fetchIntBytes (bits: number, typed: boolean, field: string): Uint8Array | number[] {
+  public fetchIntBytes (bits: number, typed: boolean, field?: string): Uint8Array | number[] {
     if (bits % 32) {
       throw new Error('Invalid bits: ' + bits)
     }
@@ -66,7 +71,7 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
     return bytes
   }
 
-  public fetchLong (field: string): string {
+  public fetchLong (field?: string): string {
     const iLow = this.readInt((field || '') + ':long[low]')
     const iHigh = this.readInt((field || '') + ':long[high]')
 
@@ -206,7 +211,7 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
     return result
   }
 
-  public fetchRawBytes (len: number | false, typed: boolean, field: string): Uint8Array | number[] {
+  public fetchRawBytes (len: number | false, typed: boolean, field?: string): Uint8Array | number[] {
     if (len === false) {
       len = this.readInt((field || '') + '_length')
       if (len > this.byteView.byteLength) {
@@ -229,6 +234,37 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
 
       return bytes
     }
+  }
+
+  public fetchString (field?: string): string {
+    let len = this.byteView[this.offset++]
+
+    if (len === 254) {
+      len = this.byteView[this.offset++] |
+        (this.byteView[this.offset++] << 8) |
+        (this.byteView[this.offset++] << 16)
+    }
+
+    let sUTF8 = ''
+    for (let i = 0; i < len; i++) {
+      sUTF8 += String.fromCharCode(this.byteView[this.offset++])
+    }
+
+    // Padding
+    while (this.offset % 4) {
+      this.offset++
+    }
+
+    let s
+    try {
+      s = decodeURIComponent(escape(sUTF8))
+    } catch (e) {
+      s = sUTF8
+    }
+
+    this.logger.debug(() => `fetchString() ${s} ${(field || '') + ':string'}`)
+
+    return s
   }
 
   public getOffset (): number {
@@ -269,6 +305,13 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
     return bytes
   }
 
+  // private fetchEnd (): boolean {
+  //   if (this.offset !== this.byteView.length) {
+  //     throw new Error('Fetch end with non-empty buffer')
+  //   }
+  //   return true
+  // }
+
   private fetchDouble (field?: string): number {
     const buffer = new ArrayBuffer(8)
     const intView = new Int32Array(buffer)
@@ -278,44 +321,6 @@ export default class MtpDeserializer implements ag.MtpDeserializer {
     intView[1] = this.readInt((field || '') + ':double[high]')
 
     return doubleView[0]
-  }
-
-  // private fetchEnd (): boolean {
-  //   if (this.offset !== this.byteView.length) {
-  //     throw new Error('Fetch end with non-empty buffer')
-  //   }
-  //   return true
-  // }
-
-  private fetchString (field: string): string {
-    let len = this.byteView[this.offset++]
-
-    if (len === 254) {
-      len = this.byteView[this.offset++] |
-        (this.byteView[this.offset++] << 8) |
-        (this.byteView[this.offset++] << 16)
-    }
-
-    let sUTF8 = ''
-    for (let i = 0; i < len; i++) {
-      sUTF8 += String.fromCharCode(this.byteView[this.offset++])
-    }
-
-    // Padding
-    while (this.offset % 4) {
-      this.offset++
-    }
-
-    let s
-    try {
-      s = decodeURIComponent(escape(sUTF8))
-    } catch (e) {
-      s = sUTF8
-    }
-
-    this.logger.debug(() => `fetchString() ${s} ${(field || '') + ':string'}`)
-
-    return s
   }
 
   private readInt (field: string): number {

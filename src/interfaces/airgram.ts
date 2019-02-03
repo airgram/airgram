@@ -432,25 +432,25 @@ export interface MtpSerializer {
 
   getBytes (typed?: boolean): Uint8Array | number[]
 
-  storeBytes (bytes: any, field: string): void
+  storeBytes (bytes: any, field?: string): void
 
-  storeBytes (bytes: any, field: string): void
+  storeBytes (bytes: any, field?: string): void
 
-  storeInt (i: number, field: string): void
+  storeInt (i: number, field?: string): void
 
-  storeIntBytes (bytes: any, bits, field): void
+  storeIntBytes (bytes: any, bits, field?: string): void
 
-  storeLong (messageId: string, field: string): void
+  storeLong (messageId: string, field?: string): void
 
-  storeLongP (iHigh: number, iLow: number, field: string): void
+  storeLongP (iHigh: number, iLow: number, field?: string): void
 
   storeMethod (methodName: string, params: { [name: string]: any }): string
 
   storeObject (obj: any, type: string, field?: string): any
 
-  storeRawBytes (bytes: any, field: string): void
+  storeRawBytes (bytes: any, field?: string): void
 
-  storeString (s: string, field: string): void
+  storeString (s: string, field?: string): void
 }
 
 export type MtpSerializerFactory = (options?: MtpSerializerOptions) => MtpSerializer
@@ -465,13 +465,15 @@ export interface MtpDeserializer {
 
   fetchInt (field?: string): number
 
-  fetchIntBytes (bits: number, typed: boolean, field: string): Uint8Array | number[]
+  fetchIntBytes (bits: number, typed: boolean, field?: string): Uint8Array | number[]
 
-  fetchLong (field: string): string
+  fetchLong (field?: string): string
 
   fetchObject (type: string, field?: string): any
 
-  fetchRawBytes (len: number | false, typed: boolean, field: string): Uint8Array | number[]
+  fetchRawBytes (len: number | false, typed: boolean, field?: string): Uint8Array | number[]
+
+  fetchString (field?: string): string
 
   getOffset (): number
 }
@@ -537,9 +539,17 @@ export interface Updates<ContextT = UpdateContext> extends Composer<ContextT> {
 
   // getState (): Promise<{ pts: number, qts: number, seq: number, date: number }>
 
+  on<UpdateT = any, ParentT = undefined> (
+    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT & { update: UpdateT, parent: ParentT }>>
+  ): Composer<ContextT & { update: UpdateT, parent: ParentT }>
+
   startPolling (): Promise<any>
 
   stop (): Promise<any>
+
+  use<UpdateT = any, ParentT = undefined> (
+    ...fns: Array<Middleware<ContextT & { update: UpdateT, parent: ParentT }>>
+  ): Composer<ContextT & { update: UpdateT, parent: ParentT }>
 }
 
 export interface UpdatesHandler {
@@ -560,18 +570,16 @@ export type UpdatesHandlerFactory = (
   complete: (update: UpdatesResponse) => any
 ) => UpdatesHandler
 
-export interface UpdateContext<ContextT = UpdatesResponse, ParentT = UpdatesResponse> {
+export interface UpdateContext {
   _: string
   client: Client
-  parent?: ParentT
   state: { [key: string]: any }
-  update: ContextT,
 }
 
-export interface UpdateContextOptions<ContextT = Context, UpdateT = UpdatesResponse, ParentT = UpdatesResponse> {
+export interface UpdateContextOptions<ContextT = Context> {
   ctx: Context
-  parent?: ParentT
-  update: UpdateT
+  parent?: any
+  update: any
 }
 
 export interface UpdatesContextManager<ContextT = UpdateContext> {
