@@ -157,7 +157,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     url: string,
     resultArray: Int32Array,
     deferred: ag.DeferredResponse
-  ): Promise<any> {
+  ): Promise<ArrayBuffer> {
     this.logger.verbose(`sendNetworkRequest() "${url}"`)
 
     return this.networkFactory(this.client).sendRequest(url, resultArray).then(deferred.resolve)
@@ -311,7 +311,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
       deferred.reject(error)
     })
 
-    this.rsaKeyManager.prepareRsaKeys()
+    setImmediate(() => this.rsaKeyManager.prepareRsaKeys())
   }
 
   private sendRequest (dcId: number, requestBuffer: ArrayBuffer | SharedArrayBuffer): Promise<ag.MtpDeserializer> {
@@ -339,11 +339,11 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
       const baseError = { code: 406, type: 'NETWORK_BAD_RESPONSE', url }
 
       const resolvePromise = (result) => {
-        if (!result.data || !result.data.byteLength) {
+        if (!result || !result.byteLength) {
           reject(new RpcError(baseError))
         }
 
-        const deserializer = this.createDeserializer(result.data, { isMtp: true })
+        const deserializer = this.createDeserializer(result, { isMtp: true })
         deserializer.fetchLong('auth_key_id')
         deserializer.fetchLong('msg_id')
         deserializer.fetchInt('msg_len')
