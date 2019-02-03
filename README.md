@@ -46,7 +46,7 @@ Basic usage ([source code](https://github.com/airgram/airgram-ts-example)):
 
 ```typescript
 import 'reflect-metadata' // Do not forget to import
-import { Airgram, AuthDialog, ag } from 'airgram'
+import { Airgram, AuthDialog, ag, api } from 'airgram'
 import { prompt } from 'airgram/helpers'
 
 // Obtain app id and hash here: https://my.telegram.org/apps
@@ -56,11 +56,9 @@ const app = {
 }
 
 const airgram = new Airgram(app)
-
 const { auth, updates } = airgram
 
-airgram.use(auth)
-airgram.use(updates)
+airgram.use(auth, updates)
 
 auth.use(new AuthDialog({
   code: () => prompt(`Please enter the secret code:\n`),
@@ -96,7 +94,7 @@ updates.use(({ update }: ag.UpdateContext, next) => {
 })
 
 // Get only new message updates
-updates.on('updateNewMessage', (ctx, next) => {
+updates.on<api.UpdateNewMessage> ('updateNewMessage', (ctx, next) => {
   console.log('New message:', ctx.update)
   return next()
 })
@@ -215,11 +213,11 @@ All Telegram API methods are described and have suitable methods in Airgram.
 For getting updates use the `Updates` component as shown below:
 
 ```typescript
-import { Airgram, api } from 'airgram'
+import { Airgram } from 'airgram'
 
 const airgram = new Airgram(/* config */)
 
-airgram.updates.getDifference().then((difference: api.UpdatesDifferenceUnion) => {
+airgram.updates.getDifference().then((difference) => {
   console.log('difference:', difference)
 })
 ```
@@ -270,14 +268,16 @@ updates.stop()
 Use methods `use()` and `on()` to add your own handlers for updates. Do not forget to call `next()` if you want to run next handlers.
 
 ```typescript
+  import { api } from 'airgram'
+
   // Get all updates
   updates.use((ctx, next) => {
     console.log(`Update type: ${ctx._}`)
     return next()
   })
   
-  // Get only new message updates
-  updates.on('updateNewMessage', (ctx, next) => {
+  // In the following example shown how to set explicit types for `ctx.update` and `ctx.parent`.
+  updates.on<api.UpdateNewMessage, api.Updates> ('updateNewMessage', (ctx, next) => {
     console.log(`New message: ${ctx.update}`)
     return next()
   })
@@ -293,7 +293,7 @@ Argument `ctx` is an object with the following structure:
 | `client`           | `Client` | The same as in `airgram.client`                              |
 | `state`            | {[key: string]: any} | Just a plain object. You should use it to pass some data between different middleware |
 | `update`           | {[key: string]: any} | An object with update data                                   |
-| `parent`           | {[key: string]: any} | Parent updates object                                   |
+| `parent`           | {[key: string]: any} l undefined | Parent updates object                                   |
 
 You may to extend context object:
 
@@ -332,6 +332,8 @@ updates.use(async (ctx, next) => {
   return next()
 })
 ```
+
+You can find an example [here](examples/custom-updates-context/index.ts).
 
 
 #### Containers
