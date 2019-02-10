@@ -27,7 +27,7 @@ export default class MtpNetwork implements ag.MtpNetwork {
 
   public sendRequest (
     url: string,
-    requestData: { [name: string]: any },
+    requestData: Int32Array,
     options?: ag.MtpNetworkRequestOptions
   ): Promise<ArrayBuffer> {
     const { token, cancel } = axios.CancelToken.source()

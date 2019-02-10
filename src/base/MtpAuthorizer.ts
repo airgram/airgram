@@ -24,7 +24,7 @@ import {
 } from '../helpers'
 import { ag } from '../interfaces'
 import TYPES from '../ioc/types'
-import goog from '../vendor/goog-math-long'
+import * as goog from '../vendor/goog-math-long'
 // const requestLib = require( 'request-promise-native')
 
 @provide(TYPES.MtpAuthorizer)
@@ -36,6 +36,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
   }
 
   public client: ag.Client
+
   private readonly cache: { [key: string]: any } = {}
 
   constructor (
@@ -68,8 +69,10 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
           reject,
           resolve
         },
+        fingerprints: [],
         newNonce: [],
         nonce,
+        pq: new Uint8Array(),
         serverNonce: [],
         serverSalt: []
       }
@@ -132,12 +135,20 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     const what = new BigInteger(pqBytes)
     let result: [number[], number[], number] | false = false
 
-    try {
-      result = pqPrimeLeemon(str2bigInt(what.toString(16), 16, Math.ceil(64 / getBpe()) + 1))
-    } catch (e) {
-      this.logger.error(() => `pqPrimeFactorization() pqPrimeLeemon() ${new Serializable(e)}`)
+    if (what.bitLength() <= 64) {
+      try {
+        result = pqPrimeLong(goog.math.Long.fromString(what.toString(16), 16))
+      } catch (e) {
+        this.logger.error(() => `pqPrimeFactorization() pqPrimeLong() ${new Serializable(e)}`)
+      }
     }
-
+    if (result === false) {
+      try {
+        result = pqPrimeLeemon(str2bigInt(what.toString(16), 16, Math.ceil(64 / getBpe()) + 1))
+      } catch (e) {
+        this.logger.error(() => `pqPrimeFactorization() pqPrimeLeemon() ${new Serializable(e)}`)
+      }
+    }
     if (result === false && what.bitLength() <= 64) {
       try {
         result = pqPrimeLong(goog.math.Long.fromString(what.toString(16), 16))
@@ -145,7 +156,6 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
         this.logger.error(() => `pqPrimeFactorization() pqPrimeLong() ${new Serializable(e)}`)
       }
     }
-
     if (result === false) {
       result = pqPrimeBigInteger(what)
     }
@@ -198,10 +208,10 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     }, 'P_Q_inner_data', 'DECRYPTED_DATA')
 
     const dataWithHash = sha1BytesSync(data.getBuffer()).concat(data.getBytes() as number[])
-
+    const encryptedData = rsaEncrypt(auth.publicKey, dataWithHash)
     const request = this.createSerializer({ isMtp: true })
     request.storeMethod('req_DH_params', {
-      encrypted_data: rsaEncrypt(auth.publicKey, dataWithHash),
+      encrypted_data: encryptedData,
       nonce: auth.nonce,
       p: auth.p,
       public_key_fingerprint: auth.publicKey.fingerprint,
@@ -265,8 +275,8 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
         _: string,
         nonce: number[],
         server_nonce: number[]
-        pq: number[]
-        server_public_key_fingerprints: number[]
+        pq: Uint8Array
+        server_public_key_fingerprints: string[]
       } = deserializer.fetchObject('ResPQ')
 
       if (response._ !== 'resPQ') {
@@ -328,7 +338,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
       const headerArray = new Int32Array(headerBuffer)
       const headerLength = headerBuffer.byteLength
 
-      const resultBuffer = new ArrayBuffer(headerLength + requestLength + 4)
+      const resultBuffer = new ArrayBuffer(headerLength + requestLength)
       const resultArray = new Int32Array(resultBuffer)
 
       resultArray.set(headerArray)

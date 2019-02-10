@@ -22,7 +22,7 @@ interface Words {
 
 export function convertToUint8Array (bytes: Uint8Array | number[]): Uint8Array {
   if (bytes instanceof Uint8Array) {
-  // if ('buffer' in bytes) {
+    // if ('buffer' in bytes) {
     return bytes
   }
   return new Uint8Array(bytes)
@@ -39,16 +39,16 @@ export function arrayBufferToBytes (buffer: ArrayBufferLike): number[] {
 }
 
 export function bigIntToBytes (num: BigInteger, len: number = 0): number[] {
-  let bytes = num.toByteArray()
-  if (len && bytes.byteLength < len) {
+  let bytes: number[] = num.toByteArray()
+  if (len && bytes.length < len) {
     const padding: number[] = []
-    const needPadding = len - bytes.byteLength
+    const needPadding = len - bytes.length
     for (let i = 0; i < needPadding; i++) {
       padding[i] = 0
     }
     return arrayBufferToBytes(concatBuffer(padding, bytes))
   } else {
-    while (!bytes[0] && (!len || bytes.byteLength > len)) {
+    while (!bytes[0] && (!len || bytes.length > len)) {
       bytes = bytes.slice(1)
     }
     return bytes
@@ -78,9 +78,10 @@ export function hexToBytes (hexString: string): number[] {
 }
 
 export function bufferToArrayBuffer (buffer: Buffer | Uint8Array | number[]): ArrayBuffer {
-  const arrayBuffer = new ArrayBuffer(buffer.length)
+  const byteLength = 'byteLength' in buffer ? buffer.byteLength : buffer.length
+  const arrayBuffer = new ArrayBuffer(byteLength)
   const view = new Uint8Array(arrayBuffer)
-  for (let i = 0; i < buffer.length; ++i) {
+  for (let i = 0; i < byteLength; ++i) {
     view[i] = buffer[i]
   }
   return arrayBuffer

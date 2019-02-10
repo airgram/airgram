@@ -252,6 +252,8 @@ export interface MtpAuthorizerInfo {
   serverNonce: number[]
   serverSalt: number[]
   tmpAesIv?: Uint8Array | number[]
+  pq: Uint8Array
+  fingerprints: string[]
 
   [key: string]: any
 }
