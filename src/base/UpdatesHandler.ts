@@ -196,7 +196,7 @@ export default class UpdatesHandler implements ag.UpdatesHandler {
         return this.getChat(channelId).then(async (chat: ag.ChatDoc) => {
           if (!chat || !chat.ptsTs || chat.ptsTs < now() - 10000) {
             this.logger.verbose(`${update._} will call "api.updates.getChannelDifference" `)
-            this.getChannelDifference(this.chats.getChat(chat.id)).catch((error) => {
+            this.getChannelDifference(this.chats.getChat(channelId)).catch((error) => {
               throw error
             })
           }
