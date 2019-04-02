@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { provide } from 'inversify-binding-decorators'
 import { bufferToArrayBuffer } from '../helpers'
 import { ag } from '../interfaces/index'
@@ -14,6 +14,8 @@ export default class MtpNetwork implements ag.MtpNetwork {
     instance.configure(client)
     return instance
   }
+
+  public axios?: AxiosInstance
 
   private cancelAxiosRequest: any
 
@@ -35,7 +37,7 @@ export default class MtpNetwork implements ag.MtpNetwork {
 
     this.cancelAxiosRequest = cancel
 
-    return axios({
+    return (this.axios || axios)({
       ...optionsWithCancelToken,
       data: requestData,
       method: 'POST',
