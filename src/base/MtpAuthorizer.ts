@@ -47,7 +47,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     @inject(TYPES.MtpNetworkFactory) protected networkFactory: (client: ag.Client) => ag.MtpNetwork
   ) {}
 
-  public auth (dcId: number): Promise<ag.MtpAuthorizerInfo> {
+  public auth (dcId: number, isFileTransfer: boolean): Promise<ag.MtpAuthorizerInfo> {
     return new Promise((resolve, reject) => {
       if (this.cache[dcId] !== undefined) {
         return this.cache[dcId]
@@ -58,7 +58,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
         nonce.push(nextRandomInt(0xFF))
       }
 
-      if (!this.client.getApiUrl(dcId)) {
+      if (!this.client.getApiUrl(dcId, isFileTransfer)) {
         throw new Error('No server found for dc ' + dcId)
       }
 
@@ -70,6 +70,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
           resolve
         },
         fingerprints: [],
+        isFileTransfer,
         newNonce: [],
         nonce,
         pq: new Uint8Array(),
@@ -221,7 +222,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
 
     this.logger.verbose(() => `mtpSendReqDhParams() dc "${auth.dcId}"`)
 
-    this.sendRequest(auth.dcId, request.getBuffer()).then((deserializer) => {
+    this.sendRequest(auth.dcId, auth.isFileTransfer, request.getBuffer()).then((deserializer) => {
       const response = deserializer.fetchObject('Server_DH_Params', 'RESPONSE')
 
       if (response._ !== 'server_DH_params_fail' && response._ !== 'server_DH_params_ok') {
@@ -270,7 +271,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
 
     this.logger.verbose(() => `sendReqPQ() Send req_pq ${bytesToHex(auth.nonce)}`)
 
-    this.sendRequest(auth.dcId, request.getBuffer()).then((deserializer) => {
+    this.sendRequest(auth.dcId, auth.isFileTransfer, request.getBuffer()).then((deserializer) => {
       const response: {
         _: string,
         nonce: number[],
@@ -324,7 +325,10 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
     setImmediate(() => this.rsaKeyManager.prepareRsaKeys())
   }
 
-  private sendRequest (dcId: number, requestBuffer: ArrayBuffer | SharedArrayBuffer): Promise<ag.MtpDeserializer> {
+  private sendRequest (
+    dcId: number, isFileTransfer: boolean,
+    requestBuffer: ArrayBuffer | SharedArrayBuffer
+  ): Promise<ag.MtpDeserializer> {
     return new Promise<ag.MtpDeserializer>((resolve, reject) => {
       const requestLength = requestBuffer.byteLength
       const requestArray = new Int32Array(requestBuffer)
@@ -345,7 +349,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
       resultArray.set(requestArray, headerArray.length)
 
       // const requestData = resultArray
-      const url = this.client.getApiUrl(dcId)
+      const url = this.client.getApiUrl(dcId, isFileTransfer)
       const baseError = { code: 406, type: 'NETWORK_BAD_RESPONSE', url }
 
       const resolvePromise = (result) => {
@@ -397,7 +401,7 @@ export default class MtpAuthorizer implements ag.MtpAuthorizer {
 
     this.logger.verbose(() => `mtpSendSetClientDhParams() Send set_client_DH_params`)
 
-    this.sendRequest(auth.dcId, request.getBuffer()).then((deserializer) => {
+    this.sendRequest(auth.dcId, auth.isFileTransfer, request.getBuffer()).then((deserializer) => {
       const response = deserializer.fetchObject('Set_client_DH_params_answer')
 
       if (response._ !== 'dh_gen_ok' && response._ !== 'dh_gen_retry' && response._ !== 'dh_gen_fail') {

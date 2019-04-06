@@ -1,5 +1,4 @@
 import { ag } from '../interfaces/index'
-import * as dcOptions from './dc'
 
 export default class Config implements ag.Config {
   public readonly app: ag.TelegramAppConfig
@@ -12,9 +11,25 @@ export default class Config implements ag.Config {
 
   public layer: number = 71
 
-  public modes: ag.TelegramModesConfig = {
-    test: false
-  }
+  public ssl: boolean = true
+
+  public test: boolean = false
+
+  public testDc = [
+    { id: 1, host: '149.154.175.10', port: 80 },
+    { id: 2, host: '149.154.167.40', port: 80 },
+    { id: 3, host: '149.154.175.117', port: 80 }
+  ]
+
+  public productionDc = [
+    { id: 1, host: '149.154.175.50', port: 80 },
+    { id: 2, host: '149.154.167.51', port: 80 },
+    { id: 3, host: '149.154.175.100', port: 80 },
+    { id: 4, host: '149.154.167.91', port: 80 },
+    { id: 5, host: '149.154.171.5', port: 80 }
+  ]
+
+  public sslSubdomains = ['pluto', 'venus', 'aurora', 'vesta', 'flora']
 
   constructor (id: number | string, hash: string, version?: string, token?: string) {
     if (!id) {
@@ -29,7 +44,21 @@ export default class Config implements ag.Config {
     }
   }
 
-  get dcOptions (): any[] {
-    return this.modes.test ? dcOptions.test : dcOptions.production
+  /**
+   * @deprecated Use properties of the `Config` instance instead
+   */
+  public get modes (): ag.TelegramModesConfig {
+    return {
+      ssl: this.ssl,
+      test: this.test
+    }
+  }
+
+  /**
+   * @deprecated Use properties of the `Config` instance instead
+   */
+  public set modes ({ ssl, test }: ag.TelegramModesConfig) {
+    this.ssl = ssl === undefined ? true : ssl
+    this.test = test === undefined ? false : test
   }
 }

@@ -14,6 +14,21 @@ import TYPES from '../ioc/types'
 let clientId = 0
 let requestId = 0
 
+function createError (data: {
+  error_code?: number,
+  error_message?: string
+}): ag.RpcError {
+  const code = uintToInt(data.error_code || 0)
+  const message = data.error_message
+  const matches = (message || '').match(/^([A-Z_0-9]+\b)(: (.+))?/) || []
+
+  return new RpcError({
+    code: code <= 0 ? 500 : code,
+    message: matches[3] || ('CODE#' + code + ' ' + message),
+    type: matches[1] || 'UNKNOWN'
+  })
+}
+
 @provide(TYPES.MtpClient)
 export default class MtpClient implements ag.MtpClient {
   public static factory (
@@ -153,7 +168,7 @@ export default class MtpClient implements ag.MtpClient {
   }
 
   public getApiUrl (dcId: number): string {
-    return this.client.getApiUrl(dcId)
+    return this.client.getApiUrl(dcId, this.isFileTransfer)
   }
 
   public startPolling (): void {
@@ -298,21 +313,6 @@ export default class MtpClient implements ag.MtpClient {
       }
     })
     return !notEmpty
-  }
-
-  private createError (data: {
-    error_code?: number,
-    error_message?: string
-  }): ag.RpcError {
-    const code = uintToInt(data.error_code || 0)
-    const message = data.error_message
-    const matches = (message || '').match(/^([A-Z_0-9]+\b)(: (.+))?/) || []
-
-    return new RpcError({
-      code: code <= 0 ? 500 : code,
-      message: matches[3] || ('CODE#' + code + ' ' + message),
-      type: matches[1] || 'UNKNOWN'
-    })
   }
 
   private delayedCheckConnection (minDelay = 60) {
@@ -516,7 +516,7 @@ export default class MtpClient implements ag.MtpClient {
           const { deferred } = sentMessage
           if ((response.result as ag.MtpResponseMessage)._ === 'rpc_error') {
             const { error_code, error_message } = response.result as ag.MtpResponseMessage
-            const error = this.createError({ error_code, error_message })
+            const error = createError({ error_code, error_message })
             this.logger.error(() => `processMessageAck() Rpc error ${error} ${new Serializable(deferred)}`)
             if (deferred) {
               deferred.reject(error)

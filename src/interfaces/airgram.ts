@@ -23,6 +23,7 @@ export type Middleware<ContextT = any> = { middleware: () => MiddlewareFn<Contex
 // ----------------
 export interface TelegramModesConfig {
   test?: boolean
+  ssl?: boolean
 }
 
 export interface TelegramAppConfig {
@@ -32,14 +33,24 @@ export interface TelegramAppConfig {
   version: string
 }
 
+export interface TelegramDcOptions {
+  id: number
+  host: string
+  port: number
+}
+
 export interface Config {
   app: TelegramAppConfig
-  dcOptions: any[]
   deviceModel: string
   systemVersion: string
   langCode: string
   layer: number
-  modes: TelegramModesConfig
+  ssl: boolean
+  test: boolean
+  modes?: TelegramModesConfig
+  testDc: TelegramDcOptions[]
+  productionDc: TelegramDcOptions[]
+  sslSubdomains: string[]
 }
 
 export interface Me {
@@ -128,7 +139,7 @@ export interface Client<ContextT = Context> extends Composer<ContextT> {
 
   destroy (): Promise<void>
 
-  getApiUrl (dcId: number): string
+  getApiUrl (dcId: number, isFileTransfer: boolean): string
 
   getMtpClient (dcId, options: MtpClientGetterOptions): Promise<MtpClient>
 
@@ -247,6 +258,7 @@ export interface MtpAuthorizerInfo {
   authKey: number[]
   dcId: number
   deferred: DeferredResponse
+  isFileTransfer: boolean
   newNonce: number[]
   nonce: number[]
   serverNonce: number[]
@@ -261,7 +273,7 @@ export interface MtpAuthorizerInfo {
 export interface MtpAuthorizer {
   client: Client
 
-  auth (dcId: number): Promise<MtpAuthorizerInfo>
+  auth (dcId: number, isFileTransfer: boolean): Promise<MtpAuthorizerInfo>
 }
 
 export type MtpAuthorizerFactory = (client: Client) => MtpAuthorizer

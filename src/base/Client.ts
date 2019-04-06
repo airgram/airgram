@@ -203,15 +203,19 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
     await Promise.all(Array.from(this.uploadClients).map(async ([dcId, client]) => (await client).destroy()))
   }
 
-  public getApiUrl (dcId): string {
-    const dcConfig = this.config.dcOptions.filter((dc: any) => !dc.pFlags.ipv6)
-    const dcOption = dcConfig.find((dc) => dc.id === dcId)
+  public getApiUrl (dcId: number, isFileTransfer: boolean): string {
+    if (this.config.ssl) {
+      const path = this.config.test ? 'apiw_test1' : 'apiw1'
+      const subdomain = this.config.sslSubdomains[dcId - 1] + (isFileTransfer ? '-1' : '')
+      return `https://${subdomain}.web.telegram.org/${path}`
+    }
+    const dcOption = (this.config.test ? this.config.testDc : this.config.productionDc).find((dc) => dc.id === dcId)
 
     if (!dcOption) {
       throw new Error(`Could not find dc with id = ${dcId}`)
     }
 
-    return `http://${dcOption.ip_address}:${dcOption.port}/${this.config.modes.test ? 'apiw_test1' : 'apiw1'}`
+    return `http://${dcOption.host}:${dcOption.port === 80 ? '' : dcOption.port}/apiw1'`
   }
 
   public getMtpClient (dcId, options?: ag.MtpClientGetterOptions): Promise<ag.MtpClient> {
@@ -271,7 +275,7 @@ export default class Client extends Composer<ag.Context> implements ag.Client {
   }
 
   protected authorize (dcId: number, isFileTransfer: boolean): Promise<ag.MtpClient> {
-    return this.mtpAuth.auth(dcId)
+    return this.mtpAuth.auth(dcId, isFileTransfer)
       .then(({ authKey, serverSalt }) => Promise.all([
         this.mtpState.authKey(dcId, bytesToHex(authKey)),
         this.mtpState.serverSalt(dcId, bytesToHex(serverSalt))
