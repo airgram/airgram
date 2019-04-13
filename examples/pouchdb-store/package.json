@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@types/pouchdb": "^6.3.2",
-    "@types/pouchdb-upsert": "^2.2.4",
-    "pouchdb": "^7.0.0",
-    "pouchdb-upsert": "^2.2.0"
-  }
-}

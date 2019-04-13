@@ -2,32 +2,42 @@
 
 Modern Telegram client framework for TypeScript/JavaScript.
 
+**Important:** this documentation is for version `1.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
+
+## Features
+
+- Based on [TDLib](https://core.tlgr.org/tdlib);
 - Strictly typed;
-- Described all the Telegram API methods;
-- Max flexible;
+- Documentation out of the box;
+- Supports models;
 - Built on middleware;
 - Authorization helper;
-- Getting updates;
-- Encrypts secret keys
+
+All TDLib classes and methods are described and have suitable wrappers in Airgram. There are only two differences:
+- All parameter names are represent in "camelCase".
+- Parameter `@type` renamed to `_`.
+
+## Requirements
+- TDLib v1.3.0
+- NodeJS
 
 ## Documentation
 - [Installation](#installation)
 - [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [Api reference](#api-reference)
 - [Authorization](#authorization)
-- [Requests](#requests)
-- [Getting updates](#getting-updates)
-- [Data store](#data-store)
-- [Encryption](#encryption)
 - [Middleware](#middleware)
-- [Logging](#logging)
-- [Components](#components)
-
-## API reference
-- [Telegram methods](/docs/telegram-methods.md)
-- [Telegram types](/docs/telegram-types.md)
-- [Airgram types](/docs/airgram-types.md)
+- [Getting updates](#getting-updates)
+- [Models](#models)
+---
+- [TDLib methods](/docs/td-methods.md)
+- [TDLib input types](/docs/td-inputs.md)
+- [TDLib output types](/docs/td-outputs.md)
 
 ## Installation
+1. Build TDLib library according the [instruction](https://github.com/tdlib/td#building).
+2. Install Airgram:
 ```bash
 # npm
 npm install airgram
@@ -39,450 +49,205 @@ yarn add airgram
 
 ## Getting started
 
-**Note:** all the following examples created with TypeScript. Please check out [JavaScript example](https://github.com/airgram/airgram-js-example).
-
-
-Basic usage ([source code](https://github.com/airgram/airgram-ts-example)):
+Basic usage:
 
 ```typescript
-import 'reflect-metadata' // Do not forget to import
-import { Airgram, AuthDialog, ag, api } from 'airgram'
-import { prompt } from 'airgram/helpers'
+import { Airgram, Auth, prompt } from 'airgram'
 
-// Obtain app id and hash here: https://my.telegram.org/apps
-const app = { 
-  id: Number(process.env.APP_ID!), 
-  hash: process.env.APP_HASH! 
-}
+const airgram = new Airgram({
+  apiId: Number(process.env.APP_ID!),
+  apiHash: process.env.APP_HASH!
+})
 
-const airgram = new Airgram(app)
-const { auth, updates } = airgram
+const auth = new Auth(airgram)
 
-airgram.use(auth, updates)
-
-auth.use(new AuthDialog({
+auth.use({
   code: () => prompt(`Please enter the secret code:\n`),
-  continue: () => false,
-  phoneNumber: () => process.env.PHONE_NUMBER || prompt(`Please enter your phone number:\n`),
-  samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/n\n`)
-    .then((answer) => !['N', 'n'].includes(answer.charAt(0)))
-}))
+  phoneNumber: () => prompt(`Please enter your phone number:\n`)
+})
 
-auth.login().then(async () => {
-  // Start long polling
-  await updates.startPolling()
-
-  // Get dialogs list
-  const dialogs = await airgram.client.messages.getDialogs({
-    flags: 0,
-    limit: 30,
-    offset_date: 0,
-    offset_id: 0,
-    offset_peer: { _: 'inputPeerEmpty' }
-  })
-
-  console.log(dialogs)
-
-}).catch((error) => {
-  console.error(error)
+// Call Telegram method
+airgram.api.getMe().then((response) => {
+  console.info(response)
 })
 
 // Getting all updates
-updates.use(({ update }: ag.UpdateContext, next) => {
-  console.log(`"${update._}" ${JSON.stringify(update)}`)
+airgram.updates.use(({ update }, next) => {
+  if(update) {
+    console.log(`"${update._}" ${JSON.stringify(update)}`)
+  }
   return next()
 })
 
 // Get only new message updates
-updates.on<api.UpdateNewMessage> ('updateNewMessage', (ctx, next) => {
-  console.log('New message:', ctx.update)
-  return next()
+airgram.updates.on('updateNewMessage', ({ update }, next) => {
+  console.info(update)
+  return next
 })
 
 ```
 
-## Authorization
-Airgram provides component `Auth`, which implements basic logic for authorization or registration a new Telegram account. User just needs to specify the phone number, secret code and some other necessary information.
+## Configuration
 
-```typescript
-import Airgram, { AuthDialog } from 'airgram'
-
-const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH })
-
-const { auth } = airgram
-
-auth.use((ctx: { _: string, state: { [key: string]: string } }, next: () => Promise<any>) => {
-  // Set default values
-  Object.assign(ctx.state, {
-    firstName: 'John',
-    lastName: 'Smith',
-    phoneNumber: '649965043265'
-  })
-  return next()
-})
-
-// You can use method `on` to call a callback only for given type of the requests
-auth.on('code', async ({ state }, next) => {
-  state.code = await getSecretCodeFromSomewhere()
-  return next()
-})
-
-auth.login().then(({ userId }: ag.AuthDoc) => {
-  // Success authorization
-})
-```
-
-In the example above you have to implement `getSecretCodeFromSomewhere()` function by yourself. That function returns `Promise<string>`, where `string` is a secret code received from Telegram.
-
-
-You can use helper `prompt` to communicate with user by the command line:
-
-```typescript
-import { prompt } from 'airgram/helpers'
-
-// ...
-
-auth.on('code', async ({ state }, next) => {
-  state.code = await prompt('Please input the secret code:')
-  return next()
-})
-```
-
-Component `AuthDialog` implements authorization middleware and provides more intuitive interface:
-
-```typescript
-import { Airgram,  AuthDialog } from 'airgram'
-import { prompt } from 'airgram/helpers'
-
-const airgram = new Airgram({ id: process.env.APP_ID, hash: process.env.APP_HASH })
-
-const { auth } = airgram
-
-// Register authorization middleware instead of calling `airgram.auth.login()` manually
-airgram.use(auth)
-
-// Register middleware to receive data from user
-auth.use(new AuthDialog({
-  firstName: 'John',
-  lastName: 'Smith',
-  phoneNumber: () => process.env.PHONE_NUMBER || prompt('Please input your phone number:'),
-  code: async () => prompt('Please input the secret code:'),
-  samePhoneNumber: ({ phoneNumber }) => prompt(`Do you want to sign in with the "${phoneNumber}" phone number? Y/n`)
-    .then((answer) => !['N', 'n'].includes(answer.charAt(0))),
-  continue: ({ phoneNumber }) => prompt(`Last authorization with the "${phoneNumber}" phone number has broken. If you have the secret code and wish to continue, input "Yes". Y/n`)
-    .then((answer) => !['N', 'n'].includes(answer.charAt(0)))
-}))
-```
-
-Config that passed to `AuthDialog` constructor has the following properties:
-
-| Key                | Note                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| `firstName`        | Only for registration                                        |
-| `lastName`         | Only for registration                                        |
-| `phoneNumber`      | Only digits                                                  |
-| `code`             | The secret code received from Telegram                    |
-| `continue`         | Do not start login with zero if the secret code has already been sent |
-| `samePhoneNumber`  | Whether to use previous phone number or input the new one |
- 
-Each property value has a type: `((state: Partial<Answers>) => Promise<string>) | string | undefined`. 
-Default value: `undefined`.
-
-## Requests
-
-All Telegram API methods are described and have suitable methods in Airgram.
-
-- [`Account`](/docs/telegram-methods.md#account)
-- [`Auth`](/docs/telegram-methods.md#auth)
-- [`Bots`](/docs/telegram-methods.md#bots)
-- [`Channels`](/docs/telegram-methods.md#channels)
-- [`Contacts`](/docs/telegram-methods.md#contacts)
-- [`Help`](/docs/telegram-methods.md#help)
-- [`Langpack`](/docs/telegram-methods.md#langpack)
-- [`Messages`](/docs/telegram-methods.md#messages)
-- [`Payments`](/docs/telegram-methods.md#payments)
-- [`Phone`](/docs/telegram-methods.md#phone)
-- [`Photos`](/docs/telegram-methods.md#photos)
-- [`Stickers`](/docs/telegram-methods.md#stickers)
-- [`Updates`](/docs/telegram-methods.md#updates)
-- [`Upload`](/docs/telegram-methods.md#upload)
-- [`Users`](/docs/telegram-methods.md#users)
-
-## Getting updates
-
-For getting updates use the `Updates` component as shown below:
+This section describes the options you can pass to `Airgram` constructor:
 
 ```typescript
 import { Airgram } from 'airgram'
 
-const airgram = new Airgram(/* config */)
-
-airgram.updates.getDifference().then((difference) => {
-  console.log('difference:', difference)
+const airgram = new Airgram({
+  // options
 })
 ```
 
-**Note:** method `airgram.updates.getDifference()` is the wrapper for the method [`airgram.client.updates.getDifference()`](/docs/telegram-methods.md#updatesgetdifference), which has more complicated interface:
+### TDLib options
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `command` | `string` | Path to the `tdjson` (windows) / `libtdjson` (unix) command. |
+| `useTestDc` | `boolean` | If set to true, the Telegram test environment will be used instead of the production  environment |
+| `databaseDirectory` | `string` | The path to the directory for the persistent database |
+| `filesDirectory` | `string` | The path to the directory for storing files |
+| `useFileDatabase` | `boolean` | If set to true, information about downloaded and uploaded files will be saved between application restarts |
+| `useChatInfoDatabase` | `boolean` | If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies `useFileDatabase` |
+| `useMessageDatabase` | `boolean` | If set to true, the library will maintain a cache of chats and messages. Implies `useChatInfoDatabase` |
+| `useSecretChats` | `boolean` | If set to true, support for secret chats will be enabled |
+| `apiId` | `number` | Application identifier for Telegram API access, which can be obtained at https://my.telegram.org |
+| `apiHash` | `string` | Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org |
+| `token` | `string` | Token for bot authorization |
+| `systemLanguageCode` | `string` | IETF language tag of the user's operating system language |
+| `deviceModel` | `string` | Model of the device the application is being run on |
+| `systemVersion` | `string` | Version of the operating system the application is being run on |
+| `applicationVersion` | `string` | Application version |
+| `enableStorageOptimizer` | `boolean` | If set to true, old files will automatically be deleted |
+| `ignoreFileNames` | `boolean` | If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name |
+| `logFilePath` | `string` | Path to a file where the internal TDLib log will be written. Use an empty path to switch back to the default logging behaviour. |
+| `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
+| `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
+| `databaseEncryptionKey` | `string` | Encryption key |
+| `client` | `any` | Instance of the [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads.  |
+
+
+### Other options
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `models` | Object | Contains models, which replace plain JSON objects. [Details](#models). |
+| `createContext` | Function | Function to override middleware context. [Details](#ctx). |
+
+## API reference
+
+This section describes public API of an `Airgram` instance:
+
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `api` | Object | Contains wrappers for all [TDLib methods](/docs/tdlib-methods.md). |
+| `config` | Object | Airgram configuration. Readonly. |
+| `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
+| `handleError` | Function | Error handler. Can be overriden by `airgram.catch()`. |
+| `catch` | `(handler) => void` | Overrides default error handler. Argument `handler` takes a function: `(error: Error, ctx?: Record<string, any>) => void`  |
+| `pause` | `() => void` | Stop getting responses and updates from TDLib |
+| `resume` | `() => void` | Continue getting responses and updates from TDLib |
+| `destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
+
+
+
+## Authorization
+### As a bot
+
+Just specify a secret token by `Airgram` constructor:
 
 ```typescript
-interface GetDifferenceParams {
-  date: number,
-  flags: number,
-  pts: number,
-  qts: number,
-  pts_total_limit?: number
-}
+import { Airgram, Auth } from 'airgram'
 
-// `getUpdatesState()` – it's your own function that returns the current updates state
-const { pts, date, qts } = getUpdatesState()
+const airgram = new Airgram({
+  token: 'xxx'
+})
 
-const params: GetDifferenceParams = { pts, date, qts, flags: 0 }
+new Auth(airgram)
+```
 
-airgram.client.updates.getDifference(params).then((difference) => {
-  console.log('difference:', difference)
+### As a user
+Airgram provides component `Auth`, which implements basic logic for authorization or registration new Telegram accounts. User just needs to specify the phone number, secret code and some other data, if necessary.
+
+```typescript
+import { Airgram, Auth } from 'airgram'
+
+const airgram = new Airgram()
+const auth = new Auth(airgram)
+
+auth.use({
+  phoneNumber: '+1234567890',
+  firstName: 'John',
+  lastName: 'Smith'
 })
 ```
 
-### Long polling
-
-In most cases you do not need to call `getDifference()` directly. Airgram supports long polling connection to deliver updates as soon as they come.
-
-Use component `Updates` as middleware to handle incoming updates:  
-
+Method `auth.use()` takes config:
 ```typescript
-const { updates } = airgram
+type AuthAnswer = string | (() => string) | (() => Promise<string>)
 
-// Use the `Updates` component as a middleware
-airgram.use(updates)
-
-// Start to listen new updates
-updates.startPolling()
+interface AuthDialog {
+  code?: AuthAnswer
+  firstName?: AuthAnswer
+  lastName?: AuthAnswer,
+  phoneNumber?: AuthAnswer
+  password?: AuthAnswer
+}
 ```
 
-If you need to break long polling connection use method `stop()`:
+You can use helper `prompt` to communicate with user by the command line:
 
 ```typescript
-updates.stop()
-``` 
+import { prompt } from 'airgram'
 
-Use methods `use()` and `on()` to add your own handlers for updates. Do not forget to call `next()` if you want to run next handlers.
-
-```typescript
-  import { api } from 'airgram'
-
-  // Get all updates
-  updates.use((ctx, next) => {
-    console.log(`Update type: ${ctx._}`)
-    return next()
-  })
-  
-  // In the following example shown how to set explicit types for `ctx.update` and `ctx.parent`.
-  updates.on<api.UpdateNewMessage, api.Updates> ('updateNewMessage', (ctx, next) => {
-    console.log(`New message: ${ctx.update}`)
-    return next()
-  })
-```
-
-#### Argument `ctx`
-
-Argument `ctx` is an object with the following structure:
-
-| Key                | Type     | Note                                                        |
-| ------------------ | -------- | ----------------------------------------------------------- |
-| `_`                | string   | Updates type                                           |
-| `client`           | `Client` | The same as in `airgram.client`                              |
-| `state`            | {[key: string]: any} | Just a plain object. You should use it to pass some data between different middleware |
-| `update`           | {[key: string]: any} | An object with update data                                   |
-| `parent`           | {[key: string]: any} l undefined | Parent updates object                                   |
-
-You may to extend context object:
-
-```typescript
-import { ag, Airgram, TYPES } from 'airgram'
-import BaseUpdatesContextManager from 'airgram/base/UpdatesContextManager'
-import { injectable } from 'inversify'
-
-interface CustomUpdatesContext extends ag.UpdateContext {
-  reply (text: string): any
-}
-
-@injectable()
-class UpdatesContextManager extends BaseUpdatesContextManager implements ag.UpdatesContextManager<CustomUpdatesContext> {
-  public createContext (options: ag.UpdateContextOptions) {
-    return {
-      ...super.createContext(options),
-      reply: (text) => this.reply(text, options)
-    }
-  }
-
-  public reply (text: string, { ctx, parent, update }: ag.UpdateContextOptions) {
-    // your code
-  }
-}
-
-const airgram = new Airgram<ag.Context, CustomUpdatesContext>({/* app config */})
-
-airgram.bind<ag.UpdatesContextManager>(TYPES.UpdatesContextManager).to(UpdatesContextManager)
-
-const { updates } = airgram
-airgram.use(updates)
-
-updates.use(async (ctx, next) => {
-  await ctx.reply('Some text')
-  return next()
+auth.use({
+  code: () => prompt(`Please enter the secret code:\n`),
+  phoneNumber: () => prompt(`Please enter your phone number:\n`)
 })
 ```
 
-You can find an example [here](examples/custom-updates-context/index.ts).
+#### Authorization callback
 
-
-#### Containers
-
-Some of the incoming updates have nested structure. Updates of this type are containers for other updates. 
-
-Container usually consists of a list of the chats and users, which are in the children updates. You should save them to your own store.
+If you want to ensure the code will execute only after successful authorization, you can use `auth.ready()` method:
 
 ```typescript
-  updates.use(({ update }, next) => {
-    if ('chats' in update && update.chats.length) {
-      // saveChats(update.chats)
-    }
-    if ('users' in update && update.users.length) {
-      // saveUsers(update.users)
-    }
-    return next()
-  })
-```
-
-## Data store
-
-Airgram keeps 4 types of data:
-- updates state
-- chat's updates state
-- last login information
-- Telegram access keys
-
-By default all information written into a memory store. If you do not want to lose data between sessions you have to use persistent store.  
-
-In the next example we will show how to use PouchDB as a persistent store. Of course, you may easily create a provider for any other database.
-
-**Important:** do not forget to encrypt all secret information. We will skip this part of the code to simplify it.
-
-Airgram store has the following simple interface:
-
-```typescript
-interface Store<DocT extends { [key: string]: any }> {
-  delete (key: string): Promise<void>
-
-  get (key: string): Promise<DocT | null>
-
-  get (key: string, field: string): Promise<any>
-
-  set (key: string, value: Partial<DocT>): Promise<Partial<DocT>>
-}
-```
-
-Ok, lets implement it for PouchDB:
-
-```typescript
-import PouchDB from 'pouchdb'
-import UpsertPlugin from 'pouchdb-upsert'
-
-PouchDB.plugin(UpsertPlugin)
-
-// Here is using pouchdb-server
-const db = new PouchDB(`http://127.0.0.1:5984/airgram`)
-
-
-export default class PouchDBStore {
-  public async delete (id: string): Promise<void> {
-    try {
-      await db.remove(id)
-    } catch (e) {
-      throw e
-    }
-  }
-    
-  public async get (key: string, field?: string): Promise<any> {
-    try {
-      const value = await db.get<DocT>(key)
-      return field ? value[field] : value
-    } catch (e) {
-      return null
-    }
-  }
-    
-  public async set (id: string, doc: Partial<DocT>): Promise<Partial<DocT>> {
-    let nextDoc
-    return db.upsert(id, (currentDoc: DocT) => {
-      nextDoc = Object.assign({}, currentDoc, doc)
-      return nextDoc
-    }).then(() => nextDoc)
-  }
-}
-```
-
-When the store component is created we can bind it to Airgram: 
-
-```typescript
-import { Airgram, TYPES } from 'airgram'
-
-const airgram = new Airgram(/* config */)
-
-airgram.bind(TYPES.AuthStore).to(PouchDBStore)
-airgram.bind(TYPES.MtpStateStore).to(PouchDBStore)
-```
-
-Please follow to the [`example page`](/examples/pouchdb-store/index.ts) to see the source code.
-
-## Encryption
-By default, encryption of the secret keys is switched of. Follow this instruction to encrypt dangerous data:
-
-```typescript
-// Set secret keys
-airgram.client.crypto.setSecretKeys({
-  key: process.env.SECRET_KEY,
-  iv: process.env.SECRET_IV
+auth.ready().then(() => {
+  console.log('Success!')
 })
 
-// Set what have to be encrypted
-airgram.client.mtpState.encryptedFields = ['authKey', 'serverSalt'] // or true | (field: string) => boolean
+// or pass callback
+auth.ready(() => {
+  console.log('Success!')
+})
 ```
-
-Use helper `generateSecretKeys()` to generate random `key` and `iv`:
-
-```typescript
-import { generateSecretKeys } from 'airgram/helpers'
-
-const secret = generateSecretKeys()
-
-console.log(secret)
-
-// Output like: 
-// { 
-//   iv: '0639aca8feb0d2b20da5c561a25c0c25',
-//   key: '49ad5e7b838924c316eedc83b2b7906f4b4058b577a26746895249ebae9d6764' 
-// }
-
-```
-
 
 ## Middleware
 
-Middleware is a chain of callback functions, which are called before the request is send to Telegram. Middleware allows you modify requests and responses to add some additional handlers.
-
-Inside of the box Airgram provides 2 components you can use as middleware. There are `Auth` and `Updates`.
+Middleware is a chain of callback functions, which are called before a request is send to TDLib. Middleware allows you modify requests and responses to add some additional logic. Middlewares also are using to handle updates.
 
 This is a scaffolding for middleware function:
 
 ```typescript
+import { UPDATE } from 'airgram'
+
 airgram.use((ctx, next) => {
   
   // Add some code here
   
   return next()
 })
+
+// You can pass an array of predicates: `['updateNewChat', 'updateSupergroup']`
+airgram.on(UPDATE.updateNewChat, (ctx, next) => {
+  
+  // Add some code here
+  
+  return next()
+})
 ```
+
+**Tip:** in the example above we took predicate's value from the `UPDATE` directory instead of using string value `updateNewChat`, because this way protects us from typos and we can use IDE autocomplete.
 
 Function takes 2 arguments: `ctx` and `next`.
 
@@ -492,25 +257,93 @@ Argument `ctx` contains an object with the following structure:
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `_`                | `string`               | Updates type                                           |
-| `client`           | `Client`             | The same as in `airgram.client`                              |
-| `state`            | `{ [key: string]: any }` | Just a plain object. You should use it to pass some data between different middleware |
-| `handled`          | `boolean`              | Whether the request has already been handled or not                 |
-| `request`          |  `{ [key: string]: any }`                 | Telegram request |
-| `deferred`         |  `{ resolve: (response: any) => any, reject: (error: Error) => any }` | You may immediately resolve or reject the Telegram request  |
+| `_`                | `string`               | Request (or update) type.                                           |
+| `airgram`           | `Airgram`             | Instance of `Airgram`.                              |
+| `getState`            | `() => Object` | Returns current state. |
+| `setState`            | Function | A function that takes either a new state object, or a function which receives the previous state and returns a new one. It behaves similarly to `setState` from React. |              |
+| `request`          |  `{ method: string, params: Object }`                 | Object which contains method and parameters of the request. Value will be `undefined` for updates. |
+| `response`          |  Object                 | Object which contains response data from TDLib. Field will be `undefined` if the request has not handled. |
+| `update`          |  Object                 | This field is available only for updates. |
 
+You can extend default context by define your own `createContext` function: 
 
-**`ctx.request`**
+```typescript
+import { ag, Airgram, createContext as createBaseContext, UPDATE, User } from 'airgram'
 
-| Key                | Type                     | Note                                                        |
-| ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `method`   | `string`             | Request method name                 |
-| `params`   | `{[key: string]: any}` | Optional. Request parameters according to the Telegram schema   |
-| `options`  | `{[key: string]: any}}` | Optional. Additional options passed to the request                 |
+interface Context extends ag.Context {
+  getUser (id: number): User | void
+  setUser (id: number, user: User): void
+}
+
+const userMap: Map<number, User> = new Map()
+
+function createContext (options: ag.ContextOptions): Context {
+  return {
+    ...createBaseContext(options),
+    getUser (id: number): User | void {
+      return userMap.get(id)
+    },
+    setUser (id: number, user: User): void {
+      userMap.set(id, user)
+    }
+  }
+}
+
+const airgram = new Airgram<Context>({
+  createContext
+})
+
+airgram.updates.on(UPDATE.updateUser, ({ setUser, update }, next) => {
+  setUser(update.user.id, update.user)
+  return next()
+})
+
+airgram.updates.on(UPDATE.updateNewMessage, async ({ getUser, update }) => {
+  const user = getUser(update.message.senderUserId)
+
+  if (!user) {
+    throw new Error('Unknown user')
+  }
+
+  console.log(`${user.username}: ${JSON.stringify(update.message)}`)
+})
+``` 
+
+Since middlewares are meant to be composed, they need an easy way to send metadata about the request down the chain of middleware. To accomplish this, each middleware context has a state object. The state is read by using `ctx.getState()` and written using `ctx.setState(newState)` or `ctx.setState((prevState) => newState)`. The API of `setState` is meant to be similar to React's one. For example:
+
+```typescript
+airgram.use(({ setState }, next) => {
+  setState({ foo: 'bar' })
+  return next()
+})
+
+airgram.use(async ({ getState }) => {
+  console.log(`foo = ${getState().foo}`);
+  // output: foo = bar
+})
+```
+
+Each state can be set by the last argument of the request:
+
+```typescript
+
+// We can set starting state by the last argument
+airgram.api.getChats({limit: 10}, {log: true})
+
+airgram.on('getChats', async ({ _, getState }, next) => {
+  if(!getState().log) {
+    return next()
+  }
+  const start = new Date()
+  await next()
+  const time = new Date() - start;
+  console.log(`Request "${_}" took ${time} to complete.`);
+})
+```
 
 ### `next`
 
-The second argument `next` is a callback function which runs the next handler. 
+The second argument `next` is a function which runs the next handler. 
 
 Function `next()` returns a promise `Promise<any>`, so we can use the next handlers result inside of our middleware:
 
@@ -523,25 +356,14 @@ airgram.use(async (ctx, next) => {
 })
 ```
 
-### `use()` vs `on()`
-
-When we set middleware by `use()` method, callback will be called for every request. Method `on()` allows us to mount callback only to some type of requests. 
-
-```typescript
-airgram.on('messages.getDialogs', async (ctx, next) => {
-  const dialogs = await next()
-  updateMyDialogList(dialogs)
-})
-```
-
 ### Class as a middleware
 
 Sometimes middleware may be pretty complicated or you want to reuse the code. In this case the most suitable way is to create new class (or use existing) and pass it to `use()` or `on()` methods.
 
-Your class must have a `middleware()` method which returns a factory:
+Your class must have a `middleware()` factory method:
 
 ```typescript
-class MyMiddlewareClass {
+class MiddlewareClass {
   handle(ctx) {
     // do some work
   }
@@ -554,97 +376,68 @@ class MyMiddlewareClass {
   }
 }
 
-const myMiddleware = new MyMiddlewareClass()
-
-airgram.use(myMiddleware)
+airgram.use(new MiddlewareClass())
 ```
 
-## Logging
+All methods describes [here](/docs/telegram-methods.md).
 
-By default, all messages with level `info` and above fall into terminal via default `console` utility. You can change this behavior.
+## Getting updates
 
-Lets extend the `Logger` component. We will add timestamp label and replace `console` utility to `debug` library:
+Use methods `airgram.updates.use()` and `airgram.updates.on()` to add some handlers for updates. It works almost the same as `airgram.use()` and `airgram.on()`, but there are two differences:
+
+1. By using `airgram.updates.use()` and `airgram.updates.on()` methods, callbacks won't be called for requests;
+2. Improved typings for updates.
+
+## Models
+
+Airgram provide an excellent feature to create your own models for plain JSON objects which returned by TDLib. 
+
+For example, lets add some features to the [Chat](/docs/td-outputs.md#chat):
 
 ```typescript
-import { Airgram, getCalleeName, Logger, TYPES } from 'airgram'
-import * as createLogger from 'debug'
-import moment from 'moment'
-import { injectable } from 'inversify'
+import { Airgram, ApiMethods, CHAT_TYPE, ChatBaseModel, UPDATE } from 'airgram'
 
-const DATETIME_FORMAT = 'YYYY-MM-DD HH:mm:ss.SSS'
-const writeLog = createLogger('airgram')
-
-@injectable()
-class DebugLogger extends Logger {
-  protected formatMessage (message, level) {
-    const parts = [
-      `${name}${' '.repeat(7 - level.name.length)} `,
-      `${moment().format(DATETIME_FORMAT)}: `,
-      this.namespace.map((v) => `[${v}] `)
-    ]
-    return `${parts.join('')}${message}`
+class ChatModel extends ChatBaseModel {
+  get isBasicGroup (): boolean {
+    return this.type._ === CHAT_TYPE.chatTypeBasicGroup
   }
 
-  protected log (level, message) {
-    writeLog(this.formatMessage(message, level))
+  get isSupergroup (): boolean {
+    return this.type._ === CHAT_TYPE.chatTypeSupergroup
+  }
+
+  get isPrivateChat (): boolean {
+    return this.type._ === CHAT_TYPE.chatTypePrivate
+  }
+
+  get isSecretChat (): boolean {
+    return this.type._ === CHAT_TYPE.chatTypeSecret
+  }
+
+  public async isMeChat (api: ApiMethods): Promise<boolean> {
+    if ('userId' in this.type) {
+      return (await api.getMe()).id === this.type.userId
+    }
+    return false
   }
 }
 
-airgram.bind(TYPES.Logger).to(DebugLogger).onActivation((context, logger) => {
-  logger.namespace = [getCalleeName(context)] // log will show current component name
-  logger.level = 'verbose' 
-  return logger
+const airgram = new Airgram({
+  models: {
+    chat: ChatModel
+  }
 })
-``` 
 
-Sure, you may create your own logger class from scratch. You just need to implement the following interface:
-
-```typescript
-export interface Logger {
-  namespace: string[]
-  debug (...args: any[]): void
-  verbose (...args: any[]): void
-  info (...args: any[]): void
-  warn (...args: any[]): void
-  error (...args: any[]): void
-}
+airgram.updates.on(UPDATE.updateNewChat, async ({ update }) => {
+  const { chat } = update
+  console.info('isBasicGroup: ', chat.isBasicGroup)
+  console.info('isSupergroup: ', chat.isSupergroup)
+  console.info('isPrivateChat: ', chat.isPrivateChat)
+  console.info('isSecretChat: ', chat.isSecretChat)
+  console.info('isMeChat: ', await chat.isMeChat(airgram.api))
+})
 ```
 
-## Components
-
-Under the hood Airgram uses inversion of control (IoC) container. It gives max flexibility. You may change or replace any part of framework. 
-
-The most popular cases when you need to inject your own component:
-- custom logger (debug, winston and etc)
-- persistent store
-
-Please check out [IoC container documentation](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md).
-
-```typescript
-import { Airgram, ag, DevLogger, TYPES } from 'airgram'
-
-const airgram = new Airgram(/* config */)
-
-airgram.bind<ag.Logger>(TYPES.Logger).to(DevLogger)
-```
-
-Airgram container is accessible via `airgram.container` property. 
-
-Since all components are defined during initialization you should use method [`airgram.container.rebind`](https://github.com/inversify/InversifyJS/blob/master/wiki/container_api.md#containerrebindserviceidentifier-serviceidentifier) to avoid an error. There is a shortcut: `airgram.bind`.
-
-All the injectable components are contained in the variable `TYPES`.
-
-The most popular of them:
-
-| Type               | Name                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| `AuthStore`        | Keeps the condition of whether the user is logged in or not |
-| `ChatStore`        | Store that keeps chat's state                                |
-| `Client`           | Value of the `airgram.client` property
-| `MtpStateStore`    | Store for telegram secret keys |
-| `Logger`           | By default the logger use `console` |
-| `UpdatesStateStore`| Updates state |
- 
 ## License
 
 The source code is licensed under GPL v3. License is available [here](/LICENSE).

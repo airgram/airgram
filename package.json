@@ -2,20 +2,22 @@
   "name": "airgram",
   "version": "0.1.21",
   "homepage": "https://airgram.io",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "keywords": [
     "telegram",
-    "mtproto"
+    "tdlib",
+    "telegram bot",
+    "telegram client",
+    "telegram javascript",
+    "telegram typescript"
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "npm run clean && tsc && cp LICENSE dist && cp README.md dist",
-    "deploy": "np --yolo --no-publish",
+    "compile": "npm run clean && tsc",
+    "deploy": "np --yolo",
     "dev": "DEBUG=airgram* nodemon --config nodemon.json",
     "lint": "tslint --project \".\"",
-    "postversion": "git push && git push --tags",
-    "postdeploy": "cp package.json dist && cp -r src/vendor dist && npm publish dist",
     "prepublishOnly": "npm run compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,19 +26,13 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/airgram/airgram",
   "dependencies": {
-    "axios": "^0.18.0",
-    "crypto-js": "^3.1.9-1",
-    "inversify": "^5.0.1",
-    "inversify-binding-decorators": "^4.0.0",
+    "class-transformer": "^0.2.0",
+    "ffi-napi": "^2.4.5",
     "lodash": "^4.17.11",
-    "require-directory": "^2.1.1",
-    "rusha": "^0.8.13",
-    "zlib": "^1.0.5"
-  },
-  "peerDependencies": {
-    "reflect-metadata": "^0.1.12"
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "@types/ffi-napi": "^2.4.1",
     "@types/node": "^10.11.7",
     "eslint": "^4.19.1",
     "eslint-config-standard": "^11.0.0",
@@ -45,14 +41,9 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "event-stream": "^3.3.4",
     "nodemon": "^1.18.4",
     "np": "^3.0.4",
-    "pouchdb": "^7.0.0",
-    "pouchdb-upsert": "^2.2.0",
     "pre-commit": "^1.2.2",
-    "reflect-metadata": "^0.1.12",
-    "socks-proxy-agent": "^4.0.2",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-standard": "^7.1.0",

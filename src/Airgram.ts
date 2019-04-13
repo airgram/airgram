@@ -1,80 +1,148 @@
-import { Container, interfaces } from 'inversify'
-import { Config } from './config'
-import { ag } from './interfaces'
-import { bindComponents, createContainer } from './ioc'
-import TYPES from './ioc/types'
+import { apiFactory, ApiMethods } from './api'
+import { compose, Composer, createContext, optional, TdProxy, Updates } from './components'
+import * as ag from './types'
 
-export default class Airgram<ContextT = ag.Context, UpdateContextT = ag.UpdateContext> {
-  public config: ag.Config
-  public container: Container
+const DEFAULT_CONFIG: ag.AirgramConfig = {
+  applicationVersion: '0.1.0',
+  databaseDirectory: './db',
+  databaseEncryptionKey: '',
+  deviceModel: 'UNKNOWN DEVICE',
+  systemLanguageCode: 'en',
+  systemVersion: 'UNKNOWN VERSION'
+}
+
+export default class Airgram<ContextT extends ag.Context>
+  extends Composer<ContextT> implements ag.Airgram<ContextT> {
+
+  public readonly api: ApiMethods
+
+  public readonly config: ag.AirgramConfig
+
+  public handleError: ag.ErrorHandler
+
+  private _updates: ag.Updates<ContextT>
+
   private destroyed: boolean = false
-  private instances: { client?: ag.Client<ContextT>, auth?: ag.Auth, updates?: ag.Updates<UpdateContextT> } = {}
 
-  constructor (config: Config | { id: number, hash: string, token?: string, version?: string }, container?: Container) {
-    this.config = config instanceof Config ? config : new Config(config.id, config.hash, config.version, config.token)
-    if (container instanceof Container) {
-      this.container = container
-    } else {
-      this.container = createContainer()
-      bindComponents(this.container)
+  private instances: Record<string, any> = {}
+
+  constructor (config: ag.AirgramConfig) {
+    super()
+
+    this.config = { ...DEFAULT_CONFIG, ...config }
+
+    this.handleError = (error: any/*, ctx*/) => {
+      // const { code, message, ...details } = error
+      // console.error(`[${ctx ? ctx._ : 'undefined'}][${code}]: ${message} ${new Serializable(details)}`)
+      throw error
     }
+
+    this.callApi = this.callApi.bind(this)
+    this.api = apiFactory(this.callApi)
+
+    setImmediate(() => this.api.getAuthorizationState())
   }
 
-  get auth (): ag.Auth {
-    if (!('auth' in this.instances)) {
-      this.instances.auth = this.container.get<ag.Auth>(TYPES.Auth)
-      this.instances.auth.configure(this.client)
-    }
-    return this.instances.auth!
+  public get name (): string {
+    return this.config.name || 'airgram'
   }
 
-  get client (): ag.Client<ContextT> {
-    if (this.destroyed) {
-      throw new Error('Client has destroyed.')
-    }
-    if (!('client' in this.instances)) {
-      const createClient = this.container.get<interfaces.Factory<ag.Client<ContextT>>>(TYPES.ClientFactory)
-      this.instances.client = createClient(this.config) as ag.Client<ContextT>
-    }
-    return this.instances.client!
+  get client (): ag.TdClient {
+    return this.tdProxy.client
   }
 
-  get updates (): ag.Updates<UpdateContextT> {
-    if (!('updates' in this.instances)) {
-      this.instances.updates = this.container.get<ag.Updates<UpdateContextT>>(TYPES.Updates)
-      this.instances.updates.configure(this.client)
+  get updates (): ag.Updates<ContextT> {
+    if (!this._updates) {
+      this._updates = new Updates<ContextT>()
+      this.use(this._updates)
     }
-    return this.instances.updates!
+    return this._updates
   }
 
-  public bind<T> (serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T> {
-    if (('client' in this.instances)) {
-      throw new Error('bind() binding is allowed only before the client initialization.')
+  private get tdProxy (): ag.TdProxy {
+    if (!this.instances.tdProxy) {
+      this.instances.tdProxy = new TdProxy(this.config.client || null,
+        this.config,
+        (update) => this.handleUpdate(update),
+        (message) => {
+          const error = message instanceof Error ? message : new Error(message)
+          this.handleError(error, { _: '' })
+        }
+      )
     }
-    return this.container.rebind<T>(serviceIdentifier)
+    return this.instances.tdProxy
   }
 
-  public catch (handler: (error: Error) => void): this {
-    this.client.catch(handler)
-    return this
+  public catch (handler: (error: Error, ctx?: Record<string, any>) => void): void {
+    this.handleError = handler
   }
 
   public async destroy (): Promise<void> {
-    await this.client.destroy()
-    Object.keys(this.instances).forEach((key) => {
-      delete this.instances[key]
+    if (!this.destroyed) {
+      this.destroyed = true
+      this.tdProxy.destroy()
+    }
+  }
+
+  public pause (): void {
+    return this.tdProxy.pause()
+  }
+
+  public resume (): void {
+    return this.tdProxy.resume()
+  }
+
+  private apiMiddleware () {
+    return optional(
+      (ctx: ag.Context) => ctx.request,
+      async (ctx, next) => {
+        const promise = new Promise((resolve, reject) => {
+          return this.tdProxy.send(ctx.request, { _: ctx.request._, resolve, reject })
+        })
+        return promise
+          .then((response) => ctx.response = response)
+          .then(next)
+      }
+    )
+  }
+
+  private callApi<ParamsT, ResponseT> (
+    method: string,
+    params?: ParamsT,
+    state?: Record<string, any>
+  ): Promise<ResponseT> {
+    return new Promise((resolve, reject) => {
+      const ctx = this.createContext(method, state || {}, {
+        request: {
+          method,
+          params
+        }
+      })
+      const handler = compose<ag.Context<ParamsT, ResponseT>>([
+        this.middleware(),
+        this.apiMiddleware()
+      ])
+      return handler(ctx, async () => resolve(ctx.response))
+        .catch((error) => this.handleError(error, ctx))
+        .catch(reject)
     })
-    this.container.unbindAll()
-    this.destroyed = true
   }
 
-  public on (predicateTypes: string | string[], ...fns: Array<ag.Middleware<ContextT>>): this {
-    this.client.on(predicateTypes, ...fns)
-    return this
+  private createContext (
+    _: string,
+    state: Record<string, any>,
+    options: Record<string, any>
+  ): ContextT {
+    const contextFn = 'createContext' in this.config ? this.config.createContext! : createContext
+    return contextFn(Object.assign({}, options, {
+      _,
+      airgram: this,
+      state
+    })) as ContextT
   }
 
-  public use (...fns: Array<ag.Middleware<ContextT>>): this {
-    this.client.use(...fns)
-    return this
+  private handleUpdate (update: ag.TdUpdate): Promise<any> {
+    const ctx: ContextT = this.createContext(update._, {}, { update })
+    return this.middleware()(ctx).catch((error) => this.handleError(error, ctx))
   }
 }

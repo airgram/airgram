@@ -1,9 +1,9 @@
 import Airgram from './Airgram'
-import * as api from './api'
-import TYPES from './ioc/types'
+import * as ag from './types'
+
+export * from './api'
+export * from './helpers'
+export * from './components'
 
 export default Airgram
-export * from './components'
-export * from './config'
-export * from './interfaces'
-export { Airgram, api, TYPES }
+export { Airgram, ag }
