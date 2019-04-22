@@ -14,7 +14,6 @@
   },
   "exclude": [
     "dev/**",
-    "src/vendor/**",
     "dist/**",
     "examples/**",
     "*.dev.ts"

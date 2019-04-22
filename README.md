@@ -40,11 +40,11 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 2. Install Airgram:
 ```bash
 # npm
-npm install airgram
+npm install airgram@next
 ```
 ```bash
 # yarn
-yarn add airgram
+yarn add airgram@next
 ```
 
 ## Getting started
@@ -132,7 +132,7 @@ const airgram = new Airgram({
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
 | `models` | Object | Contains models, which replace plain JSON objects. [Details](#models). |
-| `createContext` | Function | Function to override middleware context. [Details](#ctx). |
+| `contextFactory` | Function | Function that returns custom middleware context. [Details](#ctx). |
 
 ## API reference
 
@@ -265,10 +265,10 @@ Argument `ctx` contains an object with the following structure:
 | `response`          |  Object                 | Object which contains response data from TDLib. Field will be `undefined` if the request has not handled. |
 | `update`          |  Object                 | This field is available only for updates. |
 
-You can extend default context by define your own `createContext` function: 
+You can extend default context by define `contextFactory`: 
 
 ```typescript
-import { ag, Airgram, createContext as createBaseContext, UPDATE, User } from 'airgram'
+import { ag, Airgram, createContext, UPDATE, User } from 'airgram'
 
 interface Context extends ag.Context {
   getUser (id: number): User | void
@@ -277,20 +277,20 @@ interface Context extends ag.Context {
 
 const userMap: Map<number, User> = new Map()
 
-function createContext (options: ag.ContextOptions): Context {
-  return {
-    ...createBaseContext(options),
+const contextFactory: ag.ContextFactory = () => {
+  return (options: ag.ContextOptions): Context => ({
+    ...createContext(options),
     getUser (id: number): User | void {
       return userMap.get(id)
     },
     setUser (id: number, user: User): void {
       userMap.set(id, user)
     }
-  }
+  })
 }
 
 const airgram = new Airgram<Context>({
-  createContext
+  contextFactory
 })
 
 airgram.updates.on(UPDATE.updateUser, ({ setUser, update }, next) => {
@@ -420,6 +420,11 @@ class ChatModel extends ChatBaseModel {
     }
     return false
   }
+}
+
+// This is important for correct typings
+declare module 'airgram/dist/api/outputs/Chat' {
+  export interface Chat extends ChatModel {}
 }
 
 const airgram = new Airgram({

@@ -16,7 +16,7 @@
     "clean": "rm -rf dist",
     "compile": "npm run clean && tsc",
     "deploy": "np --yolo",
-    "dev": "DEBUG=airgram* nodemon --config nodemon.json",
+    "dev": "nodemon --config nodemon.json",
     "lint": "tslint --project \".\"",
     "prepublishOnly": "npm run compile",
     "test": "echo \"Error: no test specified\" && exit 1"

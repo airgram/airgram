@@ -33,8 +33,8 @@ export interface TdProxyConfig {
   models?: Record<string, ClassType<any>>
 }
 
-export interface AirgramConfig extends TdLibConfig, TdProxyConfig {
-  createContext?: (options: ContextOptions) => Context
+export interface AirgramConfig<ContextT> extends TdLibConfig, TdProxyConfig {
+  contextFactory?: ContextFactory<ContextT>
   databaseEncryptionKey?: string
   name?: string
   client?: TdClient
@@ -46,11 +46,11 @@ export interface AirgramConfig extends TdLibConfig, TdProxyConfig {
 // ----------------
 export type ErrorHandler = (error: Error, ctx: Record<string, any>) => any
 
-export interface Airgram<ContextT = any> extends Composer<Context & ContextT> {
+export interface Airgram<ContextT = Context> extends Composer<ContextT> {
   readonly api: api.ApiMethods
   readonly client: TdClient
-  readonly config: AirgramConfig
-  readonly updates: Updates<Context & ContextT>
+  readonly config: AirgramConfig<ContextT>
+  readonly updates: Updates<ContextT>
   readonly name: string
   handleError: ErrorHandler
 
@@ -59,8 +59,8 @@ export interface Airgram<ContextT = any> extends Composer<Context & ContextT> {
   destroy (): Promise<void>
 
   on<UpdateT = any> (
-    predicateTypes: string | string[], ...fns: Array<Middleware<Context & ContextT & { update: UpdateT }>>
-  ): Composer<Context & ContextT & { update: UpdateT }>
+    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT & { update: UpdateT }>>
+  ): Composer<ContextT & { update: UpdateT }>
 
   pause (): void
 
@@ -438,7 +438,7 @@ export type ApiFn = <ParamsT, ResponseT, StateT = { [key: string]: any }> (
 
 export interface ContextOptions {
   _: string
-  airgram: Airgram
+  airgram: Airgram<any>
   request?: ApiRequest
   update?: TdUpdate
   state: Record<string, any>
@@ -452,6 +452,8 @@ export interface Context<ParamsT = any, ResponseT = any> {
   request?: ApiRequest<ParamsT>
   response?: ResponseT
 }
+
+export type ContextFactory<ContextT> = (airgram: Airgram<any>) => (options: ContextOptions) => ContextT
 
 // export interface RequestContext<ParamsT = any, ResponseT = any> extends BaseContext<ParamsT, ResponseT, void> {}
 //

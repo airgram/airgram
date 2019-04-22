@@ -51,7 +51,7 @@ export default class Auth {
 
   private invalidPhoneNumbers: Set<string> = new Set()
 
-  constructor (private airgram: ag.Airgram, dialog?: AuthDialog) {
+  constructor (private airgram: ag.Airgram<any>, dialog?: AuthDialog) {
     airgram.use(this.middleware())
     if (dialog) {
       this.use(dialog)

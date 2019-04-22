@@ -2,7 +2,7 @@ import { apiFactory, ApiMethods } from './api'
 import { compose, Composer, createContext, optional, TdProxy, Updates } from './components'
 import * as ag from './types'
 
-const DEFAULT_CONFIG: ag.AirgramConfig = {
+const DEFAULT_CONFIG: ag.AirgramConfig<any> = {
   applicationVersion: '0.1.0',
   databaseDirectory: './db',
   databaseEncryptionKey: '',
@@ -16,20 +16,31 @@ export default class Airgram<ContextT extends ag.Context>
 
   public readonly api: ApiMethods
 
-  public readonly config: ag.AirgramConfig
+  public readonly config: ag.AirgramConfig<ContextT>
 
   public handleError: ag.ErrorHandler
+
+  private _createContext?: (options: ag.ContextOptions) => ContextT
 
   private _updates: ag.Updates<ContextT>
 
   private destroyed: boolean = false
 
-  private instances: Record<string, any> = {}
+  private tdProxy: ag.TdProxy
 
-  constructor (config: ag.AirgramConfig) {
+  constructor (config: ag.AirgramConfig<ContextT>) {
     super()
 
     this.config = { ...DEFAULT_CONFIG, ...config }
+
+    this.tdProxy = new TdProxy(this.config.client || null,
+      this.config,
+      (update) => this.handleUpdate(update),
+      (message) => {
+        const error = message instanceof Error ? message : new Error(message)
+        this.handleError(error, { _: '' })
+      }
+    )
 
     this.handleError = (error: any/*, ctx*/) => {
       // const { code, message, ...details } = error
@@ -57,20 +68,6 @@ export default class Airgram<ContextT extends ag.Context>
       this.use(this._updates)
     }
     return this._updates
-  }
-
-  private get tdProxy (): ag.TdProxy {
-    if (!this.instances.tdProxy) {
-      this.instances.tdProxy = new TdProxy(this.config.client || null,
-        this.config,
-        (update) => this.handleUpdate(update),
-        (message) => {
-          const error = message instanceof Error ? message : new Error(message)
-          this.handleError(error, { _: '' })
-        }
-      )
-    }
-    return this.instances.tdProxy
   }
 
   public catch (handler: (error: Error, ctx?: Record<string, any>) => void): void {
@@ -133,7 +130,10 @@ export default class Airgram<ContextT extends ag.Context>
     state: Record<string, any>,
     options: Record<string, any>
   ): ContextT {
-    const contextFn = 'createContext' in this.config ? this.config.createContext! : createContext
+    if (this.config.contextFactory && !this._createContext) {
+      this._createContext = this.config.contextFactory(this)
+    }
+    const contextFn = this._createContext || createContext
     return contextFn(Object.assign({}, options, {
       _,
       airgram: this,
