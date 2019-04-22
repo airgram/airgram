@@ -49,6 +49,8 @@ yarn add airgram@next
 
 ## Getting started
 
+Please check out an [example](https://github.com/airgram/airgram-ts-example).
+
 Basic usage:
 
 ```typescript
