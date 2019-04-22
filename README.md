@@ -115,7 +115,6 @@ const airgram = new Airgram({
 | `useSecretChats` | `boolean` | If set to true, support for secret chats will be enabled |
 | `apiId` | `number` | Application identifier for Telegram API access, which can be obtained at https://my.telegram.org |
 | `apiHash` | `string` | Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org |
-| `token` | `string` | Token for bot authorization |
 | `systemLanguageCode` | `string` | IETF language tag of the user's operating system language |
 | `deviceModel` | `string` | Model of the device the application is being run on |
 | `systemVersion` | `string` | Version of the operating system the application is being run on |
@@ -157,16 +156,16 @@ This section describes public API of an `Airgram` instance:
 ## Authorization
 ### As a bot
 
-Just specify a secret token by `Airgram` constructor:
+Just specify a secret token by `Auth` constructor:
 
 ```typescript
 import { Airgram, Auth } from 'airgram'
 
-const airgram = new Airgram({
+const airgram = new Airgram(/* options */)
+
+new Auth(airgram, {
   token: 'xxx'
 })
-
-new Auth(airgram)
 ```
 
 ### As a user
