@@ -31,9 +31,9 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 - [Getting updates](#getting-updates)
 - [Models](#models)
 ---
-- [TDLib methods](https://github.com/airgram-api/docs/td-methods.md)
-- [TDLib input types](https://github.com/airgram-api/docs/td-inputs.md)
-- [TDLib output types](https://github.com/airgram/airgram-api/docs/td-outputs.md)
+- [TDLib methods](https://github.com/airgram/airgram-api/tree/master/docs/td-methods.md)
+- [TDLib input types](https://github.com/airgram/airgram-api/tree/master/docs/td-inputs.md)
+- [TDLib output types](https://github.com/airgram/airgram-api/tree/master/docs/td-outputs.md)
 
 ## Installation
 1. Build TDLib library according the [instruction](https://github.com/tdlib/td#building).
@@ -142,7 +142,7 @@ This section describes public API of an `Airgram` instance:
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram-api/docs/tdlib-methods.md). |
+| `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/tree/master/docs/tdlib-methods.md). |
 | `config` | Object | Airgram configuration. Readonly. |
 | `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
 | `handleError` | Function | Error handler. Can be overriden by `airgram.catch()`. |
