@@ -1,5 +1,4 @@
 import { plainToClass } from 'class-transformer'
-import { ClassType } from 'class-transformer/ClassTransformer'
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 import { v4 as uuid } from 'uuid'
@@ -12,7 +11,7 @@ export default class TdProxy implements ag.TdProxy {
 
   private _client?: ag.TdClient | null
 
-  private readonly models: Record<string, ClassType<any>> = {}
+  private readonly models: Record<string, ag.ClassType<any>> = {}
 
   private destroyed: boolean = false
 

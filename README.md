@@ -31,9 +31,9 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 - [Getting updates](#getting-updates)
 - [Models](#models)
 ---
-- [TDLib methods](/docs/td-methods.md)
-- [TDLib input types](/docs/td-inputs.md)
-- [TDLib output types](/docs/td-outputs.md)
+- [TDLib methods](https://github.com/airgram/airgram-api/docs/td-methods.md)
+- [TDLib input types](https://github.com/airgram/airgram-api/docs/td-inputs.md)
+- [TDLib output types](https://github.com/airgram/airgram-api/docs/td-outputs.md)
 
 ## Installation
 1. Build TDLib library according the [instruction](https://github.com/tdlib/td#building).
@@ -142,7 +142,7 @@ This section describes public API of an `Airgram` instance:
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `api` | Object | Contains wrappers for all [TDLib methods](/docs/tdlib-methods.md). |
+| `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/docs/tdlib-methods.md). |
 | `config` | Object | Airgram configuration. Readonly. |
 | `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
 | `handleError` | Function | Error handler. Can be overriden by `airgram.catch()`. |
@@ -230,7 +230,7 @@ Middleware is a chain of callback functions, which are called before a request i
 This is a scaffolding for middleware function:
 
 ```typescript
-import { UPDATE } from 'airgram'
+import { UPDATE } from 'airgram-api'
 
 airgram.use((ctx, next) => {
   
@@ -269,7 +269,8 @@ Argument `ctx` contains an object with the following structure:
 You can extend default context by define `contextFactory`: 
 
 ```typescript
-import { ag, Airgram, createContext, UPDATE, User } from 'airgram'
+import { ag, api, Airgram, createContext, User } from 'airgram'
+import { UPDATE } from 'airgram-api'
 
 interface Context extends ag.Context {
   getUser (id: number): User | void
@@ -396,7 +397,8 @@ Airgram provide an excellent feature to create your own models for plain JSON ob
 For example, lets add some features to the [Chat](/docs/td-outputs.md#chat):
 
 ```typescript
-import { Airgram, ApiMethods, CHAT_TYPE, ChatBaseModel, UPDATE } from 'airgram'
+import { Airgram, ApiMethods, ChatBaseModel } from 'airgram'
+import { CHAT_TYPE, UPDATE } from 'airgram-api'
 
 class ChatModel extends ChatBaseModel {
   get isBasicGroup (): boolean {

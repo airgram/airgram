@@ -26,9 +26,11 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/airgram/airgram",
   "dependencies": {
-    "class-transformer": "^0.2.0",
+    "airgram-api": "^1.0.4",
+    "class-transformer": "^0.2.2",
     "ffi-napi": "^2.4.5",
     "lodash": "^4.17.11",
+    "reflect-metadata": "^0.1.13",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

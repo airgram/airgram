@@ -1,11 +1,11 @@
-import * as pick from 'lodash/pick'
 import {
   AUTHORIZATION_STATE,
   AuthorizationStateUnion,
   AuthorizationStateWaitCode,
   Error as TdError,
   UpdateAuthorizationState
-} from '../api'
+} from 'airgram-api'
+import * as pick from 'lodash/pick'
 import * as ag from '../types'
 import { compose, filter, optional } from './Composer'
 

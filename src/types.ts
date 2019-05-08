@@ -1,8 +1,10 @@
-import { ClassType } from 'class-transformer/ClassTransformer'
-import * as api from './api'
-import { TdlibParametersInput } from './api/inputs'
+import * as api from 'airgram-api'
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+
+export interface ClassType<T> {
+  new (...args: any[]): T
+}
 
 // ----------------
 // Composer
@@ -23,7 +25,7 @@ export type Middleware<ContextT = any> = { middleware: () => MiddlewareFn<Contex
 // ----------------
 // Config
 // ----------------
-export type TdLibConfig = Omit<TdlibParametersInput, '_'>
+export type TdLibConfig = Omit<api.TdlibParametersInput, '_'>
 
 export interface TdProxyConfig {
   command?: string
@@ -186,6 +188,11 @@ export interface Updates<ContextT> extends Composer<ContextT> {
   ): Composer<ContextT & { update: api.UpdateScopeNotificationSettings }>
 
   on (
+    predicateTypes: 'updateChatPinnedMessage',
+    ...fns: Array<Middleware<ContextT & { update: api.UpdateChatPinnedMessage }>>
+  ): Composer<ContextT & { update: api.UpdateChatPinnedMessage }>
+
+  on (
     predicateTypes: 'updateChatReplyMarkup', ...fns: Array<Middleware<ContextT & { update: api.UpdateChatReplyMarkup }>>
   ): Composer<ContextT & { update: api.UpdateChatReplyMarkup }>
 
@@ -193,6 +200,30 @@ export interface Updates<ContextT> extends Composer<ContextT> {
     predicateTypes: 'updateChatDraftMessage',
     ...fns: Array<Middleware<ContextT & { update: api.UpdateChatDraftMessage }>>
   ): Composer<ContextT & { update: api.UpdateChatDraftMessage }>
+
+  on (
+    predicateTypes: 'updateChatOnlineMemberCount',
+    ...fns: Array<Middleware<ContextT & { update: api.UpdateChatOnlineMemberCount }>>
+  ): Composer<ContextT & { update: api.UpdateChatOnlineMemberCount }>
+
+  on (
+    predicateTypes: 'updateNotification', ...fns: Array<Middleware<ContextT & { update: api.UpdateNotification }>>
+  ): Composer<ContextT & { update: api.UpdateNotification }>
+
+  on (
+    predicateTypes: 'updateNotificationGroup',
+    ...fns: Array<Middleware<ContextT & { update: api.UpdateNotificationGroup }>>
+  ): Composer<ContextT & { update: api.UpdateNotificationGroup }>
+
+  on (
+    predicateTypes: 'updateActiveNotifications',
+    ...fns: Array<Middleware<ContextT & { update: api.UpdateActiveNotifications }>>
+  ): Composer<ContextT & { update: api.UpdateActiveNotifications }>
+
+  on (
+    predicateTypes: 'updateHavePendingNotifications',
+    ...fns: Array<Middleware<ContextT & { update: api.UpdateHavePendingNotifications }>>
+  ): Composer<ContextT & { update: api.UpdateHavePendingNotifications }>
 
   on (
     predicateTypes: 'updateDeleteMessages', ...fns: Array<Middleware<ContextT & { update: api.UpdateDeleteMessages }>>
@@ -350,9 +381,9 @@ export interface Updates<ContextT> extends Composer<ContextT> {
     predicateTypes: 'updateNewCustomQuery', ...fns: Array<Middleware<ContextT & { update: api.UpdateNewCustomQuery }>>
   ): Composer<ContextT & { update: api.UpdateNewCustomQuery }>
 
-  on<UpdateT = Update> (
-    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT & { update: UpdateT }>>
-  ): Composer<ContextT & { update: UpdateT }>
+  on (
+    predicateTypes: 'updatePoll', ...fns: Array<Middleware<ContextT & { update: api.UpdatePoll }>>
+  ): Composer<ContextT & { update: api.UpdatePoll }>
 
   use<UpdateT = Update> (
     ...fns: Array<Middleware<ContextT & { update: UpdateT }>>
