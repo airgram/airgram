@@ -397,8 +397,9 @@ Airgram provide an excellent feature to create your own models for plain JSON ob
 For example, lets add some features to the [Chat](/docs/td-outputs.md#chat):
 
 ```typescript
-import { Airgram, ApiMethods, ChatBaseModel } from 'airgram'
-import { CHAT_TYPE, UPDATE } from 'airgram-api'
+import { Airgram } from 'airgram'
+import { ApiMethods, CHAT_TYPE, UPDATE } from 'airgram-api'
+import { ChatBaseModel } from 'airgram-api/models/Chat'
 
 class ChatModel extends ChatBaseModel {
   get isBasicGroup (): boolean {
@@ -426,7 +427,7 @@ class ChatModel extends ChatBaseModel {
 }
 
 // This is important for correct typings
-declare module 'airgram/dist/api/outputs/Chat' {
+declare module 'airgram-api/outputs/Chat' {
   export interface Chat extends ChatModel {}
 }
 
