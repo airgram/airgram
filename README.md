@@ -40,11 +40,11 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 2. Install Airgram:
 ```bash
 # npm
-npm install airgram@next
+npm install airgram
 ```
 ```bash
 # yarn
-yarn add airgram@next
+yarn add airgram
 ```
 
 ## Getting started
