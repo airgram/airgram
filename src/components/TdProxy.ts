@@ -11,8 +11,6 @@ export default class TdProxy implements ag.TdProxy {
 
   private _client?: ag.TdClient | null
 
-  private readonly models: Record<string, ag.ClassType<any>> = {}
-
   private destroyed: boolean = false
 
   private readonly handleError: (error: any) => void
@@ -20,6 +18,8 @@ export default class TdProxy implements ag.TdProxy {
   private readonly handleUpdate: (update: ag.TdUpdate) => Promise<any>
 
   private readonly keyMap: Map<string, string> = new Map<string, string>()
+
+  private readonly models: Record<string, ag.ClassType<any>> = {}
 
   private readonly pending: Map<string, ag.ApiDeferred> = new Map()
 

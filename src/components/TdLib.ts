@@ -63,7 +63,14 @@ export default class TdLib<TdClient = ag.TdClient> implements ag.TdLib<TdClient>
   }
 
   public receive (client: TdClient, timeout: number): Promise<string | null> {
-    return this.tdlib.td_json_client_receive(client, timeout)
+    return new Promise((resolve, reject) => {
+      this.tdlib.td_json_client_receive.async(client, timeout, (error, response) => {
+        if (error) {
+          return reject(error)
+        }
+        return resolve(response)
+      })
+    })
   }
 
   public send (client: TdClient, query: string): Promise<void> {
