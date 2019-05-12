@@ -81,6 +81,10 @@ export default class Airgram<ContextT extends ag.Context>
     }
   }
 
+  public emit (update: ag.TdUpdate): Promise<any> {
+    return this.handleUpdate(update)
+  }
+
   public pause (): void {
     return this.tdProxy.pause()
   }
@@ -92,14 +96,9 @@ export default class Airgram<ContextT extends ag.Context>
   private apiMiddleware () {
     return optional(
       (ctx: ag.Context) => ctx.request,
-      async (ctx, next) => {
-        const promise = new Promise((resolve, reject) => {
-          return this.tdProxy.send(ctx.request, { _: ctx.request._, resolve, reject })
-        })
-        return promise
-          .then((response) => ctx.response = response)
-          .then(next)
-      }
+      async (ctx, next) => this.tdProxy.send(ctx.request)
+        .then((response) => ctx.response = response)
+        .then(next)
     )
   }
 

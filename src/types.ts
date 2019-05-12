@@ -60,9 +60,11 @@ export interface Airgram<ContextT = Context> extends Composer<ContextT> {
 
   destroy (): Promise<void>
 
+  emit (update: TdUpdate): Promise<any>
+
   on<UpdateT = any> (
-    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT & { update: UpdateT }>>
-  ): Composer<ContextT & { update: UpdateT }>
+    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT>>
+  ): Composer<ContextT>
 
   pause (): void
 
@@ -427,7 +429,7 @@ export interface TdProxy {
 
   resume (): void
 
-  send (request: ApiRequest, deferred: ApiDeferred): Promise<void>
+  send (request: ApiRequest): Promise<void>
 }
 
 export interface TdResponse {

@@ -3,8 +3,8 @@ import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 import { v4 as uuid } from 'uuid'
 import * as ag from '../types'
-import RpcError from './RpcError'
 import TdLib from './TdLib'
+import TDLibError from './TDLibError'
 
 export default class TdProxy implements ag.TdProxy {
   public timeout: number = 10
@@ -96,18 +96,20 @@ export default class TdProxy implements ag.TdProxy {
     }
   }
 
-  public send (request: ag.ApiRequest, deferred: ag.ApiDeferred): Promise<void> {
+  public send (request: ag.ApiRequest): Promise<void> {
     const id = uuid()
     const { method, params } = request
-    this.pending.set(id, deferred)
-    return this.tdlib.send(this.client, JSON.stringify({
-      ...params,
-      '@extra': id,
-      '_': method
-    }, this.serialize))
+    return new Promise<any>((resolve, reject) => {
+      this.pending.set(id, { _: method, resolve, reject })
+      return this.tdlib.send(this.client, JSON.stringify({
+        ...params,
+        '@extra': id,
+        '_': method
+      }, this.serialize))
+    })
   }
 
-  protected handleResponse (): Promise<void> {
+  protected async handleResponse (): Promise<void> {
     const response: ag.TdResponse | undefined = this.stack.shift()
 
     if (!response) {
@@ -120,14 +122,17 @@ export default class TdProxy implements ag.TdProxy {
     delete response['@extra']
 
     if (deferred) {
-      if (type === 'error') {
-        deferred.reject(new RpcError({ code: response.code, message: response.message, type: deferred._ }))
-        return this.handleResponse()
-      }
       this.pending.delete(requestId!)
-      return Promise.resolve(deferred.resolve(response)).then(() => this.handleResponse())
+      if (type === 'error') {
+        deferred.reject(new TDLibError(response.code, response.message, deferred._))
+      } else {
+        deferred.resolve(response)
+      }
+    } else {
+      await this.handleUpdate(response)
     }
-    return this.handleUpdate(response).then(() => this.handleResponse())
+
+    setImmediate(() => this.handleResponse())
   }
 
   protected async receive (): Promise<ag.TdResponse | null> {
