@@ -142,7 +142,7 @@ This section describes public API of an `Airgram` instance:
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/tree/master/docs/tdlib-methods.md). |
+| `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/blob/master/docs/td-methods.md). |
 | `config` | Object | Airgram configuration. Readonly. |
 | `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
 | `handleError` | Function | Error handler. Can be overriden by `airgram.catch()`. |
