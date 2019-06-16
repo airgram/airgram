@@ -149,7 +149,7 @@ export default class TdProxy implements ag.TdProxy {
   }
 
   private deserialize (key, value) {
-    if (value && typeof value === 'object') {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
       const replacement: Record<string, any> = {}
       for (const k in value) {
         // console.info('unserialize', k)
@@ -197,7 +197,7 @@ export default class TdProxy implements ag.TdProxy {
   }
 
   private serialize (key, value) {
-    if (value && typeof value === 'object') {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
       const replacement: Record<string, any> = {}
       for (const k in value) {
         if (Object.hasOwnProperty.call(value, k)) {
