@@ -62,10 +62,6 @@ export interface Airgram<ContextT = Context> extends Composer<ContextT> {
 
   emit (update: TdUpdate): Promise<any>
 
-  on<UpdateT = any> (
-    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT>>
-  ): Composer<ContextT>
-
   pause (): void
 
   resume (): void
@@ -386,6 +382,10 @@ export interface Updates<ContextT> extends Composer<ContextT> {
   on (
     predicateTypes: 'updatePoll', ...fns: Array<Middleware<ContextT & { update: api.UpdatePoll }>>
   ): Composer<ContextT & { update: api.UpdatePoll }>
+
+  on<UpdateT> (
+    predicateTypes: string | string[], ...fns: Array<Middleware<ContextT & { update: UpdateT }>>
+  ): Composer<ContextT & { update: UpdateT }>
 
   use<UpdateT = Update> (
     ...fns: Array<Middleware<ContextT & { update: UpdateT }>>

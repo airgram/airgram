@@ -226,13 +226,15 @@ export default class Auth {
 
   private async login (): Promise<void> {
     if (!this.deferred) {
-      const promise = new Promise<void>((resolve, reject) => {
-        this.deferred = { promise, resolve, reject }
+      const deferred: Record<string, any> = {}
+      deferred.promise = new Promise<void>((resolve, reject) => {
+        deferred.resolve = resolve
+        deferred.reject = reject
       })
+      this.deferred = deferred as LoginDeferred
       if (!this.authState) {
         this.authState = await this.airgram.api.getAuthorizationState()
       }
-      return promise
     }
     return this.deferred.promise
   }

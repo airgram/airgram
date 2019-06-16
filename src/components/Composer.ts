@@ -124,11 +124,11 @@ class Composer<ContextT = any> implements ag.Composer<ContextT> {
   public on (
     predicateTypes: string | string[],
     ...fns: Array<ag.Middleware<ContextT>>
-  ): this {
+  ): ag.Composer<ContextT> {
     return this.use(mount(predicateTypes, ...fns))
   }
 
-  public use (...fns: Array<ag.Middleware<ContextT>>): this {
+  public use (...fns: Array<ag.Middleware<ContextT>>): ag.Composer<ContextT> {
     this.handler = compose<ContextT>([this.handler, ...fns])
     return this
   }
