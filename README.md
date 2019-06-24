@@ -54,11 +54,16 @@ Please check out an [example](https://github.com/airgram/airgram-ts-example).
 Basic usage:
 
 ```typescript
-import { Airgram, Auth, prompt } from 'airgram'
+import { Airgram, Auth, JsonProvider, prompt } from 'airgram'
+
+const provider = new JsonProvider({
+  logVerbosityLevel: 2
+})
 
 const airgram = new Airgram({
   apiId: Number(process.env.APP_ID!),
-  apiHash: process.env.APP_HASH!
+  apiHash: process.env.APP_HASH!,
+  provider
 })
 
 const auth = new Auth(airgram)
@@ -125,13 +130,13 @@ const airgram = new Airgram({
 | `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
 | `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
 | `databaseEncryptionKey` | `string` | Encryption key |
-| `client` | `any` | Instance of the [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads.  |
 
 
 ### Other options
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `provider` | Object | Defines the way how to communicate with TDLib. [Details](#providers). |
 | `models` | Object | Contains models, which replace plain JSON objects. [Details](#models). |
 | `contextFactory` | Function | Function that returns custom middleware context. [Details](#ctx). |
 
@@ -151,6 +156,79 @@ This section describes public API of an `Airgram` instance:
 | `resume` | `() => void` | Continue getting responses and updates from TDLib |
 | `destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
 
+
+## Providers
+
+Provider allows Airgram client communicate with TDLib. At this moment, there are 2 providers, which supported out of the box.
+
+### `JsonProvider` for server environment
+
+```typescript
+import { Airgram, JsonProvider } from 'airgram'
+
+const provider = new JsonProvider({
+  command: '/path/to/tdlib/build',
+  logVerbosityLevel: 2
+})
+
+const airgram = new Airgram({
+  provider
+})
+
+// Stop getting updates
+provider.pause()
+
+// Resume getting updates
+setTimeout(() => provider.resume(), 5000)
+
+```
+
+Options:
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `command` | `string` | Path to the `tdjson` (windows) / `libtdjson` (unix) command. |
+| `logFilePath` | `string` | Path to a file where the internal TDLib log will be written. Use an empty path to switch back to the default logging behaviour. |
+| `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
+| `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
+
+Public methods:
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `pause` | `() => void` | Stop getting responses and updates from TDLib |
+| `resume` | `() => void` | Continue getting responses and updates from TDLib |
+| `destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
+
+### `WebProvider` for browser environment
+
+This is a wrapper for [tdweb](https://github.com/tdlib/td/tree/master/example/web/tdweb).
+
+```typescript
+import { Airgram, WebProvider } from 'airgram'
+
+const provider = new WebProvider({
+  isBackground: true,
+  jsLogVerbosityLevel: 'debug'
+})
+
+const airgram = new Airgram({
+  provider
+})
+
+```
+
+Options:
+
+| Key                | Type                     | Note                                                        |
+| ------------------ | ------------------------ | ----------------------------------------------------------- |
+| `instanceName` | `string` | Name of the TDLib instance. Currently only one instance of TdClient with a given name is allowed. All but one instances with the same name will be automatically closed. Usually, the newest non-background instance is kept alive. Files will be stored in an IndexedDb table with the same name. |
+| `isBackground` | `boolean` | Pass true, if the instance is opened from the background. Default: `false` |
+| `jsLogVerbosityLevel` | `string` | The initial verbosity level of the JavaScript part of the code (one of 'error', 'warning', 'info', 'log', 'debug'). Default: `info` |
+| `logVerbosityLevel` | `number` | The initial verbosity level for the TDLib internal logging (0-1023). Default: 2 |
+| `useDatabase` | `boolean` | Pass false to use TDLib without database and secret chats. It will significantly improve loading time, but some functionality will be unavailable. Default: `true` |
+| `readOnly` | `boolean` | For debug only. Pass true to open TDLib database in read-only mode. Default: `false` |
+| `mode` | `string` | For debug only. The type of the TDLib build to use. 'asmjs' for asm.js and 'wasm' for WebAssembly. If mode == 'auto' WebAbassembly will be used if supported by browser, asm.js otherwise. Default: `auto` |
 
 
 ## Authorization

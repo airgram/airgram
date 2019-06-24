@@ -1,6 +1,6 @@
 /*tslint:disable:no-empty*/
 
-import * as ag from '../types'
+import * as ag from '../types/airgram'
 
 type NoopFn = () => void
 const noop: NoopFn = () => {}
@@ -45,7 +45,7 @@ function mount<ContextT> (predicateType, ...fns): ag.MiddlewarePromise<ContextT>
 
 export function fork (middleware) {
   return (ctx, next) => {
-    setImmediate(unwrap(middleware), ctx, safePassThru())
+    setTimeout(unwrap(middleware), ctx, safePassThru(), 0)
     return next()
   }
 }

@@ -31,6 +31,7 @@
     "ffi-napi": "^2.4.5",
     "lodash": "^4.17.11",
     "reflect-metadata": "^0.1.13",
+    "tdweb": "^1.4.3",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

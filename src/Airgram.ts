@@ -1,8 +1,8 @@
 import { apiFactory, ApiMethods } from 'airgram-api'
-import { compose, Composer, createContext, optional, TdProxy, Updates } from './components'
-import * as ag from './types'
+import { compose, Composer, createContext, optional, Updates } from './components'
+import * as ag from './types/airgram'
 
-const DEFAULT_CONFIG: ag.AirgramConfig<any> = {
+const DEFAULT_CONFIG: Partial<ag.AirgramConfig<any>> = {
   applicationVersion: '0.1.0',
   databaseDirectory: './db',
   databaseEncryptionKey: '',
@@ -24,23 +24,27 @@ export default class Airgram<ContextT extends ag.Context>
 
   private _updates: ag.Updates<ContextT>
 
-  private destroyed: boolean = false
-
-  private tdProxy: ag.TdProxy
+  private provider: ag.TdProvider<any>
 
   constructor (config: ag.AirgramConfig<ContextT>) {
     super()
 
     this.config = { ...DEFAULT_CONFIG, ...config }
 
-    this.tdProxy = new TdProxy(this.config.client || null,
-      this.config,
+    const { provider } = this.config
+    if (!provider || typeof (provider as any).initialize !== 'function') {
+      throw new Error('The `provider` option is required.' +
+        'See: https://github.com/airgram/airgram/blob/master/README.md#providers')
+    }
+    provider.initialize(
       (update) => this.handleUpdate(update),
       (message) => {
         const error = message instanceof Error ? message : new Error(message)
         this.handleError(error, { _: '' })
-      }
+      },
+      this.config.models || {}
     )
+    this.provider = provider
 
     this.handleError = (error: any/*, ctx*/) => {
       // const { code, message, ...details } = error
@@ -51,15 +55,11 @@ export default class Airgram<ContextT extends ag.Context>
     this.callApi = this.callApi.bind(this)
     this.api = apiFactory(this.callApi)
 
-    setImmediate(() => this.api.getAuthorizationState())
+    setTimeout(() => this.api.getAuthorizationState(), 0)
   }
 
   public get name (): string {
     return this.config.name || 'airgram'
-  }
-
-  get client (): ag.TdClient {
-    return this.tdProxy.client
   }
 
   get updates (): ag.Updates<ContextT> {
@@ -74,29 +74,14 @@ export default class Airgram<ContextT extends ag.Context>
     this.handleError = handler
   }
 
-  public async destroy (): Promise<void> {
-    if (!this.destroyed) {
-      this.destroyed = true
-      this.tdProxy.destroy()
-    }
-  }
-
   public emit (update: ag.TdUpdate): Promise<any> {
     return this.handleUpdate(update)
-  }
-
-  public pause (): void {
-    return this.tdProxy.pause()
-  }
-
-  public resume (): void {
-    return this.tdProxy.resume()
   }
 
   private apiMiddleware () {
     return optional(
       (ctx: ag.Context) => ctx.request,
-      async (ctx, next) => this.tdProxy.send(ctx.request)
+      async (ctx, next) => this.provider.send(ctx.request)
         .then((response) => ctx.response = response)
         .then(next)
     )

@@ -6,7 +6,7 @@ import {
   UpdateAuthorizationState
 } from 'airgram-api'
 import * as pick from 'lodash/pick'
-import * as ag from '../types'
+import * as ag from '../types/airgram'
 import { compose, filter, optional } from './Composer'
 
 interface LoginDeferred {
@@ -32,6 +32,8 @@ const AUTH_METHODS = [
   'checkAuthenticationPassword',
   'checkDatabaseEncryptionKey',
   'getAuthorizationState',
+  'requestAuthenticationPasswordRecovery',
+  'resendAuthenticationCode',
   'setAuthenticationPhoneNumber',
   'setTdlibParameters'
 ]
@@ -241,9 +243,9 @@ export default class Auth {
 
   private middleware (): ag.MiddlewarePromise<any> {
     return compose([
-      (ctx, next) => {
-        return next()
-      },
+      // (ctx, next) => {
+      //   return next()
+      // },
       filter((ctx) => !('update' in ctx)
         || !ctx.update
         || ctx.update._ !== 'updateAuthorizationState'

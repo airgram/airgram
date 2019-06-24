@@ -1,6 +1,6 @@
 import * as api from 'airgram-api'
 
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 
 export interface ClassType<T> {
   new (...args: any[]): T
@@ -27,20 +27,19 @@ export type Middleware<ContextT = any> = { middleware: () => MiddlewareFn<Contex
 // ----------------
 export type TdLibConfig = Omit<api.TdlibParametersInput, '_'>
 
-export interface TdProxyConfig {
-  command?: string
-  logFilePath?: string | null
-  logMaxFileSize?: number | string
-  logVerbosityLevel?: number
-  models?: Record<string, ClassType<any>>
+export interface TdClientConfig {
+  handleUpdate: (update: TdUpdate) => Promise<any>,
+  handleError: (error: any) => void,
+  models: Record<string, ClassType<any>>
 }
 
-export interface AirgramConfig<ContextT> extends TdLibConfig, TdProxyConfig {
+export interface AirgramConfig<ContextT> extends TdLibConfig {
+  provider: TdProvider<any>
   contextFactory?: ContextFactory<ContextT>
   databaseEncryptionKey?: string
   name?: string
-  client?: TdClient
   token?: string
+  models?: Record<string, ClassType<any>>
 }
 
 // ----------------
@@ -50,7 +49,6 @@ export type ErrorHandler = (error: Error, ctx: Record<string, any>) => any
 
 export interface Airgram<ContextT = Context> extends Composer<ContextT> {
   readonly api: api.ApiMethods
-  readonly client: TdClient
   readonly config: AirgramConfig<ContextT>
   readonly updates: Updates<ContextT>
   readonly name: string
@@ -58,13 +56,7 @@ export interface Airgram<ContextT = Context> extends Composer<ContextT> {
 
   catch (handler: (error: Error, ctx?: Record<string, any>) => void): void
 
-  destroy (): Promise<void>
-
   emit (update: TdUpdate): Promise<any>
-
-  pause (): void
-
-  resume (): void
 }
 
 // ----------------
@@ -396,9 +388,7 @@ export interface Updates<ContextT> extends Composer<ContextT> {
 // TD
 // ----------------
 
-export type ReplacerFn = (key: string, value: any) => any
-
-export interface TdLib<TDLibClient> {
+export interface TdJsonProxy<TDLibClient> {
   create (): TDLibClient
 
   destroy (client: TDLibClient): void
@@ -418,10 +408,10 @@ export interface TdLib<TDLibClient> {
   setLogVerbosityLevel (verbosity: number): void
 }
 
-export type TdClient = Buffer
+// export type TdClient = any
 
-export interface TdProxy {
-  readonly client: TdClient
+export interface TdProxy<ClientT> {
+  client: ClientT
 
   destroy (): void
 
@@ -430,6 +420,16 @@ export interface TdProxy {
   resume (): void
 
   send (request: ApiRequest): Promise<void>
+}
+
+export interface TdProvider<ClientT> {
+  initialize (
+    handleUpdate: (update: TdUpdate) => Promise<any>,
+    handleError: (error: any) => void,
+    models: Record<string, ClassType<any>>
+  ): void
+
+  send (request: ApiRequest): Promise<TdResponse>
 }
 
 export interface TdResponse {
@@ -484,6 +484,7 @@ export interface Context<ParamsT = any, ResponseT = any> {
   getState: () => Record<string, any>
   request?: ApiRequest<ParamsT>
   response?: ResponseT
+  update?: any
 }
 
 export type ContextFactory<ContextT> = (airgram: Airgram<any>) => (options: ContextOptions) => ContextT

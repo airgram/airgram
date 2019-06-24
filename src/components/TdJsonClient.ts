@@ -1,15 +1,21 @@
 import { plainToClass } from 'class-transformer'
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
-import { v4 as uuid } from 'uuid'
-import * as ag from '../types'
-import TdLib from './TdLib'
+import * as ag from '../types/airgram'
+import TdJsonProxy from './TdJsonProxy'
 import TDLibError from './TDLibError'
 
-export default class TdProxy implements ag.TdProxy {
+export interface TdJsonClientConfig extends ag.TdClientConfig {
+  command?: string
+  logFilePath?: string | null
+  logMaxFileSize?: number | string
+  logVerbosityLevel?: number
+}
+
+export default class TdJsonClient {
   public timeout: number = 10
 
-  private _client?: ag.TdClient | null
+  private _tdlibClient?: Buffer
 
   private destroyed: boolean = false
 
@@ -23,25 +29,24 @@ export default class TdProxy implements ag.TdProxy {
 
   private readonly pending: Map<string, ag.ApiDeferred> = new Map()
 
+  private queryId: number = 0
+
   private sleepPromise: Promise<void> | null = null
 
   private stack: ag.TdResponse[] = []
 
-  private readonly tdlib: ag.TdLib<any>
+  private readonly tdlib: ag.TdJsonProxy<any>
 
   private wakeup: (() => void) | null = null
 
-  public constructor (
-    client: ag.TdClient | null,
-    config: ag.TdProxyConfig,
-    handleUpdate: (update: ag.TdUpdate) => Promise<any>,
-    handleError: (error: any) => void
-  ) {
-    this.handleUpdate = handleUpdate
-    this.handleError = handleError
+  public constructor (config: TdJsonClientConfig) {
+    this.handleUpdate = config.handleUpdate
+    this.handleError = config.handleError
+    this.models = config.models
+
     this.serialize = this.serialize.bind(this)
     this.deserialize = this.deserialize.bind(this)
-    this.tdlib = new TdLib<any>({ command: config.command })
+    this.tdlib = new TdJsonProxy<any>({ command: config.command })
 
     if (config.logFilePath !== undefined) {
       this.tdlib.setLogFilePath(config.logFilePath)
@@ -52,29 +57,22 @@ export default class TdProxy implements ag.TdProxy {
     if (config.logVerbosityLevel !== undefined) {
       this.tdlib.setLogVerbosityLevel(config.logVerbosityLevel)
     }
-    this.tdlib.setLogFatalErrorCallback(handleError)
-
-    if (config.models) {
-      this.models = config.models
-    }
-    if (client) {
-      this._client = client
-    }
+    this.tdlib.setLogFatalErrorCallback(this.handleError)
 
     this.loop().catch(() => {
       //
     })
   }
 
-  get client (): ag.TdClient {
-    if (!this._client) {
-      this._client = this.tdlib.create()
+  get tdlibClient (): Buffer {
+    if (!this._tdlibClient) {
+      this._tdlibClient = this.tdlib.create()
     }
-    return this._client!
+    return this._tdlibClient!
   }
 
   public destroy (): void {
-    this.tdlib.destroy(this.client)
+    this.tdlib.destroy(this.tdlibClient)
     this.sleepPromise = null
     this.wakeup = null
     this.destroyed = true
@@ -96,12 +94,12 @@ export default class TdProxy implements ag.TdProxy {
     }
   }
 
-  public send (request: ag.ApiRequest): Promise<void> {
-    const id = uuid()
+  public send (request: ag.ApiRequest): Promise<ag.TdResponse> {
+    const id = `q${++this.queryId}`
     const { method, params } = request
-    return new Promise<any>((resolve, reject) => {
+    return new Promise<ag.TdResponse>((resolve, reject) => {
       this.pending.set(id, { _: method, resolve, reject })
-      return this.tdlib.send(this.client, JSON.stringify({
+      return this.tdlib.send(this.tdlibClient, JSON.stringify({
         ...params,
         '@extra': id,
         '_': method
@@ -132,11 +130,11 @@ export default class TdProxy implements ag.TdProxy {
       await this.handleUpdate(response)
     }
 
-    setImmediate(() => this.handleResponse())
+    setTimeout(() => this.handleResponse(), 0)
   }
 
   protected async receive (): Promise<ag.TdResponse | null> {
-    return JSON.parse((await this.tdlib.receive(this.client, this.timeout))!, this.deserialize)
+    return JSON.parse((await this.tdlib.receive(this.tdlibClient, this.timeout))!, this.deserialize)
   }
 
   private addToStack (response: any): void {
@@ -193,7 +191,7 @@ export default class TdProxy implements ag.TdProxy {
     } catch (error) {
       this.handleError(error)
     }
-    setImmediate(() => this.loop())
+    setTimeout(() => this.loop(), 0)
   }
 
   private serialize (key, value) {

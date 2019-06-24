@@ -1,4 +1,4 @@
-import * as ag from '../types'
+import * as ag from '../types/airgram'
 import Composer, { optional } from './Composer'
 
 export default class Updates<ContextT> extends Composer<ContextT> implements ag.Updates<ContextT> {
