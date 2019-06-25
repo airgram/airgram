@@ -110,7 +110,6 @@ const airgram = new Airgram({
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `command` | `string` | Path to the `tdjson` (windows) / `libtdjson` (unix) command. |
 | `useTestDc` | `boolean` | If set to true, the Telegram test environment will be used instead of the production  environment |
 | `databaseDirectory` | `string` | The path to the directory for the persistent database |
 | `filesDirectory` | `string` | The path to the directory for storing files |
@@ -126,9 +125,6 @@ const airgram = new Airgram({
 | `applicationVersion` | `string` | Application version |
 | `enableStorageOptimizer` | `boolean` | If set to true, old files will automatically be deleted |
 | `ignoreFileNames` | `boolean` | If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name |
-| `logFilePath` | `string` | Path to a file where the internal TDLib log will be written. Use an empty path to switch back to the default logging behaviour. |
-| `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
-| `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
 | `databaseEncryptionKey` | `string` | Encryption key |
 
 
