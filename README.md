@@ -137,7 +137,7 @@ const airgram = new Airgram({
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
 | `provider` | Object | Defines the way how to communicate with TDLib. [Details](#providers). |
-| `models` | Object | Contains models, which replace plain JSON objects. [Details](#models). |
+| `models` | Function | Contains function, which converts plain JSON objects to models. [Details](#models). |
 | `contextFactory` | Function | Function that returns custom middleware context. [Details](#ctx). |
 
 ## API reference
@@ -470,12 +470,12 @@ Use methods `airgram.updates.use()` and `airgram.updates.on()` to add some handl
 
 ## Models
 
-Airgram provide an excellent feature to create your own models for plain JSON objects which returned by TDLib. 
+Airgram provides an excellent feature to create your own models from plain JSON objects, which returned by TDLib. 
 
-For example, lets add some features to the [Chat](/docs/td-outputs.md#chat):
+For example, lets add some features into the [Chat](/docs/td-outputs.md#chat) entity:
 
 ```typescript
-import { Airgram } from 'airgram'
+import { Airgram, useModels } from 'airgram'
 import { ApiMethods, CHAT_TYPE, UPDATE } from 'airgram-api'
 import { ChatBaseModel } from 'airgram-api/models/Chat'
 
@@ -510,9 +510,9 @@ declare module 'airgram-api/outputs/Chat' {
 }
 
 const airgram = new Airgram({
-  models: {
+  models: useModels({
     chat: ChatModel
-  }
+  })
 })
 
 airgram.updates.on(UPDATE.updateNewChat, async ({ update }) => {

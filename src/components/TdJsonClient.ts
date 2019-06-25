@@ -1,4 +1,3 @@
-import { plainToClass } from 'class-transformer'
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 import * as ag from '../types/airgram'
@@ -25,7 +24,7 @@ export default class TdJsonClient {
 
   private readonly keyMap: Map<string, string> = new Map<string, string>()
 
-  private readonly models: Record<string, ag.ClassType<any>> = {}
+  private readonly models?: ag.PlainObjectToModelTransformer
 
   private readonly pending: Map<string, ag.ApiDeferred> = new Map()
 
@@ -35,7 +34,7 @@ export default class TdJsonClient {
 
   private stack: ag.TdResponse[] = []
 
-  private readonly tdlib: ag.TdJsonProxy<any>
+  private readonly tdlib: TdJsonProxy<any>
 
   private wakeup: (() => void) | null = null
 
@@ -48,7 +47,7 @@ export default class TdJsonClient {
     this.deserialize = this.deserialize.bind(this)
     this.tdlib = new TdJsonProxy<any>({ command: config.command })
 
-    if (config.logFilePath !== undefined) {
+    if (config.logFilePath) {
       this.tdlib.setLogFilePath(config.logFilePath)
     }
     if (config.logMaxFileSize !== undefined) {
@@ -169,10 +168,7 @@ export default class TdJsonClient {
           replacement[this.keyMap.get(k)!] = value[k]
         }
       }
-
-      return '_' in replacement && this.models[replacement._] ?
-        plainToClass(this.models[replacement._], replacement) :
-        replacement
+      return this.models ? this.models(replacement) : replacement
     }
     return value
   }

@@ -1,6 +1,5 @@
-import 'reflect-metadata'
 import Airgram from './Airgram'
-import * as ag from './types/airgram'
+import * as ag from './types'
 
 export * from './helpers'
 export * from './components'

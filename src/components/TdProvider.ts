@@ -17,8 +17,8 @@ export default abstract class TdProvider<ClientT = any> implements ag.TdProvider
   public abstract send (request: ag.ApiRequest): Promise<ag.TdResponse>
 
   public abstract initialize (
-    handleUpdate: (update: ag.TdUpdate) => Promise<any>,
+    handleUpdate: (update: Record<string, any>) => Promise<any>,
     handleError: (error: any) => void,
-    models: Record<string, ag.ClassType<any>>
+    models: ag.PlainObjectToModelTransformer
   ): void
 }

@@ -42,7 +42,7 @@ export default class Airgram<ContextT extends ag.Context>
         const error = message instanceof Error ? message : new Error(message)
         this.handleError(error, { _: '' })
       },
-      this.config.models || {}
+      this.config.models
     )
     this.provider = provider
 
@@ -125,7 +125,7 @@ export default class Airgram<ContextT extends ag.Context>
     })) as ContextT
   }
 
-  private handleUpdate (update: ag.TdUpdate): Promise<any> {
+  private handleUpdate (update: Record<string, any>): Promise<any> {
     const ctx: ContextT = this.createContext(update._, {}, { update })
     return this.middleware()(ctx).catch((error) => this.handleError(error, ctx))
   }

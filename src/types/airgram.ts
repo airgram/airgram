@@ -22,30 +22,23 @@ export type MiddlewareFn<ContextT> = (ctx: ContextT, next: () => Promise<any>) =
 export type MiddlewarePromise<ContextT> = (ctx: ContextT, next?: () => Promise<any>) => Promise<any>
 export type Middleware<ContextT = any> = { middleware: () => MiddlewareFn<ContextT> } | MiddlewareFn<ContextT>
 
-// ----------------
-// Config
-// ----------------
+export type ErrorHandler = (error: Error, ctx: Record<string, any>) => any
+
 export type TdLibConfig = Omit<api.TdlibParametersInput, '_'>
 
-export interface TdClientConfig {
-  handleUpdate: (update: TdUpdate) => Promise<any>,
-  handleError: (error: any) => void,
-  models: Record<string, ClassType<any>>
-}
+export type PlainObjectToModelTransformer = (plainObject: Record<string, any>) => ClassType<any> | Record<string, any>
 
+// ----------------
+// Airgram
+// ----------------
 export interface AirgramConfig<ContextT> extends TdLibConfig {
   provider: TdProvider<any>
   contextFactory?: ContextFactory<ContextT>
   databaseEncryptionKey?: string
   name?: string
   token?: string
-  models?: Record<string, ClassType<any>>
+  models?: PlainObjectToModelTransformer
 }
-
-// ----------------
-// Airgram
-// ----------------
-export type ErrorHandler = (error: Error, ctx: Record<string, any>) => any
 
 export interface Airgram<ContextT = Context> extends Composer<ContextT> {
   readonly api: api.ApiMethods
@@ -62,7 +55,6 @@ export interface Airgram<ContextT = Context> extends Composer<ContextT> {
 // ----------------
 // Updates
 // ----------------
-
 export interface Update {
   _: string
 
@@ -387,46 +379,17 @@ export interface Updates<ContextT> extends Composer<ContextT> {
 // ----------------
 // TD
 // ----------------
-
-export interface TdJsonProxy<TDLibClient> {
-  create (): TDLibClient
-
-  destroy (client: TDLibClient): void
-
-  execute (client: TDLibClient, query: string): string | null
-
-  receive (client: TDLibClient, timeout: number): Promise<string | null>
-
-  send (client: TDLibClient, query: string): Promise<void>
-
-  setLogFatalErrorCallback (fn: ((errorMessage: string) => any) | null): void
-
-  setLogFilePath (path: string | null): number
-
-  setLogMaxFileSize (maxFileSize: number | string): void
-
-  setLogVerbosityLevel (verbosity: number): void
-}
-
-// export type TdClient = any
-
-export interface TdProxy<ClientT> {
-  client: ClientT
-
-  destroy (): void
-
-  pause (): void
-
-  resume (): void
-
-  send (request: ApiRequest): Promise<void>
+export interface TdClientConfig {
+  handleUpdate: (update: TdUpdate) => Promise<any>,
+  handleError: (error: any) => void,
+  models?: PlainObjectToModelTransformer
 }
 
 export interface TdProvider<ClientT> {
   initialize (
-    handleUpdate: (update: TdUpdate) => Promise<any>,
+    handleUpdate: (update: Record<string, any>) => Promise<any>,
     handleError: (error: any) => void,
-    models: Record<string, ClassType<any>>
+    models?: PlainObjectToModelTransformer
   ): void
 
   send (request: ApiRequest): Promise<TdResponse>
@@ -459,16 +422,9 @@ export interface ApiDeferred {
   reject: (error: Error) => any
 }
 
-export type ApiFn = <ParamsT, ResponseT, StateT = { [key: string]: any }> (
-  method: string,
-  params?: ParamsT,
-  state?: StateT
-) => Promise<ResponseT>
-
 // ----------------
 // Context
 // ----------------
-
 export interface ContextOptions {
   _: string
   airgram: Airgram<any>
@@ -488,12 +444,3 @@ export interface Context<ParamsT = any, ResponseT = any> {
 }
 
 export type ContextFactory<ContextT> = (airgram: Airgram<any>) => (options: ContextOptions) => ContextT
-
-// export interface RequestContext<ParamsT = any, ResponseT = any> extends BaseContext<ParamsT, ResponseT, void> {}
-//
-export interface UpdateContext extends Context<void, void> {
-  update: Update
-}
-
-//
-// export type Context = RequestContext | UpdateContext

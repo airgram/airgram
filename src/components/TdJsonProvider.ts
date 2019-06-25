@@ -16,7 +16,7 @@ export default class TdJsonProvider extends TdProvider<TdJsonClient> {
   public initialize (
     handleUpdate: (update: ag.TdUpdate) => Promise<any>,
     handleError: (error: any) => void,
-    models: Record<string, ag.ClassType<any>>
+    models?: ag.PlainObjectToModelTransformer
   ): void {
     this.client = new TdJsonClient({ ...this.config, handleUpdate, handleError, models })
   }

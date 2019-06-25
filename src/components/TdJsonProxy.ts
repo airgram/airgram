@@ -1,7 +1,6 @@
 import * as ffi from 'ffi-napi'
 import { resolve as resolvePath } from 'path'
 import * as ref from 'ref-napi'
-import * as ag from '../types/airgram'
 
 interface TdJsonClient {
   td_json_client_create: any
@@ -29,7 +28,7 @@ function buildQuery (query: string): Buffer {
 // tslint:disable:no-multi-spaces
 // tslint:disable:object-literal-sort-keys
 
-export default class TdJsonProxy<TdClient = Buffer> implements ag.TdJsonProxy<TdClient> {
+export default class TdJsonProxy<TdClient = Buffer> {
   private tdlib: TdJsonClient & TdLog
 
   public constructor ({ command }) {
