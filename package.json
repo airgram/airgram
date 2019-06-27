@@ -12,6 +12,7 @@
     "telegram javascript",
     "telegram typescript"
   ],
+  "sideEffects": false,
   "scripts": {
     "clean": "rm -rf dist",
     "compile": "npm run clean && tsc",

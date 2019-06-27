@@ -11,7 +11,7 @@ const DEFAULT_CONFIG: Partial<ag.AirgramConfig<any>> = {
   systemVersion: 'UNKNOWN VERSION'
 }
 
-export default class Airgram<ContextT extends ag.Context>
+export class Airgram<ContextT extends ag.Context>
   extends Composer<ContextT> implements ag.Airgram<ContextT> {
 
   public readonly api: ApiMethods

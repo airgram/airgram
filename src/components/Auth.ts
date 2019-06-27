@@ -38,7 +38,7 @@ const AUTH_METHODS = [
   'setTdlibParameters'
 ]
 
-export default class Auth {
+export class Auth {
   public maxAttempts: 3
 
   private answers: Partial<Record<keyof AuthDialog, any>> = {}

@@ -1,4 +1,4 @@
-class Serializable {
+export class Serializable {
   private readonly dataObject = {}
 
   constructor (data) {
@@ -32,5 +32,3 @@ class Serializable {
     }, 2)
   }
 }
-
-export default Serializable

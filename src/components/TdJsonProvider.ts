@@ -1,10 +1,10 @@
 import * as ag from '../types/airgram'
-import TdJsonClient, { TdJsonClientConfig } from './TdJsonClient'
-import TdProvider from './TdProvider'
+import { TdJsonClient, TdJsonClientConfig } from './TdJsonClient'
+import { TdProvider } from './TdProvider'
 
 export type TdJsonProviderConfig = ag.Omit<TdJsonClientConfig, 'handleUpdate' | 'handleError' | 'models'>
 
-export default class TdJsonProvider extends TdProvider<TdJsonClient> {
+export class TdJsonProvider extends TdProvider<TdJsonClient> {
   public constructor (private config: TdJsonProviderConfig = {}) {
     super()
   }

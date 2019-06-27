@@ -1,4 +1,4 @@
-export default class TDLibError extends Error {
+export class TDLibError extends Error {
   constructor (public readonly code: number, message?: string, public readonly type?: string) {
     super(message)
     this.name = 'TDLibError'

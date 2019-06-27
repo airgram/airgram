@@ -1,8 +1,8 @@
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 import * as ag from '../types/airgram'
-import TdJsonProxy from './TdJsonProxy'
-import TDLibError from './TDLibError'
+import { TdJsonProxy } from './TdJsonProxy'
+import { TDLibError } from './TDLibError'
 
 export interface TdJsonClientConfig extends ag.TdClientConfig {
   command?: string
@@ -11,7 +11,7 @@ export interface TdJsonClientConfig extends ag.TdClientConfig {
   logVerbosityLevel?: number
 }
 
-export default class TdJsonClient {
+export class TdJsonClient {
   public timeout: number = 10
 
   private _tdlibClient?: Buffer

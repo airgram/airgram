@@ -2,12 +2,12 @@ import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 import TdWebClient, { TdWebConfig } from 'tdweb'
 import * as ag from '../types/airgram'
-import TDLibError from './TDLibError'
-import TdProvider from './TdProvider'
+import { TDLibError } from './TDLibError'
+import { TdProvider } from './TdProvider'
 
 export type TdWebProviderConfig = ag.Omit<TdWebConfig, 'onUpdate'>
 
-export default class TdWebProvider extends TdProvider<TdWebClient> {
+export class TdWebProvider extends TdProvider<TdWebClient> {
   private handleError: (error: any) => void
 
   private handleUpdate: (update: Record<string, any>) => Promise<any>

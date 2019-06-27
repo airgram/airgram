@@ -134,5 +134,4 @@ class Composer<ContextT = any> implements ag.Composer<ContextT> {
   }
 }
 
-export default Composer
 export { Composer }

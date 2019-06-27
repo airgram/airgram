@@ -28,7 +28,7 @@ function buildQuery (query: string): Buffer {
 // tslint:disable:no-multi-spaces
 // tslint:disable:object-literal-sort-keys
 
-export default class TdJsonProxy<TdClient = Buffer> {
+export class TdJsonProxy<TdClient = Buffer> {
   private tdlib: TdJsonClient & TdLog
 
   public constructor ({ command }) {
