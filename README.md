@@ -2,7 +2,7 @@
 
 Modern Telegram client framework for TypeScript/JavaScript.
 
-**Important:** this documentation is for version `1.1.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
+**Important:** this documentation is for version `1.0.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
 
 ## Features
 
