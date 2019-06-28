@@ -1,3 +1,11 @@
+import { TdJsonProvider as JsonProvider } from './TdJsonProvider'
+import { TdWebProvider as WebProvider } from './TdWebProvider'
+
+export {
+  JsonProvider,
+  WebProvider
+}
+
 export * from './Context'
 export * from './Composer'
 export * from './Auth'
