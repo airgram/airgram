@@ -1,7 +1,7 @@
+export * from 'airgram-core'
 import { Airgram } from './Airgram'
-import * as ag from './types'
 
 export * from './helpers'
 export * from './components'
 
-export { Airgram, ag }
+export { Airgram }

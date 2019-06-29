@@ -5,9 +5,8 @@ import {
   Error as TdError,
   UpdateAuthorizationState
 } from 'airgram-api'
+import { ag, compose, filter, optional } from 'airgram-core'
 import * as pick from 'lodash/pick'
-import * as ag from '../types/airgram'
-import { compose, filter, optional } from './Composer'
 
 interface LoginDeferred {
   promise: Promise<void>,

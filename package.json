@@ -28,29 +28,27 @@
   "repository": "https://github.com/airgram/airgram",
   "dependencies": {
     "airgram-api": "^1.0.4",
-    "class-transformer": "^0.2.2",
+    "airgram-core": "^1.1.0",
     "ffi-napi": "^2.4.5",
-    "lodash": "^4.17.11",
-    "reflect-metadata": "^0.1.13",
-    "tdweb": "^1.4.3"
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@types/ffi-napi": "^2.4.1",
-    "@types/node": "^10.11.7",
-    "eslint": "^4.19.1",
-    "eslint-config-standard": "^11.0.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.18.4",
-    "np": "^3.0.4",
+    "@types/node": "^12.0.10",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.19.1",
+    "np": "^5.0.3",
     "pre-commit": "^1.2.2",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-standard": "^7.1.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "tslint-config-standard": "^8.0.1",
     "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.1.3"
+    "typescript": "^3.2.4"
   }
 }

@@ -1,14 +1,22 @@
+import { ag, TDLibError } from 'airgram-core'
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
-import * as ag from '../types/airgram'
 import { TdJsonProxy } from './TdJsonProxy'
-import { TDLibError } from './TDLibError'
 
-export interface TdJsonClientConfig extends ag.TdClientConfig {
+export interface ApiDeferred {
+  _: string
+  resolve: (result: ag.TdResponse) => any
+  reject: (error: Error) => any
+}
+
+export interface TdJsonClientConfig {
   command?: string
   logFilePath?: string | null
   logMaxFileSize?: number | string
   logVerbosityLevel?: number
+  handleUpdate: (update: ag.TdUpdate) => Promise<any>,
+  handleError: (error: any) => void,
+  models?: ag.PlainObjectToModelTransformer
 }
 
 export class TdJsonClient {
@@ -26,7 +34,7 @@ export class TdJsonClient {
 
   private readonly models?: ag.PlainObjectToModelTransformer
 
-  private readonly pending: Map<string, ag.ApiDeferred> = new Map()
+  private readonly pending: Map<string, ApiDeferred> = new Map()
 
   private queryId: number = 0
 
@@ -118,8 +126,8 @@ export class TdJsonClient {
 
     delete response['@extra']
 
-    if (deferred) {
-      this.pending.delete(requestId!)
+    if (deferred && requestId) {
+      this.pending.delete(requestId)
       if (type === 'error') {
         deferred.reject(new TDLibError(response.code, response.message, deferred._))
       } else {

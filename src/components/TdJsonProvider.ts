@@ -1,6 +1,5 @@
-import * as ag from '../types/airgram'
+import { ag, TdProvider } from 'airgram-core'
 import { TdJsonClient, TdJsonClientConfig } from './TdJsonClient'
-import { TdProvider } from './TdProvider'
 
 export type TdJsonProviderConfig = ag.Omit<TdJsonClientConfig, 'handleUpdate' | 'handleError' | 'models'>
 

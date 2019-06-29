@@ -1,12 +1,11 @@
 # Airgram
 
-Modern Telegram client framework for TypeScript/JavaScript.
+Awesome wrapper for [TDLib](https://core.tlgr.org/tdlib) (TypeScript/JavaScript).
 
-**Important:** this documentation is for version `1.0.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
+**Important:** this documentation is for version `1.1.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
 
 ## Features
 
-- Based on [TDLib](https://core.tlgr.org/tdlib);
 - Strictly typed;
 - Documentation out of the box;
 - Supports models;
@@ -18,7 +17,7 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 - Parameter `@type` renamed to `_`.
 
 ## Requirements
-- TDLib v1.3.0
+- TDLib v1.4.0
 - NodeJS
 
 ## Documentation
@@ -29,7 +28,6 @@ All TDLib classes and methods are described and have suitable wrappers in Airgra
 - [Authorization](#authorization)
 - [Middleware](#middleware)
 - [Getting updates](#getting-updates)
-- [Models](#models)
 ---
 - [TDLib methods](https://github.com/airgram/airgram-api/tree/master/docs/td-methods.md)
 - [TDLib input types](https://github.com/airgram/airgram-api/tree/master/docs/td-inputs.md)
@@ -58,7 +56,8 @@ import { Airgram, Auth, prompt } from 'airgram'
 
 const airgram = new Airgram({
   apiId: Number(process.env.APP_ID!),
-  apiHash: process.env.APP_HASH!
+  apiHash: process.env.APP_HASH!,
+  logVerbosityLevel: 2
 })
 
 const auth = new Auth(airgram)
@@ -106,6 +105,9 @@ const airgram = new Airgram({
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
 | `command` | `string` | Path to the `tdjson` (windows) / `libtdjson` (unix) command. |
+| `logFilePath` | `string` | Path to a file where the internal TDLib log will be written. Use an empty path to switch back to the default logging behaviour. |
+| `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
+| `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
 | `useTestDc` | `boolean` | If set to true, the Telegram test environment will be used instead of the production  environment |
 | `databaseDirectory` | `string` | The path to the directory for the persistent database |
 | `filesDirectory` | `string` | The path to the directory for storing files |
@@ -121,18 +123,14 @@ const airgram = new Airgram({
 | `applicationVersion` | `string` | Application version |
 | `enableStorageOptimizer` | `boolean` | If set to true, old files will automatically be deleted |
 | `ignoreFileNames` | `boolean` | If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name |
-| `logFilePath` | `string` | Path to a file where the internal TDLib log will be written. Use an empty path to switch back to the default logging behaviour. |
-| `logMaxFileSize` | `number` | Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated. Should be positive.  |
-| `logVerbosityLevel` | `number` | New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1024 can be used to enable even more logging. |
 | `databaseEncryptionKey` | `string` | Encryption key |
-| `client` | `any` | Instance of the [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads.  |
 
 
 ### Other options
 
 | Key                | Type                     | Note                                                        |
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
-| `models` | Object | Contains models, which replace plain JSON objects. [Details](#models). |
+| `models` | Function | Contains function, which converts plain JSON objects to models. [Details](https://github.com/airgram/airgram-use-models). |
 | `contextFactory` | Function | Function that returns custom middleware context. [Details](#ctx). |
 
 ## API reference
@@ -145,12 +143,10 @@ This section describes public API of an `Airgram` instance:
 | `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/blob/master/docs/td-methods.md). |
 | `config` | Object | Airgram configuration. Readonly. |
 | `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
-| `handleError` | Function | Error handler. Can be overriden by `airgram.catch()`. |
 | `catch` | `(handler) => void` | Overrides default error handler. Argument `handler` takes a function: `(error: Error, ctx?: Record<string, any>) => void`  |
 | `pause` | `() => void` | Stop getting responses and updates from TDLib |
 | `resume` | `() => void` | Continue getting responses and updates from TDLib |
 | `destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
-
 
 
 ## Authorization
@@ -389,63 +385,6 @@ Use methods `airgram.updates.use()` and `airgram.updates.on()` to add some handl
 
 1. By using `airgram.updates.use()` and `airgram.updates.on()` methods, callbacks won't be called for requests;
 2. Improved typings for updates.
-
-## Models
-
-Airgram provide an excellent feature to create your own models for plain JSON objects which returned by TDLib. 
-
-For example, lets add some features to the [Chat](/docs/td-outputs.md#chat):
-
-```typescript
-import { Airgram } from 'airgram'
-import { ApiMethods, CHAT_TYPE, UPDATE } from 'airgram-api'
-import { ChatBaseModel } from 'airgram-api/models/Chat'
-
-class ChatModel extends ChatBaseModel {
-  get isBasicGroup (): boolean {
-    return this.type._ === CHAT_TYPE.chatTypeBasicGroup
-  }
-
-  get isSupergroup (): boolean {
-    return this.type._ === CHAT_TYPE.chatTypeSupergroup
-  }
-
-  get isPrivateChat (): boolean {
-    return this.type._ === CHAT_TYPE.chatTypePrivate
-  }
-
-  get isSecretChat (): boolean {
-    return this.type._ === CHAT_TYPE.chatTypeSecret
-  }
-
-  public async isMeChat (api: ApiMethods): Promise<boolean> {
-    if ('userId' in this.type) {
-      return (await api.getMe()).id === this.type.userId
-    }
-    return false
-  }
-}
-
-// This is important for correct typings
-declare module 'airgram-api/outputs/Chat' {
-  export interface Chat extends ChatModel {}
-}
-
-const airgram = new Airgram({
-  models: {
-    chat: ChatModel
-  }
-})
-
-airgram.updates.on(UPDATE.updateNewChat, async ({ update }) => {
-  const { chat } = update
-  console.info('isBasicGroup: ', chat.isBasicGroup)
-  console.info('isSupergroup: ', chat.isSupergroup)
-  console.info('isPrivateChat: ', chat.isPrivateChat)
-  console.info('isSecretChat: ', chat.isSecretChat)
-  console.info('isMeChat: ', await chat.isMeChat(airgram.api))
-})
-```
 
 ## License
 
