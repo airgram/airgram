@@ -5,11 +5,6 @@
 [ ] feature request
 [ ] documentation issue
 
-**Environment:**
-
-[ ] `node`
-[ ] `browser`
-
 **Airgram version:**
 
 [ ] `latest`

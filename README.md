@@ -1,8 +1,10 @@
 # Airgram
 
-Awesome wrapper for [TDLib](https://core.tlgr.org/tdlib) (TypeScript/JavaScript).
+Awesome wrapper for [TDLib](https://core.tlgr.org/tdlib) (TypeScript/JavaScript, NodeJS).
 
-**Important:** this documentation is for version `1.1.*`. If you need MTProto implementation (version `0.1.*`), please follow the [link](https://github.com/airgram/airgram/tree/mtproto). 
+You may also be interested in:
+- [MTProto implementation](https://github.com/airgram/airgram/tree/mtproto)
+- [Version for browsers](https://github.com/airgram/tdweb-airgram)
 
 ## Features
 
@@ -142,7 +144,6 @@ This section describes public API of an `Airgram` instance:
 | ------------------ | ------------------------ | ----------------------------------------------------------- |
 | `api` | Object | Contains wrappers for all [TDLib methods](https://github.com/airgram/airgram-api/blob/master/docs/td-methods.md). |
 | `config` | Object | Airgram configuration. Readonly. |
-| `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
 | `catch` | `(handler) => void` | Overrides default error handler. Argument `handler` takes a function: `(error: Error, ctx?: Record<string, any>) => void`  |
 | `provider.pause` | `() => void` | Stop getting responses and updates from TDLib |
 | `provider.resume` | `() => void` | Continue getting responses and updates from TDLib |
@@ -381,7 +382,7 @@ All methods describes [here](/docs/telegram-methods.md).
 
 ## Getting updates
 
-Use methods `airgram.updates.use()` and `airgram.updates.on()` to add some handlers for updates. It works almost the same as `airgram.use()` and `airgram.on()`, but there are two differences:
+Use methods `airgram.updates.use()` and `airgram.updates.on()` to handle updates. It works almost the same as `airgram.use()` and `airgram.on()`, but there are two differences:
 
 1. By using `airgram.updates.use()` and `airgram.updates.on()` methods, callbacks won't be called for requests;
 2. Improved typings for updates.
