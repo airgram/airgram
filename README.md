@@ -144,9 +144,9 @@ This section describes public API of an `Airgram` instance:
 | `config` | Object | Airgram configuration. Readonly. |
 | `client` | `any` | Instance of [TDLib JSON client](https://core.telegram.org/tdlib/docs/td__json__client_8h.html) that you can share between threads. Readonly. |
 | `catch` | `(handler) => void` | Overrides default error handler. Argument `handler` takes a function: `(error: Error, ctx?: Record<string, any>) => void`  |
-| `pause` | `() => void` | Stop getting responses and updates from TDLib |
-| `resume` | `() => void` | Continue getting responses and updates from TDLib |
-| `destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
+| `provider.pause` | `() => void` | Stop getting responses and updates from TDLib |
+| `provider.resume` | `() => void` | Continue getting responses and updates from TDLib |
+| `provider.destroy` | `() => void` | Destroy `Airgram` and TDLib instances |
 
 
 ## Authorization
