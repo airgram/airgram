@@ -141,7 +141,20 @@ export class TdJsonClient {
   }
 
   protected async receive (): Promise<ag.TdResponse | null> {
-    return JSON.parse((await this.tdlib.receive(this.tdlibClient, this.timeout))!, this.deserialize)
+
+    const received = await this.tdlib.receive(this.tdlibClient, this.timeout)
+
+    if (/^[\],:{}\s]*$/.test(received!.replace(/\\["\\\/bfnrtu]/g, '@').
+replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']').
+replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+  return JSON.parse(received!, this.deserialize)
+
+}else{
+  throw {received}
+
+}
+    
   }
 
   private addToStack (response: any): void {
