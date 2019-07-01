@@ -4,7 +4,8 @@ import { TdJsonProvider, TdJsonProviderConfig } from './components'
 export interface AirgramConfig<ContextT>
   extends ag.Omit<ag.AirgramConfig<ContextT>, 'provider'>, TdJsonProviderConfig {}
 
-export class Airgram<ContextT extends ag.Context> extends BaseAirgram<ContextT> {
+export class Airgram<ContextT extends ag.Context>
+  extends BaseAirgram<ContextT, TdJsonProvider> implements ag.Airgram<ContextT, TdJsonProvider> {
   constructor (config: AirgramConfig<ContextT>) {
     const { command, logFilePath, logMaxFileSize, logVerbosityLevel, ...restConfig } = config
     const baseConfig = {
