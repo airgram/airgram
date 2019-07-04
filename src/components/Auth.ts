@@ -2,7 +2,7 @@ import {
   AUTHORIZATION_STATE,
   AuthorizationStateUnion,
   AuthorizationStateWaitCode,
-  Error as TdError,
+  Error as TdError, ErrorUnion,
   UpdateAuthorizationState
 } from 'airgram-api'
 import { ag, compose, filter, optional } from 'airgram-core'
@@ -44,7 +44,7 @@ export class Auth {
 
   private attempt: number = 0
 
-  private authState: AuthorizationStateUnion | null = null
+  private authState: AuthorizationStateUnion | ErrorUnion | null = null
 
   private deferred: LoginDeferred | null = null
 

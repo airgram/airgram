@@ -1,6 +1,5 @@
-import { ag, TDLibError } from 'airgram-core'
-import * as camelCase from 'lodash/camelCase'
-import * as snakeCase from 'lodash/snakeCase'
+import { ag } from 'airgram-core'
+import { createDeserializer, createSerializer } from '../helpers'
 import { TdJsonProxy } from './TdJsonProxy'
 
 export interface ApiDeferred {
@@ -24,19 +23,19 @@ export class TdJsonClient {
 
   private _tdlibClient?: Buffer
 
+  private readonly deserialize: (key: string, value: any) => Record<string, any>
+
   private destroyed: boolean = false
 
   private readonly handleError: (error: any) => void
 
   private readonly handleUpdate: (update: ag.TdUpdate) => Promise<any>
 
-  private readonly keyMap: Map<string, string> = new Map<string, string>()
-
-  private readonly models?: ag.PlainObjectToModelTransformer
-
   private readonly pending: Map<string, ApiDeferred> = new Map()
 
   private queryId: number = 0
+
+  private readonly serialize: (key: string, value: any) => Record<string, any>
 
   private sleepPromise: Promise<void> | null = null
 
@@ -49,10 +48,8 @@ export class TdJsonClient {
   public constructor (config: TdJsonClientConfig) {
     this.handleUpdate = config.handleUpdate
     this.handleError = config.handleError
-    this.models = config.models
-
-    this.serialize = this.serialize.bind(this)
-    this.deserialize = this.deserialize.bind(this)
+    this.serialize = createSerializer()
+    this.deserialize = createDeserializer(config.models)
     this.tdlib = new TdJsonProxy<any>({ command: config.command })
 
     if (config.logFilePath) {
@@ -121,18 +118,14 @@ export class TdJsonClient {
       return Promise.resolve()
     }
 
-    const { '@extra': requestId, _: type } = response
+    const { '@extra': requestId } = response
     const deferred = requestId && this.pending.get(requestId)
 
     delete response['@extra']
 
     if (deferred && requestId) {
       this.pending.delete(requestId)
-      if (type === 'error') {
-        deferred.reject(new TDLibError(response.code, response.message, deferred._))
-      } else {
-        deferred.resolve(response)
-      }
+      deferred.resolve(response)
     } else {
       await this.handleUpdate(response)
     }
@@ -141,7 +134,11 @@ export class TdJsonClient {
   }
 
   protected async receive (): Promise<ag.TdResponse | null> {
-    return JSON.parse((await this.tdlib.receive(this.tdlibClient, this.timeout))!, this.deserialize)
+    try {
+      return JSON.parse((await this.tdlib.receive(this.tdlibClient, this.timeout))!, this.deserialize)
+    } catch (e) {
+      throw new Error(`[TdJsonClient] received invalid JSON`)
+    }
   }
 
   private addToStack (response: any): void {
@@ -151,34 +148,6 @@ export class TdJsonClient {
         this.handleResponse().catch(this.handleError)
       }
     }
-  }
-
-  private deserialize (key, value) {
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      const replacement: Record<string, any> = {}
-      for (const k in value) {
-        // console.info('unserialize', k)
-        if (Object.hasOwnProperty.call(value, k)) {
-          if (k === '@type') {
-            replacement._ = value['@type']
-            continue
-          }
-          if (!k) {
-            continue
-          }
-          if (k.charAt(0) === '@') {
-            replacement[k] = value[k]
-            continue
-          }
-          if (!this.keyMap.has(k)) {
-            this.keyMap.set(k, camelCase(k))
-          }
-          replacement[this.keyMap.get(k)!] = value[k]
-        }
-      }
-      return this.models ? this.models(replacement) : replacement
-    }
-    return value
   }
 
   private async loop (): Promise<void> {
@@ -196,32 +165,5 @@ export class TdJsonClient {
       this.handleError(error)
     }
     setTimeout(() => this.loop(), 0)
-  }
-
-  private serialize (key, value) {
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      const replacement: Record<string, any> = {}
-      for (const k in value) {
-        if (Object.hasOwnProperty.call(value, k)) {
-          if (k === '_') {
-            replacement['@type'] = value._
-            continue
-          }
-          if (!k) {
-            continue
-          }
-          if (k.charAt(0) === '@') {
-            replacement[k] = value[k]
-            continue
-          }
-          if (!this.keyMap.has(k)) {
-            this.keyMap.set(k, snakeCase(k))
-          }
-          replacement[this.keyMap.get(k)!] = value[k]
-        }
-      }
-      return replacement
-    }
-    return value
   }
 }
