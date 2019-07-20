@@ -1,11 +1,10 @@
-import { ag } from 'airgram-core'
 import * as camelCase from 'lodash/camelCase'
 import * as snakeCase from 'lodash/snakeCase'
 
 const keyMap: Map<string, string> = new Map<string, string>()
 
 export function createDeserializer (
-  models?: ag.PlainObjectToModelTransformer
+  models?: Airgram.PlainObjectToModelTransformer
 ): (key: string, value: any) => Record<string, any> {
   return (key, value) => {
     if (value && typeof value === 'object' && !Array.isArray(value)) {

@@ -4,8 +4,8 @@ import {
   AuthorizationStateWaitCode,
   Error as TdError, ErrorUnion,
   UpdateAuthorizationState
-} from 'airgram-api'
-import { ag, compose, filter, optional } from 'airgram-core'
+} from '@airgram/api'
+import { Airgram, Composer } from '@airgram/core'
 import * as pick from 'lodash/pick'
 
 interface LoginDeferred {
@@ -52,7 +52,7 @@ export class Auth {
 
   private invalidPhoneNumbers: Set<string> = new Set()
 
-  constructor (private airgram: ag.Airgram<any>, dialog?: AuthDialog) {
+  constructor (private airgram: Airgram.AirgramInstance<any>, dialog?: AuthDialog) {
     airgram.use(this.middleware())
     if (dialog) {
       this.use(dialog)
@@ -159,7 +159,7 @@ export class Auth {
 
     switch (authorizationState._) {
       case 'authorizationStateWaitTdlibParameters': {
-        const keys: Array<keyof ag.TdLibConfig> = [
+        const keys: Array<keyof Airgram.TdLibConfig> = [
           'useTestDc',
           'databaseDirectory',
           'filesDirectory',
@@ -240,21 +240,21 @@ export class Auth {
     return this.deferred.promise
   }
 
-  private middleware (): ag.MiddlewarePromise<any> {
-    return compose([
+  private middleware (): Airgram.MiddlewareFn<any> {
+    return Composer.compose([
       // (ctx, next) => {
       //   return next()
       // },
-      filter((ctx) => !('update' in ctx)
+      Composer.filter((ctx) => !('update' in ctx)
         || !ctx.update
         || ctx.update._ !== 'updateAuthorizationState'
         || !this.handleUpdateState(ctx.update)
       ),
-      filter((ctx) => !ctx.update
+      Composer.filter((ctx) => !ctx.update
         || ctx.update._ !== 'error'
         || !this.handleError(ctx.update)
       ),
-      optional(
+      Composer.optional(
         (ctx) => !this.isAuthorized && !AUTH_METHODS.includes(ctx._),
         (ctx, next) => this.login().then(next)
       )

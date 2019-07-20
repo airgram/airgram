@@ -1,7 +1,7 @@
-import { ag, TdProvider } from 'airgram-core'
+import { Airgram, TdProvider } from '@airgram/core'
 import { TdJsonClient, TdJsonClientConfig } from './TdJsonClient'
 
-export type TdJsonProviderConfig = ag.Omit<TdJsonClientConfig, 'handleUpdate' | 'handleError' | 'models'>
+export type TdJsonProviderConfig = Airgram.Omit<TdJsonClientConfig, 'handleUpdate' | 'handleError' | 'models'>
 
 export class TdJsonProvider extends TdProvider<TdJsonClient> {
   public constructor (private config: TdJsonProviderConfig = {}) {
@@ -9,26 +9,35 @@ export class TdJsonProvider extends TdProvider<TdJsonClient> {
   }
 
   public destroy (): void {
-    this.client.destroy()
+    if (this.client) {
+      this.client.destroy()
+    }
   }
 
   public initialize (
-    handleUpdate: (update: ag.TdUpdate) => Promise<any>,
+    handleUpdate: (update: Airgram.TdUpdate) => Promise<any>,
     handleError: (error: any) => void,
-    models?: ag.PlainObjectToModelTransformer
+    models?: Airgram.PlainObjectToModelTransformer
   ): void {
     this.client = new TdJsonClient({ ...this.config, handleUpdate, handleError, models })
   }
 
   public pause (): void {
-    this.client.pause()
+    if (this.client) {
+      this.client.pause()
+    }
   }
 
   public resume (): void {
-    this.client.resume()
+    if (this.client) {
+      this.client.resume()
+    }
   }
 
-  public send (request: ag.ApiRequest): Promise<ag.TdResponse> {
+  public send (request: Airgram.ApiRequest): Promise<Airgram.TdResponse> {
+    if (!this.client) {
+      throw new Error('TdJsonClient is not initialized.')
+    }
     return this.client.send(request)
   }
 }

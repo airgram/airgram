@@ -227,7 +227,7 @@ Middleware is a chain of callback functions, which are called before a request i
 This is a scaffolding for middleware function:
 
 ```typescript
-import { UPDATE } from 'airgram-api'
+import { UPDATE } from '@airgram/api'
 
 airgram.use((ctx, next) => {
   
@@ -266,18 +266,18 @@ Argument `ctx` contains an object with the following structure:
 You can extend default context by define `contextFactory`: 
 
 ```typescript
-import { ag, api, Airgram, createContext, User } from 'airgram'
-import { UPDATE } from 'airgram-api'
+import { Airgram, createContext, User } from 'airgram'
+import { UPDATE } from '@airgram/api'
 
-interface Context extends ag.Context {
+interface Context extends Airgram.Context {
   getUser (id: number): User | void
   setUser (id: number, user: User): void
 }
 
 const userMap: Map<number, User> = new Map()
 
-const contextFactory: ag.ContextFactory = () => {
-  return (options: ag.ContextOptions): Context => ({
+const contextFactory: Airgram.ContextFactory = () => {
+  return (options: Airgram.ContextOptions): Context => ({
     ...createContext(options),
     getUser (id: number): User | void {
       return userMap.get(id)

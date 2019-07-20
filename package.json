@@ -27,10 +27,10 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/airgram/airgram",
   "dependencies": {
-    "airgram-api": "^1.1.2",
-    "airgram-core": "^1.1.5",
+    "@airgram/api": "^1.2.0",
+    "@airgram/core": "^1.2.0",
     "ffi-napi": "^2.4.5",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@types/ffi-napi": "^2.4.1",

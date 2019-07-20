@@ -1,10 +1,9 @@
-import { ag } from 'airgram-core'
 import { createDeserializer, createSerializer } from '../helpers'
 import { TdJsonProxy } from './TdJsonProxy'
 
 export interface ApiDeferred {
   _: string
-  resolve: (result: ag.TdResponse) => any
+  resolve: (result: Airgram.TdResponse) => any
   reject: (error: Error) => any
 }
 
@@ -13,9 +12,9 @@ export interface TdJsonClientConfig {
   logFilePath?: string | null
   logMaxFileSize?: number | string
   logVerbosityLevel?: number
-  handleUpdate: (update: ag.TdUpdate) => Promise<any>,
+  handleUpdate: (update: Airgram.TdUpdate) => Promise<any>,
   handleError: (error: any) => void,
-  models?: ag.PlainObjectToModelTransformer
+  models?: Airgram.PlainObjectToModelTransformer
 }
 
 export class TdJsonClient {
@@ -29,7 +28,7 @@ export class TdJsonClient {
 
   private readonly handleError: (error: any) => void
 
-  private readonly handleUpdate: (update: ag.TdUpdate) => Promise<any>
+  private readonly handleUpdate: (update: Airgram.TdUpdate) => Promise<any>
 
   private readonly pending: Map<string, ApiDeferred> = new Map()
 
@@ -39,7 +38,7 @@ export class TdJsonClient {
 
   private sleepPromise: Promise<void> | null = null
 
-  private stack: ag.TdResponse[] = []
+  private stack: Airgram.TdResponse[] = []
 
   private readonly tdlib: TdJsonProxy<any>
 
@@ -98,10 +97,10 @@ export class TdJsonClient {
     }
   }
 
-  public send (request: ag.ApiRequest): Promise<ag.TdResponse> {
+  public send (request: Airgram.ApiRequest): Promise<Airgram.TdResponse> {
     const id = `q${++this.queryId}`
     const { method, params } = request
-    return new Promise<ag.TdResponse>((resolve, reject) => {
+    return new Promise<Airgram.TdResponse>((resolve, reject) => {
       this.pending.set(id, { _: method, resolve, reject })
       return this.tdlib.send(this.tdlibClient, JSON.stringify({
         ...params,
@@ -112,7 +111,7 @@ export class TdJsonClient {
   }
 
   protected async handleResponse (): Promise<void> {
-    const response: ag.TdResponse | undefined = this.stack.shift()
+    const response: Airgram.TdResponse | undefined = this.stack.shift()
 
     if (!response) {
       return Promise.resolve()
@@ -133,7 +132,7 @@ export class TdJsonClient {
     setTimeout(() => this.handleResponse(), 0)
   }
 
-  protected async receive (): Promise<ag.TdResponse | null> {
+  protected async receive (): Promise<Airgram.TdResponse | null> {
     try {
       return JSON.parse((await this.tdlib.receive(this.tdlibClient, this.timeout))!, this.deserialize)
     } catch (e) {
