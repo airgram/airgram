@@ -2,11 +2,11 @@ import {
   AUTHORIZATION_STATE,
   AuthorizationStateUnion,
   AuthorizationStateWaitCode,
-  Error as TdError, ErrorUnion,
+  Error as TdError,
+  ErrorUnion,
   UpdateAuthorizationState
 } from '@airgram/api'
 import { Airgram, Composer } from '@airgram/core'
-import * as pick from 'lodash/pick'
 
 interface LoginDeferred {
   promise: Promise<void>,
@@ -158,35 +158,6 @@ export class Auth {
     let promise: Promise<any> | null = null
 
     switch (authorizationState._) {
-      case 'authorizationStateWaitTdlibParameters': {
-        const keys: Array<keyof Airgram.TdLibConfig> = [
-          'useTestDc',
-          'databaseDirectory',
-          'filesDirectory',
-          'useFileDatabase',
-          'useChatInfoDatabase',
-          'useMessageDatabase',
-          'useSecretChats',
-          'apiId',
-          'apiHash',
-          'systemLanguageCode',
-          'deviceModel',
-          'systemVersion',
-          'applicationVersion',
-          'enableStorageOptimizer',
-          'ignoreFileNames'
-        ]
-        promise = this.airgram.api.setTdlibParameters({
-          parameters: { _: 'tdlibParameters', ...pick(this.airgram.config, keys) }
-        })
-        break
-      }
-      case 'authorizationStateWaitEncryptionKey': {
-        promise = this.airgram.api.checkDatabaseEncryptionKey({
-          encryptionKey: this.airgram.config.databaseEncryptionKey
-        })
-        break
-      }
       case 'authorizationStateWaitPhoneNumber': {
         if (this.isBot) {
           const token = await this.ask('token')
