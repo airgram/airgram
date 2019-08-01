@@ -28,7 +28,7 @@
   "repository": "https://github.com/airgram/airgram",
   "dependencies": {
     "@airgram/api": "^1.2.0",
-    "@airgram/core": "^1.2.0",
+    "@airgram/core": "^1.2.2",
     "ffi-napi": "^2.4.5",
     "lodash": "^4.17.15"
   },
