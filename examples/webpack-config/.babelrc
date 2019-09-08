@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": [
+            "last 2 chrome versions"
+          ]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "babel-plugin-syntax-dynamic-import"
+  ]
+}

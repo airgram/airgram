@@ -1,0 +1,33 @@
+{
+  "name": "@airgram/web",
+  "version": "1.1.2",
+  "private": false,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "keywords": [
+    "telegram",
+    "tdweb",
+    "airgram"
+  ],
+  "scripts": {
+    "build": "gulp build",
+    "check": "tsc --noEmit",
+    "lint": "eslint --fix ./src/**/*.ts",
+    "prebuild": "npm run test",
+    "prepublishOnly": "gulp build",
+    "test": "jest"
+  },
+  "pre-commit": "yarn run lint",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@airgram/core": "^1.1.2",
+    "tdweb": "^1.4.3"
+  },
+  "devDependencies": {
+    "@airgram/use-models": "^1.1.2",
+    "@types/tdweb": "link:/Users/esindger/www/test/DefinitelyTyped/types/tdweb"
+  },
+  "gitHead": "1251f44c4cf8d46cf3b5604518d06635cdbdf2a7"
+}

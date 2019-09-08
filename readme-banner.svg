@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1483px" height="719px" viewBox="0 0 1483 719" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>readme-banner</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="97.0350439%" id="linearGradient-1">
+            <stop stop-color="#00D3E9" offset="0%"></stop>
+            <stop stop-color="#0097A7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#00838F" stop-opacity="0.954200634" offset="0%"></stop>
+            <stop stop-color="#00838F" stop-opacity="0.6" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="0%" y1="27.0097311%" x2="100%" y2="27.0097311%" id="linearGradient-3">
+            <stop stop-color="#1D7A86" stop-opacity="0.6" offset="0%"></stop>
+            <stop stop-color="#25C4CD" stop-opacity="0.954200634" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="github" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="readme-banner">
+            <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="1483" height="719"></rect>
+            <text id="Makes-it-easy-to-cre" font-family="AvenirNext-Regular, Avenir Next" font-size="42" font-weight="normal" fill="#515151">
+                <tspan x="545.431373" y="242.248366">Makes it easy to create Telegram apps </tspan>
+                <tspan x="545.431373" y="299.248366">with Typescript/JavaScript. </tspan>
+            </text>
+            <text id="Airgram" font-family="AndaleMono, Andale Mono" font-size="63" font-weight="normal" fill="#156F7A">
+                <tspan x="168.621987" y="549.366013">Airgram</tspan>
+            </text>
+            <g id="Group" transform="translate(168.307190, 113.000000)">
+                <polygon id="Jowl" fill="url(#linearGradient-1)" transform="translate(131.520135, 291.055549) scale(1, -1) translate(-131.520135, -291.055549) " points="81.2913148 286.32556 132.757298 272.080217 181.748955 286.32556 132.757298 310.030881"></polygon>
+                <path d="M1.84997559,31.4857065 C1.00437632,32.1978035 0.687196461,33.5853779 1.14747467,34.5980091 L128.638853,315.084339 C130.92361,320.1109 134.650305,320.121889 136.964667,315.104527 L266.354119,34.5980091 C266.818517,33.5912289 266.497133,32.2167793 265.632259,31.5248665 L229.511228,2.62749628 C228.648157,1.93702673 227.134198,1.7674793 226.150983,2.23860582 L133.75569,46.5116017 L39.4168069,2.22867566 C38.4150934,1.75846866 36.9240804,1.94906036 36.0719513,2.66665633 L1.84997559,31.4857065 Z" id="Shape" fill="url(#linearGradient-2)" transform="translate(133.752527, 160.460617) rotate(180.000000) translate(-133.752527, -160.460617) "></path>
+                <path d="M0.447941324,310.581202 C0.447941324,316.104123 2.33774087,316.515288 4.66094938,311.516729 L134.200249,32.8031293 C134.665252,31.8026401 134.343449,30.4367789 133.477448,29.7491897 L97.3093769,1.03238758 C96.4451823,0.346232505 94.9351414,0.164747147 93.9260315,0.631924328 L0.447941324,43.9085087 L0.447941324,310.581202 Z" id="Wing" fill="url(#linearGradient-3)" transform="translate(67.539935, 158.555562) rotate(180.000000) translate(-67.539935, -158.555562) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

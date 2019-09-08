@@ -1,0 +1,31 @@
+{
+  "ignoreChanges": [
+    "**/__tests__/**",
+    "**/__snapshots__/**",
+    "**/*.test.*",
+    "**/*.md"
+  ],
+  "command": {
+    "version": {
+      "changelog": false,
+      "conventionalCommits": true,
+      "conventionalPrerelease": true,
+      "message": "chore(release): publish %s 🚀",
+      "preid": "next",
+      "push": false
+    },
+    "publish": {
+      "changelog": true,
+      "contents": "dist/package"
+    },
+    "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent"
+}

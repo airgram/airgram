@@ -1,0 +1,34 @@
+{
+  "name": "@airgram/use-models",
+  "version": "1.1.2",
+  "private": false,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "keywords": [
+    "airgram models"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "gulp build",
+    "check": "tsc --noEmit",
+    "lint": "eslint --fix ./src/**/*.ts",
+    "prebuild": "npm run test",
+    "prepublishOnly": "yarn run build",
+    "test": "jest"
+  },
+  "pre-commit": "yarn run lint",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@airgram/core": "^1.1.2",
+    "class-transformer": "^0.2.3",
+    "debug": "^4.1.1",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4",
+    "airgram": "^2.0.0"
+  },
+  "gitHead": "1251f44c4cf8d46cf3b5604518d06635cdbdf2a7"
+}

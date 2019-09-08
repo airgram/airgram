@@ -59,7 +59,6 @@ node_modules
 # Icon must end with two \r
 Icon
 
-
 # Thumbnails
 ._*
 
@@ -100,7 +99,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+lerna-debug.log
+npm-debug.log
+package-map.json
 dist
-dev
-dev/*
-*.dev.ts
+tdlib
+db
+.env

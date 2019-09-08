@@ -1,0 +1,4 @@
+**/*.js
+**/*.d.ts
+packages/*/dist/**/*.ts
+packages/*/dev/**/*.ts
