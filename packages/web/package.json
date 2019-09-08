@@ -1,6 +1,6 @@
 {
   "name": "@airgram/web",
-  "version": "2.0.0-next.1",
+  "version": "2.0.0-next.2",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -22,11 +22,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@airgram/core": "^2.0.0-next.1",
+    "@airgram/core": "^2.0.0-next.2",
     "tdweb": "^1.4.3"
   },
   "devDependencies": {
-    "@airgram/use-models": "^2.0.0-next.1",
+    "@airgram/use-models": "^2.0.0-next.2",
     "@types/tdweb": "link:/Users/esindger/www/test/DefinitelyTyped/types/tdweb"
   },
   "gitHead": "ac5b43184c4848f72c100e5363ba414ed62a6cbe"
