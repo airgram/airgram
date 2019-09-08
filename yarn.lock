@@ -2,24 +2,26 @@
 # yarn lockfile v1
 
 
-"@airgram/constants@link:packages/constants":
-  version "2.0.5-next.0"
+"@airgram/constants@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@airgram/constants/-/constants-1.4.0.tgz#ad77261948777476d9bd221696b66cb39b4cc587"
+  integrity sha512-jbOiaqctwdyEPSgWrbMo4sS0DFRsT4VQZ/as0kiHqVf38HTpYLBZC6upO/N4YHrIOOA3YGCaWThcKAeRafwj7Q==
 
-"@airgram/core@link:packages/core":
-  version "2.0.5-next.0"
+"@airgram/constants@link:packages/constants":
+  version "2.0.0-next.0"
 
 "@airgram/use-models@link:packages/use-models":
-  version "2.0.5-next.0"
+  version "2.0.0-next.0"
   dependencies:
-    "@airgram/core" "link:packages/core"
+    "@airgram/core" "^2.0.0-next.0"
     class-transformer "^0.2.3"
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "1.2.0"
+  version "2.0.0-next.0"
   dependencies:
-    "@airgram/core" "link:packages/core"
+    "@airgram/core" "^2.0.0-next.0"
     tdweb "^1.4.3"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -1807,11 +1809,21 @@ agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
-"airgram@link:packages/airgram":
-  version "2.0.5-next.0"
+airgram@^2.0.0:
+  version "2.0.0-0"
+  resolved "https://registry.yarnpkg.com/airgram/-/airgram-2.0.0-0.tgz#74c5dafbc6546b51b751a443d97718616c3c32a5"
+  integrity sha512-xGuC79cn7/kzRoZsgTRjdusvR6anoNBHhhCvE33oHYFHVb4fJTpBEd3lp25pb1TJB1vHXoEIS33wk8JGY5HQcQ==
   dependencies:
-    "@airgram/constants" "link:packages/constants"
-    "@airgram/core" "link:packages/core"
+    "@airgram/constants" "^1.4.0"
+    "@airgram/core" "^2.0.0-1"
+    ffi-napi "^2.4.5"
+    lodash "^4.17.15"
+
+"airgram@link:packages/airgram":
+  version "2.0.0-next.0"
+  dependencies:
+    "@airgram/constants" "^2.0.0-next.0"
+    "@airgram/core" "^2.0.0-next.0"
     ffi-napi "^2.4.5"
 
 ajv-errors@^1.0.0:
