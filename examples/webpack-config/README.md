@@ -1,22 +1,30 @@
-# Basic usage Airgram with TypeScript 
+# Webpack Config Example
 
-This is a simple example of basic usage [Airgram](https://github.com/airgram/airgram) for creating Telegram client with TypeScript.
+This is a simple example how to run `@airgram/web` in browser with Webpack. 
 
-## Installation
-1. Clone repository:
+## Usage
+1. Clone repository
 ```bash
-$ git clone https://github.com/airgram/airgram-ts-example.git
-```
-2. Install dependencies:
-
-```bash
-$ cd airgram-ts-example
-$ npm i
+$ git clone https://github.com/airgram/airgram.git
 ```
 
-3. Open `./env` and set your values
-
-4. Run example:
+2. Install dependencies
 ```bash
-npm run dev
+$ cd airgram
+$ yarn install
+```
+
+3. Open example directory
+```bash
+$ cd examples/webpack-config
+```
+
+4. Build bundle:
+```bash
+$ yarn run build
+```
+
+or run server:
+```bash
+$ yarn run server
 ```
