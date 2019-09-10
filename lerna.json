@@ -10,7 +10,7 @@
       "changelog": false,
       "conventionalCommits": true,
       "conventionalPrerelease": true,
-      "message": "chore(release): publish %s 🚀",
+      "message": "chore(release): publish 🚀",
       "preid": "next",
       "push": false
     },
