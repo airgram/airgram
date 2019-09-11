@@ -19,7 +19,8 @@ import {
   TdLibConfig,
   TdObject,
   TdProvider,
-  UpdateAuthorizationState, UpdateContext
+  UpdateAuthorizationState,
+  UpdateContext
 } from './types'
 import { createDeferred, pick } from './utils'
 
