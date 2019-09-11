@@ -14,15 +14,15 @@ const airgram = new Airgram({
 })
 
 airgram.use(new Auth({
-  code: () => prompt(`Please enter the secret code:\n`),
-  phoneNumber: () => prompt(`Please enter your phone number:\n`)
+  code: () => prompt('Please enter the secret code:\n'),
+  phoneNumber: () => prompt('Please enter your phone number:\n')
 }))
 
 // async/await style of requests
 void (async () => {
   const me = toObject(await airgram.api.getMe())
-  writeInfo(`[Me] `, me)
-})
+  writeInfo('[Me] ', me)
+})()
 
 // Example above is equivalent to:
 // airgram.api.getMe().then(toObject).then((me) => {
