@@ -22,12 +22,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@airgram/core": "^2.0.0",
-    "@airgram/web": "^2.0.0",
+    "@airgram/core": "link:../../packages/core",
+    "@airgram/web": "link:../../packages/web",
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@airgram/use-models": "^2.0.0",
+    "@airgram/use-models": "link:../../packages/use-models",
     "@types/tdweb": "1.4.0"
   }
 }
