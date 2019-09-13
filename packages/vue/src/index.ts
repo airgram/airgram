@@ -1,10 +1,11 @@
+import { VueConstructor } from 'vue'
 // import { version } from '../package.json'
-import { DollarTd } from './DollarTd'
+import { AirgramDollar } from './AirgramDollar'
+import { AirgramProvider } from './AirgramProvider'
 import { installMixin } from './mixin'
-import { TdProvider } from './TdProvider'
-import { TdVueConstructor } from './types'
+import { AirgramVue } from './types'
 
-export function install<ContextT> (Vue: TdVueConstructor<ContextT>) {
+export function install<ContextT> (Vue: VueConstructor): void {
   if (install.installed) {
     return
   }
@@ -12,7 +13,7 @@ export function install<ContextT> (Vue: TdVueConstructor<ContextT>) {
 
   const vueVersion = (Vue.version && Number(Vue.version.split('.')[0])) || -1
   if (process.env.NODE_ENV !== 'production' && vueVersion < 2) {
-    console.warn(`vue-tdweb (${install.version}) need to use Vue 2.0 or later (Vue: ${Vue.version}).`)
+    console.warn(`@airgram/vue (${install.version}) need to use Vue 2.0 or later (Vue: ${Vue.version}).`)
     return
   }
 
@@ -23,13 +24,12 @@ export function install<ContextT> (Vue: TdVueConstructor<ContextT>) {
       : childVal
   }
 
-  // Lazy creation
-  Object.defineProperty(Vue.prototype, '$td', {
-    get (this: TdVueConstructor<ContextT>) {
-      if (!this.$_td) {
-        this.$_td = new DollarTd(this)
+  Object.defineProperty(Vue.prototype, '$airgram', {
+    get (this: AirgramVue<ContextT>) {
+      if (!this.$_airgramDollar) {
+        this.$_airgramDollar = new AirgramDollar(this)
       }
-      return this.$_td
+      return this.$_airgramDollar
     }
   })
 
@@ -38,7 +38,7 @@ export function install<ContextT> (Vue: TdVueConstructor<ContextT>) {
 
 install.installed = false
 install.version = '' // version
-TdProvider.install = install
+AirgramProvider.install = install
 
 // Auto-install
 let GlobalVue = null
@@ -48,7 +48,7 @@ if (typeof window !== 'undefined') {
   GlobalVue = (window as any).Vue
 }
 if (GlobalVue) {
-  GlobalVue.use(TdProvider)
+  GlobalVue.use(AirgramProvider)
 }
 
-export default TdProvider
+export default AirgramProvider

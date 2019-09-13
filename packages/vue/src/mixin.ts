@@ -1,44 +1,45 @@
-import { TdVue, TdVueConstructor } from './types'
+import { VueConstructor } from 'vue'
+import { AirgramVue } from './types'
 
-export function installMixin<ContextT = {}> (Vue: TdVueConstructor<ContextT>) {
+export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
   Vue.mixin({
-    beforeCreate (this: TdVue<ContextT>) {
+    beforeCreate (this: AirgramVue<ContextT>) {
       const options = this.$options
-      const optionValue = options.tdProvider
+      const optionValue = options.airgramProvider
       if (optionValue) {
-        this.$_tdProvider = typeof optionValue === 'function' ? optionValue() : optionValue
-      } else if (options.parent && (options.parent as TdVue<ContextT>).$_tdProvider) {
-        this.$_tdProvider = (options.parent as TdVue<ContextT>).$_tdProvider
+        this.$_airgramProvider = typeof optionValue === 'function' ? optionValue() : optionValue
+      } else if (options.parent && (options.parent as AirgramVue<ContextT>).$_airgramProvider) {
+        this.$_airgramProvider = (options.parent as AirgramVue<ContextT>).$_airgramProvider
       }
     },
 
-    created (this: TdVue<ContextT>) {
-      const tdProvider = this.$_tdProvider
+    created (this: AirgramVue<ContextT>) {
+      const tdProvider = this.$_airgramProvider
 
-      if (this.$_tdSubscriptions || !tdProvider) {
+      if (this.$_airgramSubscriptions || !tdProvider) {
         return
       }
-      this.$_tdSubscriptions = []
+      this.$_airgramSubscriptions = []
 
       // Prepare properties
-      const { td: handlers } = this.$options
+      const { airgram: handlers } = this.$options
       if (handlers && !this.$isServer) {
         Object.keys(handlers).forEach((name) => {
-          if (name.charAt(0) !== '$') {
-            this.$_tdSubscriptions!.push(tdProvider.on(name, handlers[name]))
+          if (name.charAt(0) !== '$' && this.$_airgramSubscriptions) {
+            this.$_airgramSubscriptions.push(tdProvider.on(name, handlers[name]))
           }
         })
       }
     },
 
-    destroyed (this: TdVue<ContextT>) {
-      if (this.$_td) {
-        this.$_td._destroy()
-        delete this.$_td
+    destroyed (this: AirgramVue<ContextT>) {
+      if (this.$_airgramDollar) {
+        this.$_airgramDollar._destroy()
+        delete this.$_airgramDollar
       }
-      if (this.$_tdSubscriptions) {
-        this.$_tdSubscriptions.forEach((unsubscribe: () => void) => unsubscribe())
-        delete this.$_tdSubscriptions
+      if (this.$_airgramSubscriptions) {
+        this.$_airgramSubscriptions.forEach((unsubscribe: () => void) => unsubscribe())
+        delete this.$_airgramSubscriptions
       }
     }
   })

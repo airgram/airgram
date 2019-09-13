@@ -24,7 +24,7 @@ export class Gulpfile {
       'packageCompile',
       'packageMoveCompiledFiles',
       'packageClearCompileDirectory',
-      ['packagePreparePackageFile', 'packageReadmeFile']
+      ['packagePreparePackageFile', 'copyTypeDefinitionFiles', 'packageReadmeFile']
     ]
   }
 
@@ -87,6 +87,14 @@ export class Gulpfile {
   }
 
   /**
+   * Copy type definitions.
+   */
+  @Task()
+  public copyTypeDefinitionFiles (): NodeJS.ReadWriteStream {
+    return gulp.src('./src/**/*.d.ts').pipe(gulp.dest('./dist/package'))
+  }
+
+  /**
    * Change the "private" state of the packaged package.json file to public.
    */
   @Task()
@@ -102,6 +110,7 @@ export class Gulpfile {
         json.author = pkg.author
         json.homepage = pkg.homepage
         json.repository = pkg.repository
+
         if (dependencies) {
           json.dependencies = Object.keys(dependencies).reduce<Record<string, string>>((obj, name) => {
             if (name in packages) {

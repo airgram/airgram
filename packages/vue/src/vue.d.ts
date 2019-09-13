@@ -1,18 +1,20 @@
 import Vue from 'vue'
-import { DollarTd } from './DollarTd'
-import { TdProvider } from './TdProvider'
-import { TdHandlers } from './types'
+import { AirgramDollar } from './AirgramDollar'
+import { AirgramProvider } from './AirgramProvider'
+import { AirgramUpdateHandlers } from './types'
+
+type AirgramProviderOption = AirgramProvider<any> | (() => AirgramProvider<any>)
 
 declare module 'vue/types/options' {
-
   interface ComponentOptions<V extends Vue> {
-    td?: TdHandlers<any>
-    tdProvider?: TdProvider<any> | (() => TdProvider<any>)
+    airgram?: AirgramUpdateHandlers<unknown>
+    airgramProvider?: AirgramProviderOption
   }
 }
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $td: DollarTd
+    $airgram: AirgramDollar
+    airgramProvider: AirgramProviderOption
   }
 }
