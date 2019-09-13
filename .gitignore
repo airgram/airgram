@@ -99,6 +99,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Project
 lerna-debug.log
 npm-debug.log
 package-map.json
@@ -106,3 +107,4 @@ dist
 tdlib
 db
 .env
+/packages/core/types
