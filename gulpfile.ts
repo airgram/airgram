@@ -103,6 +103,7 @@ export class Gulpfile {
       .src('./package.json')
       .pipe(jsonEditor((json: Record<string, any>) => {
         const dependencies: Record<string, string> | undefined = json.dependencies
+        const peerDependencies: Record<string, string> | undefined = json.peerDependencies
         json.private = false
         json.sideEffects = false
         json.main = 'index.js'
@@ -118,6 +119,14 @@ export class Gulpfile {
             }
             return obj
           }, dependencies)
+        }
+        if (peerDependencies) {
+          json.peerDependencies = Object.keys(peerDependencies).reduce<Record<string, string>>((obj, name) => {
+            if (name in packages) {
+              obj[name] = '^' + (packages as any)[name].version
+            }
+            return obj
+          }, peerDependencies)
         }
         delete json.scripts
         delete json.devDependencies
