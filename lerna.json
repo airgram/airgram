@@ -9,7 +9,8 @@
     "version": {
       "changelog": false,
       "conventionalCommits": true,
-      "conventionalPrerelease": true,
+      "conventionalPrerelease": false,
+      "preid": "next",
       "message": "chore(release): publish 🚀",
       "push": true
     },
