@@ -1,11 +1,10 @@
-import { TdObject, UpdateContext } from '@airgram/core'
+import { BaseTdObject, UpdateContext } from '@airgram/core'
 import * as api from '@airgram/core/types/api'
 import Vue from 'vue'
 import { AirgramDollar } from './AirgramDollar'
 import { AirgramProvider } from './AirgramProvider'
-import './vue'
 
-export interface BaseTdHandlers<ContextT> {
+export interface UpdateHandlers<ContextT = {}> {
   updateAuthorizationState?: (context: UpdateContext<api.UpdateAuthorizationState> & ContextT) => any
   updateNewMessage?: (context: UpdateContext<api.UpdateNewMessage> & ContextT) => any
   updateMessageSendAcknowledged?: (context: UpdateContext<api.UpdateMessageSendAcknowledged> & ContextT) => any
@@ -78,10 +77,8 @@ export interface BaseTdHandlers<ContextT> {
   updatePoll?: (context: UpdateContext<api.UpdatePoll> & ContextT) => any
 }
 
-export type UpdateHandler<UpdateT extends TdObject> =
-  (context: UpdateContext<UpdateT>) => any
-
-export type AirgramUpdateHandlers<ContextT> = BaseTdHandlers<ContextT> & Record<string, UpdateHandler<TdObject>>
+export type UpdateHandler<UpdateT extends BaseTdObject, ContextT = {}> =
+  (context: UpdateContext<UpdateT> & ContextT) => any
 
 export interface AirgramVue<ContextT> extends Vue {
   $_airgramSubscriptions?: Array<() => void>

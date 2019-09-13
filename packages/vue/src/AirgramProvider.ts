@@ -1,4 +1,4 @@
-import { Airgram, Instance, TdObject } from '@airgram/web'
+import { Airgram, BaseTdObject, Instance } from '@airgram/web'
 import Vue from 'vue'
 import { UpdateHandler } from './types'
 
@@ -20,21 +20,21 @@ class AirgramProvider<ContextT = {}> {
     this.eventBus = new Vue()
   }
 
-  public off<UpdateT extends TdObject> (
+  public off<UpdateT extends BaseTdObject> (
     eventName: string,
     handler: UpdateHandler<UpdateT>
   ): void {
     this.eventBus.$off(eventName, handler)
   }
 
-  public on<UpdateT extends TdObject> (
+  public on<UpdateT extends BaseTdObject> (
     eventName: string,
     handler: UpdateHandler<UpdateT>
   ): () => void {
     return this.listen('$on', eventName, handler)
   }
 
-  public once<UpdateT extends TdObject> (
+  public once<UpdateT extends BaseTdObject> (
     eventName: string,
     handler: UpdateHandler<UpdateT>
   ): () => void {

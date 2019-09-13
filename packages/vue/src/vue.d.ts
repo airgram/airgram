@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import { AirgramDollar } from './AirgramDollar'
 import { AirgramProvider } from './AirgramProvider'
-import { AirgramUpdateHandlers } from './types'
+import { UpdateHandlers } from './types'
 
 type AirgramProviderOption = AirgramProvider<any> | (() => AirgramProvider<any>)
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    airgram?: AirgramUpdateHandlers<unknown>
+    airgram?: UpdateHandlers
     airgramProvider?: AirgramProviderOption
   }
 }

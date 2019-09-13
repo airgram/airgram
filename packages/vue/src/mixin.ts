@@ -1,5 +1,5 @@
 import { VueConstructor } from 'vue'
-import { AirgramVue } from './types'
+import { AirgramVue, UpdateHandler, UpdateHandlers } from './types'
 
 export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
   Vue.mixin({
@@ -14,9 +14,9 @@ export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
     },
 
     created (this: AirgramVue<ContextT>) {
-      const tdProvider = this.$_airgramProvider
+      const airgramProvider = this.$_airgramProvider
 
-      if (this.$_airgramSubscriptions || !tdProvider) {
+      if (this.$_airgramSubscriptions || !airgramProvider) {
         return
       }
       this.$_airgramSubscriptions = []
@@ -26,7 +26,8 @@ export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
       if (handlers && !this.$isServer) {
         Object.keys(handlers).forEach((name) => {
           if (name.charAt(0) !== '$' && this.$_airgramSubscriptions) {
-            this.$_airgramSubscriptions.push(tdProvider.on(name, handlers[name]))
+            const handler = handlers[name as keyof UpdateHandlers] as UpdateHandler<any>
+            this.$_airgramSubscriptions.push(airgramProvider.on(name, handler))
           }
         })
       }
