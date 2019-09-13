@@ -11,7 +11,7 @@
       "conventionalCommits": true,
       "conventionalPrerelease": true,
       "message": "chore(release): publish 🚀",
-      "push": false
+      "push": true
     },
     "publish": {
       "changelog": true,
