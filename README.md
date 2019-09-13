@@ -27,18 +27,18 @@ ___
 2. Install [node-gyp](https://github.com/nodejs/node-gyp#installation)
 3. Install Airgram:
 ```bash
-npm install airgram@next
+npm install airgram
 ```
 **Web**
 ```bash
-npm install @airgram/web@next
+npm install @airgram/web
 ```
 
 Check out [webpack config](https://github.com/airgram/airgram/tree/master/examples/webpack-config) example.
 
 ## Getting started
 ```typescript
-import { Airgram, Auth, isError, prompt, toObject } from 'airgram'
+import { Airgram, Auth, prompt, toObject } from 'airgram'
 
 const airgram = new Airgram({
   apiId: process.env.APP_ID,
