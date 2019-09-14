@@ -5,6 +5,8 @@ import { AirgramProvider } from './AirgramProvider'
 import { installMixin } from './mixin'
 import { AirgramVue } from './types'
 
+export * from '@airgram/web'
+
 export function install<ContextT> (Vue: VueConstructor): void {
   if (install.installed) {
     return
