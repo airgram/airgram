@@ -7,15 +7,13 @@
   ],
   "command": {
     "version": {
-      "changelog": false,
+      "changelog": true,
       "conventionalCommits": true,
       "conventionalPrerelease": false,
       "preid": "next",
-      "message": "chore(release): publish 🚀",
-      "push": true
+      "message": "chore(release): publish 🚀"
     },
     "publish": {
-      "changelog": true,
       "contents": "dist/package"
     },
     "bootstrap": {
