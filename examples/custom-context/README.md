@@ -1,22 +1,26 @@
-# Basic usage Airgram with TypeScript 
+# Custom context example
 
-This is a simple example of basic usage [Airgram](https://github.com/airgram/airgram) for creating Telegram client with TypeScript.
+This is an example how to extend the default Airgram context.
 
 ## Installation
 1. Clone repository:
 ```bash
-$ git clone https://github.com/airgram/airgram-ts-example.git
+git clone https://github.com/airgram/airgram.git
 ```
 2. Install dependencies:
 
 ```bash
-$ cd airgram-ts-example
-$ npm i
+cd airgram
+yarn install
 ```
 
-3. Open `./env` and set your values
+3. Open the example directory
+
+```bash
+cd examples/custom-context
+```
 
 4. Run example:
 ```bash
-npm run dev
+yarn run dev
 ```
