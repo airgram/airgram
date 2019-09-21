@@ -3,6 +3,7 @@ import * as api from '@airgram/core/types/api'
 import Vue from 'vue'
 import { AirgramDollar } from './AirgramDollar'
 import { AirgramProvider } from './AirgramProvider'
+import './vue'
 
 export interface UpdateHandlers<ContextT = {}> {
   updateAuthorizationState?: (context: UpdateContext<api.UpdateAuthorizationState> & ContextT) => any
