@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@airgram/use-models": "^2.0.1",
-    "@types/tdweb": "link:/Users/esindger/www/test/DefinitelyTyped/types/tdweb"
+    "@types/tdweb": "1.4.0"
   },
   "gitHead": "ac5b43184c4848f72c100e5363ba414ed62a6cbe"
 }
