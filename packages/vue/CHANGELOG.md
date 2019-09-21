@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3-next.2](https://github.com/airgram/airgram/compare/@airgram/vue@0.1.3-next.1...@airgram/vue@0.1.3-next.2) (2019-09-21)
+
+
+### Bug Fixes
+
+* add vue module augmentation ([4097d1c](https://github.com/airgram/airgram/commit/4097d1c))
+
+
+
+
+
 ## [0.1.3-next.1](https://github.com/airgram/airgram/compare/@airgram/vue@0.1.3-next.0...@airgram/vue@0.1.3-next.1) (2019-09-21)
 
 
