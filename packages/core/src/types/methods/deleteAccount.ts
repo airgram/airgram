@@ -15,7 +15,7 @@ export interface DeleteAccountParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteAccountParams, OkUnion>>}
  */
-export type deleteAccount<ExtensionT> = (
+export type deleteAccount = (
   params?: DeleteAccountParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteAccountParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteAccountParams, OkUnion>>

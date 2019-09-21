@@ -14,7 +14,7 @@ export interface GetTextEntitiesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetTextEntitiesParams, TextEntitiesUnion>>}
  */
-export type getTextEntities<ExtensionT> = (
+export type getTextEntities = (
   params?: GetTextEntitiesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetTextEntitiesParams, TextEntitiesUnion> & ExtensionT>
+) => Promise<ApiResponse<GetTextEntitiesParams, TextEntitiesUnion>>

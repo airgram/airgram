@@ -14,7 +14,7 @@ export interface ClearRecentStickersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ClearRecentStickersParams, OkUnion>>}
  */
-export type clearRecentStickers<ExtensionT> = (
+export type clearRecentStickers = (
   params?: ClearRecentStickersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ClearRecentStickersParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ClearRecentStickersParams, OkUnion>>

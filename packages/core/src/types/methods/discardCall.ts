@@ -19,7 +19,7 @@ export interface DiscardCallParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DiscardCallParams, OkUnion>>}
  */
-export type discardCall<ExtensionT> = (
+export type discardCall = (
   params?: DiscardCallParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DiscardCallParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DiscardCallParams, OkUnion>>

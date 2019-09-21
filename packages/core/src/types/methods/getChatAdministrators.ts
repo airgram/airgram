@@ -12,7 +12,7 @@ export interface GetChatAdministratorsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatAdministratorsParams, UsersUnion>>}
  */
-export type getChatAdministrators<ExtensionT> = (
+export type getChatAdministrators = (
   params?: GetChatAdministratorsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatAdministratorsParams, UsersUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatAdministratorsParams, UsersUnion>>

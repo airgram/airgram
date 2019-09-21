@@ -17,7 +17,7 @@ export interface SetFileGenerationProgressParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetFileGenerationProgressParams, OkUnion>>}
  */
-export type setFileGenerationProgress<ExtensionT> = (
+export type setFileGenerationProgress = (
   params?: SetFileGenerationProgressParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetFileGenerationProgressParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetFileGenerationProgressParams, OkUnion>>

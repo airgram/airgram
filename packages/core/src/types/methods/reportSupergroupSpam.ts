@@ -18,7 +18,7 @@ export interface ReportSupergroupSpamParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ReportSupergroupSpamParams, OkUnion>>}
  */
-export type reportSupergroupSpam<ExtensionT> = (
+export type reportSupergroupSpam = (
   params?: ReportSupergroupSpamParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ReportSupergroupSpamParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ReportSupergroupSpamParams, OkUnion>>

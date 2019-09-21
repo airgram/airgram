@@ -14,7 +14,7 @@ export interface GetPaymentReceiptParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetPaymentReceiptParams, PaymentReceiptUnion>>}
  */
-export type getPaymentReceipt<ExtensionT> = (
+export type getPaymentReceipt = (
   params?: GetPaymentReceiptParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetPaymentReceiptParams, PaymentReceiptUnion> & ExtensionT>
+) => Promise<ApiResponse<GetPaymentReceiptParams, PaymentReceiptUnion>>

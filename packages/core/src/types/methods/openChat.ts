@@ -14,7 +14,7 @@ export interface OpenChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<OpenChatParams, OkUnion>>}
  */
-export type openChat<ExtensionT> = (
+export type openChat = (
   params?: OpenChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<OpenChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<OpenChatParams, OkUnion>>

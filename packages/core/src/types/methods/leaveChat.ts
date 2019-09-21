@@ -13,7 +13,7 @@ export interface LeaveChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<LeaveChatParams, OkUnion>>}
  */
-export type leaveChat<ExtensionT> = (
+export type leaveChat = (
   params?: LeaveChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<LeaveChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<LeaveChatParams, OkUnion>>

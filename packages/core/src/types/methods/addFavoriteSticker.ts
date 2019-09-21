@@ -15,7 +15,7 @@ export interface AddFavoriteStickerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddFavoriteStickerParams, OkUnion>>}
  */
-export type addFavoriteSticker<ExtensionT> = (
+export type addFavoriteSticker = (
   params?: AddFavoriteStickerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddFavoriteStickerParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddFavoriteStickerParams, OkUnion>>

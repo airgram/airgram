@@ -6,7 +6,7 @@ import { ProxiesUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, ProxiesUnion>>}
  */
-export type getProxies<ExtensionT> = (
+export type getProxies = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, ProxiesUnion> & ExtensionT>
+) => Promise<ApiResponse<never, ProxiesUnion>>

@@ -15,7 +15,7 @@ export interface SetBotUpdatesStatusParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetBotUpdatesStatusParams, OkUnion>>}
  */
-export type setBotUpdatesStatus<ExtensionT> = (
+export type setBotUpdatesStatus = (
   params?: SetBotUpdatesStatusParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetBotUpdatesStatusParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetBotUpdatesStatusParams, OkUnion>>

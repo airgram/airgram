@@ -16,7 +16,7 @@ export interface UploadStickerFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UploadStickerFileParams, FileUnion>>}
  */
-export type uploadStickerFile<ExtensionT> = (
+export type uploadStickerFile = (
   params?: UploadStickerFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<UploadStickerFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<UploadStickerFileParams, FileUnion>>

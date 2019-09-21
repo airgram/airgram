@@ -13,7 +13,7 @@ export interface ViewTrendingStickerSetsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ViewTrendingStickerSetsParams, OkUnion>>}
  */
-export type viewTrendingStickerSets<ExtensionT> = (
+export type viewTrendingStickerSets = (
   params?: ViewTrendingStickerSetsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ViewTrendingStickerSetsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ViewTrendingStickerSetsParams, OkUnion>>

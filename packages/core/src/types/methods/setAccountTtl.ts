@@ -14,7 +14,7 @@ export interface SetAccountTtlParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetAccountTtlParams, OkUnion>>}
  */
-export type setAccountTtl<ExtensionT> = (
+export type setAccountTtl = (
   params?: SetAccountTtlParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetAccountTtlParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetAccountTtlParams, OkUnion>>

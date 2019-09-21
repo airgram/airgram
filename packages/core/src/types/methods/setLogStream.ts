@@ -14,7 +14,7 @@ export interface SetLogStreamParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetLogStreamParams, OkUnion>>}
  */
-export type setLogStream<ExtensionT> = (
+export type setLogStream = (
   params?: SetLogStreamParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetLogStreamParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetLogStreamParams, OkUnion>>

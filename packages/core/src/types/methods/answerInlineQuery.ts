@@ -31,7 +31,7 @@ export interface AnswerInlineQueryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AnswerInlineQueryParams, OkUnion>>}
  */
-export type answerInlineQuery<ExtensionT> = (
+export type answerInlineQuery = (
   params?: AnswerInlineQueryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AnswerInlineQueryParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AnswerInlineQueryParams, OkUnion>>

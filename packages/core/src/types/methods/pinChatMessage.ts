@@ -17,7 +17,7 @@ export interface PinChatMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<PinChatMessageParams, OkUnion>>}
  */
-export type pinChatMessage<ExtensionT> = (
+export type pinChatMessage = (
   params?: PinChatMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<PinChatMessageParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<PinChatMessageParams, OkUnion>>

@@ -24,7 +24,7 @@ export interface CreateNewStickerSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateNewStickerSetParams, StickerSetUnion>>}
  */
-export type createNewStickerSet<ExtensionT> = (
+export type createNewStickerSet = (
   params?: CreateNewStickerSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreateNewStickerSetParams, StickerSetUnion> & ExtensionT>
+) => Promise<ApiResponse<CreateNewStickerSetParams, StickerSetUnion>>

@@ -12,7 +12,7 @@ export interface GetAllPassportElementsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetAllPassportElementsParams, PassportElementsUnion>>}
  */
-export type getAllPassportElements<ExtensionT> = (
+export type getAllPassportElements = (
   params?: GetAllPassportElementsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetAllPassportElementsParams, PassportElementsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetAllPassportElementsParams, PassportElementsUnion>>

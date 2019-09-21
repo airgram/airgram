@@ -12,8 +12,8 @@ export type TdLibConfig = Omit<api.TdlibParametersInput, '_'>
 
 export type PlainObjectToModelTransformer = (plainObject: TdObject) => ClassType<TdObject> | TdObject
 
-export type MiddlewareFn<ContextT> = (ctx: ContextT, next: () => Promise<any>) => any
-export type Middleware<ContextT> = { middleware: () => MiddlewareFn<ContextT> } | MiddlewareFn<ContextT>
+export type MiddlewareFn<ContextT = Context> = (ctx: ContextT, next: () => Promise<any>) => any
+export type Middleware<ContextT = Context> = { middleware: () => MiddlewareFn<ContextT> } | MiddlewareFn<ContextT>
 
 export interface Deferred {
   promise: Promise<void>
@@ -29,9 +29,9 @@ export interface Composer<ContextT> {
   use (...fns: Middleware<ContextT>[]): void
 }
 
-export interface Config<ContextT, ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
+export interface Config<ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
   provider: ProviderT
-  context?: ContextT | ((ctx: Context<{}>) => ContextT)
+  context?: Record<string, any> | ((ctx: Context) => Record<string, any>)
   models?: PlainObjectToModelTransformer
   databaseEncryptionKey?: string
   logVerbosityLevel?: number
@@ -39,21 +39,21 @@ export interface Config<ContextT, ProviderT extends TdProvider = TdProvider> ext
   token?: string
 }
 
-export interface Instance<ContextT = {}, ProviderT extends TdProvider = TdProvider> {
-  readonly api: ApiMethods<ContextT>
-  readonly config: Config<ContextT>
+export interface Instance<ProviderT extends TdProvider = TdProvider> {
+  readonly api: ApiMethods
+  readonly config: Config
   readonly provider: ProviderT
   readonly name: string
   handleError: ErrorHandler
 
-  readonly on: MiddlewareOn<ContextT>
+  readonly on: MiddlewareOn
 
   catch (handler: (error: Error) => void): void
 
   emit (update: TdObject): Promise<unknown>
 
   use (
-    ...fns: Middleware<(ApiResponse<unknown, TdObject> | UpdateContext<TdObject>) & ContextT>[]
+    ...fns: Middleware<(ApiResponse<unknown, TdObject> | UpdateContext<TdObject>)>[]
   ): void
 }
 
@@ -86,10 +86,6 @@ export interface TdProvider {
 export interface BaseTdObject {
   _: string
 }
-
-// export interface TdObject extends BaseTdObject {
-//   [key: string]: any
-// }
 
 export interface TdObject extends BaseTdObject {
   [key: string]: TdObject

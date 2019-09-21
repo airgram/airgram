@@ -22,7 +22,7 @@ export interface UploadFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UploadFileParams, FileUnion>>}
  */
-export type uploadFile<ExtensionT> = (
+export type uploadFile = (
   params?: UploadFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<UploadFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<UploadFileParams, FileUnion>>

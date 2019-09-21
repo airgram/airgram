@@ -13,7 +13,7 @@ export interface TestSquareIntParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestSquareIntParams, TestIntUnion>>}
  */
-export type testSquareInt<ExtensionT> = (
+export type testSquareInt = (
   params?: TestSquareIntParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestSquareIntParams, TestIntUnion> & ExtensionT>
+) => Promise<ApiResponse<TestSquareIntParams, TestIntUnion>>

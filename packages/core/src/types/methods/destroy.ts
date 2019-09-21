@@ -9,7 +9,7 @@ import { OkUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OkUnion>>}
  */
-export type destroy<ExtensionT> = (
+export type destroy = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<never, OkUnion>>

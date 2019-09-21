@@ -12,7 +12,7 @@ export interface RemoveBackgroundParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveBackgroundParams, OkUnion>>}
  */
-export type removeBackground<ExtensionT> = (
+export type removeBackground = (
   params?: RemoveBackgroundParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveBackgroundParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveBackgroundParams, OkUnion>>

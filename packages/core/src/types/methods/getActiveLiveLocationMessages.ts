@@ -7,7 +7,7 @@ import { MessagesUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, MessagesUnion>>}
  */
-export type getActiveLiveLocationMessages<ExtensionT> = (
+export type getActiveLiveLocationMessages = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<never, MessagesUnion>>

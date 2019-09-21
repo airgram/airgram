@@ -15,7 +15,7 @@ export interface SendChatSetTtlMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendChatSetTtlMessageParams, MessageUnion>>}
  */
-export type sendChatSetTtlMessage<ExtensionT> = (
+export type sendChatSetTtlMessage = (
   params?: SendChatSetTtlMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendChatSetTtlMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<SendChatSetTtlMessageParams, MessageUnion>>

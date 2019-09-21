@@ -13,7 +13,7 @@ export interface SetBioParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetBioParams, OkUnion>>}
  */
-export type setBio<ExtensionT> = (
+export type setBio = (
   params?: SetBioParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetBioParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetBioParams, OkUnion>>

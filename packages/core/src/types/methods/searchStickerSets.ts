@@ -13,7 +13,7 @@ export interface SearchStickerSetsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchStickerSetsParams, StickerSetsUnion>>}
  */
-export type searchStickerSets<ExtensionT> = (
+export type searchStickerSets = (
   params?: SearchStickerSetsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchStickerSetsParams, StickerSetsUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchStickerSetsParams, StickerSetsUnion>>

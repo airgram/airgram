@@ -14,7 +14,7 @@ export interface PingProxyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<PingProxyParams, SecondsUnion>>}
  */
-export type pingProxy<ExtensionT> = (
+export type pingProxy = (
   params?: PingProxyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<PingProxyParams, SecondsUnion> & ExtensionT>
+) => Promise<ApiResponse<PingProxyParams, SecondsUnion>>

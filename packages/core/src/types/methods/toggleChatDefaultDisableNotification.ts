@@ -15,7 +15,7 @@ export interface ToggleChatDefaultDisableNotificationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleChatDefaultDisableNotificationParams, OkUnion>>}
  */
-export type toggleChatDefaultDisableNotification<ExtensionT> = (
+export type toggleChatDefaultDisableNotification = (
   params?: ToggleChatDefaultDisableNotificationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ToggleChatDefaultDisableNotificationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ToggleChatDefaultDisableNotificationParams, OkUnion>>

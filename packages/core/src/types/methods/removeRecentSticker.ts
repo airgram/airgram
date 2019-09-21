@@ -17,7 +17,7 @@ export interface RemoveRecentStickerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveRecentStickerParams, OkUnion>>}
  */
-export type removeRecentSticker<ExtensionT> = (
+export type removeRecentSticker = (
   params?: RemoveRecentStickerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveRecentStickerParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveRecentStickerParams, OkUnion>>

@@ -26,7 +26,7 @@ export interface EditMessageMediaParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageMediaParams, MessageUnion>>}
  */
-export type editMessageMedia<ExtensionT> = (
+export type editMessageMedia = (
   params?: EditMessageMediaParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditMessageMediaParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<EditMessageMediaParams, MessageUnion>>

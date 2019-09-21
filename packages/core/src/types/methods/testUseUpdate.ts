@@ -7,7 +7,7 @@ import { UpdateUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, UpdateUnion>>}
  */
-export type testUseUpdate<ExtensionT> = (
+export type testUseUpdate = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, UpdateUnion> & ExtensionT>
+) => Promise<ApiResponse<never, UpdateUnion>>

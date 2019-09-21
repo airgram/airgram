@@ -23,7 +23,7 @@ export interface EditMessageLiveLocationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageLiveLocationParams, MessageUnion>>}
  */
-export type editMessageLiveLocation<ExtensionT> = (
+export type editMessageLiveLocation = (
   params?: EditMessageLiveLocationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditMessageLiveLocationParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<EditMessageLiveLocationParams, MessageUnion>>

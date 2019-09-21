@@ -15,7 +15,7 @@ export interface GetRepliedMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRepliedMessageParams, MessageUnion>>}
  */
-export type getRepliedMessage<ExtensionT> = (
+export type getRepliedMessage = (
   params?: GetRepliedMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetRepliedMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<GetRepliedMessageParams, MessageUnion>>

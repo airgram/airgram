@@ -41,7 +41,7 @@ export interface OptimizeStorageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<OptimizeStorageParams, StorageStatisticsUnion>>}
  */
-export type optimizeStorage<ExtensionT> = (
+export type optimizeStorage = (
   params?: OptimizeStorageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<OptimizeStorageParams, StorageStatisticsUnion> & ExtensionT>
+) => Promise<ApiResponse<OptimizeStorageParams, StorageStatisticsUnion>>

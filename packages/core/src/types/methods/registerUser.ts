@@ -14,7 +14,7 @@ export interface RegisterUserParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RegisterUserParams, OkUnion>>}
  */
-export type registerUser<ExtensionT> = (
+export type registerUser = (
   params?: RegisterUserParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RegisterUserParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RegisterUserParams, OkUnion>>

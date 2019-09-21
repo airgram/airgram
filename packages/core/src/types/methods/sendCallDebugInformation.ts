@@ -15,7 +15,7 @@ export interface SendCallDebugInformationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendCallDebugInformationParams, OkUnion>>}
  */
-export type sendCallDebugInformation<ExtensionT> = (
+export type sendCallDebugInformation = (
   params?: SendCallDebugInformationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendCallDebugInformationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SendCallDebugInformationParams, OkUnion>>

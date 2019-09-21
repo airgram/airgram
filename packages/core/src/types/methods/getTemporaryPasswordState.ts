@@ -6,7 +6,7 @@ import { TemporaryPasswordStateUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, TemporaryPasswordStateUnion>>}
  */
-export type getTemporaryPasswordState<ExtensionT> = (
+export type getTemporaryPasswordState = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, TemporaryPasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<never, TemporaryPasswordStateUnion>>

@@ -14,7 +14,7 @@ export interface ToggleChatIsMarkedAsUnreadParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleChatIsMarkedAsUnreadParams, OkUnion>>}
  */
-export type toggleChatIsMarkedAsUnread<ExtensionT> = (
+export type toggleChatIsMarkedAsUnread = (
   params?: ToggleChatIsMarkedAsUnreadParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ToggleChatIsMarkedAsUnreadParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ToggleChatIsMarkedAsUnreadParams, OkUnion>>

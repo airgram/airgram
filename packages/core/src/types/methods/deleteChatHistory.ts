@@ -19,7 +19,7 @@ export interface DeleteChatHistoryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteChatHistoryParams, OkUnion>>}
  */
-export type deleteChatHistory<ExtensionT> = (
+export type deleteChatHistory = (
   params?: DeleteChatHistoryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteChatHistoryParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteChatHistoryParams, OkUnion>>

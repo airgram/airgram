@@ -13,7 +13,7 @@ export interface SearchPublicChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchPublicChatParams, ChatUnion>>}
  */
-export type searchPublicChat<ExtensionT> = (
+export type searchPublicChat = (
   params?: SearchPublicChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchPublicChatParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchPublicChatParams, ChatUnion>>

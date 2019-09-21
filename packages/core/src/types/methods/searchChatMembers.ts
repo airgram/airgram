@@ -21,7 +21,7 @@ export interface SearchChatMembersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatMembersParams, ChatMembersUnion>>}
  */
-export type searchChatMembers<ExtensionT> = (
+export type searchChatMembers = (
   params?: SearchChatMembersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchChatMembersParams, ChatMembersUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchChatMembersParams, ChatMembersUnion>>

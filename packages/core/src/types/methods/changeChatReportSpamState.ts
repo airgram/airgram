@@ -16,7 +16,7 @@ export interface ChangeChatReportSpamStateParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ChangeChatReportSpamStateParams, OkUnion>>}
  */
-export type changeChatReportSpamState<ExtensionT> = (
+export type changeChatReportSpamState = (
   params?: ChangeChatReportSpamStateParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ChangeChatReportSpamStateParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ChangeChatReportSpamStateParams, OkUnion>>

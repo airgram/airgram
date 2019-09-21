@@ -18,7 +18,7 @@ export interface SetRecoveryEmailAddressParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetRecoveryEmailAddressParams, PasswordStateUnion>>}
  */
-export type setRecoveryEmailAddress<ExtensionT> = (
+export type setRecoveryEmailAddress = (
   params?: SetRecoveryEmailAddressParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetRecoveryEmailAddressParams, PasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<SetRecoveryEmailAddressParams, PasswordStateUnion>>

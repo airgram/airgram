@@ -15,7 +15,7 @@ export interface GetInlineGameHighScoresParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetInlineGameHighScoresParams, GameHighScoresUnion>>}
  */
-export type getInlineGameHighScores<ExtensionT> = (
+export type getInlineGameHighScores = (
   params?: GetInlineGameHighScoresParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetInlineGameHighScoresParams, GameHighScoresUnion> & ExtensionT>
+) => Promise<ApiResponse<GetInlineGameHighScoresParams, GameHighScoresUnion>>

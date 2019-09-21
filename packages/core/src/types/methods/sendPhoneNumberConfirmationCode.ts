@@ -20,7 +20,7 @@ export interface SendPhoneNumberConfirmationCodeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendPhoneNumberConfirmationCodeParams, AuthenticationCodeInfoUnion>>}
  */
-export type sendPhoneNumberConfirmationCode<ExtensionT> = (
+export type sendPhoneNumberConfirmationCode = (
   params?: SendPhoneNumberConfirmationCodeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendPhoneNumberConfirmationCodeParams, AuthenticationCodeInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<SendPhoneNumberConfirmationCodeParams, AuthenticationCodeInfoUnion>>

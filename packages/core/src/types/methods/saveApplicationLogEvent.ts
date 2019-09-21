@@ -18,7 +18,7 @@ export interface SaveApplicationLogEventParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SaveApplicationLogEventParams, OkUnion>>}
  */
-export type saveApplicationLogEvent<ExtensionT> = (
+export type saveApplicationLogEvent = (
   params?: SaveApplicationLogEventParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SaveApplicationLogEventParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SaveApplicationLogEventParams, OkUnion>>

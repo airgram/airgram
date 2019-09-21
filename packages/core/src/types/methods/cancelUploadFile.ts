@@ -13,7 +13,7 @@ export interface CancelUploadFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CancelUploadFileParams, OkUnion>>}
  */
-export type cancelUploadFile<ExtensionT> = (
+export type cancelUploadFile = (
   params?: CancelUploadFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CancelUploadFileParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CancelUploadFileParams, OkUnion>>

@@ -6,7 +6,7 @@ import { JsonValueUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, JsonValueUnion>>}
  */
-export type getApplicationConfig<ExtensionT> = (
+export type getApplicationConfig = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, JsonValueUnion> & ExtensionT>
+) => Promise<ApiResponse<never, JsonValueUnion>>

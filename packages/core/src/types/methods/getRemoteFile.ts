@@ -16,7 +16,7 @@ export interface GetRemoteFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRemoteFileParams, FileUnion>>}
  */
-export type getRemoteFile<ExtensionT> = (
+export type getRemoteFile = (
   params?: GetRemoteFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetRemoteFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<GetRemoteFileParams, FileUnion>>

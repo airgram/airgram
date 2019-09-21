@@ -13,7 +13,7 @@ export interface TestCallVectorIntParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestCallVectorIntParams, TestVectorIntUnion>>}
  */
-export type testCallVectorInt<ExtensionT> = (
+export type testCallVectorInt = (
   params?: TestCallVectorIntParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestCallVectorIntParams, TestVectorIntUnion> & ExtensionT>
+) => Promise<ApiResponse<TestCallVectorIntParams, TestVectorIntUnion>>

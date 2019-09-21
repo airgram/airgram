@@ -14,7 +14,7 @@ export interface GetPushReceiverIdParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetPushReceiverIdParams, PushReceiverIdUnion>>}
  */
-export type getPushReceiverId<ExtensionT> = (
+export type getPushReceiverId = (
   params?: GetPushReceiverIdParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetPushReceiverIdParams, PushReceiverIdUnion> & ExtensionT>
+) => Promise<ApiResponse<GetPushReceiverIdParams, PushReceiverIdUnion>>

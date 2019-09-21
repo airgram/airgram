@@ -14,7 +14,7 @@ export interface CheckChatInviteLinkParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckChatInviteLinkParams, ChatInviteLinkInfoUnion>>}
  */
-export type checkChatInviteLink<ExtensionT> = (
+export type checkChatInviteLink = (
   params?: CheckChatInviteLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckChatInviteLinkParams, ChatInviteLinkInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckChatInviteLinkParams, ChatInviteLinkInfoUnion>>

@@ -119,6 +119,8 @@ class Composer<ContextT extends BaseTdObject> implements BaseComposer<ContextT> 
 
   public static branch = branch
 
+  public static mount = mount
+
   public static optional = optional
 
   public static noop = noop

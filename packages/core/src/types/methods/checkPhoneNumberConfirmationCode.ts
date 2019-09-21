@@ -12,7 +12,7 @@ export interface CheckPhoneNumberConfirmationCodeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckPhoneNumberConfirmationCodeParams, OkUnion>>}
  */
-export type checkPhoneNumberConfirmationCode<ExtensionT> = (
+export type checkPhoneNumberConfirmationCode = (
   params?: CheckPhoneNumberConfirmationCodeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckPhoneNumberConfirmationCodeParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckPhoneNumberConfirmationCodeParams, OkUnion>>

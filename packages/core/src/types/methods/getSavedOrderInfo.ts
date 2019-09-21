@@ -6,7 +6,7 @@ import { OrderInfoUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OrderInfoUnion>>}
  */
-export type getSavedOrderInfo<ExtensionT> = (
+export type getSavedOrderInfo = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, OrderInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<never, OrderInfoUnion>>

@@ -15,7 +15,7 @@ export interface GetEmojiSuggestionsUrlParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetEmojiSuggestionsUrlParams, HttpUrlUnion>>}
  */
-export type getEmojiSuggestionsUrl<ExtensionT> = (
+export type getEmojiSuggestionsUrl = (
   params?: GetEmojiSuggestionsUrlParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetEmojiSuggestionsUrlParams, HttpUrlUnion> & ExtensionT>
+) => Promise<ApiResponse<GetEmojiSuggestionsUrlParams, HttpUrlUnion>>

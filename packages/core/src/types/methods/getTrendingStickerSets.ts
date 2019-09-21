@@ -6,7 +6,7 @@ import { StickerSetsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, StickerSetsUnion>>}
  */
-export type getTrendingStickerSets<ExtensionT> = (
+export type getTrendingStickerSets = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, StickerSetsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, StickerSetsUnion>>

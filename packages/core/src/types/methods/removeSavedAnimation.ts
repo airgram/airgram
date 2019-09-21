@@ -13,7 +13,7 @@ export interface RemoveSavedAnimationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveSavedAnimationParams, OkUnion>>}
  */
-export type removeSavedAnimation<ExtensionT> = (
+export type removeSavedAnimation = (
   params?: RemoveSavedAnimationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveSavedAnimationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveSavedAnimationParams, OkUnion>>

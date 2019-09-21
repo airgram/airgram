@@ -6,7 +6,7 @@ import { OkUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OkUnion>>}
  */
-export type testGetDifference<ExtensionT> = (
+export type testGetDifference = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<never, OkUnion>>

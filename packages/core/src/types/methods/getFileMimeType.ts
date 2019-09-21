@@ -14,7 +14,7 @@ export interface GetFileMimeTypeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetFileMimeTypeParams, TextUnion>>}
  */
-export type getFileMimeType<ExtensionT> = (
+export type getFileMimeType = (
   params?: GetFileMimeTypeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetFileMimeTypeParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<GetFileMimeTypeParams, TextUnion>>

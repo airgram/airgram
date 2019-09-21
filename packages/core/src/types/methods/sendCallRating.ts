@@ -21,7 +21,7 @@ export interface SendCallRatingParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendCallRatingParams, OkUnion>>}
  */
-export type sendCallRating<ExtensionT> = (
+export type sendCallRating = (
   params?: SendCallRatingParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendCallRatingParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SendCallRatingParams, OkUnion>>

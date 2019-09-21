@@ -21,7 +21,7 @@ export interface ReadFilePartParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ReadFilePartParams, FilePartUnion>>}
  */
-export type readFilePart<ExtensionT> = (
+export type readFilePart = (
   params?: ReadFilePartParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ReadFilePartParams, FilePartUnion> & ExtensionT>
+) => Promise<ApiResponse<ReadFilePartParams, FilePartUnion>>

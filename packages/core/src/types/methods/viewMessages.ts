@@ -21,7 +21,7 @@ export interface ViewMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ViewMessagesParams, OkUnion>>}
  */
-export type viewMessages<ExtensionT> = (
+export type viewMessages = (
   params?: ViewMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ViewMessagesParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ViewMessagesParams, OkUnion>>

@@ -18,7 +18,7 @@ export interface AddSavedAnimationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddSavedAnimationParams, OkUnion>>}
  */
-export type addSavedAnimation<ExtensionT> = (
+export type addSavedAnimation = (
   params?: AddSavedAnimationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddSavedAnimationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddSavedAnimationParams, OkUnion>>

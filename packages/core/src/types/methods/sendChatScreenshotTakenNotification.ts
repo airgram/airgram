@@ -13,7 +13,7 @@ export interface SendChatScreenshotTakenNotificationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendChatScreenshotTakenNotificationParams, OkUnion>>}
  */
-export type sendChatScreenshotTakenNotification<ExtensionT> = (
+export type sendChatScreenshotTakenNotification = (
   params?: SendChatScreenshotTakenNotificationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendChatScreenshotTakenNotificationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SendChatScreenshotTakenNotificationParams, OkUnion>>

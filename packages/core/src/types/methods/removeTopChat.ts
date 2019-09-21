@@ -17,7 +17,7 @@ export interface RemoveTopChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveTopChatParams, OkUnion>>}
  */
-export type removeTopChat<ExtensionT> = (
+export type removeTopChat = (
   params?: RemoveTopChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveTopChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveTopChatParams, OkUnion>>

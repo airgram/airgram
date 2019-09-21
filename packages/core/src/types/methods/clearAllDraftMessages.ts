@@ -13,7 +13,7 @@ export interface ClearAllDraftMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ClearAllDraftMessagesParams, OkUnion>>}
  */
-export type clearAllDraftMessages<ExtensionT> = (
+export type clearAllDraftMessages = (
   params?: ClearAllDraftMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ClearAllDraftMessagesParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ClearAllDraftMessagesParams, OkUnion>>

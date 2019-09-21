@@ -13,7 +13,7 @@ export interface SetDatabaseEncryptionKeyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetDatabaseEncryptionKeyParams, OkUnion>>}
  */
-export type setDatabaseEncryptionKey<ExtensionT> = (
+export type setDatabaseEncryptionKey = (
   params?: SetDatabaseEncryptionKeyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetDatabaseEncryptionKeyParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetDatabaseEncryptionKeyParams, OkUnion>>

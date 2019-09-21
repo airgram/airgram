@@ -12,7 +12,7 @@ export interface GetBasicGroupFullInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBasicGroupFullInfoParams, BasicGroupFullInfoUnion>>}
  */
-export type getBasicGroupFullInfo<ExtensionT> = (
+export type getBasicGroupFullInfo = (
   params?: GetBasicGroupFullInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetBasicGroupFullInfoParams, BasicGroupFullInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetBasicGroupFullInfoParams, BasicGroupFullInfoUnion>>

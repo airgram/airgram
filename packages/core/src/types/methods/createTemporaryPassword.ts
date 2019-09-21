@@ -15,7 +15,7 @@ export interface CreateTemporaryPasswordParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateTemporaryPasswordParams, TemporaryPasswordStateUnion>>}
  */
-export type createTemporaryPassword<ExtensionT> = (
+export type createTemporaryPassword = (
   params?: CreateTemporaryPasswordParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreateTemporaryPasswordParams, TemporaryPasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<CreateTemporaryPasswordParams, TemporaryPasswordStateUnion>>

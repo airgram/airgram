@@ -20,7 +20,7 @@ export interface StopPollParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<StopPollParams, OkUnion>>}
  */
-export type stopPoll<ExtensionT> = (
+export type stopPoll = (
   params?: StopPollParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<StopPollParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<StopPollParams, OkUnion>>

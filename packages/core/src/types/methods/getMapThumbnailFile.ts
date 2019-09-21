@@ -26,7 +26,7 @@ export interface GetMapThumbnailFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetMapThumbnailFileParams, FileUnion>>}
  */
-export type getMapThumbnailFile<ExtensionT> = (
+export type getMapThumbnailFile = (
   params?: GetMapThumbnailFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetMapThumbnailFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<GetMapThumbnailFileParams, FileUnion>>

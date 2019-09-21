@@ -13,7 +13,7 @@ export interface GetLogTagVerbosityLevelParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetLogTagVerbosityLevelParams, LogVerbosityLevelUnion>>}
  */
-export type getLogTagVerbosityLevel<ExtensionT> = (
+export type getLogTagVerbosityLevel = (
   params?: GetLogTagVerbosityLevelParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetLogTagVerbosityLevelParams, LogVerbosityLevelUnion> & ExtensionT>
+) => Promise<ApiResponse<GetLogTagVerbosityLevelParams, LogVerbosityLevelUnion>>

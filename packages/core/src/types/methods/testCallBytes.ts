@@ -13,7 +13,7 @@ export interface TestCallBytesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestCallBytesParams, TestBytesUnion>>}
  */
-export type testCallBytes<ExtensionT> = (
+export type testCallBytes = (
   params?: TestCallBytesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestCallBytesParams, TestBytesUnion> & ExtensionT>
+) => Promise<ApiResponse<TestCallBytesParams, TestBytesUnion>>

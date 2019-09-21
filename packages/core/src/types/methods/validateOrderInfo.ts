@@ -21,7 +21,7 @@ export interface ValidateOrderInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ValidateOrderInfoParams, ValidatedOrderInfoUnion>>}
  */
-export type validateOrderInfo<ExtensionT> = (
+export type validateOrderInfo = (
   params?: ValidateOrderInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ValidateOrderInfoParams, ValidatedOrderInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<ValidateOrderInfoParams, ValidatedOrderInfoUnion>>

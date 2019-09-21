@@ -12,7 +12,7 @@ export interface ReadAllChatMentionsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ReadAllChatMentionsParams, OkUnion>>}
  */
-export type readAllChatMentions<ExtensionT> = (
+export type readAllChatMentions = (
   params?: ReadAllChatMentionsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ReadAllChatMentionsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ReadAllChatMentionsParams, OkUnion>>

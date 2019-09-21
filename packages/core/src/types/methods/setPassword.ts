@@ -24,7 +24,7 @@ export interface SetPasswordParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetPasswordParams, PasswordStateUnion>>}
  */
-export type setPassword<ExtensionT> = (
+export type setPassword = (
   params?: SetPasswordParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetPasswordParams, PasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<SetPasswordParams, PasswordStateUnion>>

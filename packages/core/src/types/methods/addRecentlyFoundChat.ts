@@ -14,7 +14,7 @@ export interface AddRecentlyFoundChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddRecentlyFoundChatParams, OkUnion>>}
  */
-export type addRecentlyFoundChat<ExtensionT> = (
+export type addRecentlyFoundChat = (
   params?: AddRecentlyFoundChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddRecentlyFoundChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddRecentlyFoundChatParams, OkUnion>>

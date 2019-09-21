@@ -16,7 +16,7 @@ export interface FinishFileGenerationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<FinishFileGenerationParams, OkUnion>>}
  */
-export type finishFileGeneration<ExtensionT> = (
+export type finishFileGeneration = (
   params?: FinishFileGenerationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<FinishFileGenerationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<FinishFileGenerationParams, OkUnion>>

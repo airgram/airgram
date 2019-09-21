@@ -15,7 +15,7 @@ export interface GetMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetMessagesParams, MessagesUnion>>}
  */
-export type getMessages<ExtensionT> = (
+export type getMessages = (
   params?: GetMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetMessagesParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<GetMessagesParams, MessagesUnion>>

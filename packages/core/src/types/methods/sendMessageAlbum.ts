@@ -26,7 +26,7 @@ export interface SendMessageAlbumParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendMessageAlbumParams, MessagesUnion>>}
  */
-export type sendMessageAlbum<ExtensionT> = (
+export type sendMessageAlbum = (
   params?: SendMessageAlbumParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendMessageAlbumParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<SendMessageAlbumParams, MessagesUnion>>

@@ -14,7 +14,7 @@ export interface UpgradeBasicGroupChatToSupergroupChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UpgradeBasicGroupChatToSupergroupChatParams, ChatUnion>>}
  */
-export type upgradeBasicGroupChatToSupergroupChat<ExtensionT> = (
+export type upgradeBasicGroupChatToSupergroupChat = (
   params?: UpgradeBasicGroupChatToSupergroupChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<UpgradeBasicGroupChatToSupergroupChatParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<UpgradeBasicGroupChatToSupergroupChatParams, ChatUnion>>

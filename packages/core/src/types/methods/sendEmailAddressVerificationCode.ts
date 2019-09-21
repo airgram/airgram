@@ -12,7 +12,7 @@ export interface SendEmailAddressVerificationCodeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendEmailAddressVerificationCodeParams, EmailAddressAuthenticationCodeInfoUnion>>}
  */
-export type sendEmailAddressVerificationCode<ExtensionT> = (
+export type sendEmailAddressVerificationCode = (
   params?: SendEmailAddressVerificationCodeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendEmailAddressVerificationCodeParams, EmailAddressAuthenticationCodeInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<SendEmailAddressVerificationCodeParams, EmailAddressAuthenticationCodeInfoUnion>>

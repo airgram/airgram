@@ -17,7 +17,7 @@ export interface SetCustomLanguagePackStringParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetCustomLanguagePackStringParams, OkUnion>>}
  */
-export type setCustomLanguagePackString<ExtensionT> = (
+export type setCustomLanguagePackString = (
   params?: SetCustomLanguagePackStringParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetCustomLanguagePackStringParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetCustomLanguagePackStringParams, OkUnion>>

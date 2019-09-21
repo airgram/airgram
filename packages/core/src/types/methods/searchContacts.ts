@@ -16,7 +16,7 @@ export interface SearchContactsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchContactsParams, UsersUnion>>}
  */
-export type searchContacts<ExtensionT> = (
+export type searchContacts = (
   params?: SearchContactsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchContactsParams, UsersUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchContactsParams, UsersUnion>>

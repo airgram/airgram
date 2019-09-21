@@ -22,7 +22,7 @@ export interface SearchCallMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchCallMessagesParams, MessagesUnion>>}
  */
-export type searchCallMessages<ExtensionT> = (
+export type searchCallMessages = (
   params?: SearchCallMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchCallMessagesParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchCallMessagesParams, MessagesUnion>>

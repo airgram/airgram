@@ -18,7 +18,7 @@ export interface AddChatMembersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddChatMembersParams, OkUnion>>}
  */
-export type addChatMembers<ExtensionT> = (
+export type addChatMembers = (
   params?: AddChatMembersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddChatMembersParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddChatMembersParams, OkUnion>>

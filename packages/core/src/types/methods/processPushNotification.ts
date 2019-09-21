@@ -16,7 +16,7 @@ export interface ProcessPushNotificationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ProcessPushNotificationParams, OkUnion>>}
  */
-export type processPushNotification<ExtensionT> = (
+export type processPushNotification = (
   params?: ProcessPushNotificationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ProcessPushNotificationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ProcessPushNotificationParams, OkUnion>>

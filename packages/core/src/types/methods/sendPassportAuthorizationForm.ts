@@ -18,7 +18,7 @@ export interface SendPassportAuthorizationFormParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendPassportAuthorizationFormParams, OkUnion>>}
  */
-export type sendPassportAuthorizationForm<ExtensionT> = (
+export type sendPassportAuthorizationForm = (
   params?: SendPassportAuthorizationFormParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendPassportAuthorizationFormParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SendPassportAuthorizationFormParams, OkUnion>>

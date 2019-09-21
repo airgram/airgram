@@ -14,7 +14,7 @@ export interface SearchStickersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchStickersParams, StickersUnion>>}
  */
-export type searchStickers<ExtensionT> = (
+export type searchStickers = (
   params?: SearchStickersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchStickersParams, StickersUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchStickersParams, StickersUnion>>

@@ -15,7 +15,7 @@ export interface GetStorageStatisticsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetStorageStatisticsParams, StorageStatisticsUnion>>}
  */
-export type getStorageStatistics<ExtensionT> = (
+export type getStorageStatistics = (
   params?: GetStorageStatisticsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetStorageStatisticsParams, StorageStatisticsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetStorageStatisticsParams, StorageStatisticsUnion>>

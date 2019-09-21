@@ -19,7 +19,7 @@ export interface GetGroupsInCommonParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetGroupsInCommonParams, ChatsUnion>>}
  */
-export type getGroupsInCommon<ExtensionT> = (
+export type getGroupsInCommon = (
   params?: GetGroupsInCommonParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetGroupsInCommonParams, ChatsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetGroupsInCommonParams, ChatsUnion>>

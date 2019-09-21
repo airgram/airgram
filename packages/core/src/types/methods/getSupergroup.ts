@@ -13,7 +13,7 @@ export interface GetSupergroupParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetSupergroupParams, SupergroupUnion>>}
  */
-export type getSupergroup<ExtensionT> = (
+export type getSupergroup = (
   params?: GetSupergroupParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetSupergroupParams, SupergroupUnion> & ExtensionT>
+) => Promise<ApiResponse<GetSupergroupParams, SupergroupUnion>>

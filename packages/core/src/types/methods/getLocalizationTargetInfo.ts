@@ -14,7 +14,7 @@ export interface GetLocalizationTargetInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetLocalizationTargetInfoParams, LocalizationTargetInfoUnion>>}
  */
-export type getLocalizationTargetInfo<ExtensionT> = (
+export type getLocalizationTargetInfo = (
   params?: GetLocalizationTargetInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetLocalizationTargetInfoParams, LocalizationTargetInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetLocalizationTargetInfoParams, LocalizationTargetInfoUnion>>

@@ -18,7 +18,7 @@ export interface GetUserProfilePhotosParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetUserProfilePhotosParams, UserProfilePhotosUnion>>}
  */
-export type getUserProfilePhotos<ExtensionT> = (
+export type getUserProfilePhotos = (
   params?: GetUserProfilePhotosParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetUserProfilePhotosParams, UserProfilePhotosUnion> & ExtensionT>
+) => Promise<ApiResponse<GetUserProfilePhotosParams, UserProfilePhotosUnion>>

@@ -12,7 +12,7 @@ export interface GetRecentlyVisitedTMeUrlsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRecentlyVisitedTMeUrlsParams, TMeUrlsUnion>>}
  */
-export type getRecentlyVisitedTMeUrls<ExtensionT> = (
+export type getRecentlyVisitedTMeUrls = (
   params?: GetRecentlyVisitedTMeUrlsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetRecentlyVisitedTMeUrlsParams, TMeUrlsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetRecentlyVisitedTMeUrlsParams, TMeUrlsUnion>>

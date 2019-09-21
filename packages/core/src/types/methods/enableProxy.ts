@@ -12,7 +12,7 @@ export interface EnableProxyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EnableProxyParams, OkUnion>>}
  */
-export type enableProxy<ExtensionT> = (
+export type enableProxy = (
   params?: EnableProxyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EnableProxyParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<EnableProxyParams, OkUnion>>

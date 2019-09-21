@@ -18,7 +18,7 @@ export interface EditInlineMessageCaptionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditInlineMessageCaptionParams, OkUnion>>}
  */
-export type editInlineMessageCaption<ExtensionT> = (
+export type editInlineMessageCaption = (
   params?: EditInlineMessageCaptionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditInlineMessageCaptionParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<EditInlineMessageCaptionParams, OkUnion>>

@@ -1,8 +1,7 @@
-import { TDLibError } from './components'
-import { ApiResponse, BaseTdObject, Deferred, ErrorUnion } from './types'
+import { Composer, TDLibError } from './components'
+import { ApiResponse, BaseTdObject, Deferred, ErrorUnion, Middleware, MiddlewareOn } from './types'
 
 export function pick<T, K extends keyof T> (obj: T, paths: K[]): Pick<T, K> {
-  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   return { ...paths.reduce((mem, key) => ({ ...mem, [key]: obj[key] }), {}) } as Pick<T, K>
 }
 
@@ -25,4 +24,11 @@ export function toObject<T extends BaseTdObject> ({ response }: ApiResponse<any,
     throw new TDLibError(response.code, response.message)
   }
   return response
+}
+
+export const on: MiddlewareOn<Middleware> = (
+  predicateTypes: string | string[],
+  ...fns: Middleware<any>[]
+): Middleware => {
+  return Composer.mount(predicateTypes, ...fns)
 }

@@ -20,7 +20,7 @@ export interface SetAuthenticationPhoneNumberParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetAuthenticationPhoneNumberParams, OkUnion>>}
  */
-export type setAuthenticationPhoneNumber<ExtensionT> = (
+export type setAuthenticationPhoneNumber = (
   params?: SetAuthenticationPhoneNumberParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetAuthenticationPhoneNumberParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetAuthenticationPhoneNumberParams, OkUnion>>

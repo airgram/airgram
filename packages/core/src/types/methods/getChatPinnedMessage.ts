@@ -12,7 +12,7 @@ export interface GetChatPinnedMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatPinnedMessageParams, MessageUnion>>}
  */
-export type getChatPinnedMessage<ExtensionT> = (
+export type getChatPinnedMessage = (
   params?: GetChatPinnedMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatPinnedMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatPinnedMessageParams, MessageUnion>>

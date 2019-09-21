@@ -13,7 +13,7 @@ export interface TestCallStringParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestCallStringParams, TestStringUnion>>}
  */
-export type testCallString<ExtensionT> = (
+export type testCallString = (
   params?: TestCallStringParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestCallStringParams, TestStringUnion> & ExtensionT>
+) => Promise<ApiResponse<TestCallStringParams, TestStringUnion>>

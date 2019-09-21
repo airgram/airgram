@@ -14,7 +14,7 @@ export interface AnswerCustomQueryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AnswerCustomQueryParams, OkUnion>>}
  */
-export type answerCustomQuery<ExtensionT> = (
+export type answerCustomQuery = (
   params?: AnswerCustomQueryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AnswerCustomQueryParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AnswerCustomQueryParams, OkUnion>>

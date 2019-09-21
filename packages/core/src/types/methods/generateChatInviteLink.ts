@@ -14,7 +14,7 @@ export interface GenerateChatInviteLinkParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GenerateChatInviteLinkParams, ChatInviteLinkUnion>>}
  */
-export type generateChatInviteLink<ExtensionT> = (
+export type generateChatInviteLink = (
   params?: GenerateChatInviteLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GenerateChatInviteLinkParams, ChatInviteLinkUnion> & ExtensionT>
+) => Promise<ApiResponse<GenerateChatInviteLinkParams, ChatInviteLinkUnion>>

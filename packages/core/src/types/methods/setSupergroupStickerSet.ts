@@ -15,7 +15,7 @@ export interface SetSupergroupStickerSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetSupergroupStickerSetParams, OkUnion>>}
  */
-export type setSupergroupStickerSet<ExtensionT> = (
+export type setSupergroupStickerSet = (
   params?: SetSupergroupStickerSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetSupergroupStickerSetParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetSupergroupStickerSetParams, OkUnion>>

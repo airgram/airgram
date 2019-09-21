@@ -16,7 +16,7 @@ export interface SetChatTitleParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatTitleParams, OkUnion>>}
  */
-export type setChatTitle<ExtensionT> = (
+export type setChatTitle = (
   params?: SetChatTitleParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatTitleParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatTitleParams, OkUnion>>

@@ -14,7 +14,7 @@ export interface RemoveStickerFromSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveStickerFromSetParams, OkUnion>>}
  */
-export type removeStickerFromSet<ExtensionT> = (
+export type removeStickerFromSet = (
   params?: RemoveStickerFromSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveStickerFromSetParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveStickerFromSetParams, OkUnion>>

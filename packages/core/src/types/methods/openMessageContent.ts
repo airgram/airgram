@@ -18,7 +18,7 @@ export interface OpenMessageContentParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<OpenMessageContentParams, OkUnion>>}
  */
-export type openMessageContent<ExtensionT> = (
+export type openMessageContent = (
   params?: OpenMessageContentParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<OpenMessageContentParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<OpenMessageContentParams, OkUnion>>

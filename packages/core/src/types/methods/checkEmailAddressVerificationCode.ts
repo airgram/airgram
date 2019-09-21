@@ -12,7 +12,7 @@ export interface CheckEmailAddressVerificationCodeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckEmailAddressVerificationCodeParams, OkUnion>>}
  */
-export type checkEmailAddressVerificationCode<ExtensionT> = (
+export type checkEmailAddressVerificationCode = (
   params?: CheckEmailAddressVerificationCodeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckEmailAddressVerificationCodeParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckEmailAddressVerificationCodeParams, OkUnion>>

@@ -17,7 +17,7 @@ export interface AnswerShippingQueryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AnswerShippingQueryParams, OkUnion>>}
  */
-export type answerShippingQuery<ExtensionT> = (
+export type answerShippingQuery = (
   params?: AnswerShippingQueryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AnswerShippingQueryParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AnswerShippingQueryParams, OkUnion>>

@@ -12,7 +12,7 @@ export interface GetUserFullInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetUserFullInfoParams, UserFullInfoUnion>>}
  */
-export type getUserFullInfo<ExtensionT> = (
+export type getUserFullInfo = (
   params?: GetUserFullInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetUserFullInfoParams, UserFullInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetUserFullInfoParams, UserFullInfoUnion>>

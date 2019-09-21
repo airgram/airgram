@@ -15,7 +15,7 @@ export interface SetProfilePhotoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetProfilePhotoParams, OkUnion>>}
  */
-export type setProfilePhoto<ExtensionT> = (
+export type setProfilePhoto = (
   params?: SetProfilePhotoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetProfilePhotoParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetProfilePhotoParams, OkUnion>>

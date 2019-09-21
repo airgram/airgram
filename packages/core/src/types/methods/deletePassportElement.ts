@@ -13,7 +13,7 @@ export interface DeletePassportElementParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeletePassportElementParams, OkUnion>>}
  */
-export type deletePassportElement<ExtensionT> = (
+export type deletePassportElement = (
   params?: DeletePassportElementParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeletePassportElementParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeletePassportElementParams, OkUnion>>

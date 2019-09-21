@@ -12,7 +12,7 @@ export interface GetFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetFileParams, FileUnion>>}
  */
-export type getFile<ExtensionT> = (
+export type getFile = (
   params?: GetFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<GetFileParams, FileUnion>>

@@ -12,7 +12,7 @@ export interface CloseSecretChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CloseSecretChatParams, OkUnion>>}
  */
-export type closeSecretChat<ExtensionT> = (
+export type closeSecretChat = (
   params?: CloseSecretChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CloseSecretChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CloseSecretChatParams, OkUnion>>

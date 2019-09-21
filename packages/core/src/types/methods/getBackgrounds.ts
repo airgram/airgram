@@ -13,7 +13,7 @@ export interface GetBackgroundsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBackgroundsParams, BackgroundsUnion>>}
  */
-export type getBackgrounds<ExtensionT> = (
+export type getBackgrounds = (
   params?: GetBackgroundsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetBackgroundsParams, BackgroundsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetBackgroundsParams, BackgroundsUnion>>

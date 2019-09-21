@@ -8,7 +8,7 @@ import { OkUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OkUnion>>}
  */
-export type close<ExtensionT> = (
+export type close = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<never, OkUnion>>

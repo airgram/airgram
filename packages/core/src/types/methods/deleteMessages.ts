@@ -17,7 +17,7 @@ export interface DeleteMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteMessagesParams, OkUnion>>}
  */
-export type deleteMessages<ExtensionT> = (
+export type deleteMessages = (
   params?: DeleteMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteMessagesParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteMessagesParams, OkUnion>>

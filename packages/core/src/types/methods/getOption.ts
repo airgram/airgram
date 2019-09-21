@@ -13,7 +13,7 @@ export interface GetOptionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetOptionParams, OptionValueUnion>>}
  */
-export type getOption<ExtensionT> = (
+export type getOption = (
   params?: GetOptionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetOptionParams, OptionValueUnion> & ExtensionT>
+) => Promise<ApiResponse<GetOptionParams, OptionValueUnion>>

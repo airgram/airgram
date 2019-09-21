@@ -24,7 +24,7 @@ export interface SendPaymentFormParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendPaymentFormParams, PaymentResultUnion>>}
  */
-export type sendPaymentForm<ExtensionT> = (
+export type sendPaymentForm = (
   params?: SendPaymentFormParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendPaymentFormParams, PaymentResultUnion> & ExtensionT>
+) => Promise<ApiResponse<SendPaymentFormParams, PaymentResultUnion>>

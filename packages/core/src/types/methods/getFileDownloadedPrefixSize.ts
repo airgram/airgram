@@ -15,7 +15,7 @@ export interface GetFileDownloadedPrefixSizeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetFileDownloadedPrefixSizeParams, CountUnion>>}
  */
-export type getFileDownloadedPrefixSize<ExtensionT> = (
+export type getFileDownloadedPrefixSize = (
   params?: GetFileDownloadedPrefixSizeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetFileDownloadedPrefixSizeParams, CountUnion> & ExtensionT>
+) => Promise<ApiResponse<GetFileDownloadedPrefixSizeParams, CountUnion>>

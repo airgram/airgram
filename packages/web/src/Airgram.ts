@@ -1,11 +1,11 @@
 import { Airgram as BaseAirgram, Config } from '@airgram/core'
 import { TdProvider, TdWebProviderConfig } from './components'
 
-export interface AirgramConfig<ContextT>
-  extends Omit<Config<ContextT>, 'provider'>, TdWebProviderConfig {}
+export interface AirgramConfig
+  extends Omit<Config, 'provider'>, TdWebProviderConfig {}
 
-export class Airgram<ContextT = {}> extends BaseAirgram<ContextT, TdProvider> {
-  public constructor (config: AirgramConfig<ContextT>) {
+export class Airgram extends BaseAirgram<TdProvider> {
+  public constructor (config: AirgramConfig) {
     const {
       instanceName,
       isBackground,

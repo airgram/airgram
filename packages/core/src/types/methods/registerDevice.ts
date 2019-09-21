@@ -17,7 +17,7 @@ export interface RegisterDeviceParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RegisterDeviceParams, PushReceiverIdUnion>>}
  */
-export type registerDevice<ExtensionT> = (
+export type registerDevice = (
   params?: RegisterDeviceParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RegisterDeviceParams, PushReceiverIdUnion> & ExtensionT>
+) => Promise<ApiResponse<RegisterDeviceParams, PushReceiverIdUnion>>

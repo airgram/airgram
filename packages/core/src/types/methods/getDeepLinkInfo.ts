@@ -14,7 +14,7 @@ export interface GetDeepLinkInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetDeepLinkInfoParams, DeepLinkInfoUnion>>}
  */
-export type getDeepLinkInfo<ExtensionT> = (
+export type getDeepLinkInfo = (
   params?: GetDeepLinkInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetDeepLinkInfoParams, DeepLinkInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetDeepLinkInfoParams, DeepLinkInfoUnion>>

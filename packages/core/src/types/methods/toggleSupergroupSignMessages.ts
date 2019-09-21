@@ -14,7 +14,7 @@ export interface ToggleSupergroupSignMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleSupergroupSignMessagesParams, OkUnion>>}
  */
-export type toggleSupergroupSignMessages<ExtensionT> = (
+export type toggleSupergroupSignMessages = (
   params?: ToggleSupergroupSignMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ToggleSupergroupSignMessagesParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ToggleSupergroupSignMessagesParams, OkUnion>>

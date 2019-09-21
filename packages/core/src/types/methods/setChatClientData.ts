@@ -14,7 +14,7 @@ export interface SetChatClientDataParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatClientDataParams, OkUnion>>}
  */
-export type setChatClientData<ExtensionT> = (
+export type setChatClientData = (
   params?: SetChatClientDataParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatClientDataParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatClientDataParams, OkUnion>>

@@ -19,7 +19,7 @@ export interface GetPassportAuthorizationFormParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetPassportAuthorizationFormParams, PassportAuthorizationFormUnion>>}
  */
-export type getPassportAuthorizationForm<ExtensionT> = (
+export type getPassportAuthorizationForm = (
   params?: GetPassportAuthorizationFormParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetPassportAuthorizationFormParams, PassportAuthorizationFormUnion> & ExtensionT>
+) => Promise<ApiResponse<GetPassportAuthorizationFormParams, PassportAuthorizationFormUnion>>

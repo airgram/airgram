@@ -13,7 +13,7 @@ export interface JoinChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<JoinChatParams, OkUnion>>}
  */
-export type joinChat<ExtensionT> = (
+export type joinChat = (
   params?: JoinChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<JoinChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<JoinChatParams, OkUnion>>

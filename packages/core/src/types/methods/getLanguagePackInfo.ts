@@ -13,7 +13,7 @@ export interface GetLanguagePackInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetLanguagePackInfoParams, LanguagePackInfoUnion>>}
  */
-export type getLanguagePackInfo<ExtensionT> = (
+export type getLanguagePackInfo = (
   params?: GetLanguagePackInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetLanguagePackInfoParams, LanguagePackInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetLanguagePackInfoParams, LanguagePackInfoUnion>>

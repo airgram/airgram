@@ -7,7 +7,7 @@ import { TextUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, TextUnion>>}
  */
-export type getInviteText<ExtensionT> = (
+export type getInviteText = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<never, TextUnion>>

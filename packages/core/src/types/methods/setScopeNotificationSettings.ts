@@ -20,7 +20,7 @@ export interface SetScopeNotificationSettingsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetScopeNotificationSettingsParams, OkUnion>>}
  */
-export type setScopeNotificationSettings<ExtensionT> = (
+export type setScopeNotificationSettings = (
   params?: SetScopeNotificationSettingsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetScopeNotificationSettingsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetScopeNotificationSettingsParams, OkUnion>>

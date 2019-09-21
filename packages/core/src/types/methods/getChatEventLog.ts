@@ -29,7 +29,7 @@ export interface GetChatEventLogParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatEventLogParams, ChatEventsUnion>>}
  */
-export type getChatEventLog<ExtensionT> = (
+export type getChatEventLog = (
   params?: GetChatEventLogParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatEventLogParams, ChatEventsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatEventLogParams, ChatEventsUnion>>

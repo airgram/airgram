@@ -14,7 +14,7 @@ export interface SearchHashtagsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchHashtagsParams, HashtagsUnion>>}
  */
-export type searchHashtags<ExtensionT> = (
+export type searchHashtags = (
   params?: SearchHashtagsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchHashtagsParams, HashtagsUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchHashtagsParams, HashtagsUnion>>

@@ -6,7 +6,7 @@ import { PasswordStateUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, PasswordStateUnion>>}
  */
-export type getPasswordState<ExtensionT> = (
+export type getPasswordState = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, PasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<never, PasswordStateUnion>>

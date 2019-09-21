@@ -28,7 +28,7 @@ export interface SendMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendMessageParams, MessageUnion>>}
  */
-export type sendMessage<ExtensionT> = (
+export type sendMessage = (
   params?: SendMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<SendMessageParams, MessageUnion>>

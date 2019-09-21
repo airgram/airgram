@@ -14,7 +14,7 @@ export interface SendCustomRequestParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendCustomRequestParams, CustomRequestResultUnion>>}
  */
-export type sendCustomRequest<ExtensionT> = (
+export type sendCustomRequest = (
   params?: SendCustomRequestParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendCustomRequestParams, CustomRequestResultUnion> & ExtensionT>
+) => Promise<ApiResponse<SendCustomRequestParams, CustomRequestResultUnion>>

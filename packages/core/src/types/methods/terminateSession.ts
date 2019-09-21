@@ -12,7 +12,7 @@ export interface TerminateSessionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TerminateSessionParams, OkUnion>>}
  */
-export type terminateSession<ExtensionT> = (
+export type terminateSession = (
   params?: TerminateSessionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TerminateSessionParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<TerminateSessionParams, OkUnion>>

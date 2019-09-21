@@ -14,7 +14,7 @@ export interface GetWebPagePreviewParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetWebPagePreviewParams, WebPageUnion>>}
  */
-export type getWebPagePreview<ExtensionT> = (
+export type getWebPagePreview = (
   params?: GetWebPagePreviewParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetWebPagePreviewParams, WebPageUnion> & ExtensionT>
+) => Promise<ApiResponse<GetWebPagePreviewParams, WebPageUnion>>

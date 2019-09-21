@@ -7,7 +7,7 @@ import { OkUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OkUnion>>}
  */
-export type resendAuthenticationCode<ExtensionT> = (
+export type resendAuthenticationCode = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<never, OkUnion>>

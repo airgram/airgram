@@ -13,7 +13,7 @@ export interface GetRecoveryEmailAddressParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRecoveryEmailAddressParams, RecoveryEmailAddressUnion>>}
  */
-export type getRecoveryEmailAddress<ExtensionT> = (
+export type getRecoveryEmailAddress = (
   params?: GetRecoveryEmailAddressParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetRecoveryEmailAddressParams, RecoveryEmailAddressUnion> & ExtensionT>
+) => Promise<ApiResponse<GetRecoveryEmailAddressParams, RecoveryEmailAddressUnion>>

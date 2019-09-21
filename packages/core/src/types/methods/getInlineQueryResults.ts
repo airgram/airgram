@@ -23,7 +23,7 @@ export interface GetInlineQueryResultsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetInlineQueryResultsParams, InlineQueryResultsUnion>>}
  */
-export type getInlineQueryResults<ExtensionT> = (
+export type getInlineQueryResults = (
   params?: GetInlineQueryResultsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetInlineQueryResultsParams, InlineQueryResultsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetInlineQueryResultsParams, InlineQueryResultsUnion>>

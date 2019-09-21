@@ -20,7 +20,7 @@ export interface ResendMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ResendMessagesParams, MessagesUnion>>}
  */
-export type resendMessages<ExtensionT> = (
+export type resendMessages = (
   params?: ResendMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ResendMessagesParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<ResendMessagesParams, MessagesUnion>>

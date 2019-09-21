@@ -12,7 +12,7 @@ export interface UnblockUserParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UnblockUserParams, OkUnion>>}
  */
-export type unblockUser<ExtensionT> = (
+export type unblockUser = (
   params?: UnblockUserParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<UnblockUserParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<UnblockUserParams, OkUnion>>

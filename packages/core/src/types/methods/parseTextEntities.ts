@@ -16,7 +16,7 @@ export interface ParseTextEntitiesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ParseTextEntitiesParams, FormattedTextUnion>>}
  */
-export type parseTextEntities<ExtensionT> = (
+export type parseTextEntities = (
   params?: ParseTextEntitiesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ParseTextEntitiesParams, FormattedTextUnion> & ExtensionT>
+) => Promise<ApiResponse<ParseTextEntitiesParams, FormattedTextUnion>>

@@ -12,7 +12,7 @@ export interface RemoveRecentlyFoundChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveRecentlyFoundChatParams, OkUnion>>}
  */
-export type removeRecentlyFoundChat<ExtensionT> = (
+export type removeRecentlyFoundChat = (
   params?: RemoveRecentlyFoundChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveRecentlyFoundChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveRecentlyFoundChatParams, OkUnion>>

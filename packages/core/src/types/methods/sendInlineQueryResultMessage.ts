@@ -30,7 +30,7 @@ export interface SendInlineQueryResultMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendInlineQueryResultMessageParams, MessageUnion>>}
  */
-export type sendInlineQueryResultMessage<ExtensionT> = (
+export type sendInlineQueryResultMessage = (
   params?: SendInlineQueryResultMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendInlineQueryResultMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<SendInlineQueryResultMessageParams, MessageUnion>>

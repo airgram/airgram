@@ -16,7 +16,7 @@ export interface SetStickerPositionInSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetStickerPositionInSetParams, OkUnion>>}
  */
-export type setStickerPositionInSet<ExtensionT> = (
+export type setStickerPositionInSet = (
   params?: SetStickerPositionInSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetStickerPositionInSetParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetStickerPositionInSetParams, OkUnion>>

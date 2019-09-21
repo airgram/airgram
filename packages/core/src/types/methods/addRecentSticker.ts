@@ -20,7 +20,7 @@ export interface AddRecentStickerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddRecentStickerParams, StickersUnion>>}
  */
-export type addRecentSticker<ExtensionT> = (
+export type addRecentSticker = (
   params?: AddRecentStickerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddRecentStickerParams, StickersUnion> & ExtensionT>
+) => Promise<ApiResponse<AddRecentStickerParams, StickersUnion>>

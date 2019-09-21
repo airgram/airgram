@@ -12,7 +12,7 @@ export interface CheckRecoveryEmailAddressCodeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckRecoveryEmailAddressCodeParams, PasswordStateUnion>>}
  */
-export type checkRecoveryEmailAddressCode<ExtensionT> = (
+export type checkRecoveryEmailAddressCode = (
   params?: CheckRecoveryEmailAddressCodeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckRecoveryEmailAddressCodeParams, PasswordStateUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckRecoveryEmailAddressCodeParams, PasswordStateUnion>>

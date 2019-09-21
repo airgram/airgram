@@ -16,7 +16,7 @@ export interface DeleteChatReplyMarkupParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteChatReplyMarkupParams, OkUnion>>}
  */
-export type deleteChatReplyMarkup<ExtensionT> = (
+export type deleteChatReplyMarkup = (
   params?: DeleteChatReplyMarkupParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteChatReplyMarkupParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteChatReplyMarkupParams, OkUnion>>

@@ -14,7 +14,7 @@ export interface SetUsernameParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetUsernameParams, OkUnion>>}
  */
-export type setUsername<ExtensionT> = (
+export type setUsername = (
   params?: SetUsernameParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetUsernameParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetUsernameParams, OkUnion>>

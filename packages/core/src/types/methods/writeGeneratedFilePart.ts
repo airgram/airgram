@@ -19,7 +19,7 @@ export interface WriteGeneratedFilePartParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<WriteGeneratedFilePartParams, OkUnion>>}
  */
-export type writeGeneratedFilePart<ExtensionT> = (
+export type writeGeneratedFilePart = (
   params?: WriteGeneratedFilePartParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<WriteGeneratedFilePartParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<WriteGeneratedFilePartParams, OkUnion>>

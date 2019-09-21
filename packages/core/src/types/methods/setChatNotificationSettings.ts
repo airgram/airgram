@@ -16,7 +16,7 @@ export interface SetChatNotificationSettingsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatNotificationSettingsParams, OkUnion>>}
  */
-export type setChatNotificationSettings<ExtensionT> = (
+export type setChatNotificationSettings = (
   params?: SetChatNotificationSettingsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatNotificationSettingsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatNotificationSettingsParams, OkUnion>>

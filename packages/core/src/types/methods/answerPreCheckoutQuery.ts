@@ -14,7 +14,7 @@ export interface AnswerPreCheckoutQueryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AnswerPreCheckoutQueryParams, OkUnion>>}
  */
-export type answerPreCheckoutQuery<ExtensionT> = (
+export type answerPreCheckoutQuery = (
   params?: AnswerPreCheckoutQueryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AnswerPreCheckoutQueryParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AnswerPreCheckoutQueryParams, OkUnion>>

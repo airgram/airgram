@@ -7,7 +7,7 @@ import { EmailAddressAuthenticationCodeInfoUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, EmailAddressAuthenticationCodeInfoUnion>>}
  */
-export type requestPasswordRecovery<ExtensionT> = (
+export type requestPasswordRecovery = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, EmailAddressAuthenticationCodeInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<never, EmailAddressAuthenticationCodeInfoUnion>>

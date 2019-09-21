@@ -14,7 +14,7 @@ export interface GetRecentStickersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRecentStickersParams, StickersUnion>>}
  */
-export type getRecentStickers<ExtensionT> = (
+export type getRecentStickers = (
   params?: GetRecentStickersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetRecentStickersParams, StickersUnion> & ExtensionT>
+) => Promise<ApiResponse<GetRecentStickersParams, StickersUnion>>

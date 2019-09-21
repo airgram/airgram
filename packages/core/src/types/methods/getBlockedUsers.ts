@@ -15,7 +15,7 @@ export interface GetBlockedUsersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBlockedUsersParams, UsersUnion>>}
  */
-export type getBlockedUsers<ExtensionT> = (
+export type getBlockedUsers = (
   params?: GetBlockedUsersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetBlockedUsersParams, UsersUnion> & ExtensionT>
+) => Promise<ApiResponse<GetBlockedUsersParams, UsersUnion>>

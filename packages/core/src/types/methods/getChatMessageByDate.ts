@@ -15,7 +15,7 @@ export interface GetChatMessageByDateParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatMessageByDateParams, MessageUnion>>}
  */
-export type getChatMessageByDate<ExtensionT> = (
+export type getChatMessageByDate = (
   params?: GetChatMessageByDateParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatMessageByDateParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatMessageByDateParams, MessageUnion>>

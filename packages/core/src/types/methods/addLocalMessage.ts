@@ -26,7 +26,7 @@ export interface AddLocalMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddLocalMessageParams, MessageUnion>>}
  */
-export type addLocalMessage<ExtensionT> = (
+export type addLocalMessage = (
   params?: AddLocalMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddLocalMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<AddLocalMessageParams, MessageUnion>>

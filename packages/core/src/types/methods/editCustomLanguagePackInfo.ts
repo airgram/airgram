@@ -15,7 +15,7 @@ export interface EditCustomLanguagePackInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditCustomLanguagePackInfoParams, OkUnion>>}
  */
-export type editCustomLanguagePackInfo<ExtensionT> = (
+export type editCustomLanguagePackInfo = (
   params?: EditCustomLanguagePackInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditCustomLanguagePackInfoParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<EditCustomLanguagePackInfoParams, OkUnion>>

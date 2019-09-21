@@ -15,7 +15,7 @@ export interface SetChatDraftMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatDraftMessageParams, OkUnion>>}
  */
-export type setChatDraftMessage<ExtensionT> = (
+export type setChatDraftMessage = (
   params?: SetChatDraftMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatDraftMessageParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatDraftMessageParams, OkUnion>>

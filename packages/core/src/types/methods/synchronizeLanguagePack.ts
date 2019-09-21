@@ -14,7 +14,7 @@ export interface SynchronizeLanguagePackParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SynchronizeLanguagePackParams, OkUnion>>}
  */
-export type synchronizeLanguagePack<ExtensionT> = (
+export type synchronizeLanguagePack = (
   params?: SynchronizeLanguagePackParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SynchronizeLanguagePackParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SynchronizeLanguagePackParams, OkUnion>>

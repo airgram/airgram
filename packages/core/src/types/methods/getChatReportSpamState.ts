@@ -12,7 +12,7 @@ export interface GetChatReportSpamStateParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatReportSpamStateParams, ChatReportSpamStateUnion>>}
  */
-export type getChatReportSpamState<ExtensionT> = (
+export type getChatReportSpamState = (
   params?: GetChatReportSpamStateParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatReportSpamStateParams, ChatReportSpamStateUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatReportSpamStateParams, ChatReportSpamStateUnion>>

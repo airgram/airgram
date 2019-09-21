@@ -7,7 +7,7 @@ import { LogVerbosityLevelUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, LogVerbosityLevelUnion>>}
  */
-export type getLogVerbosityLevel<ExtensionT> = (
+export type getLogVerbosityLevel = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, LogVerbosityLevelUnion> & ExtensionT>
+) => Promise<ApiResponse<never, LogVerbosityLevelUnion>>

@@ -14,7 +14,7 @@ export interface GetFileExtensionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetFileExtensionParams, TextUnion>>}
  */
-export type getFileExtension<ExtensionT> = (
+export type getFileExtension = (
   params?: GetFileExtensionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetFileExtensionParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<GetFileExtensionParams, TextUnion>>

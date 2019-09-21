@@ -13,7 +13,7 @@ export interface SetAlarmParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetAlarmParams, OkUnion>>}
  */
-export type setAlarm<ExtensionT> = (
+export type setAlarm = (
   params?: SetAlarmParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetAlarmParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetAlarmParams, OkUnion>>

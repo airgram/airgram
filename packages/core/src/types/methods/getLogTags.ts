@@ -8,7 +8,7 @@ import { LogTagsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, LogTagsUnion>>}
  */
-export type getLogTags<ExtensionT> = (
+export type getLogTags = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, LogTagsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, LogTagsUnion>>

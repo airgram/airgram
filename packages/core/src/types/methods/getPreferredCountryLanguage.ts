@@ -15,7 +15,7 @@ export interface GetPreferredCountryLanguageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetPreferredCountryLanguageParams, TextUnion>>}
  */
-export type getPreferredCountryLanguage<ExtensionT> = (
+export type getPreferredCountryLanguage = (
   params?: GetPreferredCountryLanguageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetPreferredCountryLanguageParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<GetPreferredCountryLanguageParams, TextUnion>>

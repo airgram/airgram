@@ -17,7 +17,7 @@ export interface CreateNewSupergroupChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateNewSupergroupChatParams, ChatUnion>>}
  */
-export type createNewSupergroupChat<ExtensionT> = (
+export type createNewSupergroupChat = (
   params?: CreateNewSupergroupChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreateNewSupergroupChatParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<CreateNewSupergroupChatParams, ChatUnion>>

@@ -6,7 +6,7 @@ import { CountUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, CountUnion>>}
  */
-export type getImportedContactCount<ExtensionT> = (
+export type getImportedContactCount = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, CountUnion> & ExtensionT>
+) => Promise<ApiResponse<never, CountUnion>>

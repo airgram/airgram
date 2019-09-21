@@ -18,7 +18,7 @@ export interface SetPassportElementParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetPassportElementParams, PassportElementUnion>>}
  */
-export type setPassportElement<ExtensionT> = (
+export type setPassportElement = (
   params?: SetPassportElementParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetPassportElementParams, PassportElementUnion> & ExtensionT>
+) => Promise<ApiResponse<SetPassportElementParams, PassportElementUnion>>

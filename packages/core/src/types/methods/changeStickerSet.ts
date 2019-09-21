@@ -17,7 +17,7 @@ export interface ChangeStickerSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ChangeStickerSetParams, OkUnion>>}
  */
-export type changeStickerSet<ExtensionT> = (
+export type changeStickerSet = (
   params?: ChangeStickerSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ChangeStickerSetParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ChangeStickerSetParams, OkUnion>>

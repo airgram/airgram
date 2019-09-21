@@ -14,7 +14,7 @@ export interface SetTdlibParametersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetTdlibParametersParams, OkUnion>>}
  */
-export type setTdlibParameters<ExtensionT> = (
+export type setTdlibParameters = (
   params?: SetTdlibParametersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetTdlibParametersParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetTdlibParametersParams, OkUnion>>

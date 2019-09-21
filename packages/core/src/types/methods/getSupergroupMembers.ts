@@ -23,7 +23,7 @@ export interface GetSupergroupMembersParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetSupergroupMembersParams, ChatMembersUnion>>}
  */
-export type getSupergroupMembers<ExtensionT> = (
+export type getSupergroupMembers = (
   params?: GetSupergroupMembersParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetSupergroupMembersParams, ChatMembersUnion> & ExtensionT>
+) => Promise<ApiResponse<GetSupergroupMembersParams, ChatMembersUnion>>

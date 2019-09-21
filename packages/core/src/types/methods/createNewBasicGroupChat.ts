@@ -16,7 +16,7 @@ export interface CreateNewBasicGroupChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateNewBasicGroupChatParams, ChatUnion>>}
  */
-export type createNewBasicGroupChat<ExtensionT> = (
+export type createNewBasicGroupChat = (
   params?: CreateNewBasicGroupChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreateNewBasicGroupChatParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<CreateNewBasicGroupChatParams, ChatUnion>>

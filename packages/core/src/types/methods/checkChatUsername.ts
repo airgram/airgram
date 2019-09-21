@@ -15,7 +15,7 @@ export interface CheckChatUsernameParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckChatUsernameParams, CheckChatUsernameResultUnion>>}
  */
-export type checkChatUsername<ExtensionT> = (
+export type checkChatUsername = (
   params?: CheckChatUsernameParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckChatUsernameParams, CheckChatUsernameResultUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckChatUsernameParams, CheckChatUsernameResultUnion>>

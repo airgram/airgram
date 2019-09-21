@@ -15,7 +15,7 @@ export interface DeleteSupergroupParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteSupergroupParams, OkUnion>>}
  */
-export type deleteSupergroup<ExtensionT> = (
+export type deleteSupergroup = (
   params?: DeleteSupergroupParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteSupergroupParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteSupergroupParams, OkUnion>>

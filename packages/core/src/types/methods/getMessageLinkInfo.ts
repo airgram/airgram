@@ -13,7 +13,7 @@ export interface GetMessageLinkInfoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetMessageLinkInfoParams, MessageLinkInfoUnion>>}
  */
-export type getMessageLinkInfo<ExtensionT> = (
+export type getMessageLinkInfo = (
   params?: GetMessageLinkInfoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetMessageLinkInfoParams, MessageLinkInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<GetMessageLinkInfoParams, MessageLinkInfoUnion>>

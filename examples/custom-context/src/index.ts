@@ -1,25 +1,14 @@
 import { UPDATE } from '@airgram/constants'
-import { Airgram, Auth, ChatUnion, isError, prompt, UpdateChatLastMessage, UserUnion } from 'airgram'
+import { Airgram, Auth, isError, prompt } from 'airgram'
 import debug from 'debug'
+import { Store } from './Store'
 
 const writeLog = debug('airgram:log')
 const writeError = debug('airgram:error')
 
-class Store {
-  public readonly chats: Map<number, ChatUnion> = new Map()
-
-  public readonly chatLastMessage: Map<number, UpdateChatLastMessage> = new Map()
-
-  public readonly users: Map<number, UserUnion> = new Map()
-}
-
-interface ExtraContext {
-  $store: Store
-}
-
 const store = new Store()
 
-const airgram = new Airgram<ExtraContext>({
+const airgram = new Airgram({
   apiId: process.env.APP_ID as number | undefined,
   apiHash: process.env.APP_HASH,
   command: process.env.TDLIB_COMMAND,
@@ -30,8 +19,8 @@ const airgram = new Airgram<ExtraContext>({
 })
 
 airgram.use(new Auth({
-  code: () => prompt(`Please enter the secret code:\n`),
-  phoneNumber: () => prompt(`Please enter your phone number:\n`)
+  code: () => prompt('Please enter the secret code:\n'),
+  phoneNumber: () => prompt('Please enter your phone number:\n')
 }))
 
 airgram.on(UPDATE.updateUser, async ({ $store, update }, next) => {

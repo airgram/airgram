@@ -16,7 +16,7 @@ export interface AcceptCallParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AcceptCallParams, OkUnion>>}
  */
-export type acceptCall<ExtensionT> = (
+export type acceptCall = (
   params?: AcceptCallParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AcceptCallParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AcceptCallParams, OkUnion>>

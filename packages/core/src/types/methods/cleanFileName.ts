@@ -14,7 +14,7 @@ export interface CleanFileNameParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CleanFileNameParams, TextUnion>>}
  */
-export type cleanFileName<ExtensionT> = (
+export type cleanFileName = (
   params?: CleanFileNameParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CleanFileNameParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<CleanFileNameParams, TextUnion>>

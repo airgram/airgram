@@ -6,7 +6,7 @@ import { StickersUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, StickersUnion>>}
  */
-export type getFavoriteStickers<ExtensionT> = (
+export type getFavoriteStickers = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, StickersUnion> & ExtensionT>
+) => Promise<ApiResponse<never, StickersUnion>>

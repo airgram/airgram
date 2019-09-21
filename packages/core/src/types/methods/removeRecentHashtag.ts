@@ -12,7 +12,7 @@ export interface RemoveRecentHashtagParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveRecentHashtagParams, OkUnion>>}
  */
-export type removeRecentHashtag<ExtensionT> = (
+export type removeRecentHashtag = (
   params?: RemoveRecentHashtagParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveRecentHashtagParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveRecentHashtagParams, OkUnion>>

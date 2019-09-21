@@ -13,7 +13,7 @@ export interface UnpinChatMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UnpinChatMessageParams, OkUnion>>}
  */
-export type unpinChatMessage<ExtensionT> = (
+export type unpinChatMessage = (
   params?: UnpinChatMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<UnpinChatMessageParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<UnpinChatMessageParams, OkUnion>>

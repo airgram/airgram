@@ -18,7 +18,7 @@ export interface SetNetworkTypeParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetNetworkTypeParams, OkUnion>>}
  */
-export type setNetworkType<ExtensionT> = (
+export type setNetworkType = (
   params?: SetNetworkTypeParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetNetworkTypeParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetNetworkTypeParams, OkUnion>>

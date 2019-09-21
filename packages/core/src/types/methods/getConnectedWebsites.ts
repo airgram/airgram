@@ -6,7 +6,7 @@ import { ConnectedWebsitesUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, ConnectedWebsitesUnion>>}
  */
-export type getConnectedWebsites<ExtensionT> = (
+export type getConnectedWebsites = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, ConnectedWebsitesUnion> & ExtensionT>
+) => Promise<ApiResponse<never, ConnectedWebsitesUnion>>

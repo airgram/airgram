@@ -6,7 +6,7 @@ import { AnimationsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AnimationsUnion>>}
  */
-export type getSavedAnimations<ExtensionT> = (
+export type getSavedAnimations = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, AnimationsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, AnimationsUnion>>

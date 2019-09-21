@@ -12,7 +12,7 @@ export interface DeleteFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteFileParams, OkUnion>>}
  */
-export type deleteFile<ExtensionT> = (
+export type deleteFile = (
   params?: DeleteFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteFileParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteFileParams, OkUnion>>

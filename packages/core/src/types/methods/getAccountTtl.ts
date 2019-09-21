@@ -7,7 +7,7 @@ import { AccountTtlUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AccountTtlUnion>>}
  */
-export type getAccountTtl<ExtensionT> = (
+export type getAccountTtl = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, AccountTtlUnion> & ExtensionT>
+) => Promise<ApiResponse<never, AccountTtlUnion>>

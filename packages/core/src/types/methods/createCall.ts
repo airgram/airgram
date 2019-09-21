@@ -16,7 +16,7 @@ export interface CreateCallParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateCallParams, CallIdUnion>>}
  */
-export type createCall<ExtensionT> = (
+export type createCall = (
   params?: CreateCallParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreateCallParams, CallIdUnion> & ExtensionT>
+) => Promise<ApiResponse<CreateCallParams, CallIdUnion>>

@@ -16,7 +16,7 @@ export interface AddLogMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddLogMessageParams, OkUnion>>}
  */
-export type addLogMessage<ExtensionT> = (
+export type addLogMessage = (
   params?: AddLogMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddLogMessageParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddLogMessageParams, OkUnion>>

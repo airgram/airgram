@@ -16,7 +16,7 @@ export interface GetWebPageInstantViewParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetWebPageInstantViewParams, WebPageInstantViewUnion>>}
  */
-export type getWebPageInstantView<ExtensionT> = (
+export type getWebPageInstantView = (
   params?: GetWebPageInstantViewParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetWebPageInstantViewParams, WebPageInstantViewUnion> & ExtensionT>
+) => Promise<ApiResponse<GetWebPageInstantViewParams, WebPageInstantViewUnion>>

@@ -30,7 +30,7 @@ export interface DownloadFileParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DownloadFileParams, FileUnion>>}
  */
-export type downloadFile<ExtensionT> = (
+export type downloadFile = (
   params?: DownloadFileParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DownloadFileParams, FileUnion> & ExtensionT>
+) => Promise<ApiResponse<DownloadFileParams, FileUnion>>

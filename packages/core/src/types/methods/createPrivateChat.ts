@@ -16,7 +16,7 @@ export interface CreatePrivateChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreatePrivateChatParams, ChatUnion>>}
  */
-export type createPrivateChat<ExtensionT> = (
+export type createPrivateChat = (
   params?: CreatePrivateChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CreatePrivateChatParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<CreatePrivateChatParams, ChatUnion>>

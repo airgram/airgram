@@ -16,7 +16,7 @@ export interface SetSupergroupUsernameParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetSupergroupUsernameParams, OkUnion>>}
  */
-export type setSupergroupUsername<ExtensionT> = (
+export type setSupergroupUsername = (
   params?: SetSupergroupUsernameParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetSupergroupUsernameParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetSupergroupUsernameParams, OkUnion>>

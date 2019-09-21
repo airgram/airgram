@@ -20,7 +20,7 @@ export interface GetChatMessageCountParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatMessageCountParams, CountUnion>>}
  */
-export type getChatMessageCount<ExtensionT> = (
+export type getChatMessageCount = (
   params?: GetChatMessageCountParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatMessageCountParams, CountUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatMessageCountParams, CountUnion>>

@@ -6,7 +6,7 @@ import { DatabaseStatisticsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, DatabaseStatisticsUnion>>}
  */
-export type getDatabaseStatistics<ExtensionT> = (
+export type getDatabaseStatistics = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, DatabaseStatisticsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, DatabaseStatisticsUnion>>

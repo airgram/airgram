@@ -6,7 +6,7 @@ import { SessionsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, SessionsUnion>>}
  */
-export type getActiveSessions<ExtensionT> = (
+export type getActiveSessions = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, SessionsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, SessionsUnion>>

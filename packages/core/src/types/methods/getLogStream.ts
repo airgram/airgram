@@ -7,7 +7,7 @@ import { LogStreamUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, LogStreamUnion>>}
  */
-export type getLogStream<ExtensionT> = (
+export type getLogStream = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, LogStreamUnion> & ExtensionT>
+) => Promise<ApiResponse<never, LogStreamUnion>>

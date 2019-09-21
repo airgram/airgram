@@ -24,7 +24,7 @@ import {
 } from './types'
 import { createDeferred, pick } from './utils'
 
-const getDefaultConfig = <T> (): Partial<Config<T>> => ({
+const getDefaultConfig = (): Partial<Config> => ({
   applicationVersion: '0.1.0',
   databaseDirectory: './db',
   databaseEncryptionKey: '',
@@ -89,30 +89,34 @@ function defineContextProperty (
   Object.defineProperty(ctx, name, descriptor)
 }
 
-export function isUnwrapped<T> (o: any): o is T {
+function isUnwrapped<T> (o: any): o is T {
   return typeof o !== 'function'
 }
 
-export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance<ContextT, ProviderT> {
-  public readonly config: Config<ContextT, ProviderT>
+function isWrapped<T> (o: any): o is T {
+  return typeof o === 'function'
+}
+
+export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT> {
+  public readonly config: Config<ProviderT>
 
   public handleError: ErrorHandler
 
   public readonly provider: ProviderT
 
-  public readonly api: ApiMethods<ContextT>
+  public readonly api: ApiMethods
 
-  public readonly on: MiddlewareOn<ContextT> = (
+  public readonly on: MiddlewareOn = (
     predicateTypes: string | string[],
     ...fns: Middleware<any>[]
   ): void => {
     this.composer.on(predicateTypes, ...fns)
   }
 
-  private readonly composer: Composer<Context<ContextT>>
+  private readonly composer: Composer<Context>
 
-  public constructor (config: Config<ContextT, ProviderT>) {
-    this.config = { ...getDefaultConfig<ContextT>(), ...config }
+  public constructor (config: Config<ProviderT>) {
+    this.config = { ...getDefaultConfig(), ...config }
     this.composer = new Composer()
 
     const { provider } = this.config
@@ -134,7 +138,7 @@ export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance
 
     this.callApi = this.callApi.bind(this)
     this.emit = this.emit.bind(this)
-    this.api = new Proxy<ApiMethods<ContextT>>({} as any, {
+    this.api = new Proxy<ApiMethods>({} as any, {
       get: (_target, method: string) => {
         return (params: unknown, options?: ApiRequestOptions): Promise<ApiResponse<unknown, TdObject>> =>
           this.callApi({ method, params }, options)
@@ -168,15 +172,15 @@ export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance
   }
 
   public use (
-    ...fns: Middleware<Context<ContextT>>[]
+    ...fns: Middleware<Context>[]
   ): void {
     this.composer.use(...fns)
   }
 
-  private apiMiddleware (): MiddlewareFn<ApiResponse<unknown, TdObject> & ContextT> {
+  private apiMiddleware (): MiddlewareFn<ApiResponse<unknown, TdObject>> {
     return Composer.optional(
       (ctx: Record<string, unknown>): boolean => !!ctx.request,
-      async (ctx: ApiResponse<unknown, TdObject>, next: () => any): Promise<MiddlewareFn<ContextT>> =>
+      async (ctx: ApiResponse<unknown, TdObject>, next: () => any): Promise<MiddlewareFn> =>
         this.provider
           .send(ctx.request)
           .then((response: TdObject): unknown => (ctx.response = response))
@@ -227,7 +231,7 @@ export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance
   private callApi<ParamsT, ResultT extends TdObject> (
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
-  ): Promise<ApiResponse<ParamsT, ResultT> & ContextT> {
+  ): Promise<ApiResponse<ParamsT, ResultT>> {
     const ctx = this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
       (options && options.state) || {},
@@ -243,7 +247,7 @@ export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance
     _: string,
     state: Record<string, unknown>,
     extraParams: Record<string, unknown>
-  ): T & ContextT {
+  ): T {
     const ctx: Record<string, unknown> = {}
     defineContextProperty(ctx, '_', _)
     defineContextProperty(ctx, 'airgram', this)
@@ -253,14 +257,24 @@ export class Airgram<ContextT, ProviderT extends TdProvider> implements Instance
       defineContextProperty(ctx, name, extraParams[name])
     })
 
+    const extraContext = this.getExtraContext(ctx)
+    Object.keys(extraContext).forEach((name) => {
+      defineContextProperty(ctx, name, extraContext[name])
+    })
+    return ctx as T
+  }
+
+  private getExtraContext (ctx: Record<string, unknown>): Record<string, any> {
     const { context } = this.config
     if (context) {
-      const customParams: Record<string, any> = isUnwrapped<ContextT>(context) ? context : context(ctx as any)
-      Object.keys(customParams).forEach((name) => {
-        defineContextProperty(ctx, name, customParams[name])
-      })
+      if (isUnwrapped<ApiResponse<unknown, TdObject> | UpdateContext<TdObject>>(context)) {
+        return context
+      }
+      if (isWrapped<(ctx: Record<string, unknown>) => Record<string, any>>(context)) {
+        return context(ctx)
+      }
     }
-    return ctx as T & ContextT
+    return {}
   }
 
   private handleUpdate (update: BaseTdObject): Promise<unknown> {

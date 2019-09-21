@@ -16,7 +16,7 @@ export interface RemoveNotificationParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveNotificationParams, OkUnion>>}
  */
-export type removeNotification<ExtensionT> = (
+export type removeNotification = (
   params?: RemoveNotificationParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveNotificationParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveNotificationParams, OkUnion>>

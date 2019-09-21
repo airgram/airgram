@@ -19,7 +19,7 @@ export interface ReportChatParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ReportChatParams, OkUnion>>}
  */
-export type reportChat<ExtensionT> = (
+export type reportChat = (
   params?: ReportChatParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ReportChatParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ReportChatParams, OkUnion>>

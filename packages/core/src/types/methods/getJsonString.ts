@@ -14,7 +14,7 @@ export interface GetJsonStringParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetJsonStringParams, TextUnion>>}
  */
-export type getJsonString<ExtensionT> = (
+export type getJsonString = (
   params?: GetJsonStringParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetJsonStringParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<GetJsonStringParams, TextUnion>>

@@ -14,7 +14,7 @@ export interface JoinChatByInviteLinkParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<JoinChatByInviteLinkParams, ChatUnion>>}
  */
-export type joinChatByInviteLink<ExtensionT> = (
+export type joinChatByInviteLink = (
   params?: JoinChatByInviteLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<JoinChatByInviteLinkParams, ChatUnion> & ExtensionT>
+) => Promise<ApiResponse<JoinChatByInviteLinkParams, ChatUnion>>

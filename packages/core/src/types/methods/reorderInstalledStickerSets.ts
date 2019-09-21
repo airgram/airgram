@@ -16,7 +16,7 @@ export interface ReorderInstalledStickerSetsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ReorderInstalledStickerSetsParams, OkUnion>>}
  */
-export type reorderInstalledStickerSets<ExtensionT> = (
+export type reorderInstalledStickerSets = (
   params?: ReorderInstalledStickerSetsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ReorderInstalledStickerSetsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ReorderInstalledStickerSetsParams, OkUnion>>

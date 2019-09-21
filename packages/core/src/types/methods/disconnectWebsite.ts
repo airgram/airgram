@@ -12,7 +12,7 @@ export interface DisconnectWebsiteParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DisconnectWebsiteParams, OkUnion>>}
  */
-export type disconnectWebsite<ExtensionT> = (
+export type disconnectWebsite = (
   params?: DisconnectWebsiteParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DisconnectWebsiteParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DisconnectWebsiteParams, OkUnion>>

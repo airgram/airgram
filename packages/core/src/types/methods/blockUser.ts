@@ -12,7 +12,7 @@ export interface BlockUserParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<BlockUserParams, OkUnion>>}
  */
-export type blockUser<ExtensionT> = (
+export type blockUser = (
   params?: BlockUserParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<BlockUserParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<BlockUserParams, OkUnion>>

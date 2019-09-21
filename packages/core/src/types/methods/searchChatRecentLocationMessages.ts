@@ -15,7 +15,7 @@ export interface SearchChatRecentLocationMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatRecentLocationMessagesParams, MessagesUnion>>}
  */
-export type searchChatRecentLocationMessages<ExtensionT> = (
+export type searchChatRecentLocationMessages = (
   params?: SearchChatRecentLocationMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchChatRecentLocationMessagesParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchChatRecentLocationMessagesParams, MessagesUnion>>

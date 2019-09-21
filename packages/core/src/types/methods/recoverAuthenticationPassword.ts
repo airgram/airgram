@@ -13,7 +13,7 @@ export interface RecoverAuthenticationPasswordParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RecoverAuthenticationPasswordParams, OkUnion>>}
  */
-export type recoverAuthenticationPassword<ExtensionT> = (
+export type recoverAuthenticationPassword = (
   params?: RecoverAuthenticationPasswordParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RecoverAuthenticationPasswordParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RecoverAuthenticationPasswordParams, OkUnion>>

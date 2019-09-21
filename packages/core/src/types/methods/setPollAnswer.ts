@@ -18,7 +18,7 @@ export interface SetPollAnswerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetPollAnswerParams, OkUnion>>}
  */
-export type setPollAnswer<ExtensionT> = (
+export type setPollAnswer = (
   params?: SetPollAnswerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetPollAnswerParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetPollAnswerParams, OkUnion>>

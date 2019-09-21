@@ -18,7 +18,7 @@ export interface TestProxyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestProxyParams, OkUnion>>}
  */
-export type testProxy<ExtensionT> = (
+export type testProxy = (
   params?: TestProxyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestProxyParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<TestProxyParams, OkUnion>>

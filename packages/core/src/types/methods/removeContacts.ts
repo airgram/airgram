@@ -12,7 +12,7 @@ export interface RemoveContactsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveContactsParams, OkUnion>>}
  */
-export type removeContacts<ExtensionT> = (
+export type removeContacts = (
   params?: RemoveContactsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveContactsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveContactsParams, OkUnion>>

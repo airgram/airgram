@@ -19,7 +19,7 @@ export interface SetChatPhotoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatPhotoParams, OkUnion>>}
  */
-export type setChatPhoto<ExtensionT> = (
+export type setChatPhoto = (
   params?: SetChatPhotoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatPhotoParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatPhotoParams, OkUnion>>

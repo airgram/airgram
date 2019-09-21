@@ -21,7 +21,7 @@ export interface SetBackgroundParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetBackgroundParams, BackgroundUnion>>}
  */
-export type setBackground<ExtensionT> = (
+export type setBackground = (
   params?: SetBackgroundParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetBackgroundParams, BackgroundUnion> & ExtensionT>
+) => Promise<ApiResponse<SetBackgroundParams, BackgroundUnion>>

@@ -13,7 +13,7 @@ export interface GetProxyLinkParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetProxyLinkParams, TextUnion>>}
  */
-export type getProxyLink<ExtensionT> = (
+export type getProxyLink = (
   params?: GetProxyLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetProxyLinkParams, TextUnion> & ExtensionT>
+) => Promise<ApiResponse<GetProxyLinkParams, TextUnion>>

@@ -18,7 +18,7 @@ export interface EditMessageReplyMarkupParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageReplyMarkupParams, MessageUnion>>}
  */
-export type editMessageReplyMarkup<ExtensionT> = (
+export type editMessageReplyMarkup = (
   params?: EditMessageReplyMarkupParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditMessageReplyMarkupParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<EditMessageReplyMarkupParams, MessageUnion>>

@@ -6,7 +6,7 @@ import { ChatsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, ChatsUnion>>}
  */
-export type getCreatedPublicChats<ExtensionT> = (
+export type getCreatedPublicChats = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, ChatsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, ChatsUnion>>

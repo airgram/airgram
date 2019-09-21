@@ -22,7 +22,7 @@ export interface EditMessageCaptionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageCaptionParams, MessageUnion>>}
  */
-export type editMessageCaption<ExtensionT> = (
+export type editMessageCaption = (
   params?: EditMessageCaptionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditMessageCaptionParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<EditMessageCaptionParams, MessageUnion>>

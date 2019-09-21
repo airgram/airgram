@@ -29,7 +29,7 @@ export interface GetChatHistoryParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatHistoryParams, MessagesUnion>>}
  */
-export type getChatHistory<ExtensionT> = (
+export type getChatHistory = (
   params?: GetChatHistoryParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatHistoryParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatHistoryParams, MessagesUnion>>

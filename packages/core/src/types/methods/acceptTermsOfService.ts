@@ -12,7 +12,7 @@ export interface AcceptTermsOfServiceParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AcceptTermsOfServiceParams, OkUnion>>}
  */
-export type acceptTermsOfService<ExtensionT> = (
+export type acceptTermsOfService = (
   params?: AcceptTermsOfServiceParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AcceptTermsOfServiceParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AcceptTermsOfServiceParams, OkUnion>>

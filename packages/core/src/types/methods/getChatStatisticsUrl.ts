@@ -19,7 +19,7 @@ export interface GetChatStatisticsUrlParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatStatisticsUrlParams, HttpUrlUnion>>}
  */
-export type getChatStatisticsUrl<ExtensionT> = (
+export type getChatStatisticsUrl = (
   params?: GetChatStatisticsUrlParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatStatisticsUrlParams, HttpUrlUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatStatisticsUrlParams, HttpUrlUnion>>

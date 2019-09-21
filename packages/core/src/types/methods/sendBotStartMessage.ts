@@ -20,7 +20,7 @@ export interface SendBotStartMessageParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendBotStartMessageParams, MessageUnion>>}
  */
-export type sendBotStartMessage<ExtensionT> = (
+export type sendBotStartMessage = (
   params?: SendBotStartMessageParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendBotStartMessageParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<SendBotStartMessageParams, MessageUnion>>

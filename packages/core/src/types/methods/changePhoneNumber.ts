@@ -18,7 +18,7 @@ export interface ChangePhoneNumberParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ChangePhoneNumberParams, AuthenticationCodeInfoUnion>>}
  */
-export type changePhoneNumber<ExtensionT> = (
+export type changePhoneNumber = (
   params?: ChangePhoneNumberParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ChangePhoneNumberParams, AuthenticationCodeInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<ChangePhoneNumberParams, AuthenticationCodeInfoUnion>>

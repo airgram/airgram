@@ -6,7 +6,7 @@ import { StorageStatisticsFastUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, StorageStatisticsFastUnion>>}
  */
-export type getStorageStatisticsFast<ExtensionT> = (
+export type getStorageStatisticsFast = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, StorageStatisticsFastUnion> & ExtensionT>
+) => Promise<ApiResponse<never, StorageStatisticsFastUnion>>

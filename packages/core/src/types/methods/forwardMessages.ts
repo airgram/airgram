@@ -36,7 +36,7 @@ export interface ForwardMessagesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ForwardMessagesParams, MessagesUnion>>}
  */
-export type forwardMessages<ExtensionT> = (
+export type forwardMessages = (
   params?: ForwardMessagesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ForwardMessagesParams, MessagesUnion> & ExtensionT>
+) => Promise<ApiResponse<ForwardMessagesParams, MessagesUnion>>

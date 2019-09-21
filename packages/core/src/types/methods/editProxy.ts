@@ -21,7 +21,7 @@ export interface EditProxyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditProxyParams, ProxyUnion>>}
  */
-export type editProxy<ExtensionT> = (
+export type editProxy = (
   params?: EditProxyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<EditProxyParams, ProxyUnion> & ExtensionT>
+) => Promise<ApiResponse<EditProxyParams, ProxyUnion>>

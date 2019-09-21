@@ -13,7 +13,7 @@ export interface GetBasicGroupParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBasicGroupParams, BasicGroupUnion>>}
  */
-export type getBasicGroup<ExtensionT> = (
+export type getBasicGroup = (
   params?: GetBasicGroupParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetBasicGroupParams, BasicGroupUnion> & ExtensionT>
+) => Promise<ApiResponse<GetBasicGroupParams, BasicGroupUnion>>

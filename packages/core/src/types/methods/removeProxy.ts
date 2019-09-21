@@ -12,7 +12,7 @@ export interface RemoveProxyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveProxyParams, OkUnion>>}
  */
-export type removeProxy<ExtensionT> = (
+export type removeProxy = (
   params?: RemoveProxyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveProxyParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveProxyParams, OkUnion>>

@@ -15,7 +15,7 @@ export interface SendChatActionParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendChatActionParams, OkUnion>>}
  */
-export type sendChatAction<ExtensionT> = (
+export type sendChatAction = (
   params?: SendChatActionParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SendChatActionParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SendChatActionParams, OkUnion>>

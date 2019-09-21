@@ -17,7 +17,7 @@ export interface GetChatNotificationSettingsExceptionsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatNotificationSettingsExceptionsParams, ChatsUnion>>}
  */
-export type getChatNotificationSettingsExceptions<ExtensionT> = (
+export type getChatNotificationSettingsExceptions = (
   params?: GetChatNotificationSettingsExceptionsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetChatNotificationSettingsExceptionsParams, ChatsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetChatNotificationSettingsExceptionsParams, ChatsUnion>>

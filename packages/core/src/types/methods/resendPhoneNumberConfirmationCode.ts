@@ -6,7 +6,7 @@ import { AuthenticationCodeInfoUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AuthenticationCodeInfoUnion>>}
  */
-export type resendPhoneNumberConfirmationCode<ExtensionT> = (
+export type resendPhoneNumberConfirmationCode = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, AuthenticationCodeInfoUnion> & ExtensionT>
+) => Promise<ApiResponse<never, AuthenticationCodeInfoUnion>>

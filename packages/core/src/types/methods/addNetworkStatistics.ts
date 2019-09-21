@@ -14,7 +14,7 @@ export interface AddNetworkStatisticsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddNetworkStatisticsParams, OkUnion>>}
  */
-export type addNetworkStatistics<ExtensionT> = (
+export type addNetworkStatistics = (
   params?: AddNetworkStatisticsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<AddNetworkStatisticsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<AddNetworkStatisticsParams, OkUnion>>

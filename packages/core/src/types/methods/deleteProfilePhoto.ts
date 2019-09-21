@@ -12,7 +12,7 @@ export interface DeleteProfilePhotoParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteProfilePhotoParams, OkUnion>>}
  */
-export type deleteProfilePhoto<ExtensionT> = (
+export type deleteProfilePhoto = (
   params?: DeleteProfilePhotoParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteProfilePhotoParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteProfilePhotoParams, OkUnion>>

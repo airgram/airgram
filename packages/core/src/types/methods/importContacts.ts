@@ -14,7 +14,7 @@ export interface ImportContactsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ImportContactsParams, ImportedContactsUnion>>}
  */
-export type importContacts<ExtensionT> = (
+export type importContacts = (
   params?: ImportContactsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ImportContactsParams, ImportedContactsUnion> & ExtensionT>
+) => Promise<ApiResponse<ImportContactsParams, ImportedContactsUnion>>

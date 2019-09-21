@@ -14,7 +14,7 @@ export interface CheckAuthenticationBotTokenParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckAuthenticationBotTokenParams, OkUnion>>}
  */
-export type checkAuthenticationBotToken<ExtensionT> = (
+export type checkAuthenticationBotToken = (
   params?: CheckAuthenticationBotTokenParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckAuthenticationBotTokenParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckAuthenticationBotTokenParams, OkUnion>>

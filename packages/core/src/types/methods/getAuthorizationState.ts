@@ -8,7 +8,7 @@ import { AuthorizationStateUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AuthorizationStateUnion>>}
  */
-export type getAuthorizationState<ExtensionT> = (
+export type getAuthorizationState = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, AuthorizationStateUnion> & ExtensionT>
+) => Promise<ApiResponse<never, AuthorizationStateUnion>>

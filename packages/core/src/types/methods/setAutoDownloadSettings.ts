@@ -17,7 +17,7 @@ export interface SetAutoDownloadSettingsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetAutoDownloadSettingsParams, OkUnion>>}
  */
-export type setAutoDownloadSettings<ExtensionT> = (
+export type setAutoDownloadSettings = (
   params?: SetAutoDownloadSettingsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetAutoDownloadSettingsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetAutoDownloadSettingsParams, OkUnion>>

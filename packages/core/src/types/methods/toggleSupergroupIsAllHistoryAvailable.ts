@@ -15,7 +15,7 @@ export interface ToggleSupergroupIsAllHistoryAvailableParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleSupergroupIsAllHistoryAvailableParams, OkUnion>>}
  */
-export type toggleSupergroupIsAllHistoryAvailable<ExtensionT> = (
+export type toggleSupergroupIsAllHistoryAvailable = (
   params?: ToggleSupergroupIsAllHistoryAvailableParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ToggleSupergroupIsAllHistoryAvailableParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ToggleSupergroupIsAllHistoryAvailableParams, OkUnion>>

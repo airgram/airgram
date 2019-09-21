@@ -19,7 +19,7 @@ export interface GetCallbackQueryAnswerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetCallbackQueryAnswerParams, CallbackQueryAnswerUnion>>}
  */
-export type getCallbackQueryAnswer<ExtensionT> = (
+export type getCallbackQueryAnswer = (
   params?: GetCallbackQueryAnswerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetCallbackQueryAnswerParams, CallbackQueryAnswerUnion> & ExtensionT>
+) => Promise<ApiResponse<GetCallbackQueryAnswerParams, CallbackQueryAnswerUnion>>

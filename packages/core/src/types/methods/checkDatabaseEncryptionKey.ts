@@ -13,7 +13,7 @@ export interface CheckDatabaseEncryptionKeyParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckDatabaseEncryptionKeyParams, OkUnion>>}
  */
-export type checkDatabaseEncryptionKey<ExtensionT> = (
+export type checkDatabaseEncryptionKey = (
   params?: CheckDatabaseEncryptionKeyParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckDatabaseEncryptionKeyParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckDatabaseEncryptionKeyParams, OkUnion>>

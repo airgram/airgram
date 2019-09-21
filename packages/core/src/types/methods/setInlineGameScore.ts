@@ -21,7 +21,7 @@ export interface SetInlineGameScoreParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetInlineGameScoreParams, OkUnion>>}
  */
-export type setInlineGameScore<ExtensionT> = (
+export type setInlineGameScore = (
   params?: SetInlineGameScoreParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetInlineGameScoreParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetInlineGameScoreParams, OkUnion>>

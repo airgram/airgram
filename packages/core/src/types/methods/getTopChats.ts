@@ -18,7 +18,7 @@ export interface GetTopChatsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetTopChatsParams, ChatsUnion>>}
  */
-export type getTopChats<ExtensionT> = (
+export type getTopChats = (
   params?: GetTopChatsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetTopChatsParams, ChatsUnion> & ExtensionT>
+) => Promise<ApiResponse<GetTopChatsParams, ChatsUnion>>

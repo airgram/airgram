@@ -12,7 +12,7 @@ export interface GetStickerSetParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetStickerSetParams, StickerSetUnion>>}
  */
-export type getStickerSet<ExtensionT> = (
+export type getStickerSet = (
   params?: GetStickerSetParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetStickerSetParams, StickerSetUnion> & ExtensionT>
+) => Promise<ApiResponse<GetStickerSetParams, StickerSetUnion>>

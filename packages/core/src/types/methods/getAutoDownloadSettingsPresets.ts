@@ -6,7 +6,7 @@ import { AutoDownloadSettingsPresetsUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AutoDownloadSettingsPresetsUnion>>}
  */
-export type getAutoDownloadSettingsPresets<ExtensionT> = (
+export type getAutoDownloadSettingsPresets = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, AutoDownloadSettingsPresetsUnion> & ExtensionT>
+) => Promise<ApiResponse<never, AutoDownloadSettingsPresetsUnion>>

@@ -15,7 +15,7 @@ export interface GetStickerEmojisParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetStickerEmojisParams, EmojisUnion>>}
  */
-export type getStickerEmojis<ExtensionT> = (
+export type getStickerEmojis = (
   params?: GetStickerEmojisParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetStickerEmojisParams, EmojisUnion> & ExtensionT>
+) => Promise<ApiResponse<GetStickerEmojisParams, EmojisUnion>>

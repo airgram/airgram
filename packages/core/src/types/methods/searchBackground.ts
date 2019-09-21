@@ -12,7 +12,7 @@ export interface SearchBackgroundParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchBackgroundParams, BackgroundUnion>>}
  */
-export type searchBackground<ExtensionT> = (
+export type searchBackground = (
   params?: SearchBackgroundParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchBackgroundParams, BackgroundUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchBackgroundParams, BackgroundUnion>>

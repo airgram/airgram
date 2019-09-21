@@ -13,7 +13,7 @@ export interface GetUserParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetUserParams, UserUnion>>}
  */
-export type getUser<ExtensionT> = (
+export type getUser = (
   params?: GetUserParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetUserParams, UserUnion> & ExtensionT>
+) => Promise<ApiResponse<GetUserParams, UserUnion>>

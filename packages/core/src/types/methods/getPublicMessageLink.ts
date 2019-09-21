@@ -19,7 +19,7 @@ export interface GetPublicMessageLinkParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetPublicMessageLinkParams, PublicMessageLinkUnion>>}
  */
-export type getPublicMessageLink<ExtensionT> = (
+export type getPublicMessageLink = (
   params?: GetPublicMessageLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetPublicMessageLinkParams, PublicMessageLinkUnion> & ExtensionT>
+) => Promise<ApiResponse<GetPublicMessageLinkParams, PublicMessageLinkUnion>>

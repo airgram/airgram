@@ -15,7 +15,7 @@ export interface TestReturnErrorParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<TestReturnErrorParams, ErrorUnion>>}
  */
-export type testReturnError<ExtensionT> = (
+export type testReturnError = (
   params?: TestReturnErrorParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<TestReturnErrorParams, ErrorUnion> & ExtensionT>
+) => Promise<ApiResponse<TestReturnErrorParams, ErrorUnion>>

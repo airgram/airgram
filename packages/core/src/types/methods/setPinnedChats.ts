@@ -12,7 +12,7 @@ export interface SetPinnedChatsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetPinnedChatsParams, OkUnion>>}
  */
-export type setPinnedChats<ExtensionT> = (
+export type setPinnedChats = (
   params?: SetPinnedChatsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetPinnedChatsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetPinnedChatsParams, OkUnion>>

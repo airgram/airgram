@@ -14,7 +14,7 @@ export interface RemoveFavoriteStickerParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveFavoriteStickerParams, OkUnion>>}
  */
-export type removeFavoriteSticker<ExtensionT> = (
+export type removeFavoriteSticker = (
   params?: RemoveFavoriteStickerParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<RemoveFavoriteStickerParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<RemoveFavoriteStickerParams, OkUnion>>

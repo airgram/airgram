@@ -15,7 +15,7 @@ export interface ToggleChatIsPinnedParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleChatIsPinnedParams, OkUnion>>}
  */
-export type toggleChatIsPinned<ExtensionT> = (
+export type toggleChatIsPinned = (
   params?: ToggleChatIsPinnedParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<ToggleChatIsPinnedParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<ToggleChatIsPinnedParams, OkUnion>>

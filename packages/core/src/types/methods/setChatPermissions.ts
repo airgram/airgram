@@ -17,7 +17,7 @@ export interface SetChatPermissionsParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatPermissionsParams, OkUnion>>}
  */
-export type setChatPermissions<ExtensionT> = (
+export type setChatPermissions = (
   params?: SetChatPermissionsParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetChatPermissionsParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetChatPermissionsParams, OkUnion>>

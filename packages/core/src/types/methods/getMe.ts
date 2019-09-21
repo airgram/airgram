@@ -6,7 +6,7 @@ import { UserUnion } from '../outputs'
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, UserUnion>>}
  */
-export type getMe<ExtensionT> = (
+export type getMe = (
   params?: never,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<never, UserUnion> & ExtensionT>
+) => Promise<ApiResponse<never, UserUnion>>

@@ -13,7 +13,7 @@ export interface CheckAuthenticationPasswordParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckAuthenticationPasswordParams, OkUnion>>}
  */
-export type checkAuthenticationPassword<ExtensionT> = (
+export type checkAuthenticationPassword = (
   params?: CheckAuthenticationPasswordParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<CheckAuthenticationPasswordParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<CheckAuthenticationPasswordParams, OkUnion>>

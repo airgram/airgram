@@ -15,7 +15,7 @@ export interface SearchEmojisParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchEmojisParams, EmojisUnion>>}
  */
-export type searchEmojis<ExtensionT> = (
+export type searchEmojis = (
   params?: SearchEmojisParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SearchEmojisParams, EmojisUnion> & ExtensionT>
+) => Promise<ApiResponse<SearchEmojisParams, EmojisUnion>>

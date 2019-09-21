@@ -14,7 +14,7 @@ export interface DeleteLanguagePackParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteLanguagePackParams, OkUnion>>}
  */
-export type deleteLanguagePack<ExtensionT> = (
+export type deleteLanguagePack = (
   params?: DeleteLanguagePackParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<DeleteLanguagePackParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<DeleteLanguagePackParams, OkUnion>>

@@ -13,7 +13,7 @@ export interface GetJsonValueParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetJsonValueParams, JsonValueUnion>>}
  */
-export type getJsonValue<ExtensionT> = (
+export type getJsonValue = (
   params?: GetJsonValueParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetJsonValueParams, JsonValueUnion> & ExtensionT>
+) => Promise<ApiResponse<GetJsonValueParams, JsonValueUnion>>

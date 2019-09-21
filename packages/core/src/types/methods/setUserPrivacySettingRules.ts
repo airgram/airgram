@@ -18,7 +18,7 @@ export interface SetUserPrivacySettingRulesParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetUserPrivacySettingRulesParams, OkUnion>>}
  */
-export type setUserPrivacySettingRules<ExtensionT> = (
+export type setUserPrivacySettingRules = (
   params?: SetUserPrivacySettingRulesParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetUserPrivacySettingRulesParams, OkUnion> & ExtensionT>
+) => Promise<ApiResponse<SetUserPrivacySettingRulesParams, OkUnion>>

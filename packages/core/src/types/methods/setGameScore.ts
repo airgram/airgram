@@ -24,7 +24,7 @@ export interface SetGameScoreParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetGameScoreParams, MessageUnion>>}
  */
-export type setGameScore<ExtensionT> = (
+export type setGameScore = (
   params?: SetGameScoreParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<SetGameScoreParams, MessageUnion> & ExtensionT>
+) => Promise<ApiResponse<SetGameScoreParams, MessageUnion>>

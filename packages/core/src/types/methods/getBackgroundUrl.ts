@@ -15,7 +15,7 @@ export interface GetBackgroundUrlParams {
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBackgroundUrlParams, HttpUrlUnion>>}
  */
-export type getBackgroundUrl<ExtensionT> = (
+export type getBackgroundUrl = (
   params?: GetBackgroundUrlParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetBackgroundUrlParams, HttpUrlUnion> & ExtensionT>
+) => Promise<ApiResponse<GetBackgroundUrlParams, HttpUrlUnion>>
