@@ -106,21 +106,11 @@ export function createSerializer (): (value: TdObject) => NativeTdObject {
 export type TdWebProviderConfig = Omit<TdOptions, 'onUpdate'>
 
 export class TdProvider extends BaseTdProvider {
-  private client: TdClient | null = null
-
   private readonly config: TdWebProviderConfig = {}
-
-  // private handleError: (error: Error | string) => void = () => {
-  //   throw new Error('Error handler is not defined.')
-  // }
 
   private handleUpdate: (update: TdObject) => Promise<unknown> = () => {
     throw new Error('Update handler is not defined.')
   }
-
-  // private readonly keyMap: Map<string, string> = new Map<string, string>()
-
-  // private models?: PlainObjectToModelTransformer
 
   public constructor (config: TdWebProviderConfig = {}) {
     super()
@@ -135,18 +125,13 @@ export class TdProvider extends BaseTdProvider {
     const serialize = createSerializer()
     const deserialize = createDeserializer(models)
     this.handleUpdate = handleUpdate
-    // this.handleError = _handleError
-    // this.models = models
-    this.client = new TdClient({
+    const client = new TdClient({
       ...this.config,
       onUpdate: (update) => this.handleUpdate(deserialize(update))
     })
     this.send = (request: ApiRequest<any>): Promise<TdObject> => {
       return new Promise<TdObject>((resolve, reject) => {
-        if (!this.client) {
-          throw new Error('TdWebClient is not initialized.')
-        }
-        this.client.send(serialize({
+        client.send(serialize({
           _: request.method,
           ...request.params
         }))
