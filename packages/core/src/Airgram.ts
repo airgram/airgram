@@ -150,9 +150,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
         .setLogVerbosityLevel({
           newVerbosityLevel: this.config.logVerbosityLevel
         })
-        .catch((error: Error): never => {
-          throw error
-        })
+        .catch(this.handleError)
     }
 
     this.bootstrapMiddleware()
@@ -199,15 +197,15 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
           const update = (ctx.update as unknown) as UpdateAuthorizationState
           switch (update.authorizationState._) {
             case 'authorizationStateWaitTdlibParameters': {
-              await this.api.setTdlibParameters({
+              this.api.setTdlibParameters({
                 parameters: { _: 'tdlibParameters', ...pick(this.config, tdlibOptions) }
-              })
+              }).catch(this.handleError)
               break
             }
             case 'authorizationStateWaitEncryptionKey': {
-              await this.api.checkDatabaseEncryptionKey({
+              this.api.checkDatabaseEncryptionKey({
                 encryptionKey: this.config.databaseEncryptionKey
-              })
+              }).catch(this.handleError)
               break
             }
             default: {
@@ -246,15 +244,15 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   private createContext<T> (
     _: string,
     state: Record<string, unknown>,
-    extraParams: Record<string, unknown>
+    props: Record<string, unknown>
   ): T {
     const ctx: Record<string, unknown> = {}
     defineContextProperty(ctx, '_', _)
     defineContextProperty(ctx, 'airgram', this)
     defineContextProperty(ctx, 'state', createState(state))
 
-    Object.keys(extraParams).forEach((name) => {
-      defineContextProperty(ctx, name, extraParams[name])
+    Object.keys(props).forEach((name) => {
+      defineContextProperty(ctx, name, props[name])
     })
 
     const extraContext = this.getExtraContext(ctx)
