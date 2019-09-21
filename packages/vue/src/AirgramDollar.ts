@@ -2,25 +2,25 @@ import { ApiMethods, Instance, TdObject } from '@airgram/web'
 import { AirgramProvider } from './AirgramProvider'
 import { AirgramVue, UpdateHandler } from './types'
 
-class AirgramDollar<ContextT = {}> {
+class AirgramDollar {
   // private _authState: AuthorizationStateUnion | { _: null } = { _: null }
 
   // private readonly _authStateUnsubscribe?: () => void
 
-  private readonly vm: AirgramVue<ContextT>
+  private readonly vm: AirgramVue
 
-  constructor (vm: AirgramVue<ContextT>) {
+  constructor (vm: AirgramVue) {
     this.vm = vm
     // this._authStateUnsubscribe = this.on('updateAuthorizationState', (authState: AuthorizationStateUnion) => {
     //   this._authState = authState
     // })
   }
 
-  public get airgram (): Instance<ContextT> {
+  public get airgram (): Instance {
     return this.provider.airgram
   }
 
-  public get api (): ApiMethods<ContextT> {
+  public get api (): ApiMethods {
     return this.airgram.api
   }
 
@@ -28,7 +28,7 @@ class AirgramDollar<ContextT = {}> {
   //   return this._authState
   // }
 
-  private get provider (): AirgramProvider<ContextT> {
+  private get provider (): AirgramProvider {
     return this.vm.$_airgramProvider
   }
 

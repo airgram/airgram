@@ -1,19 +1,19 @@
 import { VueConstructor } from 'vue'
 import { AirgramVue, UpdateHandler, UpdateHandlers } from './types'
 
-export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
+export function installMixin (Vue: VueConstructor): void {
   Vue.mixin({
-    beforeCreate (this: AirgramVue<ContextT>) {
+    beforeCreate (this: AirgramVue) {
       const options = this.$options
       const optionValue = options.airgramProvider
       if (optionValue) {
         this.$_airgramProvider = typeof optionValue === 'function' ? optionValue() : optionValue
-      } else if (options.parent && (options.parent as AirgramVue<ContextT>).$_airgramProvider) {
-        this.$_airgramProvider = (options.parent as AirgramVue<ContextT>).$_airgramProvider
+      } else if (options.parent && (options.parent as AirgramVue).$_airgramProvider) {
+        this.$_airgramProvider = (options.parent as AirgramVue).$_airgramProvider
       }
     },
 
-    created (this: AirgramVue<ContextT>) {
+    created (this: AirgramVue) {
       const airgramProvider = this.$_airgramProvider
 
       if (this.$_airgramSubscriptions || !airgramProvider) {
@@ -33,7 +33,7 @@ export function installMixin<ContextT = {}> (Vue: VueConstructor): void {
       }
     },
 
-    destroyed (this: AirgramVue<ContextT>) {
+    destroyed (this: AirgramVue) {
       if (this.$_airgramDollar) {
         this.$_airgramDollar._destroy()
         delete this.$_airgramDollar

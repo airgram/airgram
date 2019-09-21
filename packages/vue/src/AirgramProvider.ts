@@ -2,20 +2,20 @@ import { Airgram, BaseTdObject, Instance } from '@airgram/web'
 import Vue from 'vue'
 import { UpdateHandler } from './types'
 
-export interface TdProviderConfig<ContextT> {
-  airgram: Airgram<ContextT>
+export interface TdProviderConfig {
+  airgram: Airgram
 }
 
-class AirgramProvider<ContextT = {}> {
+class AirgramProvider {
   public static install: any
 
-  public readonly airgram: Instance<ContextT>
+  public readonly airgram: Instance
 
   private readonly eventBus: Vue
 
   private isInitialized = false
 
-  constructor ({ airgram }: TdProviderConfig<ContextT>) {
+  constructor ({ airgram }: TdProviderConfig) {
     this.airgram = airgram
     this.eventBus = new Vue()
   }

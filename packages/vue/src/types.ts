@@ -80,8 +80,8 @@ export interface UpdateHandlers<ContextT = {}> {
 export type UpdateHandler<UpdateT extends BaseTdObject, ContextT = {}> =
   (context: UpdateContext<UpdateT> & ContextT) => any
 
-export interface AirgramVue<ContextT> extends Vue {
+export interface AirgramVue extends Vue {
   $_airgramSubscriptions?: Array<() => void>
-  $_airgramProvider: AirgramProvider<ContextT>
+  $_airgramProvider: AirgramProvider
   $_airgramDollar?: AirgramDollar
 }

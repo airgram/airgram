@@ -27,7 +27,7 @@ export function install<ContextT> (Vue: VueConstructor): void {
   }
 
   Object.defineProperty(Vue.prototype, '$airgram', {
-    get (this: AirgramVue<ContextT>) {
+    get (this: AirgramVue) {
       if (!this.$_airgramDollar) {
         this.$_airgramDollar = new AirgramDollar(this)
       }

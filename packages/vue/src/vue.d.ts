@@ -3,7 +3,7 @@ import { AirgramDollar } from './AirgramDollar'
 import { AirgramProvider } from './AirgramProvider'
 import { UpdateHandlers } from './types'
 
-type AirgramProviderOption = AirgramProvider<any> | (() => AirgramProvider<any>)
+type AirgramProviderOption = AirgramProvider | (() => AirgramProvider)
 
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
