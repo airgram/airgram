@@ -3,20 +3,23 @@
 
 
 "@airgram/constants@link:packages/constants":
-  version "2.0.0-next.2"
+  version "2.0.1"
+
+"@airgram/core@link:packages/core":
+  version "2.0.1"
 
 "@airgram/use-models@link:packages/use-models":
-  version "2.0.0-next.2"
+  version "2.0.1"
   dependencies:
-    "@airgram/core" "^2.0.0-next.2"
+    "@airgram/core" "^2.0.1"
     class-transformer "^0.2.3"
     debug "^4.1.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "2.0.0-next.2"
+  version "2.0.1"
   dependencies:
-    "@airgram/core" "^2.0.0-next.2"
+    "@airgram/core" "^2.0.1"
     tdweb "^1.4.3"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -1365,10 +1368,6 @@
   resolved "https://registry.yarnpkg.com/@types/tdweb/-/tdweb-1.4.0.tgz#847380e9253524a791a047032ebbc130e08ffe79"
   integrity sha512-T5w1xYMGALmxzX1J1dgC+4xF8fOQ1mFsOmtnpWITVQWAq0bJHFz5S6XrCCMHlG4jg1LUNzWZSYOTBr/ehrTnag==
 
-"@types/tdweb@link:../../test/DefinitelyTyped/types/tdweb":
-  version "0.0.0"
-  uid ""
-
 "@types/uglify-js@*":
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.0.4.tgz#96beae23df6f561862a830b4288a49e86baac082"
@@ -1705,18 +1704,11 @@ agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
-airgram@^2.0.0:
-  version "2.0.0-next.2"
-  dependencies:
-    "@airgram/constants" "^2.0.0-next.2"
-    "@airgram/core" "^2.0.0-next.2"
-    ffi-napi "^2.4.5"
-
 "airgram@link:packages/airgram":
-  version "2.0.0-next.2"
+  version "2.0.1"
   dependencies:
-    "@airgram/constants" "^2.0.0-next.2"
-    "@airgram/core" "^2.0.0-next.2"
+    "@airgram/constants" "^2.0.1"
+    "@airgram/core" "^2.0.1"
     ffi-napi "^2.4.5"
 
 ajv-errors@^1.0.0:
