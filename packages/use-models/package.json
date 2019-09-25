@@ -23,12 +23,7 @@
   "dependencies": {
     "@airgram/core": "^2.1.0",
     "class-transformer": "^0.2.3",
-    "debug": "^4.1.1",
     "reflect-metadata": "^0.1.13"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.4",
-    "airgram": "^2.1.0"
   },
   "gitHead": "ac5b43184c4848f72c100e5363ba414ed62a6cbe"
 }
