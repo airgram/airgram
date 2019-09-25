@@ -14,6 +14,7 @@ export type PlainObjectToModelTransformer = (plainObject: TdObject) => ClassType
 
 export type MiddlewareFn<ContextT = Context> = (ctx: ContextT, next: () => Promise<any>) => any
 export type Middleware<ContextT = Context> = { middleware: () => MiddlewareFn<ContextT> } | MiddlewareFn<ContextT>
+export type NextFn = () => any
 
 export interface Deferred {
   promise: Promise<void>
@@ -50,7 +51,7 @@ export interface Instance<ProviderT extends TdProvider = TdProvider> {
 
   catch (handler: (error: Error) => void): void
 
-  emit (update: TdObject): Promise<unknown>
+  emit<UpdateT extends BaseTdObject> (update: UpdateT): Promise<unknown>
 
   use (
     ...fns: Middleware<(ApiResponse<unknown, TdObject> | UpdateContext<TdObject>)>[]

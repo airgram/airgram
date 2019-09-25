@@ -165,7 +165,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     this.handleError = handler
   }
 
-  public emit (update: TdObject): Promise<unknown> {
+  public emit<UpdateT extends BaseTdObject = TdObject> (update: UpdateT): Promise<unknown> {
     return this.handleUpdate(update)
   }
 

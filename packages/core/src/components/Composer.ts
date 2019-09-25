@@ -1,9 +1,6 @@
 /* tslint:disable:no-empty */
 
-import { BaseTdObject, Composer as BaseComposer, Middleware, MiddlewareFn } from '../types'
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type NextFn = () => any
+import { BaseTdObject, Composer as BaseComposer, Middleware, MiddlewareFn, NextFn } from '../types'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const noop: NextFn = (): any => {}
