@@ -23,11 +23,11 @@
   },
   "dependencies": {
     "@airgram/core": "^2.1.0",
-    "tdweb": "^1.4.3"
+    "tdweb": "~1.5.0"
   },
   "devDependencies": {
     "@airgram/use-models": "^2.0.2",
-    "@types/tdweb": "1.4.0"
+    "@types/tdweb": "~1.4.0"
   },
   "gitHead": "ac5b43184c4848f72c100e5363ba414ed62a6cbe"
 }

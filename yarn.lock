@@ -5,22 +5,18 @@
 "@airgram/constants@link:packages/constants":
   version "2.0.1"
 
-"@airgram/core@link:packages/core":
-  version "2.0.1"
-
 "@airgram/use-models@link:packages/use-models":
-  version "2.0.1"
+  version "2.0.2"
   dependencies:
-    "@airgram/core" "^2.0.1"
+    "@airgram/core" "^2.1.0"
     class-transformer "^0.2.3"
-    debug "^4.1.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "2.0.1"
+  version "2.1.0"
   dependencies:
-    "@airgram/core" "^2.0.1"
-    tdweb "^1.4.3"
+    "@airgram/core" "^2.1.0"
+    tdweb "~1.5.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
@@ -1705,10 +1701,10 @@ agentkeepalive@^3.4.1:
     humanize-ms "^1.2.1"
 
 "airgram@link:packages/airgram":
-  version "2.0.1"
+  version "2.1.0"
   dependencies:
     "@airgram/constants" "^2.0.1"
-    "@airgram/core" "^2.0.1"
+    "@airgram/core" "^2.1.0"
     ffi-napi "^2.4.5"
 
 ajv-errors@^1.0.0:
@@ -10704,6 +10700,16 @@ tdweb@^1.4.3:
     localforage "^1.7.3"
     uuid "^3.3.2"
 
+tdweb@~1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.5.0.tgz#aad4deba24b4d23749aa1d16159009b40890ce48"
+  integrity sha512-WHLONE4LK4Sb9XZdFJCQLkGl1o0Ka28d9YNL0aSQFA6xdXYbLMLUcDExKIvQZ62xUTnpbZtYilJLItrmL3Bv/A==
+  dependencies:
+    "@babel/runtime" "^7.4.3"
+    broadcast-channel "^2.1.12"
+    localforage "^1.7.3"
+    uuid "^3.3.2"
+
 temp-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
@@ -11441,11 +11447,6 @@ vm-browserify@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw==
-
-vue@^2.6.10:
-  version "2.6.10"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
-  integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
