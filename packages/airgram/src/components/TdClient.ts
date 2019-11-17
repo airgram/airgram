@@ -18,13 +18,13 @@ export interface TdClientConfig {
 }
 
 export class TdClient {
-  public timeout: number = 10
+  public timeout = 10
 
   private _tdClient?: Buffer
 
   private readonly deserialize: (key: string, value: unknown) => Record<string, unknown>
 
-  private destroyed: boolean = false
+  private destroyed = false
 
   private readonly handleError: (error: Error | string) => void
 
@@ -32,7 +32,7 @@ export class TdClient {
 
   private readonly pending: Map<string, Pending> = new Map()
 
-  private queryId: number = 0
+  private queryId = 0
 
   private readonly serialize: (key: string, value: unknown) => Record<string, unknown>
 
@@ -142,7 +142,7 @@ export class TdClient {
       }
       return JSON.parse(data, this.deserialize)
     } catch (e) {
-      throw new Error(`[TdJsonClient] received invalid JSON`)
+      throw new Error('[TdJsonClient] received invalid JSON')
     }
   }
 }

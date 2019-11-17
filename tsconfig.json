@@ -14,8 +14,7 @@
     "sourceMap": true,
     "declaration": true,
     "lib": [
-      "esnext",
-      "dom"
+      "esnext"
     ]
   },
   "exclude": [

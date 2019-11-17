@@ -1,4 +1,4 @@
-import { Airgram } from './Airgram'
-
 export * from '@airgram/core'
-export { Airgram }
+export { promisifyWorker } from './utils'
+export { Airgram, AirgramConfig } from './Airgram'
+export * from './types'

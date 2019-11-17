@@ -3,7 +3,11 @@
   "compilerOptions": {
     "noEmit": false,
     "outDir": "dist",
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "lib": [
+      "esnext",
+      "webworker"
+    ]
   },
   "include": [
     "./src"

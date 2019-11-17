@@ -3,19 +3,19 @@
 
 
 "@airgram/constants@link:packages/constants":
-  version "2.0.1"
+  version "2.1.1"
 
 "@airgram/use-models@link:packages/use-models":
-  version "2.0.2"
+  version "2.2.0-next.1"
   dependencies:
-    "@airgram/core" "^2.1.0"
+    "@airgram/core" "^2.3.0-next.8"
     class-transformer "^0.2.3"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "2.1.0"
+  version "2.3.0-next.7"
   dependencies:
-    "@airgram/core" "^2.1.0"
+    "@airgram/core" "^2.3.0-next.8"
     tdweb "~1.5.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -1701,11 +1701,8 @@ agentkeepalive@^3.4.1:
     humanize-ms "^1.2.1"
 
 "airgram@link:packages/airgram":
-  version "2.1.0"
-  dependencies:
-    "@airgram/constants" "^2.0.1"
-    "@airgram/core" "^2.1.0"
-    ffi-napi "^2.4.5"
+  version "0.0.0"
+  uid ""
 
 ajv-errors@^1.0.0:
   version "1.0.1"
@@ -11733,6 +11730,13 @@ worker-farm@^1.7.0:
   integrity sha512-rvw3QTZc8lAxyVrqcSGVm5yP/IJ2UcB3U0graE3LCFoZ0Yn2x4EoVSqJKdB/T5M+FLcRPjz4TDacRf3OCfNUzw==
   dependencies:
     errno "~0.1.7"
+
+worker-plugin@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/worker-plugin/-/worker-plugin-3.2.0.tgz#ddae9f161b76fcbaacf8f54ecd037844584e43e7"
+  integrity sha512-W5nRkw7+HlbsEt3qRP6MczwDDISjiRj2GYt9+bpe8A2La00TmJdwzG5bpdMXhRt1qcWmwAvl1TiKaHRa+XDS9Q==
+  dependencies:
+    loader-utils "^1.1.0"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"

@@ -13,8 +13,7 @@ export class TdProvider extends BaseTdProvider {
     this.config = config
   }
 
-  // noinspection JSUnusedGlobalSymbols
-  public destroy (): void {
+  public async destroy (): Promise<void> {
     if (this.client) {
       this.client.destroy()
     }

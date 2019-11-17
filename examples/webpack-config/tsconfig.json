@@ -3,7 +3,12 @@
   "compilerOptions": {
     "module": "es6",
     "outDir": "dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": [
+      "esnext",
+      "webworker",
+      "scripthost"
+    ]
   },
   "include": [
     "./src"

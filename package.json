@@ -10,7 +10,7 @@
     "commit": "commit",
     "lint": "eslint --fix packages/*/src/**/*.ts",
     "prepublishOnly": "ts-node scripts/package-map.ts",
-    "prerelease": "lerna publish --conventional-prerelease --canary --no-push --dist-tag next && git tag -d $(git describe --abbrev=0)",
+    "prerelease": "lerna publish --conventional-prerelease --no-push --dist-tag next",
     "release": "lerna publish --conventional-graduate --dist-tag latest"
   },
   "workspaces": [

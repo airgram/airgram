@@ -51,16 +51,18 @@ export interface Instance<ProviderT extends TdProvider = TdProvider> {
 
   catch (handler: (error: Error) => void): void
 
-  emit<UpdateT extends BaseTdObject> (update: UpdateT): Promise<unknown>
+  destroy (): Promise<void>
+
+  emit<UpdateT extends BaseTdObject> (update: UpdateT, state?: Record<string, unknown>): Promise<unknown>
 
   use (
     ...fns: Middleware<(ApiResponse<unknown, TdObject> | UpdateContext<TdObject>)>[]
   ): void
 }
 
-export interface ApiRequest<ParamsT = unknown> {
+export interface ApiRequest<ParamsT = TdObject | undefined> {
   method: string
-  params?: ParamsT
+  params: ParamsT
 }
 
 export interface ApiRequestOptions {
@@ -82,6 +84,8 @@ export interface TdProvider {
   ): void
 
   send (request: ApiRequest): Promise<TdObject>
+
+  destroy (): Promise<void>
 }
 
 export interface BaseTdObject {

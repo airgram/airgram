@@ -1,5 +1,6 @@
 import { Airgram as BaseAirgram, Config } from '@airgram/core'
-import { TdProvider, TdWebProviderConfig } from './components'
+import { TdProvider } from './components'
+import { TdWebProviderConfig } from './types'
 
 export interface AirgramConfig
   extends Omit<Config, 'provider'>, TdWebProviderConfig {}

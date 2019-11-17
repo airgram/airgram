@@ -6,9 +6,10 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 const isProd = nodeEnv === 'production'
 const CopyPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WorkerPlugin = require('worker-plugin')
 
 // Uncomment to analyze bundle size
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const plugins = [
   new CleanWebpackPlugin(),
@@ -29,6 +30,7 @@ const plugins = [
       }
     }
   }),
+  new WorkerPlugin(),
   new CopyPlugin([
     {
       from: path.resolve(__dirname, '../../node_modules/tdweb/dist/**/*'),
@@ -39,7 +41,7 @@ const plugins = [
     }
   ]),
   // Uncomment to analyze bundle size
-  new BundleAnalyzerPlugin()
+  // new BundleAnalyzerPlugin()
 ]
 
 var config = {

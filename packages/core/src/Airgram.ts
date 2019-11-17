@@ -10,6 +10,7 @@ import {
   ContextState,
   Deferred,
   ErrorHandler,
+  ErrorUnion,
   GetStateFn,
   Instance,
   Middleware,
@@ -139,8 +140,11 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     this.callApi = this.callApi.bind(this)
     this.emit = this.emit.bind(this)
     this.api = new Proxy<ApiMethods>({} as any, {
-      get: (_target, method: string) => {
-        return (params: unknown, options?: ApiRequestOptions): Promise<ApiResponse<unknown, TdObject>> =>
+      get: (_target: Record<string, any>, method: string) => {
+        if (method === 'toJSON') {
+          return '{}'
+        }
+        return (params: TdObject | undefined, options?: ApiRequestOptions): Promise<ApiResponse<unknown, TdObject>> =>
           this.callApi({ method, params }, options)
       }
     })
@@ -165,8 +169,13 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     this.handleError = handler
   }
 
-  public emit<UpdateT extends BaseTdObject = TdObject> (update: UpdateT): Promise<unknown> {
-    return this.handleUpdate(update)
+  public destroy (): Promise<void> {
+    return this.provider.destroy()
+  }
+
+  public emit<UpdateT extends BaseTdObject = TdObject> (
+    update: UpdateT, state?: Record<string, unknown>): Promise<unknown> {
+    return this.handleUpdate(update, state || {})
   }
 
   public use (
@@ -175,13 +184,12 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     this.composer.use(...fns)
   }
 
-  private apiMiddleware (): MiddlewareFn<ApiResponse<unknown, TdObject>> {
+  private apiMiddleware (): MiddlewareFn<ApiResponse<TdObject | undefined, TdObject>> {
     return Composer.optional(
       (ctx: Record<string, unknown>): boolean => !!ctx.request,
-      async (ctx: ApiResponse<unknown, TdObject>, next: () => any): Promise<MiddlewareFn> =>
-        this.provider
-          .send(ctx.request)
-          .then((response: TdObject): unknown => (ctx.response = response))
+      async (ctx: ApiResponse<TdObject | undefined, TdObject>, next: () => any): Promise<MiddlewareFn> =>
+        this.provider.send(ctx.request)
+          .then((response: TdObject | ErrorUnion): unknown => (ctx.response = response))
           .then(next)
     )
   }
@@ -226,7 +234,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     })
   }
 
-  private callApi<ParamsT, ResultT extends TdObject> (
+  private callApi<ParamsT extends TdObject | undefined, ResultT extends TdObject> (
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
   ): Promise<ApiResponse<ParamsT, ResultT>> {
@@ -246,10 +254,9 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     state: Record<string, unknown>,
     props: Record<string, unknown>
   ): T {
-    const ctx: Record<string, unknown> = {}
+    const ctx: Record<string, any> = createState(state)
     defineContextProperty(ctx, '_', _)
     defineContextProperty(ctx, 'airgram', this)
-    defineContextProperty(ctx, 'state', createState(state))
 
     Object.keys(props).forEach((name) => {
       defineContextProperty(ctx, name, props[name])
@@ -275,8 +282,8 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     return {}
   }
 
-  private handleUpdate (update: BaseTdObject): Promise<unknown> {
-    const ctx = this.createContext<UpdateContext<TdObject>>(update._, {}, { update })
+  private handleUpdate (update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
+    const ctx = this.createContext<UpdateContext<TdObject>>(update._, state, { update })
     return this.composer
       .middleware()(ctx, Composer.noop)
     // .catch((error: Error) => this.handleError(error, ctx))
