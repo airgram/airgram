@@ -121,7 +121,7 @@ export class TdClient {
         .then(() => this.receive())
         .then((response) => this.addToStack(response))
         .catch(this.handleError)
-        .finally(() => setImmediate(() => this.loop()))
+        .then(() => setImmediate(() => this.loop()))
     }
   }
 
