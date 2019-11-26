@@ -19,7 +19,7 @@ export function isError (obj: any): obj is ErrorUnion {
   return obj && ('_' in obj) && obj._ === 'error'
 }
 
-export function toObject<T extends BaseTdObject> ({ response }: ApiResponse<any, T>): T {
+export function toObject<T extends BaseTdObject> ({ response }: ApiResponse<any, T>): ApiResponse<any, T>['response'] {
   if (isError(response)) {
     throw new TDLibError(response.code, response.message)
   }
