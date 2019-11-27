@@ -149,7 +149,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       }
     })
 
-    if (this.config.logVerbosityLevel) {
+    if (this.config.logVerbosityLevel !== undefined) {
       this.api
         .setLogVerbosityLevel({
           newVerbosityLevel: this.config.logVerbosityLevel

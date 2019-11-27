@@ -46,7 +46,7 @@ export class TdProxy {
   }
 
   // public execute (client: Buffer, query: string): string | null {
-  //   return this.tdlib.td_json_client_execute(client, buildQuery(query)) || null
+  //   return this.client.td_json_client_execute(client, buildQuery(query)) || null
   // }
 
   public receive (client: Buffer, timeout: number): Promise<string | null> {
