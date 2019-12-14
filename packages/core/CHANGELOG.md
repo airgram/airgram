@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-next.13](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.12...@airgram/core@2.3.0-next.13) (2019-12-14)
+
+
+### Features
+
+* improve context types ([859f32e](https://github.com/airgram/airgram/commit/859f32e12bce087c2ed44cc96bc65022d2115413))
+
+
+
+
+
 # [2.3.0-next.12](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.11...@airgram/core@2.3.0-next.12) (2019-12-14)
 
 **Note:** Version bump only for package @airgram/core
