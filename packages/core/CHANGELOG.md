@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-next.11](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.10...@airgram/core@2.3.0-next.11) (2019-12-14)
+
+
+### Bug Fixes
+
+* log verbosity 0 doesn't work ([3413f24](https://github.com/airgram/airgram/commit/3413f243d1759e60e2ee563cc271178e78d3f72c)), closes [#67](https://github.com/airgram/airgram/issues/67)
+
+
+### Features
+
+* context factory can return promise ([64616e9](https://github.com/airgram/airgram/commit/64616e9a8607c95ab78e2531818221b7acd4e8f6))
+
+
+
+
+
 # [2.3.0-next.10](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.9...@airgram/core@2.3.0-next.10) (2019-11-17)
 
 **Note:** Version bump only for package @airgram/core
