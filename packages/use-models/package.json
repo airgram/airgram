@@ -1,6 +1,6 @@
 {
   "name": "@airgram/use-models",
-  "version": "2.2.0-next.6",
+  "version": "2.2.0-next.7",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -21,7 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@airgram/core": "^2.3.0-next.13",
+    "@airgram/core": "^2.3.0-next.14",
     "class-transformer": "^0.2.3",
     "reflect-metadata": "^0.1.13"
   },
