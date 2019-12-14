@@ -57,13 +57,13 @@ const authMethods: MethodName[] = [
 ]
 
 export class Auth {
-  public maxAttempts: number = 3
+  public maxAttempts = 3
 
   private _airgram?: Instance<any>
 
   private answers: Partial<Record<keyof AuthConfig, string>> = {}
 
-  private attempt: number = 0
+  private attempt = 0
 
   private authState: AuthorizationStateUnion | ErrorUnion | null = null
 
@@ -106,7 +106,7 @@ export class Auth {
         !this.handleUpdateState(ctx.update)
       ),
       Composer.optional(
-        (ctx: Context<unknown>) =>
+        (ctx: Context) =>
           !this.isAuthorized &&
           !authMethods.includes(ctx._ as MethodName) &&
           !authIndependentMethods.includes(ctx._ as AuthIndependentMethodName),
@@ -247,7 +247,8 @@ export class Auth {
       }
     }
 
-    return promise ? promise.then(({ response }) => {
+    return promise
+      ? promise.then(({ response }) => {
         if (isError(response)) {
           this.handleError(response)
           return false
