@@ -3,7 +3,8 @@
   "compilerOptions": {
     "noEmit": false,
     "outDir": "dist",
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "preserveSymlinks": true
   },
   "include": [
     "./src"
