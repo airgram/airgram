@@ -238,22 +238,25 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
   ): Promise<ApiResponse<ParamsT, ResultT>> {
-    const ctx = this.createContext <ApiResponse<ParamsT, ResultT>>(
+    return this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
       (options && options.state) || {},
       { request }
-    )
-    return new Promise<any>((resolve, reject) => {
+    ).then((ctx) => new Promise<any>((resolve, reject) => {
       const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
       return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
-    })// .catch((error) => this.handleError(error, ctx))
+    }))
+    // return new Promise<any>((resolve, reject) => {
+    //   const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
+    //   return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
+    // })// .catch((error) => this.handleError(error, ctx))
   }
 
-  private createContext<T> (
+  private async createContext<T> (
     _: string,
     state: Record<string, unknown>,
     props: Record<string, unknown>
-  ): T {
+  ): Promise<T> {
     const ctx: Record<string, any> = createState(state)
     defineContextProperty(ctx, '_', _)
     defineContextProperty(ctx, 'airgram', this)
@@ -262,14 +265,14 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       defineContextProperty(ctx, name, props[name])
     })
 
-    const extraContext = this.getExtraContext(ctx)
+    const extraContext = await this.getExtraContext(ctx)
     Object.keys(extraContext).forEach((name) => {
       defineContextProperty(ctx, name, extraContext[name])
     })
     return ctx as T
   }
 
-  private getExtraContext (ctx: Record<string, unknown>): Record<string, any> {
+  private async getExtraContext (ctx: Record<string, unknown>): Promise<Record<string, any>> {
     const { context } = this.config
     if (context) {
       if (isUnwrapped<ApiResponse<unknown, TdObject> | UpdateContext<TdObject>>(context)) {
@@ -283,9 +286,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   }
 
   private handleUpdate (update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
-    const ctx = this.createContext<UpdateContext<TdObject>>(update._, state, { update })
-    return this.composer
-      .middleware()(ctx, Composer.noop)
-    // .catch((error: Error) => this.handleError(error, ctx))
+    return this.createContext<UpdateContext<TdObject>>(update._, state, { update })
+      .then((ctx) => this.composer.middleware()(ctx, Composer.noop))
   }
 }

@@ -32,12 +32,11 @@ export interface Composer<ContextT> {
 
 export interface Config<ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
   provider: ProviderT
-  context?: Record<string, any> | ((ctx: Context) => Record<string, any>)
+  context?: ExtraContext | ((ctx: BaseContext) => ExtraContext) | ((ctx: BaseContext) => Promise<ExtraContext>)
   models?: PlainObjectToModelTransformer
   databaseEncryptionKey?: string
   logVerbosityLevel?: number
   name?: string
-  token?: string
 }
 
 export interface Instance<ProviderT extends TdProvider = TdProvider> {
@@ -69,7 +68,7 @@ export interface ApiRequestOptions {
   state?: Record<string, unknown>
 }
 
-export interface ApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState {
+export interface ApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState, ExtraContext {
   _: Predicate<ResultT> | 'error'
   request: ApiRequest<ParamsT>
   response: ResultT | api.ErrorUnion
@@ -77,6 +76,8 @@ export interface ApiResponse<ParamsT, ResultT extends BaseTdObject> extends Cont
 }
 
 export interface TdProvider {
+  destroy (): Promise<void>
+
   initialize (
     handleUpdate: (update: TdObject) => Promise<unknown>,
     handleError: (error: Error | string) => void,
@@ -84,8 +85,6 @@ export interface TdProvider {
   ): void
 
   send (request: ApiRequest): Promise<TdObject>
-
-  destroy (): Promise<void>
 }
 
 export interface BaseTdObject {
@@ -112,10 +111,15 @@ export interface ContextState {
   getState: GetStateFn
 }
 
-export interface UpdateContext<UpdateT extends BaseTdObject> extends ContextState {
+export interface UpdateContext<UpdateT extends BaseTdObject> extends ContextState, ExtraContext {
   _: Predicate<UpdateT>
   update: UpdateT
   airgram: Instance
 }
 
-export type Context<T = {}> = (ApiResponse<unknown, TdObject> | UpdateContext<TdObject>) & T
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ExtraContext {}
+
+export type Context<T = {}> = ApiResponse<unknown, TdObject> | UpdateContext<TdObject> & T
+
+export type BaseContext = Omit<Context, keyof ExtraContext>
