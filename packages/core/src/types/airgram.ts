@@ -32,7 +32,8 @@ export interface Composer<ContextT> {
 
 export interface Config<ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
   provider: ProviderT
-  context?: ExtraContext | ((ctx: BaseContext) => ExtraContext) | ((ctx: BaseContext) => Promise<ExtraContext>)
+  context?: ExtraContext
+    | ((ctx: BaseApiResponse<any, any> | BaseUpdateContext<any>) => ExtraContext | Promise<ExtraContext>)
   models?: PlainObjectToModelTransformer
   databaseEncryptionKey?: string
   logVerbosityLevel?: number
@@ -68,12 +69,15 @@ export interface ApiRequestOptions {
   state?: Record<string, unknown>
 }
 
-export interface ApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState {
+export interface BaseApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState {
   _: Predicate<ResultT> | 'error'
   request: ApiRequest<ParamsT>
   response: ResultT | api.ErrorUnion
   airgram: Instance
 }
+
+export interface ApiResponse<ParamsT, ResultT extends BaseTdObject>
+  extends BaseApiResponse<ParamsT, ResultT>, ExtraContext {}
 
 export interface TdProvider {
   destroy (): Promise<void>
@@ -111,15 +115,15 @@ export interface ContextState {
   getState: GetStateFn
 }
 
-export interface UpdateContext<UpdateT extends BaseTdObject> extends ContextState {
+export interface BaseUpdateContext<UpdateT extends BaseTdObject> extends ContextState {
   _: Predicate<UpdateT>
   update: UpdateT
   airgram: Instance
 }
 
-export type BaseContext = ApiResponse<unknown, TdObject> | UpdateContext<TdObject>
+export interface UpdateContext<UpdateT extends BaseTdObject> extends BaseUpdateContext<UpdateT>, ExtraContext {}
+
+export type Context = ApiResponse<unknown, TdObject> | UpdateContext<TdObject>
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ExtraContext {}
-
-export type Context<ContextT extends BaseContext = BaseContext> = ContextT & ExtraContext
