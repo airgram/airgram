@@ -66,30 +66,6 @@ function createState (starting: Record<string, unknown>): ContextState {
   return { getState, setState }
 }
 
-function defineContextProperty (
-  ctx: Record<string, unknown>,
-  name: string,
-  value: (() => any) | unknown
-): void {
-  const descriptor: PropertyDescriptor = {
-    enumerable: true,
-    configurable: false
-  }
-  if (typeof value === 'function') {
-    descriptor.get = function () {
-      return value()
-    }
-  } else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-    descriptor.value = value
-    descriptor.writable = false
-  } else {
-    descriptor.get = function () {
-      return value
-    }
-  }
-  Object.defineProperty(ctx, name, descriptor)
-}
-
 function isUnwrapped<T> (o: any): o is T {
   return typeof o !== 'function'
 }
@@ -246,10 +222,6 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
       return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
     }))
-    // return new Promise<any>((resolve, reject) => {
-    //   const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
-    //   return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
-    // })// .catch((error) => this.handleError(error, ctx))
   }
 
   private async createContext<T> (
@@ -257,18 +229,26 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
     state: Record<string, unknown>,
     props: Record<string, unknown>
   ): Promise<T> {
-    const ctx: Record<string, any> = createState(state)
-    defineContextProperty(ctx, '_', _)
-    defineContextProperty(ctx, 'airgram', this)
-
-    Object.keys(props).forEach((name) => {
-      defineContextProperty(ctx, name, props[name])
+    const ctx: Record<string, any> = {}
+    const descriptor: PropertyDescriptor = {
+      enumerable: true,
+      configurable: false
+    }
+    Object.defineProperty(ctx, 'airgram', {
+      ...descriptor,
+      get: () => this
     })
-
-    const extraContext = await this.getExtraContext(ctx)
-    Object.keys(extraContext).forEach((name) => {
-      defineContextProperty(ctx, name, extraContext[name])
+    const defineProperties = (obj: Record<string, any>) => Object.keys(obj).forEach((name) => {
+      Object.defineProperty(ctx, name, {
+        ...descriptor,
+        value: obj[name],
+        writable: false
+      })
     })
+    defineProperties(createState(state))
+    defineProperties({ _ })
+    defineProperties(props)
+    defineProperties(await this.getExtraContext(ctx))
     return ctx as T
   }
 
