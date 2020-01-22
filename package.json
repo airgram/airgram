@@ -43,7 +43,7 @@
     "gulpclass": "^0.2.0",
     "jest": "^24.8.0",
     "lerna": "^3.16.4",
-    "nodemon": "^1.19.1",
+    "nodemon": "^2.0.2",
     "pre-commit": "^1.2.2",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",

@@ -216,8 +216,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   ): Promise<ApiResponse<ParamsT, ResultT>> {
     return this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
-      (options && options.state) || {},
-      { request }
+      { options: options || {}, request }
     ).then((ctx) => new Promise<any>((resolve, reject) => {
       const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
       return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
@@ -226,8 +225,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
 
   private async createContext<T> (
     _: string,
-    state: Record<string, unknown>,
-    props: Record<string, unknown>
+    props: Record<string, any>
   ): Promise<T> {
     const ctx: Record<string, any> = {}
     const descriptor: PropertyDescriptor = {
@@ -245,7 +243,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
         writable: false
       })
     })
-    defineProperties(createState(state))
+    defineProperties(createState(props?.options?.state || {}))
     defineProperties({ _ })
     defineProperties(props)
     defineProperties(await this.getExtraContext(ctx))
@@ -266,7 +264,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   }
 
   private handleUpdate (update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
-    return this.createContext<UpdateContext<TdObject>>(update._, state, { update })
+    return this.createContext<UpdateContext<TdObject>>(update._, { update, options: { state } })
       .then((ctx) => this.composer.middleware()(ctx, Composer.noop))
   }
 }

@@ -73,6 +73,7 @@ export interface BaseApiResponse<ParamsT, ResultT extends BaseTdObject> extends 
   _: Predicate<ResultT> | 'error'
   request: ApiRequest<ParamsT>
   response: ResultT | api.ErrorUnion
+  options: ApiRequestOptions
   airgram: Instance
 }
 
