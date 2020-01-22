@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-next.15](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.14...@airgram/core@2.3.0-next.15) (2020-01-22)
+
+
+### Bug Fixes
+
+* functions in custom context ([1b0e6a9](https://github.com/airgram/airgram/commit/1b0e6a9))
+
+
+### Features
+
+* request options available in context ([c8e09b8](https://github.com/airgram/airgram/commit/c8e09b8))
+
+
+
+
+
 # [2.3.0-next.14](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.13...@airgram/core@2.3.0-next.14) (2019-12-14)
 
 **Note:** Version bump only for package @airgram/core

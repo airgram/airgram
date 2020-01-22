@@ -1,6 +1,6 @@
 {
   "name": "@airgram/core",
-  "version": "2.3.0-next.14",
+  "version": "2.3.0-next.15",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
