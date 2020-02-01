@@ -1,6 +1,6 @@
 {
   "name": "airgram",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -24,7 +24,7 @@
   "pre-commit": "yarn run lint",
   "dependencies": {
     "@airgram/constants": "^3.0.0",
-    "@airgram/core": "^3.0.0",
+    "@airgram/core": "^3.0.1",
     "ffi-napi": "^2.4.5"
   },
   "devDependencies": {
