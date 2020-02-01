@@ -109,7 +109,6 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       this.config.models
     )
     if (this.config.logVerbosityLevel !== undefined) {
-      console.info('this.config', this.config)
       provider.execute({
         method: 'setLogVerbosityLevel',
         params: { newVerbosityLevel: this.config.logVerbosityLevel }
