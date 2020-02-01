@@ -1,0 +1,22 @@
+{
+  "name": "@airgram-examples/example-echo-bot",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "",
+    "dev": "DEBUG=airgram* dotenv nodemon --config nodemon.json",
+    "check": "tsc --noEmit",
+    "lint": "eslint --fix ./src/**/*.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "pre-commit": "yarn run lint",
+  "dependencies": {
+    "airgram": "link:../../packages/airgram",
+    "debug": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.4"
+  }
+}

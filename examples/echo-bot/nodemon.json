@@ -1,0 +1,13 @@
+{
+  "verbose": true,
+  "debug": true,
+  "exec": "node -r ts-node/register ./src/index.ts",
+  "events": {
+    "restart": "echo \"[Warning] Remember run yarn run test b4 push to dev branch !\""
+  },
+  "watch": [
+    "./src/**/*.ts"
+  ],
+  "ext": "ts",
+  "inspect": true
+}
