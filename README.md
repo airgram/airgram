@@ -75,7 +75,7 @@ airgram.on('updateNewMessage', async ({ update }, next) => {
 Guides and API-reference are available [here](https://airgram.io).
 
 ## Old version
-If you are interesting in `v1.*`, follow to corresponding [branch](https://github.com/airgram/airgram/tree/v1).
+If you are interested in `v1.*`, follow to corresponding [branch](https://github.com/airgram/airgram/tree/v1).
 
 ## License
 
