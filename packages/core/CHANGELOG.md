@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-next.17](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.16...@airgram/core@2.3.0-next.17) (2020-02-01)
+
+**Note:** Version bump only for package @airgram/core
+
+
+
+
+
 # [2.3.0-next.16](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.15...@airgram/core@2.3.0-next.16) (2020-01-22)
 
 **Note:** Version bump only for package @airgram/core
