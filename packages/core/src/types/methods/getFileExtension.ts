@@ -18,3 +18,5 @@ export type getFileExtension = (
   params?: GetFileExtensionParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetFileExtensionParams, TextUnion>>
+
+export type getFileExtensionSync = (params?: GetFileExtensionParams) => TextUnion

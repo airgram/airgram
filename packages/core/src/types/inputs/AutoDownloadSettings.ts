@@ -5,12 +5,14 @@ export interface AutoDownloadSettingsInput {
   _: 'autoDownloadSettings'
   /** True, if the auto-download is enabled */
   isAutoDownloadEnabled?: boolean
-  /** Maximum size of a photo file to be auto-downloaded */
+  /** The maximum size of a photo file to be auto-downloaded */
   maxPhotoFileSize?: number
-  /** Maximum size of a video file to be auto-downloaded */
+  /** The maximum size of a video file to be auto-downloaded */
   maxVideoFileSize?: number
-  /** Maximum size of other file types to be auto-downloaded */
+  /** The maximum size of other file types to be auto-downloaded */
   maxOtherFileSize?: number
+  /** The maximum suggested bitrate for uploaded videos */
+  videoUploadBitrate?: number
   /** True, if the beginning of videos needs to be preloaded for instant playback */
   preloadLargeVideos?: boolean
   /**

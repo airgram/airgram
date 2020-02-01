@@ -19,3 +19,5 @@ export type testReturnError = (
   params?: TestReturnErrorParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<TestReturnErrorParams, ErrorUnion>>
+
+export type testReturnErrorSync = (params?: TestReturnErrorParams) => ErrorUnion

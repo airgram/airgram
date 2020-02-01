@@ -19,7 +19,7 @@ export interface InlineKeyboardButtonTypeUrl {
  */
 export interface InlineKeyboardButtonTypeLoginUrl {
   _: 'inlineKeyboardButtonTypeLoginUrl'
-  /** HTTP URL to open */
+  /** An HTTP URL to open */
   url: string
   /** Unique button identifier */
   id: number

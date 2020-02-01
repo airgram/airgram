@@ -60,7 +60,31 @@ export interface Instance<ProviderT extends TdProvider = TdProvider> {
   ): void
 }
 
-export interface ApiRequest<ParamsT = TdObject | undefined> {
+export type ApiMethod = keyof ApiMethods
+
+export type SyncApiMethod =
+  'addLogMessage'
+  | 'cleanFileName'
+  | 'getFileExtension'
+  | 'getFileMimeType'
+  | 'getJsonString'
+  | 'getJsonValue'
+  | 'getLanguagePackString'
+  | 'getLogStream'
+  | 'getLogTagVerbosityLevel'
+  | 'getLogTags'
+  | 'getLogVerbosityLevel'
+  | 'getPushReceiverId'
+  | 'getTextEntities'
+  | 'parseTextEntities'
+  | 'setLogStream'
+  | 'setLogTagVerbosityLevel'
+  | 'setLogVerbosityLevel'
+  | 'testReturnError'
+
+export type AsyncApiMethod = Exclude<ApiMethod, SyncApiMethod>
+
+export interface ApiRequest<ParamsT = Record<string, any> | undefined> {
   method: string
   params: ParamsT
 }
@@ -82,6 +106,8 @@ export interface ApiResponse<ParamsT, ResultT extends BaseTdObject>
 
 export interface TdProvider {
   destroy (): Promise<void>
+
+  execute (request: ApiRequest): TdObject
 
   initialize (
     handleUpdate: (update: TdObject) => Promise<unknown>,

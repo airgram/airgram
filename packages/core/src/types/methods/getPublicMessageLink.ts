@@ -9,7 +9,7 @@ export interface GetPublicMessageLinkParams {
 
 /**
  * Returns a public HTTPS link to a message. Available only for messages in supergroups
- * and channels with username
+ * and channels with a username
  * @param {Object} params
  * @param {number} [params.chatId] - Identifier of the chat to which the message
  * belongs

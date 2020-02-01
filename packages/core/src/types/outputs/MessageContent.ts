@@ -75,7 +75,7 @@ export interface MessageText {
 /** An animation message (GIF-style). */
 export interface MessageAnimation {
   _: 'messageAnimation'
-  /** Message content */
+  /** The animation description */
   animation: Animation
   /** Animation caption */
   caption: FormattedText
@@ -89,7 +89,7 @@ export interface MessageAnimation {
 /** An audio message */
 export interface MessageAudio {
   _: 'messageAudio'
-  /** Message content */
+  /** The audio description */
   audio: Audio
   /** Audio caption */
   caption: FormattedText
@@ -98,7 +98,7 @@ export interface MessageAudio {
 /** A document message (general file) */
 export interface MessageDocument {
   _: 'messageDocument'
-  /** Message content */
+  /** The document description */
   document: Document
   /** Document caption */
   caption: FormattedText
@@ -107,7 +107,7 @@ export interface MessageDocument {
 /** A photo message */
 export interface MessagePhoto {
   _: 'messagePhoto'
-  /** Message content */
+  /** The photo description */
   photo: Photo
   /** Photo caption */
   caption: FormattedText
@@ -123,14 +123,14 @@ export interface MessageExpiredPhoto {
 /** A sticker message */
 export interface MessageSticker {
   _: 'messageSticker'
-  /** Message content */
+  /** The sticker description */
   sticker: Sticker
 }
 
 /** A video message */
 export interface MessageVideo {
   _: 'messageVideo'
-  /** Message content */
+  /** The video description */
   video: Video
   /** Video caption */
   caption: FormattedText
@@ -149,7 +149,7 @@ export interface MessageExpiredVideo {
 /** A video note message */
 export interface MessageVideoNote {
   _: 'messageVideoNote'
-  /** Message content */
+  /** The video note description */
   videoNote: VideoNote
   /** True, if at least one of the recipients has viewed the video note */
   isViewed: boolean
@@ -163,7 +163,7 @@ export interface MessageVideoNote {
 /** A voice note message */
 export interface MessageVoiceNote {
   _: 'messageVoiceNote'
-  /** Message content */
+  /** The voice note description */
   voiceNote: VoiceNote
   /** Voice note caption */
   caption: FormattedText
@@ -174,7 +174,7 @@ export interface MessageVoiceNote {
 /** A message with a location */
 export interface MessageLocation {
   _: 'messageLocation'
-  /** Message content */
+  /** The location description */
   location: Location
   /**
    * Time relative to the message sent date until which the location can be updated, in
@@ -191,28 +191,28 @@ export interface MessageLocation {
 /** A message with information about a venue */
 export interface MessageVenue {
   _: 'messageVenue'
-  /** Message content */
+  /** The venue description */
   venue: Venue
 }
 
 /** A message with a user contact */
 export interface MessageContact {
   _: 'messageContact'
-  /** Message content */
+  /** The contact description */
   contact: Contact
 }
 
 /** A message with a game */
 export interface MessageGame {
   _: 'messageGame'
-  /** Game */
+  /** The game description */
   game: Game
 }
 
 /** A message with a poll */
 export interface MessagePoll {
   _: 'messagePoll'
-  /** Poll */
+  /** The poll description */
   poll: Poll
 }
 

@@ -3,7 +3,7 @@ import { StickersUnion } from '../outputs'
 
 export interface GetStickersParams {
   emoji?: string // String representation of emoji. If empty, returns all known installed stickers
-  limit?: number // Maximum number of stickers to be returned
+  limit?: number // The maximum number of stickers to be returned
 }
 
 /**
@@ -12,7 +12,7 @@ export interface GetStickersParams {
  * @param {Object} params
  * @param {string} [params.emoji] - String representation of emoji. If empty, returns
  * all known installed stickers
- * @param {number} [params.limit] - Maximum number of stickers to be returned
+ * @param {number} [params.limit] - The maximum number of stickers to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetStickersParams, StickersUnion>>}
  */

@@ -3,7 +3,7 @@ import { BackgroundTypeInputUnion, InputBackgroundInputUnion } from '../inputs'
 import { BackgroundUnion } from '../outputs'
 
 export interface SetBackgroundParams {
-  background?: InputBackgroundInputUnion // The input background to use, null for solid backgrounds
+  background?: InputBackgroundInputUnion // The input background to use, null for filled backgrounds
   type?: BackgroundTypeInputUnion // Background type; null for default background. The method will return error 404 if type is null
   forDarkTheme?: boolean // True, if the background is chosen for dark theme
 }
@@ -13,7 +13,7 @@ export interface SetBackgroundParams {
  * backgrounds
  * @param {Object} params
  * @param {InputBackgroundInputUnion} [params.background] - The input background
- * to use, null for solid backgrounds
+ * to use, null for filled backgrounds
  * @param {BackgroundTypeInputUnion} [params.type] - Background type; null for default
  * background. The method will return error 404 if type is null
  * @param {boolean} [params.forDarkTheme] - True, if the background is chosen for

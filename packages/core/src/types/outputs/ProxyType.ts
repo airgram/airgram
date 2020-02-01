@@ -1,4 +1,4 @@
-/** Describes the type of the proxy server */
+/** Describes the type of a proxy server */
 export type ProxyTypeUnion = ProxyTypeSocks5 | ProxyTypeHttp | ProxyTypeMtproto
 
 /** A SOCKS5 proxy server */

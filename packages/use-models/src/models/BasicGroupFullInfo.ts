@@ -14,8 +14,8 @@ export class BasicGroupFullInfoBaseModel {
   public members: ChatMember[]
 
   /**
-   * Invite link for this group; available only for the group creator and only after it
-   * has been generated at least once
+   * Invite link for this group; available only after it has been generated at least once
+   * and only for the group creator
    */
   public inviteLink: string
 }

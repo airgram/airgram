@@ -7,6 +7,7 @@ export interface AirgramConfig
 
 export class Airgram extends BaseAirgram<TdProvider> {
   public constructor (config: AirgramConfig) {
+    console.info('WEB CON')
     const {
       instanceName,
       isBackground,
@@ -29,6 +30,9 @@ export class Airgram extends BaseAirgram<TdProvider> {
         useDatabase
       })
     }
+    console.info({
+      restConfig
+    })
     super(baseConfig)
   }
 }

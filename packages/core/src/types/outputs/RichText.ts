@@ -45,7 +45,7 @@ export interface RichTextUnderline {
   text: RichTextUnion
 }
 
-/** A strike-through rich text */
+/** A strikethrough rich text */
 export interface RichTextStrikethrough {
   _: 'richTextStrikethrough'
   /** Text */
@@ -66,6 +66,8 @@ export interface RichTextUrl {
   text: RichTextUnion
   /** URL */
   url: string
+  /** True, if the URL has cached instant view server-side */
+  isCached: boolean
 }
 
 /** A rich text email link */

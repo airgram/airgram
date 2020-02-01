@@ -4,7 +4,7 @@ import { Location } from '@airgram/core'
 export class MessageLocationBaseModel {
   public _: 'messageLocation'
 
-  /** Message content */
+  /** The location description */
   public location: Location
 
   /**

@@ -4,5 +4,6 @@ export enum TOP_CHAT_CATEGORY {
   topChatCategoryGroups = 'topChatCategoryGroups',
   topChatCategoryChannels = 'topChatCategoryChannels',
   topChatCategoryInlineBots = 'topChatCategoryInlineBots',
-  topChatCategoryCalls = 'topChatCategoryCalls'
+  topChatCategoryCalls = 'topChatCategoryCalls',
+  topChatCategoryForwardChats = 'topChatCategoryForwardChats'
 }

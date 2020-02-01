@@ -6,7 +6,7 @@ export interface CloseSecretChatParams {
 }
 
 /**
- * Closes a secret chat, effectively transfering its state to secretChatStateClosed
+ * Closes a secret chat, effectively transferring its state to secretChatStateClosed
  * @param {Object} params
  * @param {number} [params.secretChatId] - Secret chat identifier
  * @param {ApiRequestOptions} options

@@ -4,7 +4,7 @@ import { ChatsUnion } from '../outputs'
 
 export interface GetTopChatsParams {
   category?: TopChatCategoryInputUnion // Category of chats to be returned
-  limit?: number // Maximum number of chats to be returned; up to 30
+  limit?: number // The maximum number of chats to be returned; up to 30
 }
 
 /**
@@ -13,8 +13,8 @@ export interface GetTopChatsParams {
  * @param {Object} params
  * @param {TopChatCategoryInputUnion} [params.category] - Category of chats to be
  * returned
- * @param {number} [params.limit] - Maximum number of chats to be returned; up to
- * 30
+ * @param {number} [params.limit] - The maximum number of chats to be returned; up
+ * to 30
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetTopChatsParams, ChatsUnion>>}
  */

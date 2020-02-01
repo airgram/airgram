@@ -9,7 +9,7 @@ export interface GetChatStatisticsUrlParams {
 
 /**
  * Returns an HTTP URL with the chat statistics. Currently this method can be used only
- * for channels
+ * for channels. Can be used only if SupergroupFullInfo.can_view_statistics == true
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {string} [params.parameters] - Parameters from "tg://statsrefresh?params=******"

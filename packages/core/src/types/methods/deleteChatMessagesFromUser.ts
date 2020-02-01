@@ -7,7 +7,7 @@ export interface DeleteChatMessagesFromUserParams {
 }
 
 /**
- * Deletes all messages sent by the specified user to a chat. Supported only in supergroups;
+ * Deletes all messages sent by the specified user to a chat. Supported only for supergroups;
  * requires can_delete_messages administrator privileges
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier

@@ -11,7 +11,7 @@ export interface ChatMembersFilterContactsInput {
   _: 'chatMembersFilterContacts'
 }
 
-/** Returns the creator and administrators */
+/** Returns the owner and administrators */
 export interface ChatMembersFilterAdministratorsInput {
   _: 'chatMembersFilterAdministrators'
 }

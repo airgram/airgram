@@ -8,6 +8,7 @@ export type TopChatCategoryInputUnion = TopChatCategoryUsersInput
   | TopChatCategoryChannelsInput
   | TopChatCategoryInlineBotsInput
   | TopChatCategoryCallsInput
+  | TopChatCategoryForwardChatsInput
 
 /** A category containing frequently used private chats with non-bot users */
 export interface TopChatCategoryUsersInput {
@@ -40,4 +41,9 @@ export interface TopChatCategoryInlineBotsInput {
 /** A category containing frequently used chats used for calls */
 export interface TopChatCategoryCallsInput {
   _: 'topChatCategoryCalls'
+}
+
+/** A category containing frequently used chats used to forward messages */
+export interface TopChatCategoryForwardChatsInput {
+  _: 'topChatCategoryForwardChats'
 }

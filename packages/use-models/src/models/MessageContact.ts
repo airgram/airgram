@@ -4,6 +4,6 @@ import { Contact } from '@airgram/core'
 export class MessageContactBaseModel {
   public _: 'messageContact'
 
-  /** Message content */
+  /** The contact description */
   public contact: Contact
 }

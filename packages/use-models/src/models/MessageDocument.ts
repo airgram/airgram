@@ -4,7 +4,7 @@ import { Document, FormattedText } from '@airgram/core'
 export class MessageDocumentBaseModel {
   public _: 'messageDocument'
 
-  /** Message content */
+  /** The document description */
   public document: Document
 
   /** Document caption */

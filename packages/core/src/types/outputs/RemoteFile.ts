@@ -5,7 +5,8 @@ export interface RemoteFile {
   _: 'remoteFile'
   /**
    * Remote file identifier; may be empty. Can be used across application restarts or
-   * even from other devices for the current user. If the ID starts with "http://" or
+   * even from other devices for the current user. Uniquely identifies a file, but a file
+   * can have a lot of different valid identifiers. If the ID starts with "http://" or
    * "https://", it represents the HTTP URL of the file. TDLib is currently unable to
    * download files if only their URL is known. If downloadFile is called on such a file
    * or if it is sent to a secret chat, TDLib starts a file generation process by sending
@@ -14,6 +15,11 @@ export interface RemoteFile {
    * it to the specified location
    */
   id: string
+  /**
+   * Unique file identifier; may be empty if unknown. The unique file identifier which
+   * is the same for the same file even for different users and is persistent over time
+   */
+  uniqueId: string
   /**
    * True, if the file is currently being uploaded (or a remote copy is being generated
    * by some other means)

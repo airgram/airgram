@@ -8,6 +8,6 @@ export class BackgroundTypeWallpaperBaseModel {
    */
   public isBlurred: boolean
 
-  /** True, if the background needs to be slightly moved when device is rotated */
+  /** True, if the background needs to be slightly moved when device is tilted */
   public isMoving: boolean
 }

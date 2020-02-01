@@ -1,4 +1,9 @@
-/** A message with a poll. Polls can't be sent to private or secret chats */
+import { PollTypeUnion } from '@airgram/core'
+
+/**
+ * A message with a poll. Polls can't be sent to secret chats. Polls can be sent only
+ * to a private chat with a bot
+ */
 export class InputMessagePollBaseModel {
   public _: 'inputMessagePoll'
 
@@ -7,4 +12,16 @@ export class InputMessagePollBaseModel {
 
   /** List of poll answer options, 2-10 strings 1-100 characters each */
   public options: string[]
+
+  /**
+   * True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded
+   * to channels
+   */
+  public isAnonymous: boolean
+
+  /** Type of the poll */
+  public type: PollTypeUnion
+
+  /** True, if the poll needs to be sent already closed; for bots only */
+  public isClosed: boolean
 }

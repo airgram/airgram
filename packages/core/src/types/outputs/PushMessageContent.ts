@@ -143,6 +143,8 @@ export interface PushMessageContentPoll {
   _: 'pushMessageContentPoll'
   /** Poll question */
   question: string
+  /** True, if the poll is regular and not in quiz mode */
+  isRegular: boolean
   /** True, if the message is a pinned message with the specified content */
   isPinned: boolean
 }
@@ -215,7 +217,7 @@ export interface PushMessageContentChatAddMembers {
   memberName: string
   /** True, if the current user was added to the group */
   isCurrentUser: boolean
-  /** True, if the user has returned to the group himself */
+  /** True, if the user has returned to the group themself */
   isReturned: boolean
 }
 
@@ -238,7 +240,7 @@ export interface PushMessageContentChatDeleteMember {
   memberName: string
   /** True, if the current user was deleted from the group */
   isCurrentUser: boolean
-  /** True, if the user has left the group himself */
+  /** True, if the user has left the group themself */
   isLeft: boolean
 }
 

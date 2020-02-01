@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { AutoDownloadSettingsPresetsUnion } from '../outputs'
 
+
+
 /**
  * Returns auto-download settings presets for the currently logged in user
  * @param {ApiRequestOptions} options

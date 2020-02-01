@@ -4,7 +4,7 @@ import { Animation, FormattedText } from '@airgram/core'
 export class MessageAnimationBaseModel {
   public _: 'messageAnimation'
 
-  /** Message content */
+  /** The animation description */
   public animation: Animation
 
   /** Animation caption */

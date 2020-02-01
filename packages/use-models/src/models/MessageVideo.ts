@@ -4,7 +4,7 @@ import { FormattedText, Video } from '@airgram/core'
 export class MessageVideoBaseModel {
   public _: 'messageVideo'
 
-  /** Message content */
+  /** The video description */
   public video: Video
 
   /** Video caption */

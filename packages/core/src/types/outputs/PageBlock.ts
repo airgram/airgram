@@ -9,7 +9,8 @@ import {
   PageBlockTableCell,
   Photo,
   RichTextUnion,
-  Video
+  Video,
+  VoiceNote
 } from './index'
 
 /** Describes a block of an instant view web page */
@@ -31,6 +32,7 @@ export type PageBlockUnion = PageBlockTitle
   | PageBlockAudio
   | PageBlockPhoto
   | PageBlockVideo
+  | PageBlockVoiceNote
   | PageBlockCover
   | PageBlockEmbedded
   | PageBlockEmbeddedPost
@@ -191,6 +193,15 @@ export interface PageBlockVideo {
   needAutoplay: boolean
   /** True, if the video should be looped */
   isLooped: boolean
+}
+
+/** A voice note */
+export interface PageBlockVoiceNote {
+  _: 'pageBlockVoiceNote'
+  /** Voice note; may be null */
+  voiceNote?: VoiceNote
+  /** Voice note caption */
+  caption: PageBlockCaption
 }
 
 /** A page cover */

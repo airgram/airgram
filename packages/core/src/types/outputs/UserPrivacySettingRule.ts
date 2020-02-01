@@ -2,9 +2,11 @@
 export type UserPrivacySettingRuleUnion = UserPrivacySettingRuleAllowAll
   | UserPrivacySettingRuleAllowContacts
   | UserPrivacySettingRuleAllowUsers
+  | UserPrivacySettingRuleAllowChatMembers
   | UserPrivacySettingRuleRestrictAll
   | UserPrivacySettingRuleRestrictContacts
   | UserPrivacySettingRuleRestrictUsers
+  | UserPrivacySettingRuleRestrictChatMembers
 
 /** A rule to allow all users to do something */
 export interface UserPrivacySettingRuleAllowAll {
@@ -19,8 +21,18 @@ export interface UserPrivacySettingRuleAllowContacts {
 /** A rule to allow certain specified users to do something */
 export interface UserPrivacySettingRuleAllowUsers {
   _: 'userPrivacySettingRuleAllowUsers'
-  /** The user identifiers */
+  /** The user identifiers, total number of users in all rules must not exceed 1000 */
   userIds: number[]
+}
+
+/**
+ * A rule to allow all members of certain specified basic groups and supergroups to
+ * doing something
+ */
+export interface UserPrivacySettingRuleAllowChatMembers {
+  _: 'userPrivacySettingRuleAllowChatMembers'
+  /** The chat identifiers, total number of chats in all rules must not exceed 20 */
+  chatIds: number[]
 }
 
 /** A rule to restrict all users from doing something */
@@ -36,6 +48,16 @@ export interface UserPrivacySettingRuleRestrictContacts {
 /** A rule to restrict all specified users from doing something */
 export interface UserPrivacySettingRuleRestrictUsers {
   _: 'userPrivacySettingRuleRestrictUsers'
-  /** The user identifiers */
+  /** The user identifiers, total number of users in all rules must not exceed 1000 */
   userIds: number[]
+}
+
+/**
+ * A rule to restrict all members of specified basic groups and supergroups from doing
+ * something
+ */
+export interface UserPrivacySettingRuleRestrictChatMembers {
+  _: 'userPrivacySettingRuleRestrictChatMembers'
+  /** The chat identifiers, total number of chats in all rules must not exceed 20 */
+  chatIds: number[]
 }

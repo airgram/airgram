@@ -5,14 +5,16 @@ export type TextEntityTypeUnion = TextEntityTypeMention
   | TextEntityTypeBotCommand
   | TextEntityTypeUrl
   | TextEntityTypeEmailAddress
+  | TextEntityTypePhoneNumber
   | TextEntityTypeBold
   | TextEntityTypeItalic
+  | TextEntityTypeUnderline
+  | TextEntityTypeStrikethrough
   | TextEntityTypeCode
   | TextEntityTypePre
   | TextEntityTypePreCode
   | TextEntityTypeTextUrl
   | TextEntityTypeMentionName
-  | TextEntityTypePhoneNumber
 
 /** A mention of a user by their username */
 export interface TextEntityTypeMention {
@@ -50,6 +52,11 @@ export interface TextEntityTypeEmailAddress {
   _: 'textEntityTypeEmailAddress'
 }
 
+/** A phone number */
+export interface TextEntityTypePhoneNumber {
+  _: 'textEntityTypePhoneNumber'
+}
+
 /** A bold text */
 export interface TextEntityTypeBold {
   _: 'textEntityTypeBold'
@@ -58,6 +65,16 @@ export interface TextEntityTypeBold {
 /** An italic text */
 export interface TextEntityTypeItalic {
   _: 'textEntityTypeItalic'
+}
+
+/** An underlined text */
+export interface TextEntityTypeUnderline {
+  _: 'textEntityTypeUnderline'
+}
+
+/** A strikethrough text */
+export interface TextEntityTypeStrikethrough {
+  _: 'textEntityTypeStrikethrough'
 }
 
 /** Text that must be formatted as if inside a code HTML tag */
@@ -89,9 +106,4 @@ export interface TextEntityTypeMentionName {
   _: 'textEntityTypeMentionName'
   /** Identifier of the mentioned user */
   userId: number
-}
-
-/** A phone number */
-export interface TextEntityTypePhoneNumber {
-  _: 'textEntityTypePhoneNumber'
 }

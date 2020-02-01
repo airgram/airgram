@@ -30,7 +30,7 @@ const getDefaultConfig = (): Partial<Config> => ({
   databaseDirectory: './db',
   databaseEncryptionKey: '',
   deviceModel: 'UNKNOWN DEVICE',
-  logVerbosityLevel: 2,
+  // logVerbosityLevel: 2,
   systemLanguageCode: 'en',
   systemVersion: 'UNKNOWN VERSION'
 })
@@ -108,6 +108,14 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       },
       this.config.models
     )
+    if (this.config.logVerbosityLevel !== undefined) {
+      console.info('this.config', this.config)
+      provider.execute({
+        method: 'setLogVerbosityLevel',
+        params: { newVerbosityLevel: this.config.logVerbosityLevel }
+      })
+    }
+
     this.provider = provider
     this.handleError = (error: Error): void => {
       throw error
@@ -120,18 +128,14 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
         if (method === 'toJSON') {
           return '{}'
         }
-        return (params: TdObject | undefined, options?: ApiRequestOptions): Promise<ApiResponse<unknown, TdObject>> =>
-          this.callApi({ method, params }, options)
+        return (params: TdObject | undefined, options?: ApiRequestOptions) => {
+          if (method.substr(-4) === 'Sync') {
+            return this.provider.execute({ method: method.substr(0, method.length - 4), params })
+          }
+          return this.callApi({ method, params }, options)
+        }
       }
     })
-
-    if (this.config.logVerbosityLevel !== undefined) {
-      this.api
-        .setLogVerbosityLevel({
-          newVerbosityLevel: this.config.logVerbosityLevel
-        })
-        .catch(this.handleError)
-    }
 
     this.bootstrapMiddleware()
     setTimeout(() => this.api.getAuthorizationState(), 0)
@@ -213,7 +217,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   private callApi<ParamsT extends TdObject | undefined, ResultT extends TdObject> (
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
-  ): Promise<ApiResponse<ParamsT, ResultT>> {
+  ): Promise<ApiResponse<ParamsT, ResultT>> | ApiResponse<ParamsT, ResultT>['response'] {
     return this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
       { options: options || {}, request }

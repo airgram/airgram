@@ -4,7 +4,7 @@ import { ChatsUnion } from '../outputs'
 export interface GetGroupsInCommonParams {
   userId?: number // User identifier
   offsetChatId?: number // Chat identifier starting from which to return chats; use 0 for the first request
-  limit?: number // Maximum number of chats to be returned; up to 100
+  limit?: number // The maximum number of chats to be returned; up to 100
 }
 
 /**
@@ -14,8 +14,8 @@ export interface GetGroupsInCommonParams {
  * @param {number} [params.userId] - User identifier
  * @param {number} [params.offsetChatId] - Chat identifier starting from which to
  * return chats; use 0 for the first request
- * @param {number} [params.limit] - Maximum number of chats to be returned; up to
- * 100
+ * @param {number} [params.limit] - The maximum number of chats to be returned; up
+ * to 100
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetGroupsInCommonParams, ChatsUnion>>}
  */

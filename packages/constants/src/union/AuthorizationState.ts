@@ -3,6 +3,7 @@ export enum AUTHORIZATION_STATE {
   authorizationStateWaitEncryptionKey = 'authorizationStateWaitEncryptionKey',
   authorizationStateWaitPhoneNumber = 'authorizationStateWaitPhoneNumber',
   authorizationStateWaitCode = 'authorizationStateWaitCode',
+  authorizationStateWaitOtherDeviceConfirmation = 'authorizationStateWaitOtherDeviceConfirmation',
   authorizationStateWaitRegistration = 'authorizationStateWaitRegistration',
   authorizationStateWaitPassword = 'authorizationStateWaitPassword',
   authorizationStateReady = 'authorizationStateReady',

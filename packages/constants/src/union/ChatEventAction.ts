@@ -15,7 +15,10 @@ export enum CHAT_EVENT_ACTION {
   chatEventUsernameChanged = 'chatEventUsernameChanged',
   chatEventPhotoChanged = 'chatEventPhotoChanged',
   chatEventInvitesToggled = 'chatEventInvitesToggled',
+  chatEventLinkedChatChanged = 'chatEventLinkedChatChanged',
+  chatEventSlowModeDelayChanged = 'chatEventSlowModeDelayChanged',
   chatEventSignMessagesToggled = 'chatEventSignMessagesToggled',
   chatEventStickerSetChanged = 'chatEventStickerSetChanged',
+  chatEventLocationChanged = 'chatEventLocationChanged',
   chatEventIsAllHistoryAvailableToggled = 'chatEventIsAllHistoryAvailableToggled'
 }

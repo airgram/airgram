@@ -1,12 +1,12 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
+import { SendMessageOptionsInput } from '../inputs'
 import { MessagesUnion } from '../outputs'
 
 export interface ForwardMessagesParams {
   chatId?: number // Identifier of the chat to which to forward messages
   fromChatId?: number // Identifier of the chat from which to forward messages
   messageIds?: number[] // Identifiers of the messages to forward
-  disableNotification?: boolean // Pass true to disable notification for the message, doesn't work if messages are forwarded to a secret chat
-  fromBackground?: boolean // Pass true if the messages are sent from the background
+  options?: SendMessageOptionsInput // Options to be used to send the messages
   asAlbum?: boolean // True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages
   sendCopy?: boolean // True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
   removeCaption?: boolean // True, if media captions of message copies needs to be removed. Ignored if send_copy is false
@@ -21,10 +21,8 @@ export interface ForwardMessagesParams {
  * @param {number} [params.fromChatId] - Identifier of the chat from which to forward
  * messages
  * @param {number[]} [params.messageIds] - Identifiers of the messages to forward
- * @param {boolean} [params.disableNotification] - Pass true to disable notification
- * for the message, doesn't work if messages are forwarded to a secret chat
- * @param {boolean} [params.fromBackground] - Pass true if the messages are sent
- * from the background
+ * @param {SendMessageOptionsInput} [params.options] - Options to be used to send
+ * the messages
  * @param {boolean} [params.asAlbum] - True, if the messages should be grouped into
  * an album after forwarding. For this to work, no more than 10 messages may be forwarded,
  * and all of them must be photo or video messages

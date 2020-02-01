@@ -9,4 +9,7 @@ export class RichTextUrlBaseModel {
 
   /** URL */
   public url: string
+
+  /** True, if the URL has cached instant view server-side */
+  public isCached: boolean
 }

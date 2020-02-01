@@ -1,3 +1,5 @@
+import { ChatLocation } from './index'
+
 export type SupergroupFullInfoUnion = SupergroupFullInfo
 
 /** Contains full information about a supergroup or channel */
@@ -13,23 +15,43 @@ export interface SupergroupFullInfo {
   restrictedCount: number
   /** Number of users banned from chat; 0 if unknown */
   bannedCount: number
+  /**
+   * Chat identifier of a discussion group for the channel, or a channel, for which the
+   * supergroup is the designated discussion group; 0 if none or unknown
+   */
+  linkedChatId: number
+  /**
+   * Delay between consecutive sent messages for non-administrator supergroup members,
+   * in seconds
+   */
+  slowModeDelay: number
+  /**
+   * Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo
+   * update is not triggered when value of this field changes, but both new and old values
+   * are non-zero
+   */
+  slowModeDelayExpiresIn: number
   /** True, if members of the chat can be retrieved */
   canGetMembers: boolean
-  /** True, if the chat can be made public */
+  /** True, if the chat username can be changed */
   canSetUsername: boolean
   /** True, if the supergroup sticker set can be changed */
   canSetStickerSet: boolean
+  /** True, if the supergroup location can be changed */
+  canSetLocation: boolean
   /** True, if the channel statistics is available through getChatStatisticsUrl */
   canViewStatistics: boolean
   /**
-   * True, if new chat members will have access to old messages. In public supergroups
-   * and both public and private channels, old messages are always available, so this
-   * option affects only private supergroups. The value of this field is only available
-   * for chat administrators
+   * True, if new chat members will have access to old messages. In public or discussion
+   * groups and both public and private channels, old messages are always available, so
+   * this option affects only private supergroups without a linked chat. The value of
+   * this field is only available for chat administrators
    */
   isAllHistoryAvailable: boolean
   /** Identifier of the supergroup sticker set; 0 if none */
   stickerSetId: string
+  /** Location to which the supergroup is connected; may be null */
+  location?: ChatLocation
   /** Invite link for this chat */
   inviteLink: string
   /** Identifier of the basic group from which supergroup was upgraded; 0 if none */

@@ -18,3 +18,5 @@ export type setLogStream = (
   params?: SetLogStreamParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<SetLogStreamParams, OkUnion>>
+
+export type setLogStreamSync = (params?: SetLogStreamParams) => OkUnion

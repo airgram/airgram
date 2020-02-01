@@ -9,6 +9,8 @@ export interface Notification {
   id: number
   /** Notification date */
   date: number
+  /** True, if the notification was initially silent */
+  isSilent: boolean
   /** Notification type */
   type: NotificationTypeUnion
 }

@@ -7,7 +7,10 @@ import {
   Call,
   CallbackQueryPayloadUnion,
   Chat,
+  ChatActionBarUnion,
   ChatActionUnion,
+  ChatListUnion,
+  ChatNearby,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhoto,
@@ -50,7 +53,9 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateMessageViews
   | UpdateMessageContentOpened
   | UpdateMessageMentionRead
+  | UpdateMessageLiveLocationViewed
   | UpdateNewChat
+  | UpdateChatChatList
   | UpdateChatTitle
   | UpdateChatPhoto
   | UpdateChatPermissions
@@ -59,12 +64,14 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatIsPinned
   | UpdateChatIsMarkedAsUnread
   | UpdateChatIsSponsored
+  | UpdateChatHasScheduledMessages
   | UpdateChatDefaultDisableNotification
   | UpdateChatReadInbox
   | UpdateChatReadOutbox
   | UpdateChatUnreadMentionCount
   | UpdateChatNotificationSettings
   | UpdateScopeNotificationSettings
+  | UpdateChatActionBar
   | UpdateChatPinnedMessage
   | UpdateChatReplyMarkup
   | UpdateChatDraftMessage
@@ -101,6 +108,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateLanguagePackStrings
   | UpdateConnectionState
   | UpdateTermsOfService
+  | UpdateUsersNearby
   | UpdateNewInlineQuery
   | UpdateNewChosenInlineResult
   | UpdateNewCallbackQuery
@@ -110,6 +118,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateNewCustomEvent
   | UpdateNewCustomQuery
   | UpdatePoll
+  | UpdatePollAnswer
 
 /** The user authorization state has changed */
 export interface UpdateAuthorizationState {
@@ -226,6 +235,18 @@ export interface UpdateMessageMentionRead {
 }
 
 /**
+ * A message with a live location was viewed. When the update is received, the client
+ * is supposed to update the live location
+ */
+export interface UpdateMessageLiveLocationViewed {
+  _: 'updateMessageLiveLocationViewed'
+  /** Identifier of the chat with the live location message */
+  chatId: number
+  /** Identifier of the message with live location */
+  messageId: number
+}
+
+/**
  * A new chat has been loaded/created. This update is guaranteed to come before the
  * chat identifier is returned to the client. The chat field changes will be reported
  * through separate updates
@@ -234,6 +255,18 @@ export interface UpdateNewChat {
   _: 'updateNewChat'
   /** The chat */
   chat: Chat
+}
+
+/**
+ * The list to which the chat belongs was changed. This update is guaranteed to be sent
+ * only when chat.order == 0 and the current or the new chat list is null
+ */
+export interface UpdateChatChatList {
+  _: 'updateChatChatList'
+  /** Chat identifier */
+  chatId: number
+  /** The new chat's chat list; may be null */
+  chatList?: ChatListUnion
 }
 
 /** The title of a chat was changed */
@@ -264,7 +297,7 @@ export interface UpdateChatPermissions {
 }
 
 /**
- * The last message of a chat was changed. If last_message is null then the last message
+ * The last message of a chat was changed. If last_message is null, then the last message
  * in the chat became unknown. Some new unknown messages might be added to the chat
  * in this case
  */
@@ -280,7 +313,7 @@ export interface UpdateChatLastMessage {
 
 /**
  * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage,
- * updateChatIsPinned or updateChatDraftMessage might be sent
+ * updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent
  */
 export interface UpdateChatOrder {
   _: 'updateChatOrder'
@@ -319,6 +352,15 @@ export interface UpdateChatIsSponsored {
   isSponsored: boolean
   /** New value of chat order */
   order: string
+}
+
+/** A chat's has_scheduled_messages field has changed */
+export interface UpdateChatHasScheduledMessages {
+  _: 'updateChatHasScheduledMessages'
+  /** Chat identifier */
+  chatId: number
+  /** New value of has_scheduled_messages */
+  hasScheduledMessages: boolean
 }
 
 /**
@@ -378,6 +420,15 @@ export interface UpdateScopeNotificationSettings {
   scope: NotificationSettingsScopeUnion
   /** The new notification settings */
   notificationSettings: ScopeNotificationSettings
+}
+
+/** The chat action bar was changed */
+export interface UpdateChatActionBar {
+  _: 'updateChatActionBar'
+  /** Chat identifier */
+  chatId: number
+  /** The new value of the action bar; may be null */
+  actionBar?: ChatActionBarUnion
 }
 
 /** The chat pinned message was changed */
@@ -470,7 +521,7 @@ export interface UpdateNotificationGroup {
 
 /**
  * Contains active notifications that was shown on previous application launches. This
- * update is sent only if a message database is used. In that case it comes once before
+ * update is sent only if the message database is used. In that case it comes once before
  * any updateNotification and updateNotificationGroup update
  */
 export interface UpdateActiveNotifications {
@@ -480,7 +531,7 @@ export interface UpdateActiveNotifications {
 }
 
 /**
- * Describes, whether there are some pending notification updates. Can be used to prevent
+ * Describes whether there are some pending notification updates. Can be used to prevent
  * application from killing, while there are some pending notifications
  */
 export interface UpdateHavePendingNotifications {
@@ -664,11 +715,13 @@ export interface UpdateUserPrivacySettingRules {
 }
 
 /**
- * Number of unread messages has changed. This update is sent only if a message database
- * is used
+ * Number of unread messages in a chat list has changed. This update is sent only if
+ * the message database is used
  */
 export interface UpdateUnreadMessageCount {
   _: 'updateUnreadMessageCount'
+  /** The chat list with changed number of unread messages */
+  chatList: ChatListUnion
   /** Total number of unread messages */
   unreadCount: number
   /** Total number of unread messages in unmuted chats */
@@ -677,10 +730,14 @@ export interface UpdateUnreadMessageCount {
 
 /**
  * Number of unread chats, i.e. with unread messages or marked as unread, has changed.
- * This update is sent only if a message database is used
+ * This update is sent only if the message database is used
  */
 export interface UpdateUnreadChatCount {
   _: 'updateUnreadChatCount'
+  /** The chat list with changed number of unread messages */
+  chatList: ChatListUnion
+  /** Approximate total number of chats in the chat list */
+  totalCount: number
   /** Total number of unread chats */
   unreadCount: number
   /** Total number of unread unmuted chats */
@@ -781,6 +838,16 @@ export interface UpdateTermsOfService {
   termsOfService: TermsOfService
 }
 
+/**
+ * List of users nearby has changed. The update is sent only 60 seconds after a successful
+ * searchChatsNearby request
+ */
+export interface UpdateUsersNearby {
+  _: 'updateUsersNearby'
+  /** The new list of users nearby */
+  usersNearby: ChatNearby[]
+}
+
 /** A new incoming inline query; for bots only */
 export interface UpdateNewInlineQuery {
   _: 'updateNewInlineQuery'
@@ -818,7 +885,7 @@ export interface UpdateNewCallbackQuery {
   id: string
   /** Identifier of the user who sent the query */
   senderUserId: number
-  /** Identifier of the chat, in which the query was sent */
+  /** Identifier of the chat where the query was sent */
   chatId: number
   /** Identifier of the message, from which the query originated */
   messageId: number
@@ -896,9 +963,20 @@ export interface UpdateNewCustomQuery {
   timeout: number
 }
 
-/** Information about a poll was updated; for bots only */
+/** A poll was updated; for bots only */
 export interface UpdatePoll {
   _: 'updatePoll'
   /** New data about the poll */
   poll: Poll
+}
+
+/** A user changed the answer to a poll; for bots only */
+export interface UpdatePollAnswer {
+  _: 'updatePollAnswer'
+  /** Unique poll identifier */
+  pollId: string
+  /** The user, who changed the answer to the poll */
+  userId: number
+  /** 0-based identifiers of answer options, chosen by the user */
+  optionIds: number[]
 }

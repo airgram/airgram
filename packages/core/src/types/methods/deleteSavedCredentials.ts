@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
+
+
 /**
  * Deletes saved credentials for all payment provider bots
  * @param {ApiRequestOptions} options

@@ -2,13 +2,13 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
 export interface RemoveBackgroundParams {
-  backgroundId?: string // The background indentifier
+  backgroundId?: string // The background identifier
 }
 
 /**
  * Removes background from the list of installed backgrounds
  * @param {Object} params
- * @param {string} [params.backgroundId] - The background indentifier
+ * @param {string} [params.backgroundId] - The background identifier
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveBackgroundParams, OkUnion>>}
  */

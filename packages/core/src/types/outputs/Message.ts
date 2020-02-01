@@ -1,6 +1,7 @@
 import {
   MessageContentUnion,
   MessageForwardInfo,
+  MessageSchedulingStateUnion,
   MessageSendingStateUnion,
   ReplyMarkupUnion
 } from './index'
@@ -21,12 +22,14 @@ export interface Message {
   chatId: number
   /** Information about the sending state of the message; may be null */
   sendingState?: MessageSendingStateUnion
+  /** Information about the scheduling state of the message; may be null */
+  schedulingState?: MessageSchedulingStateUnion
   /** True, if the message is outgoing */
   isOutgoing: boolean
   /**
    * True, if the message can be edited. For live location and poll messages this fields
-   * shows, whether editMessageLiveLocation or stopPoll can be used with this message
-   * by the client
+   * shows whether editMessageLiveLocation or stopPoll can be used with this message by
+   * the client
    */
   canBeEdited: boolean
   /** True, if the message can be forwarded */
@@ -74,6 +77,11 @@ export interface Message {
    * be grouped together in albums
    */
   mediaAlbumId: string
+  /**
+   * If non-empty, contains a human-readable description of the reason why access to this
+   * message must be restricted
+   */
+  restrictionReason: string
   /** Content of the message */
   content: MessageContentUnion
   /** Reply markup for the message; may be null */

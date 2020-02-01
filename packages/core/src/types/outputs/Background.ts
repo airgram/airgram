@@ -13,7 +13,7 @@ export interface Background {
   isDark: boolean
   /** Unique background name */
   name: string
-  /** Document with the background; may be null. Null only for solid backgrounds */
+  /** Document with the background; may be null. Null only for filled backgrounds */
   document?: Document
   /** Type of the background */
   type: BackgroundTypeUnion

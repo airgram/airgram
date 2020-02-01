@@ -3,14 +3,14 @@ import { StickersUnion } from '../outputs'
 
 export interface SearchStickersParams {
   emoji?: string // String representation of emoji; must be non-empty
-  limit?: number // Maximum number of stickers to be returned
+  limit?: number // The maximum number of stickers to be returned
 }
 
 /**
  * Searches for stickers from public sticker sets that correspond to a given emoji
  * @param {Object} params
  * @param {string} [params.emoji] - String representation of emoji; must be non-empty
- * @param {number} [params.limit] - Maximum number of stickers to be returned
+ * @param {number} [params.limit] - The maximum number of stickers to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchStickersParams, StickersUnion>>}
  */

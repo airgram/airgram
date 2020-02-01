@@ -1,6 +1,7 @@
 import {
   MessageContentUnion,
   MessageForwardInfo,
+  MessageSchedulingStateUnion,
   MessageSendingStateUnion,
   ReplyMarkupUnion
 } from '@airgram/core'
@@ -24,13 +25,16 @@ export class MessageBaseModel {
   /** Information about the sending state of the message; may be null */
   public sendingState?: MessageSendingStateUnion
 
+  /** Information about the scheduling state of the message; may be null */
+  public schedulingState?: MessageSchedulingStateUnion
+
   /** True, if the message is outgoing */
   public isOutgoing: boolean
 
   /**
    * True, if the message can be edited. For live location and poll messages this fields
-   * shows, whether editMessageLiveLocation or stopPoll can be used with this message
-   * by the client
+   * shows whether editMessageLiveLocation or stopPoll can be used with this message by
+   * the client
    */
   public canBeEdited: boolean
 
@@ -93,6 +97,12 @@ export class MessageBaseModel {
    * be grouped together in albums
    */
   public mediaAlbumId: string
+
+  /**
+   * If non-empty, contains a human-readable description of the reason why access to this
+   * message must be restricted
+   */
+  public restrictionReason: string
 
   /** Content of the message */
   public content: MessageContentUnion

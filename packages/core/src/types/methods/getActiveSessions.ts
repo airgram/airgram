@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { SessionsUnion } from '../outputs'
 
+
+
 /**
  * Returns all active sessions of the current user
  * @param {ApiRequestOptions} options

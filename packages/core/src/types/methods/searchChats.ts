@@ -3,7 +3,7 @@ import { ChatsUnion } from '../outputs'
 
 export interface SearchChatsParams {
   query?: string // Query to search for. If the query is empty, returns up to 20 recently found chats
-  limit?: number // Maximum number of chats to be returned
+  limit?: number // The maximum number of chats to be returned
 }
 
 /**
@@ -12,7 +12,7 @@ export interface SearchChatsParams {
  * @param {Object} params
  * @param {string} [params.query] - Query to search for. If the query is empty, returns
  * up to 20 recently found chats
- * @param {number} [params.limit] - Maximum number of chats to be returned
+ * @param {number} [params.limit] - The maximum number of chats to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatsParams, ChatsUnion>>}
  */

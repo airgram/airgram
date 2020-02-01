@@ -18,3 +18,5 @@ export type getTextEntities = (
   params?: GetTextEntitiesParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetTextEntitiesParams, TextEntitiesUnion>>
+
+export type getTextEntitiesSync = (params?: GetTextEntitiesParams) => TextEntitiesUnion

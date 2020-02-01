@@ -8,8 +8,8 @@ import {
 export class PageBlockTableCellBaseModel {
   public _: 'pageBlockTableCell'
 
-  /** Cell text */
-  public text: RichTextUnion
+  /** Cell text; may be null. If the text is null, then the cell should be invisible */
+  public text?: RichTextUnion
 
   /** True, if it is a header cell */
   public isHeader: boolean

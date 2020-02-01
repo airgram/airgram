@@ -19,7 +19,7 @@ export class VideoBaseModel {
   /** MIME type of the file; as defined by the sender */
   public mimeType: string
 
-  /** True, if stickers were added to the photo */
+  /** True, if stickers were added to the video */
   public hasStickers: boolean
 
   /** True, if the video should be tried to be streamed */

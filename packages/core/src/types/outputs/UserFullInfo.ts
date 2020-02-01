@@ -11,6 +11,11 @@ export interface UserFullInfo {
   canBeCalled: boolean
   /** True, if the user can't be called due to their privacy settings */
   hasPrivateCalls: boolean
+  /**
+   * True, if the current user needs to explicitly allow to share their phone number with
+   * the user when the method addContact is used
+   */
+  needPhoneNumberPrivacyException: boolean
   /** A short user bio */
   bio: string
   /** For bots, the text that is included with the link when users share the bot */

@@ -6,8 +6,8 @@ export class InputMessageTextBaseModel {
 
   /**
    * Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only
-   * Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified
-   * manually
+   * Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName
+   * entities are allowed to be specified manually
    */
   public text: FormattedText
 

@@ -4,6 +4,6 @@ import { Venue } from '@airgram/core'
 export class MessageVenueBaseModel {
   public _: 'messageVenue'
 
-  /** Message content */
+  /** The venue description */
   public venue: Venue
 }

@@ -8,7 +8,7 @@ export interface SetFileGenerationProgressParams {
 }
 
 /**
- * Informs TDLib on a file generation prograss
+ * Informs TDLib on a file generation progress
  * @param {Object} params
  * @param {string} [params.generationId] - The identifier of the generation process
  * @param {number} [params.expectedSize] - Expected size of the generated file, in

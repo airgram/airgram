@@ -5,6 +5,7 @@ import {
   InputThumbnail,
   Invoice,
   Location,
+  PollTypeUnion,
   Venue
 } from './index'
 
@@ -31,8 +32,8 @@ export interface InputMessageText {
   _: 'inputMessageText'
   /**
    * Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only
-   * Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified
-   * manually
+   * Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName
+   * entities are allowed to be specified manually
    */
   text: FormattedText
   /** True, if rich web page previews for URLs in the message text should be disabled */
@@ -179,7 +180,7 @@ export interface InputMessageLocation {
   /** Location to be sent */
   location: Location
   /**
-   * Period for which the location can be updated, in seconds; should bebetween 60 and
+   * Period for which the location can be updated, in seconds; should be between 60 and
    * 86400 for a live location and 0 otherwise
    */
   livePeriod: number
@@ -235,13 +236,25 @@ export interface InputMessageInvoice {
   startParameter: string
 }
 
-/** A message with a poll. Polls can't be sent to private or secret chats */
+/**
+ * A message with a poll. Polls can't be sent to secret chats. Polls can be sent only
+ * to a private chat with a bot
+ */
 export interface InputMessagePoll {
   _: 'inputMessagePoll'
   /** Poll question, 1-255 characters */
   question: string
   /** List of poll answer options, 2-10 strings 1-100 characters each */
   options: string[]
+  /**
+   * True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded
+   * to channels
+   */
+  isAnonymous: boolean
+  /** Type of the poll */
+  type: PollTypeUnion
+  /** True, if the poll needs to be sent already closed; for bots only */
+  isClosed: boolean
 }
 
 /** A forwarded message */

@@ -10,4 +10,6 @@ export abstract class TdProvider implements BaseTdProvider {
   public abstract send (request: ApiRequest): Promise<TdObject>
 
   public abstract destroy (): Promise<void>
+
+  public abstract execute (request: ApiRequest): TdObject
 }

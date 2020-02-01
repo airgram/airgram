@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { StickersUnion } from '../outputs'
 
+
+
 /**
  * Returns favorite stickers
  * @param {ApiRequestOptions} options

@@ -18,3 +18,5 @@ export type cleanFileName = (
   params?: CleanFileNameParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<CleanFileNameParams, TextUnion>>
+
+export type cleanFileNameSync = (params?: CleanFileNameParams) => TextUnion

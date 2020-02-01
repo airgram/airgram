@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { PasswordStateUnion } from '../outputs'
 
+
+
 /**
  * Returns the current state of 2-step verification
  * @param {ApiRequestOptions} options

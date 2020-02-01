@@ -8,9 +8,14 @@ export type ChatMemberStatusInputUnion = ChatMemberStatusCreatorInput
   | ChatMemberStatusLeftInput
   | ChatMemberStatusBannedInput
 
-/** The user is the creator of a chat and has all the administrator privileges */
+/** The user is the owner of a chat and has all the administrator privileges */
 export interface ChatMemberStatusCreatorInput {
   _: 'chatMemberStatusCreator'
+  /**
+   * A custom title of the owner; 0-16 characters without emojis; applicable to supergroups
+   * only
+   */
+  customTitle?: string
   /** True, if the user is a member of the chat */
   isMember?: boolean
 }
@@ -23,6 +28,11 @@ export interface ChatMemberStatusCreatorInput {
  */
 export interface ChatMemberStatusAdministratorInput {
   _: 'chatMemberStatusAdministrator'
+  /**
+   * A custom title of the administrator; 0-16 characters without emojis; applicable to
+   * supergroups only
+   */
+  customTitle?: string
   /** True, if the current user can edit the administrator privileges for the called user */
   canBeEdited?: boolean
   /** True, if the administrator can change the chat title, photo, and other settings */
@@ -45,7 +55,7 @@ export interface ChatMemberStatusAdministratorInput {
   /**
    * True, if the administrator can add new administrators with a subset of their own
    * privileges or demote administrators that were directly or indirectly promoted by
-   * him
+   * them
    */
   canPromoteMembers?: boolean
 }

@@ -1,6 +1,6 @@
 import { RichTextUnion } from '@airgram/core'
 
-/** A strike-through rich text */
+/** A strikethrough rich text */
 export class RichTextStrikethroughBaseModel {
   public _: 'richTextStrikethrough'
 

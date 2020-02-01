@@ -18,3 +18,5 @@ export type getPushReceiverId = (
   params?: GetPushReceiverIdParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetPushReceiverIdParams, PushReceiverIdUnion>>
+
+export type getPushReceiverIdSync = (params?: GetPushReceiverIdParams) => PushReceiverIdUnion

@@ -45,9 +45,9 @@ export class TdProxy {
     this.client.td_json_client_destroy(client)
   }
 
-  // public execute (client: Buffer, query: string): string | null {
-  //   return this.client.td_json_client_execute(client, buildQuery(query)) || null
-  // }
+  public execute (client: Buffer, query: string): string {
+    return this.client.td_json_client_execute(client, buildQuery(query))
+  }
 
   public receive (client: Buffer, timeout: number): Promise<string | null> {
     return new Promise((resolve, reject) => {

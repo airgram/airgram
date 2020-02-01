@@ -4,7 +4,7 @@ import { FormattedText, VoiceNote } from '@airgram/core'
 export class MessageVoiceNoteBaseModel {
   public _: 'messageVoiceNote'
 
-  /** Message content */
+  /** The voice note description */
   public voiceNote: VoiceNote
 
   /** Voice note caption */

@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
+
+
 /**
  * Terminates all other sessions of the current user
  * @param {ApiRequestOptions} options
