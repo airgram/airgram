@@ -9,7 +9,7 @@
 
 [ ] `latest`
 [ ] `@next`
-[ ] `1.1.x` (or put your version here)
+[ ] `2.3.x` (or put your version here)
 
 **Steps to reproduce or a small repository showing the problem:**
 
