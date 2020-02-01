@@ -3,7 +3,7 @@ import { UsersUnion } from '../outputs'
 
 export interface SearchContactsParams {
   query?: string // Query to search for; may be empty to return all contacts
-  limit?: number // Maximum number of users to be returned
+  limit?: number // The maximum number of users to be returned
 }
 
 /**
@@ -12,7 +12,7 @@ export interface SearchContactsParams {
  * @param {Object} params
  * @param {string} [params.query] - Query to search for; may be empty to return all
  * contacts
- * @param {number} [params.limit] - Maximum number of users to be returned
+ * @param {number} [params.limit] - The maximum number of users to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchContactsParams, UsersUnion>>}
  */

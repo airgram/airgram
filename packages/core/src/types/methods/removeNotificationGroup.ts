@@ -3,7 +3,7 @@ import { OkUnion } from '../outputs'
 
 export interface RemoveNotificationGroupParams {
   notificationGroupId?: number // Notification group identifier
-  maxNotificationId?: number // Maximum identifier of removed notifications
+  maxNotificationId?: number // The maximum identifier of removed notifications
 }
 
 /**
@@ -11,7 +11,8 @@ export interface RemoveNotificationGroupParams {
  * group is removed by the current user
  * @param {Object} params
  * @param {number} [params.notificationGroupId] - Notification group identifier
- * @param {number} [params.maxNotificationId] - Maximum identifier of removed notifications
+ * @param {number} [params.maxNotificationId] - The maximum identifier of removed
+ * notifications
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RemoveNotificationGroupParams, OkUnion>>}
  */

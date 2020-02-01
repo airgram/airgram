@@ -5,6 +5,7 @@ export type AuthorizationStateUnion = AuthorizationStateWaitTdlibParameters
   | AuthorizationStateWaitEncryptionKey
   | AuthorizationStateWaitPhoneNumber
   | AuthorizationStateWaitCode
+  | AuthorizationStateWaitOtherDeviceConfirmation
   | AuthorizationStateWaitRegistration
   | AuthorizationStateWaitPassword
   | AuthorizationStateReady
@@ -24,7 +25,11 @@ export interface AuthorizationStateWaitEncryptionKey {
   isEncrypted: boolean
 }
 
-/** TDLib needs the user's phone number to authorize */
+/**
+ * TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber`
+ * to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken`
+ * for other authentication options
+ */
 export interface AuthorizationStateWaitPhoneNumber {
   _: 'authorizationStateWaitPhoneNumber'
 }
@@ -34,6 +39,16 @@ export interface AuthorizationStateWaitCode {
   _: 'authorizationStateWaitCode'
   /** Information about the authorization code that was sent */
   codeInfo: AuthenticationCodeInfo
+}
+
+/**
+ * The user needs to confirm authorization on another logged in device by scanning a
+ * QR code with the provided link
+ */
+export interface AuthorizationStateWaitOtherDeviceConfirmation {
+  _: 'authorizationStateWaitOtherDeviceConfirmation'
+  /** A tg:// URL for the QR code. The link will be updated frequently */
+  link: string
 }
 
 /**

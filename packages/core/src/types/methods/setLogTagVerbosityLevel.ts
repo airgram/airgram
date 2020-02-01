@@ -19,3 +19,5 @@ export type setLogTagVerbosityLevel = (
   params?: SetLogTagVerbosityLevelParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<SetLogTagVerbosityLevelParams, OkUnion>>
+
+export type setLogTagVerbosityLevelSync = (params?: SetLogTagVerbosityLevelParams) => OkUnion

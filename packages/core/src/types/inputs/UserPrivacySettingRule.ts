@@ -2,9 +2,11 @@
 export type UserPrivacySettingRuleInputUnion = UserPrivacySettingRuleAllowAllInput
   | UserPrivacySettingRuleAllowContactsInput
   | UserPrivacySettingRuleAllowUsersInput
+  | UserPrivacySettingRuleAllowChatMembersInput
   | UserPrivacySettingRuleRestrictAllInput
   | UserPrivacySettingRuleRestrictContactsInput
   | UserPrivacySettingRuleRestrictUsersInput
+  | UserPrivacySettingRuleRestrictChatMembersInput
 
 /** A rule to allow all users to do something */
 export interface UserPrivacySettingRuleAllowAllInput {
@@ -19,8 +21,18 @@ export interface UserPrivacySettingRuleAllowContactsInput {
 /** A rule to allow certain specified users to do something */
 export interface UserPrivacySettingRuleAllowUsersInput {
   _: 'userPrivacySettingRuleAllowUsers'
-  /** The user identifiers */
+  /** The user identifiers, total number of users in all rules must not exceed 1000 */
   userIds?: number[]
+}
+
+/**
+ * A rule to allow all members of certain specified basic groups and supergroups to
+ * doing something
+ */
+export interface UserPrivacySettingRuleAllowChatMembersInput {
+  _: 'userPrivacySettingRuleAllowChatMembers'
+  /** The chat identifiers, total number of chats in all rules must not exceed 20 */
+  chatIds?: number[]
 }
 
 /** A rule to restrict all users from doing something */
@@ -36,6 +48,16 @@ export interface UserPrivacySettingRuleRestrictContactsInput {
 /** A rule to restrict all specified users from doing something */
 export interface UserPrivacySettingRuleRestrictUsersInput {
   _: 'userPrivacySettingRuleRestrictUsers'
-  /** The user identifiers */
+  /** The user identifiers, total number of users in all rules must not exceed 1000 */
   userIds?: number[]
+}
+
+/**
+ * A rule to restrict all members of specified basic groups and supergroups from doing
+ * something
+ */
+export interface UserPrivacySettingRuleRestrictChatMembersInput {
+  _: 'userPrivacySettingRuleRestrictChatMembers'
+  /** The chat identifiers, total number of chats in all rules must not exceed 20 */
+  chatIds?: number[]
 }

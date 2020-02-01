@@ -1,4 +1,4 @@
-import { PollOption } from './index'
+import { PollOption, PollTypeUnion } from './index'
 
 export type PollUnion = Poll
 
@@ -13,6 +13,12 @@ export interface Poll {
   options: PollOption[]
   /** Total number of voters, participating in the poll */
   totalVoterCount: number
+  /** User identifiers of recent voters, if the poll is non-anonymous */
+  recentVoterUserIds: number[]
+  /** True, if the poll is anonymous */
+  isAnonymous: boolean
+  /** Type of the poll */
+  type: PollTypeUnion
   /** True, if the poll is closed */
   isClosed: boolean
 }

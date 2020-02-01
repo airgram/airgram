@@ -5,14 +5,16 @@ export type TextEntityTypeInputUnion = TextEntityTypeMentionInput
   | TextEntityTypeBotCommandInput
   | TextEntityTypeUrlInput
   | TextEntityTypeEmailAddressInput
+  | TextEntityTypePhoneNumberInput
   | TextEntityTypeBoldInput
   | TextEntityTypeItalicInput
+  | TextEntityTypeUnderlineInput
+  | TextEntityTypeStrikethroughInput
   | TextEntityTypeCodeInput
   | TextEntityTypePreInput
   | TextEntityTypePreCodeInput
   | TextEntityTypeTextUrlInput
   | TextEntityTypeMentionNameInput
-  | TextEntityTypePhoneNumberInput
 
 /** A mention of a user by their username */
 export interface TextEntityTypeMentionInput {
@@ -50,6 +52,11 @@ export interface TextEntityTypeEmailAddressInput {
   _: 'textEntityTypeEmailAddress'
 }
 
+/** A phone number */
+export interface TextEntityTypePhoneNumberInput {
+  _: 'textEntityTypePhoneNumber'
+}
+
 /** A bold text */
 export interface TextEntityTypeBoldInput {
   _: 'textEntityTypeBold'
@@ -58,6 +65,16 @@ export interface TextEntityTypeBoldInput {
 /** An italic text */
 export interface TextEntityTypeItalicInput {
   _: 'textEntityTypeItalic'
+}
+
+/** An underlined text */
+export interface TextEntityTypeUnderlineInput {
+  _: 'textEntityTypeUnderline'
+}
+
+/** A strikethrough text */
+export interface TextEntityTypeStrikethroughInput {
+  _: 'textEntityTypeStrikethrough'
 }
 
 /** Text that must be formatted as if inside a code HTML tag */
@@ -89,9 +106,4 @@ export interface TextEntityTypeMentionNameInput {
   _: 'textEntityTypeMentionName'
   /** Identifier of the mentioned user */
   userId?: number
-}
-
-/** A phone number */
-export interface TextEntityTypePhoneNumberInput {
-  _: 'textEntityTypePhoneNumber'
 }

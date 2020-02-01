@@ -10,7 +10,7 @@ export class UpdateNewCallbackQueryBaseModel {
   /** Identifier of the user who sent the query */
   public senderUserId: number
 
-  /** Identifier of the chat, in which the query was sent */
+  /** Identifier of the chat where the query was sent */
   public chatId: number
 
   /** Identifier of the message, from which the query originated */

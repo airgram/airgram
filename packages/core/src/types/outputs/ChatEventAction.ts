@@ -1,4 +1,10 @@
-import { ChatMemberStatusUnion, ChatPermissions, Message, Photo } from './index'
+import {
+  ChatLocation,
+  ChatMemberStatusUnion,
+  ChatPermissions,
+  Message,
+  Photo
+} from './index'
 
 /** Represents a chat event */
 export type ChatEventActionUnion = ChatEventMessageEdited
@@ -17,8 +23,11 @@ export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventUsernameChanged
   | ChatEventPhotoChanged
   | ChatEventInvitesToggled
+  | ChatEventLinkedChatChanged
+  | ChatEventSlowModeDelayChanged
   | ChatEventSignMessagesToggled
   | ChatEventStickerSetChanged
+  | ChatEventLocationChanged
   | ChatEventIsAllHistoryAvailableToggled
 
 /** A message was edited */
@@ -155,6 +164,24 @@ export interface ChatEventInvitesToggled {
   canInviteUsers: boolean
 }
 
+/** The linked chat of a supergroup was changed */
+export interface ChatEventLinkedChatChanged {
+  _: 'chatEventLinkedChatChanged'
+  /** Previous supergroup linked chat identifier */
+  oldLinkedChatId: number
+  /** New supergroup linked chat identifier */
+  newLinkedChatId: number
+}
+
+/** The slow_mode_delay setting of a supergroup was changed */
+export interface ChatEventSlowModeDelayChanged {
+  _: 'chatEventSlowModeDelayChanged'
+  /** Previous value of slow_mode_delay */
+  oldSlowModeDelay: number
+  /** New value of slow_mode_delay */
+  newSlowModeDelay: number
+}
+
 /** The sign_messages setting of a channel was toggled */
 export interface ChatEventSignMessagesToggled {
   _: 'chatEventSignMessagesToggled'
@@ -169,6 +196,15 @@ export interface ChatEventStickerSetChanged {
   oldStickerSetId: string
   /** New identifier of the chat sticker set; 0 if none */
   newStickerSetId: string
+}
+
+/** The supergroup location was changed */
+export interface ChatEventLocationChanged {
+  _: 'chatEventLocationChanged'
+  /** Previous location; may be null */
+  oldLocation?: ChatLocation
+  /** New location; may be null */
+  newLocation?: ChatLocation
 }
 
 /** The is_all_history_available setting of a supergroup was toggled */

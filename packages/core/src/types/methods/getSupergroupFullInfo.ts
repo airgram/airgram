@@ -6,7 +6,7 @@ export interface GetSupergroupFullInfoParams {
 }
 
 /**
- * Returns full information about a supergroup or channel by its identifier, cached
+ * Returns full information about a supergroup or a channel by its identifier, cached
  * for up to 1 minute
  * @param {Object} params
  * @param {number} [params.supergroupId] - Supergroup or channel identifier

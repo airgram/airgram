@@ -7,7 +7,7 @@ export interface SetSupergroupUsernameParams {
 }
 
 /**
- * Changes the username of a supergroup or channel, requires creator privileges in the
+ * Changes the username of a supergroup or channel, requires owner privileges in the
  * supergroup or channel
  * @param {Object} params
  * @param {number} [params.supergroupId] - Identifier of the supergroup or channel

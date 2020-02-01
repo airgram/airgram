@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
+
+
 /**
  * Disables the currently enabled proxy. Can be called before authorization
  * @param {ApiRequestOptions} options

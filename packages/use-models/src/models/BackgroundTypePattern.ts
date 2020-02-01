@@ -1,13 +1,18 @@
-/** A PNG pattern to be combined with the color chosen by the user */
+import { BackgroundFillUnion } from '@airgram/core'
+
+/**
+ * A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern")
+ * pattern to be combined with the background fill chosen by the user
+ */
 export class BackgroundTypePatternBaseModel {
   public _: 'backgroundTypePattern'
 
-  /** True, if the background needs to be slightly moved when device is rotated */
-  public isMoving: boolean
+  /** Description of the background fill */
+  public fill: BackgroundFillUnion
 
-  /** Main color of the background in RGB24 format */
-  public color: number
-
-  /** Intensity of the pattern when it is shown above the main background color, 0-100 */
+  /** Intensity of the pattern when it is shown above the filled background, 0-100 */
   public intensity: number
+
+  /** True, if the background needs to be slightly moved when device is tilted */
+  public isMoving: boolean
 }

@@ -1,4 +1,4 @@
-/** Describes the type of the proxy server */
+/** Describes the type of a proxy server */
 export type ProxyTypeInputUnion = ProxyTypeSocks5Input
   | ProxyTypeHttpInput
   | ProxyTypeMtprotoInput

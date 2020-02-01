@@ -4,6 +4,6 @@ import { Poll } from '@airgram/core'
 export class MessagePollBaseModel {
   public _: 'messagePoll'
 
-  /** Poll */
+  /** The poll description */
   public poll: Poll
 }

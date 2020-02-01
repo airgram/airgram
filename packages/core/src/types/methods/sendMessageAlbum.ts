@@ -1,12 +1,14 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { InputMessageContentInputUnion } from '../inputs'
+import {
+  InputMessageContentInputUnion,
+  SendMessageOptionsInput
+} from '../inputs'
 import { MessagesUnion } from '../outputs'
 
 export interface SendMessageAlbumParams {
   chatId?: number // Target chat
   replyToMessageId?: number // Identifier of a message to reply to or 0
-  disableNotification?: boolean // Pass true to disable notification for the messages. Not supported in secret chats
-  fromBackground?: boolean // Pass true if the messages are sent from the background
+  options?: SendMessageOptionsInput // Options to be used to send the messages
   inputMessageContents?: InputMessageContentInputUnion[] // Contents of messages to be sent
 }
 
@@ -17,10 +19,8 @@ export interface SendMessageAlbumParams {
  * @param {number} [params.chatId] - Target chat
  * @param {number} [params.replyToMessageId] - Identifier of a message to reply to
  * or 0
- * @param {boolean} [params.disableNotification] - Pass true to disable notification
- * for the messages. Not supported in secret chats
- * @param {boolean} [params.fromBackground] - Pass true if the messages are sent
- * from the background
+ * @param {SendMessageOptionsInput} [params.options] - Options to be used to send
+ * the messages
  * @param {InputMessageContentInputUnion[]} [params.inputMessageContents] - Contents
  * of messages to be sent
  * @param {ApiRequestOptions} options

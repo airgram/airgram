@@ -1,6 +1,6 @@
 {
   "name": "@airgram/core",
-  "version": "2.3.0",
+  "version": "2.3.0-next.17",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -23,5 +23,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "402c8d6c1f806669c114cf20380180d35b98ed7a"
+  "gitHead": "0017aa738e523c9ac0fb8ec704a5f694b09f7e4e"
 }

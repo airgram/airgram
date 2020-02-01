@@ -32,12 +32,12 @@ export interface Composer<ContextT> {
 
 export interface Config<ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
   provider: ProviderT
-  context?: Record<string, any> | ((ctx: Context) => Record<string, any>)
+  context?: ExtraContext
+    | ((ctx: BaseApiResponse<any, any> | BaseUpdateContext<any>) => ExtraContext | Promise<ExtraContext>)
   models?: PlainObjectToModelTransformer
   databaseEncryptionKey?: string
   logVerbosityLevel?: number
   name?: string
-  token?: string
 }
 
 export interface Instance<ProviderT extends TdProvider = TdProvider> {
@@ -60,7 +60,31 @@ export interface Instance<ProviderT extends TdProvider = TdProvider> {
   ): void
 }
 
-export interface ApiRequest<ParamsT = TdObject | undefined> {
+export type ApiMethod = keyof ApiMethods
+
+export type SyncApiMethod =
+  'addLogMessage'
+  | 'cleanFileName'
+  | 'getFileExtension'
+  | 'getFileMimeType'
+  | 'getJsonString'
+  | 'getJsonValue'
+  | 'getLanguagePackString'
+  | 'getLogStream'
+  | 'getLogTagVerbosityLevel'
+  | 'getLogTags'
+  | 'getLogVerbosityLevel'
+  | 'getPushReceiverId'
+  | 'getTextEntities'
+  | 'parseTextEntities'
+  | 'setLogStream'
+  | 'setLogTagVerbosityLevel'
+  | 'setLogVerbosityLevel'
+  | 'testReturnError'
+
+export type AsyncApiMethod = Exclude<ApiMethod, SyncApiMethod>
+
+export interface ApiRequest<ParamsT = Record<string, any> | undefined> {
   method: string
   params: ParamsT
 }
@@ -69,14 +93,22 @@ export interface ApiRequestOptions {
   state?: Record<string, unknown>
 }
 
-export interface ApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState {
+export interface BaseApiResponse<ParamsT, ResultT extends BaseTdObject> extends ContextState {
   _: Predicate<ResultT> | 'error'
   request: ApiRequest<ParamsT>
   response: ResultT | api.ErrorUnion
+  options: ApiRequestOptions
   airgram: Instance
 }
 
+export interface ApiResponse<ParamsT, ResultT extends BaseTdObject>
+  extends BaseApiResponse<ParamsT, ResultT>, ExtraContext {}
+
 export interface TdProvider {
+  destroy (): Promise<void>
+
+  execute (request: ApiRequest): TdObject
+
   initialize (
     handleUpdate: (update: TdObject) => Promise<unknown>,
     handleError: (error: Error | string) => void,
@@ -84,8 +116,6 @@ export interface TdProvider {
   ): void
 
   send (request: ApiRequest): Promise<TdObject>
-
-  destroy (): Promise<void>
 }
 
 export interface BaseTdObject {
@@ -112,10 +142,15 @@ export interface ContextState {
   getState: GetStateFn
 }
 
-export interface UpdateContext<UpdateT extends BaseTdObject> extends ContextState {
+export interface BaseUpdateContext<UpdateT extends BaseTdObject> extends ContextState {
   _: Predicate<UpdateT>
   update: UpdateT
   airgram: Instance
 }
 
-export type Context<T = {}> = (ApiResponse<unknown, TdObject> | UpdateContext<TdObject>) & T
+export interface UpdateContext<UpdateT extends BaseTdObject> extends BaseUpdateContext<UpdateT>, ExtraContext {}
+
+export type Context = ApiResponse<unknown, TdObject> | UpdateContext<TdObject>
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ExtraContext {}

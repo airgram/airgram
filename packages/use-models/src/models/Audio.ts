@@ -1,6 +1,6 @@
 import { File, Minithumbnail, PhotoSize } from '@airgram/core'
 
-/** Describes an audio file. Audio is usually in MP3 format */
+/** Describes an audio file. Audio is usually in MP3 or M4A format */
 export class AudioBaseModel {
   public _: 'audio'
 

@@ -7,8 +7,8 @@ export interface CallProtocolInput {
   udpP2P?: boolean
   /** True, if connection through UDP reflectors is supported */
   udpReflector?: boolean
-  /** Minimum supported API layer; use 65 */
+  /** The minimum supported API layer; use 65 */
   minLayer?: number
-  /** Maximum supported API layer; use 65 */
+  /** The maximum supported API layer; use 65 */
   maxLayer?: number
 }

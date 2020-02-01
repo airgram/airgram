@@ -22,6 +22,9 @@ export class ChatInviteLinkInfoBaseModel {
   /** User identifiers of some chat members that may be known to the current user */
   public memberUserIds: number[]
 
-  /** True, if the chat is a public supergroup or a channel with a username */
+  /**
+   * True, if the chat is a public supergroup or channel, i.e. it has a username or it
+   * is a location-based supergroup
+   */
   public isPublic: boolean
 }

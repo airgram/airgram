@@ -3,7 +3,7 @@ import { MessagesUnion } from '../outputs'
 
 export interface SearchChatRecentLocationMessagesParams {
   chatId?: number // Chat identifier
-  limit?: number // Maximum number of messages to be returned
+  limit?: number // The maximum number of messages to be returned
 }
 
 /**
@@ -11,7 +11,7 @@ export interface SearchChatRecentLocationMessagesParams {
  * the chat. Returns up to 1 location message per user
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {number} [params.limit] - Maximum number of messages to be returned
+ * @param {number} [params.limit] - The maximum number of messages to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatRecentLocationMessagesParams, MessagesUnion>>}
  */

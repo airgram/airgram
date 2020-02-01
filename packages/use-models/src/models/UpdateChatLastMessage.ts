@@ -1,7 +1,7 @@
 import { Message } from '@airgram/core'
 
 /**
- * The last message of a chat was changed. If last_message is null then the last message
+ * The last message of a chat was changed. If last_message is null, then the last message
  * in the chat became unknown. Some new unknown messages might be added to the chat
  * in this case
  */

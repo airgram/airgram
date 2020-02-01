@@ -7,6 +7,12 @@
 export class ChatMemberStatusAdministratorBaseModel {
   public _: 'chatMemberStatusAdministrator'
 
+  /**
+   * A custom title of the administrator; 0-16 characters without emojis; applicable to
+   * supergroups only
+   */
+  public customTitle: string
+
   /** True, if the current user can edit the administrator privileges for the called user */
   public canBeEdited: boolean
 
@@ -37,7 +43,7 @@ export class ChatMemberStatusAdministratorBaseModel {
   /**
    * True, if the administrator can add new administrators with a subset of their own
    * privileges or demote administrators that were directly or indirectly promoted by
-   * him
+   * them
    */
   public canPromoteMembers: boolean
 }

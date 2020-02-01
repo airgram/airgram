@@ -26,3 +26,5 @@ export type getLanguagePackString = (
   params?: GetLanguagePackStringParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetLanguagePackStringParams, LanguagePackStringValueUnion>>
+
+export type getLanguagePackStringSync = (params?: GetLanguagePackStringParams) => LanguagePackStringValueUnion

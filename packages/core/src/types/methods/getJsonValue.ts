@@ -17,3 +17,5 @@ export type getJsonValue = (
   params?: GetJsonValueParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetJsonValueParams, JsonValueUnion>>
+
+export type getJsonValueSync = (params?: GetJsonValueParams) => JsonValueUnion

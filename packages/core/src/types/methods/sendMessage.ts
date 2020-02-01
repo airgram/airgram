@@ -1,12 +1,15 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { InputMessageContentInputUnion, ReplyMarkupInputUnion } from '../inputs'
+import {
+  InputMessageContentInputUnion,
+  ReplyMarkupInputUnion,
+  SendMessageOptionsInput
+} from '../inputs'
 import { MessageUnion } from '../outputs'
 
 export interface SendMessageParams {
   chatId?: number // Target chat
   replyToMessageId?: number // Identifier of the message to reply to or 0
-  disableNotification?: boolean // Pass true to disable notification for the message. Not supported in secret chats
-  fromBackground?: boolean // Pass true if the message is sent from the background
+  options?: SendMessageOptionsInput // Options to be used to send the message
   replyMarkup?: ReplyMarkupInputUnion // Markup for replying to the message; for bots only
   inputMessageContent?: InputMessageContentInputUnion // The content of the message to be sent
 }
@@ -17,10 +20,8 @@ export interface SendMessageParams {
  * @param {number} [params.chatId] - Target chat
  * @param {number} [params.replyToMessageId] - Identifier of the message to reply
  * to or 0
- * @param {boolean} [params.disableNotification] - Pass true to disable notification
- * for the message. Not supported in secret chats
- * @param {boolean} [params.fromBackground] - Pass true if the message is sent from
- * the background
+ * @param {SendMessageOptionsInput} [params.options] - Options to be used to send
+ * the message
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - Markup for replying to the
  * message; for bots only
  * @param {InputMessageContentInputUnion} [params.inputMessageContent] - The content

@@ -10,9 +10,9 @@ export interface SetChatMemberStatusParams {
 
 /**
  * Changes the status of a chat member, needs appropriate privileges. This function
- * is currently not suitable for adding new members to the chat; instead, use addChatMember.
- * The chat member status will not be changed until it has been synchronized with the
- * server
+ * is currently not suitable for adding new members to the chat and transferring chat
+ * ownership; instead, use addChatMember or transferChatOwnership. The chat member status
+ * will not be changed until it has been synchronized with the server
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {number} [params.userId] - User identifier

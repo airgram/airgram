@@ -16,7 +16,7 @@ export class BackgroundBaseModel {
   /** Unique background name */
   public name: string
 
-  /** Document with the background; may be null. Null only for solid backgrounds */
+  /** Document with the background; may be null. Null only for filled backgrounds */
   public document?: Document
 
   /** Type of the background */

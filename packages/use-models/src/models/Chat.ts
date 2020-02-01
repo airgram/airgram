@@ -1,4 +1,6 @@
 import {
+  ChatActionBarUnion,
+  ChatListUnion,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhoto,
@@ -16,6 +18,9 @@ export class ChatBaseModel {
 
   /** Type of the chat */
   public type: ChatTypeUnion
+
+  /** A chat list to which the chat belongs; may be null */
+  public chatList?: ChatListUnion
 
   /** Chat title */
   public title: string
@@ -44,6 +49,9 @@ export class ChatBaseModel {
 
   /** True, if the chat is sponsored by the user's MTProxy server */
   public isSponsored: boolean
+
+  /** True, if the chat has scheduled messages */
+  public hasScheduledMessages: boolean
 
   /**
    * True, if the chat messages can be deleted only for the current user while other users
@@ -78,6 +86,12 @@ export class ChatBaseModel {
   /** Notification settings for this chat */
   public notificationSettings: ChatNotificationSettings
 
+  /**
+   * Describes actions which should be possible to do through a chat action bar; may be
+   * null
+   */
+  public actionBar?: ChatActionBarUnion
+
   /** Identifier of the pinned message in the chat; 0 if none */
   public pinnedMessageId: number
 
@@ -92,7 +106,7 @@ export class ChatBaseModel {
 
   /**
    * Contains client-specific data associated with the chat. (For example, the chat position
-   * or local chat notification settings can be stored here.) Persistent if a message
+   * or local chat notification settings can be stored here.) Persistent if the message
    * database is used
    */
   public clientData: string

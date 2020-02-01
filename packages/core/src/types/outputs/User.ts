@@ -1,9 +1,4 @@
-import {
-  LinkStateUnion,
-  ProfilePhoto,
-  UserStatusUnion,
-  UserTypeUnion
-} from './index'
+import { ProfilePhoto, UserStatusUnion, UserTypeUnion } from './index'
 
 export type UserUnion = User
 
@@ -24,21 +19,20 @@ export interface User {
   status: UserStatusUnion
   /** Profile photo of the user; may be null */
   profilePhoto?: ProfilePhoto
-  /** Relationship from the current user to the other user */
-  outgoingLink: LinkStateUnion
-  /** Relationship from the other user to the current user */
-  incomingLink: LinkStateUnion
+  /** The user is a contact of the current user */
+  isContact: boolean
+  /**
+   * The user is a contact of the current user and the current user is a contact of the
+   * user
+   */
+  isMutualContact: boolean
   /** True, if the user is verified */
   isVerified: boolean
   /** True, if the user is Telegram support account */
   isSupport: boolean
   /**
-   * If non-empty, it contains the reason why access to this user must be restricted.
-   * The format of the string is "{type}: {description}". {type} contains the type of
-   * the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp",
-   * which describe the platforms on which access should be restricted. (For example,
-   * "terms-ios-android". {description} contains a human-readable description of the restriction,
-   * which can be shown to the user)
+   * If non-empty, it contains a human-readable description of the reason why access to
+   * this user must be restricted
    */
   restrictionReason: string
   /** True, if many users reported this user as a scam */

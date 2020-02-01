@@ -6,7 +6,7 @@
   "types": "src/index.d.ts",
   "scripts": {
     "build": "",
-    "dev": "DEBUG=airgram* dotenv nodemon --config nodemon.json",
+    "dev": "dotenv nodemon --config nodemon.json",
     "check": "tsc --noEmit",
     "lint": "eslint --fix ./src/**/*.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -17,6 +17,7 @@ export enum PAGE_BLOCK {
   pageBlockAudio = 'pageBlockAudio',
   pageBlockPhoto = 'pageBlockPhoto',
   pageBlockVideo = 'pageBlockVideo',
+  pageBlockVoiceNote = 'pageBlockVoiceNote',
   pageBlockCover = 'pageBlockCover',
   pageBlockEmbedded = 'pageBlockEmbedded',
   pageBlockEmbeddedPost = 'pageBlockEmbeddedPost',

@@ -1,4 +1,4 @@
-/** Describes type of notifications in the group */
+/** Describes the type of notifications in a notification group */
 export type NotificationGroupTypeUnion = NotificationGroupTypeMessages
   | NotificationGroupTypeMentions
   | NotificationGroupTypeSecretChat

@@ -4,6 +4,6 @@ import { Sticker } from '@airgram/core'
 export class MessageStickerBaseModel {
   public _: 'messageSticker'
 
-  /** Message content */
+  /** The sticker description */
   public sticker: Sticker
 }

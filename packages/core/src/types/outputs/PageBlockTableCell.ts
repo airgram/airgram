@@ -9,8 +9,8 @@ export type PageBlockTableCellUnion = PageBlockTableCell
 /** Represents a cell of a table */
 export interface PageBlockTableCell {
   _: 'pageBlockTableCell'
-  /** Cell text */
-  text: RichTextUnion
+  /** Cell text; may be null. If the text is null, then the cell should be invisible */
+  text?: RichTextUnion
   /** True, if it is a header cell */
   isHeader: boolean
   /** The number of columns the cell should span */

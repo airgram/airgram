@@ -1,6 +1,8 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
+
+
 /**
  * Resets list of installed backgrounds to its default value
  * @param {ApiRequestOptions} options

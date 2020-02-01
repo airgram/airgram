@@ -4,7 +4,7 @@ import { UserProfilePhotosUnion } from '../outputs'
 export interface GetUserProfilePhotosParams {
   userId?: number // User identifier
   offset?: number // The number of photos to skip; must be non-negative
-  limit?: number // Maximum number of photos to be returned; up to 100
+  limit?: number // The maximum number of photos to be returned; up to 100
 }
 
 /**
@@ -13,8 +13,8 @@ export interface GetUserProfilePhotosParams {
  * @param {Object} params
  * @param {number} [params.userId] - User identifier
  * @param {number} [params.offset] - The number of photos to skip; must be non-negative
- * @param {number} [params.limit] - Maximum number of photos to be returned; up to
- * 100
+ * @param {number} [params.limit] - The maximum number of photos to be returned;
+ * up to 100
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetUserProfilePhotosParams, UserProfilePhotosUnion>>}
  */

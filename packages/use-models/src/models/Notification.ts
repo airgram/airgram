@@ -10,6 +10,9 @@ export class NotificationBaseModel {
   /** Notification date */
   public date: number
 
+  /** True, if the notification was initially silent */
+  public isSilent: boolean
+
   /** Notification type */
   public type: NotificationTypeUnion
 }

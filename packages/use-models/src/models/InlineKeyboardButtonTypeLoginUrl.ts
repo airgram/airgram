@@ -5,7 +5,7 @@
 export class InlineKeyboardButtonTypeLoginUrlBaseModel {
   public _: 'inlineKeyboardButtonTypeLoginUrl'
 
-  /** HTTP URL to open */
+  /** An HTTP URL to open */
   public url: string
 
   /** Unique button identifier */

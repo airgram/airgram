@@ -4,7 +4,7 @@ import { VideoNote } from '@airgram/core'
 export class MessageVideoNoteBaseModel {
   public _: 'messageVideoNote'
 
-  /** Message content */
+  /** The video note description */
   public videoNote: VideoNote
 
   /** True, if at least one of the recipients has viewed the video note */

@@ -1,9 +1,4 @@
-import {
-  LinkStateUnion,
-  ProfilePhoto,
-  UserStatusUnion,
-  UserTypeUnion
-} from '@airgram/core'
+import { ProfilePhoto, UserStatusUnion, UserTypeUnion } from '@airgram/core'
 
 /** Represents a user */
 export class UserBaseModel {
@@ -30,11 +25,14 @@ export class UserBaseModel {
   /** Profile photo of the user; may be null */
   public profilePhoto?: ProfilePhoto
 
-  /** Relationship from the current user to the other user */
-  public outgoingLink: LinkStateUnion
+  /** The user is a contact of the current user */
+  public isContact: boolean
 
-  /** Relationship from the other user to the current user */
-  public incomingLink: LinkStateUnion
+  /**
+   * The user is a contact of the current user and the current user is a contact of the
+   * user
+   */
+  public isMutualContact: boolean
 
   /** True, if the user is verified */
   public isVerified: boolean
@@ -43,12 +41,8 @@ export class UserBaseModel {
   public isSupport: boolean
 
   /**
-   * If non-empty, it contains the reason why access to this user must be restricted.
-   * The format of the string is "{type}: {description}". {type} contains the type of
-   * the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp",
-   * which describe the platforms on which access should be restricted. (For example,
-   * "terms-ios-android". {description} contains a human-readable description of the restriction,
-   * which can be shown to the user)
+   * If non-empty, it contains a human-readable description of the reason why access to
+   * this user must be restricted
    */
   public restrictionReason: string
 

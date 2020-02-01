@@ -4,6 +4,6 @@ import { Game } from '@airgram/core'
 export class MessageGameBaseModel {
   public _: 'messageGame'
 
-  /** Game */
+  /** The game description */
   public game: Game
 }

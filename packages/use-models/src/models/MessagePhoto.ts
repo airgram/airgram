@@ -4,7 +4,7 @@ import { FormattedText, Photo } from '@airgram/core'
 export class MessagePhotoBaseModel {
   public _: 'messagePhoto'
 
-  /** Message content */
+  /** The photo description */
   public photo: Photo
 
   /** Photo caption */

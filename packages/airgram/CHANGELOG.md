@@ -3,12 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.6...airgram@2.3.0) (2019-11-27)
+# [2.3.0-next.13](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.12...airgram@2.3.0-next.13) (2020-02-01)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.12](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.11...airgram@2.3.0-next.12) (2020-01-22)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.11](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.10...airgram@2.3.0-next.11) (2020-01-22)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.10](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.9...airgram@2.3.0-next.10) (2019-12-14)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.9](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.8...airgram@2.3.0-next.9) (2019-12-14)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.8](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.7...airgram@2.3.0-next.8) (2019-12-14)
+
+**Note:** Version bump only for package airgram
+
+
+
+
+
+# [2.3.0-next.7](https://github.com/airgram/airgram/compare/airgram@2.3.0-next.6...airgram@2.3.0-next.7) (2019-12-14)
 
 
 ### Bug Fixes
 
-* log verbosity 0 doesn't work ([3413f24](https://github.com/airgram/airgram/commit/3413f24)), closes [#67](https://github.com/airgram/airgram/issues/67)
+* log verbosity 0 doesn't work ([3413f24](https://github.com/airgram/airgram/commit/3413f243d1759e60e2ee563cc271178e78d3f72c)), closes [#67](https://github.com/airgram/airgram/issues/67)
 
 
 

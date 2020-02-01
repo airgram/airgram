@@ -1,7 +1,9 @@
-/** Describes a type of a background */
+import { BackgroundFillUnion } from './index'
+
+/** Describes the type of a background */
 export type BackgroundTypeUnion = BackgroundTypeWallpaper
   | BackgroundTypePattern
-  | BackgroundTypeSolid
+  | BackgroundTypeFill
 
 /** A wallpaper in JPEG format */
 export interface BackgroundTypeWallpaper {
@@ -11,24 +13,27 @@ export interface BackgroundTypeWallpaper {
    * with radius 12
    */
   isBlurred: boolean
-  /** True, if the background needs to be slightly moved when device is rotated */
+  /** True, if the background needs to be slightly moved when device is tilted */
   isMoving: boolean
 }
 
-/** A PNG pattern to be combined with the color chosen by the user */
+/**
+ * A PNG or TGV (gzipped subset of SVG with MIME type "application/x-tgwallpattern")
+ * pattern to be combined with the background fill chosen by the user
+ */
 export interface BackgroundTypePattern {
   _: 'backgroundTypePattern'
-  /** True, if the background needs to be slightly moved when device is rotated */
-  isMoving: boolean
-  /** Main color of the background in RGB24 format */
-  color: number
-  /** Intensity of the pattern when it is shown above the main background color, 0-100 */
+  /** Description of the background fill */
+  fill: BackgroundFillUnion
+  /** Intensity of the pattern when it is shown above the filled background, 0-100 */
   intensity: number
+  /** True, if the background needs to be slightly moved when device is tilted */
+  isMoving: boolean
 }
 
-/** A solid background */
-export interface BackgroundTypeSolid {
-  _: 'backgroundTypeSolid'
-  /** A color of the background in RGB24 format */
-  color: number
+/** A filled background */
+export interface BackgroundTypeFill {
+  _: 'backgroundTypeFill'
+  /** Description of the background fill */
+  fill: BackgroundFillUnion
 }

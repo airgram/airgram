@@ -13,6 +13,12 @@ export class UserFullInfoBaseModel {
   /** True, if the user can't be called due to their privacy settings */
   public hasPrivateCalls: boolean
 
+  /**
+   * True, if the current user needs to explicitly allow to share their phone number with
+   * the user when the method addContact is used
+   */
+  public needPhoneNumberPrivacyException: boolean
+
   /** A short user bio */
   public bio: string
 

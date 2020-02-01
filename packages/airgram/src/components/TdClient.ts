@@ -58,10 +58,30 @@ export class TdClient {
   }
 
   public destroy (): void {
+    this.pause()
+    Array.from(this.pending).forEach(([, pending]) => {
+      pending.reject(new Error('Request has been canceled due instance destroying.'))
+    })
+    this.pending.clear()
     this.tdlib.destroy(this.tdClient)
     this.sleepPromise = null
     this.wakeup = null
     this.destroyed = true
+  }
+
+  public execute (request: ApiRequest): TdObject {
+    const id = `q${++this.queryId}`
+    const { method, params } = request
+    try {
+      const data: string | null = this.tdlib.execute(this.tdClient, JSON.stringify({
+        ...params,
+        '@extra': id,
+        _: method
+      }, this.serialize))
+      return JSON.parse(data, this.deserialize)
+    } catch (e) {
+      throw new Error('[TdJsonClient] received invalid JSON')
+    }
   }
 
   public pause (): void {
@@ -93,6 +113,15 @@ export class TdClient {
     })
   }
 
+  private addToStack (response: NativeTdObject): void {
+    if (response && !this.destroyed) {
+      this.stack.push(response)
+      if (this.stack.length === 1) {
+        this.handleResponse().catch(this.handleError)
+      }
+    }
+  }
+
   private async handleResponse (): Promise<void> {
     const response = this.stack.shift()
 
@@ -122,15 +151,6 @@ export class TdClient {
         .then((response) => this.addToStack(response))
         .catch(this.handleError)
         .finally(() => setImmediate(() => this.loop()))
-    }
-  }
-
-  private addToStack (response: NativeTdObject): void {
-    if (response && !this.destroyed) {
-      this.stack.push(response)
-      if (this.stack.length === 1) {
-        this.handleResponse().catch(this.handleError)
-      }
     }
   }
 

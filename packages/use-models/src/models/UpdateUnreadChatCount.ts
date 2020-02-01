@@ -1,9 +1,17 @@
+import { ChatListUnion } from '@airgram/core'
+
 /**
  * Number of unread chats, i.e. with unread messages or marked as unread, has changed.
- * This update is sent only if a message database is used
+ * This update is sent only if the message database is used
  */
 export class UpdateUnreadChatCountBaseModel {
   public _: 'updateUnreadChatCount'
+
+  /** The chat list with changed number of unread messages */
+  public chatList: ChatListUnion
+
+  /** Approximate total number of chats in the chat list */
+  public totalCount: number
 
   /** Total number of unread chats */
   public unreadCount: number

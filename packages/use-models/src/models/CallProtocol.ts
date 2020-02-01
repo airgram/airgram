@@ -8,9 +8,9 @@ export class CallProtocolBaseModel {
   /** True, if connection through UDP reflectors is supported */
   public udpReflector: boolean
 
-  /** Minimum supported API layer; use 65 */
+  /** The minimum supported API layer; use 65 */
   public minLayer: number
 
-  /** Maximum supported API layer; use 65 */
+  /** The maximum supported API layer; use 65 */
   public maxLayer: number
 }

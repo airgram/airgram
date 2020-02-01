@@ -19,7 +19,7 @@ export interface SupergroupMembersFilterContactsInput {
   query?: string
 }
 
-/** Returns the creator and administrators */
+/** Returns the owner and administrators */
 export interface SupergroupMembersFilterAdministratorsInput {
   _: 'supergroupMembersFilterAdministrators'
 }

@@ -3,12 +3,76 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.10...@airgram/core@2.3.0) (2019-11-27)
+# [2.3.0-next.17](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.16...@airgram/core@2.3.0-next.17) (2020-02-01)
+
+**Note:** Version bump only for package @airgram/core
+
+
+
+
+
+# [2.3.0-next.16](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.15...@airgram/core@2.3.0-next.16) (2020-01-22)
+
+**Note:** Version bump only for package @airgram/core
+
+
+
+
+
+# [2.3.0-next.15](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.14...@airgram/core@2.3.0-next.15) (2020-01-22)
 
 
 ### Bug Fixes
 
-* log verbosity 0 doesn't work ([3413f24](https://github.com/airgram/airgram/commit/3413f24)), closes [#67](https://github.com/airgram/airgram/issues/67)
+* functions in custom context ([1b0e6a9](https://github.com/airgram/airgram/commit/1b0e6a9))
+
+
+### Features
+
+* request options available in context ([c8e09b8](https://github.com/airgram/airgram/commit/c8e09b8))
+
+
+
+
+
+# [2.3.0-next.14](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.13...@airgram/core@2.3.0-next.14) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/core
+
+
+
+
+
+# [2.3.0-next.13](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.12...@airgram/core@2.3.0-next.13) (2019-12-14)
+
+
+### Features
+
+* improve context types ([859f32e](https://github.com/airgram/airgram/commit/859f32e12bce087c2ed44cc96bc65022d2115413))
+
+
+
+
+
+# [2.3.0-next.12](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.11...@airgram/core@2.3.0-next.12) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/core
+
+
+
+
+
+# [2.3.0-next.11](https://github.com/airgram/airgram/compare/@airgram/core@2.3.0-next.10...@airgram/core@2.3.0-next.11) (2019-12-14)
+
+
+### Bug Fixes
+
+* log verbosity 0 doesn't work ([3413f24](https://github.com/airgram/airgram/commit/3413f243d1759e60e2ee563cc271178e78d3f72c)), closes [#67](https://github.com/airgram/airgram/issues/67)
+
+
+### Features
+
+* context factory can return promise ([64616e9](https://github.com/airgram/airgram/commit/64616e9a8607c95ab78e2531818221b7acd4e8f6))
 
 
 

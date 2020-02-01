@@ -1,6 +1,6 @@
 /**
  * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage,
- * updateChatIsPinned or updateChatDraftMessage might be sent
+ * updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent
  */
 export class UpdateChatOrderBaseModel {
   public _: 'updateChatOrder'

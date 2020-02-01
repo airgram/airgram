@@ -1,4 +1,6 @@
 import {
+  ChatActionBarUnion,
+  ChatListUnion,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhoto,
@@ -16,6 +18,8 @@ export interface Chat {
   id: number
   /** Type of the chat */
   type: ChatTypeUnion
+  /** A chat list to which the chat belongs; may be null */
+  chatList?: ChatListUnion
   /** Chat title */
   title: string
   /** Chat photo; may be null */
@@ -36,6 +40,8 @@ export interface Chat {
   isMarkedAsUnread: boolean
   /** True, if the chat is sponsored by the user's MTProxy server */
   isSponsored: boolean
+  /** True, if the chat has scheduled messages */
+  hasScheduledMessages: boolean
   /**
    * True, if the chat messages can be deleted only for the current user while other users
    * will continue to see the messages
@@ -60,6 +66,11 @@ export interface Chat {
   unreadMentionCount: number
   /** Notification settings for this chat */
   notificationSettings: ChatNotificationSettings
+  /**
+   * Describes actions which should be possible to do through a chat action bar; may be
+   * null
+   */
+  actionBar?: ChatActionBarUnion
   /** Identifier of the pinned message in the chat; 0 if none */
   pinnedMessageId: number
   /**
@@ -71,7 +82,7 @@ export interface Chat {
   draftMessage?: DraftMessage
   /**
    * Contains client-specific data associated with the chat. (For example, the chat position
-   * or local chat notification settings can be stored here.) Persistent if a message
+   * or local chat notification settings can be stored here.) Persistent if the message
    * database is used
    */
   clientData: string

@@ -4,6 +4,7 @@ export type ChatReportReasonInputUnion = ChatReportReasonSpamInput
   | ChatReportReasonPornographyInput
   | ChatReportReasonChildAbuseInput
   | ChatReportReasonCopyrightInput
+  | ChatReportReasonUnrelatedLocationInput
   | ChatReportReasonCustomInput
 
 /** The chat contains spam messages */
@@ -29,6 +30,11 @@ export interface ChatReportReasonChildAbuseInput {
 /** The chat contains copyrighted content */
 export interface ChatReportReasonCopyrightInput {
   _: 'chatReportReasonCopyright'
+}
+
+/** The location-based chat is unrelated to its stated location */
+export interface ChatReportReasonUnrelatedLocationInput {
+  _: 'chatReportReasonUnrelatedLocation'
 }
 
 /** A custom reason provided by the user */

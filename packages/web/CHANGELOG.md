@@ -3,7 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.9...@airgram/web@2.3.0) (2019-11-27)
+# [2.3.0-next.16](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.15...@airgram/web@2.3.0-next.16) (2020-02-01)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.15](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.14...@airgram/web@2.3.0-next.15) (2020-01-22)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.14](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.13...@airgram/web@2.3.0-next.14) (2020-01-22)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.13](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.12...@airgram/web@2.3.0-next.13) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.12](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.11...@airgram/web@2.3.0-next.12) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.11](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.10...@airgram/web@2.3.0-next.11) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
+# [2.3.0-next.10](https://github.com/airgram/airgram/compare/@airgram/web@2.3.0-next.9...@airgram/web@2.3.0-next.10) (2019-12-14)
 
 **Note:** Version bump only for package @airgram/web
 

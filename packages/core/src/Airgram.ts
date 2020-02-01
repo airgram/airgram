@@ -30,7 +30,7 @@ const getDefaultConfig = (): Partial<Config> => ({
   databaseDirectory: './db',
   databaseEncryptionKey: '',
   deviceModel: 'UNKNOWN DEVICE',
-  logVerbosityLevel: 2,
+  // logVerbosityLevel: 2,
   systemLanguageCode: 'en',
   systemVersion: 'UNKNOWN VERSION'
 })
@@ -64,30 +64,6 @@ function createState (starting: Record<string, unknown>): ContextState {
     }
   }
   return { getState, setState }
-}
-
-function defineContextProperty (
-  ctx: Record<string, unknown>,
-  name: string,
-  value: (() => any) | unknown
-): void {
-  const descriptor: PropertyDescriptor = {
-    enumerable: true,
-    configurable: false
-  }
-  if (typeof value === 'function') {
-    descriptor.get = function () {
-      return value()
-    }
-  } else if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-    descriptor.value = value
-    descriptor.writable = false
-  } else {
-    descriptor.get = function () {
-      return value
-    }
-  }
-  Object.defineProperty(ctx, name, descriptor)
 }
 
 function isUnwrapped<T> (o: any): o is T {
@@ -132,6 +108,14 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
       },
       this.config.models
     )
+    if (this.config.logVerbosityLevel !== undefined) {
+      console.info('this.config', this.config)
+      provider.execute({
+        method: 'setLogVerbosityLevel',
+        params: { newVerbosityLevel: this.config.logVerbosityLevel }
+      })
+    }
+
     this.provider = provider
     this.handleError = (error: Error): void => {
       throw error
@@ -144,18 +128,14 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
         if (method === 'toJSON') {
           return '{}'
         }
-        return (params: TdObject | undefined, options?: ApiRequestOptions): Promise<ApiResponse<unknown, TdObject>> =>
-          this.callApi({ method, params }, options)
+        return (params: TdObject | undefined, options?: ApiRequestOptions) => {
+          if (method.substr(-4) === 'Sync') {
+            return this.provider.execute({ method: method.substr(0, method.length - 4), params })
+          }
+          return this.callApi({ method, params }, options)
+        }
       }
     })
-
-    if (this.config.logVerbosityLevel !== undefined) {
-      this.api
-        .setLogVerbosityLevel({
-          newVerbosityLevel: this.config.logVerbosityLevel
-        })
-        .catch(this.handleError)
-    }
 
     this.bootstrapMiddleware()
     setTimeout(() => this.api.getAuthorizationState(), 0)
@@ -237,39 +217,44 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   private callApi<ParamsT extends TdObject | undefined, ResultT extends TdObject> (
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
-  ): Promise<ApiResponse<ParamsT, ResultT>> {
-    const ctx = this.createContext <ApiResponse<ParamsT, ResultT>>(
+  ): Promise<ApiResponse<ParamsT, ResultT>> | ApiResponse<ParamsT, ResultT>['response'] {
+    return this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
-      (options && options.state) || {},
-      { request }
-    )
-    return new Promise<any>((resolve, reject) => {
+      { options: options || {}, request }
+    ).then((ctx) => new Promise<any>((resolve, reject) => {
       const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
       return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
-    })// .catch((error) => this.handleError(error, ctx))
+    }))
   }
 
-  private createContext<T> (
+  private async createContext<T> (
     _: string,
-    state: Record<string, unknown>,
-    props: Record<string, unknown>
-  ): T {
-    const ctx: Record<string, any> = createState(state)
-    defineContextProperty(ctx, '_', _)
-    defineContextProperty(ctx, 'airgram', this)
-
-    Object.keys(props).forEach((name) => {
-      defineContextProperty(ctx, name, props[name])
+    props: Record<string, any>
+  ): Promise<T> {
+    const ctx: Record<string, any> = {}
+    const descriptor: PropertyDescriptor = {
+      enumerable: true,
+      configurable: false
+    }
+    Object.defineProperty(ctx, 'airgram', {
+      ...descriptor,
+      get: () => this
     })
-
-    const extraContext = this.getExtraContext(ctx)
-    Object.keys(extraContext).forEach((name) => {
-      defineContextProperty(ctx, name, extraContext[name])
+    const defineProperties = (obj: Record<string, any>) => Object.keys(obj).forEach((name) => {
+      Object.defineProperty(ctx, name, {
+        ...descriptor,
+        value: obj[name],
+        writable: false
+      })
     })
+    defineProperties(createState(props?.options?.state || {}))
+    defineProperties({ _ })
+    defineProperties(props)
+    defineProperties(await this.getExtraContext(ctx))
     return ctx as T
   }
 
-  private getExtraContext (ctx: Record<string, unknown>): Record<string, any> {
+  private async getExtraContext (ctx: Record<string, unknown>): Promise<Record<string, any>> {
     const { context } = this.config
     if (context) {
       if (isUnwrapped<ApiResponse<unknown, TdObject> | UpdateContext<TdObject>>(context)) {
@@ -283,9 +268,7 @@ export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT
   }
 
   private handleUpdate (update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
-    const ctx = this.createContext<UpdateContext<TdObject>>(update._, state, { update })
-    return this.composer
-      .middleware()(ctx, Composer.noop)
-    // .catch((error: Error) => this.handleError(error, ctx))
+    return this.createContext<UpdateContext<TdObject>>(update._, { update, options: { state } })
+      .then((ctx) => this.composer.middleware()(ctx, Composer.noop))
   }
 }

@@ -1,57 +1,57 @@
-/* eslint-env worker */
-
 import { ApiRequest, TdObject, TdProvider as BaseTdProvider } from '@airgram/core'
-import { PromisifyWorker, TdWebProviderConfig } from '../types'
-import { promisifyWorker } from '../utils'
-import { InitWorkerPayload, SendWorkerPayload, UpdateWorkerPayload } from './tdweb.worker'
-
-function isUpdatePayload (obj: any): obj is UpdateWorkerPayload {
-  return obj && typeof obj === 'object' && ('_' in obj) && obj._ === 'update'
-}
+import TdClient, { TdObject as NativeTdObject } from 'tdweb'
+import { DeserializeFn, SerializeFn, TdWebProviderConfig } from '../types'
+import { deserializerFactory, serializerFactory } from '../utils'
 
 export class TdProvider extends BaseTdProvider {
+  private client: TdClient | null = null
+
   private readonly config: TdWebProviderConfig = {}
 
-  private handleError: ((error: any) => void) = () => {}
+  private deserialize: DeserializeFn
 
-  private readonly worker: PromisifyWorker
+  private serialize: SerializeFn
 
   public constructor (config: TdWebProviderConfig = {}) {
     super()
     this.config = config
-    this.worker = promisifyWorker(new Worker('./tdweb.worker', { type: 'module' }))
+    this.serialize = serializerFactory()
+    this.deserialize = deserializerFactory()
   }
 
   public async destroy (): Promise<void> {
-    this.worker.terminate()
+    throw new Error('[Airgram] for web does not support `destroy()` method.')
+  }
+
+  execute (): TdObject {
+    throw new Error('[Airgram] tdweb does not support synchronous operations.')
   }
 
   public initialize (
-    handleUpdate: (update: TdObject) => Promise<any>,
-    handleError: (error: any) => void
+    handleUpdate: (update: TdObject) => Promise<any>
   ): void {
-    this.handleError = handleError
-
-    const initMessage: InitWorkerPayload = {
-      _: 'init',
-      config: this.config
-    }
-    this.worker.postMessage(initMessage).catch(handleError)
-    this.worker.addEventListener('message', (message) => {
-      if (isUpdatePayload(message.data)) {
-        return handleUpdate(message.data.update)
-      }
+    this.client = new TdClient({
+      ...this.config,
+      onUpdate: (update: NativeTdObject) => handleUpdate(this.deserialize(update))
     })
   }
 
-  public send (request: ApiRequest): Promise<TdObject> {
-    const message: SendWorkerPayload = {
-      _: 'send',
-      request: {
-        _: request.method,
-        ...request.params
-      }
+  send ({ method, params }: ApiRequest): Promise<TdObject> {
+    if (!this.client) {
+      throw new Error('[Airgram] tdweb instance has not initialized yet.')
     }
-    return this.worker.postMessage(message).catch(this.handleError)
+    return this.client.send(this.serialize({ _: method, ...params }))
+      .then((data) => this.deserialize(data as NativeTdObject & null))
+      .catch((error: any) => {
+        if ('@type' in error && error['@type']) {
+          const data = this.deserialize(error)
+          // Ensures that the message property is a string
+          // See: https://github.com/tdlib/td/blob/master/example/web/tdweb/src/index.js#L648
+          data.message = String(data.message)
+          return data
+        } else {
+          throw error
+        }
+      })
   }
 }

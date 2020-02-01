@@ -4,7 +4,7 @@ import { Audio, FormattedText } from '@airgram/core'
 export class MessageAudioBaseModel {
   public _: 'messageAudio'
 
-  /** Message content */
+  /** The audio description */
   public audio: Audio
 
   /** Audio caption */

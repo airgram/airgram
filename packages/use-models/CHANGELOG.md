@@ -3,7 +3,55 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.2.0](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.3...@airgram/use-models@2.2.0) (2019-11-27)
+# [2.2.0-next.10](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.9...@airgram/use-models@2.2.0-next.10) (2020-02-01)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.9](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.8...@airgram/use-models@2.2.0-next.9) (2020-01-22)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.8](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.7...@airgram/use-models@2.2.0-next.8) (2020-01-22)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.7](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.6...@airgram/use-models@2.2.0-next.7) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.6](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.5...@airgram/use-models@2.2.0-next.6) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.5](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.4...@airgram/use-models@2.2.0-next.5) (2019-12-14)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
+# [2.2.0-next.4](https://github.com/airgram/airgram/compare/@airgram/use-models@2.2.0-next.3...@airgram/use-models@2.2.0-next.4) (2019-12-14)
 
 **Note:** Version bump only for package @airgram/use-models
 

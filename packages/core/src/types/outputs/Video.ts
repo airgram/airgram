@@ -15,7 +15,7 @@ export interface Video {
   fileName: string
   /** MIME type of the file; as defined by the sender */
   mimeType: string
-  /** True, if stickers were added to the photo */
+  /** True, if stickers were added to the video */
   hasStickers: boolean
   /** True, if the video should be tried to be streamed */
   supportsStreaming: boolean

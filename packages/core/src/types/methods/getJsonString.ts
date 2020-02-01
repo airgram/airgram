@@ -18,3 +18,5 @@ export type getJsonString = (
   params?: GetJsonStringParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetJsonStringParams, TextUnion>>
+
+export type getJsonStringSync = (params?: GetJsonStringParams) => TextUnion

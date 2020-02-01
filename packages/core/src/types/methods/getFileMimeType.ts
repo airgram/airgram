@@ -18,3 +18,5 @@ export type getFileMimeType = (
   params?: GetFileMimeTypeParams,
   options?: ApiRequestOptions
 ) => Promise<ApiResponse<GetFileMimeTypeParams, TextUnion>>
+
+export type getFileMimeTypeSync = (params?: GetFileMimeTypeParams) => TextUnion

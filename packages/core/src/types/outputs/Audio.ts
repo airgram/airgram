@@ -2,7 +2,7 @@ import { File, Minithumbnail, PhotoSize } from './index'
 
 export type AudioUnion = Audio
 
-/** Describes an audio file. Audio is usually in MP3 format */
+/** Describes an audio file. Audio is usually in MP3 or M4A format */
 export interface Audio {
   _: 'audio'
   /** Duration of the audio, in seconds; as defined by the sender */

@@ -1,5 +1,5 @@
 /**
- * Describes, whether there are some pending notification updates. Can be used to prevent
+ * Describes whether there are some pending notification updates. Can be used to prevent
  * application from killing, while there are some pending notifications
  */
 export class UpdateHavePendingNotificationsBaseModel {
