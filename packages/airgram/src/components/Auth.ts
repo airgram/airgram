@@ -21,9 +21,9 @@ import {
   Ok,
   OkUnion,
   RegisterUserParams,
+  TdProvider,
   UpdateAuthorizationState
 } from '@airgram/core'
-import { TdProvider } from './TdProvider'
 
 interface LoginDeferred {
   promise: Promise<void>
