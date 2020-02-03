@@ -1,4 +1,4 @@
-# Airgram [![Twitter](https://img.shields.io/twitter/url/https/github.com/airgram/airgram?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fairgram%2Fairgram)
+# Airgram
 
 This is a wrapper for [Telegram Database library](https://github.com/tdlib/td) written in TypeScript.
 
