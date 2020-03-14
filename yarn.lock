@@ -6,16 +6,16 @@
   version "3.0.0"
 
 "@airgram/use-models@link:packages/use-models":
-  version "3.0.0"
+  version "3.0.1"
   dependencies:
-    "@airgram/core" "^3.0.0"
+    "@airgram/core" "^3.0.1"
     class-transformer "^0.2.3"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "3.0.0"
+  version "3.0.1"
   dependencies:
-    "@airgram/core" "^3.0.0"
+    "@airgram/core" "^3.0.1"
     tdweb "~1.5.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
@@ -1856,9 +1856,9 @@ acorn-walk@^6.0.1, acorn-walk@^6.1.1:
   integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
 
 acorn@5.X, acorn@^5.0.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 acorn@^6.0.1, acorn@^6.0.7, acorn@^6.2.1:
   version "6.2.1"
@@ -1892,10 +1892,10 @@ agentkeepalive@^3.4.1:
     humanize-ms "^1.2.1"
 
 "airgram@link:packages/airgram":
-  version "3.0.0"
+  version "3.0.2"
   dependencies:
     "@airgram/constants" "^3.0.0"
-    "@airgram/core" "^3.0.0"
+    "@airgram/core" "^3.0.1"
     ffi-napi "^2.4.5"
 
 ajv-errors@^1.0.0:
