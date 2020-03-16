@@ -14,7 +14,8 @@ export interface GetChatsParams {
  * chat_id) in decreasing order. (For example, to get a list of chats from the beginning,
  * the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807
  * == 2^63 - 1). For optimal performance the number of returned chats is chosen by the
- * library
+ * library. Please note getChats() does not work for bots and you have to use getChat()
+ * instead. 
  * @param {Object} params
  * @param {ChatListInputUnion} [params.chatList] - The chat list in which to return
  * chats
