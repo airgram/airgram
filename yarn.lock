@@ -16,7 +16,7 @@
   version "3.0.1"
   dependencies:
     "@airgram/core" "^3.0.1"
-    tdweb "~1.5.0"
+    tdweb "~1.6.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
@@ -6826,6 +6826,7 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
+
 https-proxy-agent@^2.2.3:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz#4ee7a737abd92678a293d9b34a1af4d0d08c787b"
@@ -11963,10 +11964,10 @@ tdweb@^1.4.3:
     localforage "^1.7.3"
     uuid "^3.3.2"
 
-tdweb@~1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.5.0.tgz#aad4deba24b4d23749aa1d16159009b40890ce48"
-  integrity sha512-WHLONE4LK4Sb9XZdFJCQLkGl1o0Ka28d9YNL0aSQFA6xdXYbLMLUcDExKIvQZ62xUTnpbZtYilJLItrmL3Bv/A==
+tdweb@~1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.0.tgz#2e29fdb70a8a25c6b6c138ba9ffd901bf7e1b8be"
+  integrity sha512-Ql1BRNHM10I5vs3diV44PHhJkBAQSUjSJMVEwyPtwBC4JhjsNHQ/xHayNQuSM/pHs2nITbgyrMx7l0nq3l1Evw==
   dependencies:
     "@babel/runtime" "^7.4.3"
     broadcast-channel "^2.1.12"
