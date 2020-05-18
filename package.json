@@ -18,11 +18,11 @@
     "examples/*"
   ],
   "devDependencies": {
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.10",
     "@types/gulp-json-editor": "^2.2.31",
     "@types/gulp-replace": "0.0.31",
     "@types/gulp-shell": "0.7.0",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
     "@typescript-eslint/parser": "^2.17.0",
     "del": "^5.0.0",
