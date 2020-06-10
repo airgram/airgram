@@ -6826,7 +6826,6 @@ https-browserify@^1.0.0:
   resolved "https://registry.yarnpkg.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM=
 
-
 https-proxy-agent@^2.2.3:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz#4ee7a737abd92678a293d9b34a1af4d0d08c787b"
@@ -11954,17 +11953,7 @@ tar@^4.4.10, tar@^4.4.12, tar@^4.4.8:
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
 
-tdweb@^1.4.3:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.0.tgz#2e29fdb70a8a25c6b6c138ba9ffd901bf7e1b8be"
-  integrity sha512-Ql1BRNHM10I5vs3diV44PHhJkBAQSUjSJMVEwyPtwBC4JhjsNHQ/xHayNQuSM/pHs2nITbgyrMx7l0nq3l1Evw==
-  dependencies:
-    "@babel/runtime" "^7.4.3"
-    broadcast-channel "^2.1.12"
-    localforage "^1.7.3"
-    uuid "^3.3.2"
-
-tdweb@~1.6.0:
+tdweb@^1.4.3, tdweb@~1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.0.tgz#2e29fdb70a8a25c6b6c138ba9ffd901bf7e1b8be"
   integrity sha512-Ql1BRNHM10I5vs3diV44PHhJkBAQSUjSJMVEwyPtwBC4JhjsNHQ/xHayNQuSM/pHs2nITbgyrMx7l0nq3l1Evw==
@@ -13057,9 +13046,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
-  integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.5:
   version "1.0.5"
