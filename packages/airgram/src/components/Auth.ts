@@ -43,6 +43,13 @@ interface AuthConfig {
 }
 
 const authMethods: MethodName[] = [
+  'addProxy',
+  'disableProxy',
+  'editProxy',
+  'enableProxy',
+  'getProxyLink',
+  'pingProxy',
+  'removeProxy',
   'checkAuthenticationBotToken',
   'checkAuthenticationCode',
   'checkAuthenticationPassword',
