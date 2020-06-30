@@ -6,6 +6,7 @@ export type TextEntityTypeInputUnion = TextEntityTypeMentionInput
   | TextEntityTypeUrlInput
   | TextEntityTypeEmailAddressInput
   | TextEntityTypePhoneNumberInput
+  | TextEntityTypeBankCardNumberInput
   | TextEntityTypeBoldInput
   | TextEntityTypeItalicInput
   | TextEntityTypeUnderlineInput
@@ -55,6 +56,14 @@ export interface TextEntityTypeEmailAddressInput {
 /** A phone number */
 export interface TextEntityTypePhoneNumberInput {
   _: 'textEntityTypePhoneNumber'
+}
+
+/**
+ * A bank card number. The getBankCardInfo method can be used to get information about
+ * the bank card
+ */
+export interface TextEntityTypeBankCardNumberInput {
+  _: 'textEntityTypeBankCardNumber'
 }
 
 /** A bold text */

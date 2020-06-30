@@ -1,4 +1,4 @@
-import { Emojis, PhotoSize, Sticker } from './index'
+import { Emojis, Sticker, Thumbnail } from './index'
 
 export type StickerSetUnion = StickerSet
 
@@ -12,10 +12,10 @@ export interface StickerSet {
   /** Name of the sticker set */
   name: string
   /**
-   * Sticker set thumbnail in WEBP format with width and height 100; may be null. The
-   * file can be downloaded only before the thumbnail is changed
+   * Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null.
+   * The file can be downloaded only before the thumbnail is changed
    */
-  thumbnail?: PhotoSize
+  thumbnail?: Thumbnail
   /** True, if the sticker set has been installed by the current user */
   isInstalled: boolean
   /**

@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from './index'
+import { File, Minithumbnail, Thumbnail } from './index'
 
 export type AnimationUnion = Animation
 
@@ -15,10 +15,15 @@ export interface Animation {
   fileName: string
   /** MIME type of the file, usually "image/gif" or "video/mp4" */
   mimeType: string
+  /**
+   * True, if stickers were added to the animation. The list of corresponding sticker
+   * set can be received using getAttachedStickerSets
+   */
+  hasStickers: boolean
   /** Animation minithumbnail; may be null */
   minithumbnail?: Minithumbnail
-  /** Animation thumbnail; may be null */
-  thumbnail?: PhotoSize
+  /** Animation thumbnail in JPEG or MPEG4 format; may be null */
+  thumbnail?: Thumbnail
   /** File containing the animation */
   animation: File
 }

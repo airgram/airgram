@@ -1,4 +1,4 @@
-import { File, MaskPosition, PhotoSize } from './index'
+import { File, MaskPosition, Thumbnail } from './index'
 
 export type StickerUnion = Sticker
 
@@ -20,7 +20,7 @@ export interface Sticker {
   /** Position where the mask should be placed; may be null */
   maskPosition?: MaskPosition
   /** Sticker thumbnail in WEBP or JPEG format; may be null */
-  thumbnail?: PhotoSize
+  thumbnail?: Thumbnail
   /** File containing the sticker */
   sticker: File
 }

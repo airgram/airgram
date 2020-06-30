@@ -4,7 +4,7 @@ import { FileUnion } from '../outputs'
 
 export interface UploadStickerFileParams {
   userId?: number // Sticker file owner
-  pngSticker?: InputFileInputUnion // PNG image with the sticker; must be up to 512 kB in size and fit in 512x512 square
+  pngSticker?: InputFileInputUnion // PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
 }
 
 /**
@@ -12,7 +12,7 @@ export interface UploadStickerFileParams {
  * @param {Object} params
  * @param {number} [params.userId] - Sticker file owner
  * @param {InputFileInputUnion} [params.pngSticker] - PNG image with the sticker;
- * must be up to 512 kB in size and fit in 512x512 square
+ * must be up to 512 KB in size and fit in 512x512 square
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<UploadStickerFileParams, FileUnion>>}
  */

@@ -16,7 +16,7 @@
   version "3.0.1"
   dependencies:
     "@airgram/core" "^3.0.1"
-    tdweb "~1.6.0"
+    tdweb "~1.6.6"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
   version "7.10.3"
@@ -11886,7 +11886,7 @@ tar@^4.4.10, tar@^4.4.12, tar@^4.4.8:
     safe-buffer "^5.1.2"
     yallist "^3.0.3"
 
-tdweb@^1.4.3, tdweb@~1.6.0:
+tdweb@^1.4.3, tdweb@~1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.6.tgz#081f863fca7b7ce18b1e0150e7d931e913e88a1c"
   integrity sha512-BLDu6BYBYiseNIZevxUpoTwWw5krs+Vr1RPSJdgLqsK4Xf9a1N+/goXp23E/bRQTLK7g9YLNoPgk7+w1+MAg7A==

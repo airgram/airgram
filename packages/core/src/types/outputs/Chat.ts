@@ -1,9 +1,9 @@
 import {
   ChatActionBarUnion,
-  ChatListUnion,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhoto,
+  ChatPosition,
   ChatTypeUnion,
   DraftMessage,
   Message
@@ -18,8 +18,6 @@ export interface Chat {
   id: number
   /** Type of the chat */
   type: ChatTypeUnion
-  /** A chat list to which the chat belongs; may be null */
-  chatList?: ChatListUnion
   /** Chat title */
   title: string
   /** Chat photo; may be null */
@@ -28,18 +26,10 @@ export interface Chat {
   permissions: ChatPermissions
   /** Last message in the chat; may be null */
   lastMessage?: Message
-  /**
-   * Descending parameter by which chats are sorted in the main chat list. If the order
-   * number of two chats is the same, they must be sorted in descending order by ID. If
-   * 0, the position of the chat in the list is undetermined
-   */
-  order: string
-  /** True, if the chat is pinned */
-  isPinned: boolean
+  /** Positions of the chat in chat lists */
+  positions: ChatPosition[]
   /** True, if the chat is marked as unread */
   isMarkedAsUnread: boolean
-  /** True, if the chat is sponsored by the user's MTProxy server */
-  isSponsored: boolean
   /** True, if the chat has scheduled messages */
   hasScheduledMessages: boolean
   /**
@@ -81,9 +71,9 @@ export interface Chat {
   /** A draft of a message in the chat; may be null */
   draftMessage?: DraftMessage
   /**
-   * Contains client-specific data associated with the chat. (For example, the chat position
-   * or local chat notification settings can be stored here.) Persistent if the message
-   * database is used
+   * Contains client-specific data associated with the chat. (For example, the chat scroll
+   * position or local chat notification settings can be stored here.) Persistent if the
+   * message database is used
    */
   clientData: string
 }

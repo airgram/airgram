@@ -19,6 +19,10 @@ export interface Poll {
   isAnonymous: boolean
   /** Type of the poll */
   type: PollTypeUnion
+  /** Amount of time the poll will be active after creation, in seconds */
+  openPeriod: number
+  /** Point in time (Unix timestamp) when the poll will be automatically closed */
+  closeDate: number
   /** True, if the poll is closed */
   isClosed: boolean
 }

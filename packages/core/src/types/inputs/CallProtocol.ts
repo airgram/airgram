@@ -11,4 +11,6 @@ export interface CallProtocolInput {
   minLayer?: number
   /** The maximum supported API layer; use 65 */
   maxLayer?: number
+  /** List of supported libtgvoip versions */
+  libraryVersions?: string[]
 }

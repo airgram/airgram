@@ -8,7 +8,7 @@ export interface SearchChatsParams {
 
 /**
  * Searches for the specified query in the title and username of already known chats,
- * this is an offline request. Returns chats in the order seen in the chat list
+ * this is an offline request. Returns chats in the order seen in the main chat list
  * @param {Object} params
  * @param {string} [params.query] - Query to search for. If the query is empty, returns
  * up to 20 recently found chats

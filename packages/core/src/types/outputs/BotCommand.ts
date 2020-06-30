@@ -1,6 +1,6 @@
 export type BotCommandUnion = BotCommand
 
-/** Represents commands supported by a bot */
+/** Represents a command supported by a bot */
 export interface BotCommand {
   _: 'botCommand'
   /** Text of the bot command */

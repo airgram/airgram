@@ -1,5 +1,7 @@
 /** Describes a list of chats */
-export type ChatListInputUnion = ChatListMainInput | ChatListArchiveInput
+export type ChatListInputUnion = ChatListMainInput
+  | ChatListArchiveInput
+  | ChatListFilterInput
 
 /** A main list of chats */
 export interface ChatListMainInput {
@@ -12,4 +14,11 @@ export interface ChatListMainInput {
  */
 export interface ChatListArchiveInput {
   _: 'chatListArchive'
+}
+
+/** A list of chats belonging to a chat filter */
+export interface ChatListFilterInput {
+  _: 'chatListFilter'
+  /** Chat filter identifier */
+  chatFilterId?: number
 }

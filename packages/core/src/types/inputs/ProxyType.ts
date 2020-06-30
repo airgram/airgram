@@ -20,7 +20,7 @@ export interface ProxyTypeHttpInput {
   /** Password for logging in; may be empty */
   password?: string
   /**
-   * Pass true, if the proxy supports only HTTP requests and doesn't support transparent
+   * Pass true if the proxy supports only HTTP requests and doesn't support transparent
    * TCP connections via HTTP CONNECT method
    */
   httpOnly?: boolean

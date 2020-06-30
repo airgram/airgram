@@ -4,7 +4,7 @@ import { AutoDownloadSettingsPresetsUnion } from '../outputs'
 
 
 /**
- * Returns auto-download settings presets for the currently logged in user
+ * Returns auto-download settings presets for the current user
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, AutoDownloadSettingsPresetsUnion>>}
  */

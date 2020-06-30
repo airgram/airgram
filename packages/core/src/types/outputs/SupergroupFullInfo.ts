@@ -39,7 +39,7 @@ export interface SupergroupFullInfo {
   canSetStickerSet: boolean
   /** True, if the supergroup location can be changed */
   canSetLocation: boolean
-  /** True, if the channel statistics is available through getChatStatisticsUrl */
+  /** True, if the channel statistics is available */
   canViewStatistics: boolean
   /**
    * True, if new chat members will have access to old messages. In public or discussion

@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from './index'
+import { File, Minithumbnail, Thumbnail } from './index'
 
 export type VideoUnion = Video
 
@@ -15,14 +15,17 @@ export interface Video {
   fileName: string
   /** MIME type of the file; as defined by the sender */
   mimeType: string
-  /** True, if stickers were added to the video */
+  /**
+   * True, if stickers were added to the video. The list of corresponding sticker sets
+   * can be received using getAttachedStickerSets
+   */
   hasStickers: boolean
   /** True, if the video should be tried to be streamed */
   supportsStreaming: boolean
   /** Video minithumbnail; may be null */
   minithumbnail?: Minithumbnail
-  /** Video thumbnail; as defined by the sender; may be null */
-  thumbnail?: PhotoSize
+  /** Video thumbnail in JPEG or MPEG4 format; as defined by the sender; may be null */
+  thumbnail?: Thumbnail
   /** File containing the video */
   video: File
 }

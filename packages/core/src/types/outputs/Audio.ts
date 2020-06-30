@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from './index'
+import { File, Minithumbnail, Thumbnail } from './index'
 
 export type AudioUnion = Audio
 
@@ -18,10 +18,10 @@ export interface Audio {
   /** The minithumbnail of the album cover; may be null */
   albumCoverMinithumbnail?: Minithumbnail
   /**
-   * The thumbnail of the album cover; as defined by the sender. The full size thumbnail
-   * should be extracted from the downloaded file; may be null
+   * The thumbnail of the album cover in JPEG format; as defined by the sender. The full
+   * size thumbnail should be extracted from the downloaded file; may be null
    */
-  albumCoverThumbnail?: PhotoSize
+  albumCoverThumbnail?: Thumbnail
   /** File containing the audio */
   audio: File
 }

@@ -3,7 +3,7 @@ import { TextParseModeInputUnion } from '../inputs'
 import { FormattedTextUnion } from '../outputs'
 
 export interface ParseTextEntitiesParams {
-  text?: string // The text which should be parsed
+  text?: string // The text to parse
   parseMode?: TextParseModeInputUnion // Text parse mode
 }
 
@@ -12,7 +12,7 @@ export interface ParseTextEntitiesParams {
  * entities contained in the text. This is an offline method. Can be called before authorization.
  * Can be called synchronously
  * @param {Object} params
- * @param {string} [params.text] - The text which should be parsed
+ * @param {string} [params.text] - The text to parse
  * @param {TextParseModeInputUnion} [params.parseMode] - Text parse mode
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ParseTextEntitiesParams, FormattedTextUnion>>}

@@ -7,6 +7,7 @@ export type AcceptCallMiddleware = Middleware<ApiResponse<api.AcceptCallParams, 
 export type AcceptTermsOfServiceMiddleware = Middleware<ApiResponse<api.AcceptTermsOfServiceParams, api.OkUnion>>
 export type AddChatMemberMiddleware = Middleware<ApiResponse<api.AddChatMemberParams, api.OkUnion>>
 export type AddChatMembersMiddleware = Middleware<ApiResponse<api.AddChatMembersParams, api.OkUnion>>
+export type AddChatToListMiddleware = Middleware<ApiResponse<api.AddChatToListParams, api.OkUnion>>
 export type AddContactMiddleware = Middleware<ApiResponse<api.AddContactParams, api.OkUnion>>
 export type AddCustomServerLanguagePackMiddleware = Middleware<ApiResponse<api.AddCustomServerLanguagePackParams, api.OkUnion>>
 export type AddFavoriteStickerMiddleware = Middleware<ApiResponse<api.AddFavoriteStickerParams, api.OkUnion>>
@@ -53,6 +54,7 @@ export type CloseSecretChatMiddleware = Middleware<ApiResponse<api.CloseSecretCh
 export type ConfirmQrCodeAuthenticationMiddleware = Middleware<ApiResponse<api.ConfirmQrCodeAuthenticationParams, api.SessionUnion>>
 export type CreateBasicGroupChatMiddleware = Middleware<ApiResponse<api.CreateBasicGroupChatParams, api.ChatUnion>>
 export type CreateCallMiddleware = Middleware<ApiResponse<api.CreateCallParams, api.CallIdUnion>>
+export type CreateChatFilterMiddleware = Middleware<ApiResponse<api.CreateChatFilterParams, api.ChatFilterInfoUnion>>
 export type CreateNewBasicGroupChatMiddleware = Middleware<ApiResponse<api.CreateNewBasicGroupChatParams, api.ChatUnion>>
 export type CreateNewSecretChatMiddleware = Middleware<ApiResponse<api.CreateNewSecretChatParams, api.ChatUnion>>
 export type CreateNewStickerSetMiddleware = Middleware<ApiResponse<api.CreateNewStickerSetParams, api.StickerSetUnion>>
@@ -62,6 +64,7 @@ export type CreateSecretChatMiddleware = Middleware<ApiResponse<api.CreateSecret
 export type CreateSupergroupChatMiddleware = Middleware<ApiResponse<api.CreateSupergroupChatParams, api.ChatUnion>>
 export type CreateTemporaryPasswordMiddleware = Middleware<ApiResponse<api.CreateTemporaryPasswordParams, api.TemporaryPasswordStateUnion>>
 export type DeleteAccountMiddleware = Middleware<ApiResponse<api.DeleteAccountParams, api.OkUnion>>
+export type DeleteChatFilterMiddleware = Middleware<ApiResponse<api.DeleteChatFilterParams, api.OkUnion>>
 export type DeleteChatHistoryMiddleware = Middleware<ApiResponse<api.DeleteChatHistoryParams, api.OkUnion>>
 export type DeleteChatMessagesFromUserMiddleware = Middleware<ApiResponse<api.DeleteChatMessagesFromUserParams, api.OkUnion>>
 export type DeleteChatReplyMarkupMiddleware = Middleware<ApiResponse<api.DeleteChatReplyMarkupParams, api.OkUnion>>
@@ -79,6 +82,7 @@ export type DiscardCallMiddleware = Middleware<ApiResponse<api.DiscardCallParams
 export type DisconnectAllWebsitesMiddleware = Middleware<ApiResponse<never, api.OkUnion>>
 export type DisconnectWebsiteMiddleware = Middleware<ApiResponse<api.DisconnectWebsiteParams, api.OkUnion>>
 export type DownloadFileMiddleware = Middleware<ApiResponse<api.DownloadFileParams, api.FileUnion>>
+export type EditChatFilterMiddleware = Middleware<ApiResponse<api.EditChatFilterParams, api.ChatFilterInfoUnion>>
 export type EditCustomLanguagePackInfoMiddleware = Middleware<ApiResponse<api.EditCustomLanguagePackInfoParams, api.OkUnion>>
 export type EditInlineMessageCaptionMiddleware = Middleware<ApiResponse<api.EditInlineMessageCaptionParams, api.OkUnion>>
 export type EditInlineMessageLiveLocationMiddleware = Middleware<ApiResponse<api.EditInlineMessageLiveLocationParams, api.OkUnion>>
@@ -107,6 +111,7 @@ export type GetAuthorizationStateMiddleware = Middleware<ApiResponse<never, api.
 export type GetAutoDownloadSettingsPresetsMiddleware = Middleware<ApiResponse<never, api.AutoDownloadSettingsPresetsUnion>>
 export type GetBackgroundUrlMiddleware = Middleware<ApiResponse<api.GetBackgroundUrlParams, api.HttpUrlUnion>>
 export type GetBackgroundsMiddleware = Middleware<ApiResponse<api.GetBackgroundsParams, api.BackgroundsUnion>>
+export type GetBankCardInfoMiddleware = Middleware<ApiResponse<api.GetBankCardInfoParams, api.BankCardInfoUnion>>
 export type GetBasicGroupMiddleware = Middleware<ApiResponse<api.GetBasicGroupParams, api.BasicGroupUnion>>
 export type GetBasicGroupFullInfoMiddleware = Middleware<ApiResponse<api.GetBasicGroupFullInfoParams, api.BasicGroupFullInfoUnion>>
 export type GetBlockedUsersMiddleware = Middleware<ApiResponse<api.GetBlockedUsersParams, api.UsersUnion>>
@@ -114,13 +119,18 @@ export type GetCallbackQueryAnswerMiddleware = Middleware<ApiResponse<api.GetCal
 export type GetChatMiddleware = Middleware<ApiResponse<api.GetChatParams, api.ChatUnion>>
 export type GetChatAdministratorsMiddleware = Middleware<ApiResponse<api.GetChatAdministratorsParams, api.ChatAdministratorsUnion>>
 export type GetChatEventLogMiddleware = Middleware<ApiResponse<api.GetChatEventLogParams, api.ChatEventsUnion>>
+export type GetChatFilterMiddleware = Middleware<ApiResponse<api.GetChatFilterParams, api.ChatFilterUnion>>
+export type GetChatFilterDefaultIconNameMiddleware = Middleware<ApiResponse<api.GetChatFilterDefaultIconNameParams, api.TextUnion>>
 export type GetChatHistoryMiddleware = Middleware<ApiResponse<api.GetChatHistoryParams, api.MessagesUnion>>
+export type GetChatListsToAddChatMiddleware = Middleware<ApiResponse<api.GetChatListsToAddChatParams, api.ChatListsUnion>>
 export type GetChatMemberMiddleware = Middleware<ApiResponse<api.GetChatMemberParams, api.ChatMemberUnion>>
 export type GetChatMessageByDateMiddleware = Middleware<ApiResponse<api.GetChatMessageByDateParams, api.MessageUnion>>
 export type GetChatMessageCountMiddleware = Middleware<ApiResponse<api.GetChatMessageCountParams, api.CountUnion>>
 export type GetChatNotificationSettingsExceptionsMiddleware = Middleware<ApiResponse<api.GetChatNotificationSettingsExceptionsParams, api.ChatsUnion>>
 export type GetChatPinnedMessageMiddleware = Middleware<ApiResponse<api.GetChatPinnedMessageParams, api.MessageUnion>>
 export type GetChatScheduledMessagesMiddleware = Middleware<ApiResponse<api.GetChatScheduledMessagesParams, api.MessagesUnion>>
+export type GetChatStatisticsMiddleware = Middleware<ApiResponse<api.GetChatStatisticsParams, api.ChatStatisticsUnion>>
+export type GetChatStatisticsGraphMiddleware = Middleware<ApiResponse<api.GetChatStatisticsGraphParams, api.StatisticsGraphUnion>>
 export type GetChatStatisticsUrlMiddleware = Middleware<ApiResponse<api.GetChatStatisticsUrlParams, api.HttpUrlUnion>>
 export type GetChatsMiddleware = Middleware<ApiResponse<api.GetChatsParams, api.ChatsUnion>>
 export type GetConnectedWebsitesMiddleware = Middleware<ApiResponse<never, api.ConnectedWebsitesUnion>>
@@ -157,6 +167,7 @@ export type GetLogVerbosityLevelMiddleware = Middleware<ApiResponse<never, api.L
 export type GetLoginUrlMiddleware = Middleware<ApiResponse<api.GetLoginUrlParams, api.HttpUrlUnion>>
 export type GetLoginUrlInfoMiddleware = Middleware<ApiResponse<api.GetLoginUrlInfoParams, api.LoginUrlInfoUnion>>
 export type GetMapThumbnailFileMiddleware = Middleware<ApiResponse<api.GetMapThumbnailFileParams, api.FileUnion>>
+export type GetMarkdownTextMiddleware = Middleware<ApiResponse<api.GetMarkdownTextParams, api.FormattedTextUnion>>
 export type GetMeMiddleware = Middleware<ApiResponse<never, api.UserUnion>>
 export type GetMessageMiddleware = Middleware<ApiResponse<api.GetMessageParams, api.MessageUnion>>
 export type GetMessageLinkMiddleware = Middleware<ApiResponse<api.GetMessageLinkParams, api.HttpUrlUnion>>
@@ -180,6 +191,7 @@ export type GetPushReceiverIdMiddleware = Middleware<ApiResponse<api.GetPushRece
 export type GetRecentInlineBotsMiddleware = Middleware<ApiResponse<never, api.UsersUnion>>
 export type GetRecentStickersMiddleware = Middleware<ApiResponse<api.GetRecentStickersParams, api.StickersUnion>>
 export type GetRecentlyVisitedTMeUrlsMiddleware = Middleware<ApiResponse<api.GetRecentlyVisitedTMeUrlsParams, api.TMeUrlsUnion>>
+export type GetRecommendedChatFiltersMiddleware = Middleware<ApiResponse<never, api.RecommendedChatFiltersUnion>>
 export type GetRecoveryEmailAddressMiddleware = Middleware<ApiResponse<api.GetRecoveryEmailAddressParams, api.RecoveryEmailAddressUnion>>
 export type GetRemoteFileMiddleware = Middleware<ApiResponse<api.GetRemoteFileParams, api.FileUnion>>
 export type GetRepliedMessageMiddleware = Middleware<ApiResponse<api.GetRepliedMessageParams, api.MessageUnion>>
@@ -200,7 +212,7 @@ export type GetSupportUserMiddleware = Middleware<ApiResponse<never, api.UserUni
 export type GetTemporaryPasswordStateMiddleware = Middleware<ApiResponse<never, api.TemporaryPasswordStateUnion>>
 export type GetTextEntitiesMiddleware = Middleware<ApiResponse<api.GetTextEntitiesParams, api.TextEntitiesUnion>>
 export type GetTopChatsMiddleware = Middleware<ApiResponse<api.GetTopChatsParams, api.ChatsUnion>>
-export type GetTrendingStickerSetsMiddleware = Middleware<ApiResponse<never, api.StickerSetsUnion>>
+export type GetTrendingStickerSetsMiddleware = Middleware<ApiResponse<api.GetTrendingStickerSetsParams, api.StickerSetsUnion>>
 export type GetUserMiddleware = Middleware<ApiResponse<api.GetUserParams, api.UserUnion>>
 export type GetUserFullInfoMiddleware = Middleware<ApiResponse<api.GetUserFullInfoParams, api.UserFullInfoUnion>>
 export type GetUserPrivacySettingRulesMiddleware = Middleware<ApiResponse<api.GetUserPrivacySettingRulesParams, api.UserPrivacySettingRulesUnion>>
@@ -215,6 +227,7 @@ export type LogOutMiddleware = Middleware<ApiResponse<never, api.OkUnion>>
 export type OpenChatMiddleware = Middleware<ApiResponse<api.OpenChatParams, api.OkUnion>>
 export type OpenMessageContentMiddleware = Middleware<ApiResponse<api.OpenMessageContentParams, api.OkUnion>>
 export type OptimizeStorageMiddleware = Middleware<ApiResponse<api.OptimizeStorageParams, api.StorageStatisticsUnion>>
+export type ParseMarkdownMiddleware = Middleware<ApiResponse<api.ParseMarkdownParams, api.FormattedTextUnion>>
 export type ParseTextEntitiesMiddleware = Middleware<ApiResponse<api.ParseTextEntitiesParams, api.FormattedTextUnion>>
 export type PinChatMessageMiddleware = Middleware<ApiResponse<api.PinChatMessageParams, api.OkUnion>>
 export type PingProxyMiddleware = Middleware<ApiResponse<api.PingProxyParams, api.SecondsUnion>>
@@ -238,6 +251,7 @@ export type RemoveRecentlyFoundChatMiddleware = Middleware<ApiResponse<api.Remov
 export type RemoveSavedAnimationMiddleware = Middleware<ApiResponse<api.RemoveSavedAnimationParams, api.OkUnion>>
 export type RemoveStickerFromSetMiddleware = Middleware<ApiResponse<api.RemoveStickerFromSetParams, api.OkUnion>>
 export type RemoveTopChatMiddleware = Middleware<ApiResponse<api.RemoveTopChatParams, api.OkUnion>>
+export type ReorderChatFiltersMiddleware = Middleware<ApiResponse<api.ReorderChatFiltersParams, api.OkUnion>>
 export type ReorderInstalledStickerSetsMiddleware = Middleware<ApiResponse<api.ReorderInstalledStickerSetsParams, api.OkUnion>>
 export type ReportChatMiddleware = Middleware<ApiResponse<api.ReportChatParams, api.OkUnion>>
 export type ReportSupergroupSpamMiddleware = Middleware<ApiResponse<api.ReportSupergroupSpamParams, api.OkUnion>>
@@ -296,7 +310,6 @@ export type SetAutoDownloadSettingsMiddleware = Middleware<ApiResponse<api.SetAu
 export type SetBackgroundMiddleware = Middleware<ApiResponse<api.SetBackgroundParams, api.BackgroundUnion>>
 export type SetBioMiddleware = Middleware<ApiResponse<api.SetBioParams, api.OkUnion>>
 export type SetBotUpdatesStatusMiddleware = Middleware<ApiResponse<api.SetBotUpdatesStatusParams, api.OkUnion>>
-export type SetChatChatListMiddleware = Middleware<ApiResponse<api.SetChatChatListParams, api.OkUnion>>
 export type SetChatClientDataMiddleware = Middleware<ApiResponse<api.SetChatClientDataParams, api.OkUnion>>
 export type SetChatDescriptionMiddleware = Middleware<ApiResponse<api.SetChatDescriptionParams, api.OkUnion>>
 export type SetChatDiscussionGroupMiddleware = Middleware<ApiResponse<api.SetChatDiscussionGroupParams, api.OkUnion>>
@@ -308,12 +321,14 @@ export type SetChatPermissionsMiddleware = Middleware<ApiResponse<api.SetChatPer
 export type SetChatPhotoMiddleware = Middleware<ApiResponse<api.SetChatPhotoParams, api.OkUnion>>
 export type SetChatSlowModeDelayMiddleware = Middleware<ApiResponse<api.SetChatSlowModeDelayParams, api.OkUnion>>
 export type SetChatTitleMiddleware = Middleware<ApiResponse<api.SetChatTitleParams, api.OkUnion>>
+export type SetCommandsMiddleware = Middleware<ApiResponse<api.SetCommandsParams, api.OkUnion>>
 export type SetCustomLanguagePackMiddleware = Middleware<ApiResponse<api.SetCustomLanguagePackParams, api.OkUnion>>
 export type SetCustomLanguagePackStringMiddleware = Middleware<ApiResponse<api.SetCustomLanguagePackStringParams, api.OkUnion>>
 export type SetDatabaseEncryptionKeyMiddleware = Middleware<ApiResponse<api.SetDatabaseEncryptionKeyParams, api.OkUnion>>
 export type SetFileGenerationProgressMiddleware = Middleware<ApiResponse<api.SetFileGenerationProgressParams, api.OkUnion>>
 export type SetGameScoreMiddleware = Middleware<ApiResponse<api.SetGameScoreParams, api.MessageUnion>>
 export type SetInlineGameScoreMiddleware = Middleware<ApiResponse<api.SetInlineGameScoreParams, api.OkUnion>>
+export type SetLocationMiddleware = Middleware<ApiResponse<api.SetLocationParams, api.OkUnion>>
 export type SetLogStreamMiddleware = Middleware<ApiResponse<api.SetLogStreamParams, api.OkUnion>>
 export type SetLogTagVerbosityLevelMiddleware = Middleware<ApiResponse<api.SetLogTagVerbosityLevelParams, api.OkUnion>>
 export type SetLogVerbosityLevelMiddleware = Middleware<ApiResponse<api.SetLogVerbosityLevelParams, api.OkUnion>>
@@ -329,6 +344,7 @@ export type SetProfilePhotoMiddleware = Middleware<ApiResponse<api.SetProfilePho
 export type SetRecoveryEmailAddressMiddleware = Middleware<ApiResponse<api.SetRecoveryEmailAddressParams, api.PasswordStateUnion>>
 export type SetScopeNotificationSettingsMiddleware = Middleware<ApiResponse<api.SetScopeNotificationSettingsParams, api.OkUnion>>
 export type SetStickerPositionInSetMiddleware = Middleware<ApiResponse<api.SetStickerPositionInSetParams, api.OkUnion>>
+export type SetStickerSetThumbnailMiddleware = Middleware<ApiResponse<api.SetStickerSetThumbnailParams, api.StickerSetUnion>>
 export type SetSupergroupStickerSetMiddleware = Middleware<ApiResponse<api.SetSupergroupStickerSetParams, api.OkUnion>>
 export type SetSupergroupUsernameMiddleware = Middleware<ApiResponse<api.SetSupergroupUsernameParams, api.OkUnion>>
 export type SetTdlibParametersMiddleware = Middleware<ApiResponse<api.SetTdlibParametersParams, api.OkUnion>>
@@ -366,15 +382,12 @@ export type UpdateMessageContentOpenedMiddleware = Middleware<UpdateContext<api.
 export type UpdateMessageMentionReadMiddleware = Middleware<UpdateContext<api.UpdateMessageMentionRead>>
 export type UpdateMessageLiveLocationViewedMiddleware = Middleware<UpdateContext<api.UpdateMessageLiveLocationViewed>>
 export type UpdateNewChatMiddleware = Middleware<UpdateContext<api.UpdateNewChat>>
-export type UpdateChatChatListMiddleware = Middleware<UpdateContext<api.UpdateChatChatList>>
 export type UpdateChatTitleMiddleware = Middleware<UpdateContext<api.UpdateChatTitle>>
 export type UpdateChatPhotoMiddleware = Middleware<UpdateContext<api.UpdateChatPhoto>>
 export type UpdateChatPermissionsMiddleware = Middleware<UpdateContext<api.UpdateChatPermissions>>
 export type UpdateChatLastMessageMiddleware = Middleware<UpdateContext<api.UpdateChatLastMessage>>
-export type UpdateChatOrderMiddleware = Middleware<UpdateContext<api.UpdateChatOrder>>
-export type UpdateChatIsPinnedMiddleware = Middleware<UpdateContext<api.UpdateChatIsPinned>>
+export type UpdateChatPositionMiddleware = Middleware<UpdateContext<api.UpdateChatPosition>>
 export type UpdateChatIsMarkedAsUnreadMiddleware = Middleware<UpdateContext<api.UpdateChatIsMarkedAsUnread>>
-export type UpdateChatIsSponsoredMiddleware = Middleware<UpdateContext<api.UpdateChatIsSponsored>>
 export type UpdateChatHasScheduledMessagesMiddleware = Middleware<UpdateContext<api.UpdateChatHasScheduledMessages>>
 export type UpdateChatDefaultDisableNotificationMiddleware = Middleware<UpdateContext<api.UpdateChatDefaultDisableNotification>>
 export type UpdateChatReadInboxMiddleware = Middleware<UpdateContext<api.UpdateChatReadInbox>>
@@ -386,6 +399,7 @@ export type UpdateChatActionBarMiddleware = Middleware<UpdateContext<api.UpdateC
 export type UpdateChatPinnedMessageMiddleware = Middleware<UpdateContext<api.UpdateChatPinnedMessage>>
 export type UpdateChatReplyMarkupMiddleware = Middleware<UpdateContext<api.UpdateChatReplyMarkup>>
 export type UpdateChatDraftMessageMiddleware = Middleware<UpdateContext<api.UpdateChatDraftMessage>>
+export type UpdateChatFiltersMiddleware = Middleware<UpdateContext<api.UpdateChatFilters>>
 export type UpdateChatOnlineMemberCountMiddleware = Middleware<UpdateContext<api.UpdateChatOnlineMemberCount>>
 export type UpdateNotificationMiddleware = Middleware<UpdateContext<api.UpdateNotification>>
 export type UpdateNotificationGroupMiddleware = Middleware<UpdateContext<api.UpdateNotificationGroup>>
@@ -410,6 +424,7 @@ export type UpdateUserPrivacySettingRulesMiddleware = Middleware<UpdateContext<a
 export type UpdateUnreadMessageCountMiddleware = Middleware<UpdateContext<api.UpdateUnreadMessageCount>>
 export type UpdateUnreadChatCountMiddleware = Middleware<UpdateContext<api.UpdateUnreadChatCount>>
 export type UpdateOptionMiddleware = Middleware<UpdateContext<api.UpdateOption>>
+export type UpdateStickerSetMiddleware = Middleware<UpdateContext<api.UpdateStickerSet>>
 export type UpdateInstalledStickerSetsMiddleware = Middleware<UpdateContext<api.UpdateInstalledStickerSets>>
 export type UpdateTrendingStickerSetsMiddleware = Middleware<UpdateContext<api.UpdateTrendingStickerSets>>
 export type UpdateRecentStickersMiddleware = Middleware<UpdateContext<api.UpdateRecentStickers>>
@@ -420,6 +435,8 @@ export type UpdateLanguagePackStringsMiddleware = Middleware<UpdateContext<api.U
 export type UpdateConnectionStateMiddleware = Middleware<UpdateContext<api.UpdateConnectionState>>
 export type UpdateTermsOfServiceMiddleware = Middleware<UpdateContext<api.UpdateTermsOfService>>
 export type UpdateUsersNearbyMiddleware = Middleware<UpdateContext<api.UpdateUsersNearby>>
+export type UpdateDiceEmojisMiddleware = Middleware<UpdateContext<api.UpdateDiceEmojis>>
+export type UpdateAnimationSearchParametersMiddleware = Middleware<UpdateContext<api.UpdateAnimationSearchParameters>>
 export type UpdateNewInlineQueryMiddleware = Middleware<UpdateContext<api.UpdateNewInlineQuery>>
 export type UpdateNewChosenInlineResultMiddleware = Middleware<UpdateContext<api.UpdateNewChosenInlineResult>>
 export type UpdateNewCallbackQueryMiddleware = Middleware<UpdateContext<api.UpdateNewCallbackQuery>>
@@ -436,6 +453,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'acceptTermsOfService', ...fns: AcceptTermsOfServiceMiddleware[]): ReturnT
   (predicateTypes: 'addChatMember', ...fns: AddChatMemberMiddleware[]): ReturnT
   (predicateTypes: 'addChatMembers', ...fns: AddChatMembersMiddleware[]): ReturnT
+  (predicateTypes: 'addChatToList', ...fns: AddChatToListMiddleware[]): ReturnT
   (predicateTypes: 'addContact', ...fns: AddContactMiddleware[]): ReturnT
   (predicateTypes: 'addCustomServerLanguagePack', ...fns: AddCustomServerLanguagePackMiddleware[]): ReturnT
   (predicateTypes: 'addFavoriteSticker', ...fns: AddFavoriteStickerMiddleware[]): ReturnT
@@ -482,6 +500,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'confirmQrCodeAuthentication', ...fns: ConfirmQrCodeAuthenticationMiddleware[]): ReturnT
   (predicateTypes: 'createBasicGroupChat', ...fns: CreateBasicGroupChatMiddleware[]): ReturnT
   (predicateTypes: 'createCall', ...fns: CreateCallMiddleware[]): ReturnT
+  (predicateTypes: 'createChatFilter', ...fns: CreateChatFilterMiddleware[]): ReturnT
   (predicateTypes: 'createNewBasicGroupChat', ...fns: CreateNewBasicGroupChatMiddleware[]): ReturnT
   (predicateTypes: 'createNewSecretChat', ...fns: CreateNewSecretChatMiddleware[]): ReturnT
   (predicateTypes: 'createNewStickerSet', ...fns: CreateNewStickerSetMiddleware[]): ReturnT
@@ -491,6 +510,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'createSupergroupChat', ...fns: CreateSupergroupChatMiddleware[]): ReturnT
   (predicateTypes: 'createTemporaryPassword', ...fns: CreateTemporaryPasswordMiddleware[]): ReturnT
   (predicateTypes: 'deleteAccount', ...fns: DeleteAccountMiddleware[]): ReturnT
+  (predicateTypes: 'deleteChatFilter', ...fns: DeleteChatFilterMiddleware[]): ReturnT
   (predicateTypes: 'deleteChatHistory', ...fns: DeleteChatHistoryMiddleware[]): ReturnT
   (predicateTypes: 'deleteChatMessagesFromUser', ...fns: DeleteChatMessagesFromUserMiddleware[]): ReturnT
   (predicateTypes: 'deleteChatReplyMarkup', ...fns: DeleteChatReplyMarkupMiddleware[]): ReturnT
@@ -508,6 +528,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'disconnectAllWebsites', ...fns: DisconnectAllWebsitesMiddleware[]): ReturnT
   (predicateTypes: 'disconnectWebsite', ...fns: DisconnectWebsiteMiddleware[]): ReturnT
   (predicateTypes: 'downloadFile', ...fns: DownloadFileMiddleware[]): ReturnT
+  (predicateTypes: 'editChatFilter', ...fns: EditChatFilterMiddleware[]): ReturnT
   (predicateTypes: 'editCustomLanguagePackInfo', ...fns: EditCustomLanguagePackInfoMiddleware[]): ReturnT
   (predicateTypes: 'editInlineMessageCaption', ...fns: EditInlineMessageCaptionMiddleware[]): ReturnT
   (predicateTypes: 'editInlineMessageLiveLocation', ...fns: EditInlineMessageLiveLocationMiddleware[]): ReturnT
@@ -536,6 +557,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'getAutoDownloadSettingsPresets', ...fns: GetAutoDownloadSettingsPresetsMiddleware[]): ReturnT
   (predicateTypes: 'getBackgroundUrl', ...fns: GetBackgroundUrlMiddleware[]): ReturnT
   (predicateTypes: 'getBackgrounds', ...fns: GetBackgroundsMiddleware[]): ReturnT
+  (predicateTypes: 'getBankCardInfo', ...fns: GetBankCardInfoMiddleware[]): ReturnT
   (predicateTypes: 'getBasicGroup', ...fns: GetBasicGroupMiddleware[]): ReturnT
   (predicateTypes: 'getBasicGroupFullInfo', ...fns: GetBasicGroupFullInfoMiddleware[]): ReturnT
   (predicateTypes: 'getBlockedUsers', ...fns: GetBlockedUsersMiddleware[]): ReturnT
@@ -543,13 +565,18 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'getChat', ...fns: GetChatMiddleware[]): ReturnT
   (predicateTypes: 'getChatAdministrators', ...fns: GetChatAdministratorsMiddleware[]): ReturnT
   (predicateTypes: 'getChatEventLog', ...fns: GetChatEventLogMiddleware[]): ReturnT
+  (predicateTypes: 'getChatFilter', ...fns: GetChatFilterMiddleware[]): ReturnT
+  (predicateTypes: 'getChatFilterDefaultIconName', ...fns: GetChatFilterDefaultIconNameMiddleware[]): ReturnT
   (predicateTypes: 'getChatHistory', ...fns: GetChatHistoryMiddleware[]): ReturnT
+  (predicateTypes: 'getChatListsToAddChat', ...fns: GetChatListsToAddChatMiddleware[]): ReturnT
   (predicateTypes: 'getChatMember', ...fns: GetChatMemberMiddleware[]): ReturnT
   (predicateTypes: 'getChatMessageByDate', ...fns: GetChatMessageByDateMiddleware[]): ReturnT
   (predicateTypes: 'getChatMessageCount', ...fns: GetChatMessageCountMiddleware[]): ReturnT
   (predicateTypes: 'getChatNotificationSettingsExceptions', ...fns: GetChatNotificationSettingsExceptionsMiddleware[]): ReturnT
   (predicateTypes: 'getChatPinnedMessage', ...fns: GetChatPinnedMessageMiddleware[]): ReturnT
   (predicateTypes: 'getChatScheduledMessages', ...fns: GetChatScheduledMessagesMiddleware[]): ReturnT
+  (predicateTypes: 'getChatStatistics', ...fns: GetChatStatisticsMiddleware[]): ReturnT
+  (predicateTypes: 'getChatStatisticsGraph', ...fns: GetChatStatisticsGraphMiddleware[]): ReturnT
   (predicateTypes: 'getChatStatisticsUrl', ...fns: GetChatStatisticsUrlMiddleware[]): ReturnT
   (predicateTypes: 'getChats', ...fns: GetChatsMiddleware[]): ReturnT
   (predicateTypes: 'getConnectedWebsites', ...fns: GetConnectedWebsitesMiddleware[]): ReturnT
@@ -586,6 +613,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'getLoginUrl', ...fns: GetLoginUrlMiddleware[]): ReturnT
   (predicateTypes: 'getLoginUrlInfo', ...fns: GetLoginUrlInfoMiddleware[]): ReturnT
   (predicateTypes: 'getMapThumbnailFile', ...fns: GetMapThumbnailFileMiddleware[]): ReturnT
+  (predicateTypes: 'getMarkdownText', ...fns: GetMarkdownTextMiddleware[]): ReturnT
   (predicateTypes: 'getMe', ...fns: GetMeMiddleware[]): ReturnT
   (predicateTypes: 'getMessage', ...fns: GetMessageMiddleware[]): ReturnT
   (predicateTypes: 'getMessageLink', ...fns: GetMessageLinkMiddleware[]): ReturnT
@@ -609,6 +637,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'getRecentInlineBots', ...fns: GetRecentInlineBotsMiddleware[]): ReturnT
   (predicateTypes: 'getRecentStickers', ...fns: GetRecentStickersMiddleware[]): ReturnT
   (predicateTypes: 'getRecentlyVisitedTMeUrls', ...fns: GetRecentlyVisitedTMeUrlsMiddleware[]): ReturnT
+  (predicateTypes: 'getRecommendedChatFilters', ...fns: GetRecommendedChatFiltersMiddleware[]): ReturnT
   (predicateTypes: 'getRecoveryEmailAddress', ...fns: GetRecoveryEmailAddressMiddleware[]): ReturnT
   (predicateTypes: 'getRemoteFile', ...fns: GetRemoteFileMiddleware[]): ReturnT
   (predicateTypes: 'getRepliedMessage', ...fns: GetRepliedMessageMiddleware[]): ReturnT
@@ -644,6 +673,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'openChat', ...fns: OpenChatMiddleware[]): ReturnT
   (predicateTypes: 'openMessageContent', ...fns: OpenMessageContentMiddleware[]): ReturnT
   (predicateTypes: 'optimizeStorage', ...fns: OptimizeStorageMiddleware[]): ReturnT
+  (predicateTypes: 'parseMarkdown', ...fns: ParseMarkdownMiddleware[]): ReturnT
   (predicateTypes: 'parseTextEntities', ...fns: ParseTextEntitiesMiddleware[]): ReturnT
   (predicateTypes: 'pinChatMessage', ...fns: PinChatMessageMiddleware[]): ReturnT
   (predicateTypes: 'pingProxy', ...fns: PingProxyMiddleware[]): ReturnT
@@ -667,6 +697,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'removeSavedAnimation', ...fns: RemoveSavedAnimationMiddleware[]): ReturnT
   (predicateTypes: 'removeStickerFromSet', ...fns: RemoveStickerFromSetMiddleware[]): ReturnT
   (predicateTypes: 'removeTopChat', ...fns: RemoveTopChatMiddleware[]): ReturnT
+  (predicateTypes: 'reorderChatFilters', ...fns: ReorderChatFiltersMiddleware[]): ReturnT
   (predicateTypes: 'reorderInstalledStickerSets', ...fns: ReorderInstalledStickerSetsMiddleware[]): ReturnT
   (predicateTypes: 'reportChat', ...fns: ReportChatMiddleware[]): ReturnT
   (predicateTypes: 'reportSupergroupSpam', ...fns: ReportSupergroupSpamMiddleware[]): ReturnT
@@ -725,7 +756,6 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'setBackground', ...fns: SetBackgroundMiddleware[]): ReturnT
   (predicateTypes: 'setBio', ...fns: SetBioMiddleware[]): ReturnT
   (predicateTypes: 'setBotUpdatesStatus', ...fns: SetBotUpdatesStatusMiddleware[]): ReturnT
-  (predicateTypes: 'setChatChatList', ...fns: SetChatChatListMiddleware[]): ReturnT
   (predicateTypes: 'setChatClientData', ...fns: SetChatClientDataMiddleware[]): ReturnT
   (predicateTypes: 'setChatDescription', ...fns: SetChatDescriptionMiddleware[]): ReturnT
   (predicateTypes: 'setChatDiscussionGroup', ...fns: SetChatDiscussionGroupMiddleware[]): ReturnT
@@ -737,12 +767,14 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'setChatPhoto', ...fns: SetChatPhotoMiddleware[]): ReturnT
   (predicateTypes: 'setChatSlowModeDelay', ...fns: SetChatSlowModeDelayMiddleware[]): ReturnT
   (predicateTypes: 'setChatTitle', ...fns: SetChatTitleMiddleware[]): ReturnT
+  (predicateTypes: 'setCommands', ...fns: SetCommandsMiddleware[]): ReturnT
   (predicateTypes: 'setCustomLanguagePack', ...fns: SetCustomLanguagePackMiddleware[]): ReturnT
   (predicateTypes: 'setCustomLanguagePackString', ...fns: SetCustomLanguagePackStringMiddleware[]): ReturnT
   (predicateTypes: 'setDatabaseEncryptionKey', ...fns: SetDatabaseEncryptionKeyMiddleware[]): ReturnT
   (predicateTypes: 'setFileGenerationProgress', ...fns: SetFileGenerationProgressMiddleware[]): ReturnT
   (predicateTypes: 'setGameScore', ...fns: SetGameScoreMiddleware[]): ReturnT
   (predicateTypes: 'setInlineGameScore', ...fns: SetInlineGameScoreMiddleware[]): ReturnT
+  (predicateTypes: 'setLocation', ...fns: SetLocationMiddleware[]): ReturnT
   (predicateTypes: 'setLogStream', ...fns: SetLogStreamMiddleware[]): ReturnT
   (predicateTypes: 'setLogTagVerbosityLevel', ...fns: SetLogTagVerbosityLevelMiddleware[]): ReturnT
   (predicateTypes: 'setLogVerbosityLevel', ...fns: SetLogVerbosityLevelMiddleware[]): ReturnT
@@ -758,6 +790,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'setRecoveryEmailAddress', ...fns: SetRecoveryEmailAddressMiddleware[]): ReturnT
   (predicateTypes: 'setScopeNotificationSettings', ...fns: SetScopeNotificationSettingsMiddleware[]): ReturnT
   (predicateTypes: 'setStickerPositionInSet', ...fns: SetStickerPositionInSetMiddleware[]): ReturnT
+  (predicateTypes: 'setStickerSetThumbnail', ...fns: SetStickerSetThumbnailMiddleware[]): ReturnT
   (predicateTypes: 'setSupergroupStickerSet', ...fns: SetSupergroupStickerSetMiddleware[]): ReturnT
   (predicateTypes: 'setSupergroupUsername', ...fns: SetSupergroupUsernameMiddleware[]): ReturnT
   (predicateTypes: 'setTdlibParameters', ...fns: SetTdlibParametersMiddleware[]): ReturnT
@@ -796,15 +829,12 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'updateMessageMentionRead', ...fns: UpdateMessageMentionReadMiddleware[]): ReturnT
   (predicateTypes: 'updateMessageLiveLocationViewed', ...fns: UpdateMessageLiveLocationViewedMiddleware[]): ReturnT
   (predicateTypes: 'updateNewChat', ...fns: UpdateNewChatMiddleware[]): ReturnT
-  (predicateTypes: 'updateChatChatList', ...fns: UpdateChatChatListMiddleware[]): ReturnT
   (predicateTypes: 'updateChatTitle', ...fns: UpdateChatTitleMiddleware[]): ReturnT
   (predicateTypes: 'updateChatPhoto', ...fns: UpdateChatPhotoMiddleware[]): ReturnT
   (predicateTypes: 'updateChatPermissions', ...fns: UpdateChatPermissionsMiddleware[]): ReturnT
   (predicateTypes: 'updateChatLastMessage', ...fns: UpdateChatLastMessageMiddleware[]): ReturnT
-  (predicateTypes: 'updateChatOrder', ...fns: UpdateChatOrderMiddleware[]): ReturnT
-  (predicateTypes: 'updateChatIsPinned', ...fns: UpdateChatIsPinnedMiddleware[]): ReturnT
+  (predicateTypes: 'updateChatPosition', ...fns: UpdateChatPositionMiddleware[]): ReturnT
   (predicateTypes: 'updateChatIsMarkedAsUnread', ...fns: UpdateChatIsMarkedAsUnreadMiddleware[]): ReturnT
-  (predicateTypes: 'updateChatIsSponsored', ...fns: UpdateChatIsSponsoredMiddleware[]): ReturnT
   (predicateTypes: 'updateChatHasScheduledMessages', ...fns: UpdateChatHasScheduledMessagesMiddleware[]): ReturnT
   (predicateTypes: 'updateChatDefaultDisableNotification', ...fns: UpdateChatDefaultDisableNotificationMiddleware[]): ReturnT
   (predicateTypes: 'updateChatReadInbox', ...fns: UpdateChatReadInboxMiddleware[]): ReturnT
@@ -816,6 +846,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'updateChatPinnedMessage', ...fns: UpdateChatPinnedMessageMiddleware[]): ReturnT
   (predicateTypes: 'updateChatReplyMarkup', ...fns: UpdateChatReplyMarkupMiddleware[]): ReturnT
   (predicateTypes: 'updateChatDraftMessage', ...fns: UpdateChatDraftMessageMiddleware[]): ReturnT
+  (predicateTypes: 'updateChatFilters', ...fns: UpdateChatFiltersMiddleware[]): ReturnT
   (predicateTypes: 'updateChatOnlineMemberCount', ...fns: UpdateChatOnlineMemberCountMiddleware[]): ReturnT
   (predicateTypes: 'updateNotification', ...fns: UpdateNotificationMiddleware[]): ReturnT
   (predicateTypes: 'updateNotificationGroup', ...fns: UpdateNotificationGroupMiddleware[]): ReturnT
@@ -840,6 +871,7 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'updateUnreadMessageCount', ...fns: UpdateUnreadMessageCountMiddleware[]): ReturnT
   (predicateTypes: 'updateUnreadChatCount', ...fns: UpdateUnreadChatCountMiddleware[]): ReturnT
   (predicateTypes: 'updateOption', ...fns: UpdateOptionMiddleware[]): ReturnT
+  (predicateTypes: 'updateStickerSet', ...fns: UpdateStickerSetMiddleware[]): ReturnT
   (predicateTypes: 'updateInstalledStickerSets', ...fns: UpdateInstalledStickerSetsMiddleware[]): ReturnT
   (predicateTypes: 'updateTrendingStickerSets', ...fns: UpdateTrendingStickerSetsMiddleware[]): ReturnT
   (predicateTypes: 'updateRecentStickers', ...fns: UpdateRecentStickersMiddleware[]): ReturnT
@@ -850,6 +882,8 @@ export interface MiddlewareOn<ReturnT = void> {
   (predicateTypes: 'updateConnectionState', ...fns: UpdateConnectionStateMiddleware[]): ReturnT
   (predicateTypes: 'updateTermsOfService', ...fns: UpdateTermsOfServiceMiddleware[]): ReturnT
   (predicateTypes: 'updateUsersNearby', ...fns: UpdateUsersNearbyMiddleware[]): ReturnT
+  (predicateTypes: 'updateDiceEmojis', ...fns: UpdateDiceEmojisMiddleware[]): ReturnT
+  (predicateTypes: 'updateAnimationSearchParameters', ...fns: UpdateAnimationSearchParametersMiddleware[]): ReturnT
   (predicateTypes: 'updateNewInlineQuery', ...fns: UpdateNewInlineQueryMiddleware[]): ReturnT
   (predicateTypes: 'updateNewChosenInlineResult', ...fns: UpdateNewChosenInlineResultMiddleware[]): ReturnT
   (predicateTypes: 'updateNewCallbackQuery', ...fns: UpdateNewCallbackQueryMiddleware[]): ReturnT

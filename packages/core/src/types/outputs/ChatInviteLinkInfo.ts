@@ -13,7 +13,7 @@ export interface ChatInviteLinkInfo {
   title: string
   /** Chat photo; may be null */
   photo?: ChatPhoto
-  /** Number of members */
+  /** Number of members in the chat */
   memberCount: number
   /** User identifiers of some chat members that may be known to the current user */
   memberUserIds: number[]

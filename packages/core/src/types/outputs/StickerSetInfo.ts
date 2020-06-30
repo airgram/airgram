@@ -1,4 +1,4 @@
-import { PhotoSize, Sticker } from './index'
+import { Sticker, Thumbnail } from './index'
 
 export type StickerSetInfoUnion = StickerSetInfo
 
@@ -11,8 +11,8 @@ export interface StickerSetInfo {
   title: string
   /** Name of the sticker set */
   name: string
-  /** Sticker set thumbnail in WEBP format with width and height 100; may be null */
-  thumbnail?: PhotoSize
+  /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
+  thumbnail?: Thumbnail
   /** True, if the sticker set has been installed by current user */
   isInstalled: boolean
   /**

@@ -4,7 +4,7 @@ import { EmojisUnion } from '../outputs'
 export interface SearchEmojisParams {
   text?: string // Text to search for
   exactMatch?: boolean // True, if only emojis, which exactly match text needs to be returned
-  inputLanguageCode?: string // IETF language tag of the user's input language; may be empty if unknown
+  inputLanguageCodes?: string[] // List of possible IETF language tags of the user's input language; may be empty if unknown
 }
 
 /**
@@ -13,8 +13,8 @@ export interface SearchEmojisParams {
  * @param {string} [params.text] - Text to search for
  * @param {boolean} [params.exactMatch] - True, if only emojis, which exactly match
  * text needs to be returned
- * @param {string} [params.inputLanguageCode] - IETF language tag of the user's input
- * language; may be empty if unknown
+ * @param {string[]} [params.inputLanguageCodes] - List of possible IETF language
+ * tags of the user's input language; may be empty if unknown
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchEmojisParams, EmojisUnion>>}
  */

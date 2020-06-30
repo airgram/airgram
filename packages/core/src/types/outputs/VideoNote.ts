@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from './index'
+import { File, Minithumbnail, Thumbnail } from './index'
 
 export type VideoNoteUnion = VideoNote
 
@@ -14,8 +14,8 @@ export interface VideoNote {
   length: number
   /** Video minithumbnail; may be null */
   minithumbnail?: Minithumbnail
-  /** Video thumbnail; as defined by the sender; may be null */
-  thumbnail?: PhotoSize
+  /** Video thumbnail in JPEG format; as defined by the sender; may be null */
+  thumbnail?: Thumbnail
   /** File containing the video */
   video: File
 }

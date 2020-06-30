@@ -9,11 +9,13 @@ import {
   Chat,
   ChatActionBarUnion,
   ChatActionUnion,
+  ChatFilterInfo,
   ChatListUnion,
   ChatNearby,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhoto,
+  ChatPosition,
   ConnectionStateUnion,
   DraftMessage,
   File,
@@ -31,6 +33,7 @@ import {
   ReplyMarkupUnion,
   ScopeNotificationSettings,
   SecretChat,
+  StickerSet,
   StickerSets,
   Supergroup,
   SupergroupFullInfo,
@@ -55,15 +58,12 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateMessageMentionRead
   | UpdateMessageLiveLocationViewed
   | UpdateNewChat
-  | UpdateChatChatList
   | UpdateChatTitle
   | UpdateChatPhoto
   | UpdateChatPermissions
   | UpdateChatLastMessage
-  | UpdateChatOrder
-  | UpdateChatIsPinned
+  | UpdateChatPosition
   | UpdateChatIsMarkedAsUnread
-  | UpdateChatIsSponsored
   | UpdateChatHasScheduledMessages
   | UpdateChatDefaultDisableNotification
   | UpdateChatReadInbox
@@ -75,6 +75,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatPinnedMessage
   | UpdateChatReplyMarkup
   | UpdateChatDraftMessage
+  | UpdateChatFilters
   | UpdateChatOnlineMemberCount
   | UpdateNotification
   | UpdateNotificationGroup
@@ -99,6 +100,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateUnreadMessageCount
   | UpdateUnreadChatCount
   | UpdateOption
+  | UpdateStickerSet
   | UpdateInstalledStickerSets
   | UpdateTrendingStickerSets
   | UpdateRecentStickers
@@ -109,6 +111,8 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateConnectionState
   | UpdateTermsOfService
   | UpdateUsersNearby
+  | UpdateDiceEmojis
+  | UpdateAnimationSearchParameters
   | UpdateNewInlineQuery
   | UpdateNewChosenInlineResult
   | UpdateNewCallbackQuery
@@ -257,18 +261,6 @@ export interface UpdateNewChat {
   chat: Chat
 }
 
-/**
- * The list to which the chat belongs was changed. This update is guaranteed to be sent
- * only when chat.order == 0 and the current or the new chat list is null
- */
-export interface UpdateChatChatList {
-  _: 'updateChatChatList'
-  /** Chat identifier */
-  chatId: number
-  /** The new chat's chat list; may be null */
-  chatList?: ChatListUnion
-}
-
 /** The title of a chat was changed */
 export interface UpdateChatTitle {
   _: 'updateChatTitle'
@@ -307,31 +299,23 @@ export interface UpdateChatLastMessage {
   chatId: number
   /** The new last message in the chat; may be null */
   lastMessage?: Message
-  /** New value of the chat order */
-  order: string
+  /** The new chat positions in the chat lists */
+  positions: ChatPosition[]
 }
 
 /**
- * The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage,
- * updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent
+ * The position of a chat in a chat list has changed. Instead of this update updateChatLastMessage
+ * or updateChatDraftMessage might be sent
  */
-export interface UpdateChatOrder {
-  _: 'updateChatOrder'
+export interface UpdateChatPosition {
+  _: 'updateChatPosition'
   /** Chat identifier */
   chatId: number
-  /** New value of the order */
-  order: string
-}
-
-/** A chat was pinned or unpinned */
-export interface UpdateChatIsPinned {
-  _: 'updateChatIsPinned'
-  /** Chat identifier */
-  chatId: number
-  /** New value of is_pinned */
-  isPinned: boolean
-  /** New value of the chat order */
-  order: string
+  /**
+   * New chat position. If new order is 0, then the chat needs to be removed from the
+   * list
+   */
+  position: ChatPosition
 }
 
 /** A chat was marked as unread or was read */
@@ -341,17 +325,6 @@ export interface UpdateChatIsMarkedAsUnread {
   chatId: number
   /** New value of is_marked_as_unread */
   isMarkedAsUnread: boolean
-}
-
-/** A chat's is_sponsored field has changed */
-export interface UpdateChatIsSponsored {
-  _: 'updateChatIsSponsored'
-  /** Chat identifier */
-  chatId: number
-  /** New value of is_sponsored */
-  isSponsored: boolean
-  /** New value of chat order */
-  order: string
 }
 
 /** A chat's has_scheduled_messages field has changed */
@@ -469,8 +442,15 @@ export interface UpdateChatDraftMessage {
   chatId: number
   /** The new draft message; may be null */
   draftMessage?: DraftMessage
-  /** New value of the chat order */
-  order: string
+  /** The new chat positions in the chat lists */
+  positions: ChatPosition[]
+}
+
+/** The list of chat filters or a chat filter has changed */
+export interface UpdateChatFilters {
+  _: 'updateChatFilters'
+  /** The new list of chat filters */
+  chatFilters: ChatFilterInfo[]
 }
 
 /**
@@ -757,6 +737,13 @@ export interface UpdateOption {
   value: OptionValueUnion
 }
 
+/** A sticker set has changed */
+export interface UpdateStickerSet {
+  _: 'updateStickerSet'
+  /** The sticker set */
+  stickerSet: StickerSet
+}
+
 /** The list of installed sticker sets was updated */
 export interface UpdateInstalledStickerSets {
   _: 'updateInstalledStickerSets'
@@ -769,7 +756,10 @@ export interface UpdateInstalledStickerSets {
 /** The list of trending sticker sets was updated or some of them were viewed */
 export interface UpdateTrendingStickerSets {
   _: 'updateTrendingStickerSets'
-  /** The new list of trending sticker sets */
+  /**
+   * The prefix of the list of trending sticker sets with the newest trending sticker
+   * sets
+   */
   stickerSets: StickerSets
 }
 
@@ -839,13 +829,32 @@ export interface UpdateTermsOfService {
 }
 
 /**
- * List of users nearby has changed. The update is sent only 60 seconds after a successful
- * searchChatsNearby request
+ * The list of users nearby has changed. The update is sent only 60 seconds after a
+ * successful searchChatsNearby request
  */
 export interface UpdateUsersNearby {
   _: 'updateUsersNearby'
   /** The new list of users nearby */
   usersNearby: ChatNearby[]
+}
+
+/** The list of supported dice emojis has changed */
+export interface UpdateDiceEmojis {
+  _: 'updateDiceEmojis'
+  /** The new list of supported dice emojis */
+  emojis: string[]
+}
+
+/**
+ * The parameters of animation search through GetOption("animation_search_bot_username")
+ * bot has changed
+ */
+export interface UpdateAnimationSearchParameters {
+  _: 'updateAnimationSearchParameters'
+  /** Name of the animation search provider */
+  provider: string
+  /** The new list of emojis suggested for searching */
+  emojis: string[]
 }
 
 /** A new incoming inline query; for bots only */

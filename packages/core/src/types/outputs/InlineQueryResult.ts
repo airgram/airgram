@@ -6,8 +6,8 @@ import {
   Game,
   Location,
   Photo,
-  PhotoSize,
   Sticker,
+  Thumbnail,
   Venue,
   Video,
   VoiceNote
@@ -40,8 +40,8 @@ export interface InlineQueryResultArticle {
   title: string
   /** A short description of the result */
   description: string
-  /** Result thumbnail; may be null */
-  thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  thumbnail?: Thumbnail
 }
 
 /** Represents a user contact */
@@ -51,8 +51,8 @@ export interface InlineQueryResultContact {
   id: string
   /** A user contact */
   contact: Contact
-  /** Result thumbnail; may be null */
-  thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  thumbnail?: Thumbnail
 }
 
 /** Represents a point on the map */
@@ -64,8 +64,8 @@ export interface InlineQueryResultLocation {
   location: Location
   /** Title of the result */
   title: string
-  /** Result thumbnail; may be null */
-  thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  thumbnail?: Thumbnail
 }
 
 /** Represents information about a venue */
@@ -75,8 +75,8 @@ export interface InlineQueryResultVenue {
   id: string
   /** Venue result */
   venue: Venue
-  /** Result thumbnail; may be null */
-  thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  thumbnail?: Thumbnail
 }
 
 /** Represents information about a game */

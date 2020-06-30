@@ -6,6 +6,7 @@ export type TextEntityTypeUnion = TextEntityTypeMention
   | TextEntityTypeUrl
   | TextEntityTypeEmailAddress
   | TextEntityTypePhoneNumber
+  | TextEntityTypeBankCardNumber
   | TextEntityTypeBold
   | TextEntityTypeItalic
   | TextEntityTypeUnderline
@@ -55,6 +56,14 @@ export interface TextEntityTypeEmailAddress {
 /** A phone number */
 export interface TextEntityTypePhoneNumber {
   _: 'textEntityTypePhoneNumber'
+}
+
+/**
+ * A bank card number. The getBankCardInfo method can be used to get information about
+ * the bank card
+ */
+export interface TextEntityTypeBankCardNumber {
+  _: 'textEntityTypeBankCardNumber'
 }
 
 /** A bold text */

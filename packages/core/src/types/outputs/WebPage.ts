@@ -2,6 +2,7 @@ import {
   Animation,
   Audio,
   Document,
+  FormattedText,
   Photo,
   Sticker,
   Video,
@@ -28,7 +29,7 @@ export interface WebPage {
   /** Title of the content */
   title: string
   /** Description of the content */
-  description: string
+  description: FormattedText
   /** Image representing the content; may be null */
   photo?: Photo
   /** URL to show in the embedded preview */

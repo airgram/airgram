@@ -14,7 +14,9 @@ export type RichTextUnion = RichTextPlain
   | RichTextMarked
   | RichTextPhoneNumber
   | RichTextIcon
+  | RichTextReference
   | RichTextAnchor
+  | RichTextAnchorLink
   | RichTexts
 
 /** A plain text */
@@ -120,13 +122,33 @@ export interface RichTextIcon {
   height: number
 }
 
-/** A rich text anchor */
+/** A rich text reference of a text on the same web page */
+export interface RichTextReference {
+  _: 'richTextReference'
+  /** The text */
+  text: RichTextUnion
+  /** The text to show on click */
+  referenceText: RichTextUnion
+  /** An HTTP URL, opening the reference */
+  url: string
+}
+
+/** An anchor */
 export interface RichTextAnchor {
   _: 'richTextAnchor'
-  /** Text */
-  text: RichTextUnion
   /** Anchor name */
   name: string
+}
+
+/** A link to an anchor on the same web page */
+export interface RichTextAnchorLink {
+  _: 'richTextAnchorLink'
+  /** The link text */
+  text: RichTextUnion
+  /** The anchor name. If the name is empty, the link should bring back to top */
+  name: string
+  /** An HTTP URL, opening the anchor */
+  url: string
 }
 
 /** A concatenation of rich texts */

@@ -15,6 +15,7 @@ export type SearchMessagesFilterInputUnion = SearchMessagesFilterEmptyInput
   | SearchMessagesFilterVoiceAndVideoNoteInput
   | SearchMessagesFilterMentionInput
   | SearchMessagesFilterUnreadMentionInput
+  | SearchMessagesFilterFailedToSendInput
 
 /** Returns all found messages, no filter is applied */
 export interface SearchMessagesFilterEmptyInput {
@@ -101,4 +102,12 @@ export interface SearchMessagesFilterMentionInput {
  */
 export interface SearchMessagesFilterUnreadMentionInput {
   _: 'searchMessagesFilterUnreadMention'
+}
+
+/**
+ * Returns only failed to send messages. This filter can be used only if the message
+ * database is used
+ */
+export interface SearchMessagesFilterFailedToSendInput {
+  _: 'searchMessagesFilterFailedToSend'
 }

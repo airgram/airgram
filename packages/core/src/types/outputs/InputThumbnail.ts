@@ -4,7 +4,7 @@ export type InputThumbnailUnion = InputThumbnail
 
 /**
  * A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers,
- * and less than 200 kB in size
+ * and less than 200 KB in size
  */
 export interface InputThumbnail {
   _: 'inputThumbnail'

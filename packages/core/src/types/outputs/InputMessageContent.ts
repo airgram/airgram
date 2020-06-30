@@ -22,6 +22,7 @@ export type InputMessageContentUnion = InputMessageText
   | InputMessageLocation
   | InputMessageVenue
   | InputMessageContact
+  | InputMessageDice
   | InputMessageGame
   | InputMessageInvoice
   | InputMessagePoll
@@ -49,6 +50,8 @@ export interface InputMessageAnimation {
   animation: InputFileUnion
   /** Animation thumbnail, if available */
   thumbnail: InputThumbnail
+  /** File identifiers of the stickers added to the animation, if applicable */
+  addedStickerFileIds: number[]
   /** Duration of the animation, in seconds */
   duration: number
   /** Width of the animation; may be replaced by the server */
@@ -200,6 +203,15 @@ export interface InputMessageContact {
   contact: Contact
 }
 
+/** A dice message */
+export interface InputMessageDice {
+  _: 'inputMessageDice'
+  /** Emoji on which the dice throw animation is based */
+  emoji: string
+  /** True, if a chat message draft should be deleted */
+  clearDraft: boolean
+}
+
 /** A message with a game; not supported for channels or secret chats */
 export interface InputMessageGame {
   _: 'inputMessageGame'
@@ -253,6 +265,13 @@ export interface InputMessagePoll {
   isAnonymous: boolean
   /** Type of the poll */
   type: PollTypeUnion
+  /** Amount of time the poll will be active after creation, in seconds; for bots only */
+  openPeriod: number
+  /**
+   * Point in time (Unix timestamp) when the poll will be automatically closed; for bots
+   * only
+   */
+  closeDate: number
   /** True, if the poll needs to be sent already closed; for bots only */
   isClosed: boolean
 }

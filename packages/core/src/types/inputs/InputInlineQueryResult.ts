@@ -7,8 +7,7 @@ import {
 } from './index'
 
 /** Represents a single result of an inline query; for bots only */
-export type InputInlineQueryResultInputUnion = InputInlineQueryResultAnimatedGifInput
-  | InputInlineQueryResultAnimatedMpeg4Input
+export type InputInlineQueryResultInputUnion = InputInlineQueryResultAnimationInput
   | InputInlineQueryResultArticleInput
   | InputInlineQueryResultAudioInput
   | InputInlineQueryResultContactInput
@@ -21,49 +20,33 @@ export type InputInlineQueryResultInputUnion = InputInlineQueryResultAnimatedGif
   | InputInlineQueryResultVideoInput
   | InputInlineQueryResultVoiceNoteInput
 
-/** Represents a link to an animated GIF */
-export interface InputInlineQueryResultAnimatedGifInput {
-  _: 'inputInlineQueryResultAnimatedGif'
+/**
+ * Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4
+ * AVC video
+ */
+export interface InputInlineQueryResultAnimationInput {
+  _: 'inputInlineQueryResultAnimation'
   /** Unique identifier of the query result */
   id?: string
   /** Title of the query result */
   title?: string
-  /** URL of the static result thumbnail (JPEG or GIF), if it exists */
+  /** URL of the result thumbnail (JPEG, GIF, or MPEG4), if it exists */
   thumbnailUrl?: string
-  /** The URL of the GIF-file (file size must not exceed 1MB) */
-  gifUrl?: string
-  /** Duration of the GIF, in seconds */
-  gifDuration?: number
-  /** Width of the GIF */
-  gifWidth?: number
-  /** Height of the GIF */
-  gifHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
-  replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * MIME type of the video thumbnail. If non-empty, must be one of "image/jpeg", "image/gif"
+   * and "video/mp4"
    */
-  inputMessageContent?: InputMessageContentInputUnion
-}
-
-/** Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video */
-export interface InputInlineQueryResultAnimatedMpeg4Input {
-  _: 'inputInlineQueryResultAnimatedMpeg4'
-  /** Unique identifier of the query result */
-  id?: string
-  /** Title of the result */
-  title?: string
-  /** URL of the static result thumbnail (JPEG or GIF), if it exists */
-  thumbnailUrl?: string
-  /** The URL of the MPEG4-file (file size must not exceed 1MB) */
-  mpeg4Url?: string
+  thumbnailMimeType?: string
+  /** The URL of the video file (file size must not exceed 1MB) */
+  videoUrl?: string
+  /** MIME type of the video file. Must be one of "image/gif" and "video/mp4" */
+  videoMimeType?: string
   /** Duration of the video, in seconds */
-  mpeg4Duration?: number
+  videoDuration?: number
   /** Width of the video */
-  mpeg4Width?: number
+  videoWidth?: number
   /** Height of the video */
-  mpeg4Height?: number
+  videoHeight?: number
   /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
   replyMarkup?: ReplyMarkupInputUnion
   /**

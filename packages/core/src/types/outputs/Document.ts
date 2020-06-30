@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from './index'
+import { File, Minithumbnail, Thumbnail } from './index'
 
 export type DocumentUnion = Document
 
@@ -15,7 +15,7 @@ export interface Document {
    * Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns);
    * as defined by the sender; may be null
    */
-  thumbnail?: PhotoSize
+  thumbnail?: Thumbnail
   /** File containing the document */
   document: File
 }
