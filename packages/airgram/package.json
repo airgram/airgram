@@ -25,10 +25,10 @@
   "dependencies": {
     "@airgram/constants": "^3.0.0",
     "@airgram/core": "^3.0.1",
-    "ffi-napi": "^2.4.5"
+    "ffi-napi": "^3.0.0"
   },
   "devDependencies": {
-    "@types/ffi-napi": "^2.4.1",
+    "@types/ffi-napi": "^2.4.2",
     "fast-glob": "^3.0.4",
     "nodemon": "^1.19.1"
   },
