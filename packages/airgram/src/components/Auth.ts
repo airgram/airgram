@@ -55,12 +55,19 @@ const authMethods: MethodName[] = [
   'checkAuthenticationPassword',
   'checkDatabaseEncryptionKey',
   'getAuthorizationState',
+  'getLogStream',
+  'getLogTagVerbosityLevel',
+  'getLogTags',
+  'getLogVerbosityLevel',
   'registerUser',
   'requestAuthenticationPasswordRecovery',
   'resendAuthenticationCode',
   'setAuthenticationPhoneNumber',
   'setOption',
-  'setTdlibParameters'
+  'setTdlibParameters',
+  'setLogStream',
+  'setLogTagVerbosityLevel',
+  'setLogVerbosityLevel',
 ]
 
 export class Auth {
