@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/airgram/airgram/compare/airgram@3.1.0...airgram@3.1.1) (2020-07-07)
+
+
+### Bug Fixes
+
+* allow to call `log` methods before authorization ([a07e220](https://github.com/airgram/airgram/commit/a07e220ab75ab76d3fa462aa55322b233b8f5ae2))
+* core Airgram class renamed to AirgramCore ([c5c6c27](https://github.com/airgram/airgram/commit/c5c6c2791c5341804dbbb6fd6c431be6289609d9)), closes [#116](https://github.com/airgram/airgram/issues/116)
+
+
+
+
+
 # [3.1.0](https://github.com/airgram/airgram/compare/airgram@3.0.2...airgram@3.1.0) (2020-06-30)
 
 **Note:** Version bump only for package airgram

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/airgram/airgram/compare/@airgram/use-models@3.1.0...@airgram/use-models@3.1.1) (2020-07-07)
+
+**Note:** Version bump only for package @airgram/use-models
+
+
+
+
+
 # [3.1.0](https://github.com/airgram/airgram/compare/@airgram/use-models@3.0.1...@airgram/use-models@3.1.0) (2020-06-30)
 
 **Note:** Version bump only for package @airgram/use-models

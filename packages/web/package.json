@@ -1,6 +1,6 @@
 {
   "name": "@airgram/web",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "private": false,
   "main": "src/index.ts",
   "types": "src/index.ts",
@@ -22,7 +22,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@airgram/core": "^3.1.0",
+    "@airgram/core": "^3.1.1",
     "tdweb": "~1.6.6"
   },
   "devDependencies": {
