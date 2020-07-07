@@ -1,6 +1,6 @@
-import { Airgram } from './Airgram'
+import { AirgramCore } from './AirgramCore'
 import { Composer, TDLibError, TdProvider } from './components'
 
 export * from './types'
-export { Airgram, Composer, TdProvider, TDLibError }
+export { AirgramCore, Composer, TdProvider, TDLibError }
 export { isError, toObject, on } from './utils'

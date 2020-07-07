@@ -1,11 +1,11 @@
-import { Airgram as BaseAirgram, Config } from '@airgram/core'
+import { AirgramCore, Config } from '@airgram/core'
 import { TdProvider } from './components'
 import { TdWebProviderConfig } from './types'
 
 export interface AirgramConfig
   extends Omit<Config, 'provider'>, TdWebProviderConfig {}
 
-export class Airgram extends BaseAirgram<TdProvider> {
+export class Airgram extends AirgramCore<TdProvider> {
   public constructor (config: AirgramConfig) {
     console.info('WEB CON')
     const {

@@ -74,7 +74,7 @@ function isWrapped<T> (o: any): o is T {
   return typeof o === 'function'
 }
 
-export class Airgram<ProviderT extends TdProvider> implements Instance<ProviderT> {
+export class AirgramCore<ProviderT extends TdProvider> implements Instance<ProviderT> {
   public readonly config: Config<ProviderT>
 
   public handleError: ErrorHandler
