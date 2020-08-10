@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@airgram/core": "^3.1.1",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "reflect-metadata": "^0.1.13"
   },
   "gitHead": "0017aa738e523c9ac0fb8ec704a5f694b09f7e4e"
