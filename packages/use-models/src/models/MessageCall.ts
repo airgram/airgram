@@ -4,6 +4,9 @@ import { CallDiscardReasonUnion } from '@airgram/core'
 export class MessageCallBaseModel {
   public _: 'messageCall'
 
+  /** True, if the call was a video call */
+  public isVideo: boolean
+
   /** Reason why the call was discarded */
   public discardReason: CallDiscardReasonUnion
 

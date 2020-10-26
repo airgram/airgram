@@ -1,4 +1,4 @@
-import { PhotoSize, Sticker } from '@airgram/core'
+import { Sticker, Thumbnail } from '@airgram/core'
 
 /** Represents short information about a sticker set */
 export class StickerSetInfoBaseModel {
@@ -13,8 +13,8 @@ export class StickerSetInfoBaseModel {
   /** Name of the sticker set */
   public name: string
 
-  /** Sticker set thumbnail in WEBP format with width and height 100; may be null */
-  public thumbnail?: PhotoSize
+  /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
+  public thumbnail?: Thumbnail
 
   /** True, if the sticker set has been installed by current user */
   public isInstalled: boolean
@@ -42,7 +42,7 @@ export class StickerSetInfoBaseModel {
 
   /**
    * Contains up to the first 5 stickers from the set, depending on the context. If the
-   * client needs more stickers the full set should be requested
+   * application needs more stickers the full set should be requested
    */
   public covers: Sticker[]
 }

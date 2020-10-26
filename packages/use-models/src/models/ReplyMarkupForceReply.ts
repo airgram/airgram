@@ -1,4 +1,4 @@
-/** Instructs clients to force a reply to this message */
+/** Instructs application to force a reply to this message */
 export class ReplyMarkupForceReplyBaseModel {
   public _: 'replyMarkupForceReply'
 

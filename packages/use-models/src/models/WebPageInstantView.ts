@@ -7,14 +7,11 @@ export class WebPageInstantViewBaseModel {
   /** Content of the web page */
   public pageBlocks: PageBlockUnion[]
 
+  /** Number of the instant view views; 0 if unknown */
+  public viewCount: number
+
   /** Version of the instant view, currently can be 1 or 2 */
   public version: number
-
-  /**
-   * Instant view URL; may be different from WebPage.url and must be used for the correct
-   * anchors handling
-   */
-  public url: string
 
   /** True, if the instant view must be shown from right to left */
   public isRtl: boolean

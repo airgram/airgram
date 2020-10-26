@@ -13,6 +13,9 @@ export class CallBaseModel {
   /** True, if the call is outgoing */
   public isOutgoing: boolean
 
+  /** True, if the call is a video call */
+  public isVideo: boolean
+
   /** Call state */
   public state: CallStateUnion
 }

@@ -1,4 +1,4 @@
-import { Location, PhotoSize } from '@airgram/core'
+import { Location, Thumbnail } from '@airgram/core'
 
 /** Represents a point on the map */
 export class InlineQueryResultLocationBaseModel {
@@ -13,6 +13,6 @@ export class InlineQueryResultLocationBaseModel {
   /** Title of the result */
   public title: string
 
-  /** Result thumbnail; may be null */
-  public thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  public thumbnail?: Thumbnail
 }

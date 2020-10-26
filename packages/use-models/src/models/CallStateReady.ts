@@ -1,4 +1,4 @@
-import { CallConnection, CallProtocol } from '@airgram/core'
+import { CallProtocol, CallServer } from '@airgram/core'
 
 /** The call is ready to use */
 export class CallStateReadyBaseModel {
@@ -7,8 +7,8 @@ export class CallStateReadyBaseModel {
   /** Call protocols supported by the peer */
   public protocol: CallProtocol
 
-  /** Available UDP reflectors */
-  public connections: CallConnection[]
+  /** List of available call servers */
+  public servers: CallServer[]
 
   /** A JSON-encoded call config */
   public config: string

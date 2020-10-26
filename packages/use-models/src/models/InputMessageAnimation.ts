@@ -10,6 +10,9 @@ export class InputMessageAnimationBaseModel {
   /** Animation thumbnail, if available */
   public thumbnail: InputThumbnail
 
+  /** File identifiers of the stickers added to the animation, if applicable */
+  public addedStickerFileIds: number[]
+
   /** Duration of the animation, in seconds */
   public duration: number
 

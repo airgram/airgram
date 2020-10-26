@@ -13,4 +13,7 @@ export class CallProtocolBaseModel {
 
   /** The maximum supported API layer; use 65 */
   public maxLayer: number
+
+  /** List of supported libtgvoip versions */
+  public libraryVersions: string[]
 }

@@ -1,15 +1,21 @@
-import { File } from '@airgram/core'
+import { AnimatedChatPhoto, Minithumbnail, PhotoSize } from '@airgram/core'
 
-/** Describes the photo of a chat */
+/** Describes a chat or user profile photo */
 export class ChatPhotoBaseModel {
   public _: 'chatPhoto'
 
-  /**
-   * A small (160x160) chat photo. The file can be downloaded only before the photo is
-   * changed
-   */
-  public small: File
+  /** Unique photo identifier */
+  public id: string
 
-  /** A big (640x640) chat photo. The file can be downloaded only before the photo is changed */
-  public big: File
+  /** Point in time (Unix timestamp) when the photo has been added */
+  public addedDate: number
+
+  /** Photo minithumbnail; may be null */
+  public minithumbnail?: Minithumbnail
+
+  /** Available variants of the photo in JPEG format, in different size */
+  public sizes: PhotoSize[]
+
+  /** Animated variant of the photo in MPEG4 format; may be null */
+  public animation?: AnimatedChatPhoto
 }

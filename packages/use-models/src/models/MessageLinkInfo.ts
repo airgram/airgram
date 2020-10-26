@@ -15,4 +15,7 @@ export class MessageLinkInfoBaseModel {
 
   /** True, if the whole media album to which the message belongs is linked */
   public forAlbum: boolean
+
+  /** True, if the message is linked as a channel post comment or from a message thread */
+  public forComment: boolean
 }

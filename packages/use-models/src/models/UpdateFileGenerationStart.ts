@@ -1,4 +1,4 @@
-/** The file generation process needs to be started by the client */
+/** The file generation process needs to be started by the application */
 export class UpdateFileGenerationStartBaseModel {
   public _: 'updateFileGenerationStart'
 
@@ -14,7 +14,7 @@ export class UpdateFileGenerationStartBaseModel {
   /**
    * String specifying the conversion applied to the original file. If conversion is "#url#"
    * than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded
-   * by the client
+   * by the application
    */
   public conversion: string
 }

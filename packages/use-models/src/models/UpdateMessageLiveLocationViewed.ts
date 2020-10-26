@@ -1,5 +1,5 @@
 /**
- * A message with a live location was viewed. When the update is received, the client
+ * A message with a live location was viewed. When the update is received, the application
  * is supposed to update the live location
  */
 export class UpdateMessageLiveLocationViewedBaseModel {

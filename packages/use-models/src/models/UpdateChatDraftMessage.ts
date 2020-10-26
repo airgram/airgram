@@ -1,4 +1,4 @@
-import { DraftMessage } from '@airgram/core'
+import { ChatPosition, DraftMessage } from '@airgram/core'
 
 /**
  * A chat draft has changed. Be aware that the update may come in the currently opened
@@ -14,6 +14,6 @@ export class UpdateChatDraftMessageBaseModel {
   /** The new draft message; may be null */
   public draftMessage?: DraftMessage
 
-  /** New value of the chat order */
-  public order: string
+  /** The new chat positions in the chat lists */
+  public positions: ChatPosition[]
 }

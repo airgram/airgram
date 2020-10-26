@@ -3,7 +3,7 @@
  * the corresponding file is still accessible to the user and known to TDLib. For example,
  * if the file is from a message, then the message must be not deleted and accessible
  * to the user. If the file database is disabled, then the corresponding object with
- * the file must be preloaded by the client
+ * the file must be preloaded by the application
  */
 export class InputFileRemoteBaseModel {
   public _: 'inputFileRemote'

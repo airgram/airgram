@@ -1,4 +1,4 @@
-import { PhotoSize } from '@airgram/core'
+import { Thumbnail } from '@airgram/core'
 
 /** Represents a link to an article or web page */
 export class InlineQueryResultArticleBaseModel {
@@ -19,6 +19,6 @@ export class InlineQueryResultArticleBaseModel {
   /** A short description of the result */
   public description: string
 
-  /** Result thumbnail; may be null */
-  public thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  public thumbnail?: Thumbnail
 }

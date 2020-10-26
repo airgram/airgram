@@ -4,6 +4,9 @@ import { StickerSets } from '@airgram/core'
 export class UpdateTrendingStickerSetsBaseModel {
   public _: 'updateTrendingStickerSets'
 
-  /** The new list of trending sticker sets */
+  /**
+   * The prefix of the list of trending sticker sets with the newest trending sticker
+   * sets
+   */
   public stickerSets: StickerSets
 }

@@ -1,3 +1,5 @@
+import { MessageCopyOptions } from '@airgram/core'
+
 /** A forwarded message */
 export class InputMessageForwardedBaseModel {
   public _: 'inputMessageForwarded'
@@ -15,14 +17,8 @@ export class InputMessageForwardedBaseModel {
   public inGameShare: boolean
 
   /**
-   * True, if content of the message needs to be copied without a link to the original
-   * message. Always true if the message is forwarded to a secret chat
+   * Options to be used to copy content of the message without a link to the original
+   * message
    */
-  public sendCopy: boolean
-
-  /**
-   * True, if media caption of the message copy needs to be removed. Ignored if send_copy
-   * is false
-   */
-  public removeCaption: boolean
+  public copyOptions: MessageCopyOptions
 }

@@ -15,8 +15,8 @@ export class ChatPermissionsBaseModel {
   public canSendPolls: boolean
 
   /**
-   * True, if the user can send animations, games, and stickers and use inline bots. Implies
-   * can_send_messages permissions
+   * True, if the user can send animations, games, stickers, and dice and use inline bots.
+   * Implies can_send_messages permissions
    */
   public canSendOtherMessages: boolean
 

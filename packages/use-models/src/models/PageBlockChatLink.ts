@@ -1,4 +1,4 @@
-import { ChatPhoto } from '@airgram/core'
+import { ChatPhotoInfo } from '@airgram/core'
 
 /** A link to a chat */
 export class PageBlockChatLinkBaseModel {
@@ -8,7 +8,7 @@ export class PageBlockChatLinkBaseModel {
   public title: string
 
   /** Chat photo; may be null */
-  public photo?: ChatPhoto
+  public photo?: ChatPhotoInfo
 
   /** Chat username, by which all other information about the chat should be resolved */
   public username: string

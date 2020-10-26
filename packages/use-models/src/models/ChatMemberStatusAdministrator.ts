@@ -46,4 +46,10 @@ export class ChatMemberStatusAdministratorBaseModel {
    * them
    */
   public canPromoteMembers: boolean
+
+  /**
+   * True, if the administrator isn't shown in the chat member list and sends messages
+   * anonymously; applicable to supergroups only
+   */
+  public isAnonymous: boolean
 }

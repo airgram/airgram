@@ -7,7 +7,7 @@ export class UpdateNewChosenInlineResultBaseModel {
   /** Identifier of the user who sent the query */
   public senderUserId: number
 
-  /** User location, provided by the client; may be null */
+  /** User location; may be null */
   public userLocation?: Location
 
   /** Text of the query */

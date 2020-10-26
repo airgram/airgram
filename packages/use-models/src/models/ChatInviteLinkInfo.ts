@@ -1,11 +1,20 @@
-import { ChatPhoto, ChatTypeUnion } from '@airgram/core'
+import { ChatPhotoInfo, ChatTypeUnion } from '@airgram/core'
 
 /** Contains information about a chat invite link */
 export class ChatInviteLinkInfoBaseModel {
   public _: 'chatInviteLinkInfo'
 
-  /** Chat identifier of the invite link; 0 if the user is not a member of this chat */
+  /**
+   * Chat identifier of the invite link; 0 if the user has no access to the chat before
+   * joining
+   */
   public chatId: number
+
+  /**
+   * If non-zero, the remaining time for which read access is granted to the chat, in
+   * seconds
+   */
+  public accessibleFor: number
 
   /** Contains information about the type of the chat */
   public type: ChatTypeUnion
@@ -14,9 +23,9 @@ export class ChatInviteLinkInfoBaseModel {
   public title: string
 
   /** Chat photo; may be null */
-  public photo?: ChatPhoto
+  public photo?: ChatPhotoInfo
 
-  /** Number of members */
+  /** Number of members in the chat */
   public memberCount: number
 
   /** User identifiers of some chat members that may be known to the current user */

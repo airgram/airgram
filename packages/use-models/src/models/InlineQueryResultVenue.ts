@@ -1,4 +1,4 @@
-import { PhotoSize, Venue } from '@airgram/core'
+import { Thumbnail, Venue } from '@airgram/core'
 
 /** Represents information about a venue */
 export class InlineQueryResultVenueBaseModel {
@@ -10,6 +10,6 @@ export class InlineQueryResultVenueBaseModel {
   /** Venue result */
   public venue: Venue
 
-  /** Result thumbnail; may be null */
-  public thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  public thumbnail?: Thumbnail
 }

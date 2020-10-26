@@ -10,4 +10,7 @@ export class LogStreamFileBaseModel {
    * file will be auto-rotated
    */
   public maxFileSize: number
+
+  /** Pass true to additionally redirect stderr to the log file. Ignored on Windows */
+  public redirectStderr: boolean
 }

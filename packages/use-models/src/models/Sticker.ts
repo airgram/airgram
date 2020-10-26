@@ -1,4 +1,4 @@
-import { File, MaskPosition, PhotoSize } from '@airgram/core'
+import { File, MaskPosition, Thumbnail } from '@airgram/core'
 
 /** Describes a sticker */
 export class StickerBaseModel {
@@ -26,7 +26,7 @@ export class StickerBaseModel {
   public maskPosition?: MaskPosition
 
   /** Sticker thumbnail in WEBP or JPEG format; may be null */
-  public thumbnail?: PhotoSize
+  public thumbnail?: Thumbnail
 
   /** File containing the sticker */
   public sticker: File

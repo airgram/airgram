@@ -1,4 +1,4 @@
-/** The payload from a game callback button */
+/** The payload for a game callback button */
 export class CallbackQueryPayloadGameBaseModel {
   public _: 'callbackQueryPayloadGame'
 

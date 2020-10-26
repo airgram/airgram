@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from '@airgram/core'
+import { File, Minithumbnail, Thumbnail } from '@airgram/core'
 
 /** Describes an animation file. The animation must be encoded in GIF or MPEG4 format */
 export class AnimationBaseModel {
@@ -19,11 +19,17 @@ export class AnimationBaseModel {
   /** MIME type of the file, usually "image/gif" or "video/mp4" */
   public mimeType: string
 
+  /**
+   * True, if stickers were added to the animation. The list of corresponding sticker
+   * set can be received using getAttachedStickerSets
+   */
+  public hasStickers: boolean
+
   /** Animation minithumbnail; may be null */
   public minithumbnail?: Minithumbnail
 
-  /** Animation thumbnail; may be null */
-  public thumbnail?: PhotoSize
+  /** Animation thumbnail in JPEG or MPEG4 format; may be null */
+  public thumbnail?: Thumbnail
 
   /** File containing the animation */
   public animation: File

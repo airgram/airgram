@@ -17,7 +17,7 @@ export class AutoDownloadSettingsBaseModel {
   /** The maximum suggested bitrate for uploaded videos */
   public videoUploadBitrate: number
 
-  /** True, if the beginning of videos needs to be preloaded for instant playback */
+  /** True, if the beginning of video files needs to be preloaded for instant playback */
   public preloadLargeVideos: boolean
 
   /**

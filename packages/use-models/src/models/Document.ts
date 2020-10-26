@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from '@airgram/core'
+import { File, Minithumbnail, Thumbnail } from '@airgram/core'
 
 /** Describes a document of any type */
 export class DocumentBaseModel {
@@ -17,7 +17,7 @@ export class DocumentBaseModel {
    * Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns);
    * as defined by the sender; may be null
    */
-  public thumbnail?: PhotoSize
+  public thumbnail?: Thumbnail
 
   /** File containing the document */
   public document: File

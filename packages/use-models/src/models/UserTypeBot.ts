@@ -15,7 +15,7 @@ export class UserTypeBotBaseModel {
   /** True, if the bot supports inline queries */
   public isInline: boolean
 
-  /** Placeholder for inline queries (displayed on the client input field) */
+  /** Placeholder for inline queries (displayed on the application input field) */
   public inlineQueryPlaceholder: string
 
   /**

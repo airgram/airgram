@@ -7,6 +7,9 @@ export class DraftMessageBaseModel {
   /** Identifier of the message to reply to; 0 if none */
   public replyToMessageId: number
 
+  /** Point in time (Unix timestamp) when the draft was created */
+  public date: number
+
   /** Content of the message draft; this should always be of type inputMessageText */
   public inputMessageText: InputMessageContentUnion
 }

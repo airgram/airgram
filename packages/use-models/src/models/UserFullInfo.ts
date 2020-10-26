@@ -1,14 +1,17 @@
-import { BotInfo } from '@airgram/core'
+import { BotInfo, ChatPhoto } from '@airgram/core'
 
-/** Contains full information about a user (except the full list of profile photos) */
+/** Contains full information about a user */
 export class UserFullInfoBaseModel {
   public _: 'userFullInfo'
 
-  /** True, if the user is blacklisted by the current user */
-  public isBlocked: boolean
+  /** User profile photo; may be null */
+  public photo?: ChatPhoto
 
   /** True, if the user can be called */
   public canBeCalled: boolean
+
+  /** True, if a video call can be created with the user */
+  public supportsVideoCalls: boolean
 
   /** True, if the user can't be called due to their privacy settings */
   public hasPrivateCalls: boolean

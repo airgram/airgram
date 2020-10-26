@@ -4,7 +4,10 @@ import { Minithumbnail, PhotoSize } from '@airgram/core'
 export class PhotoBaseModel {
   public _: 'photo'
 
-  /** True, if stickers were added to the photo */
+  /**
+   * True, if stickers were added to the photo. The list of corresponding sticker sets
+   * can be received using getAttachedStickerSets
+   */
   public hasStickers: boolean
 
   /** Photo minithumbnail; may be null */

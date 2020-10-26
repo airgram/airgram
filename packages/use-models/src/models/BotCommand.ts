@@ -1,4 +1,4 @@
-/** Represents commands supported by a bot */
+/** Represents a command supported by a bot */
 export class BotCommandBaseModel {
   public _: 'botCommand'
 

@@ -1,4 +1,4 @@
-import { ChatPhoto } from '@airgram/core'
+import { ChatPhotoInfo } from '@airgram/core'
 
 /** A chat photo was changed */
 export class UpdateChatPhotoBaseModel {
@@ -8,5 +8,5 @@ export class UpdateChatPhotoBaseModel {
   public chatId: number
 
   /** The new chat photo; may be null */
-  public photo?: ChatPhoto
+  public photo?: ChatPhotoInfo
 }

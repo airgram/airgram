@@ -4,7 +4,7 @@ import { TextEntityTypeUnion } from '@airgram/core'
 export class TextEntityBaseModel {
   public _: 'textEntity'
 
-  /** Offset of the entity in UTF-16 code units */
+  /** Offset of the entity, in UTF-16 code units */
   public offset: number
 
   /** Length of the entity, in UTF-16 code units */

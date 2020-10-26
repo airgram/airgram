@@ -1,8 +1,11 @@
-import { ChatMember } from '@airgram/core'
+import { ChatMember, ChatPhoto } from '@airgram/core'
 
 /** Contains full information about a basic group */
 export class BasicGroupFullInfoBaseModel {
   public _: 'basicGroupFullInfo'
+
+  /** Chat photo; may be null */
+  public photo?: ChatPhoto
 
   /** Group description */
   public description: string

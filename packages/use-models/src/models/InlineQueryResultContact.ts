@@ -1,4 +1,4 @@
-import { Contact, PhotoSize } from '@airgram/core'
+import { Contact, Thumbnail } from '@airgram/core'
 
 /** Represents a user contact */
 export class InlineQueryResultContactBaseModel {
@@ -10,6 +10,6 @@ export class InlineQueryResultContactBaseModel {
   /** A user contact */
   public contact: Contact
 
-  /** Result thumbnail; may be null */
-  public thumbnail?: PhotoSize
+  /** Result thumbnail in JPEG format; may be null */
+  public thumbnail?: Thumbnail
 }

@@ -1,4 +1,4 @@
-import { File, Minithumbnail, PhotoSize } from '@airgram/core'
+import { File, Minithumbnail, Thumbnail } from '@airgram/core'
 
 /**
  * Describes a video note. The video must be equal in width and height, cropped to a
@@ -16,8 +16,8 @@ export class VideoNoteBaseModel {
   /** Video minithumbnail; may be null */
   public minithumbnail?: Minithumbnail
 
-  /** Video thumbnail; as defined by the sender; may be null */
-  public thumbnail?: PhotoSize
+  /** Video thumbnail in JPEG format; as defined by the sender; may be null */
+  public thumbnail?: Thumbnail
 
   /** File containing the video */
   public video: File

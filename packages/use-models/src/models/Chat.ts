@@ -1,9 +1,9 @@
 import {
   ChatActionBarUnion,
-  ChatListUnion,
   ChatNotificationSettings,
   ChatPermissions,
-  ChatPhoto,
+  ChatPhotoInfo,
+  ChatPosition,
   ChatTypeUnion,
   DraftMessage,
   Message
@@ -19,14 +19,11 @@ export class ChatBaseModel {
   /** Type of the chat */
   public type: ChatTypeUnion
 
-  /** A chat list to which the chat belongs; may be null */
-  public chatList?: ChatListUnion
-
   /** Chat title */
   public title: string
 
   /** Chat photo; may be null */
-  public photo?: ChatPhoto
+  public photo?: ChatPhotoInfo
 
   /** Actions that non-administrator chat members are allowed to take in the chat */
   public permissions: ChatPermissions
@@ -34,21 +31,17 @@ export class ChatBaseModel {
   /** Last message in the chat; may be null */
   public lastMessage?: Message
 
-  /**
-   * Descending parameter by which chats are sorted in the main chat list. If the order
-   * number of two chats is the same, they must be sorted in descending order by ID. If
-   * 0, the position of the chat in the list is undetermined
-   */
-  public order: string
-
-  /** True, if the chat is pinned */
-  public isPinned: boolean
+  /** Positions of the chat in chat lists */
+  public positions: ChatPosition[]
 
   /** True, if the chat is marked as unread */
   public isMarkedAsUnread: boolean
 
-  /** True, if the chat is sponsored by the user's MTProxy server */
-  public isSponsored: boolean
+  /**
+   * True, if the chat is blocked by the current user and private messages from the chat
+   * can't be received
+   */
+  public isBlocked: boolean
 
   /** True, if the chat has scheduled messages */
   public hasScheduledMessages: boolean
@@ -105,9 +98,9 @@ export class ChatBaseModel {
   public draftMessage?: DraftMessage
 
   /**
-   * Contains client-specific data associated with the chat. (For example, the chat position
-   * or local chat notification settings can be stored here.) Persistent if the message
-   * database is used
+   * Contains application-specific data associated with the chat. (For example, the chat
+   * scroll position or local chat notification settings can be stored here.) Persistent
+   * if the message database is used
    */
   public clientData: string
 }

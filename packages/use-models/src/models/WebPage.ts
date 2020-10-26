@@ -2,6 +2,7 @@ import {
   Animation,
   Audio,
   Document,
+  FormattedText,
   Photo,
   Sticker,
   Video,
@@ -32,7 +33,7 @@ export class WebPageBaseModel {
   public title: string
 
   /** Description of the content */
-  public description: string
+  public description: FormattedText
 
   /** Image representing the content; may be null */
   public photo?: Photo

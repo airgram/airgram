@@ -1,4 +1,4 @@
-import { Emojis, PhotoSize, Sticker } from '@airgram/core'
+import { Emojis, Sticker, Thumbnail } from '@airgram/core'
 
 /** Represents a sticker set */
 export class StickerSetBaseModel {
@@ -14,10 +14,10 @@ export class StickerSetBaseModel {
   public name: string
 
   /**
-   * Sticker set thumbnail in WEBP format with width and height 100; may be null. The
-   * file can be downloaded only before the thumbnail is changed
+   * Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null.
+   * The file can be downloaded only before the thumbnail is changed
    */
-  public thumbnail?: PhotoSize
+  public thumbnail?: Thumbnail
 
   /** True, if the sticker set has been installed by the current user */
   public isInstalled: boolean

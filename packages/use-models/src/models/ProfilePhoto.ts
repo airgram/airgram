@@ -6,7 +6,7 @@ export class ProfilePhotoBaseModel {
 
   /**
    * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of
-   * userProfilePhotos
+   * user profile photos
    */
   public id: string
 
@@ -21,4 +21,7 @@ export class ProfilePhotoBaseModel {
    * is changed
    */
   public big: File
+
+  /** True, if the photo has animated variant */
+  public hasAnimation: boolean
 }

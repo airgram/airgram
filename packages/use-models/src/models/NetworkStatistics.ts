@@ -4,7 +4,7 @@ import { NetworkStatisticsEntryUnion } from '@airgram/core'
 export class NetworkStatisticsBaseModel {
   public _: 'networkStatistics'
 
-  /** Point in time (Unix timestamp) when the app began collecting statistics */
+  /** Point in time (Unix timestamp) from which the statistics are collected */
   public sinceDate: number
 
   /** Network statistics entries */

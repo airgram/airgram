@@ -15,7 +15,7 @@ export class VenueBaseModel {
 
   /**
    * Provider of the venue database; as defined by the sender. Currently only "foursquare"
-   * needs to be supported
+   * and "gplaces" (Google Places) need to be supported
    */
   public provider: string
 

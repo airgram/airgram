@@ -1,8 +1,11 @@
-import { ChatLocation } from '@airgram/core'
+import { ChatLocation, ChatPhoto } from '@airgram/core'
 
 /** Contains full information about a supergroup or channel */
 export class SupergroupFullInfoBaseModel {
   public _: 'supergroupFullInfo'
+
+  /** Chat photo; may be null */
+  public photo?: ChatPhoto
 
   /** Supergroup or channel description */
   public description: string
@@ -50,8 +53,8 @@ export class SupergroupFullInfoBaseModel {
   /** True, if the supergroup location can be changed */
   public canSetLocation: boolean
 
-  /** True, if the channel statistics is available through getChatStatisticsUrl */
-  public canViewStatistics: boolean
+  /** True, if the supergroup or channel statistics are available */
+  public canGetStatistics: boolean
 
   /**
    * True, if new chat members will have access to old messages. In public or discussion

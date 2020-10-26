@@ -1,4 +1,4 @@
-/** The payload from a general callback button */
+/** The payload for a general callback button */
 export class CallbackQueryPayloadDataBaseModel {
   public _: 'callbackQueryPayloadData'
 

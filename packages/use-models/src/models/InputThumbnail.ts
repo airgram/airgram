@@ -1,8 +1,8 @@
 import { InputFileUnion } from '@airgram/core'
 
 /**
- * A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers,
- * and less than 200 kB in size
+ * A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers,
+ * and less than 200 KB in size
  */
 export class InputThumbnailBaseModel {
   public _: 'inputThumbnail'

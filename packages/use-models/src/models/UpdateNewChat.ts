@@ -2,7 +2,7 @@ import { Chat } from '@airgram/core'
 
 /**
  * A new chat has been loaded/created. This update is guaranteed to come before the
- * chat identifier is returned to the client. The chat field changes will be reported
+ * chat identifier is returned to the application. The chat field changes will be reported
  * through separate updates
  */
 export class UpdateNewChatBaseModel {

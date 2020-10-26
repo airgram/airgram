@@ -7,10 +7,10 @@ export class ReplyMarkupShowKeyboardBaseModel {
   /** A list of rows of bot keyboard buttons */
   public rows: KeyboardButton[][]
 
-  /** True, if the client needs to resize the keyboard vertically */
+  /** True, if the application needs to resize the keyboard vertically */
   public resizeKeyboard: boolean
 
-  /** True, if the client needs to hide the keyboard after use */
+  /** True, if the application needs to hide the keyboard after use */
   public oneTime: boolean
 
   /**

@@ -1,4 +1,4 @@
-/** A button that sends a special callback query to a bot */
+/** A button that sends a callback query to a bot */
 export class InlineKeyboardButtonTypeCallbackBaseModel {
   public _: 'inlineKeyboardButtonTypeCallback'
 
