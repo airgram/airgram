@@ -3,7 +3,7 @@ import { InputFileInputUnion } from './index'
 export type InputThumbnailInputUnion = InputThumbnailInput
 
 /**
- * A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers,
+ * A thumbnail to be sent along with a file; must be in JPEG or WEBP format for stickers,
  * and less than 200 KB in size
  */
 export interface InputThumbnailInput {

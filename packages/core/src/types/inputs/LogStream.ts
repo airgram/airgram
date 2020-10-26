@@ -18,6 +18,8 @@ export interface LogStreamFileInput {
    * file will be auto-rotated
    */
   maxFileSize?: number
+  /** Pass true to additionally redirect stderr to the log file. Ignored on Windows */
+  redirectStderr?: boolean
 }
 
 /** The log is written nowhere */

@@ -7,8 +7,7 @@ export interface SetLogStreamParams {
 }
 
 /**
- * Sets new log stream for internal logging of TDLib. This is an offline method. Can
- * be called before authorization. Can be called synchronously
+ * Sets new log stream for internal logging of TDLib. Can be called synchronously
  * @param {Object} params
  * @param {LogStreamInputUnion} [params.logStream] - New log stream
  * @param {ApiRequestOptions} options

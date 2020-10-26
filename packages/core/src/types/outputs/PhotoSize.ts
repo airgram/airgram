@@ -2,15 +2,20 @@ import { File } from './index'
 
 export type PhotoSizeUnion = PhotoSize
 
-/** Photo description */
+/** Describes an image in JPEG format */
 export interface PhotoSize {
   _: 'photoSize'
-  /** Thumbnail type (see https://core.telegram.org/constructor/photoSize) */
+  /** Image type (see https://core.telegram.org/constructor/photoSize) */
   type: string
-  /** Information about the photo file */
+  /** Information about the image file */
   photo: File
-  /** Photo width */
+  /** Image width */
   width: number
-  /** Photo height */
+  /** Image height */
   height: number
+  /**
+   * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show
+   * the image
+   */
+  progressiveSizes: number[]
 }

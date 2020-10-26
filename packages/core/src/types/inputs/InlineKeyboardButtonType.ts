@@ -2,6 +2,7 @@
 export type InlineKeyboardButtonTypeInputUnion = InlineKeyboardButtonTypeUrlInput
   | InlineKeyboardButtonTypeLoginUrlInput
   | InlineKeyboardButtonTypeCallbackInput
+  | InlineKeyboardButtonTypeCallbackWithPasswordInput
   | InlineKeyboardButtonTypeCallbackGameInput
   | InlineKeyboardButtonTypeSwitchInlineInput
   | InlineKeyboardButtonTypeBuyInput
@@ -27,7 +28,7 @@ export interface InlineKeyboardButtonTypeLoginUrlInput {
   forwardText?: string
 }
 
-/** A button that sends a special callback query to a bot */
+/** A button that sends a callback query to a bot */
 export interface InlineKeyboardButtonTypeCallbackInput {
   _: 'inlineKeyboardButtonTypeCallback'
   /** Data to be sent to the bot via a callback query */
@@ -35,9 +36,19 @@ export interface InlineKeyboardButtonTypeCallbackInput {
 }
 
 /**
- * A button with a game that sends a special callback query to a bot. This button must
- * be in the first column and row of the keyboard and can be attached only to a message
- * with content of the type messageGame
+ * A button that asks for password of the current user and then sends a callback query
+ * to a bot
+ */
+export interface InlineKeyboardButtonTypeCallbackWithPasswordInput {
+  _: 'inlineKeyboardButtonTypeCallbackWithPassword'
+  /** Data to be sent to the bot via a callback query */
+  data?: string
+}
+
+/**
+ * A button with a game that sends a callback query to a bot. This button must be in
+ * the first column and row of the keyboard and can be attached only to a message with
+ * content of the type messageGame
  */
 export interface InlineKeyboardButtonTypeCallbackGameInput {
   _: 'inlineKeyboardButtonTypeCallbackGame'

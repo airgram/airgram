@@ -3,8 +3,9 @@ import { OkUnion } from '../outputs'
 
 export interface ViewMessagesParams {
   chatId?: number // Chat identifier
+  messageThreadId?: number // If not 0, a message thread identifier in which the messages are being viewed
   messageIds?: number[] // The identifiers of the messages being viewed
-  forceRead?: boolean // True, if messages in closed chats should be marked as read
+  forceRead?: boolean // True, if messages in closed chats should be marked as read by the request
 }
 
 /**
@@ -14,10 +15,12 @@ export interface ViewMessagesParams {
  * in supergroups and channels)
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
+ * @param {number} [params.messageThreadId] - If not 0, a message thread identifier
+ * in which the messages are being viewed
  * @param {number[]} [params.messageIds] - The identifiers of the messages being
  * viewed
  * @param {boolean} [params.forceRead] - True, if messages in closed chats should
- * be marked as read
+ * be marked as read by the request
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ViewMessagesParams, OkUnion>>}
  */

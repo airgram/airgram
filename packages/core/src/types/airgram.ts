@@ -16,10 +16,10 @@ export type MiddlewareFn<ContextT = Context> = (ctx: ContextT, next: () => Promi
 export type Middleware<ContextT = Context> = { middleware: () => MiddlewareFn<ContextT> } | MiddlewareFn<ContextT>
 export type NextFn = () => any
 
-export interface Deferred {
-  promise: Promise<void>
-  resolve: () => unknown
-  reject: (error: Error) => unknown
+export interface Deferred<T = unknown, ErrorT = Error> {
+  promise: Promise<T>
+  resolve: (value?: T) => unknown
+  reject: (error: ErrorT) => unknown
 }
 
 export interface Composer<ContextT> {
@@ -30,15 +30,21 @@ export interface Composer<ContextT> {
   use (...fns: Middleware<ContextT>[]): void
 }
 
-export interface Config<ProviderT extends TdProvider = TdProvider> extends TdLibConfig {
-  provider: ProviderT
+export interface Config extends TdLibConfig {
   context?: ExtraContext
     | ((ctx: BaseApiResponse<any, any> | BaseUpdateContext<any>) => ExtraContext | Promise<ExtraContext>)
-  models?: PlainObjectToModelTransformer
+  // models?: PlainObjectToModelTransformer
   databaseEncryptionKey?: string
   logVerbosityLevel?: number
   name?: string
 }
+
+export type ProviderFactory<ProviderT extends TdProvider> = (
+  handleUpdate: (update: TdObject) => Promise<unknown>,
+  handleError: (error: Error | string) => void
+) => ProviderT
+
+export type CreateProviderFactoryFn<ProviderT extends TdProvider, ConfigT = unknown> = (config: ConfigT) => ProviderFactory<ProviderT>
 
 export interface Instance<ProviderT extends TdProvider = TdProvider> {
   readonly api: ApiMethods
@@ -108,12 +114,6 @@ export interface TdProvider {
   destroy (): Promise<void>
 
   execute (request: ApiRequest): TdObject
-
-  initialize (
-    handleUpdate: (update: TdObject) => Promise<unknown>,
-    handleError: (error: Error | string) => void,
-    models?: PlainObjectToModelTransformer
-  ): void
 
   send (request: ApiRequest): Promise<TdObject>
 }

@@ -10,6 +10,7 @@ export interface SearchChatMessagesParams {
   offset?: number // Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
   limit?: number // The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
   filter?: SearchMessagesFilterInputUnion // Filter for message content in the search results
+  messageThreadId?: number // If not 0, only messages in the specified thread will be returned; supergroups only
 }
 
 /**
@@ -33,6 +34,8 @@ export interface SearchChatMessagesParams {
  * limit, even if the end of the message history has not been reached
  * @param {SearchMessagesFilterInputUnion} [params.filter] - Filter for message content
  * in the search results
+ * @param {number} [params.messageThreadId] - If not 0, only messages in the specified
+ * thread will be returned; supergroups only
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatMessagesParams, MessagesUnion>>}
  */

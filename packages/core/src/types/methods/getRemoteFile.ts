@@ -13,7 +13,7 @@ export interface GetRemoteFileParams {
  * Even the request succeeds, the file can be used only if it is still accessible to
  * the user. For example, if the file is from a message, then the message must be not
  * deleted and accessible to the user. If the file database is disabled, then the corresponding
- * object with the file must be preloaded by the client
+ * object with the file must be preloaded by the application
  * @param {Object} params
  * @param {string} [params.remoteFileId] - Remote identifier of the file to get
  * @param {FileTypeInputUnion} [params.fileType] - File type, if known

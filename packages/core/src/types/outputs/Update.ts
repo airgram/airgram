@@ -14,7 +14,7 @@ import {
   ChatNearby,
   ChatNotificationSettings,
   ChatPermissions,
-  ChatPhoto,
+  ChatPhotoInfo,
   ChatPosition,
   ConnectionStateUnion,
   DraftMessage,
@@ -23,6 +23,7 @@ import {
   Location,
   Message,
   MessageContentUnion,
+  MessageInteractionInfo,
   Notification,
   NotificationGroup,
   NotificationGroupTypeUnion,
@@ -35,6 +36,7 @@ import {
   SecretChat,
   StickerSet,
   StickerSets,
+  SuggestedActionUnion,
   Supergroup,
   SupergroupFullInfo,
   TermsOfService,
@@ -53,7 +55,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateMessageSendFailed
   | UpdateMessageContent
   | UpdateMessageEdited
-  | UpdateMessageViews
+  | UpdateMessageInteractionInfo
   | UpdateMessageContentOpened
   | UpdateMessageMentionRead
   | UpdateMessageLiveLocationViewed
@@ -64,6 +66,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatLastMessage
   | UpdateChatPosition
   | UpdateChatIsMarkedAsUnread
+  | UpdateChatIsBlocked
   | UpdateChatHasScheduledMessages
   | UpdateChatDefaultDisableNotification
   | UpdateChatReadInbox
@@ -96,6 +99,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateFileGenerationStart
   | UpdateFileGenerationStop
   | UpdateCall
+  | UpdateNewCallSignalingData
   | UpdateUserPrivacySettingRules
   | UpdateUnreadMessageCount
   | UpdateUnreadChatCount
@@ -113,6 +117,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateUsersNearby
   | UpdateDiceEmojis
   | UpdateAnimationSearchParameters
+  | UpdateSuggestedActions
   | UpdateNewInlineQuery
   | UpdateNewChosenInlineResult
   | UpdateNewCallbackQuery
@@ -204,15 +209,15 @@ export interface UpdateMessageEdited {
   replyMarkup?: ReplyMarkupUnion
 }
 
-/** The view count of the message has changed */
-export interface UpdateMessageViews {
-  _: 'updateMessageViews'
+/** The information about interactions with a message has changed */
+export interface UpdateMessageInteractionInfo {
+  _: 'updateMessageInteractionInfo'
   /** Chat identifier */
   chatId: number
   /** Message identifier */
   messageId: number
-  /** New value of the view count */
-  views: number
+  /** New information about interactions with the message; may be null */
+  interactionInfo?: MessageInteractionInfo
 }
 
 /**
@@ -239,7 +244,7 @@ export interface UpdateMessageMentionRead {
 }
 
 /**
- * A message with a live location was viewed. When the update is received, the client
+ * A message with a live location was viewed. When the update is received, the application
  * is supposed to update the live location
  */
 export interface UpdateMessageLiveLocationViewed {
@@ -252,7 +257,7 @@ export interface UpdateMessageLiveLocationViewed {
 
 /**
  * A new chat has been loaded/created. This update is guaranteed to come before the
- * chat identifier is returned to the client. The chat field changes will be reported
+ * chat identifier is returned to the application. The chat field changes will be reported
  * through separate updates
  */
 export interface UpdateNewChat {
@@ -276,7 +281,7 @@ export interface UpdateChatPhoto {
   /** Chat identifier */
   chatId: number
   /** The new chat photo; may be null */
-  photo?: ChatPhoto
+  photo?: ChatPhotoInfo
 }
 
 /** Chat permissions was changed */
@@ -325,6 +330,15 @@ export interface UpdateChatIsMarkedAsUnread {
   chatId: number
   /** New value of is_marked_as_unread */
   isMarkedAsUnread: boolean
+}
+
+/** A chat was blocked or unblocked */
+export interface UpdateChatIsBlocked {
+  _: 'updateChatIsBlocked'
+  /** Chat identifier */
+  chatId: number
+  /** New value of is_blocked */
+  isBlocked: boolean
 }
 
 /** A chat's has_scheduled_messages field has changed */
@@ -549,6 +563,8 @@ export interface UpdateUserChatAction {
   _: 'updateUserChatAction'
   /** Chat identifier */
   chatId: number
+  /** If not 0, a message thread identifier in which the action was performed */
+  messageThreadId: number
   /** Identifier of a user performing an action */
   userId: number
   /** The action description */
@@ -566,7 +582,7 @@ export interface UpdateUserStatus {
 
 /**
  * Some data of a user has changed. This update is guaranteed to come before the user
- * identifier is returned to the client
+ * identifier is returned to the application
  */
 export interface UpdateUser {
   _: 'updateUser'
@@ -576,7 +592,7 @@ export interface UpdateUser {
 
 /**
  * Some data of a basic group has changed. This update is guaranteed to come before
- * the basic group identifier is returned to the client
+ * the basic group identifier is returned to the application
  */
 export interface UpdateBasicGroup {
   _: 'updateBasicGroup'
@@ -586,7 +602,7 @@ export interface UpdateBasicGroup {
 
 /**
  * Some data of a supergroup or a channel has changed. This update is guaranteed to
- * come before the supergroup identifier is returned to the client
+ * come before the supergroup identifier is returned to the application
  */
 export interface UpdateSupergroup {
   _: 'updateSupergroup'
@@ -596,7 +612,7 @@ export interface UpdateSupergroup {
 
 /**
  * Some data of a secret chat has changed. This update is guaranteed to come before
- * the secret chat identifier is returned to the client
+ * the secret chat identifier is returned to the application
  */
 export interface UpdateSecretChat {
   _: 'updateSecretChat'
@@ -632,8 +648,8 @@ export interface UpdateSupergroupFullInfo {
 }
 
 /**
- * Service notification from the server. Upon receiving this the client must show a
- * popup with the content of the notification
+ * Service notification from the server. Upon receiving this the application must show
+ * a popup with the content of the notification
  */
 export interface UpdateServiceNotification {
   _: 'updateServiceNotification'
@@ -654,7 +670,7 @@ export interface UpdateFile {
   file: File
 }
 
-/** The file generation process needs to be started by the client */
+/** The file generation process needs to be started by the application */
 export interface UpdateFileGenerationStart {
   _: 'updateFileGenerationStart'
   /** Unique identifier for the generation process */
@@ -666,7 +682,7 @@ export interface UpdateFileGenerationStart {
   /**
    * String specifying the conversion applied to the original file. If conversion is "#url#"
    * than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded
-   * by the client
+   * by the application
    */
   conversion: string
 }
@@ -683,6 +699,15 @@ export interface UpdateCall {
   _: 'updateCall'
   /** New data about a call */
   call: Call
+}
+
+/** New call signaling data arrived */
+export interface UpdateNewCallSignalingData {
+  _: 'updateNewCallSignalingData'
+  /** The call identifier */
+  callId: number
+  /** The data */
+  data: string
 }
 
 /** Some privacy setting rules have been changed */
@@ -809,7 +834,10 @@ export interface UpdateLanguagePackStrings {
   strings: LanguagePackString[]
 }
 
-/** The connection state has changed */
+/**
+ * The connection state has changed. This update must be used only to show the user
+ * a human-readable description of the connection state
+ */
 export interface UpdateConnectionState {
   _: 'updateConnectionState'
   /** The new connection state */
@@ -829,8 +857,8 @@ export interface UpdateTermsOfService {
 }
 
 /**
- * The list of users nearby has changed. The update is sent only 60 seconds after a
- * successful searchChatsNearby request
+ * The list of users nearby has changed. The update is guaranteed to be sent only 60
+ * seconds after a successful searchChatsNearby request
  */
 export interface UpdateUsersNearby {
   _: 'updateUsersNearby'
@@ -857,6 +885,15 @@ export interface UpdateAnimationSearchParameters {
   emojis: string[]
 }
 
+/** The list of suggested to the user actions has changed */
+export interface UpdateSuggestedActions {
+  _: 'updateSuggestedActions'
+  /** Added suggested actions */
+  addedActions: SuggestedActionUnion[]
+  /** Removed suggested actions */
+  removedActions: SuggestedActionUnion[]
+}
+
 /** A new incoming inline query; for bots only */
 export interface UpdateNewInlineQuery {
   _: 'updateNewInlineQuery'
@@ -864,7 +901,7 @@ export interface UpdateNewInlineQuery {
   id: string
   /** Identifier of the user who sent the query */
   senderUserId: number
-  /** User location, provided by the client; may be null */
+  /** User location; may be null */
   userLocation?: Location
   /** Text of the query */
   query: string
@@ -877,7 +914,7 @@ export interface UpdateNewChosenInlineResult {
   _: 'updateNewChosenInlineResult'
   /** Identifier of the user who sent the query */
   senderUserId: number
-  /** User location, provided by the client; may be null */
+  /** User location; may be null */
   userLocation?: Location
   /** Text of the query */
   query: string

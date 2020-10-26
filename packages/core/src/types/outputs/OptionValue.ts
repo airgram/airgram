@@ -20,7 +20,7 @@ export interface OptionValueEmpty {
 export interface OptionValueInteger {
   _: 'optionValueInteger'
   /** The value of the option */
-  value: number
+  value: string
 }
 
 /** Represents a string option */

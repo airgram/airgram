@@ -10,8 +10,8 @@ export interface GetLanguagePackStringParams {
 
 /**
  * Returns a string stored in the local database from the specified localization target
- * and language pack by its key. Returns a 404 error if the string is not found. This
- * is an offline method. Can be called before authorization. Can be called synchronously
+ * and language pack by its key. Returns a 404 error if the string is not found. Can
+ * be called synchronously
  * @param {Object} params
  * @param {string} [params.languagePackDatabasePath] - Path to the language pack
  * database in which strings are stored

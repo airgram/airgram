@@ -1,15 +1,16 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
 import {
   InputMessageContentInputUnion,
-  ReplyMarkupInputUnion,
-  SendMessageOptionsInput
+  MessageSendOptionsInput,
+  ReplyMarkupInputUnion
 } from '../inputs'
 import { MessageUnion } from '../outputs'
 
 export interface SendMessageParams {
   chatId?: number // Target chat
+  messageThreadId?: number // If not 0, a message thread identifier in which the message will be sent
   replyToMessageId?: number // Identifier of the message to reply to or 0
-  options?: SendMessageOptionsInput // Options to be used to send the message
+  options?: MessageSendOptionsInput // Options to be used to send the message
   replyMarkup?: ReplyMarkupInputUnion // Markup for replying to the message; for bots only
   inputMessageContent?: InputMessageContentInputUnion // The content of the message to be sent
 }
@@ -18,9 +19,11 @@ export interface SendMessageParams {
  * Sends a message. Returns the sent message
  * @param {Object} params
  * @param {number} [params.chatId] - Target chat
+ * @param {number} [params.messageThreadId] - If not 0, a message thread identifier
+ * in which the message will be sent
  * @param {number} [params.replyToMessageId] - Identifier of the message to reply
  * to or 0
- * @param {SendMessageOptionsInput} [params.options] - Options to be used to send
+ * @param {MessageSendOptionsInput} [params.options] - Options to be used to send
  * the message
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - Markup for replying to the
  * message; for bots only

@@ -9,7 +9,7 @@ export type AuthenticationCodeTypeUnion = AuthenticationCodeTypeTelegramMessage
 
 /**
  * An authentication code is delivered via a private Telegram message, which can be
- * viewed in another client
+ * viewed from another active session
  */
 export interface AuthenticationCodeTypeTelegramMessage {
   _: 'authenticationCodeTypeTelegramMessage'

@@ -11,6 +11,8 @@ export interface Call {
   userId: number
   /** True, if the call is outgoing */
   isOutgoing: boolean
+  /** True, if the call is a video call */
+  isVideo: boolean
   /** Call state */
   state: CallStateUnion
 }

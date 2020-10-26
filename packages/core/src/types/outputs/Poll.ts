@@ -7,7 +7,7 @@ export interface Poll {
   _: 'poll'
   /** Unique poll identifier */
   id: string
-  /** Poll question, 1-255 characters */
+  /** Poll question, 1-300 characters */
   question: string
   /** List of poll answer options */
   options: PollOption[]

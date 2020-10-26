@@ -11,8 +11,8 @@ export interface PhoneNumberAuthenticationSettingsInput {
   /** Pass true if the authenticated phone number is used on the current device */
   isCurrentPhoneNumber?: boolean
   /**
-   * For official applications only. True, if the app can use Android SMS Retriever API
-   * (requires Google Play Services >= 10.2) to automatically receive the authentication
+   * For official applications only. True, if the application can use Android SMS Retriever
+   * API (requires Google Play Services >= 10.2) to automatically receive the authentication
    * code from the SMS. See https://developers.google.com/identity/sms-retriever/ for
    * more details
    */

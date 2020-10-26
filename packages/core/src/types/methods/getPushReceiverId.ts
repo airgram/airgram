@@ -7,8 +7,7 @@ export interface GetPushReceiverIdParams {
 
 /**
  * Returns a globally unique push notification subscription identifier for identification
- * of an account, which has received a push notification. This is an offline method.
- * Can be called before authorization. Can be called synchronously
+ * of an account, which has received a push notification. Can be called synchronously
  * @param {Object} params
  * @param {string} [params.payload] - JSON-encoded push notification payload
  * @param {ApiRequestOptions} options

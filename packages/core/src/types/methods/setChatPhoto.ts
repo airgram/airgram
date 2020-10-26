@@ -1,21 +1,19 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { InputFileInputUnion } from '../inputs'
+import { InputChatPhotoInputUnion } from '../inputs'
 import { OkUnion } from '../outputs'
 
 export interface SetChatPhotoParams {
   chatId?: number // Chat identifier
-  photo?: InputFileInputUnion // New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable
+  photo?: InputChatPhotoInputUnion // New chat photo. Pass null to delete the chat photo
 }
 
 /**
  * Changes the photo of a chat. Supported only for basic groups, supergroups and channels.
- * Requires can_change_info rights. The photo will not be changed before request to
- * the server has been completed
+ * Requires can_change_info rights
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {InputFileInputUnion} [params.photo] - New chat photo. You can use a zero
- * InputFileId to delete the chat photo. Files that are accessible only by HTTP URL
- * are not acceptable
+ * @param {InputChatPhotoInputUnion} [params.photo] - New chat photo. Pass null to
+ * delete the chat photo
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatPhotoParams, OkUnion>>}
  */

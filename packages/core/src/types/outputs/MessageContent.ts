@@ -2,6 +2,7 @@ import {
   Animation,
   Audio,
   CallDiscardReasonUnion,
+  ChatPhoto,
   Contact,
   Document,
   EncryptedCredentials,
@@ -267,6 +268,8 @@ export interface MessageInvoice {
 /** A message with information about an ended call */
 export interface MessageCall {
   _: 'messageCall'
+  /** True, if the call was a video call */
+  isVideo: boolean
   /** Reason why the call was discarded */
   discardReason: CallDiscardReasonUnion
   /** Call duration, in seconds */
@@ -300,7 +303,7 @@ export interface MessageChatChangeTitle {
 export interface MessageChatChangePhoto {
   _: 'messageChatChangePhoto'
   /** New chat photo */
-  photo: Photo
+  photo: ChatPhoto
 }
 
 /** A deleted chat photo */
@@ -452,7 +455,7 @@ export interface MessagePassportDataReceived {
   credentials: EncryptedCredentials
 }
 
-/** Message content that is not supported by the client */
+/** Message content that is not supported in the current TDLib version */
 export interface MessageUnsupported {
   _: 'messageUnsupported'
 }

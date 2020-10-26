@@ -5,7 +5,7 @@ import { StickerSetUnion } from '../outputs'
 export interface SetStickerSetThumbnailParams {
   userId?: number // Sticker set owner
   name?: string // Sticker set name
-  thumbnail?: InputFileInputUnion // Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. You can use a zero InputFileId to delete the thumbnail
+  thumbnail?: InputFileInputUnion // Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
 }
 
 /**
@@ -15,7 +15,7 @@ export interface SetStickerSetThumbnailParams {
  * @param {string} [params.name] - Sticker set name
  * @param {InputFileInputUnion} [params.thumbnail] - Thumbnail to set in PNG or TGS
  * format. Animated thumbnail must be set for animated sticker sets and only for them.
- * You can use a zero InputFileId to delete the thumbnail
+ * Pass a zero InputFileId to delete the thumbnail
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetStickerSetThumbnailParams, StickerSetUnion>>}
  */

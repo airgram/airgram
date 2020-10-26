@@ -1,8 +1,8 @@
-export type ChatStatisticsMessageInteractionCountersUnion = ChatStatisticsMessageInteractionCounters
+export type ChatStatisticsMessageInteractionInfoUnion = ChatStatisticsMessageInteractionInfo
 
 /** Contains statistics about interactions with a message */
-export interface ChatStatisticsMessageInteractionCounters {
-  _: 'chatStatisticsMessageInteractionCounters'
+export interface ChatStatisticsMessageInteractionInfo {
+  _: 'chatStatisticsMessageInteractionInfo'
   /** Message identifier */
   messageId: number
   /** Number of times the message was viewed */

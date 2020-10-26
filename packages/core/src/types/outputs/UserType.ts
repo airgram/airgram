@@ -33,7 +33,7 @@ export interface UserTypeBot {
   canReadAllGroupMessages: boolean
   /** True, if the bot supports inline queries */
   isInline: boolean
-  /** Placeholder for inline queries (displayed on the client input field) */
+  /** Placeholder for inline queries (displayed on the application input field) */
   inlineQueryPlaceholder: string
   /**
    * True, if the location of the user should be sent with every inline query to this

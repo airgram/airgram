@@ -10,7 +10,7 @@ export interface OptimizeStorageParams {
   fileTypes?: FileTypeInputUnion[] // If not empty, only files with the given type(s) are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
   chatIds?: number[] // If not empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
   excludeChatIds?: number[] // If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
-  returnDeletedFileStatistics?: boolean // Pass true if deleted file statistics needs to be returned instead of the whole storage usage statistics. Affects only returned statistics
+  returnDeletedFileStatistics?: boolean // Pass true if deleted file statistics need to be returned instead of the whole storage usage statistics. Affects only returned statistics
   chatLimit?: number // Same as in getStorageStatistics. Affects only returned statistics
 }
 
@@ -38,7 +38,7 @@ export interface OptimizeStorageParams {
  * chats are excluded. Use 0 as chat identifier to exclude all files not belonging to
  * any chat (e.g., profile photos)
  * @param {boolean} [params.returnDeletedFileStatistics] - Pass true if deleted file
- * statistics needs to be returned instead of the whole storage usage statistics. Affects
+ * statistics need to be returned instead of the whole storage usage statistics. Affects
  * only returned statistics
  * @param {number} [params.chatLimit] - Same as in getStorageStatistics. Affects
  * only returned statistics

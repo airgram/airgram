@@ -8,8 +8,7 @@ export interface TestReturnErrorParams {
 
 /**
  * Returns the specified error and ensures that the Error object is used; for testing
- * only. This is an offline method. Can be called before authorization. Can be called
- * synchronously
+ * only. Can be called synchronously
  * @param {Object} params
  * @param {ErrorInput} [params.error] - The error to be returned
  * @param {ApiRequestOptions} options

@@ -1,6 +1,6 @@
 import { AuthenticationCodeInfo, TermsOfService } from './index'
 
-/** Represents the current authorization state of the client */
+/** Represents the current authorization state of the TDLib client */
 export type AuthorizationStateUnion = AuthorizationStateWaitTdlibParameters
   | AuthorizationStateWaitEncryptionKey
   | AuthorizationStateWaitPhoneNumber

@@ -21,7 +21,7 @@ import {
   Ok,
   OkUnion,
   RegisterUserParams,
-  TdProvider,
+  Provider,
   UpdateAuthorizationState
 } from '@airgram/core'
 
@@ -162,7 +162,7 @@ export class Auth {
 
   private async fatalError (error: Error): Promise<false> {
     console.error(`[Airgram Auth] quit due an error: "${error.message}"`)
-    if (this.airgram.provider instanceof TdProvider) {
+    if (this.airgram.provider instanceof Provider) {
       await this.airgram.provider.destroy()
     }
     return false

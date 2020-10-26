@@ -13,7 +13,7 @@ export interface VenueInput {
   address?: string
   /**
    * Provider of the venue database; as defined by the sender. Currently only "foursquare"
-   * needs to be supported
+   * and "gplaces" (Google Places) need to be supported
    */
   provider?: string
   /** Identifier of the venue in the provider database; as defined by the sender */

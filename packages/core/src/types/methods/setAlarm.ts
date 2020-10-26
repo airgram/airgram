@@ -6,8 +6,7 @@ export interface SetAlarmParams {
 }
 
 /**
- * Succeeds after a specified amount of time has passed. Can be called before authorization.
- * Can be called before initialization
+ * Succeeds after a specified amount of time has passed. Can be called before initialization
  * @param {Object} params
  * @param {number} [params.seconds] - Number of seconds before the function returns
  * @param {ApiRequestOptions} options

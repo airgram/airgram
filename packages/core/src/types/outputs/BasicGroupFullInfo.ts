@@ -1,10 +1,12 @@
-import { ChatMember } from './index'
+import { ChatMember, ChatPhoto } from './index'
 
 export type BasicGroupFullInfoUnion = BasicGroupFullInfo
 
 /** Contains full information about a basic group */
 export interface BasicGroupFullInfo {
   _: 'basicGroupFullInfo'
+  /** Chat photo; may be null */
+  photo?: ChatPhoto
   /** Group description */
   description: string
   /** User identifier of the creator of the group; 0 if unknown */

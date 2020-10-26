@@ -1,3 +1,3 @@
 export * from './Auth'
-export * from './TdProvider'
-export * from './TdProxy'
+export * from './Provider'
+export * from './TdJsonClient'

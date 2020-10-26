@@ -12,7 +12,7 @@ export interface StatisticsGraphData {
   zoomToken: string
 }
 
-/** The graph data to be asynchronously loaded through getChatStatisticsGraph */
+/** The graph data to be asynchronously loaded through getStatisticsGraph */
 export interface StatisticsGraphAsync {
   _: 'statisticsGraphAsync'
   /** The token to use for data loading */

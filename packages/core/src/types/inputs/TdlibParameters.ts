@@ -43,7 +43,10 @@ export interface TdlibParametersInput {
   systemLanguageCode?: string
   /** Model of the device the application is being run on; must be non-empty */
   deviceModel?: string
-  /** Version of the operating system the application is being run on; must be non-empty */
+  /**
+   * Version of the operating system the application is being run on. If empty, the version
+   * is automatically detected by TDLib
+   */
   systemVersion?: string
   /** Application version; must be non-empty */
   applicationVersion?: string

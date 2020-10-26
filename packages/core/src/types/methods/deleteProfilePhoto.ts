@@ -6,7 +6,7 @@ export interface DeleteProfilePhotoParams {
 }
 
 /**
- * Deletes a profile photo. If something changes, updateUser will be sent
+ * Deletes a profile photo
  * @param {Object} params
  * @param {string} [params.profilePhotoId] - Identifier of the profile photo to delete
  * @param {ApiRequestOptions} options

@@ -2,7 +2,7 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
 export interface RequestQrCodeAuthenticationParams {
-  otherUserIds?: number[] // List of user identifiers of other users currently using the client
+  otherUserIds?: number[] // List of user identifiers of other users currently using the application
 }
 
 /**
@@ -12,7 +12,7 @@ export interface RequestQrCodeAuthenticationParams {
  * is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
  * @param {Object} params
  * @param {number[]} [params.otherUserIds] - List of user identifiers of other users
- * currently using the client
+ * currently using the application
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RequestQrCodeAuthenticationParams, OkUnion>>}
  */

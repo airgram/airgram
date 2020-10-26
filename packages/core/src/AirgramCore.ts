@@ -16,6 +16,7 @@ import {
   Middleware,
   MiddlewareFn,
   MiddlewareOn,
+  ProviderFactory,
   SetStateFn,
   TdLibConfig,
   TdObject,
@@ -75,7 +76,7 @@ function isWrapped<T> (o: any): o is T {
 }
 
 export class AirgramCore<ProviderT extends TdProvider> implements Instance<ProviderT> {
-  public readonly config: Config<ProviderT>
+  public readonly config: Config
 
   public handleError: ErrorHandler
 
@@ -92,30 +93,23 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
 
   private readonly composer: Composer<Context>
 
-  public constructor (config: Config<ProviderT>) {
+  public constructor (providerFactory: ProviderFactory<ProviderT>, config: Config) {
     this.config = { ...getDefaultConfig(), ...config }
     this.composer = new Composer()
-
-    const { provider } = this.config
-    if (!provider || typeof provider.initialize !== 'function') {
-      throw new Error('The `provider` option is required.')
-    }
-    provider.initialize(
-      (update) => this.handleUpdate(update),
+    this.provider = providerFactory(
+      (update: BaseTdObject) => this.handleUpdate(update),
       (message: Error | string) => {
         const error = message instanceof Error ? message : new Error(message)
         this.handleError(error)
-      },
-      this.config.models
+      }
     )
     if (this.config.logVerbosityLevel !== undefined) {
-      provider.execute({
+      this.provider.execute({
         method: 'setLogVerbosityLevel',
         params: { newVerbosityLevel: this.config.logVerbosityLevel }
       })
     }
 
-    this.provider = provider
     this.handleError = (error: Error): void => {
       throw error
     }

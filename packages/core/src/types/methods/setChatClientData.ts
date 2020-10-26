@@ -7,7 +7,7 @@ export interface SetChatClientDataParams {
 }
 
 /**
- * Changes client data associated with a chat
+ * Changes application-specific data associated with a chat
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {string} [params.clientData] - New value of client_data

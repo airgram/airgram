@@ -32,7 +32,7 @@ export interface StickerSetInfo {
   size: number
   /**
    * Contains up to the first 5 stickers from the set, depending on the context. If the
-   * client needs more stickers the full set should be requested
+   * application needs more stickers the full set should be requested
    */
   covers: Sticker[]
 }

@@ -6,8 +6,7 @@ export interface SetLogVerbosityLevelParams {
 }
 
 /**
- * Sets the verbosity level of the internal logging of TDLib. This is an offline method.
- * Can be called before authorization. Can be called synchronously
+ * Sets the verbosity level of the internal logging of TDLib. Can be called synchronously
  * @param {Object} params
  * @param {number} [params.newVerbosityLevel] - New value of the verbosity level
  * for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors,

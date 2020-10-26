@@ -1,14 +1,16 @@
-import { BotInfo } from './index'
+import { BotInfo, ChatPhoto } from './index'
 
 export type UserFullInfoUnion = UserFullInfo
 
-/** Contains full information about a user (except the full list of profile photos) */
+/** Contains full information about a user */
 export interface UserFullInfo {
   _: 'userFullInfo'
-  /** True, if the user is blacklisted by the current user */
-  isBlocked: boolean
+  /** User profile photo; may be null */
+  photo?: ChatPhoto
   /** True, if the user can be called */
   canBeCalled: boolean
+  /** True, if a video call can be created with the user */
+  supportsVideoCalls: boolean
   /** True, if the user can't be called due to their privacy settings */
   hasPrivateCalls: boolean
   /**

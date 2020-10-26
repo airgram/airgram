@@ -7,8 +7,7 @@ export interface AddLogMessageParams {
 }
 
 /**
- * Adds a message to TDLib internal log. This is an offline method. Can be called before
- * authorization. Can be called synchronously
+ * Adds a message to TDLib internal log. Can be called synchronously
  * @param {Object} params
  * @param {number} [params.verbosityLevel] - The minimum verbosity level needed for
  * the message to be logged, 0-1023

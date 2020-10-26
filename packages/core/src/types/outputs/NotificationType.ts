@@ -30,11 +30,13 @@ export interface NotificationTypeNewPushMessage {
   _: 'notificationTypeNewPushMessage'
   /**
    * The message identifier. The message will not be available in the chat history, but
-   * the ID can be used in viewMessages and as reply_to_message_id
+   * the ID can be used in viewMessages, or as reply_to_message_id
    */
   messageId: number
   /** Sender of the message; 0 if unknown. Corresponding user may be inaccessible */
   senderUserId: number
+  /** Sender chat of the message; 0 if none */
+  senderChatId: number
   /** Name of the sender; can be different from the name of the sender user */
   senderName: string
   /** True, if the message is outgoing */

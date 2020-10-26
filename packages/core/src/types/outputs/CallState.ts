@@ -1,7 +1,7 @@
 import {
-  CallConnection,
   CallDiscardReasonUnion,
   CallProtocol,
+  CallServer,
   Error
 } from './index'
 
@@ -32,8 +32,8 @@ export interface CallStateReady {
   _: 'callStateReady'
   /** Call protocols supported by the peer */
   protocol: CallProtocol
-  /** Available UDP reflectors */
-  connections: CallConnection[]
+  /** List of available call servers */
+  servers: CallServer[]
   /** A JSON-encoded call config */
   config: string
   /** Call encryption key */

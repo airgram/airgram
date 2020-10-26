@@ -5,6 +5,7 @@ import {
   InputThumbnailInput,
   InvoiceInput,
   LocationInput,
+  MessageCopyOptionsInput,
   PollTypeInputUnion,
   VenueInput
 } from './index'
@@ -86,6 +87,11 @@ export interface InputMessageDocumentInput {
   document?: InputFileInputUnion
   /** Document thumbnail, if available */
   thumbnail?: InputThumbnailInput
+  /**
+   * If true, automatic file type detection will be disabled and the document will be
+   * always sent as file. Always true for files sent to secret chats
+   */
+  disableContentTypeDetection?: boolean
   /** Document caption; 0-GetOption("message_caption_length_max") characters */
   caption?: FormattedTextInput
 }
@@ -254,7 +260,7 @@ export interface InputMessageInvoiceInput {
  */
 export interface InputMessagePollInput {
   _: 'inputMessagePoll'
-  /** Poll question, 1-255 characters */
+  /** Poll question, 1-255 characters (up to 300 characters for bots) */
   question?: string
   /** List of poll answer options, 2-10 strings 1-100 characters each */
   options?: string[]
@@ -289,13 +295,8 @@ export interface InputMessageForwardedInput {
    */
   inGameShare?: boolean
   /**
-   * True, if content of the message needs to be copied without a link to the original
-   * message. Always true if the message is forwarded to a secret chat
+   * Options to be used to copy content of the message without a link to the original
+   * message
    */
-  sendCopy?: boolean
-  /**
-   * True, if media caption of the message copy needs to be removed. Ignored if send_copy
-   * is false
-   */
-  removeCaption?: boolean
+  copyOptions?: MessageCopyOptionsInput
 }

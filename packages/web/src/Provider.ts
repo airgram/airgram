@@ -1,9 +1,9 @@
-import { ApiRequest, TdObject, TdProvider as BaseTdProvider } from '@airgram/core'
+import { ApiRequest, TdObject, Provider as BaseTdProvider } from '@airgram/core'
 import TdClient, { TdObject as NativeTdObject } from 'tdweb'
-import { DeserializeFn, SerializeFn, TdWebProviderConfig } from '../types'
-import { deserializerFactory, serializerFactory } from '../utils'
+import { DeserializeFn, SerializeFn, TdWebProviderConfig } from './types'
+import { deserializerFactory, serializerFactory } from './utils'
 
-export class TdProvider extends BaseTdProvider {
+export class Provider extends BaseTdProvider {
   private client: TdClient | null = null
 
   private readonly config: TdWebProviderConfig = {}

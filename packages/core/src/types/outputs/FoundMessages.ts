@@ -5,8 +5,10 @@ export type FoundMessagesUnion = FoundMessages
 /** Contains a list of messages found by a search */
 export interface FoundMessages {
   _: 'foundMessages'
+  /** Approximate total count of messages found; -1 if unknown */
+  totalCount: number
   /** List of messages */
   messages: Message[]
-  /** Value to pass as from_search_id to get more results */
-  nextFromSearchId: string
+  /** The offset for the next request. If empty, there are no more results */
+  nextOffset: string
 }

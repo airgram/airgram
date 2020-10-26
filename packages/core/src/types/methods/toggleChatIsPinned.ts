@@ -9,8 +9,9 @@ export interface ToggleChatIsPinnedParams {
 }
 
 /**
- * Changes the pinned state of a chat. You can pin up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max")
- * non-secret chats and the same number of secret chats in the main/arhive chat list
+ * Changes the pinned state of a chat. There can be up to GetOption("pinned_chat_count_max")/GetOption("pinned_archived_chat_count_max")
+ * pinned non-secret chats and the same number of secret chats in the main/arhive chat
+ * list
  * @param {Object} params
  * @param {ChatListInputUnion} [params.chatList] - Chat list in which to change the
  * pinned state of the chat

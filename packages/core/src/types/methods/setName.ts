@@ -7,8 +7,7 @@ export interface SetNameParams {
 }
 
 /**
- * Changes the first and last name of the current user. If something changes, updateUser
- * will be sent
+ * Changes the first and last name of the current user
  * @param {Object} params
  * @param {string} [params.firstName] - The new value of the first name for the user;
  * 1-64 characters

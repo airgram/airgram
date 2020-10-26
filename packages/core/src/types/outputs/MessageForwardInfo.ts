@@ -12,15 +12,15 @@ export interface MessageForwardInfo {
   /** The type of a public service announcement for the forwarded message */
   publicServiceAnnouncementType: string
   /**
-   * For messages forwarded to the chat with the current user (Saved Messages) or to the
-   * channel's discussion group, the identifier of the chat from which the message was
-   * forwarded last time; 0 if unknown
+   * For messages forwarded to the chat with the current user (Saved Messages), to the
+   * Replies bot chat, or to the channel's discussion group, the identifier of the chat
+   * from which the message was forwarded last time; 0 if unknown
    */
   fromChatId: number
   /**
-   * For messages forwarded to the chat with the current user (Saved Messages) or to the
-   * channel's discussion group, the identifier of the original message from which the
-   * new message was forwarded last time; 0 if unknown
+   * For messages forwarded to the chat with the current user (Saved Messages), to the
+   * Replies bot chat, or to the channel's discussion group, the identifier of the original
+   * message from which the new message was forwarded last time; 0 if unknown
    */
   fromMessageId: number
 }

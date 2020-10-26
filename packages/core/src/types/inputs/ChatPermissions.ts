@@ -13,8 +13,8 @@ export interface ChatPermissionsInput {
   /** True, if the user can send polls. Implies can_send_messages permissions */
   canSendPolls?: boolean
   /**
-   * True, if the user can send animations, games, and stickers and use inline bots. Implies
-   * can_send_messages permissions
+   * True, if the user can send animations, games, stickers, and dice and use inline bots.
+   * Implies can_send_messages permissions
    */
   canSendOtherMessages?: boolean
   /**

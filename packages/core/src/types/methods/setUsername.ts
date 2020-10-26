@@ -6,8 +6,7 @@ export interface SetUsernameParams {
 }
 
 /**
- * Changes the username of the current user. If something changes, updateUser will be
- * sent
+ * Changes the username of the current user
  * @param {Object} params
  * @param {string} [params.username] - The new value of the username. Use an empty
  * string to remove the username

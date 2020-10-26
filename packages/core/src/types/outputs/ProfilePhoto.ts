@@ -7,7 +7,7 @@ export interface ProfilePhoto {
   _: 'profilePhoto'
   /**
    * Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of
-   * userProfilePhotos
+   * user profile photos
    */
   id: string
   /**
@@ -20,4 +20,6 @@ export interface ProfilePhoto {
    * is changed
    */
   big: File
+  /** True, if the photo has animated variant */
+  hasAnimation: boolean
 }

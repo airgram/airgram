@@ -1,14 +1,11 @@
 import { MessageSchedulingStateInputUnion } from './index'
 
-export type SendMessageOptionsInputUnion = SendMessageOptionsInput
+export type MessageSendOptionsInputUnion = MessageSendOptionsInput
 
-/** Options to be used when a message is send */
-export interface SendMessageOptionsInput {
-  _: 'sendMessageOptions'
-  /**
-   * Pass true to disable notification for the message. Must be false if the message is
-   * sent to a secret chat
-   */
+/** Options to be used when a message is sent */
+export interface MessageSendOptionsInput {
+  _: 'messageSendOptions'
+  /** Pass true to disable notification for the message */
   disableNotification?: boolean
   /** Pass true if the message is sent from the background */
   fromBackground?: boolean

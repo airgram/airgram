@@ -5,6 +5,7 @@ export interface DiscardCallParams {
   callId?: number // Call identifier
   isDisconnected?: boolean // True, if the user was disconnected
   duration?: number // The call duration, in seconds
+  isVideo?: boolean // True, if the call was a video call
   connectionId?: string // Identifier of the connection used during the call
 }
 
@@ -14,6 +15,7 @@ export interface DiscardCallParams {
  * @param {number} [params.callId] - Call identifier
  * @param {boolean} [params.isDisconnected] - True, if the user was disconnected
  * @param {number} [params.duration] - The call duration, in seconds
+ * @param {boolean} [params.isVideo] - True, if the call was a video call
  * @param {string} [params.connectionId] - Identifier of the connection used during
  * the call
  * @param {ApiRequestOptions} options

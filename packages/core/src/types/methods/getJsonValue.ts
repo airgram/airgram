@@ -6,8 +6,8 @@ export interface GetJsonValueParams {
 }
 
 /**
- * Converts a JSON-serialized string to corresponding JsonValue object. This is an offline
- * method. Can be called before authorization. Can be called synchronously
+ * Converts a JSON-serialized string to corresponding JsonValue object. Can be called
+ * synchronously
  * @param {Object} params
  * @param {string} [params.json] - The JSON-serialized string
  * @param {ApiRequestOptions} options

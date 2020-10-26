@@ -1,7 +1,7 @@
 import {
   Animation,
   Audio,
-  ChatPhoto,
+  ChatPhotoInfo,
   Location,
   PageBlockCaption,
   PageBlockListItem,
@@ -273,7 +273,7 @@ export interface PageBlockChatLink {
   /** Chat title */
   title: string
   /** Chat photo; may be null */
-  photo?: ChatPhoto
+  photo?: ChatPhotoInfo
   /** Chat username, by which all other information about the chat should be resolved */
   username: string
 }

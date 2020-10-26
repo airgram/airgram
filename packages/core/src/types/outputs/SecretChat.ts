@@ -25,9 +25,9 @@ export interface SecretChat {
    */
   keyHash: string
   /**
-   * Secret chat layer; determines features supported by the other client. Video notes
-   * are supported if the layer >= 66; nested text entities and underline and strikethrough
-   * entities are supported if the layer >= 101
+   * Secret chat layer; determines features supported by the chat partner's application.
+   * Video notes are supported if the layer >= 66; nested text entities and underline
+   * and strikethrough entities are supported if the layer >= 101
    */
   layer: number
 }

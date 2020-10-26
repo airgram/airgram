@@ -4,7 +4,7 @@ import { PushReceiverIdUnion } from '../outputs'
 
 export interface RegisterDeviceParams {
   deviceToken?: DeviceTokenInputUnion // Device token
-  otherUserIds?: number[] // List of user identifiers of other users currently using the client
+  otherUserIds?: number[] // List of user identifiers of other users currently using the application
 }
 
 /**
@@ -13,7 +13,7 @@ export interface RegisterDeviceParams {
  * @param {Object} params
  * @param {DeviceTokenInputUnion} [params.deviceToken] - Device token
  * @param {number[]} [params.otherUserIds] - List of user identifiers of other users
- * currently using the client
+ * currently using the application
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<RegisterDeviceParams, PushReceiverIdUnion>>}
  */

@@ -10,8 +10,8 @@ export interface RemoteFile {
    * it represents the HTTP URL of the file. TDLib is currently unable to download files
    * if only their URL is known. If downloadFile is called on such a file or if it is
    * sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart
-   * to the client with the HTTP URL in the original_path and "#url#" as the conversion
-   * string. Clients should generate the file by downloading it to the specified location
+   * to the application with the HTTP URL in the original_path and "#url#" as the conversion
+   * string. Application should generate the file by downloading it to the specified location
    */
   id: string
   /**

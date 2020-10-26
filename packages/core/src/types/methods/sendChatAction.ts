@@ -4,6 +4,7 @@ import { OkUnion } from '../outputs'
 
 export interface SendChatActionParams {
   chatId?: number // Chat identifier
+  messageThreadId?: number // If not 0, a message thread identifier in which the action was performed
   action?: ChatActionInputUnion // The action description
 }
 
@@ -11,6 +12,8 @@ export interface SendChatActionParams {
  * Sends a notification about user activity in a chat
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
+ * @param {number} [params.messageThreadId] - If not 0, a message thread identifier
+ * in which the action was performed
  * @param {ChatActionInputUnion} [params.action] - The action description
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendChatActionParams, OkUnion>>}

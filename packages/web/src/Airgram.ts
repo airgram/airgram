@@ -1,13 +1,12 @@
-import { AirgramCore, Config } from '@airgram/core'
-import { TdProvider } from './components'
+import { AirgramCore, Config, ProviderFactory } from '@airgram/core'
+import { Provider } from './Provider'
 import { TdWebProviderConfig } from './types'
 
 export interface AirgramConfig
-  extends Omit<Config, 'provider'>, TdWebProviderConfig {}
+  extends Config, TdWebProviderConfig {}
 
-export class Airgram extends AirgramCore<TdProvider> {
+export class Airgram extends AirgramCore<Provider> {
   public constructor (config: AirgramConfig) {
-    console.info('WEB CON')
     const {
       instanceName,
       isBackground,
@@ -16,11 +15,10 @@ export class Airgram extends AirgramCore<TdProvider> {
       mode,
       readOnly,
       useDatabase,
-      ...restConfig
+      ...baseConfig
     } = config
-    const baseConfig = {
-      ...restConfig,
-      provider: new TdProvider({
+    const providerFactory: ProviderFactory<Provider> = () => {
+      return new Provider({
         instanceName,
         isBackground,
         jsLogVerbosityLevel,
@@ -30,9 +28,6 @@ export class Airgram extends AirgramCore<TdProvider> {
         useDatabase
       })
     }
-    console.info({
-      restConfig
-    })
-    super(baseConfig)
+    super(providerFactory, baseConfig)
   }
 }

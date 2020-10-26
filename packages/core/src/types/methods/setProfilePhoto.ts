@@ -1,17 +1,15 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { InputFileInputUnion } from '../inputs'
+import { InputChatPhotoInputUnion } from '../inputs'
 import { OkUnion } from '../outputs'
 
 export interface SetProfilePhotoParams {
-  photo?: InputFileInputUnion // Profile photo to set. inputFileId and inputFileRemote may still be unsupported
+  photo?: InputChatPhotoInputUnion // Profile photo to set
 }
 
 /**
- * Uploads a new profile photo for the current user. If something changes, updateUser
- * will be sent
+ * Changes a profile photo for the current user
  * @param {Object} params
- * @param {InputFileInputUnion} [params.photo] - Profile photo to set. inputFileId
- * and inputFileRemote may still be unsupported
+ * @param {InputChatPhotoInputUnion} [params.photo] - Profile photo to set
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetProfilePhotoParams, OkUnion>>}
  */

@@ -6,8 +6,8 @@ export interface GetLogTagVerbosityLevelParams {
 }
 
 /**
- * Returns current verbosity level for a specified TDLib internal log tag. This is an
- * offline method. Can be called before authorization. Can be called synchronously
+ * Returns current verbosity level for a specified TDLib internal log tag. Can be called
+ * synchronously
  * @param {Object} params
  * @param {string} [params.tag] - Logging tag to change verbosity level
  * @param {ApiRequestOptions} options

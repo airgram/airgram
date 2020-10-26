@@ -23,7 +23,7 @@ export interface ConnectionStateConnecting {
   _: 'connectionStateConnecting'
 }
 
-/** Downloading data received while the client was offline */
+/** Downloading data received while the application was offline */
 export interface ConnectionStateUpdating {
   _: 'connectionStateUpdating'
 }

@@ -1,10 +1,12 @@
-import { ChatLocation } from './index'
+import { ChatLocation, ChatPhoto } from './index'
 
 export type SupergroupFullInfoUnion = SupergroupFullInfo
 
 /** Contains full information about a supergroup or channel */
 export interface SupergroupFullInfo {
   _: 'supergroupFullInfo'
+  /** Chat photo; may be null */
+  photo?: ChatPhoto
   /** Supergroup or channel description */
   description: string
   /** Number of members in the supergroup or channel; 0 if unknown */
@@ -39,8 +41,8 @@ export interface SupergroupFullInfo {
   canSetStickerSet: boolean
   /** True, if the supergroup location can be changed */
   canSetLocation: boolean
-  /** True, if the channel statistics is available */
-  canViewStatistics: boolean
+  /** True, if the supergroup or channel statistics are available */
+  canGetStatistics: boolean
   /**
    * True, if new chat members will have access to old messages. In public or discussion
    * groups and both public and private channels, old messages are always available, so

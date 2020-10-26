@@ -10,8 +10,8 @@ export type ReplyMarkupInputUnion = ReplyMarkupRemoveKeyboardInput
   | ReplyMarkupInlineKeyboardInput
 
 /**
- * Instructs clients to remove the keyboard once this message has been received. This
- * kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup
+ * Instructs application to remove the keyboard once this message has been received.
+ * This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup
  * with message_id == 0 will be sent
  */
 export interface ReplyMarkupRemoveKeyboardInput {
@@ -23,7 +23,7 @@ export interface ReplyMarkupRemoveKeyboardInput {
   isPersonal?: boolean
 }
 
-/** Instructs clients to force a reply to this message */
+/** Instructs application to force a reply to this message */
 export interface ReplyMarkupForceReplyInput {
   _: 'replyMarkupForceReply'
   /**
@@ -39,9 +39,9 @@ export interface ReplyMarkupShowKeyboardInput {
   _: 'replyMarkupShowKeyboard'
   /** A list of rows of bot keyboard buttons */
   rows?: KeyboardButtonInput[][]
-  /** True, if the client needs to resize the keyboard vertically */
+  /** True, if the application needs to resize the keyboard vertically */
   resizeKeyboard?: boolean
-  /** True, if the client needs to hide the keyboard after use */
+  /** True, if the application needs to hide the keyboard after use */
   oneTime?: boolean
   /**
    * True, if the keyboard must automatically be shown to the current user. For outgoing

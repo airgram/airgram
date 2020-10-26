@@ -1,5 +1,6 @@
 /** Contains information about the origin of a forwarded message */
 export type MessageForwardOriginUnion = MessageForwardOriginUser
+  | MessageForwardOriginChat
   | MessageForwardOriginHiddenUser
   | MessageForwardOriginChannel
 
@@ -8,6 +9,16 @@ export interface MessageForwardOriginUser {
   _: 'messageForwardOriginUser'
   /** Identifier of the user that originally sent the message */
   senderUserId: number
+}
+
+/**
+ * The message was originally written by an anonymous chat administrator on behalf of
+ * the chat
+ */
+export interface MessageForwardOriginChat {
+  _: 'messageForwardOriginChat'
+  /** Identifier of the chat that originally sent the message */
+  senderChatId: number
 }
 
 /** The message was originally written by a user, which is hidden by their privacy settings */

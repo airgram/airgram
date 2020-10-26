@@ -1,6 +1,7 @@
 import {
   MessageContentUnion,
   MessageForwardInfo,
+  MessageInteractionInfo,
   MessageSchedulingStateUnion,
   MessageSendingStateUnion,
   ReplyMarkupUnion
@@ -11,13 +12,16 @@ export type MessageUnion = Message
 /** Describes a message */
 export interface Message {
   _: 'message'
-  /** Message identifier, unique for the chat to which the message belongs */
+  /** Message identifier; unique for the chat to which the message belongs */
   id: number
   /**
    * Identifier of the user who sent the message; 0 if unknown. Currently, it is unknown
-   * for channel posts and for channel posts automatically forwarded to discussion group
+   * for channel posts, for channel posts automatically forwarded to discussion group
+   * and for anonymously sent supergroup messages
    */
   senderUserId: number
+  /** Identifier of the chat on behalf of which the message was sent; 0 if none */
+  senderChatId: number
   /** Chat identifier */
   chatId: number
   /** Information about the sending state of the message; may be null */
@@ -29,7 +33,7 @@ export interface Message {
   /**
    * True, if the message can be edited. For live location and poll messages this fields
    * shows whether editMessageLiveLocation or stopPoll can be used with this message by
-   * the client
+   * the application
    */
   canBeEdited: boolean
   /** True, if the message can be forwarded */
@@ -41,6 +45,10 @@ export interface Message {
   canBeDeletedOnlyForSelf: boolean
   /** True, if the message can be deleted for all users */
   canBeDeletedForAllUsers: boolean
+  /** True, if the message statistics are available */
+  canGetStatistics: boolean
+  /** True, if the message thread info is available */
+  canGetMessageThread: boolean
   /**
    * True, if the message is a channel post. All messages to channels are channel posts,
    * all other messages are not channel posts
@@ -54,11 +62,23 @@ export interface Message {
   editDate: number
   /** Information about the initial message sender; may be null */
   forwardInfo?: MessageForwardInfo
+  /** Information about interactions with the message; may be null */
+  interactionInfo?: MessageInteractionInfo
+  /**
+   * If non-zero, the identifier of the chat to which the replied message belongs; Currently,
+   * only messages in the Replies chat can have different reply_in_chat_id and chat_id
+   */
+  replyInChatId: number
   /**
    * If non-zero, the identifier of the message this message is replying to; can be the
    * identifier of a deleted message
    */
   replyToMessageId: number
+  /**
+   * If non-zero, the identifier of the message thread the message belongs to; unique
+   * within the chat to which the message belongs
+   */
+  messageThreadId: number
   /**
    * For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if
    * none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
@@ -70,8 +90,6 @@ export interface Message {
   viaBotUserId: number
   /** For channel posts, optional author signature */
   authorSignature: string
-  /** Number of times this message was viewed */
-  views: number
   /**
    * Unique identifier of an album this message belongs to. Only photos and videos can
    * be grouped together in albums

@@ -13,7 +13,7 @@ export interface AutoDownloadSettings {
   maxOtherFileSize: number
   /** The maximum suggested bitrate for uploaded videos */
   videoUploadBitrate: number
-  /** True, if the beginning of videos needs to be preloaded for instant playback */
+  /** True, if the beginning of video files needs to be preloaded for instant playback */
   preloadLargeVideos: boolean
   /**
    * True, if the next audio track needs to be preloaded while the user is listening to

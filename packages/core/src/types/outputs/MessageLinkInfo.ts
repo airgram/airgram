@@ -13,4 +13,6 @@ export interface MessageLinkInfo {
   message?: Message
   /** True, if the whole media album to which the message belongs is linked */
   forAlbum: boolean
+  /** True, if the message is linked as a channel post comment or from a message thread */
+  forComment: boolean
 }

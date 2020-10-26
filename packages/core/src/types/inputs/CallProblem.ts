@@ -6,6 +6,8 @@ export type CallProblemInputUnion = CallProblemEchoInput
   | CallProblemSilentLocalInput
   | CallProblemSilentRemoteInput
   | CallProblemDroppedInput
+  | CallProblemDistortedVideoInput
+  | CallProblemPixelatedVideoInput
 
 /** The user heard their own voice */
 export interface CallProblemEchoInput {
@@ -40,4 +42,14 @@ export interface CallProblemSilentRemoteInput {
 /** The call ended unexpectedly */
 export interface CallProblemDroppedInput {
   _: 'callProblemDropped'
+}
+
+/** The video was distorted */
+export interface CallProblemDistortedVideoInput {
+  _: 'callProblemDistortedVideo'
+}
+
+/** The video was pixelated */
+export interface CallProblemPixelatedVideoInput {
+  _: 'callProblemPixelatedVideo'
 }

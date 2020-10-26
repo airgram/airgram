@@ -5,14 +5,14 @@ export function pick<T, K extends keyof T> (obj: T, paths: K[]): Pick<T, K> {
   return { ...paths.reduce((mem, key) => ({ ...mem, [key]: obj[key] }), {}) } as Pick<T, K>
 }
 
-export function createDeferred (): Deferred {
+export function createDeferred<T = unknown> (): Deferred<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const deferred: Record<string, any> = {}
-  deferred.promise = new Promise<void>((resolve, reject) => {
+  deferred.promise = new Promise<T>((resolve, reject) => {
     deferred.resolve = resolve
     deferred.reject = reject
   })
-  return deferred as Deferred
+  return deferred as Deferred<T>
 }
 
 export function isError (obj: any): obj is ErrorUnion {

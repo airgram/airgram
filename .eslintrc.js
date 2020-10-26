@@ -35,6 +35,10 @@ module.exports = {
       allowExpressions: true,
       allowTypedFunctionExpressions: true,
       allowHigherOrderFunctions: true
-    }]
+    }],
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": ["error"],
+    "no-dupe-class-members": "off",
+    "@typescript-eslint/no-dupe-class-members": ["error"]
   }
 }
