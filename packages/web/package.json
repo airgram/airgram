@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@airgram/core": "^3.2.1",
-    "tdweb": "~1.6.6"
+    "tdweb": "~1.6.9"
   },
   "devDependencies": {
     "@types/tdweb": "1.4.0"
