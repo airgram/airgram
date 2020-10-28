@@ -1,6 +1,6 @@
 import { PlainObjectToModelTransformer, TdObject } from '@airgram/core'
 
-export interface TdProxyConfig {
+export interface TdJsonConfig {
   command?: string
   models?: PlainObjectToModelTransformer
   timeout?: number

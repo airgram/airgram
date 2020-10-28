@@ -4,7 +4,7 @@ import { TdObject } from '@airgram/core'
 import * as ffi from 'ffi-napi'
 import { resolve as resolvePath } from 'path'
 import * as ref from 'ref-napi'
-import { TdProxyConfig } from '../types'
+import { TdJsonConfig } from '../types'
 import { createDeserializer, createSerializer } from '../utils'
 
 interface TdJsonClientInterface {
@@ -20,24 +20,6 @@ type UpdateHandlerFn = (update: TdObject) => any
 
 const DEFAULT_COMMAND = process.platform === 'win32' ? 'tdjson' : 'libtdjson'
 
-const libraries = new Map<string, TdJsonClientInterface>()
-
-function getLibrary (command: string): TdJsonClientInterface {
-  let library: TdJsonClientInterface | undefined = libraries.get(command)
-  if (!library) {
-    library = ffi.Library(
-      resolvePath(command || DEFAULT_COMMAND),
-      {
-        td_create_client: ['int', []],
-        td_send: ['void', ['int', 'string']],
-        td_receive: ['string', ['double']],
-        td_execute: ['string', ['string']]
-      }) as TdJsonClientInterface
-    libraries.set(command, library)
-  }
-  return library
-}
-
 function buildQuery (query: string): Buffer {
   const buffer: any = Buffer.from(query + '\0', 'utf-8')
   buffer.type = ref.types.CString
@@ -45,6 +27,8 @@ function buildQuery (query: string): Buffer {
 }
 
 export class TdJsonClient {
+  public readonly command: string
+
   private readonly client: TdJsonClientInterface
 
   private readonly deserialize: (key: string, value: unknown) => Record<string, unknown>
@@ -67,14 +51,22 @@ export class TdJsonClient {
 
   private wakeup: (() => void) | null = null
 
-  public constructor ({ command, models, timeout }: TdProxyConfig) {
+  public constructor ({ command, models, timeout }: TdJsonConfig) {
+    this.command = command || DEFAULT_COMMAND
     this.timeout = timeout || 10
     this.serialize = createSerializer()
     this.deserialize = createDeserializer(models)
     this.handleError = (error: Error): void => {
       throw error
     }
-    this.client = getLibrary(resolvePath(command || DEFAULT_COMMAND))
+    this.client = ffi.Library(
+      resolvePath(this.command),
+      {
+        td_create_client: ['int', []],
+        td_send: ['void', ['int', 'string']],
+        td_receive: ['string', ['double']],
+        td_execute: ['string', ['string']]
+      }) as TdJsonClientInterface
     this.loop()
   }
 
