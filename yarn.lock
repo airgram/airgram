@@ -6,17 +6,17 @@
   version "3.0.0"
 
 "@airgram/use-models@link:packages/use-models":
-  version "3.1.1"
+  version "3.2.1"
   dependencies:
-    "@airgram/core" "^3.1.1"
+    "@airgram/core" "^3.2.1"
     class-transformer "^0.3.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "3.1.1"
+  version "3.2.1"
   dependencies:
-    "@airgram/core" "^3.1.1"
-    tdweb "~1.6.6"
+    "@airgram/core" "^3.2.1"
+    tdweb "~1.6.9"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
   version "7.10.3"
@@ -2040,10 +2040,10 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "3.1.1"
+  version "3.2.1"
   dependencies:
     "@airgram/constants" "^3.0.0"
-    "@airgram/core" "^3.1.1"
+    "@airgram/core" "^3.2.1"
     ffi-napi "^3.0.0"
 
 ajv-errors@^1.0.0:
@@ -11896,10 +11896,10 @@ tdweb@^1.4.3:
     localforage "^1.7.3"
     uuid "^3.3.2"
 
-tdweb@~1.6.6:
-  version "1.6.6"
-  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.6.tgz#081f863fca7b7ce18b1e0150e7d931e913e88a1c"
-  integrity sha512-BLDu6BYBYiseNIZevxUpoTwWw5krs+Vr1RPSJdgLqsK4Xf9a1N+/goXp23E/bRQTLK7g9YLNoPgk7+w1+MAg7A==
+tdweb@~1.6.9:
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.9.tgz#5afad82011fe4b1afca5f10d80ae942b716b2133"
+  integrity sha512-K3cSydJJo4h+yhD79hrixLQhP62WB+i1K+fsFONxn/+ouqUAJOEmFYBbwpNzU2qx2vy6/hWMqt0BkztrKGu+UQ==
   dependencies:
     "@babel/runtime" "^7.4.3"
     broadcast-channel "^2.1.12"
