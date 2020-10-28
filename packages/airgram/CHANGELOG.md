@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/airgram/airgram/compare/airgram@3.2.1...airgram@3.2.2) (2020-10-28)
+
+
+### Bug Fixes
+
+* "updates handler for the client 1 not found" ([60d1ea6](https://github.com/airgram/airgram/commit/60d1ea6f4d24f5f11fbcaa8e1dcf92048800c48c))
+
+
+
+
+
 ## [3.2.1](https://github.com/airgram/airgram/compare/airgram@3.2.0...airgram@3.2.1) (2020-10-26)
 
 **Note:** Version bump only for package airgram
