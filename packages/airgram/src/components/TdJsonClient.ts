@@ -18,6 +18,8 @@ type NativeTdObject = (TdObject & { '@extra': string; '@client_id': string }) | 
 
 type UpdateHandlerFn = (update: TdObject) => any
 
+type ClientHandlers = Map<string, UpdateHandlerFn>
+
 const DEFAULT_COMMAND = process.platform === 'win32' ? 'tdjson' : 'libtdjson'
 
 function buildQuery (query: string): Buffer {
@@ -37,13 +39,13 @@ export class TdJsonClient {
 
   private handleError: (error: Error) => void
 
-  private readonly pending: Map<string, UpdateHandlerFn> = new Map()
+  private readonly pending: Map<number, ClientHandlers> = new Map()
 
   private readonly serialize: (key: string, value: unknown) => Record<string, unknown>
 
   private sleepPromise: Promise<void> | null = null
 
-  private stack: NonNullable<NativeTdObject>[] = []
+  private stack: Map<number, NonNullable<NativeTdObject>[]> = new Map()
 
   private readonly timeout: number
 
@@ -105,6 +107,8 @@ export class TdJsonClient {
 
   public removeUpdateHandler (clientId: number): void {
     this.updateHandlers.delete(clientId)
+    this.pending.delete(clientId)
+    this.stack.delete(clientId)
   }
 
   public resume (): void {
@@ -122,46 +126,68 @@ export class TdJsonClient {
     resolve: UpdateHandlerFn
   ): void {
     if (!this.destroyed) {
-      this.pending.set(id, resolve)
+      const clientHandlers = this.getClientHandlers(clientId)
+      clientHandlers.set(id, resolve)
       this.client.td_send(clientId, buildQuery(JSON.stringify(request, this.serialize)))
     }
   }
 
   private addToStack (response: NativeTdObject | null): void {
     if (response) {
-      this.stack.push(response)
-      if (this.stack.length === 1) {
-        this.handleResponse().catch(this.handleError)
+      const clientId = Number(response['@client_id'])
+      const clientStack = this.getClientStack(clientId)
+      clientStack.push(response)
+      if (clientStack.length === 1) {
+        this.handleResponse(clientId).catch(this.handleError)
       }
     }
   }
 
-  private async handleResponse (): Promise<void> {
-    const response = this.stack.shift()
+  private getClientHandlers (clientId: number): ClientHandlers {
+    let clientHandlers = this.pending.get(clientId)
+    if (!clientHandlers) {
+      clientHandlers = new Map()
+      this.pending.set(clientId, clientHandlers)
+    }
+    return clientHandlers
+  }
+
+  private getClientStack (clientId: number): NonNullable<NativeTdObject>[] {
+    let clientStack = this.stack.get(clientId)
+    if (!clientStack) {
+      clientStack = []
+      this.stack.set(clientId, clientStack)
+    }
+    return clientStack
+  }
+
+  private async handleResponse (clientId: number): Promise<void> {
+    const clientStack = this.getClientStack(clientId)
+    const response = clientStack.shift()
 
     if (!response) {
       return Promise.resolve()
     }
 
-    const clientId = response['@client_id']
     const requestId = response['@extra']
 
     delete response['@client_id']
     delete response['@extra']
 
     if (requestId) {
-      const resolve = this.pending.get(requestId)
-      this.pending.delete(requestId)
+      const clientHandlers = this.getClientHandlers(clientId)
+      const resolve = clientHandlers.get(requestId)
+      clientHandlers.delete(requestId)
       if (resolve) {
         resolve(response)
       } else {
         this.handleError(new Error(`[TdProxy] request handler for the client ${clientId} not found. Missed update: ${JSON.stringify(response)}`))
       }
     } else {
-      await this.handleUpdate(Number(clientId), response)
+      await this.handleUpdate(clientId, response)
     }
 
-    setImmediate(() => this.handleResponse())
+    setImmediate(() => this.handleResponse(clientId))
   }
 
   private async handleUpdate (clientId: number, response: TdObject): Promise<unknown> {
