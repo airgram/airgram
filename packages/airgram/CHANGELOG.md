@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](https://github.com/airgram/airgram/compare/airgram@3.2.2...airgram@3.2.3) (2020-10-31)
+
+
+### Bug Fixes
+
+* separate updates stack for each client ([e965f5b](https://github.com/airgram/airgram/commit/e965f5bbff3471c0ba35933a914fc725b29712ad))
+
+
+
+
+
 ## [3.2.2](https://github.com/airgram/airgram/compare/airgram@3.2.1...airgram@3.2.2) (2020-10-28)
 
 
