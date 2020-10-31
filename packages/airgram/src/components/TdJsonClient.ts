@@ -200,11 +200,23 @@ export class TdJsonClient {
   }
 
   private loop (): void {
-    (this.sleepPromise || Promise.resolve())
-      .then(() => this.receive())
-      .then((response) => this.addToStack(response))
-      .catch(this.handleError)
-      .finally(() => !this.destroyed && this.loop())
+    if (this.destroyed) {
+      return
+    }
+    if (this.sleepPromise) {
+      this.sleepPromise.then(() => {
+        this.receive()
+      })
+    } else {
+      this.receive()
+    }
+  }
+
+  private onReceive (response: NativeTdObject | null): void {
+    if (response) {
+      this.addToStack(response)
+    }
+    setImmediate(() => this.loop())
   }
 
   private parseResponse (data: string | null): NativeTdObject | null {
@@ -219,19 +231,17 @@ export class TdJsonClient {
     }
   }
 
-  private receive (): Promise<NativeTdObject | null> {
+  private receive (): void {
     if (this.destroyed) {
-      return Promise.resolve(null)
+      return
     }
-    return new Promise<NativeTdObject | null>((resolve) => {
-      this.client.td_receive.async(this.timeout, (error: string, response: string) => {
-        if (error) {
-          this.handleError(new Error(`[TdProxy] TDLib error: ${error}`))
-          return null
-        }
-        const tdObject = this.parseResponse(response)
-        return resolve(tdObject)
-      })
+    this.client.td_receive.async(this.timeout, (error: string, response: string) => {
+      if (error) {
+        this.handleError(new Error(`[TdProxy] TDLib error: ${error}`))
+        return this.onReceive(null)
+      }
+      const tdObject = this.parseResponse(response)
+      this.onReceive(tdObject)
     })
   }
 }
