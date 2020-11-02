@@ -21,10 +21,10 @@ ___
 <!-- [![node](https://img.shields.io/node/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram) -->
 
 
-*WARNING:* 
+**WARNING:** 
 The latest version of Airgram (Node.js) required TDLib `v 1.6.9` or higher, which you have to build from the `master` branch. For using previous version of TDLib you need to set exact version of Airgram:
-* TDLib 1.6.6 - `"airgram": "^3.1.1"`
-* TDLib 1.6.0 - `"airgram": "^3.0.2"`
+* TDLib 1.6.6 - `"airgram": "3.1.1"`
+* TDLib 1.6.0 - `"airgram": "3.0.2"`
 ___
 
 ## Installation
