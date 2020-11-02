@@ -15,10 +15,16 @@ This is a wrapper for [Telegram Database library](https://github.com/tdlib/td) w
 ___
 
 [![NPM Version](https://img.shields.io/npm/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram)
-[![TDLib](https://img.shields.io/badge/tdlib-v1.5.0-%2335ADE1)](https://github.com/tdlib/td)
+[![TDLib](https://img.shields.io/badge/tdlib-v1.6.9-%2335ADE1)](https://github.com/tdlib/td)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 [![NPM](https://img.shields.io/npm/l/airgram)](/blob/master/LICENSE)
 <!-- [![node](https://img.shields.io/node/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram) -->
+
+
+*WARNING:* 
+The latest version of Airgram (Node.js) required TDLib `v 1.6.9` or higher, which you have to build from the `master` branch. For using previous version of TDLib you need to set exact version of Airgram:
+* TDLib 1.6.6 - `"airgram": "^3.1.1"`
+* TDLib 1.6.0 - `"airgram": "^3.0.2"`
 ___
 
 ## Installation
