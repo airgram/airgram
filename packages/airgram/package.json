@@ -23,7 +23,7 @@
   },
   "pre-commit": "yarn run lint",
   "dependencies": {
-    "@airgram/constants": "^3.0.0",
+    "@airgram/constants": "~3.0.0",
     "@airgram/core": "~3.0.1",
     "ffi-napi": "^2.4.5"
   },
