@@ -78,7 +78,7 @@ airgram.on('updateNewMessage', async ({ update }, next) => {
 ```
 
 ## Documentation
-Guides and API-reference are available [here](https://airgram.io).
+Guides and API-reference are available [here](https://airgram.netlify.app).
 
 ## Old version
 If you are interested in `v1.*`, follow to corresponding [branch](https://github.com/airgram/airgram/tree/v1).
