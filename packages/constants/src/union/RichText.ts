@@ -12,6 +12,8 @@ export enum RICH_TEXT {
   richTextMarked = 'richTextMarked',
   richTextPhoneNumber = 'richTextPhoneNumber',
   richTextIcon = 'richTextIcon',
+  richTextReference = 'richTextReference',
   richTextAnchor = 'richTextAnchor',
+  richTextAnchorLink = 'richTextAnchorLink',
   richTexts = 'richTexts'
 }

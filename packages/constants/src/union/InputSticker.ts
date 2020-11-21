@@ -1,3 +1,4 @@
 export enum INPUT_STICKER {
-  inputSticker = 'inputSticker'
+  inputStickerStatic = 'inputStickerStatic',
+  inputStickerAnimated = 'inputStickerAnimated'
 }

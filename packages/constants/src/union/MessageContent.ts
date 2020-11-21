@@ -13,6 +13,7 @@ export enum MESSAGE_CONTENT {
   messageLocation = 'messageLocation',
   messageVenue = 'messageVenue',
   messageContact = 'messageContact',
+  messageDice = 'messageDice',
   messageGame = 'messageGame',
   messagePoll = 'messagePoll',
   messageInvoice = 'messageInvoice',
@@ -38,5 +39,6 @@ export enum MESSAGE_CONTENT {
   messageWebsiteConnected = 'messageWebsiteConnected',
   messagePassportDataSent = 'messagePassportDataSent',
   messagePassportDataReceived = 'messagePassportDataReceived',
+  messageProximityAlertTriggered = 'messageProximityAlertTriggered',
   messageUnsupported = 'messageUnsupported'
 }

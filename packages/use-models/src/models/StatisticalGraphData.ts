@@ -1,6 +1,6 @@
 /** A graph data */
-export class StatisticsGraphDataBaseModel {
-  public _: 'statisticsGraphData'
+export class StatisticalGraphDataBaseModel {
+  public _: 'statisticalGraphData'
 
   /** Graph data in JSON format */
   public jsonData: string

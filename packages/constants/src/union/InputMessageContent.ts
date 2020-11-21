@@ -11,6 +11,7 @@ export enum INPUT_MESSAGE_CONTENT {
   inputMessageLocation = 'inputMessageLocation',
   inputMessageVenue = 'inputMessageVenue',
   inputMessageContact = 'inputMessageContact',
+  inputMessageDice = 'inputMessageDice',
   inputMessageGame = 'inputMessageGame',
   inputMessageInvoice = 'inputMessageInvoice',
   inputMessagePoll = 'inputMessagePoll',

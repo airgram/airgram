@@ -23,7 +23,7 @@ export interface ApiMethods {
   answerInlineQuery: api.answerInlineQuery
   answerPreCheckoutQuery: api.answerPreCheckoutQuery
   answerShippingQuery: api.answerShippingQuery
-  blockChatFromReplies: api.blockChatFromReplies
+  blockMessageSenderFromReplies: api.blockMessageSenderFromReplies
   canTransferOwnership: api.canTransferOwnership
   cancelDownloadFile: api.cancelDownloadFile
   cancelUploadFile: api.cancelUploadFile
@@ -114,8 +114,9 @@ export interface ApiMethods {
   getBankCardInfo: api.getBankCardInfo
   getBasicGroup: api.getBasicGroup
   getBasicGroupFullInfo: api.getBasicGroupFullInfo
-  getBlockedChats: api.getBlockedChats
+  getBlockedMessageSenders: api.getBlockedMessageSenders
   getCallbackQueryAnswer: api.getCallbackQueryAnswer
+  getCallbackQueryMessage: api.getCallbackQueryMessage
   getChat: api.getChat
   getChatAdministrators: api.getChatAdministrators
   getChatEventLog: api.getChatEventLog
@@ -216,7 +217,7 @@ export interface ApiMethods {
   getSavedOrderInfo: api.getSavedOrderInfo
   getScopeNotificationSettings: api.getScopeNotificationSettings
   getSecretChat: api.getSecretChat
-  getStatisticsGraph: api.getStatisticsGraph
+  getStatisticalGraph: api.getStatisticalGraph
   getStickerEmojis: api.getStickerEmojis
   getStickerSet: api.getStickerSet
   getStickers: api.getStickers
@@ -396,12 +397,13 @@ export interface ApiMethods {
   testSquareInt: api.testSquareInt
   testUseUpdate: api.testUseUpdate
   toggleChatDefaultDisableNotification: api.toggleChatDefaultDisableNotification
-  toggleChatIsBlocked: api.toggleChatIsBlocked
   toggleChatIsMarkedAsUnread: api.toggleChatIsMarkedAsUnread
   toggleChatIsPinned: api.toggleChatIsPinned
+  toggleMessageSenderIsBlocked: api.toggleMessageSenderIsBlocked
   toggleSupergroupIsAllHistoryAvailable: api.toggleSupergroupIsAllHistoryAvailable
   toggleSupergroupSignMessages: api.toggleSupergroupSignMessages
   transferChatOwnership: api.transferChatOwnership
+  unpinAllChatMessages: api.unpinAllChatMessages
   unpinChatMessage: api.unpinChatMessage
   upgradeBasicGroupChatToSupergroupChat: api.upgradeBasicGroupChatToSupergroupChat
   uploadFile: api.uploadFile

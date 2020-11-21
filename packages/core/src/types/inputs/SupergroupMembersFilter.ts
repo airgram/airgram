@@ -5,6 +5,7 @@ export type SupergroupMembersFilterInputUnion = SupergroupMembersFilterRecentInp
   | SupergroupMembersFilterSearchInput
   | SupergroupMembersFilterRestrictedInput
   | SupergroupMembersFilterBannedInput
+  | SupergroupMembersFilterMentionInput
   | SupergroupMembersFilterBotsInput
 
 /** Returns recently active users in reverse chronological order */
@@ -43,6 +44,15 @@ export interface SupergroupMembersFilterBannedInput {
   _: 'supergroupMembersFilterBanned'
   /** Query to search for */
   query?: string
+}
+
+/** Returns users which can be mentioned in the supergroup */
+export interface SupergroupMembersFilterMentionInput {
+  _: 'supergroupMembersFilterMention'
+  /** Query to search for */
+  query?: string
+  /** If non-zero, the identifier of the current message thread */
+  messageThreadId?: number
 }
 
 /** Returns bot members of the supergroup or channel */

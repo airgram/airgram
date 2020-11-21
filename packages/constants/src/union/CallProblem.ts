@@ -5,5 +5,7 @@ export enum CALL_PROBLEM {
   callProblemDistortedSpeech = 'callProblemDistortedSpeech',
   callProblemSilentLocal = 'callProblemSilentLocal',
   callProblemSilentRemote = 'callProblemSilentRemote',
-  callProblemDropped = 'callProblemDropped'
+  callProblemDropped = 'callProblemDropped',
+  callProblemDistortedVideo = 'callProblemDistortedVideo',
+  callProblemPixelatedVideo = 'callProblemPixelatedVideo'
 }

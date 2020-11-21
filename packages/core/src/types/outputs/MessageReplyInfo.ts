@@ -1,15 +1,14 @@
+import { MessageSenderUnion } from './index'
+
 export type MessageReplyInfoUnion = MessageReplyInfo
 
-/** Contains information about message replies */
+/** Contains information about replies to a message */
 export interface MessageReplyInfo {
   _: 'messageReplyInfo'
   /** Number of times the message was directly or indirectly replied */
   replyCount: number
-  /**
-   * User identifiers of the recent repliers to the message; available in channels with
-   * a discussion supergroup
-   */
-  recentReplierUserIds: number[]
+  /** Recent repliers to the message; available in channels with a discussion supergroup */
+  recentRepliers: MessageSenderUnion[]
   /** Identifier of the last read incoming reply to the message */
   lastReadInboxMessageId: number
   /** Identifier of the last read outgoing reply to the message */

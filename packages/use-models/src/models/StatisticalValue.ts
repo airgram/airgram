@@ -1,8 +1,8 @@
-/** A statistics value */
-export class StatisticsValueBaseModel {
-  public _: 'statisticsValue'
+/** A value with information about its recent changes */
+export class StatisticalValueBaseModel {
+  public _: 'statisticalValue'
 
-  /** The value */
+  /** The current value */
   public value: number
 
   /** The value for the previous day */

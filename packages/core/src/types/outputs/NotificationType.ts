@@ -1,4 +1,4 @@
-import { Message, PushMessageContentUnion } from './index'
+import { Message, MessageSenderUnion, PushMessageContentUnion } from './index'
 
 /** Contains detailed information about a notification */
 export type NotificationTypeUnion = NotificationTypeNewMessage
@@ -33,11 +33,9 @@ export interface NotificationTypeNewPushMessage {
    * the ID can be used in viewMessages, or as reply_to_message_id
    */
   messageId: number
-  /** Sender of the message; 0 if unknown. Corresponding user may be inaccessible */
-  senderUserId: number
-  /** Sender chat of the message; 0 if none */
-  senderChatId: number
-  /** Name of the sender; can be different from the name of the sender user */
+  /** The sender of the message. Corresponding user or chat may be inaccessible */
+  sender: MessageSenderUnion
+  /** Name of the sender */
   senderName: string
   /** True, if the message is outgoing */
   isOutgoing: boolean

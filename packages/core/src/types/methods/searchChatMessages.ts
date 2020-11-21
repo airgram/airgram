@@ -1,11 +1,14 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { SearchMessagesFilterInputUnion } from '../inputs'
+import {
+  MessageSenderInputUnion,
+  SearchMessagesFilterInputUnion
+} from '../inputs'
 import { MessagesUnion } from '../outputs'
 
 export interface SearchChatMessagesParams {
   chatId?: number // Identifier of the chat in which to search messages
   query?: string // Query to search for
-  senderUserId?: number // If not 0, only messages sent by the specified user will be returned. Not supported in secret chats
+  sender?: MessageSenderInputUnion // If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
   fromMessageId?: number // Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
   offset?: number // Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
   limit?: number // The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
@@ -22,8 +25,8 @@ export interface SearchChatMessagesParams {
  * @param {Object} params
  * @param {number} [params.chatId] - Identifier of the chat in which to search messages
  * @param {string} [params.query] - Query to search for
- * @param {number} [params.senderUserId] - If not 0, only messages sent by the specified
- * user will be returned. Not supported in secret chats
+ * @param {MessageSenderInputUnion} [params.sender] - If not null, only messages
+ * sent by the specified sender will be returned. Not supported in secret chats
  * @param {number} [params.fromMessageId] - Identifier of the message starting from
  * which history must be fetched; use 0 to get results from the last message
  * @param {number} [params.offset] - Specify 0 to get results from exactly the from_message_id

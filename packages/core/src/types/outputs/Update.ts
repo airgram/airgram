@@ -55,6 +55,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateMessageSendFailed
   | UpdateMessageContent
   | UpdateMessageEdited
+  | UpdateMessageIsPinned
   | UpdateMessageInteractionInfo
   | UpdateMessageContentOpened
   | UpdateMessageMentionRead
@@ -75,7 +76,6 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatNotificationSettings
   | UpdateScopeNotificationSettings
   | UpdateChatActionBar
-  | UpdateChatPinnedMessage
   | UpdateChatReplyMarkup
   | UpdateChatDraftMessage
   | UpdateChatFilters
@@ -207,6 +207,17 @@ export interface UpdateMessageEdited {
   editDate: number
   /** New message reply markup; may be null */
   replyMarkup?: ReplyMarkupUnion
+}
+
+/** The message pinned state was changed */
+export interface UpdateMessageIsPinned {
+  _: 'updateMessageIsPinned'
+  /** Chat identifier */
+  chatId: number
+  /** The message identifier */
+  messageId: number
+  /** True, if the message is pinned */
+  isPinned: boolean
 }
 
 /** The information about interactions with a message has changed */
@@ -416,18 +427,6 @@ export interface UpdateChatActionBar {
   chatId: number
   /** The new value of the action bar; may be null */
   actionBar?: ChatActionBarUnion
-}
-
-/** The chat pinned message was changed */
-export interface UpdateChatPinnedMessage {
-  _: 'updateChatPinnedMessage'
-  /** Chat identifier */
-  chatId: number
-  /**
-   * The new identifier of the pinned message; 0 if there is no pinned message in the
-   * chat
-   */
-  pinnedMessageId: number
 }
 
 /**
@@ -835,8 +834,8 @@ export interface UpdateLanguagePackStrings {
 }
 
 /**
- * The connection state has changed. This update must be used only to show the user
- * a human-readable description of the connection state
+ * The connection state has changed. This update must be used only to show a human-readable
+ * description of the connection state
  */
 export interface UpdateConnectionState {
   _: 'updateConnectionState'

@@ -1,4 +1,4 @@
-import { StatisticsGraphUnion } from './index'
+import { StatisticalGraphUnion } from './index'
 
 export type MessageStatisticsUnion = MessageStatistics
 
@@ -6,5 +6,5 @@ export type MessageStatisticsUnion = MessageStatistics
 export interface MessageStatistics {
   _: 'messageStatistics'
   /** A graph containing number of message views and shares */
-  messageInteractionGraph: StatisticsGraphUnion
+  messageInteractionGraph: StatisticalGraphUnion
 }

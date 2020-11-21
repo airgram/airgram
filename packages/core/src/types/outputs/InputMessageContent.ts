@@ -193,6 +193,17 @@ export interface InputMessageLocation {
    * 86400 for a live location and 0 otherwise
    */
   livePeriod: number
+  /**
+   * For live locations, a direction in which the location moves, in degrees; 1-360. Pass
+   * 0 if unknown
+   */
+  heading: number
+  /**
+   * For live locations, a maximum distance to another chat member for proximity alerts,
+   * in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in
+   * channels and Saved Messages
+   */
+  proximityAlertRadius: number
 }
 
 /** A message with information about a venue */

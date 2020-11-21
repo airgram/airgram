@@ -265,4 +265,8 @@ export interface PushMessageContentMediaAlbum {
   hasPhotos: boolean
   /** True, if the album has at least one video */
   hasVideos: boolean
+  /** True, if the album has at least one audio file */
+  hasAudios: boolean
+  /** True, if the album has at least one document */
+  hasDocuments: boolean
 }

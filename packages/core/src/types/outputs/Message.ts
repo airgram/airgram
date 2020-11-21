@@ -3,6 +3,7 @@ import {
   MessageForwardInfo,
   MessageInteractionInfo,
   MessageSchedulingStateUnion,
+  MessageSenderUnion,
   MessageSendingStateUnion,
   ReplyMarkupUnion
 } from './index'
@@ -14,14 +15,8 @@ export interface Message {
   _: 'message'
   /** Message identifier; unique for the chat to which the message belongs */
   id: number
-  /**
-   * Identifier of the user who sent the message; 0 if unknown. Currently, it is unknown
-   * for channel posts, for channel posts automatically forwarded to discussion group
-   * and for anonymously sent supergroup messages
-   */
-  senderUserId: number
-  /** Identifier of the chat on behalf of which the message was sent; 0 if none */
-  senderChatId: number
+  /** The sender of the message */
+  sender: MessageSenderUnion
   /** Chat identifier */
   chatId: number
   /** Information about the sending state of the message; may be null */
@@ -30,6 +25,8 @@ export interface Message {
   schedulingState?: MessageSchedulingStateUnion
   /** True, if the message is outgoing */
   isOutgoing: boolean
+  /** True, if the message is pinned */
+  isPinned: boolean
   /**
    * True, if the message can be edited. For live location and poll messages this fields
    * shows whether editMessageLiveLocation or stopPoll can be used with this message by
@@ -88,7 +85,7 @@ export interface Message {
   ttlExpiresIn: number
   /** If non-zero, the user identifier of the bot through which this message was sent */
   viaBotUserId: number
-  /** For channel posts, optional author signature */
+  /** For channel posts and anonymous group messages, optional author signature */
   authorSignature: string
   /**
    * Unique identifier of an album this message belongs to. Only photos and videos can

@@ -1,4 +1,4 @@
-/** The message was originally written by a known user */
+/** The message was originally sent by a known user */
 export class MessageForwardOriginUserBaseModel {
   public _: 'messageForwardOriginUser'
 

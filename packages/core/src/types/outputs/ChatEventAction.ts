@@ -63,6 +63,8 @@ export interface ChatEventMessagePinned {
 /** A message was unpinned */
 export interface ChatEventMessageUnpinned {
   _: 'chatEventMessageUnpinned'
+  /** Unpinned message */
+  message: Message
 }
 
 /** A new member joined the chat */

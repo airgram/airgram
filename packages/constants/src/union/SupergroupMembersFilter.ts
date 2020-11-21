@@ -5,5 +5,6 @@ export enum SUPERGROUP_MEMBERS_FILTER {
   supergroupMembersFilterSearch = 'supergroupMembersFilterSearch',
   supergroupMembersFilterRestricted = 'supergroupMembersFilterRestricted',
   supergroupMembersFilterBanned = 'supergroupMembersFilterBanned',
+  supergroupMembersFilterMention = 'supergroupMembersFilterMention',
   supergroupMembersFilterBots = 'supergroupMembersFilterBots'
 }

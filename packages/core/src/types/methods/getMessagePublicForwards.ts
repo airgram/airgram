@@ -9,9 +9,8 @@ export interface GetMessagePublicForwardsParams {
 }
 
 /**
- * Returns forwarded copies of a channel message to another public channels. For optimal
- * performance the number of returned messages is chosen by the library. The method
- * is under development and may or may not work
+ * Returns forwarded copies of a channel message to different public channels. For optimal
+ * performance the number of returned messages is chosen by the library
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier of the message
  * @param {number} [params.messageId] - Message identifier

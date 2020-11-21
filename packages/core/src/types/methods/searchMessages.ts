@@ -9,7 +9,7 @@ export interface SearchMessagesParams {
   offsetChatId?: number // The chat identifier of the last found message, or 0 for the first request
   offsetMessageId?: number // The message identifier of the last found message, or 0 for the first request
   limit?: number // The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
-  filter?: SearchMessagesFilterInputUnion // Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention and searchMessagesFilterFailedToSend are unsupported in this function
+  filter?: SearchMessagesFilterInputUnion // Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
   minDate?: number // If not 0, the minimum date of the messages to return
   maxDate?: number // If not 0, the maximum date of the messages to return
 }
@@ -34,8 +34,8 @@ export interface SearchMessagesParams {
  * end of the message history has not been reached
  * @param {SearchMessagesFilterInputUnion} [params.filter] - Filter for message content
  * in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall,
- * searchMessagesFilterMention, searchMessagesFilterUnreadMention and searchMessagesFilterFailedToSend
- * are unsupported in this function
+ * searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend
+ * and searchMessagesFilterPinned are unsupported in this function
  * @param {number} [params.minDate] - If not 0, the minimum date of the messages
  * to return
  * @param {number} [params.maxDate] - If not 0, the maximum date of the messages

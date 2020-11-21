@@ -2,6 +2,7 @@
 export type ChatMembersFilterInputUnion = ChatMembersFilterContactsInput
   | ChatMembersFilterAdministratorsInput
   | ChatMembersFilterMembersInput
+  | ChatMembersFilterMentionInput
   | ChatMembersFilterRestrictedInput
   | ChatMembersFilterBannedInput
   | ChatMembersFilterBotsInput
@@ -19,6 +20,13 @@ export interface ChatMembersFilterAdministratorsInput {
 /** Returns all chat members, including restricted chat members */
 export interface ChatMembersFilterMembersInput {
   _: 'chatMembersFilterMembers'
+}
+
+/** Returns users which can be mentioned in the chat */
+export interface ChatMembersFilterMentionInput {
+  _: 'chatMembersFilterMention'
+  /** If non-zero, the identifier of the current message thread */
+  messageThreadId?: number
 }
 
 /**

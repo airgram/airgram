@@ -5,6 +5,6 @@ export class ChatNearbyBaseModel {
   /** Chat identifier */
   public chatId: number
 
-  /** Distance to the chat location in meters */
+  /** Distance to the chat location, in meters */
   public distance: number
 }

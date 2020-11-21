@@ -5,6 +5,6 @@ export interface ChatNearby {
   _: 'chatNearby'
   /** Chat identifier */
   chatId: number
-  /** Distance to the chat location in meters */
+  /** Distance to the chat location, in meters */
   distance: number
 }

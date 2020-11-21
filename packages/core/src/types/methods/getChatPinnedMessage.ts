@@ -6,7 +6,7 @@ export interface GetChatPinnedMessageParams {
 }
 
 /**
- * Returns information about a pinned chat message
+ * Returns information about a newest pinned message in the chat
  * @param {Object} params
  * @param {number} [params.chatId] - Identifier of the chat the message belongs to
  * @param {ApiRequestOptions} options

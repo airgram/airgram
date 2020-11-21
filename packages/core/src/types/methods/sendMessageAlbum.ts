@@ -14,8 +14,9 @@ export interface SendMessageAlbumParams {
 }
 
 /**
- * Sends messages grouped together into an album. Currently only photo and video messages
- * can be grouped into an album. Returns sent messages
+ * Sends messages grouped together into an album. Currently only audio, document, photo
+ * and video messages can be grouped into an album. Documents and audio files can be
+ * only grouped in an album with messages of the same type. Returns sent messages
  * @param {Object} params
  * @param {number} [params.chatId] - Target chat
  * @param {number} [params.messageThreadId] - If not 0, a message thread identifier

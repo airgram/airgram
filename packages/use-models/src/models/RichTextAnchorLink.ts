@@ -8,7 +8,7 @@ export class RichTextAnchorLinkBaseModel {
   public text: RichTextUnion
 
   /** The anchor name. If the name is empty, the link should bring back to top */
-  public name: string
+  public anchorName: string
 
   /** An HTTP URL, opening the anchor */
   public url: string

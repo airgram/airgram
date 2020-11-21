@@ -4,7 +4,7 @@ export type MessageForwardOriginUnion = MessageForwardOriginUser
   | MessageForwardOriginHiddenUser
   | MessageForwardOriginChannel
 
-/** The message was originally written by a known user */
+/** The message was originally sent by a known user */
 export interface MessageForwardOriginUser {
   _: 'messageForwardOriginUser'
   /** Identifier of the user that originally sent the message */
@@ -12,16 +12,18 @@ export interface MessageForwardOriginUser {
 }
 
 /**
- * The message was originally written by an anonymous chat administrator on behalf of
- * the chat
+ * The message was originally sent by an anonymous chat administrator on behalf of the
+ * chat
  */
 export interface MessageForwardOriginChat {
   _: 'messageForwardOriginChat'
   /** Identifier of the chat that originally sent the message */
   senderChatId: number
+  /** Original message author signature */
+  authorSignature: string
 }
 
-/** The message was originally written by a user, which is hidden by their privacy settings */
+/** The message was originally sent by a user, which is hidden by their privacy settings */
 export interface MessageForwardOriginHiddenUser {
   _: 'messageForwardOriginHiddenUser'
   /** Name of the sender */

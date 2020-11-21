@@ -4,8 +4,8 @@ import {
   ChatStatisticsMessageInteractionInfo,
   ChatStatisticsMessageSenderInfo,
   DateRange,
-  StatisticsGraphUnion,
-  StatisticsValue
+  StatisticalGraphUnion,
+  StatisticalValue
 } from './index'
 
 /** Contains a detailed statistics about a chat */
@@ -18,29 +18,29 @@ export interface ChatStatisticsSupergroup {
   /** A period to which the statistics applies */
   period: DateRange
   /** Number of members in the chat */
-  memberCount: StatisticsValue
+  memberCount: StatisticalValue
   /** Number of messages sent to the chat */
-  messageCount: StatisticsValue
+  messageCount: StatisticalValue
   /** Number of users who viewed messages in the chat */
-  viewerCount: StatisticsValue
+  viewerCount: StatisticalValue
   /** Number of users who sent messages to the chat */
-  senderCount: StatisticsValue
+  senderCount: StatisticalValue
   /** A graph containing number of members in the chat */
-  memberCountGraph: StatisticsGraphUnion
+  memberCountGraph: StatisticalGraphUnion
   /** A graph containing number of members joined and left the chat */
-  joinGraph: StatisticsGraphUnion
+  joinGraph: StatisticalGraphUnion
   /** A graph containing number of new member joins per source */
-  joinBySourceGraph: StatisticsGraphUnion
+  joinBySourceGraph: StatisticalGraphUnion
   /** A graph containing distribution of active users per language */
-  languageGraph: StatisticsGraphUnion
+  languageGraph: StatisticalGraphUnion
   /** A graph containing distribution of sent messages by content type */
-  messageContentGraph: StatisticsGraphUnion
+  messageContentGraph: StatisticalGraphUnion
   /** A graph containing number of different actions in the chat */
-  actionGraph: StatisticsGraphUnion
+  actionGraph: StatisticalGraphUnion
   /** A graph containing distribution of message views per hour */
-  dayGraph: StatisticsGraphUnion
+  dayGraph: StatisticalGraphUnion
   /** A graph containing distribution of message views per day of week */
-  weekGraph: StatisticsGraphUnion
+  weekGraph: StatisticalGraphUnion
   /** List of users sent most messages in the last week */
   topSenders: ChatStatisticsMessageSenderInfo[]
   /** List of most active administrators in the last week */
@@ -55,31 +55,31 @@ export interface ChatStatisticsChannel {
   /** A period to which the statistics applies */
   period: DateRange
   /** Number of members in the chat */
-  memberCount: StatisticsValue
+  memberCount: StatisticalValue
   /** Mean number of times the recently sent messages was viewed */
-  meanViewCount: StatisticsValue
+  meanViewCount: StatisticalValue
   /** Mean number of times the recently sent messages was shared */
-  meanShareCount: StatisticsValue
+  meanShareCount: StatisticalValue
   /** A percentage of users with enabled notifications for the chat */
   enabledNotificationsPercentage: number
   /** A graph containing number of members in the chat */
-  memberCountGraph: StatisticsGraphUnion
+  memberCountGraph: StatisticalGraphUnion
   /** A graph containing number of members joined and left the chat */
-  joinGraph: StatisticsGraphUnion
+  joinGraph: StatisticalGraphUnion
   /** A graph containing number of members muted and unmuted the chat */
-  muteGraph: StatisticsGraphUnion
+  muteGraph: StatisticalGraphUnion
   /** A graph containing number of message views in a given hour in the last two weeks */
-  viewCountByHourGraph: StatisticsGraphUnion
+  viewCountByHourGraph: StatisticalGraphUnion
   /** A graph containing number of message views per source */
-  viewCountBySourceGraph: StatisticsGraphUnion
+  viewCountBySourceGraph: StatisticalGraphUnion
   /** A graph containing number of new member joins per source */
-  joinBySourceGraph: StatisticsGraphUnion
+  joinBySourceGraph: StatisticalGraphUnion
   /** A graph containing number of users viewed chat messages per language */
-  languageGraph: StatisticsGraphUnion
+  languageGraph: StatisticalGraphUnion
   /** A graph containing number of chat message views and shares */
-  messageInteractionGraph: StatisticsGraphUnion
+  messageInteractionGraph: StatisticalGraphUnion
   /** A graph containing number of views of associated with the chat instant views */
-  instantViewInteractionGraph: StatisticsGraphUnion
+  instantViewInteractionGraph: StatisticalGraphUnion
   /** Detailed statistics about number of views and shares of recently sent messages */
   recentMessageInteractions: ChatStatisticsMessageInteractionInfo[]
 }

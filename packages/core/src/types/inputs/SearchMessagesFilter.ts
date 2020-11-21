@@ -16,6 +16,7 @@ export type SearchMessagesFilterInputUnion = SearchMessagesFilterEmptyInput
   | SearchMessagesFilterMentionInput
   | SearchMessagesFilterUnreadMentionInput
   | SearchMessagesFilterFailedToSendInput
+  | SearchMessagesFilterPinnedInput
 
 /** Returns all found messages, no filter is applied */
 export interface SearchMessagesFilterEmptyInput {
@@ -110,4 +111,9 @@ export interface SearchMessagesFilterUnreadMentionInput {
  */
 export interface SearchMessagesFilterFailedToSendInput {
   _: 'searchMessagesFilterFailedToSend'
+}
+
+/** Returns only pinned messages */
+export interface SearchMessagesFilterPinnedInput {
+  _: 'searchMessagesFilterPinned'
 }

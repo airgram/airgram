@@ -7,6 +7,9 @@ export class UserFullInfoBaseModel {
   /** User profile photo; may be null */
   public photo?: ChatPhoto
 
+  /** True, if the user is blocked by the current user */
+  public isBlocked: boolean
+
   /** True, if the user can be called */
   public canBeCalled: boolean
 

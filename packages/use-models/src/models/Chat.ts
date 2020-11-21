@@ -85,9 +85,6 @@ export class ChatBaseModel {
    */
   public actionBar?: ChatActionBarUnion
 
-  /** Identifier of the pinned message in the chat; 0 if none */
-  public pinnedMessageId: number
-
   /**
    * Identifier of the message from which reply markup needs to be used; 0 if there is
    * no default custom reply markup in the chat

@@ -6,6 +6,7 @@ export enum TEXT_ENTITY_TYPE {
   textEntityTypeUrl = 'textEntityTypeUrl',
   textEntityTypeEmailAddress = 'textEntityTypeEmailAddress',
   textEntityTypePhoneNumber = 'textEntityTypePhoneNumber',
+  textEntityTypeBankCardNumber = 'textEntityTypeBankCardNumber',
   textEntityTypeBold = 'textEntityTypeBold',
   textEntityTypeItalic = 'textEntityTypeItalic',
   textEntityTypeUnderline = 'textEntityTypeUnderline',

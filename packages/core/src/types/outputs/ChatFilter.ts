@@ -19,7 +19,7 @@ export interface ChatFilter {
   includedChatIds: number[]
   /** The chat identifiers of always excluded chats in the filtered chat list */
   excludedChatIds: number[]
-  /** True, if the muted chats need to be excluded */
+  /** True, if muted chats need to be excluded */
   excludeMuted: boolean
   /** True, if read chats need to be excluded */
   excludeRead: boolean

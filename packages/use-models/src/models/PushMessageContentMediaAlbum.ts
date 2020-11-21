@@ -10,4 +10,10 @@ export class PushMessageContentMediaAlbumBaseModel {
 
   /** True, if the album has at least one video */
   public hasVideos: boolean
+
+  /** True, if the album has at least one audio file */
+  public hasAudios: boolean
+
+  /** True, if the album has at least one document */
+  public hasDocuments: boolean
 }

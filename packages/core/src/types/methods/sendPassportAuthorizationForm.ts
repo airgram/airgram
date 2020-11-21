@@ -10,7 +10,7 @@ export interface SendPassportAuthorizationFormParams {
 /**
  * Sends a Telegram Passport authorization form, effectively sharing data with the service.
  * This method must be called after getPassportAuthorizationFormAvailableElements if
- * some previously available elements need to be used
+ * some previously available elements are going to be reused
  * @param {Object} params
  * @param {number} [params.autorizationFormId] - Authorization form identifier
  * @param {PassportElementTypeInputUnion[]} [params.types] - Types of Telegram Passport

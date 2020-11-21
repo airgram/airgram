@@ -1,4 +1,4 @@
-import { PushMessageContentUnion } from '@airgram/core'
+import { MessageSenderUnion, PushMessageContentUnion } from '@airgram/core'
 
 /** New message was received through a push notification */
 export class NotificationTypeNewPushMessageBaseModel {
@@ -10,13 +10,10 @@ export class NotificationTypeNewPushMessageBaseModel {
    */
   public messageId: number
 
-  /** Sender of the message; 0 if unknown. Corresponding user may be inaccessible */
-  public senderUserId: number
+  /** The sender of the message. Corresponding user or chat may be inaccessible */
+  public sender: MessageSenderUnion
 
-  /** Sender chat of the message; 0 if none */
-  public senderChatId: number
-
-  /** Name of the sender; can be different from the name of the sender user */
+  /** Name of the sender */
   public senderName: string
 
   /** True, if the message is outgoing */

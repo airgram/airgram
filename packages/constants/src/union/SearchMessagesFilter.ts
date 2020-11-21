@@ -14,5 +14,7 @@ export enum SEARCH_MESSAGES_FILTER {
   searchMessagesFilterVideoNote = 'searchMessagesFilterVideoNote',
   searchMessagesFilterVoiceAndVideoNote = 'searchMessagesFilterVoiceAndVideoNote',
   searchMessagesFilterMention = 'searchMessagesFilterMention',
-  searchMessagesFilterUnreadMention = 'searchMessagesFilterUnreadMention'
+  searchMessagesFilterUnreadMention = 'searchMessagesFilterUnreadMention',
+  searchMessagesFilterFailedToSend = 'searchMessagesFilterFailedToSend',
+  searchMessagesFilterPinned = 'searchMessagesFilterPinned'
 }

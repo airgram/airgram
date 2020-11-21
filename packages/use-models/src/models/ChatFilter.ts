@@ -23,7 +23,7 @@ export class ChatFilterBaseModel {
   /** The chat identifiers of always excluded chats in the filtered chat list */
   public excludedChatIds: number[]
 
-  /** True, if the muted chats need to be excluded */
+  /** True, if muted chats need to be excluded */
   public excludeMuted: boolean
 
   /** True, if read chats need to be excluded */

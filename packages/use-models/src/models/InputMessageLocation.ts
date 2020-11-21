@@ -12,4 +12,17 @@ export class InputMessageLocationBaseModel {
    * 86400 for a live location and 0 otherwise
    */
   public livePeriod: number
+
+  /**
+   * For live locations, a direction in which the location moves, in degrees; 1-360. Pass
+   * 0 if unknown
+   */
+  public heading: number
+
+  /**
+   * For live locations, a maximum distance to another chat member for proximity alerts,
+   * in meters (0-100000). Pass 0 if the notification is disabled. Can't be enabled in
+   * channels and Saved Messages
+   */
+  public proximityAlertRadius: number
 }

@@ -3,8 +3,8 @@ import {
   ChatStatisticsInviterInfo,
   ChatStatisticsMessageSenderInfo,
   DateRange,
-  StatisticsGraphUnion,
-  StatisticsValue
+  StatisticalGraphUnion,
+  StatisticalValue
 } from '@airgram/core'
 
 /** A detailed statistics about a supergroup chat */
@@ -15,40 +15,40 @@ export class ChatStatisticsSupergroupBaseModel {
   public period: DateRange
 
   /** Number of members in the chat */
-  public memberCount: StatisticsValue
+  public memberCount: StatisticalValue
 
   /** Number of messages sent to the chat */
-  public messageCount: StatisticsValue
+  public messageCount: StatisticalValue
 
   /** Number of users who viewed messages in the chat */
-  public viewerCount: StatisticsValue
+  public viewerCount: StatisticalValue
 
   /** Number of users who sent messages to the chat */
-  public senderCount: StatisticsValue
+  public senderCount: StatisticalValue
 
   /** A graph containing number of members in the chat */
-  public memberCountGraph: StatisticsGraphUnion
+  public memberCountGraph: StatisticalGraphUnion
 
   /** A graph containing number of members joined and left the chat */
-  public joinGraph: StatisticsGraphUnion
+  public joinGraph: StatisticalGraphUnion
 
   /** A graph containing number of new member joins per source */
-  public joinBySourceGraph: StatisticsGraphUnion
+  public joinBySourceGraph: StatisticalGraphUnion
 
   /** A graph containing distribution of active users per language */
-  public languageGraph: StatisticsGraphUnion
+  public languageGraph: StatisticalGraphUnion
 
   /** A graph containing distribution of sent messages by content type */
-  public messageContentGraph: StatisticsGraphUnion
+  public messageContentGraph: StatisticalGraphUnion
 
   /** A graph containing number of different actions in the chat */
-  public actionGraph: StatisticsGraphUnion
+  public actionGraph: StatisticalGraphUnion
 
   /** A graph containing distribution of message views per hour */
-  public dayGraph: StatisticsGraphUnion
+  public dayGraph: StatisticalGraphUnion
 
   /** A graph containing distribution of message views per day of week */
-  public weekGraph: StatisticsGraphUnion
+  public weekGraph: StatisticalGraphUnion
 
   /** List of users sent most messages in the last week */
   public topSenders: ChatStatisticsMessageSenderInfo[]

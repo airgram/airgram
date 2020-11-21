@@ -1,6 +1,5 @@
 export enum INPUT_INLINE_QUERY_RESULT {
-  inputInlineQueryResultAnimatedGif = 'inputInlineQueryResultAnimatedGif',
-  inputInlineQueryResultAnimatedMpeg4 = 'inputInlineQueryResultAnimatedMpeg4',
+  inputInlineQueryResultAnimation = 'inputInlineQueryResultAnimation',
   inputInlineQueryResultArticle = 'inputInlineQueryResultArticle',
   inputInlineQueryResultAudio = 'inputInlineQueryResultAudio',
   inputInlineQueryResultContact = 'inputInlineQueryResultContact',

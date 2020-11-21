@@ -4,7 +4,7 @@ import { ChatMembersUnion } from '../outputs'
 
 export interface GetSupergroupMembersParams {
   supergroupId?: number // Identifier of the supergroup or channel
-  filter?: SupergroupMembersFilterInputUnion // The type of users to return. By default, supergroupMembersRecent
+  filter?: SupergroupMembersFilterInputUnion // The type of users to return. By default, supergroupMembersFilterRecent
   offset?: number // Number of users to skip
   limit?: number // The maximum number of users be returned; up to 200
 }
@@ -16,7 +16,7 @@ export interface GetSupergroupMembersParams {
  * @param {Object} params
  * @param {number} [params.supergroupId] - Identifier of the supergroup or channel
  * @param {SupergroupMembersFilterInputUnion} [params.filter] - The type of users
- * to return. By default, supergroupMembersRecent
+ * to return. By default, supergroupMembersFilterRecent
  * @param {number} [params.offset] - Number of users to skip
  * @param {number} [params.limit] - The maximum number of users be returned; up to
  * 200

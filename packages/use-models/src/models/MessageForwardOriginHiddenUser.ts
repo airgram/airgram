@@ -1,4 +1,4 @@
-/** The message was originally written by a user, which is hidden by their privacy settings */
+/** The message was originally sent by a user, which is hidden by their privacy settings */
 export class MessageForwardOriginHiddenUserBaseModel {
   public _: 'messageForwardOriginHiddenUser'
 

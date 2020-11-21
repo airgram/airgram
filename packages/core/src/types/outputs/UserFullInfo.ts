@@ -7,6 +7,8 @@ export interface UserFullInfo {
   _: 'userFullInfo'
   /** User profile photo; may be null */
   photo?: ChatPhoto
+  /** True, if the user is blocked by the current user */
+  isBlocked: boolean
   /** True, if the user can be called */
   canBeCalled: boolean
   /** True, if a video call can be created with the user */

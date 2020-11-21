@@ -122,13 +122,16 @@ export interface RichTextIcon {
   height: number
 }
 
-/** A rich text reference of a text on the same web page */
+/** A reference to a richTexts object on the same web page */
 export interface RichTextReference {
   _: 'richTextReference'
   /** The text */
   text: RichTextUnion
-  /** The text to show on click */
-  referenceText: RichTextUnion
+  /**
+   * The name of a richTextAnchor object, which is the first element of the target richTexts
+   * object
+   */
+  anchorName: string
   /** An HTTP URL, opening the reference */
   url: string
 }
@@ -146,7 +149,7 @@ export interface RichTextAnchorLink {
   /** The link text */
   text: RichTextUnion
   /** The anchor name. If the name is empty, the link should bring back to top */
-  name: string
+  anchorName: string
   /** An HTTP URL, opening the anchor */
   url: string
 }
