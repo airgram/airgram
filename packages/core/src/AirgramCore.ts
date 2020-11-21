@@ -103,6 +103,9 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
         this.handleError(error)
       }
     )
+    this.provider.send({ method: 'getOption', params: { name: 'version' } }).catch(() => {
+      throw Error('Could not get TDLib version.')
+    })
     if (this.config.logVerbosityLevel !== undefined) {
       this.provider.execute({
         method: 'setLogVerbosityLevel',

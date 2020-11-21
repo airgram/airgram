@@ -8,7 +8,7 @@ import { TdJsonConfig } from '../types'
 import { createDeserializer, createSerializer } from '../utils'
 
 interface TdJsonClientInterface {
-  td_create_client: any
+  td_create_client_id: any
   td_send: any
   td_receive: any
   td_execute: any
@@ -64,7 +64,7 @@ export class TdJsonClient {
     this.client = ffi.Library(
       command ? resolvePath(command) : DEFAULT_COMMAND,
       {
-        td_create_client: ['int', []],
+        td_create_client_id: ['int', []],
         td_send: ['void', ['int', 'string']],
         td_receive: ['string', ['double']],
         td_execute: ['string', ['string']]
@@ -81,7 +81,7 @@ export class TdJsonClient {
   }
 
   public create (): number {
-    return this.client.td_create_client()
+    return this.client.td_create_client_id()
   }
 
   public destroy (): void {
