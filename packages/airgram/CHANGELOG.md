@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/airgram/airgram/compare/airgram@3.2.3...airgram@3.3.0) (2020-11-21)
+
+
+### Bug Fixes
+
+* do not show an error when `command` option is empty ([084d9ac](https://github.com/airgram/airgram/commit/084d9ac5b001c61beec0d808ec500ef541978220)), closes [#135](https://github.com/airgram/airgram/issues/135)
+
+
+
+
+
 ## [3.2.3](https://github.com/airgram/airgram/compare/airgram@3.2.2...airgram@3.2.3) (2020-10-31)
 
 
