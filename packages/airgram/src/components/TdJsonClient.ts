@@ -29,7 +29,7 @@ function buildQuery (query: string): Buffer {
 }
 
 export class TdJsonClient {
-  public readonly command: string
+  public readonly command?: string
 
   private readonly client: TdJsonClientInterface
 
@@ -54,7 +54,7 @@ export class TdJsonClient {
   private wakeup: (() => void) | null = null
 
   public constructor ({ command, models, timeout }: TdJsonConfig) {
-    this.command = command || DEFAULT_COMMAND
+    this.command = command
     this.timeout = timeout || 10
     this.serialize = createSerializer()
     this.deserialize = createDeserializer(models)
@@ -62,7 +62,7 @@ export class TdJsonClient {
       throw error
     }
     this.client = ffi.Library(
-      resolvePath(this.command),
+      command ? resolvePath(command) : DEFAULT_COMMAND,
       {
         td_create_client: ['int', []],
         td_send: ['void', ['int', 'string']],
