@@ -62,7 +62,7 @@ export class TdJsonClient {
       throw error
     }
     this.client = ffi.Library(
-      command ? resolvePath(command) : DEFAULT_COMMAND,
+      command ? resolvePath(command) : resolvePath(DEFAULT_COMMAND),
       {
         td_create_client_id: ['int', []],
         td_send: ['void', ['int', 'string']],
