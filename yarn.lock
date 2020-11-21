@@ -13,7 +13,7 @@
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "3.2.1"
+  version "3.2.2"
   dependencies:
     "@airgram/core" "^3.2.1"
     tdweb "~1.6.9"
@@ -1486,7 +1486,7 @@
   resolved "https://registry.yarnpkg.com/@types/expect/-/expect-1.20.4.tgz#8288e51737bf7e3ab5d7c77bfa695883745264e5"
   integrity sha512-Q5Vn3yjTDyCMV50TB6VRIbQNxSE4OmZR86VSbGaNpfUolm0iePBB4KdEEHmxoY5sT2+2DIvXW0rvMDP2nHZ4Mg==
 
-"@types/ffi-napi@^2.4.2":
+"@types/ffi-napi@^2.4.3":
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/@types/ffi-napi/-/ffi-napi-2.4.3.tgz#8e0194a47f1fc9a2d1e00dcae66c919ae97faa2d"
   integrity sha512-lkSpnVM3252+IAxwqmX5zPh8Nugzz7rtTcLC8tnGaY48n/5kmrO0AV3OVQDMgSKPI5X4I3vx0yeArfGV6PlwCQ==
@@ -2040,7 +2040,7 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "3.2.1"
+  version "3.2.3"
   dependencies:
     "@airgram/constants" "^3.0.0"
     "@airgram/core" "^3.2.1"
