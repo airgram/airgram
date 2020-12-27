@@ -35,7 +35,7 @@ export interface MessageForwardOriginChannel {
   _: 'messageForwardOriginChannel'
   /** Identifier of the chat from which the message was originally forwarded */
   chatId: number
-  /** Message identifier of the original message; 0 if unknown */
+  /** Message identifier of the original message */
   messageId: number
   /** Original post author signature */
   authorSignature: string

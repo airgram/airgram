@@ -10,7 +10,7 @@
     "commit": "commit",
     "lint": "eslint --fix packages/*/src/**/*.ts",
     "prepublishOnly": "ts-node scripts/package-map.ts",
-    "prerelease": "lerna publish --conventional-prerelease --no-push --dist-tag next",
+    "publish:minor": "lerna publish minor --dist-tag tdlib-1.7.1",
     "release": "lerna publish --conventional-graduate --dist-tag latest"
   },
   "workspaces": [
