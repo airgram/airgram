@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/airgram/airgram/compare/@airgram/web@4.0.0...@airgram/web@4.0.1) (2021-01-03)
+
+
+### Bug Fixes
+
+* tdweb instance has not initialized yet ([d84d520](https://github.com/airgram/airgram/commit/d84d52007bf8a731cab69201022a2851a115cf89)), closes [#145](https://github.com/airgram/airgram/issues/145)
+
+
+
+
+
 # [4.0.0](https://github.com/airgram/airgram/compare/@airgram/web@3.3.0...@airgram/web@4.0.0) (2020-12-27)
 
 **Note:** Version bump only for package @airgram/web
