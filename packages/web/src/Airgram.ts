@@ -17,8 +17,8 @@ export class Airgram extends AirgramCore<Provider> {
       useDatabase,
       ...baseConfig
     } = config
-    const providerFactory: ProviderFactory<Provider> = () => {
-      return new Provider({
+    const providerFactory: ProviderFactory<Provider> = (handleUpdate) => {
+      const provider = new Provider({
         instanceName,
         isBackground,
         jsLogVerbosityLevel,
@@ -27,6 +27,8 @@ export class Airgram extends AirgramCore<Provider> {
         readOnly,
         useDatabase
       })
+      provider.initialize(handleUpdate)
+      return provider
     }
     super(providerFactory, baseConfig)
   }
