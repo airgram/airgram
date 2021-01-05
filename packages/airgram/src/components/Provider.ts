@@ -1,23 +1,23 @@
 import {
   ApiRequest,
   createDeferred,
-  TdObject,
   Provider as BaseTdProvider,
+  TdObject,
   UpdateAuthorizationState
 } from '@airgram/core'
 import { TdProviderConfig } from '../types'
-import { TdJsonClient } from './TdJsonClient'
+import { BaseJsonClient } from './BaseJsonClient'
 
 let queryId = 0
 
 export class Provider extends BaseTdProvider {
   private readonly clientId: number
 
-  private readonly tdJsonClient: TdJsonClient
+  private readonly tdJsonClient: BaseJsonClient
 
   private waitForDestroy: ((value?: any) => any) | null = null
 
-  public constructor (tdJsonClient: TdJsonClient, { handleUpdate }: TdProviderConfig) {
+  public constructor (tdJsonClient: BaseJsonClient, { handleUpdate }: TdProviderConfig) {
     super()
     this.tdJsonClient = tdJsonClient
     this.clientId = this.tdJsonClient.create()

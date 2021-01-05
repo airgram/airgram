@@ -1,35 +1,15 @@
 /* eslint-disable @typescript-eslint/camelcase,@typescript-eslint/no-explicit-any */
 
 import { TdObject } from '@airgram/core'
-import * as ffi from 'ffi-napi'
-import { writeFileSync } from 'fs'
-import { resolve as resolvePath } from 'path'
-import * as ref from 'ref-napi'
-import { NativeTdObject, TdJsonConfig, UpdateHandlerFn } from '../types'
-import { createDeserializer, createSerializer } from '../utils'
+import { readFileSync } from 'fs'
+import { NativeTdObject, UpdateHandlerFn } from '../types'
+import { createDeserializer } from '../utils'
 import { BaseJsonClient } from './BaseJsonClient'
-
-interface TdJsonClientInterface {
-  td_create_client_id: any
-  td_send: any
-  td_receive: any
-  td_execute: any
-}
 
 type ClientHandlers = Map<string, UpdateHandlerFn>
 
-const DEFAULT_COMMAND = process.platform === 'win32' ? 'tdjson' : 'libtdjson'
-
-function buildQuery (query: string): Buffer {
-  const buffer: any = Buffer.from(query + '\0', 'utf-8')
-  buffer.type = ref.types.CString
-  return buffer
-}
-
-export class TdJsonClient extends BaseJsonClient {
+export class FakeJsonClient extends BaseJsonClient {
   public readonly command?: string
-
-  private readonly client: TdJsonClientInterface
 
   private readonly deserialize: (key: string, value: unknown) => Record<string, unknown>
 
@@ -37,46 +17,34 @@ export class TdJsonClient extends BaseJsonClient {
 
   private handleError: (error: Error) => void
 
-  private log: string[] = []
-
   private readonly pending: Map<number, ClientHandlers> = new Map()
-
-  private readonly serialize: (key: string, value: unknown) => Record<string, unknown>
 
   private sleepPromise: Promise<void> | null = null
 
   private stack: Map<number, NonNullable<NativeTdObject>[]> = new Map()
 
-  private readonly timeout: number
-
   private readonly updateHandlers = new Map<number, UpdateHandlerFn>()
+
+  private log: string[]
+  private logSize: number
 
   private wakeup: (() => void) | null = null
 
-  private writeLog = false
-
-  public constructor ({ command, models, timeout }: TdJsonConfig) {
+  public constructor (filename: string) {
     super()
-    this.command = command
-    this.timeout = timeout || 10
-    this.serialize = createSerializer()
-    this.deserialize = createDeserializer(models)
+    this.deserialize = createDeserializer()
     this.handleError = (error: Error): void => {
       throw error
     }
-    this.client = ffi.Library(
-      command ? resolvePath(command) : resolvePath(DEFAULT_COMMAND),
-      {
-        td_create_client_id: ['int', []],
-        td_send: ['void', ['int', 'string']],
-        td_receive: ['string', ['double']],
-        td_execute: ['string', ['string']]
-      }) as TdJsonClientInterface
-    this.loop()
+
+    this.log = JSON.parse(readFileSync(filename, { encoding: 'utf-8' }))
+    this.logSize = this.log.length
   }
 
   public addUpdateHandler (clientId: number, fn: UpdateHandlerFn): void {
     this.updateHandlers.set(clientId, fn)
+    console.time('getUpdates()')
+    this.loop()
   }
 
   public catch (handler: (error: Error) => void): void {
@@ -84,7 +52,7 @@ export class TdJsonClient extends BaseJsonClient {
   }
 
   public create (): number {
-    return this.client.td_create_client_id()
+    return 1
   }
 
   public destroy (): void {
@@ -96,22 +64,8 @@ export class TdJsonClient extends BaseJsonClient {
 
   public execute (query: TdObject): NativeTdObject {
     return this.parseResponse(
-      this.client.td_execute(buildQuery(JSON.stringify(query, this.serialize)))
+      JSON.stringify({ _: 'ok', query })
     )
-  }
-
-  public flushLog (filename?: string): string[] {
-    const log = this.log
-    this.writeLog = false
-    this.log = []
-
-    if (filename) {
-      const resolvedFilename = resolvePath(filename)
-      writeFileSync(resolvedFilename, JSON.stringify([...log]))
-      console.info(`[TdJsonClient] flushLog() log (${log.length} rows) saved to ${resolvedFilename}`)
-    }
-
-    return log
   }
 
   public pause (): void {
@@ -143,14 +97,13 @@ export class TdJsonClient extends BaseJsonClient {
     resolve: UpdateHandlerFn
   ): void {
     if (!this.destroyed) {
-      const clientHandlers = this.getClientHandlers(clientId)
-      clientHandlers.set(id, resolve)
-      this.client.td_send(clientId, buildQuery(JSON.stringify(request, this.serialize)))
+      console.info('[FakeJsonClient] send()', {
+        clientId,
+        id,
+        request,
+        resolve
+      })
     }
-  }
-
-  public startLog (): void {
-    this.writeLog = true
   }
 
   private addToStack (response: NativeTdObject | null): void {
@@ -202,7 +155,7 @@ export class TdJsonClient extends BaseJsonClient {
       if (resolve) {
         resolve(response)
       } else {
-        this.handleError(new Error(`[TdProxy] request handler for the client ${clientId} not found. Missed update: ${JSON.stringify(response)}`))
+        // this.handleError(new Error(`[TdProxy] request handler for the client ${clientId} not found. Missed update: ${JSON.stringify(response)}`))
       }
     } else {
       await this.handleUpdate(clientId, response)
@@ -256,16 +209,15 @@ export class TdJsonClient extends BaseJsonClient {
     if (this.destroyed) {
       return
     }
-    this.client.td_receive.async(this.timeout, (error: string, response: string) => {
-      if (error) {
-        this.handleError(new Error(`[TdProxy] TDLib error: ${error}`))
-        return this.onReceive(null)
-      }
-      if (this.writeLog) {
-        this.log.push(response)
-      }
-      const tdObject = this.parseResponse(response)
-      this.onReceive(tdObject)
-    })
+
+    const response = this.log.shift()
+    if (!response) {
+      console.log(`Total updates: ${this.logSize}`)
+      console.timeEnd('getUpdates()')
+      return this.destroy()
+    }
+
+    const tdObject = this.parseResponse(response)
+    this.onReceive(tdObject)
   }
 }

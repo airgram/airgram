@@ -1,10 +1,11 @@
 import { AirgramCore, Config, CreateProviderFactoryFn } from '@airgram/core'
 import { Provider, TdJsonClient } from './components'
+import { BaseJsonClient } from './components/BaseJsonClient'
 import { TdJsonConfig, TdProviderConfig } from './types'
 
 export interface ExtendedConfig extends Config, Pick<TdJsonConfig, 'command' | 'models'> {}
 
-export const createProviderFactory: CreateProviderFactoryFn<Provider, TdJsonClient> = (tdJsonClient: TdJsonClient) => {
+export const createProviderFactory: CreateProviderFactoryFn<Provider, BaseJsonClient> = (tdJsonClient: BaseJsonClient) => {
   return (handleUpdate: TdProviderConfig['handleUpdate']) => {
     return new Provider(tdJsonClient, {
       handleUpdate
@@ -13,12 +14,12 @@ export const createProviderFactory: CreateProviderFactoryFn<Provider, TdJsonClie
 }
 
 export class Airgram extends AirgramCore<Provider> {
-  private static tdJsonClient: TdJsonClient | null = null
+  private static tdJsonClient: BaseJsonClient | null = null
 
   public constructor (config: ExtendedConfig)
-  public constructor (tdJsonClient: TdJsonClient, config: Config)
-  public constructor (configOrClient: ExtendedConfig | TdJsonClient, config?: Config) {
-    if (configOrClient instanceof TdJsonClient && config) {
+  public constructor (tdJsonClient: BaseJsonClient, config: Config)
+  public constructor (configOrClient: ExtendedConfig | BaseJsonClient, config?: Config) {
+    if (configOrClient instanceof BaseJsonClient && config) {
       super(createProviderFactory(configOrClient), config)
     } else if (typeof configOrClient === 'object' && 'apiId' in configOrClient) {
       const { command, models, ...restConfig } = configOrClient
