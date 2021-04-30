@@ -6,17 +6,17 @@
   version "3.1.0"
 
 "@airgram/use-models@link:packages/use-models":
-  version "3.3.0"
+  version "4.0.0"
   dependencies:
-    "@airgram/core" "^3.3.0"
+    "@airgram/core" "^4.0.0"
     class-transformer "^0.3.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "3.3.0"
+  version "4.0.1"
   dependencies:
-    "@airgram/core" "^3.3.0"
-    tdweb "~1.6.9"
+    "@airgram/core" "^4.0.0"
+    tdweb "~1.6.10"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
   version "7.10.3"
@@ -2040,10 +2040,10 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "3.3.0"
+  version "4.1.1"
   dependencies:
     "@airgram/constants" "^3.1.0"
-    "@airgram/core" "^3.3.0"
+    "@airgram/core" "^4.0.0"
     ffi-napi "^3.0.0"
 
 ajv-errors@^1.0.0:
@@ -11561,9 +11561,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 ssri@^6.0.0, ssri@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
-  integrity sha512-3Wge10hNcT1Kur4PDFwEieXSCMCJs/7WvSACcrMYrNp+b8kDL1/0wJch5Ni2WrtwEa2IO8OsVfeKIciKCDx/QA==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
+  integrity sha512-cepbSq/neFK7xB6A50KHN0xHDotYzq58wWCa5LeWqnPrHG8GzfEjO/4O8kpmcGW+oaxkvhEJCWgbgNk4/ZV93Q==
   dependencies:
     figgy-pudding "^3.5.1"
 
@@ -11896,10 +11896,10 @@ tdweb@^1.4.3:
     localforage "^1.7.3"
     uuid "^3.3.2"
 
-tdweb@~1.6.9:
-  version "1.6.9"
-  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.9.tgz#5afad82011fe4b1afca5f10d80ae942b716b2133"
-  integrity sha512-K3cSydJJo4h+yhD79hrixLQhP62WB+i1K+fsFONxn/+ouqUAJOEmFYBbwpNzU2qx2vy6/hWMqt0BkztrKGu+UQ==
+tdweb@~1.6.10:
+  version "1.6.10"
+  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.10.tgz#c2272148fb0ab722b401a7bd762b20c38bbce8e1"
+  integrity sha512-fOgeS6xkMEa1e2kb89QL7rz6aHDP/mWjYkz2DbGCxsYX6buZxtaKvir/yUY6hYPXkE8OM3xthw0oJn0YyrIFYg==
   dependencies:
     "@babel/runtime" "^7.4.3"
     broadcast-channel "^2.1.12"
