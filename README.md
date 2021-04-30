@@ -17,7 +17,7 @@ ___
 [![NPM Version](https://img.shields.io/npm/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram)
 [![TDLib](https://img.shields.io/badge/tdlib-v1.6.9-%2335ADE1)](https://github.com/tdlib/td)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
-[![NPM](https://img.shields.io/npm/l/airgram)](/blob/master/LICENSE)
+[![NPM](https://img.shields.io/npm/l/airgram)](https://github.com/airgram/airgram/blob/master/LICENSE)
 <!-- [![node](https://img.shields.io/node/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram) -->
 
 ## Installation
