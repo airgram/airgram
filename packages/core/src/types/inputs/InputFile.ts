@@ -40,11 +40,11 @@ export interface InputFileGeneratedInput {
    */
   originalPath?: string
   /**
-   * String specifying the conversion applied to the original file; should be persistent
+   * String specifying the conversion applied to the original file; must be persistent
    * across application restarts. Conversions beginning with '#' are reserved for internal
    * TDLib usage
    */
   conversion?: string
-  /** Expected size of the generated file; 0 if unknown */
+  /** Expected size of the generated file, in bytes; 0 if unknown */
   expectedSize?: number
 }

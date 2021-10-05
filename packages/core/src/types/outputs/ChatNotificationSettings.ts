@@ -22,7 +22,7 @@ export interface ChatNotificationSettings {
    * instead
    */
   useDefaultShowPreview: boolean
-  /** True, if message content should be displayed in notifications */
+  /** True, if message content must be displayed in notifications */
   showPreview: boolean
   /**
    * If true, disable_pinned_message_notifications is ignored and the value for the relevant

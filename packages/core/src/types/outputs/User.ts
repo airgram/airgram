@@ -37,6 +37,8 @@ export interface User {
   restrictionReason: string
   /** True, if many users reported this user as a scam */
   isScam: boolean
+  /** True, if many users reported this user as a fake account */
+  isFake: boolean
   /**
    * If false, the user is inaccessible, and the only information known about the user
    * is inside this class. It can't be passed to any method except GetUser

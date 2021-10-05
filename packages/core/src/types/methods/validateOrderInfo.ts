@@ -5,7 +5,7 @@ import { ValidatedOrderInfoUnion } from '../outputs'
 export interface ValidateOrderInfoParams {
   chatId?: number // Chat identifier of the Invoice message
   messageId?: number // Message identifier
-  orderInfo?: OrderInfoInput // The order information, provided by the user
+  orderInfo?: OrderInfoInput // The order information, provided by the user; pass null if empty
   allowSave?: boolean // True, if the order information can be saved
 }
 
@@ -16,7 +16,7 @@ export interface ValidateOrderInfoParams {
  * @param {number} [params.chatId] - Chat identifier of the Invoice message
  * @param {number} [params.messageId] - Message identifier
  * @param {OrderInfoInput} [params.orderInfo] - The order information, provided by
- * the user
+ * the user; pass null if empty
  * @param {boolean} [params.allowSave] - True, if the order information can be saved
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ValidateOrderInfoParams, ValidatedOrderInfoUnion>>}

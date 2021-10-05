@@ -5,12 +5,12 @@ export interface SetPasswordParams {
   oldPassword?: string // Previous password of the user
   newPassword?: string // New password of the user; may be empty to remove the password
   newHint?: string // New password hint; may be empty
-  setRecoveryEmailAddress?: boolean // Pass true if the recovery email address should be changed
+  setRecoveryEmailAddress?: boolean // Pass true if the recovery email address must be changed
   newRecoveryEmailAddress?: string // New recovery email address; may be empty
 }
 
 /**
- * Changes the password for the user. If a new recovery email address is specified,
+ * Changes the password for the current user. If a new recovery email address is specified,
  * then the change will not be applied until the new recovery email address is confirmed
  * @param {Object} params
  * @param {string} [params.oldPassword] - Previous password of the user
@@ -18,7 +18,7 @@ export interface SetPasswordParams {
  * to remove the password
  * @param {string} [params.newHint] - New password hint; may be empty
  * @param {boolean} [params.setRecoveryEmailAddress] - Pass true if the recovery
- * email address should be changed
+ * email address must be changed
  * @param {string} [params.newRecoveryEmailAddress] - New recovery email address;
  * may be empty
  * @param {ApiRequestOptions} options

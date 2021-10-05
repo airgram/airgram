@@ -15,8 +15,8 @@ export interface InlineKeyboardButtonTypeUrl {
 }
 
 /**
- * A button that opens a specified URL and automatically logs in in current user if
- * they allowed to do that
+ * A button that opens a specified URL and automatically authorize the current user
+ * if allowed to do so
  */
 export interface InlineKeyboardButtonTypeLoginUrl {
   _: 'inlineKeyboardButtonTypeLoginUrl'
@@ -59,7 +59,7 @@ export interface InlineKeyboardButtonTypeSwitchInline {
   _: 'inlineKeyboardButtonTypeSwitchInline'
   /** Inline query to be sent to the bot */
   query: string
-  /** True, if the inline query should be sent from the current chat */
+  /** True, if the inline query must be sent from the current chat */
   inCurrentChat: boolean
 }
 

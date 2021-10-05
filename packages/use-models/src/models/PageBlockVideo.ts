@@ -10,9 +10,9 @@ export class PageBlockVideoBaseModel {
   /** Video caption */
   public caption: PageBlockCaption
 
-  /** True, if the video should be played automatically */
+  /** True, if the video must be played automatically */
   public needAutoplay: boolean
 
-  /** True, if the video should be looped */
+  /** True, if the video must be looped */
   public isLooped: boolean
 }

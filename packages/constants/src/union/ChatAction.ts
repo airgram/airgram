@@ -6,10 +6,12 @@ export enum CHAT_ACTION {
   chatActionUploadingVoiceNote = 'chatActionUploadingVoiceNote',
   chatActionUploadingPhoto = 'chatActionUploadingPhoto',
   chatActionUploadingDocument = 'chatActionUploadingDocument',
+  chatActionChoosingSticker = 'chatActionChoosingSticker',
   chatActionChoosingLocation = 'chatActionChoosingLocation',
   chatActionChoosingContact = 'chatActionChoosingContact',
   chatActionStartPlayingGame = 'chatActionStartPlayingGame',
   chatActionRecordingVideoNote = 'chatActionRecordingVideoNote',
   chatActionUploadingVideoNote = 'chatActionUploadingVideoNote',
+  chatActionWatchingAnimations = 'chatActionWatchingAnimations',
   chatActionCancel = 'chatActionCancel'
 }

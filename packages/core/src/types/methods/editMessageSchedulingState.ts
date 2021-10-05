@@ -5,7 +5,7 @@ import { OkUnion } from '../outputs'
 export interface EditMessageSchedulingStateParams {
   chatId?: number // The chat the message belongs to
   messageId?: number // Identifier of the message
-  schedulingState?: MessageSchedulingStateInputUnion // The new message scheduling state. Pass null to send the message immediately
+  schedulingState?: MessageSchedulingStateInputUnion // The new message scheduling state; pass null to send the message immediately
 }
 
 /**
@@ -15,7 +15,7 @@ export interface EditMessageSchedulingStateParams {
  * @param {number} [params.chatId] - The chat the message belongs to
  * @param {number} [params.messageId] - Identifier of the message
  * @param {MessageSchedulingStateInputUnion} [params.schedulingState] - The new message
- * scheduling state. Pass null to send the message immediately
+ * scheduling state; pass null to send the message immediately
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageSchedulingStateParams, OkUnion>>}
  */

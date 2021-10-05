@@ -1,4 +1,4 @@
-import { BotInfo, ChatPhoto } from '@airgram/core'
+import { BotCommand, ChatPhoto } from '@airgram/core'
 
 /** Contains full information about a user */
 export class UserFullInfoBaseModel {
@@ -28,8 +28,14 @@ export class UserFullInfoBaseModel {
   /** A short user bio */
   public bio: string
 
-  /** For bots, the text that is included with the link when users share the bot */
+  /**
+   * For bots, the text that is shown on the bot's profile page and is sent together with
+   * the link when users share the bot
+   */
   public shareText: string
+
+  /** For bots, the text shown in the chat with the bot if the chat is empty */
+  public description: string
 
   /**
    * Number of group chats where both the other user and the current user are a member;
@@ -37,6 +43,6 @@ export class UserFullInfoBaseModel {
    */
   public groupInCommonCount: number
 
-  /** If the user is a bot, information about the bot; may be null */
-  public botInfo?: BotInfo
+  /** For bots, list of the bot commands */
+  public commands: BotCommand[]
 }

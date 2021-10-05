@@ -1,4 +1,4 @@
-/** The user is the owner of a chat and has all the administrator privileges */
+/** The user is the owner of the chat and has all the administrator privileges */
 export class ChatMemberStatusCreatorBaseModel {
   public _: 'chatMemberStatusCreator'
 

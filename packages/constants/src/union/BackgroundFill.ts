@@ -1,4 +1,5 @@
 export enum BACKGROUND_FILL {
   backgroundFillSolid = 'backgroundFillSolid',
-  backgroundFillGradient = 'backgroundFillGradient'
+  backgroundFillGradient = 'backgroundFillGradient',
+  backgroundFillFreeformGradient = 'backgroundFillFreeformGradient'
 }

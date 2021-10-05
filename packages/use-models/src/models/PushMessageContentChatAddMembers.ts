@@ -8,6 +8,6 @@ export class PushMessageContentChatAddMembersBaseModel {
   /** True, if the current user was added to the group */
   public isCurrentUser: boolean
 
-  /** True, if the user has returned to the group themself */
+  /** True, if the user has returned to the group themselves */
   public isReturned: boolean
 }

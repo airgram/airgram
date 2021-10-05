@@ -4,15 +4,15 @@ import { OkUnion } from '../outputs'
 
 export interface FinishFileGenerationParams {
   generationId?: string // The identifier of the generation process
-  error?: ErrorInput // If set, means that file generation has failed and should be terminated
+  error?: ErrorInput // If passed, the file generation has failed and must be terminated; pass null if the file generation succeeded
 }
 
 /**
  * Finishes the file generation
  * @param {Object} params
  * @param {string} [params.generationId] - The identifier of the generation process
- * @param {ErrorInput} [params.error] - If set, means that file generation has failed
- * and should be terminated
+ * @param {ErrorInput} [params.error] - If passed, the file generation has failed
+ * and must be terminated; pass null if the file generation succeeded
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<FinishFileGenerationParams, OkUnion>>}
  */

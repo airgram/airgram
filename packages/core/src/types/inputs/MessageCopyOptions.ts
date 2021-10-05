@@ -3,14 +3,14 @@ import { FormattedTextInput } from './index'
 export type MessageCopyOptionsInputUnion = MessageCopyOptionsInput
 
 /**
- * Options to be used when a message content is copied without a link to the original
- * message
+ * Options to be used when a message content is copied without reference to the original
+ * sender. Service messages and messageInvoice can't be copied
  */
 export interface MessageCopyOptionsInput {
   _: 'messageCopyOptions'
   /**
-   * True, if content of the message needs to be copied without a link to the original
-   * message. Always true if the message is forwarded to a secret chat
+   * True, if content of the message needs to be copied without reference to the original
+   * sender. Always true if the message is forwarded to a secret chat or is local
    */
   sendCopy?: boolean
   /**
@@ -18,6 +18,9 @@ export interface MessageCopyOptionsInput {
    * is false
    */
   replaceCaption?: boolean
-  /** New message caption. Ignored if replace_caption is false */
+  /**
+   * New message caption; pass null to copy message without caption. Ignored if replace_caption
+   * is false
+   */
   newCaption?: FormattedTextInput
 }

@@ -7,8 +7,8 @@ export type AccountTtlInputUnion = AccountTtlInput
 export interface AccountTtlInput {
   _: 'accountTtl'
   /**
-   * Number of days of inactivity before the account will be flagged for deletion; should
-   * range from 30-366 days
+   * Number of days of inactivity before the account will be flagged for deletion; 30-366
+   * days
    */
   days?: number
 }

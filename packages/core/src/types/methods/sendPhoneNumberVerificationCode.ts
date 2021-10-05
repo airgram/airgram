@@ -4,7 +4,7 @@ import { AuthenticationCodeInfoUnion } from '../outputs'
 
 export interface SendPhoneNumberVerificationCodeParams {
   phoneNumber?: string // The phone number of the user, in international format
-  settings?: PhoneNumberAuthenticationSettingsInput // Settings for the authentication of the user's phone number
+  settings?: PhoneNumberAuthenticationSettingsInput // Settings for the authentication of the user's phone number; pass null to use default settings
 }
 
 /**
@@ -13,7 +13,7 @@ export interface SendPhoneNumberVerificationCodeParams {
  * @param {string} [params.phoneNumber] - The phone number of the user, in international
  * format
  * @param {PhoneNumberAuthenticationSettingsInput} [params.settings] - Settings for
- * the authentication of the user's phone number
+ * the authentication of the user's phone number; pass null to use default settings
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendPhoneNumberVerificationCodeParams, AuthenticationCodeInfoUnion>>}
  */

@@ -3,7 +3,7 @@ export type StorageStatisticsFastUnion = StorageStatisticsFast
 /** Contains approximate storage usage statistics, excluding files of unknown file type */
 export interface StorageStatisticsFast {
   _: 'storageStatisticsFast'
-  /** Approximate total size of files */
+  /** Approximate total size of files, in bytes */
   filesSize: number
   /** Approximate number of files */
   fileCount: number

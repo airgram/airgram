@@ -5,7 +5,7 @@ import { OkUnion } from '../outputs'
 export interface StopPollParams {
   chatId?: number // Identifier of the chat to which the poll belongs
   messageId?: number // Identifier of the message containing the poll
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; for bots only
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none; for bots only
 }
 
 /**
@@ -16,7 +16,7 @@ export interface StopPollParams {
  * @param {number} [params.messageId] - Identifier of the message containing the
  * poll
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
- * for bots only
+ * pass null if none; for bots only
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<StopPollParams, OkUnion>>}
  */

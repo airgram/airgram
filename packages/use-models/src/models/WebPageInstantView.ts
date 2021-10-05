@@ -1,4 +1,4 @@
-import { PageBlockUnion } from '@airgram/core'
+import { InternalLinkTypeUnion, PageBlockUnion } from '@airgram/core'
 
 /** Describes an instant view page for a web page */
 export class WebPageInstantViewBaseModel {
@@ -21,4 +21,7 @@ export class WebPageInstantViewBaseModel {
    * to get the full web page instant view
    */
   public isFull: boolean
+
+  /** An internal link to be opened to leave feedback about the instant view */
+  public feedbackLink: InternalLinkTypeUnion
 }

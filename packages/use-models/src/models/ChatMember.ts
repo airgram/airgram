@@ -1,11 +1,15 @@
-import { BotInfo, ChatMemberStatusUnion } from '@airgram/core'
+import { ChatMemberStatusUnion, MessageSenderUnion } from '@airgram/core'
 
-/** A user with information about joining/leaving a chat */
+/** Information about a user or a chat as a member of another chat */
 export class ChatMemberBaseModel {
   public _: 'chatMember'
 
-  /** User identifier of the chat member */
-  public userId: number
+  /**
+   * Identifier of the chat member. Currently, other chats can be only Left or Banned.
+   * Only supergroups and channels can have other chats as Left or Banned members and
+   * these chats must be supergroups or channels
+   */
+  public memberId: MessageSenderUnion
 
   /** Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown */
   public inviterUserId: number
@@ -15,10 +19,4 @@ export class ChatMemberBaseModel {
 
   /** Status of the member in the chat */
   public status: ChatMemberStatusUnion
-
-  /**
-   * If the user is a bot, information about the bot; may be null. Can be null even for
-   * a bot if the bot is not the chat member
-   */
-  public botInfo?: BotInfo
 }

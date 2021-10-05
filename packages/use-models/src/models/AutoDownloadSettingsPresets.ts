@@ -1,6 +1,6 @@
 import { AutoDownloadSettings } from '@airgram/core'
 
-/** Contains auto-download settings presets for the user */
+/** Contains auto-download settings presets for the current user */
 export class AutoDownloadSettingsPresetsBaseModel {
   public _: 'autoDownloadSettingsPresets'
 

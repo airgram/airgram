@@ -6,7 +6,8 @@ import {
   ChatPosition,
   ChatTypeUnion,
   DraftMessage,
-  Message
+  Message,
+  VoiceChat
 } from './index'
 
 export type ChatUnion = Chat
@@ -44,7 +45,7 @@ export interface Chat {
   canBeDeletedOnlyForSelf: boolean
   /** True, if the chat messages can be deleted for all users */
   canBeDeletedForAllUsers: boolean
-  /** True, if the chat can be reported to Telegram moderators through reportChat */
+  /** True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto */
   canBeReported: boolean
   /**
    * Default value of the disable_notification parameter, used when a message is sent
@@ -62,10 +63,20 @@ export interface Chat {
   /** Notification settings for this chat */
   notificationSettings: ChatNotificationSettings
   /**
-   * Describes actions which should be possible to do through a chat action bar; may be
+   * Current message Time To Live setting (self-destruct timer) for the chat; 0 if not
+   * defined. TTL is counted from the time message or its content is viewed in secret
+   * chats and from the send date in other chats
+   */
+  messageTtlSetting: number
+  /** If non-empty, name of a theme, set for the chat */
+  themeName: string
+  /**
+   * Describes actions which must be possible to do through a chat action bar; may be
    * null
    */
   actionBar?: ChatActionBarUnion
+  /** Contains information about voice chat of the chat */
+  voiceChat: VoiceChat
   /**
    * Identifier of the message from which reply markup needs to be used; 0 if there is
    * no default custom reply markup in the chat

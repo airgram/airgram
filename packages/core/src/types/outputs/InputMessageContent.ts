@@ -38,9 +38,9 @@ export interface InputMessageText {
    * entities are allowed to be specified manually
    */
   text: FormattedText
-  /** True, if rich web page previews for URLs in the message text should be disabled */
+  /** True, if rich web page previews for URLs in the message text must be disabled */
   disableWebPagePreview: boolean
-  /** True, if a chat message draft should be deleted */
+  /** True, if a chat message draft must be deleted */
   clearDraft: boolean
 }
 
@@ -49,7 +49,7 @@ export interface InputMessageAnimation {
   _: 'inputMessageAnimation'
   /** Animation file to be sent */
   animation: InputFileUnion
-  /** Animation thumbnail, if available */
+  /** Animation thumbnail; pass null to skip thumbnail uploading */
   thumbnail: InputThumbnail
   /** File identifiers of the stickers added to the animation, if applicable */
   addedStickerFileIds: number[]
@@ -59,7 +59,10 @@ export interface InputMessageAnimation {
   width: number
   /** Height of the animation; may be replaced by the server */
   height: number
-  /** Animation caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
 }
 
@@ -68,7 +71,7 @@ export interface InputMessageAudio {
   _: 'inputMessageAudio'
   /** Audio file to be sent */
   audio: InputFileUnion
-  /** Thumbnail of the cover for the album, if available */
+  /** Thumbnail of the cover for the album; pass null to skip thumbnail uploading */
   albumCoverThumbnail: InputThumbnail
   /** Duration of the audio, in seconds; may be replaced by the server */
   duration: number
@@ -76,7 +79,10 @@ export interface InputMessageAudio {
   title: string
   /** Performer of the audio; 0-64 characters, may be replaced by the server */
   performer: string
-  /** Audio caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
 }
 
@@ -85,14 +91,17 @@ export interface InputMessageDocument {
   _: 'inputMessageDocument'
   /** Document to be sent */
   document: InputFileUnion
-  /** Document thumbnail, if available */
+  /** Document thumbnail; pass null to skip thumbnail uploading */
   thumbnail: InputThumbnail
   /**
    * If true, automatic file type detection will be disabled and the document will be
    * always sent as file. Always true for files sent to secret chats
    */
   disableContentTypeDetection: boolean
-  /** Document caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
 }
 
@@ -101,7 +110,10 @@ export interface InputMessagePhoto {
   _: 'inputMessagePhoto'
   /** Photo to send */
   photo: InputFileUnion
-  /** Photo thumbnail to be sent, this is sent to the other party in secret chats only */
+  /**
+   * Photo thumbnail to be sent; pass null to skip thumbnail uploading. The thumbnail
+   * is sent to the other party only in secret chats
+   */
   thumbnail: InputThumbnail
   /** File identifiers of the stickers added to the photo, if applicable */
   addedStickerFileIds: number[]
@@ -109,7 +121,10 @@ export interface InputMessagePhoto {
   width: number
   /** Photo height */
   height: number
-  /** Photo caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Photo caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
   /**
    * Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only
@@ -123,12 +138,14 @@ export interface InputMessageSticker {
   _: 'inputMessageSticker'
   /** Sticker to be sent */
   sticker: InputFileUnion
-  /** Sticker thumbnail, if available */
+  /** Sticker thumbnail; pass null to skip thumbnail uploading */
   thumbnail: InputThumbnail
   /** Sticker width */
   width: number
   /** Sticker height */
   height: number
+  /** Emoji used to choose the sticker */
+  emoji: string
 }
 
 /** A video message */
@@ -136,7 +153,7 @@ export interface InputMessageVideo {
   _: 'inputMessageVideo'
   /** Video to be sent */
   video: InputFileUnion
-  /** Video thumbnail, if available */
+  /** Video thumbnail; pass null to skip thumbnail uploading */
   thumbnail: InputThumbnail
   /** File identifiers of the stickers added to the video, if applicable */
   addedStickerFileIds: number[]
@@ -146,9 +163,12 @@ export interface InputMessageVideo {
   width: number
   /** Video height */
   height: number
-  /** True, if the video should be tried to be streamed */
+  /** True, if the video is supposed to be streamed */
   supportsStreaming: boolean
-  /** Video caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
   /**
    * Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only
@@ -162,7 +182,7 @@ export interface InputMessageVideoNote {
   _: 'inputMessageVideoNote'
   /** Video note to be sent */
   videoNote: InputFileUnion
-  /** Video thumbnail, if available */
+  /** Video thumbnail; pass null to skip thumbnail uploading */
   thumbnail: InputThumbnail
   /** Duration of the video, in seconds */
   duration: number
@@ -179,7 +199,10 @@ export interface InputMessageVoiceNote {
   duration: number
   /** Waveform representation of the voice note, in 5-bit format */
   waveform: string
-  /** Voice note caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Voice note caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   caption: FormattedText
 }
 
@@ -189,7 +212,7 @@ export interface InputMessageLocation {
   /** Location to be sent */
   location: Location
   /**
-   * Period for which the location can be updated, in seconds; should be between 60 and
+   * Period for which the location can be updated, in seconds; must be between 60 and
    * 86400 for a live location and 0 otherwise
    */
   livePeriod: number
@@ -225,7 +248,7 @@ export interface InputMessageDice {
   _: 'inputMessageDice'
   /** Emoji on which the dice throw animation is based */
   emoji: string
-  /** True, if a chat message draft should be deleted */
+  /** True, if the chat message draft must be deleted */
   clearDraft: boolean
 }
 
@@ -238,7 +261,7 @@ export interface InputMessageGame {
   gameShortName: string
 }
 
-/** A message with an invoice; can be used only by bots and only in private chats */
+/** A message with an invoice; can be used only by bots */
 export interface InputMessageInvoice {
   _: 'inputMessageInvoice'
   /** Invoice */
@@ -261,7 +284,10 @@ export interface InputMessageInvoice {
   providerToken: string
   /** JSON-encoded data about the invoice, which will be shared with the payment provider */
   providerData: string
-  /** Unique invoice bot start_parameter for the generation of this invoice */
+  /**
+   * Unique invoice bot deep link parameter for the generation of this invoice. If empty,
+   * it would be possible to pay directly from forwards of the invoice message
+   */
   startParameter: string
 }
 
@@ -271,7 +297,7 @@ export interface InputMessageInvoice {
  */
 export interface InputMessagePoll {
   _: 'inputMessagePoll'
-  /** Poll question, 1-255 characters (up to 300 characters for bots) */
+  /** Poll question; 1-255 characters (up to 300 characters for bots) */
   question: string
   /** List of poll answer options, 2-10 strings 1-100 characters each */
   options: string[]
@@ -301,13 +327,13 @@ export interface InputMessageForwarded {
   /** Identifier of the message to forward */
   messageId: number
   /**
-   * True, if a game message should be shared within a launched game; applies only to
-   * game messages
+   * True, if a game message is being shared from a launched game; applies only to game
+   * messages
    */
   inGameShare: boolean
   /**
-   * Options to be used to copy content of the message without a link to the original
-   * message
+   * Options to be used to copy content of the message without reference to the original
+   * sender; pass null to try to forward the message as usual
    */
   copyOptions: MessageCopyOptions
 }

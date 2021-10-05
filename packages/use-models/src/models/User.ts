@@ -49,6 +49,9 @@ export class UserBaseModel {
   /** True, if many users reported this user as a scam */
   public isScam: boolean
 
+  /** True, if many users reported this user as a fake account */
+  public isFake: boolean
+
   /**
    * If false, the user is inaccessible, and the only information known about the user
    * is inside this class. It can't be passed to any method except GetUser

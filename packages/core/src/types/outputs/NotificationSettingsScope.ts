@@ -1,4 +1,4 @@
-/** Describes the types of chats to which notification settings are applied */
+/** Describes the types of chats to which notification settings are relevant */
 export type NotificationSettingsScopeUnion = NotificationSettingsScopePrivateChats
   | NotificationSettingsScopeGroupChats
   | NotificationSettingsScopeChannelChats

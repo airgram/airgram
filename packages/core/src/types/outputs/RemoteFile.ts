@@ -11,7 +11,7 @@ export interface RemoteFile {
    * if only their URL is known. If downloadFile is called on such a file or if it is
    * sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart
    * to the application with the HTTP URL in the original_path and "#url#" as the conversion
-   * string. Application should generate the file by downloading it to the specified location
+   * string. Application must generate the file by downloading it to the specified location
    */
   id: string
   /**
@@ -26,6 +26,6 @@ export interface RemoteFile {
   isUploadingActive: boolean
   /** True, if a remote copy is fully available */
   isUploadingCompleted: boolean
-  /** Size of the remote available part of the file; 0 if unknown */
+  /** Size of the remote available part of the file, in bytes; 0 if unknown */
   uploadedSize: number
 }

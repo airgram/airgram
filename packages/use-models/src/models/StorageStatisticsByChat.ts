@@ -7,7 +7,7 @@ export class StorageStatisticsByChatBaseModel {
   /** Chat identifier; 0 if none */
   public chatId: number
 
-  /** Total size of the files in the chat */
+  /** Total size of the files in the chat, in bytes */
   public size: number
 
   /** Total number of files in the chat */

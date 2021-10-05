@@ -11,17 +11,14 @@ export interface ChatTypePrivate {
   userId: number
 }
 
-/** A basic group (i.e., a chat with 0-200 other users) */
+/** A basic group (a chat with 0-200 other users) */
 export interface ChatTypeBasicGroup {
   _: 'chatTypeBasicGroup'
   /** Basic group identifier */
   basicGroupId: number
 }
 
-/**
- * A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users),
- * or channel (with unlimited members)
- */
+/** A supergroup or channel (with unlimited members) */
 export interface ChatTypeSupergroup {
   _: 'chatTypeSupergroup'
   /** Supergroup or channel identifier */

@@ -5,7 +5,7 @@ import { InlineQueryResultsUnion } from '../outputs'
 export interface GetInlineQueryResultsParams {
   botUserId?: number // The identifier of the target bot
   chatId?: number // Identifier of the chat where the query was sent
-  userLocation?: LocationInput // Location of the user, only if needed
+  userLocation?: LocationInput // Location of the user; pass null if unknown or the bot doesn't need user's location
   query?: string // Text of the query
   offset?: string // Offset of the first entry to return
 }
@@ -16,7 +16,8 @@ export interface GetInlineQueryResultsParams {
  * @param {Object} params
  * @param {number} [params.botUserId] - The identifier of the target bot
  * @param {number} [params.chatId] - Identifier of the chat where the query was sent
- * @param {LocationInput} [params.userLocation] - Location of the user, only if needed
+ * @param {LocationInput} [params.userLocation] - Location of the user; pass null
+ * if unknown or the bot doesn't need user's location
  * @param {string} [params.query] - Text of the query
  * @param {string} [params.offset] - Offset of the first entry to return
  * @param {ApiRequestOptions} options

@@ -16,7 +16,7 @@ export class MessageInvoiceBaseModel {
   /** Currency for the product price */
   public currency: string
 
-  /** Product total price in the minimal quantity of the currency */
+  /** Product total price in the smallest units of the currency */
   public totalAmount: number
 
   /** Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter} */
@@ -25,7 +25,7 @@ export class MessageInvoiceBaseModel {
   /** True, if the invoice is a test invoice */
   public isTest: boolean
 
-  /** True, if the shipping address should be specified */
+  /** True, if the shipping address must be specified */
   public needShippingAddress: boolean
 
   /** The identifier of the message with the receipt, after the product has been purchased */

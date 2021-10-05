@@ -1,4 +1,4 @@
-import { File, MaskPosition, Thumbnail } from '@airgram/core'
+import { ClosedVectorPath, File, MaskPosition, Thumbnail } from '@airgram/core'
 
 /** Describes a sticker */
 export class StickerBaseModel {
@@ -22,8 +22,14 @@ export class StickerBaseModel {
   /** True, if the sticker is a mask */
   public isMask: boolean
 
-  /** Position where the mask should be placed; may be null */
+  /** Position where the mask is placed; may be null */
   public maskPosition?: MaskPosition
+
+  /**
+   * Sticker's outline represented as a list of closed vector paths; may be empty. The
+   * coordinate system origin is in the upper-left corner
+   */
+  public outline: ClosedVectorPath[]
 
   /** Sticker thumbnail in WEBP or JPEG format; may be null */
   public thumbnail?: Thumbnail

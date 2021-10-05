@@ -18,4 +18,9 @@ export interface PasswordState {
    * sent; may be null
    */
   recoveryEmailAddressCodeInfo?: EmailAddressAuthenticationCodeInfo
+  /**
+   * If not 0, point in time (Unix timestamp) after which the password can be reset immediately
+   * using resetPassword
+   */
+  pendingResetDate: number
 }

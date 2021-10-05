@@ -5,6 +5,6 @@ export class LabeledPricePartBaseModel {
   /** Label for this portion of the product price */
   public label: string
 
-  /** Currency amount in minimal quantity of the currency */
+  /** Currency amount in the smallest units of the currency */
   public amount: number
 }

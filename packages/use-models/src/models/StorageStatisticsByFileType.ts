@@ -7,7 +7,7 @@ export class StorageStatisticsByFileTypeBaseModel {
   /** File type */
   public fileType: FileTypeUnion
 
-  /** Total size of the files */
+  /** Total size of the files, in bytes */
   public size: number
 
   /** Total number of files */

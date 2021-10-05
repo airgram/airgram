@@ -5,7 +5,7 @@ import { MessageUnion } from '../outputs'
 export interface EditMessageReplyMarkupParams {
   chatId?: number // The chat the message belongs to
   messageId?: number // Identifier of the message
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none
 }
 
 /**
@@ -14,7 +14,8 @@ export interface EditMessageReplyMarkupParams {
  * @param {Object} params
  * @param {number} [params.chatId] - The chat the message belongs to
  * @param {number} [params.messageId] - Identifier of the message
- * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup
+ * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
+ * pass null if none
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageReplyMarkupParams, MessageUnion>>}
  */

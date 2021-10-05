@@ -7,7 +7,7 @@ export interface SetSupergroupStickerSetParams {
 }
 
 /**
- * Changes the sticker set of a supergroup; requires can_change_info rights
+ * Changes the sticker set of a supergroup; requires can_change_info administrator right
  * @param {Object} params
  * @param {number} [params.supergroupId] - Identifier of the supergroup
  * @param {string} [params.stickerSetId] - New value of the supergroup sticker set

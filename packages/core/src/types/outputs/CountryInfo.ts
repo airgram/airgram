@@ -9,7 +9,7 @@ export interface CountryInfo {
   name: string
   /** English name of the country */
   englishName: string
-  /** True, if the country should be hidden from the list of all countries */
+  /** True, if the country must be hidden from the list of all countries */
   isHidden: boolean
   /** List of country calling codes */
   callingCodes: string[]

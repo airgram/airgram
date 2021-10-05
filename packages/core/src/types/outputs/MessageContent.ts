@@ -44,6 +44,10 @@ export type MessageContentUnion = MessageText
   | MessagePoll
   | MessageInvoice
   | MessageCall
+  | MessageVoiceChatScheduled
+  | MessageVoiceChatStarted
+  | MessageVoiceChatEnded
+  | MessageInviteVoiceChatParticipants
   | MessageBasicGroupChatCreate
   | MessageSupergroupChatCreate
   | MessageChatChangeTitle
@@ -56,6 +60,7 @@ export type MessageContentUnion = MessageText
   | MessageChatUpgradeFrom
   | MessagePinMessage
   | MessageScreenshotTaken
+  | MessageChatSetTheme
   | MessageChatSetTtl
   | MessageCustomServiceAction
   | MessageGameScore
@@ -267,13 +272,13 @@ export interface MessageInvoice {
   photo?: Photo
   /** Currency for the product price */
   currency: string
-  /** Product total price in the minimal quantity of the currency */
+  /** Product total price in the smallest units of the currency */
   totalAmount: number
   /** Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter} */
   startParameter: string
   /** True, if the invoice is a test invoice */
   isTest: boolean
-  /** True, if the shipping address should be specified */
+  /** True, if the shipping address must be specified */
   needShippingAddress: boolean
   /** The identifier of the message with the receipt, after the product has been purchased */
   receiptMessageId: number
@@ -288,6 +293,41 @@ export interface MessageCall {
   discardReason: CallDiscardReasonUnion
   /** Call duration, in seconds */
   duration: number
+}
+
+/** A new voice chat was scheduled */
+export interface MessageVoiceChatScheduled {
+  _: 'messageVoiceChatScheduled'
+  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+  groupCallId: number
+  /**
+   * Point in time (Unix timestamp) when the group call is supposed to be started by an
+   * administrator
+   */
+  startDate: number
+}
+
+/** A newly created voice chat */
+export interface MessageVoiceChatStarted {
+  _: 'messageVoiceChatStarted'
+  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+  groupCallId: number
+}
+
+/** A message with information about an ended voice chat */
+export interface MessageVoiceChatEnded {
+  _: 'messageVoiceChatEnded'
+  /** Call duration, in seconds */
+  duration: number
+}
+
+/** A message with information about an invite to a voice chat */
+export interface MessageInviteVoiceChatParticipants {
+  _: 'messageInviteVoiceChatParticipants'
+  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+  groupCallId: number
+  /** Invited user identifiers */
+  userIds: number[]
 }
 
 /** A newly created basic group */
@@ -372,10 +412,20 @@ export interface MessageScreenshotTaken {
   _: 'messageScreenshotTaken'
 }
 
-/** The TTL (Time To Live) setting messages in a secret chat has been changed */
+/** A theme in the chat has been changed */
+export interface MessageChatSetTheme {
+  _: 'messageChatSetTheme'
+  /**
+   * If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset
+   * to the default one
+   */
+  themeName: string
+}
+
+/** The TTL (Time To Live) setting for messages in the chat has been changed */
 export interface MessageChatSetTtl {
   _: 'messageChatSetTtl'
-  /** New TTL */
+  /** New message TTL setting */
   ttl: number
 }
 
@@ -403,6 +453,8 @@ export interface MessageGameScore {
 /** A payment has been completed */
 export interface MessagePaymentSuccessful {
   _: 'messagePaymentSuccessful'
+  /** Identifier of the chat, containing the corresponding invoice message; 0 if unknown */
+  invoiceChatId: number
   /**
    * Identifier of the message with the corresponding invoice; can be an identifier of
    * a deleted message
@@ -410,21 +462,16 @@ export interface MessagePaymentSuccessful {
   invoiceMessageId: number
   /** Currency for the price of the product */
   currency: string
-  /** Total price for the product, in the minimal quantity of the currency */
+  /** Total price for the product, in the smallest units of the currency */
   totalAmount: number
 }
 
 /** A payment has been completed; for bots only */
 export interface MessagePaymentSuccessfulBot {
   _: 'messagePaymentSuccessfulBot'
-  /**
-   * Identifier of the message with the corresponding invoice; can be an identifier of
-   * a deleted message
-   */
-  invoiceMessageId: number
   /** Currency for price of the product */
   currency: string
-  /** Total price for the product, in the minimal quantity of the currency */
+  /** Total price for the product, in the smallest units of the currency */
   totalAmount: number
   /** Invoice payload */
   invoicePayload: string

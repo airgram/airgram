@@ -44,7 +44,7 @@ export interface Supergroup {
    */
   hasLocation: boolean
   /**
-   * True, if messages sent to the channel should contain information about the sender.
+   * True, if messages sent to the channel need to contain information about the sender.
    * This field is only applicable to channels
    */
   signMessages: boolean
@@ -52,6 +52,11 @@ export interface Supergroup {
   isSlowModeEnabled: boolean
   /** True, if the supergroup is a channel */
   isChannel: boolean
+  /**
+   * True, if the supergroup is a broadcast group, i.e. only administrators can send messages
+   * and there is no limit on number of members
+   */
+  isBroadcastGroup: boolean
   /** True, if the supergroup or channel is verified */
   isVerified: boolean
   /**
@@ -59,6 +64,8 @@ export interface Supergroup {
    * supergroup or channel must be restricted
    */
   restrictionReason: string
-  /** True, if many users reported this supergroup as a scam */
+  /** True, if many users reported this supergroup or channel as a scam */
   isScam: boolean
+  /** True, if many users reported this supergroup or channel as a fake account */
+  isFake: boolean
 }

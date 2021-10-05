@@ -11,7 +11,7 @@ export class ScopeNotificationSettingsBaseModel {
    */
   public sound: string
 
-  /** True, if message content should be displayed in notifications */
+  /** True, if message content must be displayed in notifications */
   public showPreview: boolean
 
   /**

@@ -9,6 +9,6 @@ export interface DraftMessageInput {
   replyToMessageId?: number
   /** Point in time (Unix timestamp) when the draft was created */
   date?: number
-  /** Content of the message draft; this should always be of type inputMessageText */
+  /** Content of the message draft; must be of the type inputMessageText */
   inputMessageText?: InputMessageContentInputUnion
 }

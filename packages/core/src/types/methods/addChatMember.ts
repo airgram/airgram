@@ -4,17 +4,17 @@ import { OkUnion } from '../outputs'
 export interface AddChatMemberParams {
   chatId?: number // Chat identifier
   userId?: number // Identifier of the user
-  forwardLimit?: number // The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+  forwardLimit?: number // The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels, or if the added user is a bot
 }
 
 /**
- * Adds a new member to a chat. Members can't be added to private or secret chats. Members
- * will not be added until the chat state has been synchronized with the server
+ * Adds a new member to a chat. Members can't be added to private or secret chats
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {number} [params.userId] - Identifier of the user
  * @param {number} [params.forwardLimit] - The number of earlier messages from the
- * chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
+ * chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels,
+ * or if the added user is a bot
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddChatMemberParams, OkUnion>>}
  */

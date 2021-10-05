@@ -32,6 +32,7 @@ export type PushMessageContentUnion = PushMessageContentHidden
   | PushMessageContentChatAddMembers
   | PushMessageContentChatChangePhoto
   | PushMessageContentChatChangeTitle
+  | PushMessageContentChatSetTheme
   | PushMessageContentChatDeleteMember
   | PushMessageContentChatJoinByLink
   | PushMessageContentMessageForwards
@@ -217,7 +218,7 @@ export interface PushMessageContentChatAddMembers {
   memberName: string
   /** True, if the current user was added to the group */
   isCurrentUser: boolean
-  /** True, if the user has returned to the group themself */
+  /** True, if the user has returned to the group themselves */
   isReturned: boolean
 }
 
@@ -233,6 +234,16 @@ export interface PushMessageContentChatChangeTitle {
   title: string
 }
 
+/** A chat theme was edited */
+export interface PushMessageContentChatSetTheme {
+  _: 'pushMessageContentChatSetTheme'
+  /**
+   * If non-empty, name of a new theme, set for the chat. Otherwise chat theme was reset
+   * to the default one
+   */
+  themeName: string
+}
+
 /** A chat member was deleted */
 export interface PushMessageContentChatDeleteMember {
   _: 'pushMessageContentChatDeleteMember'
@@ -240,7 +251,7 @@ export interface PushMessageContentChatDeleteMember {
   memberName: string
   /** True, if the current user was deleted from the group */
   isCurrentUser: boolean
-  /** True, if the user has left the group themself */
+  /** True, if the user has left the group themselves */
   isLeft: boolean
 }
 

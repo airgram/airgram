@@ -4,7 +4,7 @@ import { FileUnion } from '../outputs'
 
 export interface GetRemoteFileParams {
   remoteFileId?: string // Remote identifier of the file to get
-  fileType?: FileTypeInputUnion // File type, if known
+  fileType?: FileTypeInputUnion // File type; pass null if unknown
 }
 
 /**
@@ -16,7 +16,7 @@ export interface GetRemoteFileParams {
  * object with the file must be preloaded by the application
  * @param {Object} params
  * @param {string} [params.remoteFileId] - Remote identifier of the file to get
- * @param {FileTypeInputUnion} [params.fileType] - File type, if known
+ * @param {FileTypeInputUnion} [params.fileType] - File type; pass null if unknown
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRemoteFileParams, FileUnion>>}
  */

@@ -3,7 +3,7 @@ import { InputFileInputUnion } from '../inputs'
 import { OkUnion } from '../outputs'
 
 export interface AddSavedAnimationParams {
-  animation?: InputFileInputUnion // The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list
+  animation?: InputFileInputUnion // The animation file to be added. Only animations known to the server (i.e., successfully sent via a message) can be added to the list
 }
 
 /**
@@ -13,7 +13,7 @@ export interface AddSavedAnimationParams {
  * can be added to the list
  * @param {Object} params
  * @param {InputFileInputUnion} [params.animation] - The animation file to be added.
- * Only animations known to the server (i.e. successfully sent via a message) can be
+ * Only animations known to the server (i.e., successfully sent via a message) can be
  * added to the list
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddSavedAnimationParams, OkUnion>>}

@@ -7,7 +7,7 @@ export class InputMessageAudioBaseModel {
   /** Audio file to be sent */
   public audio: InputFileUnion
 
-  /** Thumbnail of the cover for the album, if available */
+  /** Thumbnail of the cover for the album; pass null to skip thumbnail uploading */
   public albumCoverThumbnail: InputThumbnail
 
   /** Duration of the audio, in seconds; may be replaced by the server */
@@ -19,6 +19,9 @@ export class InputMessageAudioBaseModel {
   /** Performer of the audio; 0-64 characters, may be replaced by the server */
   public performer: string
 
-  /** Audio caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Audio caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   public caption: FormattedText
 }

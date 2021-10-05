@@ -8,7 +8,7 @@ export interface SetChatTitleParams {
 
 /**
  * Changes the chat title. Supported only for basic groups, supergroups and channels.
- * Requires can_change_info rights
+ * Requires can_change_info administrator right
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {string} [params.title] - New title of the chat; 1-128 characters

@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 
 export interface SetAutoDownloadSettingsParams {
   settings?: AutoDownloadSettingsInput // New user auto-download settings
-  type?: NetworkTypeInputUnion // Type of the network for which the new settings are applied
+  type?: NetworkTypeInputUnion // Type of the network for which the new settings are relevant
 }
 
 /**
@@ -13,7 +13,7 @@ export interface SetAutoDownloadSettingsParams {
  * @param {AutoDownloadSettingsInput} [params.settings] - New user auto-download
  * settings
  * @param {NetworkTypeInputUnion} [params.type] - Type of the network for which the
- * new settings are applied
+ * new settings are relevant
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetAutoDownloadSettingsParams, OkUnion>>}
  */

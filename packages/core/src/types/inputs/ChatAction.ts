@@ -6,11 +6,13 @@ export type ChatActionInputUnion = ChatActionTypingInput
   | ChatActionUploadingVoiceNoteInput
   | ChatActionUploadingPhotoInput
   | ChatActionUploadingDocumentInput
+  | ChatActionChoosingStickerInput
   | ChatActionChoosingLocationInput
   | ChatActionChoosingContactInput
   | ChatActionStartPlayingGameInput
   | ChatActionRecordingVideoNoteInput
   | ChatActionUploadingVideoNoteInput
+  | ChatActionWatchingAnimationsInput
   | ChatActionCancelInput
 
 /** The user is typing a message */
@@ -56,6 +58,11 @@ export interface ChatActionUploadingDocumentInput {
   progress?: number
 }
 
+/** The user is picking a sticker to send */
+export interface ChatActionChoosingStickerInput {
+  _: 'chatActionChoosingSticker'
+}
+
 /** The user is picking a location or venue to send */
 export interface ChatActionChoosingLocationInput {
   _: 'chatActionChoosingLocation'
@@ -83,7 +90,17 @@ export interface ChatActionUploadingVideoNoteInput {
   progress?: number
 }
 
-/** The user has cancelled the previous action */
+/**
+ * The user is watching animations sent by the other party by clicking on an animated
+ * emoji
+ */
+export interface ChatActionWatchingAnimationsInput {
+  _: 'chatActionWatchingAnimations'
+  /** The animated emoji */
+  emoji?: string
+}
+
+/** The user has canceled the previous action */
 export interface ChatActionCancelInput {
   _: 'chatActionCancel'
 }

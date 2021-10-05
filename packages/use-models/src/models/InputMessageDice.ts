@@ -5,6 +5,6 @@ export class InputMessageDiceBaseModel {
   /** Emoji on which the dice throw animation is based */
   public emoji: string
 
-  /** True, if a chat message draft should be deleted */
+  /** True, if the chat message draft must be deleted */
   public clearDraft: boolean
 }

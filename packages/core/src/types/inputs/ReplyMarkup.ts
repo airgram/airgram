@@ -32,6 +32,11 @@ export interface ReplyMarkupForceReplyInput {
    * for the target user of a reply
    */
   isPersonal?: boolean
+  /**
+   * If non-empty, the placeholder to be shown in the input field when the reply is active;
+   * 0-64 characters
+   */
+  inputFieldPlaceholder?: string
 }
 
 /** Contains a custom keyboard layout to quickly reply to bots */
@@ -49,6 +54,11 @@ export interface ReplyMarkupShowKeyboardInput {
    * the target user of a reply
    */
   isPersonal?: boolean
+  /**
+   * If non-empty, the placeholder to be shown in the input field when the keyboard is
+   * active; 0-64 characters
+   */
+  inputFieldPlaceholder?: string
 }
 
 /** Contains an inline keyboard layout */

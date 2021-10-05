@@ -4,7 +4,7 @@ import { FileUnion } from '../outputs'
 
 export interface UploadFileParams {
   file?: InputFileInputUnion // File to upload
-  fileType?: FileTypeInputUnion // File type
+  fileType?: FileTypeInputUnion // File type; pass null if unknown
   priority?: number // Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first
 }
 
@@ -15,7 +15,7 @@ export interface UploadFileParams {
  * message
  * @param {Object} params
  * @param {InputFileInputUnion} [params.file] - File to upload
- * @param {FileTypeInputUnion} [params.fileType] - File type
+ * @param {FileTypeInputUnion} [params.fileType] - File type; pass null if unknown
  * @param {number} [params.priority] - Priority of the upload (1-32). The higher
  * the priority, the earlier the file will be uploaded. If the priorities of two files
  * are equal, then the first one for which uploadFile was called will be uploaded first

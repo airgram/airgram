@@ -8,7 +8,7 @@ export type InputChatPhotoInputUnion = InputChatPhotoPreviousInput
 /** A previously used profile photo of the current user */
 export interface InputChatPhotoPreviousInput {
   _: 'inputChatPhotoPrevious'
-  /** Identifier of the profile photo to reuse */
+  /** Identifier of the current user's profile photo to reuse */
   chatPhotoId?: string
 }
 

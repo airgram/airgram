@@ -2,13 +2,13 @@
 export class PollOptionBaseModel {
   public _: 'pollOption'
 
-  /** Option text, 1-100 characters */
+  /** Option text; 1-100 characters */
   public text: string
 
   /** Number of voters for this option, available only for closed or voted polls */
   public voterCount: number
 
-  /** The percentage of votes for this option, 0-100 */
+  /** The percentage of votes for this option; 0-100 */
   public votePercentage: number
 
   /** True, if the option was chosen by the user */

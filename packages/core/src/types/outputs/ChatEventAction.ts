@@ -1,9 +1,11 @@
 import {
+  ChatInviteLink,
   ChatLocation,
   ChatMemberStatusUnion,
   ChatPermissions,
   ChatPhoto,
-  Message
+  Message,
+  MessageSenderUnion
 } from './index'
 
 /** Represents a chat event */
@@ -13,6 +15,7 @@ export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventMessagePinned
   | ChatEventMessageUnpinned
   | ChatEventMemberJoined
+  | ChatEventMemberJoinedByInviteLink
   | ChatEventMemberLeft
   | ChatEventMemberInvited
   | ChatEventMemberPromoted
@@ -25,10 +28,19 @@ export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventInvitesToggled
   | ChatEventLinkedChatChanged
   | ChatEventSlowModeDelayChanged
+  | ChatEventMessageTtlSettingChanged
   | ChatEventSignMessagesToggled
   | ChatEventStickerSetChanged
   | ChatEventLocationChanged
   | ChatEventIsAllHistoryAvailableToggled
+  | ChatEventInviteLinkEdited
+  | ChatEventInviteLinkRevoked
+  | ChatEventInviteLinkDeleted
+  | ChatEventVoiceChatCreated
+  | ChatEventVoiceChatDiscarded
+  | ChatEventVoiceChatParticipantIsMutedToggled
+  | ChatEventVoiceChatParticipantVolumeLevelChanged
+  | ChatEventVoiceChatMuteNewParticipantsToggled
 
 /** A message was edited */
 export interface ChatEventMessageEdited {
@@ -72,6 +84,13 @@ export interface ChatEventMemberJoined {
   _: 'chatEventMemberJoined'
 }
 
+/** A new member joined the chat by an invite link */
+export interface ChatEventMemberJoinedByInviteLink {
+  _: 'chatEventMemberJoinedByInviteLink'
+  /** Invite link used to join the chat */
+  inviteLink: ChatInviteLink
+}
+
 /** A member left the chat */
 export interface ChatEventMemberLeft {
   _: 'chatEventMemberLeft'
@@ -92,7 +111,7 @@ export interface ChatEventMemberInvited {
  */
 export interface ChatEventMemberPromoted {
   _: 'chatEventMemberPromoted'
-  /** Chat member user identifier */
+  /** Affected chat member user identifier */
   userId: number
   /** Previous status of the chat member */
   oldStatus: ChatMemberStatusUnion
@@ -106,8 +125,8 @@ export interface ChatEventMemberPromoted {
  */
 export interface ChatEventMemberRestricted {
   _: 'chatEventMemberRestricted'
-  /** Chat member user identifier */
-  userId: number
+  /** Affected chat member identifier */
+  memberId: MessageSenderUnion
   /** Previous status of the chat member */
   oldStatus: ChatMemberStatusUnion
   /** New status of the chat member */
@@ -184,6 +203,15 @@ export interface ChatEventSlowModeDelayChanged {
   newSlowModeDelay: number
 }
 
+/** The message TTL setting was changed */
+export interface ChatEventMessageTtlSettingChanged {
+  _: 'chatEventMessageTtlSettingChanged'
+  /** Previous value of message_ttl_setting */
+  oldMessageTtlSetting: number
+  /** New value of message_ttl_setting */
+  newMessageTtlSetting: number
+}
+
 /** The sign_messages setting of a channel was toggled */
 export interface ChatEventSignMessagesToggled {
   _: 'chatEventSignMessagesToggled'
@@ -214,4 +242,66 @@ export interface ChatEventIsAllHistoryAvailableToggled {
   _: 'chatEventIsAllHistoryAvailableToggled'
   /** New value of is_all_history_available */
   isAllHistoryAvailable: boolean
+}
+
+/** A chat invite link was edited */
+export interface ChatEventInviteLinkEdited {
+  _: 'chatEventInviteLinkEdited'
+  /** Previous information about the invite link */
+  oldInviteLink: ChatInviteLink
+  /** New information about the invite link */
+  newInviteLink: ChatInviteLink
+}
+
+/** A chat invite link was revoked */
+export interface ChatEventInviteLinkRevoked {
+  _: 'chatEventInviteLinkRevoked'
+  /** The invite link */
+  inviteLink: ChatInviteLink
+}
+
+/** A revoked chat invite link was deleted */
+export interface ChatEventInviteLinkDeleted {
+  _: 'chatEventInviteLinkDeleted'
+  /** The invite link */
+  inviteLink: ChatInviteLink
+}
+
+/** A voice chat was created */
+export interface ChatEventVoiceChatCreated {
+  _: 'chatEventVoiceChatCreated'
+  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+  groupCallId: number
+}
+
+/** A voice chat was discarded */
+export interface ChatEventVoiceChatDiscarded {
+  _: 'chatEventVoiceChatDiscarded'
+  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+  groupCallId: number
+}
+
+/** A voice chat participant was muted or unmuted */
+export interface ChatEventVoiceChatParticipantIsMutedToggled {
+  _: 'chatEventVoiceChatParticipantIsMutedToggled'
+  /** Identifier of the affected group call participant */
+  participantId: MessageSenderUnion
+  /** New value of is_muted */
+  isMuted: boolean
+}
+
+/** A voice chat participant volume level was changed */
+export interface ChatEventVoiceChatParticipantVolumeLevelChanged {
+  _: 'chatEventVoiceChatParticipantVolumeLevelChanged'
+  /** Identifier of the affected group call participant */
+  participantId: MessageSenderUnion
+  /** New value of volume_level; 1-20000 in hundreds of percents */
+  volumeLevel: number
+}
+
+/** The mute_new_participants setting of a voice chat was toggled */
+export interface ChatEventVoiceChatMuteNewParticipantsToggled {
+  _: 'chatEventVoiceChatMuteNewParticipantsToggled'
+  /** New value of the mute_new_participants setting */
+  muteNewParticipants: boolean
 }

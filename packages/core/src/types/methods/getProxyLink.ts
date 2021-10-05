@@ -1,5 +1,5 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { TextUnion } from '../outputs'
+import { HttpUrlUnion } from '../outputs'
 
 export interface GetProxyLinkParams {
   proxyId?: number // Proxy identifier
@@ -11,9 +11,9 @@ export interface GetProxyLinkParams {
  * @param {Object} params
  * @param {number} [params.proxyId] - Proxy identifier
  * @param {ApiRequestOptions} options
- * @returns {Promise<ApiResponse<GetProxyLinkParams, TextUnion>>}
+ * @returns {Promise<ApiResponse<GetProxyLinkParams, HttpUrlUnion>>}
  */
 export type getProxyLink = (
   params?: GetProxyLinkParams,
   options?: ApiRequestOptions
-) => Promise<ApiResponse<GetProxyLinkParams, TextUnion>>
+) => Promise<ApiResponse<GetProxyLinkParams, HttpUrlUnion>>

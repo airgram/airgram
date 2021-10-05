@@ -10,8 +10,8 @@ export interface SendMessageParams {
   chatId?: number // Target chat
   messageThreadId?: number // If not 0, a message thread identifier in which the message will be sent
   replyToMessageId?: number // Identifier of the message to reply to or 0
-  options?: MessageSendOptionsInput // Options to be used to send the message
-  replyMarkup?: ReplyMarkupInputUnion // Markup for replying to the message; for bots only
+  options?: MessageSendOptionsInput // Options to be used to send the message; pass null to use default options
+  replyMarkup?: ReplyMarkupInputUnion // Markup for replying to the message; pass null if none; for bots only
   inputMessageContent?: InputMessageContentInputUnion // The content of the message to be sent
 }
 
@@ -24,9 +24,9 @@ export interface SendMessageParams {
  * @param {number} [params.replyToMessageId] - Identifier of the message to reply
  * to or 0
  * @param {MessageSendOptionsInput} [params.options] - Options to be used to send
- * the message
+ * the message; pass null to use default options
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - Markup for replying to the
- * message; for bots only
+ * message; pass null if none; for bots only
  * @param {InputMessageContentInputUnion} [params.inputMessageContent] - The content
  * of the message to be sent
  * @param {ApiRequestOptions} options

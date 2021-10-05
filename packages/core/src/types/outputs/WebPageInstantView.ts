@@ -1,4 +1,4 @@
-import { PageBlockUnion } from './index'
+import { InternalLinkTypeUnion, PageBlockUnion } from './index'
 
 export type WebPageInstantViewUnion = WebPageInstantView
 
@@ -18,4 +18,6 @@ export interface WebPageInstantView {
    * to get the full web page instant view
    */
   isFull: boolean
+  /** An internal link to be opened to leave feedback about the instant view */
+  feedbackLink: InternalLinkTypeUnion
 }

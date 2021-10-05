@@ -1,4 +1,4 @@
-import { File } from './index'
+import { File, Minithumbnail } from './index'
 
 export type ChatPhotoInfoUnion = ChatPhotoInfo
 
@@ -15,6 +15,8 @@ export interface ChatPhotoInfo {
    * before the photo is changed
    */
   big: File
+  /** Chat photo minithumbnail; may be null */
+  minithumbnail?: Minithumbnail
   /** True, if the photo has animated variant */
   hasAnimation: boolean
 }

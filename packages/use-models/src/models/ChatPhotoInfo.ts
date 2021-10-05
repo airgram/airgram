@@ -1,4 +1,4 @@
-import { File } from '@airgram/core'
+import { File, Minithumbnail } from '@airgram/core'
 
 /** Contains basic information about the photo of a chat */
 export class ChatPhotoInfoBaseModel {
@@ -15,6 +15,9 @@ export class ChatPhotoInfoBaseModel {
    * before the photo is changed
    */
   public big: File
+
+  /** Chat photo minithumbnail; may be null */
+  public minithumbnail?: Minithumbnail
 
   /** True, if the photo has animated variant */
   public hasAnimation: boolean

@@ -7,7 +7,7 @@ export class PollBaseModel {
   /** Unique poll identifier */
   public id: string
 
-  /** Poll question, 1-300 characters */
+  /** Poll question; 1-300 characters */
   public question: string
 
   /** List of poll answer options */

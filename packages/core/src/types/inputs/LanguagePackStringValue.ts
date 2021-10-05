@@ -32,7 +32,7 @@ export interface LanguagePackStringValuePluralizedInput {
 }
 
 /**
- * A deleted language pack string, the value should be taken from the built-in english
+ * A deleted language pack string, the value must be taken from the built-in English
  * language pack
  */
 export interface LanguagePackStringValueDeletedInput {

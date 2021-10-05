@@ -4,8 +4,8 @@ import { OkUnion } from '../outputs'
 
 export interface EditInlineMessageMediaParams {
   inlineMessageId?: string // Inline message identifier
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; for bots only
-  inputMessageContent?: InputMessageContentInputUnion // New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none; for bots only
+  inputMessageContent?: InputMessageContentInputUnion // New content of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio, inputMessageDocument, inputMessagePhoto or inputMessageVideo
 }
 
 /**
@@ -14,10 +14,10 @@ export interface EditInlineMessageMediaParams {
  * @param {Object} params
  * @param {string} [params.inlineMessageId] - Inline message identifier
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
- * for bots only
+ * pass null if none; for bots only
  * @param {InputMessageContentInputUnion} [params.inputMessageContent] - New content
- * of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio,
- * InputMessageDocument, InputMessagePhoto or InputMessageVideo
+ * of the message. Must be one of the following types: inputMessageAnimation, inputMessageAudio,
+ * inputMessageDocument, inputMessagePhoto or inputMessageVideo
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditInlineMessageMediaParams, OkUnion>>}
  */

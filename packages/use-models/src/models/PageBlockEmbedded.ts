@@ -22,9 +22,9 @@ export class PageBlockEmbeddedBaseModel {
   /** Block caption */
   public caption: PageBlockCaption
 
-  /** True, if the block should be full width */
+  /** True, if the block must be full width */
   public isFullWidth: boolean
 
-  /** True, if scrolling should be allowed */
+  /** True, if scrolling needs to be allowed */
   public allowScrolling: boolean
 }

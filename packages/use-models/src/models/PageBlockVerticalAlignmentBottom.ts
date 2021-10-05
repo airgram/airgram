@@ -1,4 +1,4 @@
-/** The content should be bottom-aligned */
+/** The content must be bottom-aligned */
 export class PageBlockVerticalAlignmentBottomBaseModel {
   public _: 'pageBlockVerticalAlignmentBottom'
 }

@@ -21,4 +21,10 @@ export class PasswordStateBaseModel {
    * sent; may be null
    */
   public recoveryEmailAddressCodeInfo?: EmailAddressAuthenticationCodeInfo
+
+  /**
+   * If not 0, point in time (Unix timestamp) after which the password can be reset immediately
+   * using resetPassword
+   */
+  public pendingResetDate: number
 }

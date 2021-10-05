@@ -7,6 +7,6 @@ export interface ChatStatisticsMessageSenderInfo {
   userId: number
   /** Number of sent messages */
   sentMessageCount: number
-  /** Average number of characters in sent messages */
+  /** Average number of characters in sent messages; 0 if unknown */
   averageCharacterCount: number
 }

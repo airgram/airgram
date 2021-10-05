@@ -54,9 +54,9 @@ export interface CallStateDiscarded {
   _: 'callStateDiscarded'
   /** The reason, why the call has ended */
   reason: CallDiscardReasonUnion
-  /** True, if the call rating should be sent to the server */
+  /** True, if the call rating must be sent to the server */
   needRating: boolean
-  /** True, if the call debug information should be sent to the server */
+  /** True, if the call debug information must be sent to the server */
   needDebugInformation: boolean
 }
 

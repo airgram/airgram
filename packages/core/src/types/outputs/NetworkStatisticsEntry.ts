@@ -10,7 +10,7 @@ export type NetworkStatisticsEntryUnion = NetworkStatisticsEntryFile
  */
 export interface NetworkStatisticsEntryFile {
   _: 'networkStatisticsEntryFile'
-  /** Type of the file the data is part of */
+  /** Type of the file the data is part of; pass null if the data isn't related to files */
   fileType: FileTypeUnion
   /**
    * Type of the network the data was sent through. Call setNetworkType to maintain the

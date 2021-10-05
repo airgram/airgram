@@ -7,7 +7,8 @@ export interface ToggleSupergroupSignMessagesParams {
 }
 
 /**
- * Toggles sender signatures messages sent in a channel; requires can_change_info rights
+ * Toggles sender signatures messages sent in a channel; requires can_change_info administrator
+ * right
  * @param {Object} params
  * @param {number} [params.supergroupId] - Identifier of the channel
  * @param {boolean} [params.signMessages] - New value of sign_messages

@@ -4,7 +4,7 @@ import { StorageStatisticsByChat } from '@airgram/core'
 export class StorageStatisticsBaseModel {
   public _: 'storageStatistics'
 
-  /** Total size of files */
+  /** Total size of files, in bytes */
   public size: number
 
   /** Total number of files */

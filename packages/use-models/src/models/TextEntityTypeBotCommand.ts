@@ -1,7 +1,4 @@
-/**
- * A bot command, beginning with "/". This shouldn't be highlighted if there are no
- * bots in the chat
- */
+/** A bot command, beginning with "/" */
 export class TextEntityTypeBotCommandBaseModel {
   public _: 'textEntityTypeBotCommand'
 }

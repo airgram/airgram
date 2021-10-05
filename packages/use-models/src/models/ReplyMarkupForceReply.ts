@@ -8,4 +8,10 @@ export class ReplyMarkupForceReplyBaseModel {
    * for the target user of a reply
    */
   public isPersonal: boolean
+
+  /**
+   * If non-empty, the placeholder to be shown in the input field when the reply is active;
+   * 0-64 characters
+   */
+  public inputFieldPlaceholder: string
 }

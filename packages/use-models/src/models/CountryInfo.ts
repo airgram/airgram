@@ -11,7 +11,7 @@ export class CountryInfoBaseModel {
   /** English name of the country */
   public englishName: string
 
-  /** True, if the country should be hidden from the list of all countries */
+  /** True, if the country must be hidden from the list of all countries */
   public isHidden: boolean
 
   /** List of country calling codes */

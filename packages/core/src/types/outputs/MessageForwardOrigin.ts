@@ -3,6 +3,7 @@ export type MessageForwardOriginUnion = MessageForwardOriginUser
   | MessageForwardOriginChat
   | MessageForwardOriginHiddenUser
   | MessageForwardOriginChannel
+  | MessageForwardOriginMessageImport
 
 /** The message was originally sent by a known user */
 export interface MessageForwardOriginUser {
@@ -39,4 +40,11 @@ export interface MessageForwardOriginChannel {
   messageId: number
   /** Original post author signature */
   authorSignature: string
+}
+
+/** The message was imported from an exported message history */
+export interface MessageForwardOriginMessageImport {
+  _: 'messageForwardOriginMessageImport'
+  /** Name of the sender */
+  senderName: string
 }

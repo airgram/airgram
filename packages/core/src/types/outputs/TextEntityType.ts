@@ -16,6 +16,7 @@ export type TextEntityTypeUnion = TextEntityTypeMention
   | TextEntityTypePreCode
   | TextEntityTypeTextUrl
   | TextEntityTypeMentionName
+  | TextEntityTypeMediaTimestamp
 
 /** A mention of a user by their username */
 export interface TextEntityTypeMention {
@@ -28,17 +29,14 @@ export interface TextEntityTypeHashtag {
 }
 
 /**
- * A cashtag text, beginning with "$" and consisting of capital english letters (i.e.
+ * A cashtag text, beginning with "$" and consisting of capital English letters (e.g.,
  * "$USD")
  */
 export interface TextEntityTypeCashtag {
   _: 'textEntityTypeCashtag'
 }
 
-/**
- * A bot command, beginning with "/". This shouldn't be highlighted if there are no
- * bots in the chat
- */
+/** A bot command, beginning with "/" */
 export interface TextEntityTypeBotCommand {
   _: 'textEntityTypeBotCommand'
 }
@@ -115,4 +113,15 @@ export interface TextEntityTypeMentionName {
   _: 'textEntityTypeMentionName'
   /** Identifier of the mentioned user */
   userId: number
+}
+
+/** A media timestamp */
+export interface TextEntityTypeMediaTimestamp {
+  _: 'textEntityTypeMediaTimestamp'
+  /**
+   * Timestamp from which a video/audio/video note/voice note playing must start, in seconds.
+   * The media can be in the content or the web page preview of the current message, or
+   * in the same places in the replied message
+   */
+  mediaTimestamp: number
 }

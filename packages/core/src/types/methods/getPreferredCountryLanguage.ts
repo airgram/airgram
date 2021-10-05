@@ -6,7 +6,7 @@ export interface GetPreferredCountryLanguageParams {
 }
 
 /**
- * Returns an IETF language tag of the language preferred in the country, which should
+ * Returns an IETF language tag of the language preferred in the country, which must
  * be used to fill native fields in Telegram Passport personal details. Returns a 404
  * error if unknown
  * @param {Object} params

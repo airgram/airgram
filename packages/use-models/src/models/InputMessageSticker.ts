@@ -7,7 +7,7 @@ export class InputMessageStickerBaseModel {
   /** Sticker to be sent */
   public sticker: InputFileUnion
 
-  /** Sticker thumbnail, if available */
+  /** Sticker thumbnail; pass null to skip thumbnail uploading */
   public thumbnail: InputThumbnail
 
   /** Sticker width */
@@ -15,4 +15,7 @@ export class InputMessageStickerBaseModel {
 
   /** Sticker height */
   public height: number
+
+  /** Emoji used to choose the sticker */
+  public emoji: string
 }

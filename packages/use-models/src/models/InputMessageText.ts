@@ -11,9 +11,9 @@ export class InputMessageTextBaseModel {
    */
   public text: FormattedText
 
-  /** True, if rich web page previews for URLs in the message text should be disabled */
+  /** True, if rich web page previews for URLs in the message text must be disabled */
   public disableWebPagePreview: boolean
 
-  /** True, if a chat message draft should be deleted */
+  /** True, if a chat message draft must be deleted */
   public clearDraft: boolean
 }

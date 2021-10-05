@@ -5,7 +5,7 @@ export interface PaymentResult {
   _: 'paymentResult'
   /**
    * True, if the payment request was successful; otherwise the verification_url will
-   * be not empty
+   * be non-empty
    */
   success: boolean
   /** URL for additional payment credentials verification */

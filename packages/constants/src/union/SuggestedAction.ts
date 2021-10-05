@@ -1,4 +1,7 @@
 export enum SUGGESTED_ACTION {
   suggestedActionEnableArchiveAndMuteNewChats = 'suggestedActionEnableArchiveAndMuteNewChats',
-  suggestedActionCheckPhoneNumber = 'suggestedActionCheckPhoneNumber'
+  suggestedActionCheckPassword = 'suggestedActionCheckPassword',
+  suggestedActionCheckPhoneNumber = 'suggestedActionCheckPhoneNumber',
+  suggestedActionSeeTicksHint = 'suggestedActionSeeTicksHint',
+  suggestedActionConvertToBroadcastGroup = 'suggestedActionConvertToBroadcastGroup'
 }

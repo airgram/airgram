@@ -7,7 +7,7 @@ export class InputMessageVideoNoteBaseModel {
   /** Video note to be sent */
   public videoNote: InputFileUnion
 
-  /** Video thumbnail, if available */
+  /** Video thumbnail; pass null to skip thumbnail uploading */
   public thumbnail: InputThumbnail
 
   /** Duration of the video, in seconds */

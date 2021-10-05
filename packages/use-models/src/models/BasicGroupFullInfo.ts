@@ -1,4 +1,9 @@
-import { ChatMember, ChatPhoto } from '@airgram/core'
+import {
+  BotCommands,
+  ChatInviteLink,
+  ChatMember,
+  ChatPhoto
+} from '@airgram/core'
 
 /** Contains full information about a basic group */
 export class BasicGroupFullInfoBaseModel {
@@ -7,7 +12,7 @@ export class BasicGroupFullInfoBaseModel {
   /** Chat photo; may be null */
   public photo?: ChatPhoto
 
-  /** Group description */
+  /** Group description. Updated only after the basic group is opened */
   public description: string
 
   /** User identifier of the creator of the group; 0 if unknown */
@@ -17,8 +22,11 @@ export class BasicGroupFullInfoBaseModel {
   public members: ChatMember[]
 
   /**
-   * Invite link for this group; available only after it has been generated at least once
-   * and only for the group creator
+   * Primary invite link for this group; may be null. For chat administrators with can_invite_users
+   * right only. Updated only after the basic group is opened
    */
-  public inviteLink: string
+  public inviteLink?: ChatInviteLink
+
+  /** List of commands of bots in the group */
+  public botCommands: BotCommands[]
 }

@@ -4,9 +4,10 @@ import { ChatUnion } from '../outputs'
 
 export interface CreateNewSupergroupChatParams {
   title?: string // Title of the new chat; 1-128 characters
-  isChannel?: boolean // True, if a channel chat should be created
+  isChannel?: boolean // True, if a channel chat needs to be created
   description?: string // Chat description; 0-255 characters
-  location?: ChatLocationInput // Chat location if a location-based supergroup is being created
+  location?: ChatLocationInput // Chat location if a location-based supergroup is being created; pass null to create an ordinary supergroup chat
+  forImport?: boolean // True, if the supergroup is created for importing messages using importMessage
 }
 
 /**
@@ -14,10 +15,12 @@ export interface CreateNewSupergroupChatParams {
  * Returns the newly created chat
  * @param {Object} params
  * @param {string} [params.title] - Title of the new chat; 1-128 characters
- * @param {boolean} [params.isChannel] - True, if a channel chat should be created
+ * @param {boolean} [params.isChannel] - True, if a channel chat needs to be created
  * @param {string} [params.description] - Chat description; 0-255 characters
  * @param {ChatLocationInput} [params.location] - Chat location if a location-based
- * supergroup is being created
+ * supergroup is being created; pass null to create an ordinary supergroup chat
+ * @param {boolean} [params.forImport] - True, if the supergroup is created for importing
+ * messages using importMessage
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateNewSupergroupChatParams, ChatUnion>>}
  */

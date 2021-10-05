@@ -6,7 +6,7 @@ export interface SearchChatMembersParams {
   chatId?: number // Chat identifier
   query?: string // Query to search for
   limit?: number // The maximum number of users to be returned
-  filter?: ChatMembersFilterInputUnion // The type of users to return. By default, chatMembersFilterMembers
+  filter?: ChatMembersFilterInputUnion // The type of users to search for; pass null to search among all chat members
 }
 
 /**
@@ -16,8 +16,8 @@ export interface SearchChatMembersParams {
  * @param {number} [params.chatId] - Chat identifier
  * @param {string} [params.query] - Query to search for
  * @param {number} [params.limit] - The maximum number of users to be returned
- * @param {ChatMembersFilterInputUnion} [params.filter] - The type of users to return.
- * By default, chatMembersFilterMembers
+ * @param {ChatMembersFilterInputUnion} [params.filter] - The type of users to search
+ * for; pass null to search among all chat members
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchChatMembersParams, ChatMembersUnion>>}
  */

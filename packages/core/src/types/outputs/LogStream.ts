@@ -13,7 +13,7 @@ export interface LogStreamFile {
   path: string
   /**
    * The maximum size of the file to where the internal TDLib log is written before the
-   * file will be auto-rotated
+   * file will be auto-rotated, in bytes
    */
   maxFileSize: number
   /** Pass true to additionally redirect stderr to the log file. Ignored on Windows */

@@ -5,10 +5,11 @@ import { MessagesUnion } from '../outputs'
 export interface ForwardMessagesParams {
   chatId?: number // Identifier of the chat to which to forward messages
   fromChatId?: number // Identifier of the chat from which to forward messages
-  messageIds?: number[] // Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order
-  options?: MessageSendOptionsInput // Options to be used to send the messages
-  sendCopy?: boolean // True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
-  removeCaption?: boolean // True, if media caption of message copies needs to be removed. Ignored if send_copy is false
+  messageIds?: number[] // Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order. At most 100 messages can be forwarded simultaneously
+  options?: MessageSendOptionsInput // Options to be used to send the messages; pass null to use default options
+  sendCopy?: boolean // If true, content of the messages will be copied without reference to the original sender. Always true if the messages are forwarded to a secret chat or are local
+  removeCaption?: boolean // If true, media caption of message copies will be removed. Ignored if send_copy is false
+  onlyPreview?: boolean // If true, messages will not be forwarded and instead fake messages will be returned
 }
 
 /**
@@ -20,14 +21,17 @@ export interface ForwardMessagesParams {
  * @param {number} [params.fromChatId] - Identifier of the chat from which to forward
  * messages
  * @param {number[]} [params.messageIds] - Identifiers of the messages to forward.
- * Message identifiers must be in a strictly increasing order
+ * Message identifiers must be in a strictly increasing order. At most 100 messages
+ * can be forwarded simultaneously
  * @param {MessageSendOptionsInput} [params.options] - Options to be used to send
- * the messages
- * @param {boolean} [params.sendCopy] - True, if content of the messages needs to
- * be copied without links to the original messages. Always true if the messages are
- * forwarded to a secret chat
- * @param {boolean} [params.removeCaption] - True, if media caption of message copies
- * needs to be removed. Ignored if send_copy is false
+ * the messages; pass null to use default options
+ * @param {boolean} [params.sendCopy] - If true, content of the messages will be
+ * copied without reference to the original sender. Always true if the messages are
+ * forwarded to a secret chat or are local
+ * @param {boolean} [params.removeCaption] - If true, media caption of message copies
+ * will be removed. Ignored if send_copy is false
+ * @param {boolean} [params.onlyPreview] - If true, messages will not be forwarded
+ * and instead fake messages will be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ForwardMessagesParams, MessagesUnion>>}
  */

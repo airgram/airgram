@@ -25,7 +25,7 @@ export class VideoBaseModel {
    */
   public hasStickers: boolean
 
-  /** True, if the video should be tried to be streamed */
+  /** True, if the video is supposed to be streamed */
   public supportsStreaming: boolean
 
   /** Video minithumbnail; may be null */

@@ -10,8 +10,14 @@ export class BackgroundTypePatternBaseModel {
   /** Description of the background fill */
   public fill: BackgroundFillUnion
 
-  /** Intensity of the pattern when it is shown above the filled background, 0-100 */
+  /** Intensity of the pattern when it is shown above the filled background; 0-100. */
   public intensity: number
+
+  /**
+   * True, if the background fill must be applied only to the pattern itself. All other
+   * pixels are black in this case. For dark themes only
+   */
+  public isInverted: boolean
 
   /** True, if the background needs to be slightly moved when device is tilted */
   public isMoving: boolean

@@ -10,6 +10,6 @@ export class PageBlockAnimationBaseModel {
   /** Animation caption */
   public caption: PageBlockCaption
 
-  /** True, if the animation should be played automatically */
+  /** True, if the animation must be played automatically */
   public needAutoplay: boolean
 }

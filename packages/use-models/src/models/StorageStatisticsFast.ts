@@ -2,7 +2,7 @@
 export class StorageStatisticsFastBaseModel {
   public _: 'storageStatisticsFast'
 
-  /** Approximate total size of files */
+  /** Approximate total size of files, in bytes */
   public filesSize: number
 
   /** Approximate number of files */

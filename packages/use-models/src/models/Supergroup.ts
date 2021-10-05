@@ -50,7 +50,7 @@ export class SupergroupBaseModel {
   public hasLocation: boolean
 
   /**
-   * True, if messages sent to the channel should contain information about the sender.
+   * True, if messages sent to the channel need to contain information about the sender.
    * This field is only applicable to channels
    */
   public signMessages: boolean
@@ -61,6 +61,12 @@ export class SupergroupBaseModel {
   /** True, if the supergroup is a channel */
   public isChannel: boolean
 
+  /**
+   * True, if the supergroup is a broadcast group, i.e. only administrators can send messages
+   * and there is no limit on number of members
+   */
+  public isBroadcastGroup: boolean
+
   /** True, if the supergroup or channel is verified */
   public isVerified: boolean
 
@@ -70,6 +76,9 @@ export class SupergroupBaseModel {
    */
   public restrictionReason: string
 
-  /** True, if many users reported this supergroup as a scam */
+  /** True, if many users reported this supergroup or channel as a scam */
   public isScam: boolean
+
+  /** True, if many users reported this supergroup or channel as a fake account */
+  public isFake: boolean
 }

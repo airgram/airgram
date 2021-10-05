@@ -25,8 +25,13 @@ export interface BackgroundTypePatternInput {
   _: 'backgroundTypePattern'
   /** Description of the background fill */
   fill?: BackgroundFillInputUnion
-  /** Intensity of the pattern when it is shown above the filled background, 0-100 */
+  /** Intensity of the pattern when it is shown above the filled background; 0-100. */
   intensity?: number
+  /**
+   * True, if the background fill must be applied only to the pattern itself. All other
+   * pixels are black in this case. For dark themes only
+   */
+  isInverted?: boolean
   /** True, if the background needs to be slightly moved when device is tilted */
   isMoving?: boolean
 }

@@ -19,8 +19,8 @@ export class UserTypeBotBaseModel {
   public inlineQueryPlaceholder: string
 
   /**
-   * True, if the location of the user should be sent with every inline query to this
-   * bot
+   * True, if the location of the user is expected to be sent with every inline query
+   * to this bot
    */
   public needLocation: boolean
 }

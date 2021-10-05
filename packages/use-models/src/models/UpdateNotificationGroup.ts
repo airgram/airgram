@@ -16,7 +16,7 @@ export class UpdateNotificationGroupBaseModel {
   /** Chat identifier, which notification settings must be applied to the added notifications */
   public notificationSettingsChatId: number
 
-  /** True, if the notifications should be shown without sound */
+  /** True, if the notifications must be shown without sound */
   public isSilent: boolean
 
   /**

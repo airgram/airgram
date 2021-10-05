@@ -16,7 +16,7 @@ export class UpdateNewPreCheckoutQueryBaseModel {
   /** Currency for the product price */
   public currency: string
 
-  /** Total price for the product, in the minimal quantity of the currency */
+  /** Total price for the product, in the smallest units of the currency */
   public totalAmount: number
 
   /** Invoice payload */

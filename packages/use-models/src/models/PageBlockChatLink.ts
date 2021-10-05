@@ -10,6 +10,6 @@ export class PageBlockChatLinkBaseModel {
   /** Chat photo; may be null */
   public photo?: ChatPhotoInfo
 
-  /** Chat username, by which all other information about the chat should be resolved */
+  /** Chat username, by which all other information about the chat can be resolved */
   public username: string
 }

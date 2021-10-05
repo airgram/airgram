@@ -5,6 +5,7 @@ export enum CHAT_EVENT_ACTION {
   chatEventMessagePinned = 'chatEventMessagePinned',
   chatEventMessageUnpinned = 'chatEventMessageUnpinned',
   chatEventMemberJoined = 'chatEventMemberJoined',
+  chatEventMemberJoinedByInviteLink = 'chatEventMemberJoinedByInviteLink',
   chatEventMemberLeft = 'chatEventMemberLeft',
   chatEventMemberInvited = 'chatEventMemberInvited',
   chatEventMemberPromoted = 'chatEventMemberPromoted',
@@ -17,8 +18,17 @@ export enum CHAT_EVENT_ACTION {
   chatEventInvitesToggled = 'chatEventInvitesToggled',
   chatEventLinkedChatChanged = 'chatEventLinkedChatChanged',
   chatEventSlowModeDelayChanged = 'chatEventSlowModeDelayChanged',
+  chatEventMessageTtlSettingChanged = 'chatEventMessageTtlSettingChanged',
   chatEventSignMessagesToggled = 'chatEventSignMessagesToggled',
   chatEventStickerSetChanged = 'chatEventStickerSetChanged',
   chatEventLocationChanged = 'chatEventLocationChanged',
-  chatEventIsAllHistoryAvailableToggled = 'chatEventIsAllHistoryAvailableToggled'
+  chatEventIsAllHistoryAvailableToggled = 'chatEventIsAllHistoryAvailableToggled',
+  chatEventInviteLinkEdited = 'chatEventInviteLinkEdited',
+  chatEventInviteLinkRevoked = 'chatEventInviteLinkRevoked',
+  chatEventInviteLinkDeleted = 'chatEventInviteLinkDeleted',
+  chatEventVoiceChatCreated = 'chatEventVoiceChatCreated',
+  chatEventVoiceChatDiscarded = 'chatEventVoiceChatDiscarded',
+  chatEventVoiceChatParticipantIsMutedToggled = 'chatEventVoiceChatParticipantIsMutedToggled',
+  chatEventVoiceChatParticipantVolumeLevelChanged = 'chatEventVoiceChatParticipantVolumeLevelChanged',
+  chatEventVoiceChatMuteNewParticipantsToggled = 'chatEventVoiceChatMuteNewParticipantsToggled'
 }

@@ -1,4 +1,4 @@
-import { Sticker, Thumbnail } from './index'
+import { ClosedVectorPath, Sticker, Thumbnail } from './index'
 
 export type StickerSetInfoUnion = StickerSetInfo
 
@@ -13,7 +13,12 @@ export interface StickerSetInfo {
   name: string
   /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
   thumbnail?: Thumbnail
-  /** True, if the sticker set has been installed by current user */
+  /**
+   * Sticker set thumbnail's outline represented as a list of closed vector paths; may
+   * be empty. The coordinate system origin is in the upper-left corner
+   */
+  thumbnailOutline: ClosedVectorPath[]
+  /** True, if the sticker set has been installed by the current user */
   isInstalled: boolean
   /**
    * True, if the sticker set has been archived. A sticker set can't be installed and
@@ -32,7 +37,7 @@ export interface StickerSetInfo {
   size: number
   /**
    * Contains up to the first 5 stickers from the set, depending on the context. If the
-   * application needs more stickers the full set should be requested
+   * application needs more stickers the full sticker set needs to be requested
    */
   covers: Sticker[]
 }

@@ -2,7 +2,7 @@ export type SessionUnion = Session
 
 /**
  * Contains information about one session in a Telegram application used by the current
- * user. Sessions should be shown to the user in the returned order
+ * user. Sessions must be shown to the user in the returned order
  */
 export interface Session {
   _: 'session'

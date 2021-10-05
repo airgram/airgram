@@ -26,7 +26,7 @@ export class ChatNotificationSettingsBaseModel {
    */
   public useDefaultShowPreview: boolean
 
-  /** True, if message content should be displayed in notifications */
+  /** True, if message content must be displayed in notifications */
   public showPreview: boolean
 
   /**

@@ -116,9 +116,9 @@ export interface RichTextIcon {
   _: 'richTextIcon'
   /** The image represented as a document. The image can be in GIF, JPEG or PNG format */
   document: Document
-  /** Width of a bounding box in which the image should be shown; 0 if unknown */
+  /** Width of a bounding box in which the image must be shown; 0 if unknown */
   width: number
-  /** Height of a bounding box in which the image should be shown; 0 if unknown */
+  /** Height of a bounding box in which the image must be shown; 0 if unknown */
   height: number
 }
 
@@ -148,7 +148,7 @@ export interface RichTextAnchorLink {
   _: 'richTextAnchorLink'
   /** The link text */
   text: RichTextUnion
-  /** The anchor name. If the name is empty, the link should bring back to top */
+  /** The anchor name. If the name is empty, the link must bring back to top */
   anchorName: string
   /** An HTTP URL, opening the anchor */
   url: string

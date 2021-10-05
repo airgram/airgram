@@ -7,7 +7,7 @@ export class InputMessageDocumentBaseModel {
   /** Document to be sent */
   public document: InputFileUnion
 
-  /** Document thumbnail, if available */
+  /** Document thumbnail; pass null to skip thumbnail uploading */
   public thumbnail: InputThumbnail
 
   /**
@@ -16,6 +16,9 @@ export class InputMessageDocumentBaseModel {
    */
   public disableContentTypeDetection: boolean
 
-  /** Document caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Document caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   public caption: FormattedText
 }

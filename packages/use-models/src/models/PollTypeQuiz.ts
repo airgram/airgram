@@ -12,7 +12,7 @@ export class PollTypeQuizBaseModel {
 
   /**
    * Text that is shown when the user chooses an incorrect answer or taps on the lamp
-   * icon, 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
+   * icon; 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
    */
   public explanation: FormattedText
 }

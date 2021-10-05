@@ -4,14 +4,15 @@ import { OkUnion } from '../outputs'
 
 export interface EditInlineMessageReplyMarkupParams {
   inlineMessageId?: string // Inline message identifier
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none
 }
 
 /**
  * Edits the reply markup of an inline message sent via a bot; for bots only
  * @param {Object} params
  * @param {string} [params.inlineMessageId] - Inline message identifier
- * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup
+ * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
+ * pass null if none
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditInlineMessageReplyMarkupParams, OkUnion>>}
  */

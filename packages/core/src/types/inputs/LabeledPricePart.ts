@@ -5,6 +5,6 @@ export interface LabeledPricePartInput {
   _: 'labeledPricePart'
   /** Label for this portion of the product price */
   label?: string
-  /** Currency amount in minimal quantity of the currency */
+  /** Currency amount in the smallest units of the currency */
   amount?: number
 }

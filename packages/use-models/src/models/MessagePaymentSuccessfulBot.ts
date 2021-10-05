@@ -4,16 +4,10 @@ import { OrderInfo } from '@airgram/core'
 export class MessagePaymentSuccessfulBotBaseModel {
   public _: 'messagePaymentSuccessfulBot'
 
-  /**
-   * Identifier of the message with the corresponding invoice; can be an identifier of
-   * a deleted message
-   */
-  public invoiceMessageId: number
-
   /** Currency for price of the product */
   public currency: string
 
-  /** Total price for the product, in the minimal quantity of the currency */
+  /** Total price for the product, in the smallest units of the currency */
   public totalAmount: number
 
   /** Invoice payload */

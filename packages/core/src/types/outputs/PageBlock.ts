@@ -100,7 +100,7 @@ export interface PageBlockPreformatted {
   _: 'pageBlockPreformatted'
   /** Paragraph text */
   text: RichTextUnion
-  /** Programming language for which the text should be formatted */
+  /** Programming language for which the text needs to be formatted */
   language: string
 }
 
@@ -158,7 +158,7 @@ export interface PageBlockAnimation {
   animation?: Animation
   /** Animation caption */
   caption: PageBlockCaption
-  /** True, if the animation should be played automatically */
+  /** True, if the animation must be played automatically */
   needAutoplay: boolean
 }
 
@@ -189,9 +189,9 @@ export interface PageBlockVideo {
   video?: Video
   /** Video caption */
   caption: PageBlockCaption
-  /** True, if the video should be played automatically */
+  /** True, if the video must be played automatically */
   needAutoplay: boolean
-  /** True, if the video should be looped */
+  /** True, if the video must be looped */
   isLooped: boolean
 }
 
@@ -226,9 +226,9 @@ export interface PageBlockEmbedded {
   height: number
   /** Block caption */
   caption: PageBlockCaption
-  /** True, if the block should be full width */
+  /** True, if the block must be full width */
   isFullWidth: boolean
-  /** True, if scrolling should be allowed */
+  /** True, if scrolling needs to be allowed */
   allowScrolling: boolean
 }
 
@@ -274,7 +274,7 @@ export interface PageBlockChatLink {
   title: string
   /** Chat photo; may be null */
   photo?: ChatPhotoInfo
-  /** Chat username, by which all other information about the chat should be resolved */
+  /** Chat username, by which all other information about the chat can be resolved */
   username: string
 }
 

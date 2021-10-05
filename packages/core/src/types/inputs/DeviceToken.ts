@@ -20,7 +20,7 @@ export interface DeviceTokenFirebaseCloudMessagingInput {
   _: 'deviceTokenFirebaseCloudMessaging'
   /** Device registration token; may be empty to de-register a device */
   token?: string
-  /** True, if push notifications should be additionally encrypted */
+  /** True, if push notifications must be additionally encrypted */
   encrypt?: boolean
 }
 
@@ -40,7 +40,7 @@ export interface DeviceTokenApplePushVoIpInput {
   deviceToken?: string
   /** True, if App Sandbox is enabled */
   isAppSandbox?: boolean
-  /** True, if push notifications should be additionally encrypted */
+  /** True, if push notifications must be additionally encrypted */
   encrypt?: boolean
 }
 

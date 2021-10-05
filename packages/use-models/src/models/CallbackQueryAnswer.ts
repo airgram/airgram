@@ -5,7 +5,7 @@ export class CallbackQueryAnswerBaseModel {
   /** Text of the answer */
   public text: string
 
-  /** True, if an alert should be shown to the user instead of a toast notification */
+  /** True, if an alert must be shown to the user instead of a toast notification */
   public showAlert: boolean
 
   /** URL to be opened */

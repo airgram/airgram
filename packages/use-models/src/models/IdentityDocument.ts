@@ -13,8 +13,8 @@ export class IdentityDocumentBaseModel {
   /** Front side of the document */
   public frontSide: DatedFile
 
-  /** Reverse side of the document; only for driver license and identity card */
-  public reverseSide: DatedFile
+  /** Reverse side of the document; only for driver license and identity card; may be null */
+  public reverseSide?: DatedFile
 
   /** Selfie with the document; may be null */
   public selfie?: DatedFile

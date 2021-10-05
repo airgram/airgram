@@ -1,4 +1,4 @@
-import { Sticker, Thumbnail } from '@airgram/core'
+import { ClosedVectorPath, Sticker, Thumbnail } from '@airgram/core'
 
 /** Represents short information about a sticker set */
 export class StickerSetInfoBaseModel {
@@ -16,7 +16,13 @@ export class StickerSetInfoBaseModel {
   /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
   public thumbnail?: Thumbnail
 
-  /** True, if the sticker set has been installed by current user */
+  /**
+   * Sticker set thumbnail's outline represented as a list of closed vector paths; may
+   * be empty. The coordinate system origin is in the upper-left corner
+   */
+  public thumbnailOutline: ClosedVectorPath[]
+
+  /** True, if the sticker set has been installed by the current user */
   public isInstalled: boolean
 
   /**
@@ -42,7 +48,7 @@ export class StickerSetInfoBaseModel {
 
   /**
    * Contains up to the first 5 stickers from the set, depending on the context. If the
-   * application needs more stickers the full set should be requested
+   * application needs more stickers the full sticker set needs to be requested
    */
   public covers: Sticker[]
 }

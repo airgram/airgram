@@ -46,6 +46,18 @@ export interface Message {
   canGetStatistics: boolean
   /** True, if the message thread info is available */
   canGetMessageThread: boolean
+  /** True, if chat members already viewed the message can be received through getMessageViewers */
+  canGetViewers: boolean
+  /**
+   * True, if media timestamp links can be generated for media timestamp entities in the
+   * message text, caption or web page description
+   */
+  canGetMediaTimestampLinks: boolean
+  /**
+   * True, if media timestamp entities refers to a media in this message as opposed to
+   * a media in the replied message
+   */
+  hasTimestampedMedia: boolean
   /**
    * True, if the message is a channel post. All messages to channels are channel posts,
    * all other messages are not channel posts
@@ -81,15 +93,18 @@ export interface Message {
    * none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
    */
   ttl: number
-  /** Time left before the message expires, in seconds */
+  /**
+   * Time left before the message expires, in seconds. If the TTL timer isn't started
+   * yet, equals to the value of the ttl field
+   */
   ttlExpiresIn: number
   /** If non-zero, the user identifier of the bot through which this message was sent */
   viaBotUserId: number
   /** For channel posts and anonymous group messages, optional author signature */
   authorSignature: string
   /**
-   * Unique identifier of an album this message belongs to. Only photos and videos can
-   * be grouped together in albums
+   * Unique identifier of an album this message belongs to. Only audios, documents, photos
+   * and videos can be grouped together in albums
    */
   mediaAlbumId: string
   /**

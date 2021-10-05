@@ -7,7 +7,7 @@ export class InputMessageAnimationBaseModel {
   /** Animation file to be sent */
   public animation: InputFileUnion
 
-  /** Animation thumbnail, if available */
+  /** Animation thumbnail; pass null to skip thumbnail uploading */
   public thumbnail: InputThumbnail
 
   /** File identifiers of the stickers added to the animation, if applicable */
@@ -22,6 +22,9 @@ export class InputMessageAnimationBaseModel {
   /** Height of the animation; may be replaced by the server */
   public height: number
 
-  /** Animation caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Animation caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   public caption: FormattedText
 }

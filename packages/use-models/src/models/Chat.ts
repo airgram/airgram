@@ -6,7 +6,8 @@ import {
   ChatPosition,
   ChatTypeUnion,
   DraftMessage,
-  Message
+  Message,
+  VoiceChat
 } from '@airgram/core'
 
 /** A chat. (Can be a private chat, basic group, supergroup, or secret chat) */
@@ -55,7 +56,7 @@ export class ChatBaseModel {
   /** True, if the chat messages can be deleted for all users */
   public canBeDeletedForAllUsers: boolean
 
-  /** True, if the chat can be reported to Telegram moderators through reportChat */
+  /** True, if the chat can be reported to Telegram moderators through reportChat or reportChatPhoto */
   public canBeReported: boolean
 
   /**
@@ -80,10 +81,23 @@ export class ChatBaseModel {
   public notificationSettings: ChatNotificationSettings
 
   /**
-   * Describes actions which should be possible to do through a chat action bar; may be
+   * Current message Time To Live setting (self-destruct timer) for the chat; 0 if not
+   * defined. TTL is counted from the time message or its content is viewed in secret
+   * chats and from the send date in other chats
+   */
+  public messageTtlSetting: number
+
+  /** If non-empty, name of a theme, set for the chat */
+  public themeName: string
+
+  /**
+   * Describes actions which must be possible to do through a chat action bar; may be
    * null
    */
   public actionBar?: ChatActionBarUnion
+
+  /** Contains information about voice chat of the chat */
+  public voiceChat: VoiceChat
 
   /**
    * Identifier of the message from which reply markup needs to be used; 0 if there is

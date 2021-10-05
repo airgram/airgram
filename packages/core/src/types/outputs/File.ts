@@ -7,11 +7,11 @@ export interface File {
   _: 'file'
   /** Unique file identifier */
   id: number
-  /** File size; 0 if unknown */
+  /** File size, in bytes; 0 if unknown */
   size: number
   /**
-   * Expected file size in case the exact file size is unknown, but an approximate size
-   * is known. Can be used to show download/upload progress
+   * Approximate file size in bytes in case the exact file size is unknown. Can be used
+   * to show download/upload progress
    */
   expectedSize: number
   /** Information about the local copy of the file */

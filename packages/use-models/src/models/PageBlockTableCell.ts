@@ -8,16 +8,16 @@ import {
 export class PageBlockTableCellBaseModel {
   public _: 'pageBlockTableCell'
 
-  /** Cell text; may be null. If the text is null, then the cell should be invisible */
+  /** Cell text; may be null. If the text is null, then the cell must be invisible */
   public text?: RichTextUnion
 
   /** True, if it is a header cell */
   public isHeader: boolean
 
-  /** The number of columns the cell should span */
+  /** The number of columns the cell spans */
   public colspan: number
 
-  /** The number of rows the cell should span */
+  /** The number of rows the cell spans */
   public rowspan: number
 
   /** Horizontal cell content alignment */

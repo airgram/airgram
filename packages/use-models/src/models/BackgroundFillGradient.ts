@@ -9,7 +9,7 @@ export class BackgroundFillGradientBaseModel {
   public bottomColor: number
 
   /**
-   * Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible
+   * Clockwise rotation angle of the gradient, in degrees; 0-359. Must be always divisible
    * by 45
    */
   public rotationAngle: number

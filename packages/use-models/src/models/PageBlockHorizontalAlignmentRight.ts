@@ -1,4 +1,4 @@
-/** The content should be right-aligned */
+/** The content must be right-aligned */
 export class PageBlockHorizontalAlignmentRightBaseModel {
   public _: 'pageBlockHorizontalAlignmentRight'
 }

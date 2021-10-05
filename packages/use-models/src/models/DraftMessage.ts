@@ -10,6 +10,6 @@ export class DraftMessageBaseModel {
   /** Point in time (Unix timestamp) when the draft was created */
   public date: number
 
-  /** Content of the message draft; this should always be of type inputMessageText */
+  /** Content of the message draft; must be of the type inputMessageText */
   public inputMessageText: InputMessageContentUnion
 }

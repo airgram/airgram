@@ -11,6 +11,8 @@ export interface MessageThreadInfo {
   messageThreadId: number
   /** Contains information about the message thread */
   replyInfo: MessageReplyInfo
+  /** Approximate number of unread messages in the message thread */
+  unreadMessageCount: number
   /**
    * The messages from which the thread starts. The messages are returned in a reverse
    * chronological order (i.e., in order of decreasing message_id)

@@ -7,7 +7,7 @@ export class InputMessageVideoBaseModel {
   /** Video to be sent */
   public video: InputFileUnion
 
-  /** Video thumbnail, if available */
+  /** Video thumbnail; pass null to skip thumbnail uploading */
   public thumbnail: InputThumbnail
 
   /** File identifiers of the stickers added to the video, if applicable */
@@ -22,10 +22,13 @@ export class InputMessageVideoBaseModel {
   /** Video height */
   public height: number
 
-  /** True, if the video should be tried to be streamed */
+  /** True, if the video is supposed to be streamed */
   public supportsStreaming: boolean
 
-  /** Video caption; 0-GetOption("message_caption_length_max") characters */
+  /**
+   * Video caption; pass null to use an empty caption; 0-GetOption("message_caption_length_max")
+   * characters
+   */
   public caption: FormattedText
 
   /**

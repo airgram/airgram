@@ -1,4 +1,9 @@
-import { ChatLocation, ChatPhoto } from '@airgram/core'
+import {
+  BotCommands,
+  ChatInviteLink,
+  ChatLocation,
+  ChatPhoto
+} from '@airgram/core'
 
 /** Contains full information about a supergroup or channel */
 export class SupergroupFullInfoBaseModel {
@@ -70,8 +75,14 @@ export class SupergroupFullInfoBaseModel {
   /** Location to which the supergroup is connected; may be null */
   public location?: ChatLocation
 
-  /** Invite link for this chat */
-  public inviteLink: string
+  /**
+   * Primary invite link for this chat; may be null. For chat administrators with can_invite_users
+   * right only
+   */
+  public inviteLink?: ChatInviteLink
+
+  /** List of commands of bots in the group */
+  public botCommands: BotCommands[]
 
   /** Identifier of the basic group from which supergroup was upgraded; 0 if none */
   public upgradedFromBasicGroupId: number

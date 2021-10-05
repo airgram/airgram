@@ -7,7 +7,7 @@ import { PollTypeUnion } from '@airgram/core'
 export class InputMessagePollBaseModel {
   public _: 'inputMessagePoll'
 
-  /** Poll question, 1-255 characters (up to 300 characters for bots) */
+  /** Poll question; 1-255 characters (up to 300 characters for bots) */
   public question: string
 
   /** List of poll answer options, 2-10 strings 1-100 characters each */

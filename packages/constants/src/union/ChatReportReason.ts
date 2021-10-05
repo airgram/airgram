@@ -5,5 +5,6 @@ export enum CHAT_REPORT_REASON {
   chatReportReasonChildAbuse = 'chatReportReasonChildAbuse',
   chatReportReasonCopyright = 'chatReportReasonCopyright',
   chatReportReasonUnrelatedLocation = 'chatReportReasonUnrelatedLocation',
+  chatReportReasonFake = 'chatReportReasonFake',
   chatReportReasonCustom = 'chatReportReasonCustom'
 }

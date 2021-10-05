@@ -5,16 +5,16 @@ export class AutoDownloadSettingsBaseModel {
   /** True, if the auto-download is enabled */
   public isAutoDownloadEnabled: boolean
 
-  /** The maximum size of a photo file to be auto-downloaded */
+  /** The maximum size of a photo file to be auto-downloaded, in bytes */
   public maxPhotoFileSize: number
 
-  /** The maximum size of a video file to be auto-downloaded */
+  /** The maximum size of a video file to be auto-downloaded, in bytes */
   public maxVideoFileSize: number
 
-  /** The maximum size of other file types to be auto-downloaded */
+  /** The maximum size of other file types to be auto-downloaded, in bytes */
   public maxOtherFileSize: number
 
-  /** The maximum suggested bitrate for uploaded videos */
+  /** The maximum suggested bitrate for uploaded videos, in kbit/s */
   public videoUploadBitrate: number
 
   /** True, if the beginning of video files needs to be preloaded for instant playback */

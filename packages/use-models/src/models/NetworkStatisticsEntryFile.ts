@@ -7,7 +7,7 @@ import { FileTypeUnion, NetworkTypeUnion } from '@airgram/core'
 export class NetworkStatisticsEntryFileBaseModel {
   public _: 'networkStatisticsEntryFile'
 
-  /** Type of the file the data is part of */
+  /** Type of the file the data is part of; pass null if the data isn't related to files */
   public fileType: FileTypeUnion
 
   /**

@@ -1,4 +1,4 @@
-import { File } from '@airgram/core'
+import { File, Minithumbnail } from '@airgram/core'
 
 /** Describes a user profile photo */
 export class ProfilePhotoBaseModel {
@@ -21,6 +21,9 @@ export class ProfilePhotoBaseModel {
    * is changed
    */
   public big: File
+
+  /** User profile photo minithumbnail; may be null */
+  public minithumbnail?: Minithumbnail
 
   /** True, if the photo has animated variant */
   public hasAnimation: boolean

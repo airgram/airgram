@@ -6,8 +6,8 @@ export interface JoinChatParams {
 }
 
 /**
- * Adds current user as a new member to a chat. Private and secret chats can't be joined
- * using this method
+ * Adds the current user as a new member to a chat. Private and secret chats can't be
+ * joined using this method
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {ApiRequestOptions} options

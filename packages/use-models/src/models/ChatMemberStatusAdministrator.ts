@@ -1,8 +1,8 @@
 /**
- * The user is a member of a chat and has some additional privileges. In basic groups,
- * administrators can edit and delete messages sent by others, add new members, and
- * ban unprivileged members. In supergroups and channels, there are more detailed options
- * for administrator privileges
+ * The user is a member of the chat and has some additional privileges. In basic groups,
+ * administrators can edit and delete messages sent by others, add new members, ban
+ * unprivileged members, and manage voice chats. In supergroups and channels, there
+ * are more detailed options for administrator privileges
  */
 export class ChatMemberStatusAdministratorBaseModel {
   public _: 'chatMemberStatusAdministrator'
@@ -15,6 +15,14 @@ export class ChatMemberStatusAdministratorBaseModel {
 
   /** True, if the current user can edit the administrator privileges for the called user */
   public canBeEdited: boolean
+
+  /**
+   * True, if the administrator can get chat event log, get chat statistics, get message
+   * statistics in channels, get channel members, see anonymous administrators in supergroups
+   * and ignore slow mode. Implied by any other privilege; applicable to supergroups and
+   * channels only
+   */
+  public canManageChat: boolean
 
   /** True, if the administrator can change the chat title, photo, and other settings */
   public canChangeInfo: boolean
@@ -34,10 +42,16 @@ export class ChatMemberStatusAdministratorBaseModel {
   /** True, if the administrator can invite new users to the chat */
   public canInviteUsers: boolean
 
-  /** True, if the administrator can restrict, ban, or unban chat members */
+  /**
+   * True, if the administrator can restrict, ban, or unban chat members; always true
+   * for channels
+   */
   public canRestrictMembers: boolean
 
-  /** True, if the administrator can pin messages; applicable to groups only */
+  /**
+   * True, if the administrator can pin messages; applicable to basic groups and supergroups
+   * only
+   */
   public canPinMessages: boolean
 
   /**
@@ -46,6 +60,9 @@ export class ChatMemberStatusAdministratorBaseModel {
    * them
    */
   public canPromoteMembers: boolean
+
+  /** True, if the administrator can manage voice chats */
+  public canManageVoiceChats: boolean
 
   /**
    * True, if the administrator isn't shown in the chat member list and sends messages

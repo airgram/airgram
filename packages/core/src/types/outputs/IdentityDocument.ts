@@ -11,8 +11,8 @@ export interface IdentityDocument {
   expiryDate?: Date
   /** Front side of the document */
   frontSide: DatedFile
-  /** Reverse side of the document; only for driver license and identity card */
-  reverseSide: DatedFile
+  /** Reverse side of the document; only for driver license and identity card; may be null */
+  reverseSide?: DatedFile
   /** Selfie with the document; may be null */
   selfie?: DatedFile
   /** List of files containing a certified English translation of the document */

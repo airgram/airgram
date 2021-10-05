@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 export interface PinChatMessageParams {
   chatId?: number // Identifier of the chat
   messageId?: number // Identifier of the new pinned message
-  disableNotification?: boolean // True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
+  disableNotification?: boolean // True, if there must be no notification about the pinned message. Notifications are always disabled in channels and private chats
   onlyForSelf?: boolean // True, if the message needs to be pinned for one side only; private chats only
 }
 
@@ -14,7 +14,7 @@ export interface PinChatMessageParams {
  * @param {Object} params
  * @param {number} [params.chatId] - Identifier of the chat
  * @param {number} [params.messageId] - Identifier of the new pinned message
- * @param {boolean} [params.disableNotification] - True, if there should be no notification
+ * @param {boolean} [params.disableNotification] - True, if there must be no notification
  * about the pinned message. Notifications are always disabled in channels and private
  * chats
  * @param {boolean} [params.onlyForSelf] - True, if the message needs to be pinned

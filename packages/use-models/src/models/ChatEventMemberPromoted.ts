@@ -7,7 +7,7 @@ import { ChatMemberStatusUnion } from '@airgram/core'
 export class ChatEventMemberPromotedBaseModel {
   public _: 'chatEventMemberPromoted'
 
-  /** Chat member user identifier */
+  /** Affected chat member user identifier */
   public userId: number
 
   /** Previous status of the chat member */

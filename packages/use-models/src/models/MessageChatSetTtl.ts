@@ -1,7 +1,7 @@
-/** The TTL (Time To Live) setting messages in a secret chat has been changed */
+/** The TTL (Time To Live) setting for messages in the chat has been changed */
 export class MessageChatSetTtlBaseModel {
   public _: 'messageChatSetTtl'
 
-  /** New TTL */
+  /** New message TTL setting */
   public ttl: number
 }

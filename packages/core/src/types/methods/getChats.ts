@@ -3,26 +3,18 @@ import { ChatListInputUnion } from '../inputs'
 import { ChatsUnion } from '../outputs'
 
 export interface GetChatsParams {
-  chatList?: ChatListInputUnion // The chat list in which to return chats
-  offsetOrder?: string // Chat order to return chats from
-  offsetChatId?: number // Chat identifier to return chats from
-  limit?: number // The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
+  chatList?: ChatListInputUnion // The chat list in which to return chats; pass null to get chats from the main chat list
+  limit?: number // The maximum number of chats to be returned
 }
 
 /**
- * Returns an ordered list of chats in a chat list. Chats are sorted by the pair (chat.position.order,
- * chat.id) in descending order. (For example, to get a list of chats from the beginning,
- * the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807
- * == 2^63 - 1). For optimal performance the number of returned chats is chosen by the
- * library
+ * Returns an ordered list of chats from the beginning of a chat list. For informational
+ * purposes only. Use loadChats and updates processing instead to maintain chat lists
+ * in a consistent state
  * @param {Object} params
  * @param {ChatListInputUnion} [params.chatList] - The chat list in which to return
- * chats
- * @param {string} [params.offsetOrder] - Chat order to return chats from
- * @param {number} [params.offsetChatId] - Chat identifier to return chats from
- * @param {number} [params.limit] - The maximum number of chats to be returned. It
- * is possible that fewer chats than the limit are returned even if the end of the list
- * is not reached
+ * chats; pass null to get chats from the main chat list
+ * @param {number} [params.limit] - The maximum number of chats to be returned
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatsParams, ChatsUnion>>}
  */

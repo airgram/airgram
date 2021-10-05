@@ -4,8 +4,8 @@ import { OkUnion } from '../outputs'
 
 export interface EditInlineMessageLiveLocationParams {
   inlineMessageId?: string // Inline message identifier
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup
-  location?: LocationInput // New location content of the message; may be null. Pass null to stop sharing the live location
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none
+  location?: LocationInput // New location content of the message; pass null to stop sharing the live location
   heading?: number // The new direction in which the location moves, in degrees; 1-360. Pass 0 if unknown
   proximityAlertRadius?: number // The new maximum distance for proximity alerts, in meters (0-100000). Pass 0 if the notification is disabled
 }
@@ -15,9 +15,10 @@ export interface EditInlineMessageLiveLocationParams {
  * only
  * @param {Object} params
  * @param {string} [params.inlineMessageId] - Inline message identifier
- * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup
+ * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
+ * pass null if none
  * @param {LocationInput} [params.location] - New location content of the message;
- * may be null. Pass null to stop sharing the live location
+ * pass null to stop sharing the live location
  * @param {number} [params.heading] - The new direction in which the location moves,
  * in degrees; 1-360. Pass 0 if unknown
  * @param {number} [params.proximityAlertRadius] - The new maximum distance for proximity

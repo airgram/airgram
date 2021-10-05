@@ -10,15 +10,21 @@ import {
   ChatActionBarUnion,
   ChatActionUnion,
   ChatFilterInfo,
+  ChatInviteLink,
   ChatListUnion,
+  ChatMember,
   ChatNearby,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhotoInfo,
   ChatPosition,
+  ChatTheme,
+  ChatTypeUnion,
   ConnectionStateUnion,
   DraftMessage,
   File,
+  GroupCall,
+  GroupCallParticipant,
   LanguagePackString,
   Location,
   Message,
@@ -34,6 +40,7 @@ import {
   ReplyMarkupUnion,
   ScopeNotificationSettings,
   SecretChat,
+  Sticker,
   StickerSet,
   StickerSets,
   SuggestedActionUnion,
@@ -44,7 +51,8 @@ import {
   UserFullInfo,
   UserPrivacySettingRules,
   UserPrivacySettingUnion,
-  UserStatusUnion
+  UserStatusUnion,
+  VoiceChat
 } from './index'
 
 /** Contains notifications about data changes */
@@ -69,13 +77,16 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatIsMarkedAsUnread
   | UpdateChatIsBlocked
   | UpdateChatHasScheduledMessages
+  | UpdateChatVoiceChat
   | UpdateChatDefaultDisableNotification
   | UpdateChatReadInbox
   | UpdateChatReadOutbox
   | UpdateChatUnreadMentionCount
   | UpdateChatNotificationSettings
   | UpdateScopeNotificationSettings
+  | UpdateChatMessageTtlSetting
   | UpdateChatActionBar
+  | UpdateChatTheme
   | UpdateChatReplyMarkup
   | UpdateChatDraftMessage
   | UpdateChatFilters
@@ -99,6 +110,8 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateFileGenerationStart
   | UpdateFileGenerationStop
   | UpdateCall
+  | UpdateGroupCall
+  | UpdateGroupCallParticipant
   | UpdateNewCallSignalingData
   | UpdateUserPrivacySettingRules
   | UpdateUnreadMessageCount
@@ -111,11 +124,13 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateFavoriteStickers
   | UpdateSavedAnimations
   | UpdateSelectedBackground
+  | UpdateChatThemes
   | UpdateLanguagePackStrings
   | UpdateConnectionState
   | UpdateTermsOfService
   | UpdateUsersNearby
   | UpdateDiceEmojis
+  | UpdateAnimatedEmojiMessageClicked
   | UpdateAnimationSearchParameters
   | UpdateSuggestedActions
   | UpdateNewInlineQuery
@@ -128,6 +143,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateNewCustomQuery
   | UpdatePoll
   | UpdatePollAnswer
+  | UpdateChatMember
 
 /** The user authorization state has changed */
 export interface UpdateAuthorizationState {
@@ -361,6 +377,15 @@ export interface UpdateChatHasScheduledMessages {
   hasScheduledMessages: boolean
 }
 
+/** A chat voice chat state has changed */
+export interface UpdateChatVoiceChat {
+  _: 'updateChatVoiceChat'
+  /** Chat identifier */
+  chatId: number
+  /** New value of voice_chat */
+  voiceChat: VoiceChat
+}
+
 /**
  * The value of the default disable_notification parameter, used when a message is sent
  * to the chat, was changed
@@ -420,6 +445,15 @@ export interface UpdateScopeNotificationSettings {
   notificationSettings: ScopeNotificationSettings
 }
 
+/** The message Time To Live setting for a chat was changed */
+export interface UpdateChatMessageTtlSetting {
+  _: 'updateChatMessageTtlSetting'
+  /** Chat identifier */
+  chatId: number
+  /** New value of message_ttl_setting */
+  messageTtlSetting: number
+}
+
 /** The chat action bar was changed */
 export interface UpdateChatActionBar {
   _: 'updateChatActionBar'
@@ -427,6 +461,15 @@ export interface UpdateChatActionBar {
   chatId: number
   /** The new value of the action bar; may be null */
   actionBar?: ChatActionBarUnion
+}
+
+/** The chat theme was changed */
+export interface UpdateChatTheme {
+  _: 'updateChatTheme'
+  /** Chat identifier */
+  chatId: number
+  /** The new name of the chat theme; may be empty if theme was reset to default */
+  themeName: string
 }
 
 /**
@@ -447,7 +490,7 @@ export interface UpdateChatReplyMarkup {
 /**
  * A chat draft has changed. Be aware that the update may come in the currently opened
  * chat but with old content of the draft. If the user has changed the content of the
- * draft, this update shouldn't be applied
+ * draft, this update mustn't be applied
  */
 export interface UpdateChatDraftMessage {
   _: 'updateChatDraftMessage'
@@ -499,7 +542,7 @@ export interface UpdateNotificationGroup {
   chatId: number
   /** Chat identifier, which notification settings must be applied to the added notifications */
   notificationSettingsChatId: number
-  /** True, if the notifications should be shown without sound */
+  /** True, if the notifications must be shown without sound */
   isSilent: boolean
   /**
    * Total number of unread notifications in the group, can be bigger than number of active
@@ -654,8 +697,8 @@ export interface UpdateServiceNotification {
   _: 'updateServiceNotification'
   /**
    * Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel"
-   * and "Log out" should be shown under notification; if user presses the second, all
-   * local data should be destroyed using Destroy method
+   * and "Log out" must be shown under notification; if user presses the second, all local
+   * data must be destroyed using Destroy method
    */
   type: string
   /** Notification content */
@@ -676,11 +719,11 @@ export interface UpdateFileGenerationStart {
   generationId: string
   /** The path to a file from which a new file is generated; may be empty */
   originalPath: string
-  /** The path to a file that should be created and where the new file should be generated */
+  /** The path to a file that must be created and where the new file is generated */
   destinationPath: string
   /**
    * String specifying the conversion applied to the original file. If conversion is "#url#"
-   * than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded
+   * than original_path contains an HTTP/HTTPS URL of a file, which must be downloaded
    * by the application
    */
   conversion: string
@@ -698,6 +741,26 @@ export interface UpdateCall {
   _: 'updateCall'
   /** New data about a call */
   call: Call
+}
+
+/** Information about a group call was updated */
+export interface UpdateGroupCall {
+  _: 'updateGroupCall'
+  /** New data about a group call */
+  groupCall: GroupCall
+}
+
+/**
+ * Information about a group call participant was changed. The updates are sent only
+ * after the group call is received through getGroupCall and only if the call is joined
+ * or being joined
+ */
+export interface UpdateGroupCallParticipant {
+  _: 'updateGroupCallParticipant'
+  /** Identifier of group call */
+  groupCallId: number
+  /** New data about a participant */
+  participant: GroupCallParticipant
 }
 
 /** New call signaling data arrived */
@@ -822,6 +885,13 @@ export interface UpdateSelectedBackground {
   background?: Background
 }
 
+/** The list of available chat themes has changed */
+export interface UpdateChatThemes {
+  _: 'updateChatThemes'
+  /** The new list of chat themes */
+  chatThemes: ChatTheme[]
+}
+
 /** Some language pack strings have been updated */
 export interface UpdateLanguagePackStrings {
   _: 'updateLanguagePackStrings'
@@ -845,7 +915,7 @@ export interface UpdateConnectionState {
 
 /**
  * New terms of service must be accepted by the user. If the terms of service are declined,
- * then the deleteAccount method should be called with the reason "Decline ToS update"
+ * then the deleteAccount method must be called with the reason "Decline ToS update"
  */
 export interface UpdateTermsOfService {
   _: 'updateTermsOfService'
@@ -870,6 +940,21 @@ export interface UpdateDiceEmojis {
   _: 'updateDiceEmojis'
   /** The new list of supported dice emojis */
   emojis: string[]
+}
+
+/**
+ * Some animated emoji message was clicked and a big animated sticker must be played
+ * if the message is visible on the screen. chatActionWatchingAnimations with the text
+ * of the message needs to be sent if the sticker is played
+ */
+export interface UpdateAnimatedEmojiMessageClicked {
+  _: 'updateAnimatedEmojiMessageClicked'
+  /** Chat identifier */
+  chatId: number
+  /** Message identifier */
+  messageId: number
+  /** The animated sticker to be played */
+  sticker: Sticker
 }
 
 /**
@@ -902,6 +987,11 @@ export interface UpdateNewInlineQuery {
   senderUserId: number
   /** User location; may be null */
   userLocation?: Location
+  /**
+   * Contains information about the type of the chat, from which the query originated;
+   * may be null if unknown
+   */
+  chatType?: ChatTypeUnion
   /** Text of the query */
   query: string
   /** Offset of the first entry to return */
@@ -980,7 +1070,7 @@ export interface UpdateNewPreCheckoutQuery {
   senderUserId: number
   /** Currency for the product price */
   currency: string
-  /** Total price for the product, in the minimal quantity of the currency */
+  /** Total price for the product, in the smallest units of the currency */
   totalAmount: number
   /** Invoice payload */
   invoicePayload: string
@@ -1024,4 +1114,21 @@ export interface UpdatePollAnswer {
   userId: number
   /** 0-based identifiers of answer options, chosen by the user */
   optionIds: number[]
+}
+
+/** User rights changed in a chat; for bots only */
+export interface UpdateChatMember {
+  _: 'updateChatMember'
+  /** Chat identifier */
+  chatId: number
+  /** Identifier of the user, changing the rights */
+  actorUserId: number
+  /** Point in time (Unix timestamp) when the user rights was changed */
+  date: number
+  /** If user has joined the chat using an invite link, the invite link; may be null */
+  inviteLink?: ChatInviteLink
+  /** Previous chat member */
+  oldChatMember: ChatMember
+  /** New chat member */
+  newChatMember: ChatMember
 }

@@ -3,17 +3,17 @@ export type PageBlockVerticalAlignmentUnion = PageBlockVerticalAlignmentTop
   | PageBlockVerticalAlignmentMiddle
   | PageBlockVerticalAlignmentBottom
 
-/** The content should be top-aligned */
+/** The content must be top-aligned */
 export interface PageBlockVerticalAlignmentTop {
   _: 'pageBlockVerticalAlignmentTop'
 }
 
-/** The content should be middle-aligned */
+/** The content must be middle-aligned */
 export interface PageBlockVerticalAlignmentMiddle {
   _: 'pageBlockVerticalAlignmentMiddle'
 }
 
-/** The content should be bottom-aligned */
+/** The content must be bottom-aligned */
 export interface PageBlockVerticalAlignmentBottom {
   _: 'pageBlockVerticalAlignmentBottom'
 }

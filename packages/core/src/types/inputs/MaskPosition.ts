@@ -2,10 +2,10 @@ import { MaskPointInputUnion } from './index'
 
 export type MaskPositionInputUnion = MaskPositionInput
 
-/** Position on a photo where a mask should be placed */
+/** Position on a photo where a mask is placed */
 export interface MaskPositionInput {
   _: 'maskPosition'
-  /** Part of the face, relative to which the mask should be placed */
+  /** Part of the face, relative to which the mask is placed */
   point?: MaskPointInputUnion
   /**
    * Shift by X-axis measured in widths of the mask scaled to the face size, from left

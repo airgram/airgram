@@ -15,5 +15,6 @@ export enum TEXT_ENTITY_TYPE {
   textEntityTypePre = 'textEntityTypePre',
   textEntityTypePreCode = 'textEntityTypePreCode',
   textEntityTypeTextUrl = 'textEntityTypeTextUrl',
-  textEntityTypeMentionName = 'textEntityTypeMentionName'
+  textEntityTypeMentionName = 'textEntityTypeMentionName',
+  textEntityTypeMediaTimestamp = 'textEntityTypeMediaTimestamp'
 }

@@ -5,8 +5,8 @@ import { MessageUnion } from '../outputs'
 export interface EditMessageTextParams {
   chatId?: number // The chat the message belongs to
   messageId?: number // Identifier of the message
-  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; for bots only
-  inputMessageContent?: InputMessageContentInputUnion // New text content of the message. Should be of type InputMessageText
+  replyMarkup?: ReplyMarkupInputUnion // The new message reply markup; pass null if none; for bots only
+  inputMessageContent?: InputMessageContentInputUnion // New text content of the message. Must be of type inputMessageText
 }
 
 /**
@@ -16,9 +16,9 @@ export interface EditMessageTextParams {
  * @param {number} [params.chatId] - The chat the message belongs to
  * @param {number} [params.messageId] - Identifier of the message
  * @param {ReplyMarkupInputUnion} [params.replyMarkup] - The new message reply markup;
- * for bots only
+ * pass null if none; for bots only
  * @param {InputMessageContentInputUnion} [params.inputMessageContent] - New text
- * content of the message. Should be of type InputMessageText
+ * content of the message. Must be of type inputMessageText
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<EditMessageTextParams, MessageUnion>>}
  */

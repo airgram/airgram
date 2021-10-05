@@ -1,21 +1,20 @@
-import { BotInfo, ChatMemberStatusUnion } from './index'
+import { ChatMemberStatusUnion, MessageSenderUnion } from './index'
 
 export type ChatMemberUnion = ChatMember
 
-/** A user with information about joining/leaving a chat */
+/** Information about a user or a chat as a member of another chat */
 export interface ChatMember {
   _: 'chatMember'
-  /** User identifier of the chat member */
-  userId: number
+  /**
+   * Identifier of the chat member. Currently, other chats can be only Left or Banned.
+   * Only supergroups and channels can have other chats as Left or Banned members and
+   * these chats must be supergroups or channels
+   */
+  memberId: MessageSenderUnion
   /** Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown */
   inviterUserId: number
   /** Point in time (Unix timestamp) when the user joined the chat */
   joinedChatDate: number
   /** Status of the member in the chat */
   status: ChatMemberStatusUnion
-  /**
-   * If the user is a bot, information about the bot; may be null. Can be null even for
-   * a bot if the bot is not the chat member
-   */
-  botInfo?: BotInfo
 }

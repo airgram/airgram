@@ -18,7 +18,7 @@ export class PhotoSizeBaseModel {
 
   /**
    * Sizes of progressive JPEG file prefixes, which can be used to preliminarily show
-   * the image
+   * the image; in bytes
    */
   public progressiveSizes: number[]
 }

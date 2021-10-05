@@ -1,5 +1,5 @@
 /**
- * A cashtag text, beginning with "$" and consisting of capital english letters (i.e.
+ * A cashtag text, beginning with "$" and consisting of capital English letters (e.g.,
  * "$USD")
  */
 export class TextEntityTypeCashtagBaseModel {

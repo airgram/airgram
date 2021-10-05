@@ -16,7 +16,7 @@
   version "4.0.1"
   dependencies:
     "@airgram/core" "^4.0.0"
-    tdweb "~1.6.10"
+    tdweb "~1.7.2"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
   version "7.10.3"
@@ -11896,10 +11896,10 @@ tdweb@^1.4.3:
     localforage "^1.7.3"
     uuid "^3.3.2"
 
-tdweb@~1.6.10:
-  version "1.6.10"
-  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.6.10.tgz#c2272148fb0ab722b401a7bd762b20c38bbce8e1"
-  integrity sha512-fOgeS6xkMEa1e2kb89QL7rz6aHDP/mWjYkz2DbGCxsYX6buZxtaKvir/yUY6hYPXkE8OM3xthw0oJn0YyrIFYg==
+tdweb@~1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/tdweb/-/tdweb-1.7.2.tgz#4d05d2238b6c00e69cf7d4e614114c042c0f656a"
+  integrity sha512-xNFG3zxomMW42U6hShaCd53hqAUC0gQMMT0zhbgdsKP1aroE2a/8f77yn3F9yY+N/SmwyYnrGK2FXdhPw4/cVg==
   dependencies:
     "@babel/runtime" "^7.4.3"
     broadcast-channel "^2.1.12"

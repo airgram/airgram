@@ -19,4 +19,10 @@ export class ReplyMarkupShowKeyboardBaseModel {
    * the target user of a reply
    */
   public isPersonal: boolean
+
+  /**
+   * If non-empty, the placeholder to be shown in the input field when the keyboard is
+   * active; 0-64 characters
+   */
+  public inputFieldPlaceholder: string
 }

@@ -1,6 +1,6 @@
 import { Invoice } from '@airgram/core'
 
-/** A message with an invoice; can be used only by bots and only in private chats */
+/** A message with an invoice; can be used only by bots */
 export class InputMessageInvoiceBaseModel {
   public _: 'inputMessageInvoice'
 
@@ -34,6 +34,9 @@ export class InputMessageInvoiceBaseModel {
   /** JSON-encoded data about the invoice, which will be shared with the payment provider */
   public providerData: string
 
-  /** Unique invoice bot start_parameter for the generation of this invoice */
+  /**
+   * Unique invoice bot deep link parameter for the generation of this invoice. If empty,
+   * it would be possible to pay directly from forwards of the invoice message
+   */
   public startParameter: string
 }

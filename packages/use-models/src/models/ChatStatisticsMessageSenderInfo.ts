@@ -8,6 +8,6 @@ export class ChatStatisticsMessageSenderInfoBaseModel {
   /** Number of sent messages */
   public sentMessageCount: number
 
-  /** Average number of characters in sent messages */
+  /** Average number of characters in sent messages; 0 if unknown */
   public averageCharacterCount: number
 }

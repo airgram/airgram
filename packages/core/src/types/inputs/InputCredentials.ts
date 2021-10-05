@@ -1,8 +1,8 @@
 /** Contains information about the payment method chosen by the user */
 export type InputCredentialsInputUnion = InputCredentialsSavedInput
   | InputCredentialsNewInput
-  | InputCredentialsAndroidPayInput
   | InputCredentialsApplePayInput
+  | InputCredentialsGooglePayInput
 
 /**
  * Applies if a user chooses some previously saved payment credentials. To use their
@@ -23,16 +23,16 @@ export interface InputCredentialsNewInput {
   allowSave?: boolean
 }
 
-/** Applies if a user enters new credentials using Android Pay */
-export interface InputCredentialsAndroidPayInput {
-  _: 'inputCredentialsAndroidPay'
+/** Applies if a user enters new credentials using Apple Pay */
+export interface InputCredentialsApplePayInput {
+  _: 'inputCredentialsApplePay'
   /** JSON-encoded data with the credential identifier */
   data?: string
 }
 
-/** Applies if a user enters new credentials using Apple Pay */
-export interface InputCredentialsApplePayInput {
-  _: 'inputCredentialsApplePay'
+/** Applies if a user enters new credentials using Google Pay */
+export interface InputCredentialsGooglePayInput {
+  _: 'inputCredentialsGooglePay'
   /** JSON-encoded data with the credential identifier */
   data?: string
 }

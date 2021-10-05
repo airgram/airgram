@@ -20,7 +20,7 @@ export interface Video {
    * can be received using getAttachedStickerSets
    */
   hasStickers: boolean
-  /** True, if the video should be tried to be streamed */
+  /** True, if the video is supposed to be streamed */
   supportsStreaming: boolean
   /** Video minithumbnail; may be null */
   minithumbnail?: Minithumbnail

@@ -1,4 +1,4 @@
-/** The content should be top-aligned */
+/** The content must be top-aligned */
 export class PageBlockVerticalAlignmentTopBaseModel {
   public _: 'pageBlockVerticalAlignmentTop'
 }

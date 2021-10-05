@@ -1,4 +1,4 @@
-import { Emojis, Sticker, Thumbnail } from './index'
+import { ClosedVectorPath, Emojis, Sticker, Thumbnail } from './index'
 
 export type StickerSetUnion = StickerSet
 
@@ -16,6 +16,11 @@ export interface StickerSet {
    * The file can be downloaded only before the thumbnail is changed
    */
   thumbnail?: Thumbnail
+  /**
+   * Sticker set thumbnail's outline represented as a list of closed vector paths; may
+   * be empty. The coordinate system origin is in the upper-left corner
+   */
+  thumbnailOutline: ClosedVectorPath[]
   /** True, if the sticker set has been installed by the current user */
   isInstalled: boolean
   /**

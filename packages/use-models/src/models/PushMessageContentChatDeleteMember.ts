@@ -8,6 +8,6 @@ export class PushMessageContentChatDeleteMemberBaseModel {
   /** True, if the current user was deleted from the group */
   public isCurrentUser: boolean
 
-  /** True, if the user has left the group themself */
+  /** True, if the user has left the group themselves */
   public isLeft: boolean
 }

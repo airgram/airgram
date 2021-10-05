@@ -2,7 +2,7 @@ import { AutoDownloadSettings } from './index'
 
 export type AutoDownloadSettingsPresetsUnion = AutoDownloadSettingsPresets
 
-/** Contains auto-download settings presets for the user */
+/** Contains auto-download settings presets for the current user */
 export interface AutoDownloadSettingsPresets {
   _: 'autoDownloadSettingsPresets'
   /** Preset with lowest settings; supposed to be used by default when roaming */

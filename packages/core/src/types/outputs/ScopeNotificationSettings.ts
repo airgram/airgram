@@ -10,7 +10,7 @@ export interface ScopeNotificationSettings {
    * applications
    */
   sound: string
-  /** True, if message content should be displayed in notifications */
+  /** True, if message content must be displayed in notifications */
   showPreview: boolean
   /**
    * True, if notifications for incoming pinned messages will be created as for an ordinary

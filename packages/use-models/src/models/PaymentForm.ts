@@ -9,11 +9,20 @@ import {
 export class PaymentFormBaseModel {
   public _: 'paymentForm'
 
+  /** The payment form identifier */
+  public id: string
+
   /** Full information of the invoice */
   public invoice: Invoice
 
   /** Payment form URL */
   public url: string
+
+  /** User identifier of the seller bot */
+  public sellerBotUserId: number
+
+  /** User identifier of the payment provider bot */
+  public paymentsProviderUserId: number
 
   /**
    * Contains information about the payment provider, if available, to support it natively

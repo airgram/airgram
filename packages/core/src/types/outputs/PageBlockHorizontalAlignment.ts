@@ -3,17 +3,17 @@ export type PageBlockHorizontalAlignmentUnion = PageBlockHorizontalAlignmentLeft
   | PageBlockHorizontalAlignmentCenter
   | PageBlockHorizontalAlignmentRight
 
-/** The content should be left-aligned */
+/** The content must be left-aligned */
 export interface PageBlockHorizontalAlignmentLeft {
   _: 'pageBlockHorizontalAlignmentLeft'
 }
 
-/** The content should be center-aligned */
+/** The content must be center-aligned */
 export interface PageBlockHorizontalAlignmentCenter {
   _: 'pageBlockHorizontalAlignmentCenter'
 }
 
-/** The content should be right-aligned */
+/** The content must be right-aligned */
 export interface PageBlockHorizontalAlignmentRight {
   _: 'pageBlockHorizontalAlignmentRight'
 }

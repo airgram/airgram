@@ -4,7 +4,7 @@ export type KeyboardButtonTypeUnion = KeyboardButtonTypeText
   | KeyboardButtonTypeRequestLocation
   | KeyboardButtonTypeRequestPoll
 
-/** A simple button, with text that should be sent when the button is pressed */
+/** A simple button, with text that must be sent when the button is pressed */
 export interface KeyboardButtonTypeText {
   _: 'keyboardButtonTypeText'
 }

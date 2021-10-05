@@ -1,4 +1,4 @@
-import { Emojis, Sticker, Thumbnail } from '@airgram/core'
+import { ClosedVectorPath, Emojis, Sticker, Thumbnail } from '@airgram/core'
 
 /** Represents a sticker set */
 export class StickerSetBaseModel {
@@ -18,6 +18,12 @@ export class StickerSetBaseModel {
    * The file can be downloaded only before the thumbnail is changed
    */
   public thumbnail?: Thumbnail
+
+  /**
+   * Sticker set thumbnail's outline represented as a list of closed vector paths; may
+   * be empty. The coordinate system origin is in the upper-left corner
+   */
+  public thumbnailOutline: ClosedVectorPath[]
 
   /** True, if the sticker set has been installed by the current user */
   public isInstalled: boolean

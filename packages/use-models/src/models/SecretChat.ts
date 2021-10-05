@@ -16,9 +16,6 @@ export class SecretChatBaseModel {
   /** True, if the chat was created by the current user; otherwise false */
   public isOutbound: boolean
 
-  /** Current message Time To Live setting (self-destruct timer) for the chat, in seconds */
-  public ttl: number
-
   /**
    * Hash of the currently used key for comparison with the hash of the chat partner's
    * key. This is a string of 36 little-endian bytes, which must be split into groups
@@ -31,8 +28,8 @@ export class SecretChatBaseModel {
 
   /**
    * Secret chat layer; determines features supported by the chat partner's application.
-   * Video notes are supported if the layer >= 66; nested text entities and underline
-   * and strikethrough entities are supported if the layer >= 101
+   * Nested text entities and underline and strikethrough entities are supported if the
+   * layer >= 101
    */
   public layer: number
 }

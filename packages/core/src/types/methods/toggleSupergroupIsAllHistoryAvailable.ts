@@ -8,7 +8,7 @@ export interface ToggleSupergroupIsAllHistoryAvailableParams {
 
 /**
  * Toggles whether the message history of a supergroup is available to new members;
- * requires can_change_info rights
+ * requires can_change_info administrator right
  * @param {Object} params
  * @param {number} [params.supergroupId] - The identifier of the supergroup
  * @param {boolean} [params.isAllHistoryAvailable] - The new value of is_all_history_available

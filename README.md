@@ -15,7 +15,7 @@ This is a wrapper for [Telegram Database library](https://github.com/tdlib/td) w
 ___
 
 [![NPM Version](https://img.shields.io/npm/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram)
-[![TDLib](https://img.shields.io/badge/tdlib-v1.6.9-%2335ADE1)](https://github.com/tdlib/td)
+[![TDLib](https://img.shields.io/badge/tdlib-v1.7.2-%2335ADE1)](https://github.com/tdlib/td)
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com/)
 [![NPM](https://img.shields.io/npm/l/airgram)](https://github.com/airgram/airgram/blob/master/LICENSE)
 <!-- [![node](https://img.shields.io/node/v/airgram.svg?style=flat-square)](https://www.npmjs.com/package/airgram) -->
@@ -26,11 +26,19 @@ ___
 2. Install [node-gyp](https://github.com/nodejs/node-gyp#installation)
 3. Install Airgram:
 ```bash
+# TDLib 1.7.0:
 npm install airgram
+
+# TDLib 1.7.2:
+npm install airgram@tdlib-1.7.2
 ```
 **Web**
 ```bash
+# TDLib 1.7.0:
 npm install @airgram/web
+
+# TDLib 1.7.2:
+npm install @airgram/web@tdlib-1.7.2
 ```
 
 Check out [webpack config](https://github.com/airgram/airgram/tree/master/examples/webpack-config) example.

@@ -1,4 +1,4 @@
-/** The content should be center-aligned */
+/** The content must be center-aligned */
 export class PageBlockHorizontalAlignmentCenterBaseModel {
   public _: 'pageBlockHorizontalAlignmentCenter'
 }

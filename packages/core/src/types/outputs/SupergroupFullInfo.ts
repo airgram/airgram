@@ -1,4 +1,4 @@
-import { ChatLocation, ChatPhoto } from './index'
+import { BotCommands, ChatInviteLink, ChatLocation, ChatPhoto } from './index'
 
 export type SupergroupFullInfoUnion = SupergroupFullInfo
 
@@ -54,8 +54,13 @@ export interface SupergroupFullInfo {
   stickerSetId: string
   /** Location to which the supergroup is connected; may be null */
   location?: ChatLocation
-  /** Invite link for this chat */
-  inviteLink: string
+  /**
+   * Primary invite link for this chat; may be null. For chat administrators with can_invite_users
+   * right only
+   */
+  inviteLink?: ChatInviteLink
+  /** List of commands of bots in the group */
+  botCommands: BotCommands[]
   /** Identifier of the basic group from which supergroup was upgraded; 0 if none */
   upgradedFromBasicGroupId: number
   /**

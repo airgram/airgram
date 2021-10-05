@@ -1,21 +1,21 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
-import { ChatMemberStatusInputUnion } from '../inputs'
+import { ChatMemberStatusInputUnion, MessageSenderInputUnion } from '../inputs'
 import { OkUnion } from '../outputs'
 
 export interface SetChatMemberStatusParams {
   chatId?: number // Chat identifier
-  userId?: number // User identifier
+  memberId?: MessageSenderInputUnion // Member identifier. Chats can be only banned and unbanned in supergroups and channels
   status?: ChatMemberStatusInputUnion // The new status of the member in the chat
 }
 
 /**
  * Changes the status of a chat member, needs appropriate privileges. This function
- * is currently not suitable for adding new members to the chat and transferring chat
- * ownership; instead, use addChatMember or transferChatOwnership. The chat member status
- * will not be changed until it has been synchronized with the server
+ * is currently not suitable for transferring chat ownership; use transferChatOwnership
+ * instead. Use addChatMember or banChatMember if you need to pass some additional parameters
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {number} [params.userId] - User identifier
+ * @param {MessageSenderInputUnion} [params.memberId] - Member identifier. Chats
+ * can be only banned and unbanned in supergroups and channels
  * @param {ChatMemberStatusInputUnion} [params.status] - The new status of the member
  * in the chat
  * @param {ApiRequestOptions} options

@@ -9,6 +9,10 @@ export interface InvoiceInput {
   currency?: string
   /** A list of objects used to calculate the total price of the product */
   priceParts?: LabeledPricePartInput[]
+  /** The maximum allowed amount of tip in the smallest units of the currency */
+  maxTipAmount?: number
+  /** Suggested amounts of tip in the smallest units of the currency */
+  suggestedTipAmounts?: number[]
   /** True, if the payment is a test payment */
   isTest?: boolean
   /** True, if the user's name is needed for payment */

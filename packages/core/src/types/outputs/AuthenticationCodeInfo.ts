@@ -11,6 +11,6 @@ export interface AuthenticationCodeInfo {
   type: AuthenticationCodeTypeUnion
   /** Describes the way the next code will be sent to the user; may be null */
   nextType?: AuthenticationCodeTypeUnion
-  /** Timeout before the code should be re-sent, in seconds */
+  /** Timeout before the code can be re-sent, in seconds */
   timeout: number
 }

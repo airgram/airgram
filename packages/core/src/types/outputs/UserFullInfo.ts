@@ -1,4 +1,4 @@
-import { BotInfo, ChatPhoto } from './index'
+import { BotCommand, ChatPhoto } from './index'
 
 export type UserFullInfoUnion = UserFullInfo
 
@@ -22,13 +22,18 @@ export interface UserFullInfo {
   needPhoneNumberPrivacyException: boolean
   /** A short user bio */
   bio: string
-  /** For bots, the text that is included with the link when users share the bot */
+  /**
+   * For bots, the text that is shown on the bot's profile page and is sent together with
+   * the link when users share the bot
+   */
   shareText: string
+  /** For bots, the text shown in the chat with the bot if the chat is empty */
+  description: string
   /**
    * Number of group chats where both the other user and the current user are a member;
    * 0 for the current user
    */
   groupInCommonCount: number
-  /** If the user is a bot, information about the bot; may be null */
-  botInfo?: BotInfo
+  /** For bots, list of the bot commands */
+  commands: BotCommand[]
 }

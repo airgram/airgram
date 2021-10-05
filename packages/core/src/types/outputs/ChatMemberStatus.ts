@@ -8,7 +8,7 @@ export type ChatMemberStatusUnion = ChatMemberStatusCreator
   | ChatMemberStatusLeft
   | ChatMemberStatusBanned
 
-/** The user is the owner of a chat and has all the administrator privileges */
+/** The user is the owner of the chat and has all the administrator privileges */
 export interface ChatMemberStatusCreator {
   _: 'chatMemberStatusCreator'
   /**
@@ -26,10 +26,10 @@ export interface ChatMemberStatusCreator {
 }
 
 /**
- * The user is a member of a chat and has some additional privileges. In basic groups,
- * administrators can edit and delete messages sent by others, add new members, and
- * ban unprivileged members. In supergroups and channels, there are more detailed options
- * for administrator privileges
+ * The user is a member of the chat and has some additional privileges. In basic groups,
+ * administrators can edit and delete messages sent by others, add new members, ban
+ * unprivileged members, and manage voice chats. In supergroups and channels, there
+ * are more detailed options for administrator privileges
  */
 export interface ChatMemberStatusAdministrator {
   _: 'chatMemberStatusAdministrator'
@@ -40,6 +40,13 @@ export interface ChatMemberStatusAdministrator {
   customTitle: string
   /** True, if the current user can edit the administrator privileges for the called user */
   canBeEdited: boolean
+  /**
+   * True, if the administrator can get chat event log, get chat statistics, get message
+   * statistics in channels, get channel members, see anonymous administrators in supergroups
+   * and ignore slow mode. Implied by any other privilege; applicable to supergroups and
+   * channels only
+   */
+  canManageChat: boolean
   /** True, if the administrator can change the chat title, photo, and other settings */
   canChangeInfo: boolean
   /** True, if the administrator can create channel posts; applicable to channels only */
@@ -53,9 +60,15 @@ export interface ChatMemberStatusAdministrator {
   canDeleteMessages: boolean
   /** True, if the administrator can invite new users to the chat */
   canInviteUsers: boolean
-  /** True, if the administrator can restrict, ban, or unban chat members */
+  /**
+   * True, if the administrator can restrict, ban, or unban chat members; always true
+   * for channels
+   */
   canRestrictMembers: boolean
-  /** True, if the administrator can pin messages; applicable to groups only */
+  /**
+   * True, if the administrator can pin messages; applicable to basic groups and supergroups
+   * only
+   */
   canPinMessages: boolean
   /**
    * True, if the administrator can add new administrators with a subset of their own
@@ -63,6 +76,8 @@ export interface ChatMemberStatusAdministrator {
    * them
    */
   canPromoteMembers: boolean
+  /** True, if the administrator can manage voice chats */
+  canManageVoiceChats: boolean
   /**
    * True, if the administrator isn't shown in the chat member list and sends messages
    * anonymously; applicable to supergroups only
@@ -70,7 +85,7 @@ export interface ChatMemberStatusAdministrator {
   isAnonymous: boolean
 }
 
-/** The user is a member of a chat, without any additional privileges or restrictions */
+/** The user is a member of the chat, without any additional privileges or restrictions */
 export interface ChatMemberStatusMember {
   _: 'chatMemberStatusMember'
 }
@@ -93,21 +108,22 @@ export interface ChatMemberStatusRestricted {
   permissions: ChatPermissions
 }
 
-/** The user is not a chat member */
+/** The user or the chat is not a chat member */
 export interface ChatMemberStatusLeft {
   _: 'chatMemberStatusLeft'
 }
 
 /**
- * The user was banned (and hence is not a member of the chat). Implies the user can't
- * return to the chat or view messages
+ * The user or the chat was banned (and hence is not a member of the chat). Implies
+ * the user can't return to the chat, view messages, or be used as a participant identifier
+ * to join a voice chat of the chat
  */
 export interface ChatMemberStatusBanned {
   _: 'chatMemberStatusBanned'
   /**
    * Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the
    * user is banned for more than 366 days or for less than 30 seconds from the current
-   * time, the user is considered to be banned forever
+   * time, the user is considered to be banned forever. Always 0 in basic groups
    */
   bannedUntilDate: number
 }

@@ -10,6 +10,12 @@ export class InvoiceBaseModel {
   /** A list of objects used to calculate the total price of the product */
   public priceParts: LabeledPricePart[]
 
+  /** The maximum allowed amount of tip in the smallest units of the currency */
+  public maxTipAmount: number
+
+  /** Suggested amounts of tip in the smallest units of the currency */
+  public suggestedTipAmounts: number[]
+
   /** True, if the payment is a test payment */
   public isTest: boolean
 

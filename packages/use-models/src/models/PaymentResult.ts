@@ -4,7 +4,7 @@ export class PaymentResultBaseModel {
 
   /**
    * True, if the payment request was successful; otherwise the verification_url will
-   * be not empty
+   * be non-empty
    */
   public success: boolean
 

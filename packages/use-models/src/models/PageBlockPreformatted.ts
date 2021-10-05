@@ -7,6 +7,6 @@ export class PageBlockPreformattedBaseModel {
   /** Paragraph text */
   public text: RichTextUnion
 
-  /** Programming language for which the text should be formatted */
+  /** Programming language for which the text needs to be formatted */
   public language: string
 }

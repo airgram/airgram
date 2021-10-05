@@ -1,16 +1,17 @@
 import { ApiRequestOptions, ApiResponse } from '../airgram'
+import { MessageSenderInputUnion } from '../inputs'
 import { ChatMemberUnion } from '../outputs'
 
 export interface GetChatMemberParams {
   chatId?: number // Chat identifier
-  userId?: number // User identifier
+  memberId?: MessageSenderInputUnion // Member identifier
 }
 
 /**
  * Returns information about a single member of a chat
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {number} [params.userId] - User identifier
+ * @param {MessageSenderInputUnion} [params.memberId] - Member identifier
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatMemberParams, ChatMemberUnion>>}
  */

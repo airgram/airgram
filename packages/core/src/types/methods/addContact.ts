@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 
 export interface AddContactParams {
   contact?: ContactInput // The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored
-  sharePhoneNumber?: boolean // True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
+  sharePhoneNumber?: boolean // True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number
 }
 
 /**
@@ -14,7 +14,7 @@ export interface AddContactParams {
  * can be empty and needs to be specified only if known, vCard is ignored
  * @param {boolean} [params.sharePhoneNumber] - True, if the new contact needs to
  * be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber
- * will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception
+ * will be added if needed. Use the field userFullInfo.need_phone_number_privacy_exception
  * to check whether the current user needs to be asked to share their phone number
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddContactParams, OkUnion>>}

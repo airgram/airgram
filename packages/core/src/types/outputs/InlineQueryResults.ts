@@ -15,8 +15,8 @@ export interface InlineQueryResults {
   /** Results of the query */
   results: InlineQueryResultUnion[]
   /**
-   * If non-empty, this text should be shown on the button, which opens a private chat
-   * with the bot and sends the bot a start message with the switch_pm_parameter
+   * If non-empty, this text must be shown on the button, which opens a private chat with
+   * the bot and sends the bot a start message with the switch_pm_parameter
    */
   switchPmText: string
   /** Parameter for the bot start message */

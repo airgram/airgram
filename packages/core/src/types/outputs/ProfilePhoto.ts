@@ -1,4 +1,4 @@
-import { File } from './index'
+import { File, Minithumbnail } from './index'
 
 export type ProfilePhotoUnion = ProfilePhoto
 
@@ -20,6 +20,8 @@ export interface ProfilePhoto {
    * is changed
    */
   big: File
+  /** User profile photo minithumbnail; may be null */
+  minithumbnail?: Minithumbnail
   /** True, if the photo has animated variant */
   hasAnimation: boolean
 }

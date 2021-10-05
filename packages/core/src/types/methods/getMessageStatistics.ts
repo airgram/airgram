@@ -8,7 +8,7 @@ export interface GetMessageStatisticsParams {
 }
 
 /**
- * Returns detailed statistics about a message. Can be used only if Message.can_get_statistics
+ * Returns detailed statistics about a message. Can be used only if message.can_get_statistics
  * == true
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier

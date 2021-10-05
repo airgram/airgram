@@ -13,6 +13,9 @@ export class MessageThreadInfoBaseModel {
   /** Contains information about the message thread */
   public replyInfo: MessageReplyInfo
 
+  /** Approximate number of unread messages in the message thread */
+  public unreadMessageCount: number
+
   /**
    * The messages from which the thread starts. The messages are returned in a reverse
    * chronological order (i.e., in order of decreasing message_id)

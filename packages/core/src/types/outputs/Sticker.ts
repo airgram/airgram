@@ -1,4 +1,4 @@
-import { File, MaskPosition, Thumbnail } from './index'
+import { ClosedVectorPath, File, MaskPosition, Thumbnail } from './index'
 
 export type StickerUnion = Sticker
 
@@ -17,8 +17,13 @@ export interface Sticker {
   isAnimated: boolean
   /** True, if the sticker is a mask */
   isMask: boolean
-  /** Position where the mask should be placed; may be null */
+  /** Position where the mask is placed; may be null */
   maskPosition?: MaskPosition
+  /**
+   * Sticker's outline represented as a list of closed vector paths; may be empty. The
+   * coordinate system origin is in the upper-left corner
+   */
+  outline: ClosedVectorPath[]
   /** Sticker thumbnail in WEBP or JPEG format; may be null */
   thumbnail?: Thumbnail
   /** File containing the sticker */

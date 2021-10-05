@@ -5,7 +5,7 @@ export type StorageStatisticsUnion = StorageStatistics
 /** Contains the exact storage usage statistics split by chats and file type */
 export interface StorageStatistics {
   _: 'storageStatistics'
-  /** Total size of files */
+  /** Total size of files, in bytes */
   size: number
   /** Total number of files */
   count: number

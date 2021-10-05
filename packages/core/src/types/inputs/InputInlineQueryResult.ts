@@ -21,7 +21,7 @@ export type InputInlineQueryResultInputUnion = InputInlineQueryResultAnimationIn
   | InputInlineQueryResultVoiceNoteInput
 
 /**
- * Represents a link to an animated GIF or an animated (i.e. without sound) H.264/MPEG-4
+ * Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4
  * AVC video
  */
 export interface InputInlineQueryResultAnimationInput {
@@ -47,11 +47,15 @@ export interface InputInlineQueryResultAnimationInput {
   videoWidth?: number
   /** Height of the video */
   videoHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageAnimation, inputMessageInvoice, inputMessageLocation, inputMessageVenue
+   * or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -75,11 +79,14 @@ export interface InputInlineQueryResultArticleInput {
   thumbnailWidth?: number
   /** Thumbnail height, if known */
   thumbnailHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -97,11 +104,15 @@ export interface InputInlineQueryResultAudioInput {
   audioUrl?: string
   /** Audio file duration, in seconds */
   audioDuration?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageAudio, inputMessageInvoice, inputMessageLocation, inputMessageVenue or
+   * inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -119,11 +130,14 @@ export interface InputInlineQueryResultContactInput {
   thumbnailWidth?: number
   /** Thumbnail height, if known */
   thumbnailHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -150,11 +164,15 @@ export interface InputInlineQueryResultDocumentInput {
   thumbnailWidth?: number
   /** Height of the thumbnail */
   thumbnailHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageDocument, inputMessageInvoice, inputMessageLocation, inputMessageVenue
+   * or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -166,7 +184,10 @@ export interface InputInlineQueryResultGameInput {
   id?: string
   /** Short name of the game */
   gameShortName?: string
-  /** Message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
 }
 
@@ -190,11 +211,14 @@ export interface InputInlineQueryResultLocationInput {
   thumbnailWidth?: number
   /** Thumbnail height, if known */
   thumbnailHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -216,11 +240,15 @@ export interface InputInlineQueryResultPhotoInput {
   photoWidth?: number
   /** Height of the photo */
   photoHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessagePhoto, inputMessageInvoice, inputMessageLocation, inputMessageVenue or
+   * inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -238,11 +266,15 @@ export interface InputInlineQueryResultStickerInput {
   stickerWidth?: number
   /** Height of the sticker */
   stickerHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageSticker, inputMessageInvoice, inputMessageLocation, inputMessageVenue
+   * or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -260,11 +292,14 @@ export interface InputInlineQueryResultVenueInput {
   thumbnailWidth?: number
   /** Thumbnail height, if known */
   thumbnailHeight?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageInvoice, inputMessageLocation, inputMessageVenue or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -293,11 +328,15 @@ export interface InputInlineQueryResultVideoInput {
   videoHeight?: number
   /** Video duration, in seconds */
   videoDuration?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageVideo, inputMessageInvoice, inputMessageLocation, inputMessageVenue or
+   * inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }
@@ -316,11 +355,15 @@ export interface InputInlineQueryResultVoiceNoteInput {
   voiceNoteUrl?: string
   /** Duration of the voice note, in seconds */
   voiceNoteDuration?: number
-  /** The message reply markup. Must be of type replyMarkupInlineKeyboard or null */
+  /**
+   * The message reply markup; pass null if none. Must be of type replyMarkupInlineKeyboard
+   * or null
+   */
   replyMarkup?: ReplyMarkupInputUnion
   /**
-   * The content of the message to be sent. Must be one of the following types: InputMessageText,
-   * InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
+   * The content of the message to be sent. Must be one of the following types: inputMessageText,
+   * inputMessageVoiceNote, inputMessageInvoice, inputMessageLocation, inputMessageVenue
+   * or inputMessageContact
    */
   inputMessageContent?: InputMessageContentInputUnion
 }

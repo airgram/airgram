@@ -11,7 +11,7 @@ export interface InputStickerStaticInput {
   sticker?: InputFileInputUnion
   /** Emojis corresponding to the sticker */
   emojis?: string
-  /** For masks, position where the mask should be placed; may be null */
+  /** For masks, position where the mask is placed; pass null if unspecified */
   maskPosition?: MaskPositionInput
 }
 

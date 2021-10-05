@@ -1,4 +1,4 @@
-import { ChatMemberStatusUnion } from '@airgram/core'
+import { ChatMemberStatusUnion, MessageSenderUnion } from '@airgram/core'
 
 /**
  * A chat member was restricted/unrestricted or banned/unbanned, or the list of their
@@ -7,8 +7,8 @@ import { ChatMemberStatusUnion } from '@airgram/core'
 export class ChatEventMemberRestrictedBaseModel {
   public _: 'chatEventMemberRestricted'
 
-  /** Chat member user identifier */
-  public userId: number
+  /** Affected chat member identifier */
+  public memberId: MessageSenderUnion
 
   /** Previous status of the chat member */
   public oldStatus: ChatMemberStatusUnion

@@ -7,7 +7,7 @@ export interface GetChatEventLogParams {
   query?: string // Search query by which to filter events
   fromEventId?: string // Identifier of an event from which to return results. Use 0 to get results from the latest events
   limit?: number // The maximum number of events to return; up to 100
-  filters?: ChatEventLogFiltersInput // The types of events to return. By default, all types will be returned
+  filters?: ChatEventLogFiltersInput // The types of events to return; pass null to get chat events of all types
   userIds?: number[] // User identifiers by which to filter events. By default, events relating to all users will be returned
 }
 
@@ -23,8 +23,8 @@ export interface GetChatEventLogParams {
  * results. Use 0 to get results from the latest events
  * @param {number} [params.limit] - The maximum number of events to return; up to
  * 100
- * @param {ChatEventLogFiltersInput} [params.filters] - The types of events to return.
- * By default, all types will be returned
+ * @param {ChatEventLogFiltersInput} [params.filters] - The types of events to return;
+ * pass null to get chat events of all types
  * @param {number[]} [params.userIds] - User identifiers by which to filter events.
  * By default, events relating to all users will be returned
  * @param {ApiRequestOptions} options
