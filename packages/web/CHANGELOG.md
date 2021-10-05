@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/airgram/airgram/compare/@airgram/web@4.0.1...@airgram/web@4.1.0) (2021-10-05)
+
+**Note:** Version bump only for package @airgram/web
+
+
+
+
+
 ## [4.0.1](https://github.com/airgram/airgram/compare/@airgram/web@4.0.0...@airgram/web@4.0.1) (2021-01-03)
 
 
