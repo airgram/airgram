@@ -4,10 +4,15 @@ export type PhoneNumberAuthenticationSettingsInputUnion = PhoneNumberAuthenticat
 export interface PhoneNumberAuthenticationSettingsInput {
   _: 'phoneNumberAuthenticationSettings'
   /**
-   * Pass true if the authentication code may be sent via flash call to the specified
+   * Pass true if the authentication code may be sent via a flash call to the specified
    * phone number
    */
   allowFlashCall?: boolean
+  /**
+   * Pass true if the authentication code may be sent via a missed call to the specified
+   * phone number
+   */
+  allowMissedCall?: boolean
   /** Pass true if the authenticated phone number is used on the current device */
   isCurrentPhoneNumber?: boolean
   /**
@@ -17,4 +22,9 @@ export interface PhoneNumberAuthenticationSettingsInput {
    * more details
    */
   allowSmsRetrieverApi?: boolean
+  /**
+   * List of up to 20 authentication tokens, recently received in updateOption("authentication_token")
+   * in previously logged out sessions
+   */
+  authenticationTokens?: string[]
 }

@@ -7,7 +7,7 @@ import { Message } from '@airgram/core'
 export class UpdateMessageSendFailedBaseModel {
   public _: 'updateMessageSendFailed'
 
-  /** Contains information about the message which failed to send */
+  /** The failed to send message */
   public message: Message
 
   /** The previous temporary message identifier */

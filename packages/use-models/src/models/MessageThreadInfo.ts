@@ -10,7 +10,7 @@ export class MessageThreadInfoBaseModel {
   /** Message thread identifier, unique within the chat */
   public messageThreadId: number
 
-  /** Contains information about the message thread */
+  /** Information about the message thread */
   public replyInfo: MessageReplyInfo
 
   /** Approximate number of unread messages in the message thread */

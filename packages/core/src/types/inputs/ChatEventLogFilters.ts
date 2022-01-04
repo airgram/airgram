@@ -25,6 +25,6 @@ export interface ChatEventLogFiltersInput {
   settingChanges?: boolean
   /** True, if changes to invite links need to be returned */
   inviteLinkChanges?: boolean
-  /** True, if voice chat actions need to be returned */
-  voiceChatChanges?: boolean
+  /** True, if video chat actions need to be returned */
+  videoChatChanges?: boolean
 }

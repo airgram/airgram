@@ -8,7 +8,7 @@ export interface InviteGroupCallParticipantsParams {
 
 /**
  * Invites users to an active group call. Sends a service message of type messageInviteToGroupCall
- * for voice chats
+ * for video chats
  * @param {Object} params
  * @param {number} [params.groupCallId] - Group call identifier
  * @param {number[]} [params.userIds] - User identifiers. At most 10 users can be

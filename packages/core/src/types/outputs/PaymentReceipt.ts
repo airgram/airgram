@@ -17,7 +17,7 @@ export interface PaymentReceipt {
   sellerBotUserId: number
   /** User identifier of the payment provider bot */
   paymentsProviderUserId: number
-  /** Contains information about the invoice */
+  /** Information about the invoice */
   invoice: Invoice
   /** Order information; may be null */
   orderInfo?: OrderInfo

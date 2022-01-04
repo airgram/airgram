@@ -6,6 +6,7 @@ export type InlineKeyboardButtonTypeInputUnion = InlineKeyboardButtonTypeUrlInpu
   | InlineKeyboardButtonTypeCallbackGameInput
   | InlineKeyboardButtonTypeSwitchInlineInput
   | InlineKeyboardButtonTypeBuyInput
+  | InlineKeyboardButtonTypeUserInput
 
 /** A button that opens a specified URL */
 export interface InlineKeyboardButtonTypeUrlInput {
@@ -69,4 +70,14 @@ export interface InlineKeyboardButtonTypeSwitchInlineInput {
  */
 export interface InlineKeyboardButtonTypeBuyInput {
   _: 'inlineKeyboardButtonTypeBuy'
+}
+
+/**
+ * A button with a user reference to be handled in the same way as textEntityTypeMentionName
+ * entities
+ */
+export interface InlineKeyboardButtonTypeUserInput {
+  _: 'inlineKeyboardButtonTypeUser'
+  /** User identifier */
+  userId?: number
 }

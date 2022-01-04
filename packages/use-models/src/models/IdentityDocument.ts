@@ -7,7 +7,7 @@ export class IdentityDocumentBaseModel {
   /** Document number; 1-24 characters */
   public number: string
 
-  /** Document expiry date; may be null */
+  /** Document expiry date; may be null if not applicable */
   public expiryDate?: Date
 
   /** Front side of the document */

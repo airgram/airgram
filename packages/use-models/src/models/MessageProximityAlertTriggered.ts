@@ -4,11 +4,11 @@ import { MessageSenderUnion } from '@airgram/core'
 export class MessageProximityAlertTriggeredBaseModel {
   public _: 'messageProximityAlertTriggered'
 
-  /** The user or chat, which triggered the proximity alert */
-  public traveler: MessageSenderUnion
+  /** The identifier of a user or chat that triggered the proximity alert */
+  public travelerId: MessageSenderUnion
 
-  /** The user or chat, which subscribed for the proximity alert */
-  public watcher: MessageSenderUnion
+  /** The identifier of a user or chat that subscribed for the proximity alert */
+  public watcherId: MessageSenderUnion
 
   /** The distance between the users */
   public distance: number

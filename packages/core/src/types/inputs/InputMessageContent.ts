@@ -34,8 +34,8 @@ export interface InputMessageTextInput {
   _: 'inputMessageText'
   /**
    * Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only
-   * Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName
-   * entities are allowed to be specified manually
+   * Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl and
+   * MentionName entities are allowed to be specified manually
    */
   text?: FormattedTextInput
   /** True, if rich web page previews for URLs in the message text must be disabled */
@@ -311,7 +311,7 @@ export interface InputMessagePollInput {
   /** Amount of time the poll will be active after creation, in seconds; for bots only */
   openPeriod?: number
   /**
-   * Point in time (Unix timestamp) when the poll will be automatically closed; for bots
+   * Point in time (Unix timestamp) when the poll will automatically be closed; for bots
    * only
    */
   closeDate?: number
@@ -333,7 +333,7 @@ export interface InputMessageForwardedInput {
   inGameShare?: boolean
   /**
    * Options to be used to copy content of the message without reference to the original
-   * sender; pass null to try to forward the message as usual
+   * sender; pass null to forward the message as usual
    */
   copyOptions?: MessageCopyOptionsInput
 }

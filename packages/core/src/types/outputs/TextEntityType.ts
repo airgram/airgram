@@ -11,6 +11,7 @@ export type TextEntityTypeUnion = TextEntityTypeMention
   | TextEntityTypeItalic
   | TextEntityTypeUnderline
   | TextEntityTypeStrikethrough
+  | TextEntityTypeSpoiler
   | TextEntityTypeCode
   | TextEntityTypePre
   | TextEntityTypePreCode
@@ -82,6 +83,11 @@ export interface TextEntityTypeUnderline {
 /** A strikethrough text */
 export interface TextEntityTypeStrikethrough {
   _: 'textEntityTypeStrikethrough'
+}
+
+/** A spoiler text. Not supported in secret chats */
+export interface TextEntityTypeSpoiler {
+  _: 'textEntityTypeSpoiler'
 }
 
 /** Text that must be formatted as if inside a code HTML tag */

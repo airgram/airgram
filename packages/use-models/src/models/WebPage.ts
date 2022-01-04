@@ -62,10 +62,7 @@ export class WebPageBaseModel {
   /** Preview of the content as an audio file, if available; may be null */
   public audio?: Audio
 
-  /**
-   * Preview of the content as a document, if available (currently only available for
-   * small PDF files and ZIP archives); may be null
-   */
+  /** Preview of the content as a document, if available; may be null */
   public document?: Document
 
   /** Preview of the content as a sticker for small WEBP files, if available; may be null */
@@ -81,7 +78,7 @@ export class WebPageBaseModel {
   public voiceNote?: VoiceNote
 
   /**
-   * Version of instant view, available for the web page (currently can be 1 or 2), 0
+   * Version of instant view, available for the web page (currently, can be 1 or 2), 0
    * if none
    */
   public instantViewVersion: number

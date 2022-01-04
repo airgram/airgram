@@ -3,7 +3,7 @@ import { OkUnion } from '../outputs'
 
 export interface SetChatSlowModeDelayParams {
   chatId?: number // Chat identifier
-  slowModeDelay?: number // New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
+  slowModeDelay?: number // New slow mode delay for the chat, in seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
 }
 
 /**
@@ -11,8 +11,8 @@ export interface SetChatSlowModeDelayParams {
  * rights
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {number} [params.slowModeDelay] - New slow mode delay for the chat; must
- * be one of 0, 10, 30, 60, 300, 900, 3600
+ * @param {number} [params.slowModeDelay] - New slow mode delay for the chat, in
+ * seconds; must be one of 0, 10, 30, 60, 300, 900, 3600
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SetChatSlowModeDelayParams, OkUnion>>}
  */

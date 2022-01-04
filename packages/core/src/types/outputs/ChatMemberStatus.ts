@@ -28,7 +28,7 @@ export interface ChatMemberStatusCreator {
 /**
  * The user is a member of the chat and has some additional privileges. In basic groups,
  * administrators can edit and delete messages sent by others, add new members, ban
- * unprivileged members, and manage voice chats. In supergroups and channels, there
+ * unprivileged members, and manage video chats. In supergroups and channels, there
  * are more detailed options for administrator privileges
  */
 export interface ChatMemberStatusAdministrator {
@@ -76,8 +76,8 @@ export interface ChatMemberStatusAdministrator {
    * them
    */
   canPromoteMembers: boolean
-  /** True, if the administrator can manage voice chats */
-  canManageVoiceChats: boolean
+  /** True, if the administrator can manage video chats */
+  canManageVideoChats: boolean
   /**
    * True, if the administrator isn't shown in the chat member list and sends messages
    * anonymously; applicable to supergroups only
@@ -116,7 +116,7 @@ export interface ChatMemberStatusLeft {
 /**
  * The user or the chat was banned (and hence is not a member of the chat). Implies
  * the user can't return to the chat, view messages, or be used as a participant identifier
- * to join a voice chat of the chat
+ * to join a video chat of the chat
  */
 export interface ChatMemberStatusBanned {
   _: 'chatMemberStatusBanned'

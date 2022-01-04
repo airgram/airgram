@@ -6,7 +6,7 @@ export interface GetAttachedStickerSetsParams {
 }
 
 /**
- * Returns a list of sticker sets attached to a file. Currently only photos and videos
+ * Returns a list of sticker sets attached to a file. Currently, only photos and videos
  * can have attached sticker sets
  * @param {Object} params
  * @param {number} [params.fileId] - File identifier

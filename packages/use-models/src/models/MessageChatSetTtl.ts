@@ -2,6 +2,6 @@
 export class MessageChatSetTtlBaseModel {
   public _: 'messageChatSetTtl'
 
-  /** New message TTL setting */
+  /** New message TTL */
   public ttl: number
 }

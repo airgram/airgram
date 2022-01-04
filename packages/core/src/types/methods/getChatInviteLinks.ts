@@ -7,7 +7,7 @@ export interface GetChatInviteLinksParams {
   isRevoked?: boolean // Pass true if revoked links needs to be returned instead of active or expired
   offsetDate?: number // Creation date of an invite link starting after which to return invite links; use 0 to get results from the beginning
   offsetInviteLink?: string // Invite link starting after which to return invite links; use empty string to get results from the beginning
-  limit?: number // The maximum number of invite links to return
+  limit?: number // The maximum number of invite links to return; up to 100
 }
 
 /**
@@ -24,7 +24,8 @@ export interface GetChatInviteLinksParams {
  * after which to return invite links; use 0 to get results from the beginning
  * @param {string} [params.offsetInviteLink] - Invite link starting after which to
  * return invite links; use empty string to get results from the beginning
- * @param {number} [params.limit] - The maximum number of invite links to return
+ * @param {number} [params.limit] - The maximum number of invite links to return;
+ * up to 100
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatInviteLinksParams, ChatInviteLinksUnion>>}
  */

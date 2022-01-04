@@ -7,7 +7,7 @@ export class LogStreamFileBaseModel {
 
   /**
    * The maximum size of the file to where the internal TDLib log is written before the
-   * file will be auto-rotated, in bytes
+   * file will automatically be rotated, in bytes
    */
   public maxFileSize: number
 

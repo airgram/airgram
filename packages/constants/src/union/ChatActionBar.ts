@@ -4,5 +4,6 @@ export enum CHAT_ACTION_BAR {
   chatActionBarInviteMembers = 'chatActionBarInviteMembers',
   chatActionBarReportAddBlock = 'chatActionBarReportAddBlock',
   chatActionBarAddContact = 'chatActionBarAddContact',
-  chatActionBarSharePhoneNumber = 'chatActionBarSharePhoneNumber'
+  chatActionBarSharePhoneNumber = 'chatActionBarSharePhoneNumber',
+  chatActionBarJoinRequest = 'chatActionBarJoinRequest'
 }

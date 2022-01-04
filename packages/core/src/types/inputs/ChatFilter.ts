@@ -6,8 +6,8 @@ export interface ChatFilterInput {
   /** The title of the filter; 1-12 characters without line feeds */
   title?: string
   /**
-   * The icon name for short filter representation. If non-empty, must be one of "All",
-   * "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup",
+   * The chosen icon name for short filter representation. If non-empty, must be one of
+   * "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup",
    * "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport",
    * "Study", "Trade", "Travel", "Work". If empty, use getChatFilterDefaultIconName to
    * get default icon name for the filter

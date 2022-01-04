@@ -1,4 +1,4 @@
-/** Incoming messages were read or number of unread messages has been changed */
+/** Incoming messages were read or the number of unread messages has been changed */
 export class UpdateChatReadInboxBaseModel {
   public _: 'updateChatReadInbox'
 

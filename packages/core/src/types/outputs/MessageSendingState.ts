@@ -16,6 +16,8 @@ export interface MessageSendingStateFailed {
   errorMessage: string
   /** True, if the message can be re-sent */
   canRetry: boolean
+  /** True, if the message can be re-sent only on behalf of a different sender */
+  needAnotherSender: boolean
   /**
    * Time left before the message can be re-sent, in seconds. No update is sent when this
    * field changes

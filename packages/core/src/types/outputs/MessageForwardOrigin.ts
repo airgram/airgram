@@ -12,15 +12,15 @@ export interface MessageForwardOriginUser {
   senderUserId: number
 }
 
-/**
- * The message was originally sent by an anonymous chat administrator on behalf of the
- * chat
- */
+/** The message was originally sent on behalf of a chat */
 export interface MessageForwardOriginChat {
   _: 'messageForwardOriginChat'
   /** Identifier of the chat that originally sent the message */
   senderChatId: number
-  /** Original message author signature */
+  /**
+   * For messages originally sent by an anonymous chat administrator, original message
+   * author signature
+   */
   authorSignature: string
 }
 

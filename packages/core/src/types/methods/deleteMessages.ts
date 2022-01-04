@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 export interface DeleteMessagesParams {
   chatId?: number // Chat identifier
   messageIds?: number[] // Identifiers of the messages to be deleted
-  revoke?: boolean // Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
+  revoke?: boolean // Pass true to delete messages for all chat members. Always true for supergroups, channels and secret chats
 }
 
 /**
@@ -12,8 +12,8 @@ export interface DeleteMessagesParams {
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {number[]} [params.messageIds] - Identifiers of the messages to be deleted
- * @param {boolean} [params.revoke] - Pass true to try to delete messages for all
- * chat members. Always true for supergroups, channels and secret chats
+ * @param {boolean} [params.revoke] - Pass true to delete messages for all chat members.
+ * Always true for supergroups, channels and secret chats
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteMessagesParams, OkUnion>>}
  */

@@ -5,6 +5,7 @@ export type ChatActionBarUnion = ChatActionBarReportSpam
   | ChatActionBarReportAddBlock
   | ChatActionBarAddContact
   | ChatActionBarSharePhoneNumber
+  | ChatActionBarJoinRequest
 
 /** The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam */
 export interface ChatActionBarReportSpam {
@@ -25,7 +26,7 @@ export interface ChatActionBarReportUnrelatedLocation {
   _: 'chatActionBarReportUnrelatedLocation'
 }
 
-/** The chat is a recently created group chat, to which new members can be invited */
+/** The chat is a recently created group chat to which new members can be invited */
 export interface ChatActionBarInviteMembers {
   _: 'chatActionBarInviteMembers'
 }
@@ -64,4 +65,18 @@ export interface ChatActionBarAddContact {
  */
 export interface ChatActionBarSharePhoneNumber {
   _: 'chatActionBarSharePhoneNumber'
+}
+
+/**
+ * The chat is a private chat with an administrator of a chat to which the user sent
+ * join request
+ */
+export interface ChatActionBarJoinRequest {
+  _: 'chatActionBarJoinRequest'
+  /** Title of the chat to which the join request was sent */
+  title: string
+  /** True, if the join request was sent to a channel chat */
+  isChannel: boolean
+  /** Point in time (Unix timestamp) when the join request was sent */
+  requestDate: number
 }

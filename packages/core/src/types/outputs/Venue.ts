@@ -12,7 +12,7 @@ export interface Venue {
   /** Venue address; as defined by the sender */
   address: string
   /**
-   * Provider of the venue database; as defined by the sender. Currently only "foursquare"
+   * Provider of the venue database; as defined by the sender. Currently, only "foursquare"
    * and "gplaces" (Google Places) need to be supported
    */
   provider: string

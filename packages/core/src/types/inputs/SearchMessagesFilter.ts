@@ -9,8 +9,6 @@ export type SearchMessagesFilterInputUnion = SearchMessagesFilterEmptyInput
   | SearchMessagesFilterPhotoAndVideoInput
   | SearchMessagesFilterUrlInput
   | SearchMessagesFilterChatPhotoInput
-  | SearchMessagesFilterCallInput
-  | SearchMessagesFilterMissedCallInput
   | SearchMessagesFilterVideoNoteInput
   | SearchMessagesFilterVoiceAndVideoNoteInput
   | SearchMessagesFilterMentionInput
@@ -66,16 +64,6 @@ export interface SearchMessagesFilterUrlInput {
 /** Returns only messages containing chat photos */
 export interface SearchMessagesFilterChatPhotoInput {
   _: 'searchMessagesFilterChatPhoto'
-}
-
-/** Returns only call messages */
-export interface SearchMessagesFilterCallInput {
-  _: 'searchMessagesFilterCall'
-}
-
-/** Returns only incoming call messages with missed/declined discard reasons */
-export interface SearchMessagesFilterMissedCallInput {
-  _: 'searchMessagesFilterMissedCall'
 }
 
 /** Returns only video note messages */

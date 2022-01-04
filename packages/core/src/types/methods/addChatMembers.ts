@@ -7,7 +7,7 @@ export interface AddChatMembersParams {
 }
 
 /**
- * Adds multiple new members to a chat. Currently this method is only available for
+ * Adds multiple new members to a chat. Currently, this method is only available for
  * supergroups and channels. This method can't be used to join a chat. Members can't
  * be added to a channel if it has more than 200 members
  * @param {Object} params

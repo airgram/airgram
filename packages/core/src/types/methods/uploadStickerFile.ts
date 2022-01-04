@@ -8,7 +8,7 @@ export interface UploadStickerFileParams {
 }
 
 /**
- * Uploads a PNG image with a sticker; returns the uploaded file
+ * Uploads a file with a sticker; returns the uploaded file
  * @param {Object} params
  * @param {number} [params.userId] - Sticker file owner; ignored for regular users
  * @param {InputStickerInputUnion} [params.sticker] - Sticker file to upload

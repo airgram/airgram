@@ -1,4 +1,4 @@
-import { ChatEventActionUnion } from './index'
+import { ChatEventActionUnion, MessageSenderUnion } from './index'
 
 export type ChatEventUnion = ChatEvent
 
@@ -9,8 +9,8 @@ export interface ChatEvent {
   id: string
   /** Point in time (Unix timestamp) when the event happened */
   date: number
-  /** Identifier of the user who performed the action that triggered the event */
-  userId: number
-  /** Action performed by the user */
+  /** Identifier of the user or chat who performed the action */
+  memberId: MessageSenderUnion
+  /** The action */
   action: ChatEventActionUnion
 }

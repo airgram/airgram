@@ -1,6 +1,6 @@
 /**
  * An authentication code is delivered by an immediately canceled call to the specified
- * phone number. The number from which the call was made is the code
+ * phone number. The phone number that calls is the code that must be entered automatically
  */
 export class AuthenticationCodeTypeFlashCallBaseModel {
   public _: 'authenticationCodeTypeFlashCall'

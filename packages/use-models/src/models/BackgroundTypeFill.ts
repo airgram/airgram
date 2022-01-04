@@ -4,6 +4,6 @@ import { BackgroundFillUnion } from '@airgram/core'
 export class BackgroundTypeFillBaseModel {
   public _: 'backgroundTypeFill'
 
-  /** Description of the background fill */
+  /** The background fill */
   public fill: BackgroundFillUnion
 }

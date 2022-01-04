@@ -1,6 +1,6 @@
 import { ChatMemberStatusUnion, MessageSenderUnion } from '@airgram/core'
 
-/** Information about a user or a chat as a member of another chat */
+/** Describes a user or a chat as a member of another chat */
 export class ChatMemberBaseModel {
   public _: 'chatMember'
 

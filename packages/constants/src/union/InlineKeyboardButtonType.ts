@@ -5,5 +5,6 @@ export enum INLINE_KEYBOARD_BUTTON_TYPE {
   inlineKeyboardButtonTypeCallbackWithPassword = 'inlineKeyboardButtonTypeCallbackWithPassword',
   inlineKeyboardButtonTypeCallbackGame = 'inlineKeyboardButtonTypeCallbackGame',
   inlineKeyboardButtonTypeSwitchInline = 'inlineKeyboardButtonTypeSwitchInline',
-  inlineKeyboardButtonTypeBuy = 'inlineKeyboardButtonTypeBuy'
+  inlineKeyboardButtonTypeBuy = 'inlineKeyboardButtonTypeBuy',
+  inlineKeyboardButtonTypeUser = 'inlineKeyboardButtonTypeUser'
 }

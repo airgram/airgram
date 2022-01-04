@@ -27,7 +27,7 @@ export interface Supergroup {
    */
   status: ChatMemberStatusUnion
   /**
-   * Number of members in the supergroup or channel; 0 if unknown. Currently it is guaranteed
+   * Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed
    * to be known only if the supergroup or channel was received through searchPublicChats,
    * searchChatsNearby, getInactiveSupergroupChats, getSuitableDiscussionChats, getGroupsInCommon,
    * or getUserPrivacySettingRules
@@ -54,7 +54,7 @@ export interface Supergroup {
   isChannel: boolean
   /**
    * True, if the supergroup is a broadcast group, i.e. only administrators can send messages
-   * and there is no limit on number of members
+   * and there is no limit on the number of members
    */
   isBroadcastGroup: boolean
   /** True, if the supergroup or channel is verified */

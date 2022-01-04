@@ -7,7 +7,7 @@ export interface GetGroupCallInviteLinkParams {
 }
 
 /**
- * Returns invite link to a voice chat in a public chat
+ * Returns invite link to a video chat in a public chat
  * @param {Object} params
  * @param {number} [params.groupCallId] - Group call identifier
  * @param {boolean} [params.canSelfUnmute] - Pass true if the invite link needs to

@@ -4,7 +4,7 @@ import { MessagesUnion } from '../outputs'
 export interface SearchCallMessagesParams {
   fromMessageId?: number // Identifier of the message from which to search; use 0 to get results from the last message
   limit?: number // The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-  onlyMissed?: boolean // If true, returns only messages with missed calls
+  onlyMissed?: boolean // If true, returns only messages with missed/declined calls
 }
 
 /**
@@ -17,7 +17,7 @@ export interface SearchCallMessagesParams {
  * @param {number} [params.limit] - The maximum number of messages to be returned;
  * up to 100. For optimal performance, the number of returned messages is chosen by
  * TDLib and can be smaller than the specified limit
- * @param {boolean} [params.onlyMissed] - If true, returns only messages with missed
+ * @param {boolean} [params.onlyMissed] - If true, returns only messages with missed/declined
  * calls
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SearchCallMessagesParams, MessagesUnion>>}

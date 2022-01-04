@@ -23,7 +23,7 @@ export interface BackgroundTypeWallpaperInput {
  */
 export interface BackgroundTypePatternInput {
   _: 'backgroundTypePattern'
-  /** Description of the background fill */
+  /** Fill of the background */
   fill?: BackgroundFillInputUnion
   /** Intensity of the pattern when it is shown above the filled background; 0-100. */
   intensity?: number
@@ -39,6 +39,6 @@ export interface BackgroundTypePatternInput {
 /** A filled background */
 export interface BackgroundTypeFillInput {
   _: 'backgroundTypeFill'
-  /** Description of the background fill */
+  /** The background fill */
   fill?: BackgroundFillInputUnion
 }

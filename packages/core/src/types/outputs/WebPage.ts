@@ -48,10 +48,7 @@ export interface WebPage {
   animation?: Animation
   /** Preview of the content as an audio file, if available; may be null */
   audio?: Audio
-  /**
-   * Preview of the content as a document, if available (currently only available for
-   * small PDF files and ZIP archives); may be null
-   */
+  /** Preview of the content as a document, if available; may be null */
   document?: Document
   /** Preview of the content as a sticker for small WEBP files, if available; may be null */
   sticker?: Sticker
@@ -62,7 +59,7 @@ export interface WebPage {
   /** Preview of the content as a voice note, if available; may be null */
   voiceNote?: VoiceNote
   /**
-   * Version of instant view, available for the web page (currently can be 1 or 2), 0
+   * Version of instant view, available for the web page (currently, can be 1 or 2), 0
    * if none
    */
   instantViewVersion: number

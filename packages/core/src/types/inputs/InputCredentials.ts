@@ -17,7 +17,7 @@ export interface InputCredentialsSavedInput {
 /** Applies if a user enters new credentials on a payment provider website */
 export interface InputCredentialsNewInput {
   _: 'inputCredentialsNew'
-  /** Contains JSON-encoded data with a credential identifier from the payment provider */
+  /** JSON-encoded data with the credential identifier from the payment provider */
   data?: string
   /** True, if the credential identifier can be saved on the server side */
   allowSave?: boolean

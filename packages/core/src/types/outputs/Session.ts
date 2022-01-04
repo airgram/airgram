@@ -12,6 +12,10 @@ export interface Session {
   isCurrent: boolean
   /** True, if a password is needed to complete authorization of the session */
   isPasswordPending: boolean
+  /** True, if incoming secret chats can be accepted by the session */
+  canAcceptSecretChats: boolean
+  /** True, if incoming calls can be accepted by the session */
+  canAcceptCalls: boolean
   /** Telegram API identifier, as provided by the application */
   apiId: number
   /** Name of the application, as provided by the application */

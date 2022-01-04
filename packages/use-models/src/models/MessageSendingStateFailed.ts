@@ -11,6 +11,9 @@ export class MessageSendingStateFailedBaseModel {
   /** True, if the message can be re-sent */
   public canRetry: boolean
 
+  /** True, if the message can be re-sent only on behalf of a different sender */
+  public needAnotherSender: boolean
+
   /**
    * Time left before the message can be re-sent, in seconds. No update is sent when this
    * field changes

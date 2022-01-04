@@ -34,7 +34,7 @@ export interface GroupCall {
   participantCount: number
   /** True, if all group call participants are loaded */
   loadedAllParticipants: boolean
-  /** Recently speaking users in the group call */
+  /** At most 3 recently speaking users in the group call */
   recentSpeakers: GroupCallRecentSpeaker[]
   /** True, if the current user's video is enabled */
   isMyVideoEnabled: boolean

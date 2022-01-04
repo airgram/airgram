@@ -7,7 +7,7 @@ import { MessageUnion } from '../outputs'
 
 export interface AddLocalMessageParams {
   chatId?: number // Target chat
-  sender?: MessageSenderInputUnion // The sender of the message
+  senderId?: MessageSenderInputUnion // Identifier of the sender of the message
   replyToMessageId?: number // Identifier of the message to reply to or 0
   disableNotification?: boolean // Pass true to disable notification for the message
   inputMessageContent?: InputMessageContentInputUnion // The content of the message to be added
@@ -18,7 +18,8 @@ export interface AddLocalMessageParams {
  * only if the message database is used. Returns the added message
  * @param {Object} params
  * @param {number} [params.chatId] - Target chat
- * @param {MessageSenderInputUnion} [params.sender] - The sender of the message
+ * @param {MessageSenderInputUnion} [params.senderId] - Identifier of the sender
+ * of the message
  * @param {number} [params.replyToMessageId] - Identifier of the message to reply
  * to or 0
  * @param {boolean} [params.disableNotification] - Pass true to disable notification

@@ -10,8 +10,8 @@ export class NotificationTypeNewPushMessageBaseModel {
    */
   public messageId: number
 
-  /** The sender of the message. Corresponding user or chat may be inaccessible */
-  public sender: MessageSenderUnion
+  /** Identifier of the sender of the message. Corresponding user or chat may be inaccessible */
+  public senderId: MessageSenderUnion
 
   /** Name of the sender */
   public senderName: string

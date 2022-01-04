@@ -11,9 +11,7 @@ export interface ReportChatParams {
 
 /**
  * Reports a chat to the Telegram moderators. A chat can be reported only from the chat
- * action bar, or if this is a private chat with a bot, a private chat with a user sharing
- * their location, a supergroup, or a channel, since other chats can't be checked by
- * moderators
+ * action bar, or if chat.can_be_reported
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {number[]} [params.messageIds] - Identifiers of reported messages, if any

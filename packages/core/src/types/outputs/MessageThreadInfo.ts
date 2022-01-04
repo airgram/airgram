@@ -9,7 +9,7 @@ export interface MessageThreadInfo {
   chatId: number
   /** Message thread identifier, unique within the chat */
   messageThreadId: number
-  /** Contains information about the message thread */
+  /** Information about the message thread */
   replyInfo: MessageReplyInfo
   /** Approximate number of unread messages in the message thread */
   unreadMessageCount: number

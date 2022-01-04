@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 export interface DeleteChatHistoryParams {
   chatId?: number // Chat identifier
   removeFromChatList?: boolean // Pass true if the chat needs to be removed from the chat list
-  revoke?: boolean // Pass true to try to delete chat history for all users
+  revoke?: boolean // Pass true to delete chat history for all users
 }
 
 /**
@@ -14,8 +14,7 @@ export interface DeleteChatHistoryParams {
  * @param {number} [params.chatId] - Chat identifier
  * @param {boolean} [params.removeFromChatList] - Pass true if the chat needs to
  * be removed from the chat list
- * @param {boolean} [params.revoke] - Pass true to try to delete chat history for
- * all users
+ * @param {boolean} [params.revoke] - Pass true to delete chat history for all users
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<DeleteChatHistoryParams, OkUnion>>}
  */

@@ -7,8 +7,12 @@ export class MessageReplyInfoBaseModel {
   /** Number of times the message was directly or indirectly replied */
   public replyCount: number
 
-  /** Recent repliers to the message; available in channels with a discussion supergroup */
-  public recentRepliers: MessageSenderUnion[]
+  /**
+   * Identifiers of at most 3 recent repliers to the message; available in channels with
+   * a discussion supergroup. The users and chats are expected to be inaccessible: only
+   * their photo and name will be available
+   */
+  public recentReplierIds: MessageSenderUnion[]
 
   /** Identifier of the last read incoming reply to the message */
   public lastReadInboxMessageId: number

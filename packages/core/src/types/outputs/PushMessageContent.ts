@@ -35,6 +35,7 @@ export type PushMessageContentUnion = PushMessageContentHidden
   | PushMessageContentChatSetTheme
   | PushMessageContentChatDeleteMember
   | PushMessageContentChatJoinByLink
+  | PushMessageContentChatJoinByRequest
   | PushMessageContentMessageForwards
   | PushMessageContentMediaAlbum
 
@@ -255,9 +256,14 @@ export interface PushMessageContentChatDeleteMember {
   isLeft: boolean
 }
 
-/** A new member joined the chat by invite link */
+/** A new member joined the chat via an invite link */
 export interface PushMessageContentChatJoinByLink {
   _: 'pushMessageContentChatJoinByLink'
+}
+
+/** A new member was accepted to the chat by an administrator */
+export interface PushMessageContentChatJoinByRequest {
+  _: 'pushMessageContentChatJoinByRequest'
 }
 
 /** A forwarded messages */

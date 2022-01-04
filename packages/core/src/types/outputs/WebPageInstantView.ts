@@ -9,7 +9,7 @@ export interface WebPageInstantView {
   pageBlocks: PageBlockUnion[]
   /** Number of the instant view views; 0 if unknown */
   viewCount: number
-  /** Version of the instant view, currently can be 1 or 2 */
+  /** Version of the instant view; currently, can be 1 or 2 */
   version: number
   /** True, if the instant view must be shown from right to left */
   isRtl: boolean

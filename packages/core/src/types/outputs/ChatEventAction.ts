@@ -16,6 +16,7 @@ export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventMessageUnpinned
   | ChatEventMemberJoined
   | ChatEventMemberJoinedByInviteLink
+  | ChatEventMemberJoinedByRequest
   | ChatEventMemberLeft
   | ChatEventMemberInvited
   | ChatEventMemberPromoted
@@ -28,19 +29,20 @@ export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventInvitesToggled
   | ChatEventLinkedChatChanged
   | ChatEventSlowModeDelayChanged
-  | ChatEventMessageTtlSettingChanged
+  | ChatEventMessageTtlChanged
   | ChatEventSignMessagesToggled
+  | ChatEventHasProtectedContentToggled
   | ChatEventStickerSetChanged
   | ChatEventLocationChanged
   | ChatEventIsAllHistoryAvailableToggled
   | ChatEventInviteLinkEdited
   | ChatEventInviteLinkRevoked
   | ChatEventInviteLinkDeleted
-  | ChatEventVoiceChatCreated
-  | ChatEventVoiceChatDiscarded
-  | ChatEventVoiceChatParticipantIsMutedToggled
-  | ChatEventVoiceChatParticipantVolumeLevelChanged
-  | ChatEventVoiceChatMuteNewParticipantsToggled
+  | ChatEventVideoChatCreated
+  | ChatEventVideoChatEnded
+  | ChatEventVideoChatParticipantIsMutedToggled
+  | ChatEventVideoChatParticipantVolumeLevelChanged
+  | ChatEventVideoChatMuteNewParticipantsToggled
 
 /** A message was edited */
 export interface ChatEventMessageEdited {
@@ -84,11 +86,20 @@ export interface ChatEventMemberJoined {
   _: 'chatEventMemberJoined'
 }
 
-/** A new member joined the chat by an invite link */
+/** A new member joined the chat via an invite link */
 export interface ChatEventMemberJoinedByInviteLink {
   _: 'chatEventMemberJoinedByInviteLink'
   /** Invite link used to join the chat */
   inviteLink: ChatInviteLink
+}
+
+/** A new member was accepted to the chat by an administrator */
+export interface ChatEventMemberJoinedByRequest {
+  _: 'chatEventMemberJoinedByRequest'
+  /** User identifier of the chat administrator, approved user join request */
+  approverUserId: number
+  /** Invite link used to join the chat; may be null */
+  inviteLink?: ChatInviteLink
 }
 
 /** A member left the chat */
@@ -197,19 +208,19 @@ export interface ChatEventLinkedChatChanged {
 /** The slow_mode_delay setting of a supergroup was changed */
 export interface ChatEventSlowModeDelayChanged {
   _: 'chatEventSlowModeDelayChanged'
-  /** Previous value of slow_mode_delay */
+  /** Previous value of slow_mode_delay, in seconds */
   oldSlowModeDelay: number
-  /** New value of slow_mode_delay */
+  /** New value of slow_mode_delay, in seconds */
   newSlowModeDelay: number
 }
 
-/** The message TTL setting was changed */
-export interface ChatEventMessageTtlSettingChanged {
-  _: 'chatEventMessageTtlSettingChanged'
-  /** Previous value of message_ttl_setting */
-  oldMessageTtlSetting: number
-  /** New value of message_ttl_setting */
-  newMessageTtlSetting: number
+/** The message TTL was changed */
+export interface ChatEventMessageTtlChanged {
+  _: 'chatEventMessageTtlChanged'
+  /** Previous value of message_ttl */
+  oldMessageTtl: number
+  /** New value of message_ttl */
+  newMessageTtl: number
 }
 
 /** The sign_messages setting of a channel was toggled */
@@ -217,6 +228,13 @@ export interface ChatEventSignMessagesToggled {
   _: 'chatEventSignMessagesToggled'
   /** New value of sign_messages */
   signMessages: boolean
+}
+
+/** The has_protected_content setting of a channel was toggled */
+export interface ChatEventHasProtectedContentToggled {
+  _: 'chatEventHasProtectedContentToggled'
+  /** New value of has_protected_content */
+  hasProtectedContent: boolean
 }
 
 /** The supergroup sticker set was changed */
@@ -267,41 +285,41 @@ export interface ChatEventInviteLinkDeleted {
   inviteLink: ChatInviteLink
 }
 
-/** A voice chat was created */
-export interface ChatEventVoiceChatCreated {
-  _: 'chatEventVoiceChatCreated'
-  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+/** A video chat was created */
+export interface ChatEventVideoChatCreated {
+  _: 'chatEventVideoChatCreated'
+  /** Identifier of the video chat. The video chat can be received through the method getGroupCall */
   groupCallId: number
 }
 
-/** A voice chat was discarded */
-export interface ChatEventVoiceChatDiscarded {
-  _: 'chatEventVoiceChatDiscarded'
-  /** Identifier of the voice chat. The voice chat can be received through the method getGroupCall */
+/** A video chat was ended */
+export interface ChatEventVideoChatEnded {
+  _: 'chatEventVideoChatEnded'
+  /** Identifier of the video chat. The video chat can be received through the method getGroupCall */
   groupCallId: number
 }
 
-/** A voice chat participant was muted or unmuted */
-export interface ChatEventVoiceChatParticipantIsMutedToggled {
-  _: 'chatEventVoiceChatParticipantIsMutedToggled'
+/** A video chat participant was muted or unmuted */
+export interface ChatEventVideoChatParticipantIsMutedToggled {
+  _: 'chatEventVideoChatParticipantIsMutedToggled'
   /** Identifier of the affected group call participant */
   participantId: MessageSenderUnion
   /** New value of is_muted */
   isMuted: boolean
 }
 
-/** A voice chat participant volume level was changed */
-export interface ChatEventVoiceChatParticipantVolumeLevelChanged {
-  _: 'chatEventVoiceChatParticipantVolumeLevelChanged'
+/** A video chat participant volume level was changed */
+export interface ChatEventVideoChatParticipantVolumeLevelChanged {
+  _: 'chatEventVideoChatParticipantVolumeLevelChanged'
   /** Identifier of the affected group call participant */
   participantId: MessageSenderUnion
   /** New value of volume_level; 1-20000 in hundreds of percents */
   volumeLevel: number
 }
 
-/** The mute_new_participants setting of a voice chat was toggled */
-export interface ChatEventVoiceChatMuteNewParticipantsToggled {
-  _: 'chatEventVoiceChatMuteNewParticipantsToggled'
+/** The mute_new_participants setting of a video chat was toggled */
+export interface ChatEventVideoChatMuteNewParticipantsToggled {
+  _: 'chatEventVideoChatMuteNewParticipantsToggled'
   /** New value of the mute_new_participants setting */
   muteNewParticipants: boolean
 }

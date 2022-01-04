@@ -7,7 +7,7 @@ import { BackgroundFillUnion } from '@airgram/core'
 export class BackgroundTypePatternBaseModel {
   public _: 'backgroundTypePattern'
 
-  /** Description of the background fill */
+  /** Fill of the background */
   public fill: BackgroundFillUnion
 
   /** Intensity of the pattern when it is shown above the filled background; 0-100. */

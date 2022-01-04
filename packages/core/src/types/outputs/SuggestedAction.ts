@@ -2,15 +2,19 @@
 export type SuggestedActionUnion = SuggestedActionEnableArchiveAndMuteNewChats
   | SuggestedActionCheckPassword
   | SuggestedActionCheckPhoneNumber
-  | SuggestedActionSeeTicksHint
+  | SuggestedActionViewChecksHint
   | SuggestedActionConvertToBroadcastGroup
+  | SuggestedActionSetPassword
 
 /** Suggests the user to enable "archive_and_mute_new_chats_from_unknown_users" option */
 export interface SuggestedActionEnableArchiveAndMuteNewChats {
   _: 'suggestedActionEnableArchiveAndMuteNewChats'
 }
 
-/** Suggests the user to check whether 2-step verification password is still remembered */
+/**
+ * Suggests the user to check whether they still remember their 2-step verification
+ * password
+ */
 export interface SuggestedActionCheckPassword {
   _: 'suggestedActionCheckPassword'
 }
@@ -23,9 +27,12 @@ export interface SuggestedActionCheckPhoneNumber {
   _: 'suggestedActionCheckPhoneNumber'
 }
 
-/** Suggests the user to see a hint about meaning of one and two ticks on sent message */
-export interface SuggestedActionSeeTicksHint {
-  _: 'suggestedActionSeeTicksHint'
+/**
+ * Suggests the user to view a hint about the meaning of one and two check marks on
+ * sent messages
+ */
+export interface SuggestedActionViewChecksHint {
+  _: 'suggestedActionViewChecksHint'
 }
 
 /** Suggests the user to convert specified supergroup to a broadcast group */
@@ -33,4 +40,14 @@ export interface SuggestedActionConvertToBroadcastGroup {
   _: 'suggestedActionConvertToBroadcastGroup'
   /** Supergroup identifier */
   supergroupId: number
+}
+
+/** Suggests the user to set a 2-step verification password to be able to log in again */
+export interface SuggestedActionSetPassword {
+  _: 'suggestedActionSetPassword'
+  /**
+   * The number of days to pass between consecutive authorizations if the user declines
+   * to set password
+   */
+  authorizationDelay: number
 }

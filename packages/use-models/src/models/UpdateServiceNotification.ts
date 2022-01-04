@@ -1,8 +1,8 @@
 import { MessageContentUnion } from '@airgram/core'
 
 /**
- * Service notification from the server. Upon receiving this the application must show
- * a popup with the content of the notification
+ * A service notification from the server was received. Upon receiving this the application
+ * must show a popup with the content of the notification
  */
 export class UpdateServiceNotificationBaseModel {
   public _: 'updateServiceNotification'

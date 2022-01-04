@@ -7,10 +7,7 @@ export interface PassportAuthorizationForm {
   _: 'passportAuthorizationForm'
   /** Unique identifier of the authorization form */
   id: number
-  /**
-   * Information about the Telegram Passport elements that must be provided to complete
-   * the form
-   */
+  /** Telegram Passport elements that must be provided to complete the form */
   requiredElements: PassportRequiredElement[]
   /** URL for the privacy policy of the service; may be empty */
   privacyPolicyUrl: string

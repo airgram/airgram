@@ -36,8 +36,8 @@ export interface StickerSetInfo {
   /** Total number of stickers in the set */
   size: number
   /**
-   * Contains up to the first 5 stickers from the set, depending on the context. If the
-   * application needs more stickers the full sticker set needs to be requested
+   * Up to the first 5 stickers from the set, depending on the context. If the application
+   * needs more stickers the full sticker set needs to be requested
    */
   covers: Sticker[]
 }

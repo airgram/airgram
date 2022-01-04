@@ -4,6 +4,6 @@ import { ChatInviteLinkCount } from '@airgram/core'
 export class ChatInviteLinkCountsBaseModel {
   public _: 'chatInviteLinkCounts'
 
-  /** List of invite linkcounts */
+  /** List of invite link counts */
   public inviteLinkCounts: ChatInviteLinkCount[]
 }

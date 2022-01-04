@@ -11,6 +11,7 @@ export enum TEXT_ENTITY_TYPE {
   textEntityTypeItalic = 'textEntityTypeItalic',
   textEntityTypeUnderline = 'textEntityTypeUnderline',
   textEntityTypeStrikethrough = 'textEntityTypeStrikethrough',
+  textEntityTypeSpoiler = 'textEntityTypeSpoiler',
   textEntityTypeCode = 'textEntityTypeCode',
   textEntityTypePre = 'textEntityTypePre',
   textEntityTypePreCode = 'textEntityTypePreCode',

@@ -7,7 +7,7 @@ export interface IdentityDocument {
   _: 'identityDocument'
   /** Document number; 1-24 characters */
   number: string
-  /** Document expiry date; may be null */
+  /** Document expiry date; may be null if not applicable */
   expiryDate?: Date
   /** Front side of the document */
   frontSide: DatedFile

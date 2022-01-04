@@ -1,6 +1,6 @@
 import { BasicGroupFullInfo } from '@airgram/core'
 
-/** Some data from basicGroupFullInfo has been changed */
+/** Some data in basicGroupFullInfo has been changed */
 export class UpdateBasicGroupFullInfoBaseModel {
   public _: 'updateBasicGroupFullInfo'
 

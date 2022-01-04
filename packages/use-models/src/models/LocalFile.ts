@@ -5,7 +5,7 @@ export class LocalFileBaseModel {
   /** Local path to the locally available file part; may be empty */
   public path: string
 
-  /** True, if it is possible to try to download or generate the file */
+  /** True, if it is possible to download or generate the file */
   public canBeDownloaded: boolean
 
   /** True, if the file can be deleted */

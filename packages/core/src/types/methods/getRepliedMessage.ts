@@ -3,7 +3,7 @@ import { MessageUnion } from '../outputs'
 
 export interface GetRepliedMessageParams {
   chatId?: number // Identifier of the chat the message belongs to
-  messageId?: number // Identifier of the message reply to which to get
+  messageId?: number // Identifier of the reply message
 }
 
 /**
@@ -12,8 +12,7 @@ export interface GetRepliedMessageParams {
  * types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
  * @param {Object} params
  * @param {number} [params.chatId] - Identifier of the chat the message belongs to
- * @param {number} [params.messageId] - Identifier of the message reply to which
- * to get
+ * @param {number} [params.messageId] - Identifier of the reply message
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetRepliedMessageParams, MessageUnion>>}
  */

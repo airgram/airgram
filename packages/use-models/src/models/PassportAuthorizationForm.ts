@@ -7,10 +7,7 @@ export class PassportAuthorizationFormBaseModel {
   /** Unique identifier of the authorization form */
   public id: number
 
-  /**
-   * Information about the Telegram Passport elements that must be provided to complete
-   * the form
-   */
+  /** Telegram Passport elements that must be provided to complete the form */
   public requiredElements: PassportRequiredElement[]
 
   /** URL for the privacy policy of the service; may be empty */

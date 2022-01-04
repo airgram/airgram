@@ -18,7 +18,7 @@ export class InputMessageForwardedBaseModel {
 
   /**
    * Options to be used to copy content of the message without reference to the original
-   * sender; pass null to try to forward the message as usual
+   * sender; pass null to forward the message as usual
    */
   public copyOptions: MessageCopyOptions
 }

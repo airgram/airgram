@@ -33,8 +33,8 @@ export interface NotificationTypeNewPushMessage {
    * the ID can be used in viewMessages, or as reply_to_message_id
    */
   messageId: number
-  /** The sender of the message. Corresponding user or chat may be inaccessible */
-  sender: MessageSenderUnion
+  /** Identifier of the sender of the message. Corresponding user or chat may be inaccessible */
+  senderId: MessageSenderUnion
   /** Name of the sender */
   senderName: string
   /** True, if the message is outgoing */

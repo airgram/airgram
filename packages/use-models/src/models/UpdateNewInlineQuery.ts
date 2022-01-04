@@ -13,10 +13,7 @@ export class UpdateNewInlineQueryBaseModel {
   /** User location; may be null */
   public userLocation?: Location
 
-  /**
-   * Contains information about the type of the chat, from which the query originated;
-   * may be null if unknown
-   */
+  /** The type of the chat, from which the query originated; may be null if unknown */
   public chatType?: ChatTypeUnion
 
   /** Text of the query */

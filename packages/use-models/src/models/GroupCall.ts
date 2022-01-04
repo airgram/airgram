@@ -43,7 +43,7 @@ export class GroupCallBaseModel {
   /** True, if all group call participants are loaded */
   public loadedAllParticipants: boolean
 
-  /** Recently speaking users in the group call */
+  /** At most 3 recently speaking users in the group call */
   public recentSpeakers: GroupCallRecentSpeaker[]
 
   /** True, if the current user's video is enabled */

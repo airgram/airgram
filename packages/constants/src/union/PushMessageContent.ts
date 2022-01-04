@@ -24,6 +24,7 @@ export enum PUSH_MESSAGE_CONTENT {
   pushMessageContentChatSetTheme = 'pushMessageContentChatSetTheme',
   pushMessageContentChatDeleteMember = 'pushMessageContentChatDeleteMember',
   pushMessageContentChatJoinByLink = 'pushMessageContentChatJoinByLink',
+  pushMessageContentChatJoinByRequest = 'pushMessageContentChatJoinByRequest',
   pushMessageContentMessageForwards = 'pushMessageContentMessageForwards',
   pushMessageContentMediaAlbum = 'pushMessageContentMediaAlbum'
 }

@@ -9,8 +9,6 @@ export enum SEARCH_MESSAGES_FILTER {
   searchMessagesFilterPhotoAndVideo = 'searchMessagesFilterPhotoAndVideo',
   searchMessagesFilterUrl = 'searchMessagesFilterUrl',
   searchMessagesFilterChatPhoto = 'searchMessagesFilterChatPhoto',
-  searchMessagesFilterCall = 'searchMessagesFilterCall',
-  searchMessagesFilterMissedCall = 'searchMessagesFilterMissedCall',
   searchMessagesFilterVideoNote = 'searchMessagesFilterVideoNote',
   searchMessagesFilterVoiceAndVideoNote = 'searchMessagesFilterVoiceAndVideoNote',
   searchMessagesFilterMention = 'searchMessagesFilterMention',

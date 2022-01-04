@@ -28,7 +28,7 @@ export class PollBaseModel {
   /** Amount of time the poll will be active after creation, in seconds */
   public openPeriod: number
 
-  /** Point in time (Unix timestamp) when the poll will be automatically closed */
+  /** Point in time (Unix timestamp) when the poll will automatically be closed */
   public closeDate: number
 
   /** True, if the poll is closed */

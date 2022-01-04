@@ -1,5 +1,6 @@
 import {
   ChatActionBarUnion,
+  ChatJoinRequestsInfo,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhotoInfo,
@@ -7,7 +8,8 @@ import {
   ChatTypeUnion,
   DraftMessage,
   Message,
-  VoiceChat
+  MessageSenderUnion,
+  VideoChat
 } from '@airgram/core'
 
 /** A chat. (Can be a private chat, basic group, supergroup, or secret chat) */
@@ -34,6 +36,15 @@ export class ChatBaseModel {
 
   /** Positions of the chat in chat lists */
   public positions: ChatPosition[]
+
+  /**
+   * Identifier of a user or chat that is selected to send messages in the chat; may be
+   * null if the user can't change message sender
+   */
+  public messageSenderId?: MessageSenderUnion
+
+  /** True, if chat content can't be saved locally, forwarded, or copied */
+  public hasProtectedContent: boolean
 
   /** True, if the chat is marked as unread */
   public isMarkedAsUnread: boolean
@@ -85,19 +96,22 @@ export class ChatBaseModel {
    * defined. TTL is counted from the time message or its content is viewed in secret
    * chats and from the send date in other chats
    */
-  public messageTtlSetting: number
+  public messageTtl: number
 
   /** If non-empty, name of a theme, set for the chat */
   public themeName: string
 
   /**
-   * Describes actions which must be possible to do through a chat action bar; may be
-   * null
+   * Information about actions which must be possible to do through the chat action bar;
+   * may be null
    */
   public actionBar?: ChatActionBarUnion
 
-  /** Contains information about voice chat of the chat */
-  public voiceChat: VoiceChat
+  /** Information about video chat of the chat */
+  public videoChat: VideoChat
+
+  /** Information about pending join requests; may be null */
+  public pendingJoinRequests?: ChatJoinRequestsInfo
 
   /**
    * Identifier of the message from which reply markup needs to be used; 0 if there is
@@ -109,9 +123,9 @@ export class ChatBaseModel {
   public draftMessage?: DraftMessage
 
   /**
-   * Contains application-specific data associated with the chat. (For example, the chat
-   * scroll position or local chat notification settings can be stored here.) Persistent
-   * if the message database is used
+   * Application-specific data associated with the chat. (For example, the chat scroll
+   * position or local chat notification settings can be stored here.) Persistent if the
+   * message database is used
    */
   public clientData: string
 }

@@ -14,6 +14,12 @@ export class SessionBaseModel {
   /** True, if a password is needed to complete authorization of the session */
   public isPasswordPending: boolean
 
+  /** True, if incoming secret chats can be accepted by the session */
+  public canAcceptSecretChats: boolean
+
+  /** True, if incoming calls can be accepted by the session */
+  public canAcceptCalls: boolean
+
   /** Telegram API identifier, as provided by the application */
   public apiId: number
 

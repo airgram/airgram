@@ -10,6 +10,11 @@ export interface MessageSendOptionsInput {
   /** Pass true if the message is sent from the background */
   fromBackground?: boolean
   /**
+   * Pass true if the content of the message must be protected from forwarding and saving;
+   * for bots only
+   */
+  protectContent?: boolean
+  /**
    * Message scheduling state; pass null to send message immediately. Messages sent to
    * a secret chat, live location messages and self-destructing messages can't be scheduled
    */

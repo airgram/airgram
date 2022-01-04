@@ -1,4 +1,4 @@
-import { ChatEventActionUnion } from '@airgram/core'
+import { ChatEventActionUnion, MessageSenderUnion } from '@airgram/core'
 
 /** Represents a chat event */
 export class ChatEventBaseModel {
@@ -10,9 +10,9 @@ export class ChatEventBaseModel {
   /** Point in time (Unix timestamp) when the event happened */
   public date: number
 
-  /** Identifier of the user who performed the action that triggered the event */
-  public userId: number
+  /** Identifier of the user or chat who performed the action */
+  public memberId: MessageSenderUnion
 
-  /** Action performed by the user */
+  /** The action */
   public action: ChatEventActionUnion
 }

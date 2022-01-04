@@ -15,13 +15,13 @@ export interface Message {
   _: 'message'
   /** Message identifier; unique for the chat to which the message belongs */
   id: number
-  /** The sender of the message */
-  sender: MessageSenderUnion
+  /** Identifier of the sender of the message */
+  senderId: MessageSenderUnion
   /** Chat identifier */
   chatId: number
-  /** Information about the sending state of the message; may be null */
+  /** The sending state of the message; may be null */
   sendingState?: MessageSendingStateUnion
-  /** Information about the scheduling state of the message; may be null */
+  /** The scheduling state of the message; may be null */
   schedulingState?: MessageSchedulingStateUnion
   /** True, if the message is outgoing */
   isOutgoing: boolean
@@ -35,6 +35,8 @@ export interface Message {
   canBeEdited: boolean
   /** True, if the message can be forwarded */
   canBeForwarded: boolean
+  /** True, if content of the message can be saved locally or copied */
+  canBeSaved: boolean
   /**
    * True, if the message can be deleted only for the current user while other users will
    * continue to see it

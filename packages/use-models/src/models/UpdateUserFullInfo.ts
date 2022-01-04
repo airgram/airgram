@@ -1,6 +1,6 @@
 import { UserFullInfo } from '@airgram/core'
 
-/** Some data from userFullInfo has been changed */
+/** Some data in userFullInfo has been changed */
 export class UpdateUserFullInfoBaseModel {
   public _: 'updateUserFullInfo'
 

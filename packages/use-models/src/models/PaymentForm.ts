@@ -25,15 +25,15 @@ export class PaymentFormBaseModel {
   public paymentsProviderUserId: number
 
   /**
-   * Contains information about the payment provider, if available, to support it natively
-   * without the need for opening the URL; may be null
+   * Information about the payment provider, if available, to support it natively without
+   * the need for opening the URL; may be null
    */
   public paymentsProvider?: PaymentsProviderStripe
 
   /** Saved server-side order information; may be null */
   public savedOrderInfo?: OrderInfo
 
-  /** Contains information about saved card credentials; may be null */
+  /** Information about saved card credentials; may be null */
   public savedCredentials?: SavedCredentials
 
   /** True, if the user can choose to save credentials */

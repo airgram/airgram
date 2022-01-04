@@ -18,7 +18,7 @@ export type DeviceTokenInputUnion = DeviceTokenFirebaseCloudMessagingInput
 /** A token for Firebase Cloud Messaging */
 export interface DeviceTokenFirebaseCloudMessagingInput {
   _: 'deviceTokenFirebaseCloudMessaging'
-  /** Device registration token; may be empty to de-register a device */
+  /** Device registration token; may be empty to deregister a device */
   token?: string
   /** True, if push notifications must be additionally encrypted */
   encrypt?: boolean
@@ -27,7 +27,7 @@ export interface DeviceTokenFirebaseCloudMessagingInput {
 /** A token for Apple Push Notification service */
 export interface DeviceTokenApplePushInput {
   _: 'deviceTokenApplePush'
-  /** Device token; may be empty to de-register a device */
+  /** Device token; may be empty to deregister a device */
   deviceToken?: string
   /** True, if App Sandbox is enabled */
   isAppSandbox?: boolean
@@ -36,7 +36,7 @@ export interface DeviceTokenApplePushInput {
 /** A token for Apple Push Notification service VoIP notifications */
 export interface DeviceTokenApplePushVoIpInput {
   _: 'deviceTokenApplePushVoIP'
-  /** Device token; may be empty to de-register a device */
+  /** Device token; may be empty to deregister a device */
   deviceToken?: string
   /** True, if App Sandbox is enabled */
   isAppSandbox?: boolean
@@ -48,7 +48,7 @@ export interface DeviceTokenApplePushVoIpInput {
 export interface DeviceTokenWindowsPushInput {
   _: 'deviceTokenWindowsPush'
   /**
-   * The access token that will be used to send notifications; may be empty to de-register
+   * The access token that will be used to send notifications; may be empty to deregister
    * a device
    */
   accessToken?: string
@@ -57,14 +57,14 @@ export interface DeviceTokenWindowsPushInput {
 /** A token for Microsoft Push Notification Service */
 export interface DeviceTokenMicrosoftPushInput {
   _: 'deviceTokenMicrosoftPush'
-  /** Push notification channel URI; may be empty to de-register a device */
+  /** Push notification channel URI; may be empty to deregister a device */
   channelUri?: string
 }
 
 /** A token for Microsoft Push Notification Service VoIP channel */
 export interface DeviceTokenMicrosoftPushVoIpInput {
   _: 'deviceTokenMicrosoftPushVoIP'
-  /** Push notification channel URI; may be empty to de-register a device */
+  /** Push notification channel URI; may be empty to deregister a device */
   channelUri?: string
 }
 
@@ -73,7 +73,7 @@ export interface DeviceTokenWebPushInput {
   _: 'deviceTokenWebPush'
   /**
    * Absolute URL exposed by the push service where the application server can send push
-   * messages; may be empty to de-register a device
+   * messages; may be empty to deregister a device
    */
   endpoint?: string
   /** Base64url-encoded P-256 elliptic curve Diffie-Hellman public key */
@@ -87,7 +87,7 @@ export interface DeviceTokenSimplePushInput {
   _: 'deviceTokenSimplePush'
   /**
    * Absolute URL exposed by the push service where the application server can send push
-   * messages; may be empty to de-register a device
+   * messages; may be empty to deregister a device
    */
   endpoint?: string
 }
@@ -95,20 +95,20 @@ export interface DeviceTokenSimplePushInput {
 /** A token for Ubuntu Push Client service */
 export interface DeviceTokenUbuntuPushInput {
   _: 'deviceTokenUbuntuPush'
-  /** Token; may be empty to de-register a device */
+  /** Token; may be empty to deregister a device */
   token?: string
 }
 
 /** A token for BlackBerry Push Service */
 export interface DeviceTokenBlackBerryPushInput {
   _: 'deviceTokenBlackBerryPush'
-  /** Token; may be empty to de-register a device */
+  /** Token; may be empty to deregister a device */
   token?: string
 }
 
 /** A token for Tizen Push Service */
 export interface DeviceTokenTizenPushInput {
   _: 'deviceTokenTizenPush'
-  /** Push service registration identifier; may be empty to de-register a device */
+  /** Push service registration identifier; may be empty to deregister a device */
   regId?: string
 }

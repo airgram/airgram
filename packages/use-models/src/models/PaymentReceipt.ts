@@ -22,7 +22,7 @@ export class PaymentReceiptBaseModel {
   /** User identifier of the payment provider bot */
   public paymentsProviderUserId: number
 
-  /** Contains information about the invoice */
+  /** Information about the invoice */
   public invoice: Invoice
 
   /** Order information; may be null */

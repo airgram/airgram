@@ -7,10 +7,10 @@ export class AuthenticationCodeInfoBaseModel {
   /** A phone number that is being authenticated */
   public phoneNumber: string
 
-  /** Describes the way the code was sent to the user */
+  /** The way the code was sent to the user */
   public type: AuthenticationCodeTypeUnion
 
-  /** Describes the way the next code will be sent to the user; may be null */
+  /** The way the next code will be sent to the user; may be null */
   public nextType?: AuthenticationCodeTypeUnion
 
   /** Timeout before the code can be re-sent, in seconds */

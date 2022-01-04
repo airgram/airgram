@@ -11,6 +11,8 @@ import {
   ChatActionUnion,
   ChatFilterInfo,
   ChatInviteLink,
+  ChatJoinRequest,
+  ChatJoinRequestsInfo,
   ChatListUnion,
   ChatMember,
   ChatNearby,
@@ -30,6 +32,7 @@ import {
   Message,
   MessageContentUnion,
   MessageInteractionInfo,
+  MessageSenderUnion,
   Notification,
   NotificationGroup,
   NotificationGroupTypeUnion,
@@ -52,7 +55,7 @@ import {
   UserPrivacySettingRules,
   UserPrivacySettingUnion,
   UserStatusUnion,
-  VoiceChat
+  VideoChat
 } from './index'
 
 /** Contains notifications about data changes */
@@ -74,29 +77,32 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatPermissions
   | UpdateChatLastMessage
   | UpdateChatPosition
-  | UpdateChatIsMarkedAsUnread
-  | UpdateChatIsBlocked
-  | UpdateChatHasScheduledMessages
-  | UpdateChatVoiceChat
-  | UpdateChatDefaultDisableNotification
   | UpdateChatReadInbox
   | UpdateChatReadOutbox
-  | UpdateChatUnreadMentionCount
-  | UpdateChatNotificationSettings
-  | UpdateScopeNotificationSettings
-  | UpdateChatMessageTtlSetting
   | UpdateChatActionBar
-  | UpdateChatTheme
-  | UpdateChatReplyMarkup
   | UpdateChatDraftMessage
+  | UpdateChatMessageSender
+  | UpdateChatMessageTtl
+  | UpdateChatNotificationSettings
+  | UpdateChatPendingJoinRequests
+  | UpdateChatReplyMarkup
+  | UpdateChatTheme
+  | UpdateChatUnreadMentionCount
+  | UpdateChatVideoChat
+  | UpdateChatDefaultDisableNotification
+  | UpdateChatHasProtectedContent
+  | UpdateChatHasScheduledMessages
+  | UpdateChatIsBlocked
+  | UpdateChatIsMarkedAsUnread
   | UpdateChatFilters
   | UpdateChatOnlineMemberCount
+  | UpdateScopeNotificationSettings
   | UpdateNotification
   | UpdateNotificationGroup
   | UpdateActiveNotifications
   | UpdateHavePendingNotifications
   | UpdateDeleteMessages
-  | UpdateUserChatAction
+  | UpdateChatAction
   | UpdateUserStatus
   | UpdateUser
   | UpdateBasicGroup
@@ -144,6 +150,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdatePoll
   | UpdatePollAnswer
   | UpdateChatMember
+  | UpdateNewChatJoinRequest
 
 /** The user authorization state has changed */
 export interface UpdateAuthorizationState {
@@ -177,8 +184,8 @@ export interface UpdateMessageSendAcknowledged {
 export interface UpdateMessageSendSucceeded {
   _: 'updateMessageSendSucceeded'
   /**
-   * Information about the sent message. Usually only the message identifier, date, and
-   * content are changed, but almost all other fields can also change
+   * The sent message. Usually only the message identifier, date, and content are changed,
+   * but almost all other fields can also change
    */
   message: Message
   /** The previous temporary message identifier */
@@ -191,7 +198,7 @@ export interface UpdateMessageSendSucceeded {
  */
 export interface UpdateMessageSendFailed {
   _: 'updateMessageSendFailed'
-  /** Contains information about the message which failed to send */
+  /** The failed to send message */
   message: Message
   /** The previous temporary message identifier */
   oldMessageId: number
@@ -350,55 +357,7 @@ export interface UpdateChatPosition {
   position: ChatPosition
 }
 
-/** A chat was marked as unread or was read */
-export interface UpdateChatIsMarkedAsUnread {
-  _: 'updateChatIsMarkedAsUnread'
-  /** Chat identifier */
-  chatId: number
-  /** New value of is_marked_as_unread */
-  isMarkedAsUnread: boolean
-}
-
-/** A chat was blocked or unblocked */
-export interface UpdateChatIsBlocked {
-  _: 'updateChatIsBlocked'
-  /** Chat identifier */
-  chatId: number
-  /** New value of is_blocked */
-  isBlocked: boolean
-}
-
-/** A chat's has_scheduled_messages field has changed */
-export interface UpdateChatHasScheduledMessages {
-  _: 'updateChatHasScheduledMessages'
-  /** Chat identifier */
-  chatId: number
-  /** New value of has_scheduled_messages */
-  hasScheduledMessages: boolean
-}
-
-/** A chat voice chat state has changed */
-export interface UpdateChatVoiceChat {
-  _: 'updateChatVoiceChat'
-  /** Chat identifier */
-  chatId: number
-  /** New value of voice_chat */
-  voiceChat: VoiceChat
-}
-
-/**
- * The value of the default disable_notification parameter, used when a message is sent
- * to the chat, was changed
- */
-export interface UpdateChatDefaultDisableNotification {
-  _: 'updateChatDefaultDisableNotification'
-  /** Chat identifier */
-  chatId: number
-  /** The new default_disable_notification value */
-  defaultDisableNotification: boolean
-}
-
-/** Incoming messages were read or number of unread messages has been changed */
+/** Incoming messages were read or the number of unread messages has been changed */
 export interface UpdateChatReadInbox {
   _: 'updateChatReadInbox'
   /** Chat identifier */
@@ -418,13 +377,46 @@ export interface UpdateChatReadOutbox {
   lastReadOutboxMessageId: number
 }
 
-/** The chat unread_mention_count has changed */
-export interface UpdateChatUnreadMentionCount {
-  _: 'updateChatUnreadMentionCount'
+/** The chat action bar was changed */
+export interface UpdateChatActionBar {
+  _: 'updateChatActionBar'
   /** Chat identifier */
   chatId: number
-  /** The number of unread mention messages left in the chat */
-  unreadMentionCount: number
+  /** The new value of the action bar; may be null */
+  actionBar?: ChatActionBarUnion
+}
+
+/**
+ * A chat draft has changed. Be aware that the update may come in the currently opened
+ * chat but with old content of the draft. If the user has changed the content of the
+ * draft, this update mustn't be applied
+ */
+export interface UpdateChatDraftMessage {
+  _: 'updateChatDraftMessage'
+  /** Chat identifier */
+  chatId: number
+  /** The new draft message; may be null */
+  draftMessage?: DraftMessage
+  /** The new chat positions in the chat lists */
+  positions: ChatPosition[]
+}
+
+/** The message sender that is selected to send messages in a chat has changed */
+export interface UpdateChatMessageSender {
+  _: 'updateChatMessageSender'
+  /** Chat identifier */
+  chatId: number
+  /** New value of message_sender_id; may be null if the user can't change message sender */
+  messageSenderId?: MessageSenderUnion
+}
+
+/** The message Time To Live setting for a chat was changed */
+export interface UpdateChatMessageTtl {
+  _: 'updateChatMessageTtl'
+  /** Chat identifier */
+  chatId: number
+  /** New value of message_ttl */
+  messageTtl: number
 }
 
 /** Notification settings for a chat were changed */
@@ -436,40 +428,13 @@ export interface UpdateChatNotificationSettings {
   notificationSettings: ChatNotificationSettings
 }
 
-/** Notification settings for some type of chats were updated */
-export interface UpdateScopeNotificationSettings {
-  _: 'updateScopeNotificationSettings'
-  /** Types of chats for which notification settings were updated */
-  scope: NotificationSettingsScopeUnion
-  /** The new notification settings */
-  notificationSettings: ScopeNotificationSettings
-}
-
-/** The message Time To Live setting for a chat was changed */
-export interface UpdateChatMessageTtlSetting {
-  _: 'updateChatMessageTtlSetting'
+/** The chat pending join requests were changed */
+export interface UpdateChatPendingJoinRequests {
+  _: 'updateChatPendingJoinRequests'
   /** Chat identifier */
   chatId: number
-  /** New value of message_ttl_setting */
-  messageTtlSetting: number
-}
-
-/** The chat action bar was changed */
-export interface UpdateChatActionBar {
-  _: 'updateChatActionBar'
-  /** Chat identifier */
-  chatId: number
-  /** The new value of the action bar; may be null */
-  actionBar?: ChatActionBarUnion
-}
-
-/** The chat theme was changed */
-export interface UpdateChatTheme {
-  _: 'updateChatTheme'
-  /** Chat identifier */
-  chatId: number
-  /** The new name of the chat theme; may be empty if theme was reset to default */
-  themeName: string
+  /** The new data about pending join requests; may be null */
+  pendingJoinRequests?: ChatJoinRequestsInfo
 }
 
 /**
@@ -487,19 +452,79 @@ export interface UpdateChatReplyMarkup {
   replyMarkupMessageId: number
 }
 
-/**
- * A chat draft has changed. Be aware that the update may come in the currently opened
- * chat but with old content of the draft. If the user has changed the content of the
- * draft, this update mustn't be applied
- */
-export interface UpdateChatDraftMessage {
-  _: 'updateChatDraftMessage'
+/** The chat theme was changed */
+export interface UpdateChatTheme {
+  _: 'updateChatTheme'
   /** Chat identifier */
   chatId: number
-  /** The new draft message; may be null */
-  draftMessage?: DraftMessage
-  /** The new chat positions in the chat lists */
-  positions: ChatPosition[]
+  /** The new name of the chat theme; may be empty if theme was reset to default */
+  themeName: string
+}
+
+/** The chat unread_mention_count has changed */
+export interface UpdateChatUnreadMentionCount {
+  _: 'updateChatUnreadMentionCount'
+  /** Chat identifier */
+  chatId: number
+  /** The number of unread mention messages left in the chat */
+  unreadMentionCount: number
+}
+
+/** A chat video chat state has changed */
+export interface UpdateChatVideoChat {
+  _: 'updateChatVideoChat'
+  /** Chat identifier */
+  chatId: number
+  /** New value of video_chat */
+  videoChat: VideoChat
+}
+
+/**
+ * The value of the default disable_notification parameter, used when a message is sent
+ * to the chat, was changed
+ */
+export interface UpdateChatDefaultDisableNotification {
+  _: 'updateChatDefaultDisableNotification'
+  /** Chat identifier */
+  chatId: number
+  /** The new default_disable_notification value */
+  defaultDisableNotification: boolean
+}
+
+/** A chat content was allowed or restricted for saving */
+export interface UpdateChatHasProtectedContent {
+  _: 'updateChatHasProtectedContent'
+  /** Chat identifier */
+  chatId: number
+  /** New value of has_protected_content */
+  hasProtectedContent: boolean
+}
+
+/** A chat's has_scheduled_messages field has changed */
+export interface UpdateChatHasScheduledMessages {
+  _: 'updateChatHasScheduledMessages'
+  /** Chat identifier */
+  chatId: number
+  /** New value of has_scheduled_messages */
+  hasScheduledMessages: boolean
+}
+
+/** A chat was blocked or unblocked */
+export interface UpdateChatIsBlocked {
+  _: 'updateChatIsBlocked'
+  /** Chat identifier */
+  chatId: number
+  /** New value of is_blocked */
+  isBlocked: boolean
+}
+
+/** A chat was marked as unread or was read */
+export interface UpdateChatIsMarkedAsUnread {
+  _: 'updateChatIsMarkedAsUnread'
+  /** Chat identifier */
+  chatId: number
+  /** New value of is_marked_as_unread */
+  isMarkedAsUnread: boolean
 }
 
 /** The list of chat filters or a chat filter has changed */
@@ -520,6 +545,15 @@ export interface UpdateChatOnlineMemberCount {
   chatId: number
   /** New number of online members in the chat, or 0 if unknown */
   onlineMemberCount: number
+}
+
+/** Notification settings for some type of chats were updated */
+export interface UpdateScopeNotificationSettings {
+  _: 'updateScopeNotificationSettings'
+  /** Types of chats for which notification settings were updated */
+  scope: NotificationSettingsScopeUnion
+  /** The new notification settings */
+  notificationSettings: ScopeNotificationSettings
 }
 
 /** A notification was changed */
@@ -600,16 +634,16 @@ export interface UpdateDeleteMessages {
   fromCache: boolean
 }
 
-/** User activity in the chat has changed */
-export interface UpdateUserChatAction {
-  _: 'updateUserChatAction'
+/** A message sender activity in the chat has changed */
+export interface UpdateChatAction {
+  _: 'updateChatAction'
   /** Chat identifier */
   chatId: number
   /** If not 0, a message thread identifier in which the action was performed */
   messageThreadId: number
-  /** Identifier of a user performing an action */
-  userId: number
-  /** The action description */
+  /** Identifier of a message sender performing the action */
+  senderId: MessageSenderUnion
+  /** The action */
   action: ChatActionUnion
 }
 
@@ -662,7 +696,7 @@ export interface UpdateSecretChat {
   secretChat: SecretChat
 }
 
-/** Some data from userFullInfo has been changed */
+/** Some data in userFullInfo has been changed */
 export interface UpdateUserFullInfo {
   _: 'updateUserFullInfo'
   /** User identifier */
@@ -671,7 +705,7 @@ export interface UpdateUserFullInfo {
   userFullInfo: UserFullInfo
 }
 
-/** Some data from basicGroupFullInfo has been changed */
+/** Some data in basicGroupFullInfo has been changed */
 export interface UpdateBasicGroupFullInfo {
   _: 'updateBasicGroupFullInfo'
   /** Identifier of a basic group */
@@ -680,7 +714,7 @@ export interface UpdateBasicGroupFullInfo {
   basicGroupFullInfo: BasicGroupFullInfo
 }
 
-/** Some data from supergroupFullInfo has been changed */
+/** Some data in supergroupFullInfo has been changed */
 export interface UpdateSupergroupFullInfo {
   _: 'updateSupergroupFullInfo'
   /** Identifier of the supergroup or channel */
@@ -690,8 +724,8 @@ export interface UpdateSupergroupFullInfo {
 }
 
 /**
- * Service notification from the server. Upon receiving this the application must show
- * a popup with the content of the notification
+ * A service notification from the server was received. Upon receiving this the application
+ * must show a popup with the content of the notification
  */
 export interface UpdateServiceNotification {
   _: 'updateServiceNotification'
@@ -987,10 +1021,7 @@ export interface UpdateNewInlineQuery {
   senderUserId: number
   /** User location; may be null */
   userLocation?: Location
-  /**
-   * Contains information about the type of the chat, from which the query originated;
-   * may be null if unknown
-   */
+  /** The type of the chat, from which the query originated; may be null if unknown */
   chatType?: ChatTypeUnion
   /** Text of the query */
   query: string
@@ -1131,4 +1162,15 @@ export interface UpdateChatMember {
   oldChatMember: ChatMember
   /** New chat member */
   newChatMember: ChatMember
+}
+
+/** A user sent a join request to a chat; for bots only */
+export interface UpdateNewChatJoinRequest {
+  _: 'updateNewChatJoinRequest'
+  /** Chat identifier */
+  chatId: number
+  /** Join request */
+  request: ChatJoinRequest
+  /** The invite link, which was used to send join request; may be null */
+  inviteLink?: ChatInviteLink
 }

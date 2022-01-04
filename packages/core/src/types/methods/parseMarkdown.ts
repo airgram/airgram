@@ -3,7 +3,7 @@ import { FormattedTextInput } from '../inputs'
 import { FormattedTextUnion } from '../outputs'
 
 export interface ParseMarkdownParams {
-  text?: FormattedTextInput // The text to parse. For example, "__italic__ ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
+  text?: FormattedTextInput // The text to parse. For example, "__italic__ ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold italic__bold**"
 }
 
 /**
@@ -11,8 +11,8 @@ export interface ParseMarkdownParams {
  * be called synchronously
  * @param {Object} params
  * @param {FormattedTextInput} [params.text] - The text to parse. For example, "__italic__
- * ~~strikethrough~~ **bold** `code` ```pre``` __[italic__ text_url](telegram.org) __italic**bold
- * italic__bold**"
+ * ~~strikethrough~~ ||spoiler|| **bold** `code` ```pre``` __[italic__ text_url](telegram.org)
+ * __italic**bold italic__bold**"
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ParseMarkdownParams, FormattedTextUnion>>}
  */

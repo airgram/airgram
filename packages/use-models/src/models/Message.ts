@@ -15,16 +15,16 @@ export class MessageBaseModel {
   /** Message identifier; unique for the chat to which the message belongs */
   public id: number
 
-  /** The sender of the message */
-  public sender: MessageSenderUnion
+  /** Identifier of the sender of the message */
+  public senderId: MessageSenderUnion
 
   /** Chat identifier */
   public chatId: number
 
-  /** Information about the sending state of the message; may be null */
+  /** The sending state of the message; may be null */
   public sendingState?: MessageSendingStateUnion
 
-  /** Information about the scheduling state of the message; may be null */
+  /** The scheduling state of the message; may be null */
   public schedulingState?: MessageSchedulingStateUnion
 
   /** True, if the message is outgoing */
@@ -42,6 +42,9 @@ export class MessageBaseModel {
 
   /** True, if the message can be forwarded */
   public canBeForwarded: boolean
+
+  /** True, if content of the message can be saved locally or copied */
+  public canBeSaved: boolean
 
   /**
    * True, if the message can be deleted only for the current user while other users will

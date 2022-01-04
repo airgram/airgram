@@ -2,13 +2,13 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
 export interface CheckPhoneNumberConfirmationCodeParams {
-  code?: string // The phone number confirmation code
+  code?: string // Confirmation code to check
 }
 
 /**
  * Checks phone number confirmation code
  * @param {Object} params
- * @param {string} [params.code] - The phone number confirmation code
+ * @param {string} [params.code] - Confirmation code to check
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CheckPhoneNumberConfirmationCodeParams, OkUnion>>}
  */

@@ -8,8 +8,8 @@ export interface ParseTextEntitiesParams {
 }
 
 /**
- * Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName
- * entities contained in the text. Can be called synchronously
+ * Parses Bold, Italic, Underline, Strikethrough, Spoiler, Code, Pre, PreCode, TextUrl
+ * and MentionName entities contained in the text. Can be called synchronously
  * @param {Object} params
  * @param {string} [params.text] - The text to parse
  * @param {TextParseModeInputUnion} [params.parseMode] - Text parse mode

@@ -7,7 +7,7 @@ export interface InputIdentityDocumentInput {
   _: 'inputIdentityDocument'
   /** Document number; 1-24 characters */
   number?: string
-  /** Document expiry date, if available */
+  /** Document expiry date; pass null if not applicable */
   expiryDate?: DateInput
   /** Front side of the document */
   frontSide?: InputFileInputUnion

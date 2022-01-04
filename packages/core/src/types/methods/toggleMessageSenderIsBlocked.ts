@@ -3,7 +3,7 @@ import { MessageSenderInputUnion } from '../inputs'
 import { OkUnion } from '../outputs'
 
 export interface ToggleMessageSenderIsBlockedParams {
-  sender?: MessageSenderInputUnion // Message Sender
+  senderId?: MessageSenderInputUnion // Identifier of a message sender to block/unblock
   isBlocked?: boolean // New value of is_blocked
 }
 
@@ -11,7 +11,8 @@ export interface ToggleMessageSenderIsBlockedParams {
  * Changes the block state of a message sender. Currently, only users and supergroup
  * chats can be blocked
  * @param {Object} params
- * @param {MessageSenderInputUnion} [params.sender] - Message Sender
+ * @param {MessageSenderInputUnion} [params.senderId] - Identifier of a message sender
+ * to block/unblock
  * @param {boolean} [params.isBlocked] - New value of is_blocked
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleMessageSenderIsBlockedParams, OkUnion>>}

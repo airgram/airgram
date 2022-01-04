@@ -14,7 +14,7 @@ export interface SendMessageAlbumParams {
 }
 
 /**
- * Sends 2-10 messages grouped together into an album. Currently only audio, document,
+ * Sends 2-10 messages grouped together into an album. Currently, only audio, document,
  * photo and video messages can be grouped into an album. Documents and audio files
  * can be only grouped in an album with messages of the same type. Returns sent messages
  * @param {Object} params

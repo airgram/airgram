@@ -26,7 +26,7 @@ export class InputMessagePollBaseModel {
   public openPeriod: number
 
   /**
-   * Point in time (Unix timestamp) when the poll will be automatically closed; for bots
+   * Point in time (Unix timestamp) when the poll will automatically be closed; for bots
    * only
    */
   public closeDate: number

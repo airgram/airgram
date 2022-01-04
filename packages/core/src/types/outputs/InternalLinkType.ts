@@ -26,7 +26,8 @@ export type InternalLinkTypeUnion = InternalLinkTypeActiveSessions
   | InternalLinkTypeTheme
   | InternalLinkTypeThemeSettings
   | InternalLinkTypeUnknownDeepLink
-  | InternalLinkTypeVoiceChat
+  | InternalLinkTypeUnsupportedProxy
+  | InternalLinkTypeVideoChat
 
 /**
  * The link is a link to the active sessions section of the app. Use getActiveSessions
@@ -257,21 +258,26 @@ export interface InternalLinkTypeUnknownDeepLink {
   link: string
 }
 
+/** The link is a link to an unsupported proxy. An alert can be shown to the user */
+export interface InternalLinkTypeUnsupportedProxy {
+  _: 'internalLinkTypeUnsupportedProxy'
+}
+
 /**
- * The link is a link to a voice chat. Call searchPublicChat with the given chat username,
+ * The link is a link to a video chat. Call searchPublicChat with the given chat username,
  * and then joinGoupCall with the given invite hash to process the link
  */
-export interface InternalLinkTypeVoiceChat {
-  _: 'internalLinkTypeVoiceChat'
-  /** Username of the chat with the voice chat */
+export interface InternalLinkTypeVideoChat {
+  _: 'internalLinkTypeVideoChat'
+  /** Username of the chat with the video chat */
   chatUsername: string
   /**
-   * If non-empty, invite hash to be used to join the voice chat without being muted by
+   * If non-empty, invite hash to be used to join the video chat without being muted by
    * administrators
    */
   inviteHash: string
   /**
-   * True, if the voice chat is expected to be a live stream in a channel or a broadcast
+   * True, if the video chat is expected to be a live stream in a channel or a broadcast
    * group
    */
   isLiveStream: boolean

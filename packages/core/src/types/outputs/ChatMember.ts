@@ -2,7 +2,7 @@ import { ChatMemberStatusUnion, MessageSenderUnion } from './index'
 
 export type ChatMemberUnion = ChatMember
 
-/** Information about a user or a chat as a member of another chat */
+/** Describes a user or a chat as a member of another chat */
 export interface ChatMember {
   _: 'chatMember'
   /**

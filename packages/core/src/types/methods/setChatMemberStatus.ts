@@ -11,7 +11,8 @@ export interface SetChatMemberStatusParams {
 /**
  * Changes the status of a chat member, needs appropriate privileges. This function
  * is currently not suitable for transferring chat ownership; use transferChatOwnership
- * instead. Use addChatMember or banChatMember if you need to pass some additional parameters
+ * instead. Use addChatMember or banChatMember if some additional parameters needs to
+ * be passed
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {MessageSenderInputUnion} [params.memberId] - Member identifier. Chats

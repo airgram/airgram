@@ -21,5 +21,6 @@ export enum INTERNAL_LINK_TYPE {
   internalLinkTypeTheme = 'internalLinkTypeTheme',
   internalLinkTypeThemeSettings = 'internalLinkTypeThemeSettings',
   internalLinkTypeUnknownDeepLink = 'internalLinkTypeUnknownDeepLink',
-  internalLinkTypeVoiceChat = 'internalLinkTypeVoiceChat'
+  internalLinkTypeUnsupportedProxy = 'internalLinkTypeUnsupportedProxy',
+  internalLinkTypeVideoChat = 'internalLinkTypeVideoChat'
 }

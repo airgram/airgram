@@ -1,6 +1,6 @@
 import { SupergroupFullInfo } from '@airgram/core'
 
-/** Some data from supergroupFullInfo has been changed */
+/** Some data in supergroupFullInfo has been changed */
 export class UpdateSupergroupFullInfoBaseModel {
   public _: 'updateSupergroupFullInfo'
 

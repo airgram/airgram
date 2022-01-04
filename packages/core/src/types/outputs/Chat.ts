@@ -1,5 +1,6 @@
 import {
   ChatActionBarUnion,
+  ChatJoinRequestsInfo,
   ChatNotificationSettings,
   ChatPermissions,
   ChatPhotoInfo,
@@ -7,7 +8,8 @@ import {
   ChatTypeUnion,
   DraftMessage,
   Message,
-  VoiceChat
+  MessageSenderUnion,
+  VideoChat
 } from './index'
 
 export type ChatUnion = Chat
@@ -29,6 +31,13 @@ export interface Chat {
   lastMessage?: Message
   /** Positions of the chat in chat lists */
   positions: ChatPosition[]
+  /**
+   * Identifier of a user or chat that is selected to send messages in the chat; may be
+   * null if the user can't change message sender
+   */
+  messageSenderId?: MessageSenderUnion
+  /** True, if chat content can't be saved locally, forwarded, or copied */
+  hasProtectedContent: boolean
   /** True, if the chat is marked as unread */
   isMarkedAsUnread: boolean
   /**
@@ -67,16 +76,18 @@ export interface Chat {
    * defined. TTL is counted from the time message or its content is viewed in secret
    * chats and from the send date in other chats
    */
-  messageTtlSetting: number
+  messageTtl: number
   /** If non-empty, name of a theme, set for the chat */
   themeName: string
   /**
-   * Describes actions which must be possible to do through a chat action bar; may be
-   * null
+   * Information about actions which must be possible to do through the chat action bar;
+   * may be null
    */
   actionBar?: ChatActionBarUnion
-  /** Contains information about voice chat of the chat */
-  voiceChat: VoiceChat
+  /** Information about video chat of the chat */
+  videoChat: VideoChat
+  /** Information about pending join requests; may be null */
+  pendingJoinRequests?: ChatJoinRequestsInfo
   /**
    * Identifier of the message from which reply markup needs to be used; 0 if there is
    * no default custom reply markup in the chat
@@ -85,9 +96,9 @@ export interface Chat {
   /** A draft of a message in the chat; may be null */
   draftMessage?: DraftMessage
   /**
-   * Contains application-specific data associated with the chat. (For example, the chat
-   * scroll position or local chat notification settings can be stored here.) Persistent
-   * if the message database is used
+   * Application-specific data associated with the chat. (For example, the chat scroll
+   * position or local chat notification settings can be stored here.) Persistent if the
+   * message database is used
    */
   clientData: string
 }

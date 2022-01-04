@@ -11,8 +11,7 @@ export interface ReportChatPhotoParams {
 
 /**
  * Reports a chat photo to the Telegram moderators. A chat photo can be reported only
- * if this is a private chat with a bot, a private chat with a user sharing their location,
- * a supergroup, or a channel, since other chats can't be checked by moderators
+ * if chat.can_be_reported
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
  * @param {number} [params.fileId] - Identifier of the photo to report. Only full

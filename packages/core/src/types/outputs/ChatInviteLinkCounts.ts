@@ -5,6 +5,6 @@ export type ChatInviteLinkCountsUnion = ChatInviteLinkCounts
 /** Contains a list of chat invite link counts */
 export interface ChatInviteLinkCounts {
   _: 'chatInviteLinkCounts'
-  /** List of invite linkcounts */
+  /** List of invite link counts */
   inviteLinkCounts: ChatInviteLinkCount[]
 }
