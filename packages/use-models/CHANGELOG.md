@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.1.1](https://github.com/airgram/airgram/compare/@airgram/use-models@5.1.0...@airgram/use-models@5.1.1) (2022-04-12)
+
+
+### Bug Fixes
+
+* tdweb dependency ([ae75eea](https://github.com/airgram/airgram/commit/ae75eea8b10c6e7bc7d187531ad46b0ecfccd4b1))
+
+
+
+
+
 # [5.1.0](https://github.com/airgram/airgram/compare/@airgram/use-models@5.0.0...@airgram/use-models@5.1.0) (2022-04-12)
 
 **Note:** Version bump only for package @airgram/use-models
