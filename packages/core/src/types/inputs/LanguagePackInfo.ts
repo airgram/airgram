@@ -17,7 +17,7 @@ export interface LanguagePackInfoInput {
   nativeName?: string
   /**
    * A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
-   * for more info
+   * for more information
    */
   pluralCode?: string
   /** True, if the language pack is official */

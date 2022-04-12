@@ -253,14 +253,14 @@ export interface InputInlineQueryResultPhotoInput {
   inputMessageContent?: InputMessageContentInputUnion
 }
 
-/** Represents a link to a WEBP or TGS sticker */
+/** Represents a link to a WEBP, TGS, or WEBM sticker */
 export interface InputInlineQueryResultStickerInput {
   _: 'inputInlineQueryResultSticker'
   /** Unique identifier of the query result */
   id?: string
   /** URL of the sticker thumbnail, if it exists */
   thumbnailUrl?: string
-  /** The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB) */
+  /** The URL of the WEBP, TGS, or WEBM sticker (sticker file size must not exceed 5MB) */
   stickerUrl?: string
   /** Width of the sticker */
   stickerWidth?: number

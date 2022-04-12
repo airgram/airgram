@@ -4,7 +4,7 @@ import { MessageCalendarUnion } from '../outputs'
 
 export interface GetChatMessageCalendarParams {
   chatId?: number // Identifier of the chat in which to return information about messages
-  filter?: SearchMessagesFilterInputUnion // Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention are unsupported in this function
+  filter?: SearchMessagesFilterInputUnion // Filter for message content. Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention, and searchMessagesFilterUnreadReaction are unsupported in this function
   fromMessageId?: number // The message identifier from which to return information about messages; use 0 to get results from the last message
 }
 
@@ -17,8 +17,8 @@ export interface GetChatMessageCalendarParams {
  * @param {number} [params.chatId] - Identifier of the chat in which to return information
  * about messages
  * @param {SearchMessagesFilterInputUnion} [params.filter] - Filter for message content.
- * Filters searchMessagesFilterEmpty, searchMessagesFilterMention and searchMessagesFilterUnreadMention
- * are unsupported in this function
+ * Filters searchMessagesFilterEmpty, searchMessagesFilterMention, searchMessagesFilterUnreadMention,
+ * and searchMessagesFilterUnreadReaction are unsupported in this function
  * @param {number} [params.fromMessageId] - The message identifier from which to
  * return information about messages; use 0 to get results from the last message
  * @param {ApiRequestOptions} options

@@ -2,7 +2,7 @@
 export class UsersBaseModel {
   public _: 'users'
 
-  /** Approximate total count of users found */
+  /** Approximate total number of users found */
   public totalCount: number
 
   /** A list of user identifiers */

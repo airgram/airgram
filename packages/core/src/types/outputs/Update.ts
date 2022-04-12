@@ -23,8 +23,10 @@ import {
   ChatTheme,
   ChatTypeUnion,
   ConnectionStateUnion,
+  DownloadedFileCounts,
   DraftMessage,
   File,
+  FileDownload,
   GroupCall,
   GroupCallParticipant,
   LanguagePackString,
@@ -40,6 +42,7 @@ import {
   OptionValueUnion,
   OrderInfo,
   Poll,
+  Reaction,
   ReplyMarkupUnion,
   ScopeNotificationSettings,
   SecretChat,
@@ -50,6 +53,7 @@ import {
   Supergroup,
   SupergroupFullInfo,
   TermsOfService,
+  UnreadReaction,
   User,
   UserFullInfo,
   UserPrivacySettingRules,
@@ -70,6 +74,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateMessageInteractionInfo
   | UpdateMessageContentOpened
   | UpdateMessageMentionRead
+  | UpdateMessageUnreadReactions
   | UpdateMessageLiveLocationViewed
   | UpdateNewChat
   | UpdateChatTitle
@@ -80,6 +85,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatReadInbox
   | UpdateChatReadOutbox
   | UpdateChatActionBar
+  | UpdateChatAvailableReactions
   | UpdateChatDraftMessage
   | UpdateChatMessageSender
   | UpdateChatMessageTtl
@@ -88,6 +94,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateChatReplyMarkup
   | UpdateChatTheme
   | UpdateChatUnreadMentionCount
+  | UpdateChatUnreadReactionCount
   | UpdateChatVideoChat
   | UpdateChatDefaultDisableNotification
   | UpdateChatHasProtectedContent
@@ -115,6 +122,10 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateFile
   | UpdateFileGenerationStart
   | UpdateFileGenerationStop
+  | UpdateFileDownloads
+  | UpdateFileAddedToDownloads
+  | UpdateFileDownload
+  | UpdateFileRemovedFromDownloads
   | UpdateCall
   | UpdateGroupCall
   | UpdateGroupCallParticipant
@@ -135,6 +146,7 @@ export type UpdateUnion = UpdateAuthorizationState
   | UpdateConnectionState
   | UpdateTermsOfService
   | UpdateUsersNearby
+  | UpdateReactions
   | UpdateDiceEmojis
   | UpdateAnimatedEmojiMessageClicked
   | UpdateAnimationSearchParameters
@@ -277,6 +289,19 @@ export interface UpdateMessageMentionRead {
   unreadMentionCount: number
 }
 
+/** The list of unread reactions added to a message was changed */
+export interface UpdateMessageUnreadReactions {
+  _: 'updateMessageUnreadReactions'
+  /** Chat identifier */
+  chatId: number
+  /** Message identifier */
+  messageId: number
+  /** The new list of unread reactions */
+  unreadReactions: UnreadReaction[]
+  /** The new number of messages with unread reactions left in the chat */
+  unreadReactionCount: number
+}
+
 /**
  * A message with a live location was viewed. When the update is received, the application
  * is supposed to update the live location
@@ -386,6 +411,15 @@ export interface UpdateChatActionBar {
   actionBar?: ChatActionBarUnion
 }
 
+/** The chat available reactions were changed */
+export interface UpdateChatAvailableReactions {
+  _: 'updateChatAvailableReactions'
+  /** Chat identifier */
+  chatId: number
+  /** The new list of reactions, available in the chat */
+  availableReactions: string[]
+}
+
 /**
  * A chat draft has changed. Be aware that the update may come in the currently opened
  * chat but with old content of the draft. If the user has changed the content of the
@@ -470,6 +504,15 @@ export interface UpdateChatUnreadMentionCount {
   unreadMentionCount: number
 }
 
+/** The chat unread_reaction_count has changed */
+export interface UpdateChatUnreadReactionCount {
+  _: 'updateChatUnreadReactionCount'
+  /** Chat identifier */
+  chatId: number
+  /** The number of messages with unread reactions left in the chat */
+  unreadReactionCount: number
+}
+
 /** A chat video chat state has changed */
 export interface UpdateChatVideoChat {
   _: 'updateChatVideoChat'
@@ -535,9 +578,9 @@ export interface UpdateChatFilters {
 }
 
 /**
- * The number of online group members has changed. This update with non-zero count is
- * sent only for currently opened chats. There is no guarantee that it will be sent
- * just after the count has changed
+ * The number of online group members has changed. This update with non-zero number
+ * of online group members is sent only for currently opened chats. There is no guarantee
+ * that it will be sent just after the number of online users has changed
  */
 export interface UpdateChatOnlineMemberCount {
   _: 'updateChatOnlineMemberCount'
@@ -770,6 +813,60 @@ export interface UpdateFileGenerationStop {
   generationId: string
 }
 
+/** The state of the file download list has changed */
+export interface UpdateFileDownloads {
+  _: 'updateFileDownloads'
+  /** Total size of files in the file download list, in bytes */
+  totalSize: number
+  /** Total number of files in the file download list */
+  totalCount: number
+  /** Total downloaded size of files in the file download list, in bytes */
+  downloadedSize: number
+}
+
+/**
+ * A file was added to the file download list. This update is sent only after file download
+ * list is loaded for the first time
+ */
+export interface UpdateFileAddedToDownloads {
+  _: 'updateFileAddedToDownloads'
+  /** The added file download */
+  fileDownload: FileDownload
+  /** New number of being downloaded and recently downloaded files found */
+  counts: DownloadedFileCounts
+}
+
+/**
+ * A file download was changed. This update is sent only after file download list is
+ * loaded for the first time
+ */
+export interface UpdateFileDownload {
+  _: 'updateFileDownload'
+  /** File identifier */
+  fileId: number
+  /**
+   * Point in time (Unix timestamp) when the file downloading was completed; 0 if the
+   * file downloading isn't completed
+   */
+  completeDate: number
+  /** True, if downloading of the file is paused */
+  isPaused: boolean
+  /** New number of being downloaded and recently downloaded files found */
+  counts: DownloadedFileCounts
+}
+
+/**
+ * A file was removed from the file download list. This update is sent only after file
+ * download list is loaded for the first time
+ */
+export interface UpdateFileRemovedFromDownloads {
+  _: 'updateFileRemovedFromDownloads'
+  /** File identifier */
+  fileId: number
+  /** New number of being downloaded and recently downloaded files found */
+  counts: DownloadedFileCounts
+}
+
 /** New call was created or information about a call was updated */
 export interface UpdateCall {
   _: 'updateCall'
@@ -967,6 +1064,13 @@ export interface UpdateUsersNearby {
   _: 'updateUsersNearby'
   /** The new list of users nearby */
   usersNearby: ChatNearby[]
+}
+
+/** The list of supported reactions has changed */
+export interface UpdateReactions {
+  _: 'updateReactions'
+  /** The new list of supported reactions */
+  reactions: Reaction[]
 }
 
 /** The list of supported dice emojis has changed */

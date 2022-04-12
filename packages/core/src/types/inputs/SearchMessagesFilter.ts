@@ -13,6 +13,7 @@ export type SearchMessagesFilterInputUnion = SearchMessagesFilterEmptyInput
   | SearchMessagesFilterVoiceAndVideoNoteInput
   | SearchMessagesFilterMentionInput
   | SearchMessagesFilterUnreadMentionInput
+  | SearchMessagesFilterUnreadReactionInput
   | SearchMessagesFilterFailedToSendInput
   | SearchMessagesFilterPinnedInput
 
@@ -91,6 +92,15 @@ export interface SearchMessagesFilterMentionInput {
  */
 export interface SearchMessagesFilterUnreadMentionInput {
   _: 'searchMessagesFilterUnreadMention'
+}
+
+/**
+ * Returns only messages with unread reactions for the current user. When using this
+ * filter the results can't be additionally filtered by a query, a message thread or
+ * by the sending user
+ */
+export interface SearchMessagesFilterUnreadReactionInput {
+  _: 'searchMessagesFilterUnreadReaction'
 }
 
 /**

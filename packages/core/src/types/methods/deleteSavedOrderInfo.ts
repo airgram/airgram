@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 
 
 /**
- * Deletes saved order info
+ * Deletes saved order information
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<never, OkUnion>>}
  */

@@ -6,6 +6,8 @@ export type ChatReportReasonInputUnion = ChatReportReasonSpamInput
   | ChatReportReasonCopyrightInput
   | ChatReportReasonUnrelatedLocationInput
   | ChatReportReasonFakeInput
+  | ChatReportReasonIllegalDrugsInput
+  | ChatReportReasonPersonalDetailsInput
   | ChatReportReasonCustomInput
 
 /** The chat contains spam messages */
@@ -41,6 +43,16 @@ export interface ChatReportReasonUnrelatedLocationInput {
 /** The chat represents a fake account */
 export interface ChatReportReasonFakeInput {
   _: 'chatReportReasonFake'
+}
+
+/** The chat has illegal drugs related content */
+export interface ChatReportReasonIllegalDrugsInput {
+  _: 'chatReportReasonIllegalDrugs'
+}
+
+/** The chat contains messages with personal details */
+export interface ChatReportReasonPersonalDetailsInput {
+  _: 'chatReportReasonPersonalDetails'
 }
 
 /** A custom reason provided by the user */

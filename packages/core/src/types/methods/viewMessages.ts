@@ -5,7 +5,7 @@ export interface ViewMessagesParams {
   chatId?: number // Chat identifier
   messageThreadId?: number // If not 0, a message thread identifier in which the messages are being viewed
   messageIds?: number[] // The identifiers of the messages being viewed
-  forceRead?: boolean // True, if messages in closed chats must be marked as read by the request
+  forceRead?: boolean // Pass true to mark as read the specified messages even the chat is closed
 }
 
 /**
@@ -20,8 +20,8 @@ export interface ViewMessagesParams {
  * in which the messages are being viewed
  * @param {number[]} [params.messageIds] - The identifiers of the messages being
  * viewed
- * @param {boolean} [params.forceRead] - True, if messages in closed chats must be
- * marked as read by the request
+ * @param {boolean} [params.forceRead] - Pass true to mark as read the specified
+ * messages even the chat is closed
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ViewMessagesParams, OkUnion>>}
  */

@@ -5,7 +5,8 @@ import {
   MessageSchedulingStateUnion,
   MessageSenderUnion,
   MessageSendingStateUnion,
-  ReplyMarkupUnion
+  ReplyMarkupUnion,
+  UnreadReaction
 } from './index'
 
 export type MessageUnion = Message
@@ -44,15 +45,17 @@ export interface Message {
   canBeDeletedOnlyForSelf: boolean
   /** True, if the message can be deleted for all users */
   canBeDeletedForAllUsers: boolean
-  /** True, if the message statistics are available */
+  /** True, if the list of added reactions is available through getMessageAddedReactions */
+  canGetAddedReactions: boolean
+  /** True, if the message statistics are available through getMessageStatistics */
   canGetStatistics: boolean
-  /** True, if the message thread info is available */
+  /** True, if information about the message thread is available through getMessageThread */
   canGetMessageThread: boolean
   /** True, if chat members already viewed the message can be received through getMessageViewers */
   canGetViewers: boolean
   /**
    * True, if media timestamp links can be generated for media timestamp entities in the
-   * message text, caption or web page description
+   * message text, caption or web page description through getMessageLink
    */
   canGetMediaTimestampLinks: boolean
   /**
@@ -75,6 +78,8 @@ export interface Message {
   forwardInfo?: MessageForwardInfo
   /** Information about interactions with the message; may be null */
   interactionInfo?: MessageInteractionInfo
+  /** Information about unread reactions added to the message */
+  unreadReactions: UnreadReaction[]
   /**
    * If non-zero, the identifier of the chat to which the replied message belongs; Currently,
    * only messages in the Replies chat can have different reply_in_chat_id and chat_id

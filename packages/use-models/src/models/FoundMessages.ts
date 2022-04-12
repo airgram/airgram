@@ -4,7 +4,7 @@ import { Message } from '@airgram/core'
 export class FoundMessagesBaseModel {
   public _: 'foundMessages'
 
-  /** Approximate total count of messages found; -1 if unknown */
+  /** Approximate total number of messages found; -1 if unknown */
   public totalCount: number
 
   /** List of messages */

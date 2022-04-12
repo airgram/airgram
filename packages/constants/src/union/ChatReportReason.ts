@@ -6,5 +6,7 @@ export enum CHAT_REPORT_REASON {
   chatReportReasonCopyright = 'chatReportReasonCopyright',
   chatReportReasonUnrelatedLocation = 'chatReportReasonUnrelatedLocation',
   chatReportReasonFake = 'chatReportReasonFake',
+  chatReportReasonIllegalDrugs = 'chatReportReasonIllegalDrugs',
+  chatReportReasonPersonalDetails = 'chatReportReasonPersonalDetails',
   chatReportReasonCustom = 'chatReportReasonCustom'
 }

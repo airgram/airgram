@@ -6,7 +6,7 @@ export interface ValidateOrderInfoParams {
   chatId?: number // Chat identifier of the Invoice message
   messageId?: number // Message identifier
   orderInfo?: OrderInfoInput // The order information, provided by the user; pass null if empty
-  allowSave?: boolean // True, if the order information can be saved
+  allowSave?: boolean // Pass true to save the order information
 }
 
 /**
@@ -17,7 +17,7 @@ export interface ValidateOrderInfoParams {
  * @param {number} [params.messageId] - Message identifier
  * @param {OrderInfoInput} [params.orderInfo] - The order information, provided by
  * the user; pass null if empty
- * @param {boolean} [params.allowSave] - True, if the order information can be saved
+ * @param {boolean} [params.allowSave] - Pass true to save the order information
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ValidateOrderInfoParams, ValidatedOrderInfoUnion>>}
  */

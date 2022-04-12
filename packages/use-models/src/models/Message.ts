@@ -5,7 +5,8 @@ import {
   MessageSchedulingStateUnion,
   MessageSenderUnion,
   MessageSendingStateUnion,
-  ReplyMarkupUnion
+  ReplyMarkupUnion,
+  UnreadReaction
 } from '@airgram/core'
 
 /** Describes a message */
@@ -55,10 +56,13 @@ export class MessageBaseModel {
   /** True, if the message can be deleted for all users */
   public canBeDeletedForAllUsers: boolean
 
-  /** True, if the message statistics are available */
+  /** True, if the list of added reactions is available through getMessageAddedReactions */
+  public canGetAddedReactions: boolean
+
+  /** True, if the message statistics are available through getMessageStatistics */
   public canGetStatistics: boolean
 
-  /** True, if the message thread info is available */
+  /** True, if information about the message thread is available through getMessageThread */
   public canGetMessageThread: boolean
 
   /** True, if chat members already viewed the message can be received through getMessageViewers */
@@ -66,7 +70,7 @@ export class MessageBaseModel {
 
   /**
    * True, if media timestamp links can be generated for media timestamp entities in the
-   * message text, caption or web page description
+   * message text, caption or web page description through getMessageLink
    */
   public canGetMediaTimestampLinks: boolean
 
@@ -96,6 +100,9 @@ export class MessageBaseModel {
 
   /** Information about interactions with the message; may be null */
   public interactionInfo?: MessageInteractionInfo
+
+  /** Information about unread reactions added to the message */
+  public unreadReactions: UnreadReaction[]
 
   /**
    * If non-zero, the identifier of the chat to which the replied message belongs; Currently,

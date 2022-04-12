@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 export interface ProcessChatJoinRequestsParams {
   chatId?: number // Chat identifier
   inviteLink?: string // Invite link for which to process join requests. If empty, all join requests will be processed. Requires administrator privileges and can_invite_users right in the chat for own links and owner privileges for other links
-  approve?: boolean // True, if the requests are approved. Otherwise the requests are declived
+  approve?: boolean // Pass true to approve all requests; pass false to decline them
 }
 
 /**
@@ -15,8 +15,8 @@ export interface ProcessChatJoinRequestsParams {
  * If empty, all join requests will be processed. Requires administrator privileges
  * and can_invite_users right in the chat for own links and owner privileges for other
  * links
- * @param {boolean} [params.approve] - True, if the requests are approved. Otherwise
- * the requests are declived
+ * @param {boolean} [params.approve] - Pass true to approve all requests; pass false
+ * to decline them
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ProcessChatJoinRequestsParams, OkUnion>>}
  */

@@ -1,4 +1,4 @@
-import { MessageReplyInfo } from '@airgram/core'
+import { MessageReaction, MessageReplyInfo } from '@airgram/core'
 
 /** Contains information about interactions with a message */
 export class MessageInteractionInfoBaseModel {
@@ -16,4 +16,7 @@ export class MessageInteractionInfoBaseModel {
    * for messages, which are not replies itself
    */
   public replyInfo?: MessageReplyInfo
+
+  /** The list of reactions added to the message */
+  public reactions: MessageReaction[]
 }

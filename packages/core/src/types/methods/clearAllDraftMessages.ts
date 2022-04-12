@@ -2,14 +2,14 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { OkUnion } from '../outputs'
 
 export interface ClearAllDraftMessagesParams {
-  excludeSecretChats?: boolean // If true, local draft messages in secret chats will not be cleared
+  excludeSecretChats?: boolean // Pass true to keep local message drafts in secret chats
 }
 
 /**
- * Clears draft messages in all chats
+ * Clears message drafts in all chats
  * @param {Object} params
- * @param {boolean} [params.excludeSecretChats] - If true, local draft messages in
- * secret chats will not be cleared
+ * @param {boolean} [params.excludeSecretChats] - Pass true to keep local message
+ * drafts in secret chats
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ClearAllDraftMessagesParams, OkUnion>>}
  */

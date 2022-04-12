@@ -11,38 +11,39 @@ import {
 /** Represents a chat event */
 export type ChatEventActionUnion = ChatEventMessageEdited
   | ChatEventMessageDeleted
-  | ChatEventPollStopped
   | ChatEventMessagePinned
   | ChatEventMessageUnpinned
+  | ChatEventPollStopped
   | ChatEventMemberJoined
   | ChatEventMemberJoinedByInviteLink
   | ChatEventMemberJoinedByRequest
-  | ChatEventMemberLeft
   | ChatEventMemberInvited
+  | ChatEventMemberLeft
   | ChatEventMemberPromoted
   | ChatEventMemberRestricted
-  | ChatEventTitleChanged
-  | ChatEventPermissionsChanged
+  | ChatEventAvailableReactionsChanged
   | ChatEventDescriptionChanged
-  | ChatEventUsernameChanged
-  | ChatEventPhotoChanged
-  | ChatEventInvitesToggled
   | ChatEventLinkedChatChanged
-  | ChatEventSlowModeDelayChanged
-  | ChatEventMessageTtlChanged
-  | ChatEventSignMessagesToggled
-  | ChatEventHasProtectedContentToggled
-  | ChatEventStickerSetChanged
   | ChatEventLocationChanged
+  | ChatEventMessageTtlChanged
+  | ChatEventPermissionsChanged
+  | ChatEventPhotoChanged
+  | ChatEventSlowModeDelayChanged
+  | ChatEventStickerSetChanged
+  | ChatEventTitleChanged
+  | ChatEventUsernameChanged
+  | ChatEventHasProtectedContentToggled
+  | ChatEventInvitesToggled
   | ChatEventIsAllHistoryAvailableToggled
+  | ChatEventSignMessagesToggled
   | ChatEventInviteLinkEdited
   | ChatEventInviteLinkRevoked
   | ChatEventInviteLinkDeleted
   | ChatEventVideoChatCreated
   | ChatEventVideoChatEnded
+  | ChatEventVideoChatMuteNewParticipantsToggled
   | ChatEventVideoChatParticipantIsMutedToggled
   | ChatEventVideoChatParticipantVolumeLevelChanged
-  | ChatEventVideoChatMuteNewParticipantsToggled
 
 /** A message was edited */
 export interface ChatEventMessageEdited {
@@ -60,13 +61,6 @@ export interface ChatEventMessageDeleted {
   message: Message
 }
 
-/** A poll in a message was stopped */
-export interface ChatEventPollStopped {
-  _: 'chatEventPollStopped'
-  /** The message with the poll */
-  message: Message
-}
-
 /** A message was pinned */
 export interface ChatEventMessagePinned {
   _: 'chatEventMessagePinned'
@@ -78,6 +72,13 @@ export interface ChatEventMessagePinned {
 export interface ChatEventMessageUnpinned {
   _: 'chatEventMessageUnpinned'
   /** Unpinned message */
+  message: Message
+}
+
+/** A poll in a message was stopped */
+export interface ChatEventPollStopped {
+  _: 'chatEventPollStopped'
+  /** The message with the poll */
   message: Message
 }
 
@@ -102,11 +103,6 @@ export interface ChatEventMemberJoinedByRequest {
   inviteLink?: ChatInviteLink
 }
 
-/** A member left the chat */
-export interface ChatEventMemberLeft {
-  _: 'chatEventMemberLeft'
-}
-
 /** A new chat member was invited */
 export interface ChatEventMemberInvited {
   _: 'chatEventMemberInvited'
@@ -114,6 +110,11 @@ export interface ChatEventMemberInvited {
   userId: number
   /** New member status */
   status: ChatMemberStatusUnion
+}
+
+/** A member left the chat */
+export interface ChatEventMemberLeft {
+  _: 'chatEventMemberLeft'
 }
 
 /**
@@ -144,22 +145,13 @@ export interface ChatEventMemberRestricted {
   newStatus: ChatMemberStatusUnion
 }
 
-/** The chat title was changed */
-export interface ChatEventTitleChanged {
-  _: 'chatEventTitleChanged'
-  /** Previous chat title */
-  oldTitle: string
-  /** New chat title */
-  newTitle: string
-}
-
-/** The chat permissions was changed */
-export interface ChatEventPermissionsChanged {
-  _: 'chatEventPermissionsChanged'
-  /** Previous chat permissions */
-  oldPermissions: ChatPermissions
-  /** New chat permissions */
-  newPermissions: ChatPermissions
+/** The chat available reactions were changed */
+export interface ChatEventAvailableReactionsChanged {
+  _: 'chatEventAvailableReactionsChanged'
+  /** Previous chat available reactions */
+  oldAvailableReactions: string[]
+  /** New chat available reactions */
+  newAvailableReactions: string[]
 }
 
 /** The chat description was changed */
@@ -171,31 +163,6 @@ export interface ChatEventDescriptionChanged {
   newDescription: string
 }
 
-/** The chat username was changed */
-export interface ChatEventUsernameChanged {
-  _: 'chatEventUsernameChanged'
-  /** Previous chat username */
-  oldUsername: string
-  /** New chat username */
-  newUsername: string
-}
-
-/** The chat photo was changed */
-export interface ChatEventPhotoChanged {
-  _: 'chatEventPhotoChanged'
-  /** Previous chat photo value; may be null */
-  oldPhoto?: ChatPhoto
-  /** New chat photo value; may be null */
-  newPhoto?: ChatPhoto
-}
-
-/** The can_invite_users permission of a supergroup chat was toggled */
-export interface ChatEventInvitesToggled {
-  _: 'chatEventInvitesToggled'
-  /** New value of can_invite_users permission */
-  canInviteUsers: boolean
-}
-
 /** The linked chat of a supergroup was changed */
 export interface ChatEventLinkedChatChanged {
   _: 'chatEventLinkedChatChanged'
@@ -203,47 +170,6 @@ export interface ChatEventLinkedChatChanged {
   oldLinkedChatId: number
   /** New supergroup linked chat identifier */
   newLinkedChatId: number
-}
-
-/** The slow_mode_delay setting of a supergroup was changed */
-export interface ChatEventSlowModeDelayChanged {
-  _: 'chatEventSlowModeDelayChanged'
-  /** Previous value of slow_mode_delay, in seconds */
-  oldSlowModeDelay: number
-  /** New value of slow_mode_delay, in seconds */
-  newSlowModeDelay: number
-}
-
-/** The message TTL was changed */
-export interface ChatEventMessageTtlChanged {
-  _: 'chatEventMessageTtlChanged'
-  /** Previous value of message_ttl */
-  oldMessageTtl: number
-  /** New value of message_ttl */
-  newMessageTtl: number
-}
-
-/** The sign_messages setting of a channel was toggled */
-export interface ChatEventSignMessagesToggled {
-  _: 'chatEventSignMessagesToggled'
-  /** New value of sign_messages */
-  signMessages: boolean
-}
-
-/** The has_protected_content setting of a channel was toggled */
-export interface ChatEventHasProtectedContentToggled {
-  _: 'chatEventHasProtectedContentToggled'
-  /** New value of has_protected_content */
-  hasProtectedContent: boolean
-}
-
-/** The supergroup sticker set was changed */
-export interface ChatEventStickerSetChanged {
-  _: 'chatEventStickerSetChanged'
-  /** Previous identifier of the chat sticker set; 0 if none */
-  oldStickerSetId: string
-  /** New identifier of the chat sticker set; 0 if none */
-  newStickerSetId: string
 }
 
 /** The supergroup location was changed */
@@ -255,11 +181,95 @@ export interface ChatEventLocationChanged {
   newLocation?: ChatLocation
 }
 
+/** The message TTL was changed */
+export interface ChatEventMessageTtlChanged {
+  _: 'chatEventMessageTtlChanged'
+  /** Previous value of message_ttl */
+  oldMessageTtl: number
+  /** New value of message_ttl */
+  newMessageTtl: number
+}
+
+/** The chat permissions was changed */
+export interface ChatEventPermissionsChanged {
+  _: 'chatEventPermissionsChanged'
+  /** Previous chat permissions */
+  oldPermissions: ChatPermissions
+  /** New chat permissions */
+  newPermissions: ChatPermissions
+}
+
+/** The chat photo was changed */
+export interface ChatEventPhotoChanged {
+  _: 'chatEventPhotoChanged'
+  /** Previous chat photo value; may be null */
+  oldPhoto?: ChatPhoto
+  /** New chat photo value; may be null */
+  newPhoto?: ChatPhoto
+}
+
+/** The slow_mode_delay setting of a supergroup was changed */
+export interface ChatEventSlowModeDelayChanged {
+  _: 'chatEventSlowModeDelayChanged'
+  /** Previous value of slow_mode_delay, in seconds */
+  oldSlowModeDelay: number
+  /** New value of slow_mode_delay, in seconds */
+  newSlowModeDelay: number
+}
+
+/** The supergroup sticker set was changed */
+export interface ChatEventStickerSetChanged {
+  _: 'chatEventStickerSetChanged'
+  /** Previous identifier of the chat sticker set; 0 if none */
+  oldStickerSetId: string
+  /** New identifier of the chat sticker set; 0 if none */
+  newStickerSetId: string
+}
+
+/** The chat title was changed */
+export interface ChatEventTitleChanged {
+  _: 'chatEventTitleChanged'
+  /** Previous chat title */
+  oldTitle: string
+  /** New chat title */
+  newTitle: string
+}
+
+/** The chat username was changed */
+export interface ChatEventUsernameChanged {
+  _: 'chatEventUsernameChanged'
+  /** Previous chat username */
+  oldUsername: string
+  /** New chat username */
+  newUsername: string
+}
+
+/** The has_protected_content setting of a channel was toggled */
+export interface ChatEventHasProtectedContentToggled {
+  _: 'chatEventHasProtectedContentToggled'
+  /** New value of has_protected_content */
+  hasProtectedContent: boolean
+}
+
+/** The can_invite_users permission of a supergroup chat was toggled */
+export interface ChatEventInvitesToggled {
+  _: 'chatEventInvitesToggled'
+  /** New value of can_invite_users permission */
+  canInviteUsers: boolean
+}
+
 /** The is_all_history_available setting of a supergroup was toggled */
 export interface ChatEventIsAllHistoryAvailableToggled {
   _: 'chatEventIsAllHistoryAvailableToggled'
   /** New value of is_all_history_available */
   isAllHistoryAvailable: boolean
+}
+
+/** The sign_messages setting of a channel was toggled */
+export interface ChatEventSignMessagesToggled {
+  _: 'chatEventSignMessagesToggled'
+  /** New value of sign_messages */
+  signMessages: boolean
 }
 
 /** A chat invite link was edited */
@@ -299,6 +309,13 @@ export interface ChatEventVideoChatEnded {
   groupCallId: number
 }
 
+/** The mute_new_participants setting of a video chat was toggled */
+export interface ChatEventVideoChatMuteNewParticipantsToggled {
+  _: 'chatEventVideoChatMuteNewParticipantsToggled'
+  /** New value of the mute_new_participants setting */
+  muteNewParticipants: boolean
+}
+
 /** A video chat participant was muted or unmuted */
 export interface ChatEventVideoChatParticipantIsMutedToggled {
   _: 'chatEventVideoChatParticipantIsMutedToggled'
@@ -315,11 +332,4 @@ export interface ChatEventVideoChatParticipantVolumeLevelChanged {
   participantId: MessageSenderUnion
   /** New value of volume_level; 1-20000 in hundreds of percents */
   volumeLevel: number
-}
-
-/** The mute_new_participants setting of a video chat was toggled */
-export interface ChatEventVideoChatMuteNewParticipantsToggled {
-  _: 'chatEventVideoChatMuteNewParticipantsToggled'
-  /** New value of the mute_new_participants setting */
-  muteNewParticipants: boolean
 }

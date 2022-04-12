@@ -69,8 +69,12 @@ export interface Chat {
   lastReadOutboxMessageId: number
   /** Number of unread messages with a mention/reply in the chat */
   unreadMentionCount: number
-  /** Notification settings for this chat */
+  /** Number of messages with unread reactions in the chat */
+  unreadReactionCount: number
+  /** Notification settings for the chat */
   notificationSettings: ChatNotificationSettings
+  /** List of reactions, available in the chat */
+  availableReactions: string[]
   /**
    * Current message Time To Live setting (self-destruct timer) for the chat; 0 if not
    * defined. TTL is counted from the time message or its content is viewed in secret

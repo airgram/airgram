@@ -20,7 +20,7 @@ export class LanguagePackInfoBaseModel {
 
   /**
    * A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
-   * for more info
+   * for more information
    */
   public pluralCode: string
 

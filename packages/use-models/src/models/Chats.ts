@@ -2,7 +2,7 @@
 export class ChatsBaseModel {
   public _: 'chats'
 
-  /** Approximate total count of chats found */
+  /** Approximate total number of chats found */
   public totalCount: number
 
   /** List of chat identifiers */

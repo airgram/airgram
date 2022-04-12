@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import * as api from './api'
 import { ApiMethods } from './api-methods'
 import { MiddlewareOn } from './api-middleware'

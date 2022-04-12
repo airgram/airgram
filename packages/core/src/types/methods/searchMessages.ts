@@ -9,7 +9,7 @@ export interface SearchMessagesParams {
   offsetChatId?: number // The chat identifier of the last found message, or 0 for the first request
   offsetMessageId?: number // The message identifier of the last found message, or 0 for the first request
   limit?: number // The maximum number of messages to be returned; up to 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit
-  filter?: SearchMessagesFilterInputUnion // Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
+  filter?: SearchMessagesFilterInputUnion // Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
   minDate?: number // If not 0, the minimum date of the messages to return
   maxDate?: number // If not 0, the maximum date of the messages to return
 }
@@ -36,8 +36,8 @@ export interface SearchMessagesParams {
  * TDLib and can be smaller than the specified limit
  * @param {SearchMessagesFilterInputUnion} [params.filter] - Additional filter for
  * messages to search; pass null to search for all messages. Filters searchMessagesFilterMention,
- * searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned
- * are unsupported in this function
+ * searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend,
+ * and searchMessagesFilterPinned are unsupported in this function
  * @param {number} [params.minDate] - If not 0, the minimum date of the messages
  * to return
  * @param {number} [params.maxDate] - If not 0, the maximum date of the messages

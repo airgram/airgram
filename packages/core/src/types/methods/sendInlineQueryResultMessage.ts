@@ -9,7 +9,7 @@ export interface SendInlineQueryResultMessageParams {
   options?: MessageSendOptionsInput // Options to be used to send the message; pass null to use default options
   queryId?: string // Identifier of the inline query
   resultId?: string // Identifier of the inline result
-  hideViaBot?: boolean // If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+  hideViaBot?: boolean // Pass true to hide the bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
 }
 
 /**
@@ -25,9 +25,9 @@ export interface SendInlineQueryResultMessageParams {
  * the message; pass null to use default options
  * @param {string} [params.queryId] - Identifier of the inline query
  * @param {string} [params.resultId] - Identifier of the inline result
- * @param {boolean} [params.hideViaBot] - If true, there will be no mention of a
- * bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"),
- * GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
+ * @param {boolean} [params.hideViaBot] - Pass true to hide the bot, via which the
+ * message is sent. Can be used only for bots GetOption("animation_search_bot_username"),
+ * GetOption("photo_search_bot_username"), and GetOption("venue_search_bot_username")
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendInlineQueryResultMessageParams, MessageUnion>>}
  */

@@ -4,7 +4,7 @@ import { ChatJoinRequest } from '@airgram/core'
 export class ChatJoinRequestsBaseModel {
   public _: 'chatJoinRequests'
 
-  /** Approximate total count of requests found */
+  /** Approximate total number of requests found */
   public totalCount: number
 
   /** List of the requests */

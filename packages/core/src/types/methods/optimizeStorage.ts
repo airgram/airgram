@@ -5,7 +5,7 @@ import { StorageStatisticsUnion } from '../outputs'
 export interface OptimizeStorageParams {
   size?: number // Limit on the total size of files after deletion, in bytes. Pass -1 to use the default limit
   ttl?: number // Limit on the time that has passed since the last time a file was accessed (or creation time for some filesystems). Pass -1 to use the default limit
-  count?: number // Limit on the total count of files after deletion. Pass -1 to use the default limit
+  count?: number // Limit on the total number of files after deletion. Pass -1 to use the default limit
   immunityDelay?: number // The amount of time after the creation of a file during which it can't be deleted, in seconds. Pass -1 to use the default value
   fileTypes?: FileTypeInputUnion[] // If non-empty, only files with the given types are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
   chatIds?: number[] // If non-empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
@@ -23,7 +23,7 @@ export interface OptimizeStorageParams {
  * @param {number} [params.ttl] - Limit on the time that has passed since the last
  * time a file was accessed (or creation time for some filesystems). Pass -1 to use
  * the default limit
- * @param {number} [params.count] - Limit on the total count of files after deletion.
+ * @param {number} [params.count] - Limit on the total number of files after deletion.
  * Pass -1 to use the default limit
  * @param {number} [params.immunityDelay] - The amount of time after the creation
  * of a file during which it can't be deleted, in seconds. Pass -1 to use the default

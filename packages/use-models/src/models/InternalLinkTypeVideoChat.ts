@@ -1,6 +1,6 @@
 /**
  * The link is a link to a video chat. Call searchPublicChat with the given chat username,
- * and then joinGoupCall with the given invite hash to process the link
+ * and then joinGroupCall with the given invite hash to process the link
  */
 export class InternalLinkTypeVideoChatBaseModel {
   public _: 'internalLinkTypeVideoChat'

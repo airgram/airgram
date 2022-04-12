@@ -76,7 +76,7 @@ export class SupergroupFullInfoBaseModel {
   public location?: ChatLocation
 
   /**
-   * Primary invite link for this chat; may be null. For chat administrators with can_invite_users
+   * Primary invite link for the chat; may be null. For chat administrators with can_invite_users
    * right only
    */
   public inviteLink?: ChatInviteLink

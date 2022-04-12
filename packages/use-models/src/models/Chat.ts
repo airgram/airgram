@@ -88,8 +88,14 @@ export class ChatBaseModel {
   /** Number of unread messages with a mention/reply in the chat */
   public unreadMentionCount: number
 
-  /** Notification settings for this chat */
+  /** Number of messages with unread reactions in the chat */
+  public unreadReactionCount: number
+
+  /** Notification settings for the chat */
   public notificationSettings: ChatNotificationSettings
+
+  /** List of reactions, available in the chat */
+  public availableReactions: string[]
 
   /**
    * Current message Time To Live setting (self-destruct timer) for the chat; 0 if not

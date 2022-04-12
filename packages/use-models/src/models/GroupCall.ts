@@ -25,6 +25,9 @@ export class GroupCallBaseModel {
   /** True, if the call is active */
   public isActive: boolean
 
+  /** True, if the chat is an RTMP stream instead of an ordinary video chat */
+  public isRtmpStream: boolean
+
   /** True, if the call is joined */
   public isJoined: boolean
 
@@ -39,6 +42,12 @@ export class GroupCallBaseModel {
 
   /** Number of participants in the group call */
   public participantCount: number
+
+  /**
+   * True, if group call participants, which are muted, aren't returned in participant
+   * list
+   */
+  public hasHiddenListeners: boolean
 
   /** True, if all group call participants are loaded */
   public loadedAllParticipants: boolean

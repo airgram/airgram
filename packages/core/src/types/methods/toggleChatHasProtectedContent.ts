@@ -3,7 +3,7 @@ import { OkUnion } from '../outputs'
 
 export interface ToggleChatHasProtectedContentParams {
   chatId?: number // Chat identifier
-  hasProtectedContent?: boolean // True, if chat content can't be saved locally, forwarded, or copied
+  hasProtectedContent?: boolean // New value of has_protected_content
 }
 
 /**
@@ -11,8 +11,7 @@ export interface ToggleChatHasProtectedContentParams {
  * for basic groups, supergroups and channels. Requires owner privileges
  * @param {Object} params
  * @param {number} [params.chatId] - Chat identifier
- * @param {boolean} [params.hasProtectedContent] - True, if chat content can't be
- * saved locally, forwarded, or copied
+ * @param {boolean} [params.hasProtectedContent] - New value of has_protected_content
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleChatHasProtectedContentParams, OkUnion>>}
  */

@@ -2,14 +2,14 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { BackgroundsUnion } from '../outputs'
 
 export interface GetBackgroundsParams {
-  forDarkTheme?: boolean // True, if the backgrounds must be ordered for dark theme
+  forDarkTheme?: boolean // Pass true to order returned backgrounds for a dark theme
 }
 
 /**
  * Returns backgrounds installed by the user
  * @param {Object} params
- * @param {boolean} [params.forDarkTheme] - True, if the backgrounds must be ordered
- * for dark theme
+ * @param {boolean} [params.forDarkTheme] - Pass true to order returned backgrounds
+ * for a dark theme
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetBackgroundsParams, BackgroundsUnion>>}
  */

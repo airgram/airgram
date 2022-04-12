@@ -1,4 +1,10 @@
-import { ClosedVectorPath, Emojis, Sticker, Thumbnail } from './index'
+import {
+  ClosedVectorPath,
+  Emojis,
+  Sticker,
+  StickerTypeUnion,
+  Thumbnail
+} from './index'
 
 export type StickerSetUnion = StickerSet
 
@@ -12,8 +18,8 @@ export interface StickerSet {
   /** Name of the sticker set */
   name: string
   /**
-   * Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null.
-   * The file can be downloaded only before the thumbnail is changed
+   * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may
+   * be null. The file can be downloaded only before the thumbnail is changed
    */
   thumbnail?: Thumbnail
   /**
@@ -30,10 +36,8 @@ export interface StickerSet {
   isArchived: boolean
   /** True, if the sticker set is official */
   isOfficial: boolean
-  /** True, is the stickers in the set are animated */
-  isAnimated: boolean
-  /** True, if the stickers in the set are masks */
-  isMasks: boolean
+  /** Type of the stickers in the set */
+  stickerType: StickerTypeUnion
   /** True for already viewed trending sticker sets */
   isViewed: boolean
   /** List of stickers in this set */

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase,@typescript-eslint/no-explicit-any */
-
 import { TdObject } from '@airgram/core'
 import * as ffi from 'ffi-napi'
 import { writeFileSync } from 'fs'
@@ -184,13 +182,13 @@ export class TdJsonClient extends BaseJsonClient {
 
   private async handleResponse (clientId: number): Promise<void> {
     const clientStack = this.getClientStack(clientId)
-    const response = clientStack.shift()
+    const response = clientStack.shift() as TdObject | undefined
 
     if (!response) {
       return Promise.resolve()
     }
 
-    const requestId = response['@extra']
+    const requestId = response['@extra'] as string
 
     delete response['@client_id']
     delete response['@extra']

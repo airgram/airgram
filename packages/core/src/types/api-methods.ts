@@ -9,6 +9,7 @@ export interface ApiMethods {
   addContact: api.addContact
   addCustomServerLanguagePack: api.addCustomServerLanguagePack
   addFavoriteSticker: api.addFavoriteSticker
+  addFileToDownloads: api.addFileToDownloads
   addLocalMessage: api.addLocalMessage
   addLogMessage: api.addLogMessage
   addLogMessageSync: api.addLogMessageSync
@@ -183,6 +184,7 @@ export interface ApiMethods {
   getGroupCall: api.getGroupCall
   getGroupCallInviteLink: api.getGroupCallInviteLink
   getGroupCallStreamSegment: api.getGroupCallStreamSegment
+  getGroupCallStreams: api.getGroupCallStreams
   getGroupsInCommon: api.getGroupsInCommon
   getImportedContactCount: api.getImportedContactCount
   getInactiveSupergroupChats: api.getInactiveSupergroupChats
@@ -214,6 +216,8 @@ export interface ApiMethods {
   getMarkdownTextSync: api.getMarkdownTextSync
   getMe: api.getMe
   getMessage: api.getMessage
+  getMessageAddedReactions: api.getMessageAddedReactions
+  getMessageAvailableReactions: api.getMessageAvailableReactions
   getMessageEmbeddingCode: api.getMessageEmbeddingCode
   getMessageFileType: api.getMessageFileType
   getMessageImportConfirmationText: api.getMessageImportConfirmationText
@@ -278,6 +282,7 @@ export interface ApiMethods {
   getUserPrivacySettingRules: api.getUserPrivacySettingRules
   getUserProfilePhotos: api.getUserProfilePhotos
   getVideoChatAvailableParticipants: api.getVideoChatAvailableParticipants
+  getVideoChatRtmpUrl: api.getVideoChatRtmpUrl
   getWebPageInstantView: api.getWebPageInstantView
   getWebPagePreview: api.getWebPagePreview
   hideSuggestedAction: api.hideSuggestedAction
@@ -305,15 +310,18 @@ export interface ApiMethods {
   processChatJoinRequests: api.processChatJoinRequests
   processPushNotification: api.processPushNotification
   readAllChatMentions: api.readAllChatMentions
+  readAllChatReactions: api.readAllChatReactions
   readFilePart: api.readFilePart
   recoverAuthenticationPassword: api.recoverAuthenticationPassword
   recoverPassword: api.recoverPassword
   registerDevice: api.registerDevice
   registerUser: api.registerUser
+  removeAllFilesFromDownloads: api.removeAllFilesFromDownloads
   removeBackground: api.removeBackground
   removeChatActionBar: api.removeChatActionBar
   removeContacts: api.removeContacts
   removeFavoriteSticker: api.removeFavoriteSticker
+  removeFileFromDownloads: api.removeFileFromDownloads
   removeNotification: api.removeNotification
   removeNotificationGroup: api.removeNotificationGroup
   removeProxy: api.removeProxy
@@ -326,6 +334,7 @@ export interface ApiMethods {
   reorderChatFilters: api.reorderChatFilters
   reorderInstalledStickerSets: api.reorderInstalledStickerSets
   replacePrimaryChatInviteLink: api.replacePrimaryChatInviteLink
+  replaceVideoChatRtmpUrl: api.replaceVideoChatRtmpUrl
   reportChat: api.reportChat
   reportChatPhoto: api.reportChatPhoto
   reportSupergroupSpam: api.reportSupergroupSpam
@@ -356,15 +365,18 @@ export interface ApiMethods {
   searchChatsOnServer: api.searchChatsOnServer
   searchContacts: api.searchContacts
   searchEmojis: api.searchEmojis
+  searchFileDownloads: api.searchFileDownloads
   searchHashtags: api.searchHashtags
   searchInstalledStickerSets: api.searchInstalledStickerSets
   searchMessages: api.searchMessages
+  searchOutgoingDocumentMessages: api.searchOutgoingDocumentMessages
   searchPublicChat: api.searchPublicChat
   searchPublicChats: api.searchPublicChats
   searchSecretMessages: api.searchSecretMessages
   searchStickerSet: api.searchStickerSet
   searchStickerSets: api.searchStickerSets
   searchStickers: api.searchStickers
+  searchUserByPhoneNumber: api.searchUserByPhoneNumber
   sendBotStartMessage: api.sendBotStartMessage
   sendCallDebugInformation: api.sendCallDebugInformation
   sendCallRating: api.sendCallRating
@@ -387,6 +399,7 @@ export interface ApiMethods {
   setBackground: api.setBackground
   setBio: api.setBio
   setBotUpdatesStatus: api.setBotUpdatesStatus
+  setChatAvailableReactions: api.setChatAvailableReactions
   setChatClientData: api.setChatClientData
   setChatDescription: api.setChatDescription
   setChatDiscussionGroup: api.setChatDiscussionGroup
@@ -419,6 +432,7 @@ export interface ApiMethods {
   setLogTagVerbosityLevelSync: api.setLogTagVerbosityLevelSync
   setLogVerbosityLevel: api.setLogVerbosityLevel
   setLogVerbosityLevelSync: api.setLogVerbosityLevelSync
+  setMessageReaction: api.setMessageReaction
   setName: api.setName
   setNetworkType: api.setNetworkType
   setOption: api.setOption
@@ -460,10 +474,12 @@ export interface ApiMethods {
   testReturnErrorSync: api.testReturnErrorSync
   testSquareInt: api.testSquareInt
   testUseUpdate: api.testUseUpdate
+  toggleAllDownloadsArePaused: api.toggleAllDownloadsArePaused
   toggleChatDefaultDisableNotification: api.toggleChatDefaultDisableNotification
   toggleChatHasProtectedContent: api.toggleChatHasProtectedContent
   toggleChatIsMarkedAsUnread: api.toggleChatIsMarkedAsUnread
   toggleChatIsPinned: api.toggleChatIsPinned
+  toggleDownloadIsPaused: api.toggleDownloadIsPaused
   toggleGroupCallEnabledStartNotification: api.toggleGroupCallEnabledStartNotification
   toggleGroupCallIsMyVideoEnabled: api.toggleGroupCallIsMyVideoEnabled
   toggleGroupCallIsMyVideoPaused: api.toggleGroupCallIsMyVideoPaused
@@ -478,6 +494,7 @@ export interface ApiMethods {
   toggleSupergroupIsBroadcastGroup: api.toggleSupergroupIsBroadcastGroup
   toggleSupergroupSignMessages: api.toggleSupergroupSignMessages
   transferChatOwnership: api.transferChatOwnership
+  translateText: api.translateText
   unpinAllChatMessages: api.unpinAllChatMessages
   unpinChatMessage: api.unpinChatMessage
   upgradeBasicGroupChatToSupergroupChat: api.upgradeBasicGroupChatToSupergroupChat

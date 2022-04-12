@@ -3,7 +3,7 @@ import { WebPageInstantViewUnion } from '../outputs'
 
 export interface GetWebPageInstantViewParams {
   url?: string // The web page URL
-  forceFull?: boolean // If true, the full instant view for the web page will be returned
+  forceFull?: boolean // Pass true to get full instant view for the web page
 }
 
 /**
@@ -11,8 +11,8 @@ export interface GetWebPageInstantViewParams {
  * the web page has no instant view page
  * @param {Object} params
  * @param {string} [params.url] - The web page URL
- * @param {boolean} [params.forceFull] - If true, the full instant view for the web
- * page will be returned
+ * @param {boolean} [params.forceFull] - Pass true to get full instant view for the
+ * web page
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetWebPageInstantViewParams, WebPageInstantViewUnion>>}
  */

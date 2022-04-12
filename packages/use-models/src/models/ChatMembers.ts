@@ -4,7 +4,7 @@ import { ChatMember } from '@airgram/core'
 export class ChatMembersBaseModel {
   public _: 'chatMembers'
 
-  /** Approximate total count of chat members found */
+  /** Approximate total number of chat members found */
   public totalCount: number
 
   /** A list of chat members */

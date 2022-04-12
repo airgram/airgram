@@ -1,4 +1,9 @@
-import { ClosedVectorPath, File, MaskPosition, Thumbnail } from '@airgram/core'
+import {
+  ClosedVectorPath,
+  File,
+  StickerTypeUnion,
+  Thumbnail
+} from '@airgram/core'
 
 /** Describes a sticker */
 export class StickerBaseModel {
@@ -16,14 +21,8 @@ export class StickerBaseModel {
   /** Emoji corresponding to the sticker */
   public emoji: string
 
-  /** True, if the sticker is an animated sticker in TGS format */
-  public isAnimated: boolean
-
-  /** True, if the sticker is a mask */
-  public isMask: boolean
-
-  /** Position where the mask is placed; may be null */
-  public maskPosition?: MaskPosition
+  /** Sticker type */
+  public type: StickerTypeUnion
 
   /**
    * Sticker's outline represented as a list of closed vector paths; may be empty. The

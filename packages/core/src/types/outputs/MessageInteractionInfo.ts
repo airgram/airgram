@@ -1,4 +1,4 @@
-import { MessageReplyInfo } from './index'
+import { MessageReaction, MessageReplyInfo } from './index'
 
 export type MessageInteractionInfoUnion = MessageInteractionInfo
 
@@ -15,4 +15,6 @@ export interface MessageInteractionInfo {
    * for messages, which are not replies itself
    */
   replyInfo?: MessageReplyInfo
+  /** The list of reactions added to the message */
+  reactions: MessageReaction[]
 }

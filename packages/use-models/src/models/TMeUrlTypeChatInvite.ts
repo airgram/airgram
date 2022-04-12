@@ -4,6 +4,6 @@ import { ChatInviteLinkInfo } from '@airgram/core'
 export class TMeUrlTypeChatInviteBaseModel {
   public _: 'tMeUrlTypeChatInvite'
 
-  /** Chat invite link info */
+  /** Information about the chat invite link */
   public info: ChatInviteLinkInfo
 }

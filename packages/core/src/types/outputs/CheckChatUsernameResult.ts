@@ -20,7 +20,7 @@ export interface CheckChatUsernameResultUsernameOccupied {
   _: 'checkChatUsernameResultUsernameOccupied'
 }
 
-/** The user has too much chats with username, one of them must be made private first */
+/** The user has too many chats with username, one of them must be made private first */
 export interface CheckChatUsernameResultPublicChatsTooMuch {
   _: 'checkChatUsernameResultPublicChatsTooMuch'
 }

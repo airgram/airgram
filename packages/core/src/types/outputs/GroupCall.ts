@@ -21,6 +21,8 @@ export interface GroupCall {
   enabledStartNotification: boolean
   /** True, if the call is active */
   isActive: boolean
+  /** True, if the chat is an RTMP stream instead of an ordinary video chat */
+  isRtmpStream: boolean
   /** True, if the call is joined */
   isJoined: boolean
   /**
@@ -32,6 +34,11 @@ export interface GroupCall {
   canBeManaged: boolean
   /** Number of participants in the group call */
   participantCount: number
+  /**
+   * True, if group call participants, which are muted, aren't returned in participant
+   * list
+   */
+  hasHiddenListeners: boolean
   /** True, if all group call participants are loaded */
   loadedAllParticipants: boolean
   /** At most 3 recently speaking users in the group call */

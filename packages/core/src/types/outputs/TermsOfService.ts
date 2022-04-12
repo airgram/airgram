@@ -7,7 +7,7 @@ export interface TermsOfService {
   _: 'termsOfService'
   /** Text of the terms of service */
   text: FormattedText
-  /** The minimum age of a user to be able to accept the terms; 0 if any */
+  /** The minimum age of a user to be able to accept the terms; 0 if age isn't restricted */
   minUserAge: number
   /** True, if a blocking popup with terms of service must be shown to the user */
   showPopup: boolean

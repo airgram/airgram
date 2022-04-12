@@ -4,7 +4,7 @@ import { BotCommandsUnion } from '../outputs'
 
 export interface GetCommandsParams {
   scope?: BotCommandScopeInputUnion // The scope to which the commands are relevant; pass null to get commands in the default bot command scope
-  languageCode?: string // A two-letter ISO 639-1 country code or an empty string
+  languageCode?: string // A two-letter ISO 639-1 language code or an empty string
 }
 
 /**
@@ -13,7 +13,7 @@ export interface GetCommandsParams {
  * @param {Object} params
  * @param {BotCommandScopeInputUnion} [params.scope] - The scope to which the commands
  * are relevant; pass null to get commands in the default bot command scope
- * @param {string} [params.languageCode] - A two-letter ISO 639-1 country code or
+ * @param {string} [params.languageCode] - A two-letter ISO 639-1 language code or
  * an empty string
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetCommandsParams, BotCommandsUnion>>}

@@ -4,7 +4,7 @@ import { ChatsUnion } from '../outputs'
 
 export interface GetChatNotificationSettingsExceptionsParams {
   scope?: NotificationSettingsScopeInputUnion // If specified, only chats from the scope will be returned; pass null to return chats from all scopes
-  compareSound?: boolean // If true, also chats with non-default sound will be returned
+  compareSound?: boolean // Pass true to include in the response chats with only non-default sound
 }
 
 /**
@@ -12,8 +12,8 @@ export interface GetChatNotificationSettingsExceptionsParams {
  * @param {Object} params
  * @param {NotificationSettingsScopeInputUnion} [params.scope] - If specified, only
  * chats from the scope will be returned; pass null to return chats from all scopes
- * @param {boolean} [params.compareSound] - If true, also chats with non-default
- * sound will be returned
+ * @param {boolean} [params.compareSound] - Pass true to include in the response
+ * chats with only non-default sound
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatNotificationSettingsExceptionsParams, ChatsUnion>>}
  */

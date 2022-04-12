@@ -5,7 +5,7 @@ import { ProxyUnion } from '../outputs'
 export interface AddProxyParams {
   server?: string // Proxy server IP address
   port?: number // Proxy server port
-  enable?: boolean // True, if the proxy needs to be enabled
+  enable?: boolean // Pass true to immediately enable the proxy
   type?: ProxyTypeInputUnion // Proxy type
 }
 
@@ -14,7 +14,7 @@ export interface AddProxyParams {
  * @param {Object} params
  * @param {string} [params.server] - Proxy server IP address
  * @param {number} [params.port] - Proxy server port
- * @param {boolean} [params.enable] - True, if the proxy needs to be enabled
+ * @param {boolean} [params.enable] - Pass true to immediately enable the proxy
  * @param {ProxyTypeInputUnion} [params.type] - Proxy type
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<AddProxyParams, ProxyUnion>>}

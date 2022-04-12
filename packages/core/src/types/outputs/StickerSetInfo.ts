@@ -1,4 +1,4 @@
-import { ClosedVectorPath, Sticker, Thumbnail } from './index'
+import { ClosedVectorPath, Sticker, StickerTypeUnion, Thumbnail } from './index'
 
 export type StickerSetInfoUnion = StickerSetInfo
 
@@ -11,7 +11,10 @@ export interface StickerSetInfo {
   title: string
   /** Name of the sticker set */
   name: string
-  /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
+  /**
+   * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may
+   * be null
+   */
   thumbnail?: Thumbnail
   /**
    * Sticker set thumbnail's outline represented as a list of closed vector paths; may
@@ -27,10 +30,8 @@ export interface StickerSetInfo {
   isArchived: boolean
   /** True, if the sticker set is official */
   isOfficial: boolean
-  /** True, is the stickers in the set are animated */
-  isAnimated: boolean
-  /** True, if the stickers in the set are masks */
-  isMasks: boolean
+  /** Type of the stickers in the set */
+  stickerType: StickerTypeUnion
   /** True for already viewed trending sticker sets */
   isViewed: boolean
   /** Total number of stickers in the set */

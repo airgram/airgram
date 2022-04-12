@@ -1,4 +1,9 @@
-import { ClosedVectorPath, Sticker, Thumbnail } from '@airgram/core'
+import {
+  ClosedVectorPath,
+  Sticker,
+  StickerTypeUnion,
+  Thumbnail
+} from '@airgram/core'
 
 /** Represents short information about a sticker set */
 export class StickerSetInfoBaseModel {
@@ -13,7 +18,10 @@ export class StickerSetInfoBaseModel {
   /** Name of the sticker set */
   public name: string
 
-  /** Sticker set thumbnail in WEBP or TGS format with width and height 100; may be null */
+  /**
+   * Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may
+   * be null
+   */
   public thumbnail?: Thumbnail
 
   /**
@@ -34,11 +42,8 @@ export class StickerSetInfoBaseModel {
   /** True, if the sticker set is official */
   public isOfficial: boolean
 
-  /** True, is the stickers in the set are animated */
-  public isAnimated: boolean
-
-  /** True, if the stickers in the set are masks */
-  public isMasks: boolean
+  /** Type of the stickers in the set */
+  public stickerType: StickerTypeUnion
 
   /** True for already viewed trending sticker sets */
   public isViewed: boolean

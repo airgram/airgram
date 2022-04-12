@@ -2,14 +2,14 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { NetworkStatisticsUnion } from '../outputs'
 
 export interface GetNetworkStatisticsParams {
-  onlyCurrent?: boolean // If true, returns only data for the current library launch
+  onlyCurrent?: boolean // Pass true to get statistics only for the current library launch
 }
 
 /**
  * Returns network data usage statistics. Can be called before authorization
  * @param {Object} params
- * @param {boolean} [params.onlyCurrent] - If true, returns only data for the current
- * library launch
+ * @param {boolean} [params.onlyCurrent] - Pass true to get statistics only for the
+ * current library launch
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetNetworkStatisticsParams, NetworkStatisticsUnion>>}
  */

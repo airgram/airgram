@@ -7,8 +7,8 @@ export interface JoinGroupCallParams {
   participantId?: MessageSenderInputUnion // Identifier of a group call participant, which will be used to join the call; pass null to join as self; video chats only
   audioSourceId?: number // Caller audio channel synchronization source identifier; received from tgcalls
   payload?: string // Group call join payload; received from tgcalls
-  isMuted?: boolean // True, if the user's microphone is muted
-  isMyVideoEnabled?: boolean // True, if the user's video is enabled
+  isMuted?: boolean // Pass true to join the call with muted microphone
+  isMyVideoEnabled?: boolean // Pass true if the user's video is enabled
   inviteHash?: string // If non-empty, invite hash to be used to join the group call without being muted by administrators
 }
 
@@ -22,8 +22,9 @@ export interface JoinGroupCallParams {
  * @param {number} [params.audioSourceId] - Caller audio channel synchronization
  * source identifier; received from tgcalls
  * @param {string} [params.payload] - Group call join payload; received from tgcalls
- * @param {boolean} [params.isMuted] - True, if the user's microphone is muted
- * @param {boolean} [params.isMyVideoEnabled] - True, if the user's video is enabled
+ * @param {boolean} [params.isMuted] - Pass true to join the call with muted microphone
+ * @param {boolean} [params.isMyVideoEnabled] - Pass true if the user's video is
+ * enabled
  * @param {string} [params.inviteHash] - If non-empty, invite hash to be used to
  * join the group call without being muted by administrators
  * @param {ApiRequestOptions} options

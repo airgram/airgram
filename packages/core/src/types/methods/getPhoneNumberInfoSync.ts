@@ -2,7 +2,7 @@ import { ApiRequestOptions, ApiResponse } from '../airgram'
 import { PhoneNumberInfoUnion } from '../outputs'
 
 export interface GetPhoneNumberInfoSyncParams {
-  languageCode?: string // A two-letter ISO 639-1 country code for country information localization
+  languageCode?: string // A two-letter ISO 639-1 language code for country information localization
   phoneNumberPrefix?: string // The phone number prefix
 }
 
@@ -11,7 +11,7 @@ export interface GetPhoneNumberInfoSyncParams {
  * must be called at least once after changing localization to the specified language
  * if properly localized country information is expected. Can be called synchronously
  * @param {Object} params
- * @param {string} [params.languageCode] - A two-letter ISO 639-1 country code for
+ * @param {string} [params.languageCode] - A two-letter ISO 639-1 language code for
  * country information localization
  * @param {string} [params.phoneNumberPrefix] - The phone number prefix
  * @param {ApiRequestOptions} options

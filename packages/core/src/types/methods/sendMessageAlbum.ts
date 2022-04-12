@@ -11,6 +11,7 @@ export interface SendMessageAlbumParams {
   replyToMessageId?: number // Identifier of a message to reply to or 0
   options?: MessageSendOptionsInput // Options to be used to send the messages; pass null to use default options
   inputMessageContents?: InputMessageContentInputUnion[] // Contents of messages to be sent. At most 10 messages can be added to an album
+  onlyPreview?: boolean // Pass true to get fake messages instead of actually sending them
 }
 
 /**
@@ -27,6 +28,8 @@ export interface SendMessageAlbumParams {
  * the messages; pass null to use default options
  * @param {InputMessageContentInputUnion[]} [params.inputMessageContents] - Contents
  * of messages to be sent. At most 10 messages can be added to an album
+ * @param {boolean} [params.onlyPreview] - Pass true to get fake messages instead
+ * of actually sending them
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<SendMessageAlbumParams, MessagesUnion>>}
  */

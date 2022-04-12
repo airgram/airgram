@@ -1,8 +1,9 @@
 export enum THUMBNAIL_FORMAT {
   thumbnailFormatJpeg = 'thumbnailFormatJpeg',
-  thumbnailFormatPng = 'thumbnailFormatPng',
-  thumbnailFormatWebp = 'thumbnailFormatWebp',
   thumbnailFormatGif = 'thumbnailFormatGif',
+  thumbnailFormatMpeg4 = 'thumbnailFormatMpeg4',
+  thumbnailFormatPng = 'thumbnailFormatPng',
   thumbnailFormatTgs = 'thumbnailFormatTgs',
-  thumbnailFormatMpeg4 = 'thumbnailFormatMpeg4'
+  thumbnailFormatWebm = 'thumbnailFormatWebm',
+  thumbnailFormatWebp = 'thumbnailFormatWebp'
 }

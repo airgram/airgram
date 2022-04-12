@@ -4,7 +4,7 @@ import { ChatInviteLinkMember } from '@airgram/core'
 export class ChatInviteLinkMembersBaseModel {
   public _: 'chatInviteLinkMembers'
 
-  /** Approximate total count of chat members found */
+  /** Approximate total number of chat members found */
   public totalCount: number
 
   /** List of chat members, joined a chat via an invite link */

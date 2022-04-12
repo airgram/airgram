@@ -4,7 +4,7 @@ import { OkUnion } from '../outputs'
 
 export interface AnswerInlineQueryParams {
   inlineQueryId?: string // Identifier of the inline query
-  isPersonal?: boolean // True, if the result of the query can be cached for the specified user
+  isPersonal?: boolean // Pass true if results may be cached and returned only for the user that sent the query. By default, results may be returned to any user who sends the same query
   results?: InputInlineQueryResultInputUnion[] // The results of the query
   cacheTime?: number // Allowed time to cache the results of the query, in seconds
   nextOffset?: string // Offset for the next inline query; pass an empty string if there are no more results
@@ -16,8 +16,9 @@ export interface AnswerInlineQueryParams {
  * Sets the result of an inline query; for bots only
  * @param {Object} params
  * @param {string} [params.inlineQueryId] - Identifier of the inline query
- * @param {boolean} [params.isPersonal] - True, if the result of the query can be
- * cached for the specified user
+ * @param {boolean} [params.isPersonal] - Pass true if results may be cached and
+ * returned only for the user that sent the query. By default, results may be returned
+ * to any user who sends the same query
  * @param {InputInlineQueryResultInputUnion[]} [params.results] - The results of
  * the query
  * @param {number} [params.cacheTime] - Allowed time to cache the results of the

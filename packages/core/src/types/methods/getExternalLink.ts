@@ -3,7 +3,7 @@ import { HttpUrlUnion } from '../outputs'
 
 export interface GetExternalLinkParams {
   link?: string // The HTTP link
-  allowWriteAccess?: boolean // True, if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
+  allowWriteAccess?: boolean // Pass true if the current user allowed the bot, returned in getExternalLinkInfo, to send them messages
 }
 
 /**
@@ -12,7 +12,7 @@ export interface GetExternalLinkParams {
  * whether a prior user confirmation is needed
  * @param {Object} params
  * @param {string} [params.link] - The HTTP link
- * @param {boolean} [params.allowWriteAccess] - True, if the current user allowed
+ * @param {boolean} [params.allowWriteAccess] - Pass true if the current user allowed
  * the bot, returned in getExternalLinkInfo, to send them messages
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetExternalLinkParams, HttpUrlUnion>>}

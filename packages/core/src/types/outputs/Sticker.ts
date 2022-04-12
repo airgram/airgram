@@ -1,4 +1,4 @@
-import { ClosedVectorPath, File, MaskPosition, Thumbnail } from './index'
+import { ClosedVectorPath, File, StickerTypeUnion, Thumbnail } from './index'
 
 export type StickerUnion = Sticker
 
@@ -13,12 +13,8 @@ export interface Sticker {
   height: number
   /** Emoji corresponding to the sticker */
   emoji: string
-  /** True, if the sticker is an animated sticker in TGS format */
-  isAnimated: boolean
-  /** True, if the sticker is a mask */
-  isMask: boolean
-  /** Position where the mask is placed; may be null */
-  maskPosition?: MaskPosition
+  /** Sticker type */
+  type: StickerTypeUnion
   /**
    * Sticker's outline represented as a list of closed vector paths; may be empty. The
    * coordinate system origin is in the upper-left corner

@@ -4,7 +4,7 @@ import { MessagePosition } from '@airgram/core'
 export class MessagePositionsBaseModel {
   public _: 'messagePositions'
 
-  /** Total count of messages found */
+  /** Total number of messages found */
   public totalCount: number
 
   /** List of message positions */

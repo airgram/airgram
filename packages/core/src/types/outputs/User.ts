@@ -41,7 +41,8 @@ export interface User {
   isFake: boolean
   /**
    * If false, the user is inaccessible, and the only information known about the user
-   * is inside this class. It can't be passed to any method except GetUser
+   * is inside this class. Identifier of the user can't be passed to any method except
+   * GetUser
    */
   haveAccess: boolean
   /** Type of the user */

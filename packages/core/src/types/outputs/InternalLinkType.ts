@@ -14,10 +14,12 @@ export type InternalLinkTypeUnion = InternalLinkTypeActiveSessions
   | InternalLinkTypeFilterSettings
   | InternalLinkTypeGame
   | InternalLinkTypeLanguagePack
+  | InternalLinkTypeLanguageSettings
   | InternalLinkTypeMessage
   | InternalLinkTypeMessageDraft
   | InternalLinkTypePassportDataRequest
   | InternalLinkTypePhoneNumberConfirmation
+  | InternalLinkTypePrivacyAndSecuritySettings
   | InternalLinkTypeProxy
   | InternalLinkTypePublicChat
   | InternalLinkTypeQrCodeAuthentication
@@ -27,6 +29,7 @@ export type InternalLinkTypeUnion = InternalLinkTypeActiveSessions
   | InternalLinkTypeThemeSettings
   | InternalLinkTypeUnknownDeepLink
   | InternalLinkTypeUnsupportedProxy
+  | InternalLinkTypeUserPhoneNumber
   | InternalLinkTypeVideoChat
 
 /**
@@ -129,6 +132,11 @@ export interface InternalLinkTypeLanguagePack {
   languagePackId: string
 }
 
+/** The link is a link to the language settings section of the app */
+export interface InternalLinkTypeLanguageSettings {
+  _: 'internalLinkTypeLanguageSettings'
+}
+
 /**
  * The link is a link to a Telegram message. Call getMessageLinkInfo with the given
  * URL to process the link
@@ -188,6 +196,11 @@ export interface InternalLinkTypePhoneNumberConfirmation {
   hash: string
   /** Phone number value from the link */
   phoneNumber: string
+}
+
+/** The link is a link to the privacy and security settings section of the app */
+export interface InternalLinkTypePrivacyAndSecuritySettings {
+  _: 'internalLinkTypePrivacyAndSecuritySettings'
 }
 
 /**
@@ -264,8 +277,18 @@ export interface InternalLinkTypeUnsupportedProxy {
 }
 
 /**
+ * The link is a link to a user by its phone number. Call searchUserByPhoneNumber with
+ * the given phone number to process the link
+ */
+export interface InternalLinkTypeUserPhoneNumber {
+  _: 'internalLinkTypeUserPhoneNumber'
+  /** Phone number of the user */
+  phoneNumber: string
+}
+
+/**
  * The link is a link to a video chat. Call searchPublicChat with the given chat username,
- * and then joinGoupCall with the given invite hash to process the link
+ * and then joinGroupCall with the given invite hash to process the link
  */
 export interface InternalLinkTypeVideoChat {
   _: 'internalLinkTypeVideoChat'

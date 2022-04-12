@@ -5,7 +5,7 @@ export interface GetLoginUrlParams {
   chatId?: number // Chat identifier of the message with the button
   messageId?: number // Message identifier of the message with the button
   buttonId?: number // Button identifier
-  allowWriteAccess?: boolean // True, if the user allowed the bot to send them messages
+  allowWriteAccess?: boolean // Pass true to allow the bot to send messages to the current user
 }
 
 /**
@@ -18,8 +18,8 @@ export interface GetLoginUrlParams {
  * @param {number} [params.messageId] - Message identifier of the message with the
  * button
  * @param {number} [params.buttonId] - Button identifier
- * @param {boolean} [params.allowWriteAccess] - True, if the user allowed the bot
- * to send them messages
+ * @param {boolean} [params.allowWriteAccess] - Pass true to allow the bot to send
+ * messages to the current user
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetLoginUrlParams, HttpUrlUnion>>}
  */

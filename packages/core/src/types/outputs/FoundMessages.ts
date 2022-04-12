@@ -5,7 +5,7 @@ export type FoundMessagesUnion = FoundMessages
 /** Contains a list of messages found by a search */
 export interface FoundMessages {
   _: 'foundMessages'
-  /** Approximate total count of messages found; -1 if unknown */
+  /** Approximate total number of messages found; -1 if unknown */
   totalCount: number
   /** List of messages */
   messages: Message[]

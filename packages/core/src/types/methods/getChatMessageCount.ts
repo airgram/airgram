@@ -5,7 +5,7 @@ import { CountUnion } from '../outputs'
 export interface GetChatMessageCountParams {
   chatId?: number // Identifier of the chat in which to count messages
   filter?: SearchMessagesFilterInputUnion // Filter for message content; searchMessagesFilterEmpty is unsupported in this function
-  returnLocal?: boolean // If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+  returnLocal?: boolean // Pass true to get the number of messages without sending network requests, or -1 if the number of messages is unknown locally
 }
 
 /**
@@ -14,9 +14,8 @@ export interface GetChatMessageCountParams {
  * @param {number} [params.chatId] - Identifier of the chat in which to count messages
  * @param {SearchMessagesFilterInputUnion} [params.filter] - Filter for message content;
  * searchMessagesFilterEmpty is unsupported in this function
- * @param {boolean} [params.returnLocal] - If true, returns count that is available
- * locally without sending network requests, returning -1 if the number of messages
- * is unknown
+ * @param {boolean} [params.returnLocal] - Pass true to get the number of messages
+ * without sending network requests, or -1 if the number of messages is unknown locally
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<GetChatMessageCountParams, CountUnion>>}
  */

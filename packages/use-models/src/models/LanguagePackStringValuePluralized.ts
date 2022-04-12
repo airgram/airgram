@@ -1,7 +1,7 @@
 /**
  * A language pack string which has different forms based on the number of some object
  * it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
- * for more info
+ * for more information
  */
 export class LanguagePackStringValuePluralizedBaseModel {
   public _: 'languagePackStringValuePluralized'

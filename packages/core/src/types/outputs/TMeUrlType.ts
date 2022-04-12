@@ -23,7 +23,7 @@ export interface TMeUrlTypeSupergroup {
 /** A chat invite link */
 export interface TMeUrlTypeChatInvite {
   _: 'tMeUrlTypeChatInvite'
-  /** Chat invite link info */
+  /** Information about the chat invite link */
   info: ChatInviteLinkInfo
 }
 

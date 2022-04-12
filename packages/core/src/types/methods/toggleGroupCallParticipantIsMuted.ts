@@ -5,7 +5,7 @@ import { OkUnion } from '../outputs'
 export interface ToggleGroupCallParticipantIsMutedParams {
   groupCallId?: number // Group call identifier
   participantId?: MessageSenderInputUnion // Participant identifier
-  isMuted?: boolean // Pass true if the user must be muted and false otherwise
+  isMuted?: boolean // Pass true to mute the user; pass false to unmute the them
 }
 
 /**
@@ -14,8 +14,8 @@ export interface ToggleGroupCallParticipantIsMutedParams {
  * @param {Object} params
  * @param {number} [params.groupCallId] - Group call identifier
  * @param {MessageSenderInputUnion} [params.participantId] - Participant identifier
- * @param {boolean} [params.isMuted] - Pass true if the user must be muted and false
- * otherwise
+ * @param {boolean} [params.isMuted] - Pass true to mute the user; pass false to
+ * unmute the them
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<ToggleGroupCallParticipantIsMutedParams, OkUnion>>}
  */

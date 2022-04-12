@@ -9,10 +9,12 @@ export enum INTERNAL_LINK_TYPE {
   internalLinkTypeFilterSettings = 'internalLinkTypeFilterSettings',
   internalLinkTypeGame = 'internalLinkTypeGame',
   internalLinkTypeLanguagePack = 'internalLinkTypeLanguagePack',
+  internalLinkTypeLanguageSettings = 'internalLinkTypeLanguageSettings',
   internalLinkTypeMessage = 'internalLinkTypeMessage',
   internalLinkTypeMessageDraft = 'internalLinkTypeMessageDraft',
   internalLinkTypePassportDataRequest = 'internalLinkTypePassportDataRequest',
   internalLinkTypePhoneNumberConfirmation = 'internalLinkTypePhoneNumberConfirmation',
+  internalLinkTypePrivacyAndSecuritySettings = 'internalLinkTypePrivacyAndSecuritySettings',
   internalLinkTypeProxy = 'internalLinkTypeProxy',
   internalLinkTypePublicChat = 'internalLinkTypePublicChat',
   internalLinkTypeQrCodeAuthentication = 'internalLinkTypeQrCodeAuthentication',
@@ -22,5 +24,6 @@ export enum INTERNAL_LINK_TYPE {
   internalLinkTypeThemeSettings = 'internalLinkTypeThemeSettings',
   internalLinkTypeUnknownDeepLink = 'internalLinkTypeUnknownDeepLink',
   internalLinkTypeUnsupportedProxy = 'internalLinkTypeUnsupportedProxy',
+  internalLinkTypeUserPhoneNumber = 'internalLinkTypeUserPhoneNumber',
   internalLinkTypeVideoChat = 'internalLinkTypeVideoChat'
 }

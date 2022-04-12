@@ -5,7 +5,7 @@ import { CallIdUnion } from '../outputs'
 export interface CreateCallParams {
   userId?: number // Identifier of the user to be called
   protocol?: CallProtocolInput // The call protocols supported by the application
-  isVideo?: boolean // True, if a video call needs to be created
+  isVideo?: boolean // Pass true to create a video call
 }
 
 /**
@@ -14,7 +14,7 @@ export interface CreateCallParams {
  * @param {number} [params.userId] - Identifier of the user to be called
  * @param {CallProtocolInput} [params.protocol] - The call protocols supported by
  * the application
- * @param {boolean} [params.isVideo] - True, if a video call needs to be created
+ * @param {boolean} [params.isVideo] - Pass true to create a video call
  * @param {ApiRequestOptions} options
  * @returns {Promise<ApiResponse<CreateCallParams, CallIdUnion>>}
  */
