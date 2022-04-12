@@ -3,19 +3,19 @@
 
 
 "@airgram/constants@link:packages/constants":
-  version "4.1.0"
+  version "4.1.1"
 
 "@airgram/use-models@link:packages/use-models":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     class-transformer "^0.3.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     tdweb "~1.8.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
@@ -2040,10 +2040,10 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/constants" "^4.1.0"
-    "@airgram/core" "^5.1.0"
+    "@airgram/constants" "^4.1.1"
+    "@airgram/core" "^5.1.1"
     ffi-napi "^3.0.0"
 
 ajv-errors@^1.0.0:
@@ -4196,12 +4196,12 @@ copy-descriptor@^0.1.0:
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
 copy-props@^2.0.1:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/copy-props/-/copy-props-2.0.4.tgz#93bb1cadfafd31da5bb8a9d4b41f471ec3a72dfe"
-  integrity sha512-7cjuUME+p+S3HZlbllgsn2CDwS+5eCCX16qBgNC4jgSTf49qR1VKy/Zhl400m0IQXl/bPGEVqncgUUMjrr4s8A==
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/copy-props/-/copy-props-2.0.5.tgz#03cf9ae328d4ebb36f8f1d804448a6af9ee3f2d2"
+  integrity sha512-XBlx8HSqrT0ObQwmSzM7WE5k8FxTV75h1DX1Z3n6NhQ/UYYAvInWYmG06vFt7hQZArE2fuO62aihiWIVQwh1sw==
   dependencies:
-    each-props "^1.3.0"
-    is-plain-object "^2.0.1"
+    each-props "^1.3.2"
+    is-plain-object "^5.0.0"
 
 copy-webpack-plugin@^5.0.3:
   version "5.1.1"
@@ -4931,7 +4931,7 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-each-props@^1.3.0:
+each-props@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/each-props/-/each-props-1.3.2.tgz#ea45a414d16dd5cfa419b1a81720d5ca06892333"
   integrity sha512-vV0Hem3zAGkJAyU7JSjixeU66rwdynTAa1vofCrSA5fEln+m67Az9CcnkVD776/fsN/UjIWmBDoNRS6t6G9RfA==
@@ -7387,6 +7387,11 @@ is-plain-object@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-3.0.1.tgz#662d92d24c0aa4302407b0d45d21f2251c85f85b"
   integrity sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==
+
+is-plain-object@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-5.0.0.tgz#4427f50ab3429e9025ea7d52e9043a9ef4159344"
+  integrity sha512-VRSzKkbMm5jMDoKLbltAkFQ5Qr7VDiTFGXxYFXXowVj387GeGNOCsOH6Msy00SGZ3Fp84b1Naa1psqgcCIEP5Q==
 
 is-promise@^2.1:
   version "2.2.2"
