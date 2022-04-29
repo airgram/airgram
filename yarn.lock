@@ -3,19 +3,19 @@
 
 
 "@airgram/constants@link:packages/constants":
-  version "4.1.0"
+  version "4.1.1"
 
 "@airgram/use-models@link:packages/use-models":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     class-transformer "^0.3.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     tdweb "~1.8.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
@@ -2040,10 +2040,10 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/constants" "^4.1.0"
-    "@airgram/core" "^5.1.0"
+    "@airgram/constants" "^4.1.1"
+    "@airgram/core" "^5.1.1"
     ffi-napi "^3.0.0"
 
 ajv-errors@^1.0.0:
@@ -2453,9 +2453,9 @@ async-settle@^1.0.0:
     async-done "^1.2.2"
 
 async@^2.5.0, async@^2.6.2:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
-  integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
+  integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
   dependencies:
     lodash "^4.17.14"
 
