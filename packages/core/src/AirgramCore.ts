@@ -1,4 +1,4 @@
-import { Composer } from './components'
+import {Composer} from './components'
 import {
   ApiMethods,
   ApiRequest,
@@ -24,7 +24,7 @@ import {
   UpdateAuthorizationState,
   UpdateContext
 } from './types'
-import { createDeferred, pick } from './utils'
+import {createDeferred, pick} from './utils'
 
 const getDefaultConfig = (): Partial<Config> => ({
   applicationVersion: '0.1.0',
@@ -54,24 +54,24 @@ const tdlibOptions: (keyof TdLibConfig)[] = [
   'ignoreFileNames'
 ]
 
-function createState (starting: Record<string, unknown>): ContextState {
-  let state = { ...starting }
-  const getState: GetStateFn = () => ({ ...state })
+function createState(starting: Record<string, unknown>): ContextState {
+  let state = {...starting}
+  const getState: GetStateFn = () => ({...state})
   const setState: SetStateFn = (next: Record<string, unknown> | ((state: Record<string, unknown>) => Record<string, unknown>)) => {
     if (typeof next === 'function') {
-      state = { ...state, ...next(state) }
+      state = {...state, ...next(state)}
     } else {
-      state = { ...state, ...next }
+      state = {...state, ...next}
     }
   }
-  return { getState, setState }
+  return {getState, setState}
 }
 
-function isUnwrapped<T> (o: any): o is T {
+function isUnwrapped<T>(o: any): o is T {
   return typeof o !== 'function'
 }
 
-function isWrapped<T> (o: any): o is T {
+function isWrapped<T>(o: any): o is T {
   return typeof o === 'function'
 }
 
@@ -93,8 +93,8 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
 
   private readonly composer: Composer<Context>
 
-  public constructor (providerFactory: ProviderFactory<ProviderT>, config: Config) {
-    this.config = { ...getDefaultConfig(), ...config }
+  public constructor(providerFactory: ProviderFactory<ProviderT>, config: Config) {
+    this.config = {...getDefaultConfig(), ...config}
     this.composer = new Composer()
     this.provider = providerFactory(
       (update: BaseTdObject) => this.handleUpdate(update),
@@ -103,13 +103,13 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
         this.handleError(error)
       }
     )
-    this.provider.send({ method: 'getOption', params: { name: 'version' } }).catch(() => {
+    this.provider.send({method: 'getOption', params: {name: 'version'}}).catch(() => {
       throw Error('Could not get TDLib version.')
     })
     if (this.config.logVerbosityLevel !== undefined) {
       this.provider.execute({
         method: 'setLogVerbosityLevel',
-        params: { newVerbosityLevel: this.config.logVerbosityLevel }
+        params: {newVerbosityLevel: this.config.logVerbosityLevel}
       })
     }
 
@@ -126,9 +126,9 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
         }
         return (params: TdObject | undefined, options?: ApiRequestOptions) => {
           if (method.substr(-4) === 'Sync') {
-            return this.provider.execute({ method: method.substr(0, method.length - 4), params })
+            return this.provider.execute({method: method.substr(0, method.length - 4), params})
           }
-          return this.callApi({ method, params }, options)
+          return this.callApi({method, params}, options)
         }
       }
     })
@@ -137,30 +137,30 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
     setTimeout(() => this.api.getAuthorizationState(), 0)
   }
 
-  public get name (): string {
+  public get name(): string {
     return this.config.name || 'airgram'
   }
 
-  public catch (handler: (error: Error) => void): void {
+  public catch(handler: (error: Error) => void): void {
     this.handleError = handler
   }
 
-  public destroy (): Promise<void> {
+  public destroy(): Promise<void> {
     return this.provider.destroy()
   }
 
-  public emit<UpdateT extends BaseTdObject = TdObject> (
+  public emit<UpdateT extends BaseTdObject = TdObject>(
     update: UpdateT, state?: Record<string, unknown>): Promise<unknown> {
     return this.handleUpdate(update, state || {})
   }
 
-  public use (
+  public use(
     ...fns: Middleware<Context>[]
   ): void {
     this.composer.use(...fns)
   }
 
-  private apiMiddleware (): MiddlewareFn<ApiResponse<TdObject | undefined, TdObject>> {
+  private apiMiddleware(): MiddlewareFn<ApiResponse<TdObject | undefined, TdObject>> {
     return Composer.optional(
       (ctx: Record<string, unknown>): boolean => !!ctx.request,
       async (ctx: ApiResponse<TdObject | undefined, TdObject>, next: () => any): Promise<MiddlewareFn> =>
@@ -170,7 +170,7 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
     )
   }
 
-  private bootstrapMiddleware (): void {
+  private bootstrapMiddleware(): void {
     let deferred: Deferred | null = createDeferred()
     this.use(async (ctx, next) => {
       if (!deferred) {
@@ -182,7 +182,8 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
           switch (update.authorizationState._) {
             case 'authorizationStateWaitTdlibParameters': {
               this.api.setTdlibParameters({
-                parameters: { _: 'tdlibParameters', ...pick(this.config, tdlibOptions) }
+                _: 'tdlibParameters',
+                ...pick(this.config, tdlibOptions)
               }).catch(this.handleError)
               break
             }
@@ -210,20 +211,20 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
     })
   }
 
-  private callApi<ParamsT extends TdObject | undefined, ResultT extends TdObject> (
+  private callApi<ParamsT extends TdObject | undefined, ResultT extends TdObject>(
     request: ApiRequest<ParamsT>,
     options?: ApiRequestOptions
   ): Promise<ApiResponse<ParamsT, ResultT>> | ApiResponse<ParamsT, ResultT>['response'] {
     return this.createContext <ApiResponse<ParamsT, ResultT>>(
       request.method,
-      { options: options || {}, request }
+      {options: options || {}, request}
     ).then((ctx) => new Promise<any>((resolve, reject) => {
       const handler = Composer.compose([this.composer.middleware(), this.apiMiddleware()])
       return handler(ctx, async (): Promise<any> => resolve(ctx)).catch(reject)
     }))
   }
 
-  private async createContext<T> (
+  private async createContext<T>(
     _: string,
     props: Record<string, any>
   ): Promise<T> {
@@ -244,14 +245,14 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
       })
     })
     defineProperties(createState(props?.options?.state || {}))
-    defineProperties({ _ })
+    defineProperties({_})
     defineProperties(props)
     defineProperties(await this.getExtraContext(ctx))
     return ctx as T
   }
 
-  private async getExtraContext (ctx: Record<string, unknown>): Promise<Record<string, any>> {
-    const { context } = this.config
+  private async getExtraContext(ctx: Record<string, unknown>): Promise<Record<string, any>> {
+    const {context} = this.config
     if (context) {
       if (isUnwrapped<ApiResponse<unknown, TdObject> | UpdateContext<TdObject>>(context)) {
         return context
@@ -263,8 +264,8 @@ export class AirgramCore<ProviderT extends TdProvider> implements Instance<Provi
     return {}
   }
 
-  private handleUpdate (update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
-    return this.createContext<UpdateContext<TdObject>>(update._, { update, options: { state } })
+  private handleUpdate(update: BaseTdObject, state: Record<string, any> = {}): Promise<unknown> {
+    return this.createContext<UpdateContext<TdObject>>(update._, {update, options: {state}})
       .then((ctx) => this.composer.middleware()(ctx, Composer.noop))
   }
 }
