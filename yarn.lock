@@ -3,19 +3,19 @@
 
 
 "@airgram/constants@link:packages/constants":
-  version "4.1.0"
+  version "4.1.1"
 
 "@airgram/use-models@link:packages/use-models":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     class-transformer "^0.3.1"
     reflect-metadata "^0.1.13"
 
 "@airgram/web@link:packages/web":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/core" "^5.1.0"
+    "@airgram/core" "^5.1.1"
     tdweb "~1.8.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.3":
@@ -2040,10 +2040,10 @@ aggregate-error@^3.0.0:
     indent-string "^4.0.0"
 
 "airgram@link:packages/airgram":
-  version "5.1.0"
+  version "5.1.1"
   dependencies:
-    "@airgram/constants" "^4.1.0"
-    "@airgram/core" "^5.1.0"
+    "@airgram/constants" "^4.1.1"
+    "@airgram/core" "^5.1.1"
     ffi-napi "^3.0.0"
 
 ajv-errors@^1.0.0:
@@ -8866,9 +8866,9 @@ minimist-options@^4.0.2:
     kind-of "^6.0.3"
 
 minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0, minimist@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
-  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
+  integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 minipass@^2.3.5, minipass@^2.6.0, minipass@^2.9.0:
   version "2.9.0"
