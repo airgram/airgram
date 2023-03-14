@@ -3,6 +3,7 @@ export type InputFileInputUnion = InputFileIdInput
   | InputFileRemoteInput
   | InputFileLocalInput
   | InputFileGeneratedInput
+  | InputFileBlobInput
 
 /** A file defined by its unique ID */
 export interface InputFileIdInput {
@@ -47,4 +48,15 @@ export interface InputFileGeneratedInput {
   conversion?: string
   /** Expected size of the generated file, in bytes; 0 if unknown */
   expectedSize?: number
+}
+
+export interface InputFileBlobInput {
+  _: 'inputFileBlob',
+  /**
+   * File name. Input file blob will be renamed
+   */
+  name: string,
+
+  /** Blob file. Object that extended to Blob */
+  data: any
 }
